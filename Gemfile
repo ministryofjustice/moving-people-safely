@@ -14,6 +14,9 @@ gem 'cells-slim'
 gem 'govuk_elements_rails'
 gem 'govuk_frontend_toolkit'
 gem 'moj_template', '0.23.2'
+gem 'reform'
+gem 'reform-rails'
+gem 'virtus'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
