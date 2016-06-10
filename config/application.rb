@@ -21,5 +21,10 @@ module MovingPeopleSafely
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    config.app_title = 'Moving people safely'
+    config.proposition_title = 'Moving people safely'
+    config.phase = 'beta'
+    config.product_type = 'service'
+    config.feedback_url = ''
   end
 end

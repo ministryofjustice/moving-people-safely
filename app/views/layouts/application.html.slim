@@ -1,10 +1,20 @@
-doctype html
-html
-  head
-    title
-      | Moving People Safely
-    = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
-  body
-    = yield
+= content_for :stylesheets do
+  = stylesheet_link_tag "application.css"
+
+= content_for :javascripts do
+  = javascript_include_tag "application.js"
+
+= content_for :content_override do
+  main id="wrapper" role="main"
+    .container
+      section class="content inner cf" id="content"
+        .phase-banner-beta
+          p
+            strong class="phase-tag" Beta
+            span
+              | This is a new service.
+              |  If you have any comments or need help please contact us
+        == yield
+
+= render template: "layouts/moj_template"
+
