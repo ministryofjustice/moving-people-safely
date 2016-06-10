@@ -9,6 +9,11 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'slim-rails'
+gem 'cells-rails'
+gem 'cells-slim'
+gem 'govuk_elements_rails'
+gem 'govuk_frontend_toolkit'
+gem 'moj_template', '0.23.2'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

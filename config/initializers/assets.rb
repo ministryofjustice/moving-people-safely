@@ -8,4 +8,12 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-# Rails.application.config.assets.precompile += %w( search.js )
+Rails.application.config.assets.precompile += %w(
+    favicon.ico
+    apple-touch-icon-152x152.png
+    apple-touch-icon-120x120.png
+    apple-touch-icon-76x76.png
+    apple-touch-icon-60x60.png
+    opengraph-image.png
+    gov.uk_logotype_crown.png
+)
