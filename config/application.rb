@@ -26,5 +26,7 @@ module MovingPeopleSafely
     config.phase = 'beta'
     config.product_type = 'service'
     config.feedback_url = ''
+
+    ActionView::Base.default_form_builder = GovukElementsFormBuilder::FormBuilder
   end
 end
