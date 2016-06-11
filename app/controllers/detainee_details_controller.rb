@@ -8,12 +8,12 @@ class DetaineeDetailsController < ApplicationController
 
   def update
     form = Forms::DetaineeDetails.new(escort.detainee)
-    view_context = FormModelPair.new(form, escort)
 
     if form.validate(params[:detainee_details])
       form.save
-      render_cell :detainee_details, view_context
+      redirect_to profile_path(escort)
     else
+      view_context = FormModelPair.new(form, escort)
       render_cell :detainee_details, view_context
     end
   end
