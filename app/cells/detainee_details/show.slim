@@ -1,0 +1,26 @@
+.detainee
+  header
+    h1 Detainee information
+
+  = GovukElementsErrorsHelper.error_summary form,
+    'There were problems saving this form', ''
+
+  label class = 'form-label'
+    | Prison number
+
+  p = form.prison_number
+
+  = form_for form, url: form_url, method: :put do |f|
+    = f.text_field :surname
+    = f.text_field :forenames
+    = f.text_field :date_of_birth
+    = f.text_area  :nationalities
+    .form-group
+      = f.radio_button_fieldset :gender,
+        choices: form.genders,
+        inline: true
+    = f.text_field :pnc_number
+    = f.text_field :cro_number
+    = f.text_area  :aliases
+
+    = f.submit 'Save and continue', class: 'button'
