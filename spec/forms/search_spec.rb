@@ -55,6 +55,14 @@ RSpec.describe Forms::Search, type: :form do
     end
   end
 
+  describe '#invalid?' do
+    it 'inverts the return of #valid?' do
+      invalid_form = subject
+      invalid_form.assign_attributes(prison_number: 'invalid')
+      expect(invalid_form.invalid?).to be true
+    end
+  end
+
   describe 'behaves like an activemodel' do
     # Reform expects the model it is initialized with to
     # behave like an ActiveModel(with Conversion functionality),
