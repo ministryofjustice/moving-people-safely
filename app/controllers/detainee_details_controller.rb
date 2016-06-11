@@ -1,6 +1,21 @@
 class DetaineeDetailsController < ApplicationController
   def show
-    render html: "Prison number: #{escort.detainee.prison_number}", layout: true
+    form = Forms::DetaineeDetails.new(escort.detainee)
+    view_context = FormModelPair.new(form, escort)
+
+    render_cell :detainee_details, view_context
+  end
+
+  def update
+    form = Forms::DetaineeDetails.new(escort.detainee)
+    view_context = FormModelPair.new(form, escort)
+
+    if form.validate(params[:detainee_details])
+      form.save
+      render_cell :detainee_details, view_context
+    else
+      render_cell :detainee_details, view_context
+    end
   end
 
   private
@@ -8,4 +23,6 @@ class DetaineeDetailsController < ApplicationController
   def escort
     @escort ||= Escort.find(params[:id])
   end
+
+  FormModelPair = Struct.new(:form, :escort)
 end
