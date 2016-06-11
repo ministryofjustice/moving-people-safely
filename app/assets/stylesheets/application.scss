@@ -1,2 +1,10 @@
 // Dependency imports
 @import 'govuk_elements';
+
+// Helpers
+@import 'variables';
+@import 'helper_classes';
+@import 'govuk_elements_overrides';
+
+// Section specific styles
+@import 'home';

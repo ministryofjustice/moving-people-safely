@@ -18,6 +18,10 @@ module Forms
     validates :prison_number,
       presence: true,
       format: { with: PRISON_NUMBER_REGEX }
+
+    def assign_attributes(attrs)
+      validate(attrs)
+    end
   end
 end
 
