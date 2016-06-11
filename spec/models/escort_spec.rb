@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Escort, type: :model do
   it { is_expected.to have_one(:detainee).dependent(:destroy) }
+  it { is_expected.to have_one(:move).dependent(:destroy) }
 
   describe '.find_detainee_by_prison_number' do
     subject { described_class.find_detainee_by_prison_number('A1234BC') }
