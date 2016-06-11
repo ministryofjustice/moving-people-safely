@@ -12,8 +12,7 @@ class HomepageController < ApplicationController
   private
 
   def search_attributes
-    # TODO: strip the unnecesary forms module name off the params
-    params[:forms_search]
+    params[:search]
   end
 
   def render_cell(*cell_attrs)
