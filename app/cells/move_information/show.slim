@@ -1,0 +1,40 @@
+.move
+  header
+    h1 Move information
+
+  = GovukElementsErrorsHelper.error_summary form,
+    'There were problems saving this form', ''
+
+  = form_for form, url: form_url, method: :put do |f|
+    = f.text_field :from
+    = f.text_field :to
+    = f.text_field :date
+
+    .form-group
+      = f.radio_button_fieldset :reason,
+        choices: form.reasons
+
+    .js_destinations
+      .form-group.controls-optional-section
+        = f.radio_button_fieldset :has_destinations,
+          choices: form.has_destinations_values,
+          inline: true
+
+      #error_move_destinations
+      .optional-section-wrapper
+        - f.fields_for :destinations do |df|
+          .form-group.optional-section
+            = df.hidden_field :id
+            = df.text_field :establishment
+            = df.radio_button_fieldset :must_return,
+              choices: df.object.must_return_values,
+              inline: true
+            = df.text_area :reasons
+            = df.label :_delete, class: 'styled-as-link'
+            = df.check_box :_delete
+
+        div = f.submit 'Add Destination', class: 'button'
+
+    = f.submit 'Save', class: 'button'
+
+

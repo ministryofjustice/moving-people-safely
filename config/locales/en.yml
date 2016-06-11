@@ -1,5 +1,8 @@
 en:
   helpers:
+    fieldset:
+      move_information:
+        has_destinations: Are there establishments the detainee must or must not be sent?
     label:
       detainee_details:
         surname: Surname
@@ -9,6 +12,16 @@ en:
         cro_number: CRO number
         gender: Gender
         aliases: Aliases
+      move_information:
+        from: From
+        to: To
+        Date: Date
+        reason: Reason
+        has_destinations:
+          unknown: Clear selection
+        destinations:
+          establishment: Establishment
+          reasons: List the reasons, eg medical treatment, medical hold, treatment programmes or offender behaviour.
     hint:
       detainee_details:
         date_of_birth: DD/MM/YYYY
