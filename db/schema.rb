@@ -11,11 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611195437) do
+ActiveRecord::Schema.define(version: 20160611200847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "destinations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "move_id"
+    t.string   "establishment"
+    t.string   "must_return",   default: "unknown"
+    t.text     "reasons"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
 
   create_table "detainees", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "escort_id"
@@ -45,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160611195437) do
     t.string   "reason"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.string   "has_destinations", default: "unknown"
   end
 
 end
