@@ -11,8 +11,11 @@ class HomepageCell
     alias_method :prison_number, :model
 
     def create_escort
-      # TODO: this should hit the escort create action
-      button_to('Create new profile', class: 'button')
+      button_to('Create new profile',
+        escort_path,
+        params: { prison_number: prison_number },
+        class: 'button'
+      )
     end
   end
 end
