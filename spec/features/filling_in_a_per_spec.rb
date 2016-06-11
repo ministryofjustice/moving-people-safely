@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'filling in a PER', type: :feature do
   scenario 'adding a new escort and filling it in' do
-    visit '/'
+    login
 
     search_prisoner
     create_new_detainee_profile
