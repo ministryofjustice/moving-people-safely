@@ -21,6 +21,7 @@ RSpec.describe Forms::MoveInformation, type: :form do
   }
 
   describe 'defaults' do
+    its(:from) { is_expected.to eq 'HMP Bedford' }
     its(:has_destinations) { is_expected.to eq 'unknown' }
   end
 
