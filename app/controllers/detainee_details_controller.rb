@@ -18,11 +18,5 @@ class DetaineeDetailsController < ApplicationController
     end
   end
 
-  private
-
-  def escort
-    @escort ||= Escort.find(params[:id])
-  end
-
   FormModelPair = Struct.new(:form, :escort)
 end
