@@ -22,6 +22,12 @@ module Forms
     def assign_attributes(attrs)
       validate(attrs)
     end
+
+    def escort
+      if valid?
+        Escort.find_detainee_by_prison_number(prison_number)
+      end
+    end
   end
 end
 
