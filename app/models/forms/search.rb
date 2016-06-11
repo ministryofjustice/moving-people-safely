@@ -28,6 +28,9 @@ module Forms
         Escort.find_detainee_by_prison_number(prison_number)
       end
     end
+
+    def invalid?
+      !valid?
+    end
   end
 end
-
