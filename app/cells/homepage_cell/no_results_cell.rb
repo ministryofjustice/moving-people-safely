@@ -19,5 +19,3 @@ class HomepageCell
     end
   end
 end
-
-

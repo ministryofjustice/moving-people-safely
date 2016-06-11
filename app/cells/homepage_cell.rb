@@ -20,6 +20,8 @@ class HomepageCell < Cell::ViewModel
 
     if search.not_yet_performed_or_invalid?
       return
+    elsif search.result?
+      cell(ResultsCell, form.escort)
     elsif search.no_result?
       cell(NoResultsCell, form.prison_number)
     end
