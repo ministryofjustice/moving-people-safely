@@ -1,8 +1,5 @@
-require 'reform/form/coercion'
-
 module Forms
-  class Search < Reform::Form
-    include Coercion
+  class Search < Forms::Base
     include ::ActiveModel::Conversion
 
     SearchModel = Struct.new(:prison_number, :id, :persisted?)
@@ -25,12 +22,8 @@ module Forms
 
     def escort
       if valid?
-        Escort.find_detainee_by_prison_number(prison_number)
+        ::Escort.find_detainee_by_prison_number(prison_number)
       end
-    end
-
-    def invalid?
-      !valid?
     end
   end
 end
