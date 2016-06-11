@@ -3,7 +3,7 @@ module Forms
     REASONS = %w[ sentencing part_heard trial plea_and_directions witness ]
     HAS_DESTINATIONS = %w[ yes no unknown ]
 
-    property :from,             type: StrictString
+    property :from,             type: StrictString, default: 'HMP Bedford'
     property :to,               type: StrictString
     property :date,             type: TextDate
     property :reason,           type: StrictString
