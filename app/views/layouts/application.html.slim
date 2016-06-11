@@ -16,5 +16,10 @@
               |  If you have any comments or need help please contact us
         == yield
 
+= content_for :proposition_links do
+  - if user_signed_in?
+    .sign-out
+      = button_to 'Sign out', destroy_user_session_path, method: :delete
+
 = render template: "layouts/moj_template"
 
