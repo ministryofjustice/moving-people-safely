@@ -14,8 +14,4 @@ class HomepageController < ApplicationController
   def search_attributes
     params[:search]
   end
-
-  def render_cell(*cell_attrs)
-    render html: cell(*cell_attrs), layout: true
-  end
 end
