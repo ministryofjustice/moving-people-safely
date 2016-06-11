@@ -12,6 +12,19 @@ RSpec.describe Forms::Search, type: :form do
     end
   end
 
+  describe '#assign_attributes' do
+    it 'sets the prison number on the form' do
+      subject.assign_attributes(prison_number: 'A1234BC')
+      expect(subject.prison_number).to eq 'A1234BC'
+    end
+
+    it 'validates the form after assigning the attributes' do
+      invalid_form = subject
+      invalid_form.assign_attributes(prison_number: 'invalid')
+      expect(invalid_form.errors).not_to be_empty
+    end
+  end
+
   describe 'behaves like an activemodel' do
     # Reform expects the model it is initialized with to
     # behave like an ActiveModel(with Conversion functionality),
