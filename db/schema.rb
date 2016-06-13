@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611200847) do
+ActiveRecord::Schema.define(version: 20160613114724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,31 @@ ActiveRecord::Schema.define(version: 20160611200847) do
   create_table "escorts", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "healthcare", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "escort_id"
+    t.string   "physical_issues",          default: "unknown"
+    t.text     "physical_issues_details"
+    t.string   "mental_illness",           default: "unknown"
+    t.text     "mental_illness_details"
+    t.string   "phobias",                  default: "unknown"
+    t.text     "phobias_details"
+    t.string   "personal_hygiene",         default: "unknown"
+    t.text     "personal_hygiene_details"
+    t.string   "personal_care",            default: "unknown"
+    t.text     "personal_care_details"
+    t.string   "allergies",                default: "unknown"
+    t.text     "allergies_details"
+    t.string   "dependencies",             default: "unknown"
+    t.text     "dependencies_details"
+    t.string   "medication",               default: "unknown"
+    t.string   "mpv",                      default: "unknown"
+    t.text     "mpv_details"
+    t.string   "clinician_name"
+    t.string   "contact_number"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   create_table "moves", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

@@ -16,5 +16,5 @@
 # end
 
 ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.uncountable %w( move_information )
+  inflect.uncountable %w( move_information healthcare )
 end
