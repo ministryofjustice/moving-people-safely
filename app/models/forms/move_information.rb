@@ -47,8 +47,15 @@ module Forms
       add_destination if destinations.empty?
     end
 
-    # TODO: imrpove readability of this method
-    def handle_incoming_destination_params(collection:, fragment:, represented:, **)
+    # TODO: improve readability of this method
+    #
+    # rubocop:disable MethodLength
+    def handle_incoming_destination_params(
+      collection:,
+      fragment:,
+      represented:,
+      **)
+
       item = destinations.find { |d| d.id == fragment['id'] }
 
       if fragment['_delete'] == '1' ||
@@ -63,6 +70,7 @@ module Forms
         collection.append(new_destination)
       end
     end
+    # rubocop:enable MethodLength
 
     def new_destination
       model.destinations.build

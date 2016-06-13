@@ -14,8 +14,7 @@ class HomepageCell
       button_to('Create new profile',
         escort_path,
         params: { prison_number: prison_number },
-        class: 'button'
-      )
+        class: 'button')
     end
   end
 end

@@ -19,4 +19,3 @@ class ProfileCell < Cell::ViewModel
     escort.detainee.prison_number
   end
 end
-
