@@ -15,6 +15,10 @@ class ProfileCell < Cell::ViewModel
     link_to 'Move information', move_information_path(escort)
   end
 
+  def healthcare_link
+    link_to 'Healthcare', physical_path(escort)
+  end
+
   def prison_number
     escort.detainee.prison_number
   end

@@ -1,0 +1,11 @@
+.healthcare
+  header
+    h1 Physical healthcare
+
+  = GovukElementsErrorsHelper.error_summary form,
+    'There were problems saving this form', ''
+
+  = form_for form, url: form_path, method: :put do |f|
+    = render view: :physical, locals: { f: f }
+
+    = f.submit 'Save and continue', class: 'button'
