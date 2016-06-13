@@ -1,0 +1,8 @@
+machine:
+  ruby:
+    version:
+      2.3.0
+
+test:
+  override:
+    - bundle exec rake SPEC_OPTS="--format documentation"
