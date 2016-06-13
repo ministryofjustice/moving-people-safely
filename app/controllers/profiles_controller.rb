@@ -3,4 +3,3 @@ class ProfilesController < ApplicationController
     render_cell :profile, escort
   end
 end
-

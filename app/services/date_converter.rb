@@ -3,7 +3,7 @@ module DateConverter
 
   def convert(date)
     if date.is_a? String
-      Date.strptime(date, "%d/%m/%Y")
+      Date.strptime(date, '%d/%m/%Y')
     else
       date
     end

@@ -21,9 +21,7 @@ module Forms
     end
 
     def escort
-      if valid?
-        ::Escort.find_detainee_by_prison_number(prison_number)
-      end
+      ::Escort.find_detainee_by_prison_number(prison_number) if valid?
     end
   end
 end
