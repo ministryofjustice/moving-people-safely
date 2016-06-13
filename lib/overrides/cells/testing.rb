@@ -1,11 +1,11 @@
-puts """
+puts '''
 A temporary workaround has been put in place to support
 Cells with Rails 5. Please check cells/cells-rails for
 updates so that the gem can be upgraded and this can be
 removed.
 
 The workaround can be found in lib/overrides/cells/testing.rb
-"""
+'''
 
 require 'cell/testing'
 
