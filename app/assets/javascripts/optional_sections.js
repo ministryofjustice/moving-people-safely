@@ -3,20 +3,20 @@
 $(function () {
 
   /**
-   * Links visibility of an optional section to the
+   * Links visibility of an optional section to the selection within a specified set of controls
    * @param {jQuery wrapped input} $input - A radio button.
-   * @param {jQuery wrapped div} $optional_section - The optional section that is to be shown/hidden.
    */
 
   var manageStateOfOptionalSection = function ($input, $optional_section_wrapper) {
-    switch ($input.attr('id')) {
-      case 'move_information_has_destinations_yes':
+    var id = $input.attr('id');
+    switch (true) {
+      case /_yes$/.test(id):
         $optional_section_wrapper.show();
         break;
-      case 'move_information_has_destinations_no':
+      case /_no$/.test(id):
         $optional_section_wrapper.hide();
         break;
-      case 'move_information_has_destinations_clear_selection':
+      case /_clear_selection$/.test(id):
         $optional_section_wrapper.hide();
         break;
       default:
@@ -24,15 +24,14 @@ $(function () {
     }
   };
 
-  $.fn.destinations = function (options) {
+  $.fn.optional_section = function (options) {
 
-    var settings = $.extend({}, $.fn.destinations.defaults, options);
+    var settings = $.extend({}, $.fn.optional_section.defaults, options);
 
     return this.each(function () {
       var $this = $(this),
         $controls = $(settings.controls_for_optional_section, $this),
         $checked_item_at_load = $controls.find(':checked'),
-        $optional_section = $(settings.optional_section, $this),
         $optional_section_wrapper = $(settings.optional_section_wrapper, $this);
 
       // Initialization
@@ -44,24 +43,13 @@ $(function () {
         manageStateOfOptionalSection($input, $optional_section_wrapper);
       });
 
-      $optional_section.on('change', function (e) {
-        var $this = $(this),
-          $changed_element = $(e.target);
-        if(/move_information_destinations_attributes_\d+__delete/.test($changed_element.attr('id'))) {
-          $this.hide();
-        } else {
-          $this.show();
-        }
-      });
-
     })
   };
 
-  $.fn.destinations.defaults = {
+  $.fn.optional_section.defaults = {
     controls_for_optional_section: '.controls-optional-section',
-    optional_section_wrapper: '.optional-section-wrapper',
-    optional_section: '.optional-section'
+    optional_section_wrapper: '.optional-section-wrapper'
   };
 
-  $('.js_destinations').destinations();
+  $('.js_destinations').optional_section();
 });
