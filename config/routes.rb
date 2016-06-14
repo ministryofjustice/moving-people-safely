@@ -10,7 +10,7 @@ Rails.application.routes.draw do
         constraints: -> (r) { r.params['commit'] =~ /Add/ }
     end
 
-    %i[ physical mental social ].each do |step|
+    %i[ physical mental social allergies needs transport contact ].each do |step|
       resource step, only: %i[ show update ], controller: :healthcare, step: step
     end
 

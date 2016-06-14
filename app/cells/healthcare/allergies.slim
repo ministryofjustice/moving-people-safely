@@ -1,0 +1,6 @@
+.form-group
+  = f.radio_button_fieldset :allergies,
+    choices: form.toggle_choices,
+    inline: true
+
+= f.text_area  :allergies_details

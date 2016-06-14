@@ -1,0 +1,10 @@
+.form-group
+  = f.radio_button_fieldset :dependencies,
+    choices: form.toggle_choices,
+    inline: true
+= f.text_area  :dependencies_details
+
+.form-group
+  = f.radio_button_fieldset :medication,
+    choices: form.toggle_choices,
+    inline: true
