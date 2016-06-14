@@ -1,3 +1,14 @@
 .padded {
   padding: $padding-large $padding-unit;
 }
+
+.questions-nav {
+  margin-top: 2 * $margin-unit;
+
+  span {
+    margin-right: 10px;
+  }
+  .current-question {
+    color: grey;
+  }
+}

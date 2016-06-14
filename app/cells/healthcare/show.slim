@@ -1,11 +1,13 @@
+.questions-nav
+  span = back_link
+  span.current-question = current_question_text
+  span = next_link
+
 .healthcare
   header
-    h1 Physical healthcare
+    h1 = title
 
   = GovukElementsErrorsHelper.error_summary form,
     'There were problems saving this form', ''
 
-  = form_for form, url: form_path, method: :put do |f|
-    = render view: :physical, locals: { f: f }
-
-    = f.submit 'Save and continue', class: 'button'
+  = render template_name
