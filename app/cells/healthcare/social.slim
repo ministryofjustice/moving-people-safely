@@ -1,0 +1,11 @@
+.form-group
+  = f.radio_button_fieldset :personal_hygiene,
+    choices: form.toggle_choices,
+    inline: true
+= f.text_area  :personal_hygiene_details
+
+.form-group
+  = f.radio_button_fieldset :personal_care,
+    choices: form.toggle_choices,
+    inline: true
+= f.text_area  :personal_care_details
