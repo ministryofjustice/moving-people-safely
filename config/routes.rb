@@ -10,7 +10,9 @@ Rails.application.routes.draw do
         constraints: -> (r) { r.params['commit'] =~ /Add/ }
     end
 
-    resource :physical, only: %i[ show update ], controller: :healthcare
+    %i[ physical mental social ].each do |step|
+      resource step, only: %i[ show update ], controller: :healthcare, step: step
+    end
 
     get :profile, to: 'profiles#show'
   end

@@ -1,16 +1,26 @@
 class HealthcareController < ApplicationController
   def show
-    form = Forms::Healthcare::Physical.new(escort.healthcare)
-    render_cell(:healthcare, form)
+    render_cell(:healthcare, step)
   end
 
   def update
-    form = Forms::Healthcare::Physical.new(escort.healthcare)
-    if form.validate(params[:physical])
+    if form.validate(params[step_name])
       form.save
-      redirect_to profile_path(escort)
+      redirect_to next_path
     else
-      render_cell(:healthcare, form)
+      render_cell(:healthcare, step)
     end
+  end
+
+  private
+
+  delegate :form, :next_path, to: :step
+
+  def step
+    @step ||= Forms::Healthcare::StepManager.build_step_for(step_name, escort)
+  end
+
+  def step_name
+    params[:step].to_s
   end
 end

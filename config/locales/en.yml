@@ -25,3 +25,8 @@ en:
     hint:
       detainee_details:
         date_of_birth: DD/MM/YYYY
+
+  healthcare:
+    physical: Physical healthcare
+    mental: Mental healthcare
+    social: Social healthcare
