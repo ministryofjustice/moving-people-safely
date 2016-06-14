@@ -11,6 +11,8 @@ gem 'jquery-rails'
 gem 'slim-rails'
 gem 'cells-rails'
 gem 'cells-slim'
+gem 'devise', '4.0.0.rc2'
+gem 'devise_invitable', '1.6.0'
 gem 'govuk_elements_rails'
 gem 'govuk_elements_form_builder', git: 'https://github.com/ministryofjustice/govuk_elements_form_builder.git'
 gem 'govuk_frontend_toolkit'
@@ -33,7 +35,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'listen', '~> 3.0.5'
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.35.1', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
