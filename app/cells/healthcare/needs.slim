@@ -1,0 +1,24 @@
+= form_for form, url: form_path, method: :put do |f|
+  .form-group
+    = f.radio_button_fieldset :dependencies,
+      choices: form.toggle_choices,
+      inline: true
+  = f.text_area  :dependencies_details
+
+  .form-group
+    = f.radio_button_fieldset :medication,
+      choices: form.toggle_choices,
+      inline: true
+
+  - f.fields_for :medications do |mf|
+    .form-group
+      = mf.hidden_field :id
+      = mf.text_field :description
+      = mf.text_field :administration
+      = mf.text_field :carrier
+      = mf.label :_delete, class: 'styled-as-link'
+      = mf.check_box :_delete
+
+  div = f.submit 'Add medication', class: 'button'
+
+  = render view: :buttons, locals: { f: f }

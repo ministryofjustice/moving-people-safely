@@ -5,6 +5,10 @@ module Forms
         l << Forms::Healthcare::Physical
         l << Forms::Healthcare::Mental
         l << Forms::Healthcare::Social
+        l << Forms::Healthcare::Allergies
+        l << Forms::Healthcare::Needs
+        l << Forms::Healthcare::Transport
+        l << Forms::Healthcare::Contact
       end
 
       def self.build_step_for(step_name, escort)

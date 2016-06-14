@@ -19,7 +19,7 @@ RSpec.describe Forms::Healthcare::StepManager, type: :form do
 
   describe '.total_steps' do
     it 'returns the total number of steps' do
-      expect(described_class.total_steps).to eq 3
+      expect(described_class.total_steps).to eq 7
     end
   end
 end

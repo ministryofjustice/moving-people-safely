@@ -1,0 +1,9 @@
+= form_for form, url: form_path, method: :put do |f|
+  .form-group
+    = f.radio_button_fieldset :mpv,
+      choices: form.toggle_choices,
+      inline: true
+
+  = f.text_area  :mpv_details
+
+  = render view: :buttons, locals: { f: f }
