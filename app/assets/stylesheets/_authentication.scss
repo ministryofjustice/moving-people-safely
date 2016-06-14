@@ -1,11 +1,12 @@
 .header-proposition {
+  width: 100%!important;
   position: relative;
 }
 
 .sign-out {
   display: inline-block;
   position: absolute;
-  right: 0em;
+  right: 15px;
   input {
     @extend .font-small;
     background-color: transparent;
