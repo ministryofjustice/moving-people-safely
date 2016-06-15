@@ -20,6 +20,24 @@ RSpec.feature 'filling in a PER', type: :feature do
     save
 
     expect_to_be_sent_to_profile_page
+
+    go_to_healthcare_page
+    fill_in_physical_healthcare
+    save_and_continue
+    fill_in_mental_healthcare
+    save_and_continue
+    fill_in_social_healthcare
+    save_and_continue
+    fill_in_allergies
+    save_and_continue
+    fill_in_healthcare_needs
+    save_and_continue
+    fill_in_transport
+    save_and_continue
+    fill_in_medical_contact
+    save_and_continue
+
+    expect_to_be_sent_to_profile_page
   end
 
   def search_prisoner
