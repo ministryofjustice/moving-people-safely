@@ -12,6 +12,15 @@ class HealthcareController < ApplicationController
     end
   end
 
+  def update_and_redirect_to_profile
+    if form.validate(params[step_name])
+      form.save
+      redirect_to profile_path(escort)
+    else
+      render_cell(:healthcare, step)
+    end
+  end
+
   private
 
   delegate :form, :next_path, to: :step
