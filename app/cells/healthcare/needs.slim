@@ -1,24 +1,35 @@
 = form_for form, url: form_path, method: :put do |f|
-  .form-group
-    = f.radio_button_fieldset :dependencies,
-      choices: form.toggle_choices,
-      inline: true
-  = f.text_area  :dependencies_details
+  .js_multiples
+    .form-group.controls-optional-section
+      = f.radio_button_fieldset :dependencies,
+        choices: form.toggle_choices,
+        inline: true
 
-  .form-group
-    = f.radio_button_fieldset :medication,
-      choices: form.toggle_choices,
-      inline: true
+    .optional-section-wrapper
+      .form-group.optional-section
+        = f.text_area  :dependencies_details
 
-  - f.fields_for :medications do |mf|
-    .form-group
-      = mf.hidden_field :id
-      = mf.text_field :description
-      = mf.text_field :administration
-      = mf.text_field :carrier
-      = mf.label :_delete, class: 'styled-as-link'
-      = mf.check_box :_delete
+  .js_multiples
+    .form-group.controls-optional-section
+      = f.radio_button_fieldset :medication,
+        choices: form.toggle_choices,
+        inline: true
 
-  div = f.submit 'Add medication', class: 'button'
+    .optional-section-wrapper
+      - f.fields_for :medications do |mf|
+        .optional-section.panel.panel-border-narrow
+          = mf.hidden_field :id
+          .nested-medication-field
+            = mf.text_field :description
+          .nested-medication-field
+            = mf.text_field :administration
+          .nested-medication-field
+            = mf.label :carrier, class: 'form-label'
+            .form-group = mf.select :carrier, form.carrier_values, include_blank: true
+          .nested-medication-field.remove-link
+            = mf.label :_delete, 'Remove', class: 'styled-as-link'
+            = mf.check_box :_delete
+
+      div = f.submit 'Add medication', class: 'styled-as-link'
 
   = render view: :buttons, locals: { f: f }

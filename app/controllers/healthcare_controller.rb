@@ -1,5 +1,6 @@
 class HealthcareController < ApplicationController
   def show
+    step.form.tap(&:prepopulate!)
     render_cell(:healthcare, step)
   end
 
@@ -19,6 +20,14 @@ class HealthcareController < ApplicationController
     else
       render_cell(:healthcare, step)
     end
+  end
+
+  def add_medication
+    step.form
+    step.form.deserialize(params[step_name])
+    step.form.add_medication
+
+    render_cell :healthcare, step
   end
 
   private

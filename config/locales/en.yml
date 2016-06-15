@@ -22,6 +22,11 @@ en:
         destinations:
           establishment: Establishment
           reasons: List the reasons, eg medical treatment, medical hold, treatment programmes or offender behaviour.
+      needs:
+        dependencies:
+          unknown: Clear selection
+        medication:
+          unknown: Clear selection
     hint:
       detainee_details:
         date_of_birth: DD/MM/YYYY

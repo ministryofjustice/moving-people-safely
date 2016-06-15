@@ -69,6 +69,57 @@ RSpec.feature 'filling in a PER', type: :feature do
     click_button 'Save'
   end
 
+  def go_to_healthcare_page
+    click_link 'Healthcare'
+  end
+
+  def fill_in_physical_healthcare
+    choose 'physical_physical_issues_yes'
+    fill_in 'Physical issues details', with: 'Back pain'
+  end
+
+  def fill_in_mental_healthcare
+    choose 'mental_mental_illness_yes'
+    fill_in 'Mental illness details', with: 'Depressed'
+    choose 'mental_phobias_yes'
+    fill_in 'Phobias details', with: 'Spiders'
+  end
+
+  def fill_in_social_healthcare
+    choose 'social_personal_hygiene_yes'
+    fill_in 'Personal hygiene details', with: 'Dirty guy'
+    choose 'social_personal_care_yes'
+    fill_in 'Personal care details', with: 'Not taking care'
+  end
+
+  def fill_in_allergies
+    choose 'allergies_allergies_yes'
+    fill_in 'Allergies details', with: 'Nuts'
+  end
+
+  def fill_in_healthcare_needs
+    choose 'needs_dependencies_yes'
+    fill_in 'Dependencies details', with: 'Heroin'
+    choose 'needs_medication_yes'
+    fill_in 'Description', with: 'Aspirin'
+    fill_in 'Administration', with: 'Once a day'
+    select 'detainee', from: 'Carrier'
+  end
+
+  def fill_in_transport
+    choose 'transport_mpv_yes'
+    fill_in 'Mpv details', with: 'Wheel chair'
+  end
+
+  def fill_in_medical_contact
+    fill_in 'Clinician name', with: 'Doctor Robert'
+    fill_in 'Contact number', with: '079876543'
+  end
+
+  def save_and_continue
+    click_button 'Save and continue'
+  end
+
   def escort
     Escort.last
   end

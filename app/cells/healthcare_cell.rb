@@ -2,6 +2,7 @@ require 'cell/translation'
 
 class HealthcareCell < Cell::ViewModel
   include ActionView::Helpers::TranslationHelper
+  include ActionView::Helpers::FormOptionsHelper
   include Cell::Translation
 
   property :form
