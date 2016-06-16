@@ -12,3 +12,40 @@
     color: grey;
   }
 }
+
+select {
+  @extend .form-control;
+  border: 1px solid $grey-2;
+  max-width: auto;
+}
+
+.styled-as-link {
+  text-decoration: underline;
+  &:hover {
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+label[for$=_unknown] {
+  background-color: transparent;
+  border-color: transparent;
+  padding-left: $padding-unit;
+  text-decoration: underline;
+  &:hover {
+    border-color: transparent;
+  }
+  input {
+    @extend .visuallyhidden;
+  }
+}
+
+.js_multiples {
+  @extend .form-group;
+}
+
+.optional-section {
+  input[id$=_delete] {
+    @extend .visuallyhidden;
+  }
+}

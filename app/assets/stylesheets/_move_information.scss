@@ -6,33 +6,3 @@
     @extend .heading-small;
   }
 }
-
-label[for=move_information_has_destinations_unknown] {
-  background-color: transparent;
-  border-color: transparent;
-  padding-left: $padding-unit;
-  text-decoration: underline;
-  &:hover {
-    border-color: transparent;
-  }
-  input {
-    @extend .visuallyhidden;
-  }
-}
-
-.js_destinations {
-  @extend .form-group;
-}
-
-.optional-section {
-  input[id$=_delete] {
-    @extend .visuallyhidden;
-  }
-  &:first-child {
-    label[for$=delete] {
-      display: none;
-    }
-  }
-}
-
-
