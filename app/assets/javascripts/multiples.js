@@ -14,7 +14,7 @@ $(function () {
 
       $this.on('change', function (e) {
         var changed_element_id = $(e.target).attr('id');
-        if (/move_information_destinations_attributes_\d+__delete/.test(changed_element_id)) {
+        if (/_attributes_\d+__delete/.test(changed_element_id)) {
           $this.hide();
         }
       })
