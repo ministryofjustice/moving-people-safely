@@ -7,7 +7,7 @@ class MoveInformationController < ApplicationController
   end
 
   def add_destination
-    form = Forms::MoveInformation.new(move).tap(&:prepopulate!)
+    form = Forms::MoveInformation.new(move)
     form.deserialize(params[:move_information])
     form.add_destination
     view_context = FormModelPair.new(form, escort)
