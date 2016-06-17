@@ -1,26 +1,13 @@
 module Forms
   module Healthcare
     class Needs < Forms::Base
-      property :dependencies,         type: StrictString, default: 'unknown'
-      property :dependencies_details, type: StrictString
-      property :medication,           type: StrictString, default: 'unknown'
+      optional_details_field :dependencies
+      optional_field :medication
 
       collection :medications,
         form: Forms::Healthcare::Medication,
         prepopulator: :populate_medications,
         populator: :handle_incoming_medication_params
-
-      validates :dependencies,
-        inclusion: { in: TOGGLE_CHOICES },
-        allow_blank: true
-
-      validates :dependencies_details,
-        presence: true,
-        if: -> { dependencies == 'yes' }
-
-      validates :medication,
-        inclusion: { in: TOGGLE_CHOICES },
-        allow_blank: true
 
       def add_medication
         medications << new_medication
