@@ -70,7 +70,6 @@ module Forms
         collection.append(new_destination)
       end
     end
-    # rubocop:enable MethodLength
 
     def new_destination
       model.destinations.build
