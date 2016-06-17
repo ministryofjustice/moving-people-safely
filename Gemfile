@@ -42,6 +42,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'codeclimate-test-reporter', require: nil
   gem 'rspec-its'
   gem 'rspec-rails', '~> 3.5.0.beta3'
   gem 'rspec-cells'
