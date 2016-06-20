@@ -1,0 +1,19 @@
+.healthcare {
+  h1 {
+    @extend .heading-large;
+  }
+  .heading-medium {
+    @extend .heading-small;
+  }
+
+  .nested-medication-field {
+    @extend .column-one-quarter;
+    .form-control {
+      width: 100%;
+    }
+  }
+
+  .remove-link {
+    margin-top: 30px;
+  }
+}

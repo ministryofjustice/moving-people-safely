@@ -1,0 +1,27 @@
+= form_for form, url: form_path, method: :put do |f|
+  = f.radio_toggle_with_textarea :dependencies
+
+  .js_multiples
+    .form-group.controls-optional-section
+      = f.radio_button_fieldset :medication,
+        choices: form.toggle_choices,
+        inline: true
+
+    .optional-section-wrapper
+      - f.fields_for :medications do |mf|
+        .optional-section.panel.panel-border-narrow
+          = mf.hidden_field :id
+          .nested-medication-field
+            = mf.text_field :description
+          .nested-medication-field
+            = mf.text_field :administration
+          .nested-medication-field
+            = mf.label :carrier, class: 'form-label'
+            .form-group = mf.select :carrier, select_values_for(:carrier), include_blank: true
+          .nested-medication-field.remove-link
+            = mf.label :_delete, 'Remove', class: 'styled-as-link'
+            = mf.check_box :_delete
+
+      div = f.submit 'Add medication', class: 'styled-as-link'
+
+  = render view: :buttons, locals: { f: f }
