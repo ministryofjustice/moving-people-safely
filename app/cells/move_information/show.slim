@@ -26,11 +26,10 @@
                 = df.label_with_radio(:must_return, 'Must NOT return', 'must_not_return')
                 = df.label_with_radio(:must_return, 'Clear selection', 'unknown')
               = df.text_area :reasons
-              = df.label :_delete, class: 'styled-as-link'
-              = df.check_box :_delete
+              .form-group
+                = df.label :_delete, class: 'styled-as-link'
+                = df.check_box :_delete
 
         = f.submit 'Add a destination', class: 'styled-as-link'
 
     = f.submit 'Save and continue', class: 'button'
-
-
