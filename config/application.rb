@@ -27,6 +27,7 @@ module MovingPeopleSafely
     config.product_type = 'service'
     config.feedback_url = ''
 
-    ActionView::Base.default_form_builder = GovukElementsFormBuilder::FormBuilder
+    require "#{config.root}/app/form_builders/mps_form_builder"
+    ActionView::Base.default_form_builder = MpsFormBuilder
   end
 end

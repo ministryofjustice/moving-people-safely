@@ -1,13 +1,5 @@
 = form_for form, url: form_path, method: :put do |f|
-  .js_multiples
-    .form-group.controls-optional-section
-      = f.radio_button_fieldset :dependencies,
-        choices: form.toggle_choices,
-        inline: true
-
-    .optional-section-wrapper
-      .form-group.optional-section
-        = f.text_area  :dependencies_details
+  = f.radio_toggle_with_textarea :dependencies
 
   .js_multiples
     .form-group.controls-optional-section

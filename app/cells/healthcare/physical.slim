@@ -1,9 +1,4 @@
 = form_for form, url: form_path, method: :put do |f|
-  .form-group
-    = f.radio_button_fieldset :physical_issues,
-      choices: form.toggle_choices,
-      inline: true
-
-  = f.text_area  :physical_issues_details
+  = f.radio_toggle_with_textarea :physical_issues
 
   = render view: :buttons, locals: { f: f }
