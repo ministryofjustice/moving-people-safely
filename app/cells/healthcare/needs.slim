@@ -1,7 +1,7 @@
 = form_for form, url: form_path, method: :put do |f|
   = f.radio_toggle_with_textarea :dependencies
 
-  .js_multiples
+  .js-show-hide
     .form-group.controls-optional-section
       = f.radio_button_fieldset :medication,
         choices: form.toggle_choices,

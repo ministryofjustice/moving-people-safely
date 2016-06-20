@@ -56,5 +56,5 @@ $(function () {
     optional_section_wrapper: '.optional-section-wrapper'
   };
 
-  $('.js_multiples').optional_section();
+  $('.js-show-hide').optional_section();
 });

@@ -16,7 +16,7 @@
     .form-group.panel.panel-border-narrow
       = f.text_area :reason_details
 
-    .js_multiples
+    .js-show-hide
       = f.radio_toggle :has_destinations do
         #error_move_destinations
           - f.fields_for :destinations do |df|
