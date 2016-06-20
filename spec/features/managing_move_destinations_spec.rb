@@ -37,7 +37,7 @@ RSpec.describe 'managing move destinations', type: :feature do
     positions.each do |position|
       within_destination(position) do
         expect(find_field('Establishment').value).to eq text_for(:establishment, position)
-        expect(has_checked_field?('Must not return')).to be true
+        expect(has_checked_field?('Must NOT return')).to be true
         expect(find_field('reasons').value).to eq text_for(:reasons, position)
       end
     end
@@ -47,7 +47,7 @@ RSpec.describe 'managing move destinations', type: :feature do
     expect(destination_els.size).to eq 1
     within_destination(:first) do
       expect(find_field('Establishment').value).to be_blank
-      expect(has_checked_field?('Unknown')).to be true
+      expect(has_checked_field?('Clear selection')).to be true
       expect(find_field('reasons').value).to be_blank
     end
   end
@@ -68,7 +68,7 @@ RSpec.describe 'managing move destinations', type: :feature do
   def fill_in_destination(position:)
     within_destination(position) do
       fill_in 'Establishment', with: text_for(:establishment, position)
-      choose 'Must not return'
+      choose 'Must NOT return'
       fill_in 'reasons', with: text_for(:reasons, position)
     end
   end

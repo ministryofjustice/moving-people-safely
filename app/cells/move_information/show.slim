@@ -21,9 +21,10 @@
             .form-group.optional-section
               = df.hidden_field :id
               = df.text_field :establishment
-              = df.radio_button_fieldset :must_return,
-                choices: df.object.must_return_values,
-                inline: true
+              .inline
+                = df.label_with_radio(:must_return, 'Must return', 'must_return')
+                = df.label_with_radio(:must_return, 'Must NOT return', 'must_not_return')
+                = df.label_with_radio(:must_return, 'Clear selection', 'unknown')
               = df.text_area :reasons
               = df.label :_delete, class: 'styled-as-link'
               = df.check_box :_delete
