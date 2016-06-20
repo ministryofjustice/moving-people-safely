@@ -9,7 +9,8 @@ RSpec.describe Forms::MoveInformation, type: :form do
       from: 'Bedford',
       to: 'Albany',
       date: '1/2/2017',
-      reason: 'sentencing',
+      reason: 'other',
+      reason_details: 'Has to move',
       has_destinations: 'yes',
       destinations: [
         establishment: 'Hospital',
@@ -57,6 +58,11 @@ RSpec.describe Forms::MoveInformation, type: :form do
       is_expected.
         to validate_inclusion_of(:has_destinations).
         in_array(subject.has_destinations_values)
+    end
+
+    context 'when reason is other' do
+      before { subject.reason = 'other' }
+      it { is_expected.to validate_presence_of(:reason_details) }
     end
 
     context 'date' do

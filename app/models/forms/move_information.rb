@@ -1,12 +1,18 @@
 module Forms
   class MoveInformation < Forms::Base
-    REASONS = %w[ sentencing part_heard trial plea_and_directions witness ]
+    REASONS = %w[
+      discharge_to_court
+      production_to_court
+      police_production
+      other
+    ]
     HAS_DESTINATIONS = %w[ yes no unknown ]
 
     property :from,             type: StrictString, default: 'HMP Bedford'
     property :to,               type: StrictString
     property :date,             type: TextDate
     property :reason,           type: StrictString
+    property :reason_details,   type: StrictString
     property :has_destinations, type: StrictString, default: 'unknown'
 
     collection :destinations,
@@ -17,6 +23,10 @@ module Forms
     validates :reason,
       inclusion: { in: REASONS },
       allow_blank: true
+
+    validates :reason_details,
+      presence: true,
+      if: -> { reason == 'other' }
 
     validate :validate_date
 

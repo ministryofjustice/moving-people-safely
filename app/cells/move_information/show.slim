@@ -13,6 +13,8 @@
     .form-group
       = f.radio_button_fieldset :reason,
         choices: form.reasons
+    .form-group.panel.panel-border-narrow
+      = f.text_area :reason_details
 
     .js_multiples
       = f.radio_toggle :has_destinations do
