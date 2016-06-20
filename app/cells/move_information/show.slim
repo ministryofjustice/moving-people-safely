@@ -10,11 +10,12 @@
     = f.text_field :to
     = f.text_field :date
 
-    .form-group
-      = f.radio_button_fieldset :reason,
-        choices: form.reasons
-    .form-group.panel.panel-border-narrow
-      = f.text_area :reason_details
+    .js-show-hide
+      .form-group.controls-optional-section
+        = f.radio_button_fieldset :reason,
+          choices: form.reasons
+      .form-group.panel.panel-border-narrow.optional-section-wrapper
+        = f.text_area :reason_details
 
     .js-show-hide
       = f.radio_toggle :has_destinations do
