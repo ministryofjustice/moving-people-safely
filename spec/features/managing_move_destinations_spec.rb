@@ -62,7 +62,7 @@ RSpec.describe 'managing move destinations', type: :feature do
   end
 
   def add_destination
-    click_button 'Add Destination'
+    click_button 'Add a destination'
   end
 
   def fill_in_destination(position:)
