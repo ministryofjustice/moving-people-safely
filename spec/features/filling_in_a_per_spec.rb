@@ -93,31 +93,31 @@ RSpec.feature 'filling in a PER', type: :feature do
 
   def fill_in_physical_healthcare
     choose 'physical_physical_issues_yes'
-    fill_in 'Physical issues details', with: 'Back pain'
+    fill_in 'physical[physical_issues_details]', with: 'Back pain'
   end
 
   def fill_in_mental_healthcare
     choose 'mental_mental_illness_yes'
-    fill_in 'Mental illness details', with: 'Depressed'
+    fill_in 'mental[mental_illness_details]', with: 'Depressed'
     choose 'mental_phobias_yes'
-    fill_in 'Phobias details', with: 'Spiders'
+    fill_in 'mental[phobias_details]', with: 'Spiders'
   end
 
   def fill_in_social_healthcare
     choose 'social_personal_hygiene_yes'
-    fill_in 'Personal hygiene details', with: 'Dirty guy'
+    fill_in 'social[personal_hygiene_details]', with: 'Dirty guy'
     choose 'social_personal_care_yes'
-    fill_in 'Personal care details', with: 'Not taking care'
+    fill_in 'social[personal_care_details]', with: 'Not taking care'
   end
 
   def fill_in_allergies
     choose 'allergies_allergies_yes'
-    fill_in 'Allergies details', with: 'Nuts'
+    fill_in 'allergies[allergies_details]', with: 'Nuts'
   end
 
   def fill_in_healthcare_needs
     choose 'needs_dependencies_yes'
-    fill_in 'Dependencies details', with: 'Heroin'
+    fill_in 'needs[dependencies_details]', with: 'Heroin'
     choose 'needs_medication_yes'
     fill_in 'Description', with: 'Aspirin'
     fill_in 'Administration', with: 'Once a day'
@@ -126,7 +126,7 @@ RSpec.feature 'filling in a PER', type: :feature do
 
   def fill_in_transport
     choose 'transport_mpv_yes'
-    fill_in 'Mpv details', with: 'Wheel chair'
+    fill_in 'transport[mpv_details]', with: 'Wheel chair'
   end
 
   def fill_in_medical_contact
