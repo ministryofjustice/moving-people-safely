@@ -5,4 +5,9 @@
   .heading-medium {
     @extend .heading-small;
   }
+
+  label[for$="_reasons"] {
+    font-weight: normal;
+    padding-top: $padding-large;
+  }
 }
