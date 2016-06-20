@@ -121,7 +121,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     choose 'needs_medication_yes'
     fill_in 'Description', with: 'Aspirin'
     fill_in 'Administration', with: 'Once a day'
-    select 'detainee', from: 'Carrier'
+    select 'Detainee', from: 'Carrier'
   end
 
   def fill_in_transport

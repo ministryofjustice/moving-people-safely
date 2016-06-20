@@ -82,3 +82,6 @@ en:
     needs: Medical health needs
     transport: Transport
     contact: Medical contact
+    carrier:
+      escort: Escort
+      detainee: Detainee

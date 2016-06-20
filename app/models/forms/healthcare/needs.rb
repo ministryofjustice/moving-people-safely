@@ -13,10 +13,6 @@ module Forms
         medications << new_medication
       end
 
-      def carrier_values
-        Forms::Healthcare::Medication::CARRIER_VALUES
-      end
-
       private
 
       def populate_medications(*)

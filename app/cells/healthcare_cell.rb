@@ -32,4 +32,8 @@ class HealthcareCell < Cell::ViewModel
   def form_path
     model.path
   end
+
+  def select_values_for(key)
+    t(".#{key}").invert
+  end
 end
