@@ -3,6 +3,7 @@ en:
     fieldset:
       move_information:
         has_destinations: Are there establishments the detainee must or must not be sent?
+        reason: Reason for move
     label:
       detainee_details:
         surname: Surname
@@ -15,8 +16,8 @@ en:
       move_information:
         from: From
         to: To
-        Date: Date
-        reason: Reason
+        date: Date of move
+        reason_details: Reason details
         has_destinations:
           unknown: Clear selection
         destinations:

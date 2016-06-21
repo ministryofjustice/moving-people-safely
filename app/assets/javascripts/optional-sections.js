@@ -22,6 +22,9 @@ $(function () {
         $optional_section_wrapper.hide();
         $clear_selection_control.hide();
         break;
+      case /_other$/.test(id):
+        $optional_section_wrapper.show();
+        break;
       default:
         $optional_section_wrapper.hide();
         $clear_selection_control.hide();
@@ -56,5 +59,5 @@ $(function () {
     optional_section_wrapper: '.optional-section-wrapper'
   };
 
-  $('.js_multiples').optional_section();
+  $('.js-show-hide').optional_section();
 });
