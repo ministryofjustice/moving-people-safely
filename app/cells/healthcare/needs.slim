@@ -7,7 +7,7 @@
         choices: form.toggle_choices,
         inline: true
 
-    .optional-section-wrapper
+    .optional-section-wrapper#error_needs_medications
       - f.fields_for :medications do |mf|
         .optional-section.panel.panel-border-narrow
           = mf.hidden_field :id
