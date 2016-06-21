@@ -15,4 +15,10 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
   def radio_toggle_with_textarea(attribute)
     radio_toggle(attribute) { text_area "#{attribute}_details" }
   end
+
+  def label_with_radio(attribute, text, value)
+    label(attribute, value: value, class: 'block-label') do
+      safe_join([text, radio_button(attribute, value)])
+    end
+  end
 end

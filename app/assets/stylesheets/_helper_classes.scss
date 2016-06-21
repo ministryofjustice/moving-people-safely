@@ -20,10 +20,13 @@ select {
 }
 
 .styled-as-link {
+  color: $govuk-blue;
   text-decoration: underline;
+  padding: 0;
+  border: none;
+  background-color: transparent;
   &:hover {
     cursor: pointer;
-    text-decoration: none;
   }
 }
 
@@ -42,10 +45,4 @@ label[for$=_unknown] {
 
 .js_multiples {
   @extend .form-group;
-}
-
-.optional-section {
-  input[id$=_delete] {
-    @extend .visuallyhidden;
-  }
 }

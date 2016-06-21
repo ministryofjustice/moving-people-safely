@@ -15,26 +15,21 @@
         choices: form.reasons
 
     .js_multiples
-      .form-group.controls-optional-section
-        = f.radio_button_fieldset :has_destinations,
-          choices: form.has_destinations_values,
-          inline: true
+      = f.radio_toggle :has_destinations do
+        #error_move_destinations
+          - f.fields_for :destinations do |df|
+            .form-group.optional-section
+              = df.hidden_field :id
+              = df.text_field :establishment
+              .inline
+                = df.label_with_radio(:must_return, 'Must return', 'must_return')
+                = df.label_with_radio(:must_return, 'Must NOT return', 'must_not_return')
+                = df.label_with_radio(:must_return, 'Clear selection', 'unknown')
+              = df.text_area :reasons
+              .form-group
+                = df.label :_delete, class: 'styled-as-link'
+                = df.check_box :_delete
 
-      #error_move_destinations
-      .optional-section-wrapper
-        - f.fields_for :destinations do |df|
-          .form-group.optional-section
-            = df.hidden_field :id
-            = df.text_field :establishment
-            = df.radio_button_fieldset :must_return,
-              choices: df.object.must_return_values,
-              inline: true
-            = df.text_area :reasons
-            = df.label :_delete, class: 'styled-as-link'
-            = df.check_box :_delete
+        = f.submit 'Add a destination', class: 'styled-as-link'
 
-        div = f.submit 'Add Destination', class: 'button'
-
-    = f.submit 'Save', class: 'button'
-
-
+    = f.submit 'Save and continue', class: 'button'
