@@ -9,7 +9,10 @@ table
     td = detainee_prison_number
     td = move_to
     td
-      | #{detainee_surname} #{detainee_forenames}
+      span.strong-text
+        | #{detainee_surname} 
+      span
+        | #{detainee_forenames}
     td = detainee_date_of_birth
     td = move_date
 
