@@ -21,6 +21,14 @@ Rails.application.routes.draw do
       end
     end
 
+    %i[ violence ].each do |step|
+      resource step, only: %i[ show update ], controller: :risks, step: step do
+        match '/',
+          action: :update_and_redirect_to_profile, via: %i[ put patch ],
+          constraints: -> (r) { r.params['commit'] =~ /Save and view profile/ }
+      end
+    end
+
     get :profile, to: 'profiles#show'
   end
 

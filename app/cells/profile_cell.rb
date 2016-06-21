@@ -19,6 +19,10 @@ class ProfileCell < Cell::ViewModel
     link_to 'Healthcare', physical_path(escort)
   end
 
+  def risks_link
+    link_to 'Risks', to_self_path(escort)
+  end
+
   def prison_number
     escort.detainee.prison_number
   end

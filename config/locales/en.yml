@@ -6,6 +6,8 @@ en:
         reason: Reason for move
       transport:
         mpv: MPV
+      violence:
+        violent: Violent?
     label:
       detainee_details:
         surname: Surname
@@ -50,6 +52,9 @@ en:
         mpv:
           unknown: Clear selection
         mpv_details: MPV details
+      violence:
+        violent:
+          unknown: Clear selection
 
     hint:
       detainee_details:
@@ -91,3 +96,5 @@ en:
     carrier:
       escort: Escort
       detainee: Detainee
+  risks:
+    violence: Risk to others
