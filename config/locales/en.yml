@@ -6,6 +6,9 @@ en:
         reason: Reason for move
       transport:
         mpv: MPV
+      to_self:
+        open_acct: Open or recent ACCT?
+        suicide: Risk of suicide or self-harm?
       violence:
         violent: Violent?
     label:
@@ -48,6 +51,11 @@ en:
           unknown: Clear selection
         personal_care:
           unknown: Clear selection
+      to_self:
+        open_acct:
+          unknown: Clear selection
+        suicide:
+          unknown: Clear selection
       transport:
         mpv:
           unknown: Clear selection
@@ -81,6 +89,9 @@ en:
         dependencies: Does the detainee have any dependencies or history of misuse?
         dependencies_details: Give details and explain the significance
         medication: Is the detainee taking regular medications?
+      to_self:
+        open_acct_details: Give details and dates of open or recent ACCTS
+        suicide_details: Give details
       transport:
         mpv: Does the detainee need an MPV?
         mpv_details: Give details and explain the significance
@@ -97,4 +108,5 @@ en:
       escort: Escort
       detainee: Detainee
   risks:
+    to_self: Risk to self
     violence: Risk to others

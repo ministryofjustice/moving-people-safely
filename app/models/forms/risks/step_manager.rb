@@ -2,6 +2,7 @@ module Forms
   module Risks
     class StepManager
       RISKS_STEPS = DoubleLinkedList.new.tap do |l|
+        l << Forms::Risks::ToSelf
         l << Forms::Risks::Violence
       end
 
