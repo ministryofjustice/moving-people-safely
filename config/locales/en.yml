@@ -1,6 +1,8 @@
 en:
   helpers:
     fieldset:
+      harassments:
+        hostage_taker_stalker_harasser: Hostage taker / Stalker / Harasser / Intimidation / Bullying?
       from_others:
         rule_45: Rule 45?
         csra: CSRA?
@@ -11,6 +13,8 @@ en:
         reason: Reason for move
       transport:
         mpv: MPV
+      sex_offences:
+        sex_offence: Sex offence?
       to_self:
         open_acct: Open or recent ACCT?
         suicide: Risk of suicide or self-harm?
@@ -25,6 +29,9 @@ en:
         cro_number: CRO number
         gender: Gender
         aliases: Aliases
+      harassments:
+        hostage_taker_stalker_harasser:
+          unknown: Clear selection
       move_information:
         from: From
         to: To
@@ -60,6 +67,9 @@ en:
       physical:
         physical_issues:
           unknown: Clear selection
+      sex_offences:
+        sex_offence:
+          unknown: Clear selection
       social:
         personal_hygiene:
           unknown: Clear selection
@@ -79,6 +89,9 @@ en:
           unknown: Clear selection
 
     hint:
+      allergies:
+        allergies: Does the detainee have any allergies?
+        allergies_details: Give details and explain the significance
       detainee_details:
         date_of_birth: DD/MM/YYYY
       from_others:
@@ -93,21 +106,20 @@ en:
         phobias_details: Give details and explain the significance
       move_information:
         reason_details: Give details
+      needs:
+        dependencies: Does the detainee have any dependencies or history of misuse?
+        dependencies_details: Give details and explain the significance
+        medication: Is the detainee taking regular medications?
       physical:
         physical_issues: Does the detainee have any physical health needs?
         physical_issues_details: Give details and explain the significance
+      sex_offences:
+        sex_offence_details: Give details, if under 18 state gender and age if known
       social:
         personal_hygiene: Does the detainee have personal hygiene issues?
         personal_hygiene_details: Give details and explain the significance
         personal_care: Does the detainee have personal care issues?
         personal_care_details: Give details and explain the significance
-      allergies:
-        allergies: Does the detainee have any allergies?
-        allergies_details: Give details and explain the significance
-      needs:
-        dependencies: Does the detainee have any dependencies or history of misuse?
-        dependencies_details: Give details and explain the significance
-        medication: Is the detainee taking regular medications?
       to_self:
         open_acct_details: Give details and dates of open or recent ACCTS
         suicide_details: Give details
@@ -128,5 +140,7 @@ en:
       detainee: Detainee
   risks:
     from_others: Risk from others
+    harassments: Risk to others
+    sex_offences: Risk to others
     to_self: Risk to self
     violence: Risk to others

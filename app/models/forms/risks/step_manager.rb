@@ -5,6 +5,8 @@ module Forms
         l << Forms::Risks::ToSelf
         l << Forms::Risks::FromOthers
         l << Forms::Risks::Violence
+        l << Forms::Risks::Harassments
+        l << Forms::Risks::SexOffences
       end
 
       def self.build_step_for(step_name, escort)
