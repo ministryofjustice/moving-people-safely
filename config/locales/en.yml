@@ -1,6 +1,11 @@
 en:
   helpers:
     fieldset:
+      from_others:
+        rule_45: Rule 45?
+        csra: CSRA?
+        verbal_abuse: At risk of verbal abuse?
+        physical_abuse: At risk of physical abuse?
       move_information:
         has_destinations: Are there establishments the detainee must or must not be sent?
         reason: Reason for move
@@ -32,6 +37,15 @@ en:
           reasons: List the reasons, eg medical treatment, medical hold, treatment programmes or offender behaviour.
       allergies:
         allergies:
+          unknown: Clear selection
+      from_others:
+        rule_45:
+          unknown: Clear selection
+        csra:
+          unknown: Clear selection
+        verbal_abuse:
+          unknown: Clear selection
+        physical_abuse:
           unknown: Clear selection
       mental:
         mental_illness:
@@ -67,16 +81,21 @@ en:
     hint:
       detainee_details:
         date_of_birth: DD/MM/YYYY
-      move_information:
-        reason_details: Give details
-      physical:
-        physical_issues: Does the detainee have any physical health needs?
-        physical_issues_details: Give details and explain the significance
+      from_others:
+        rule_45_details: Give details
+        csra_details: Give details
+        verbal_abuse_details: Give details
+        physical_abuse_details: Give details
       mental:
         mental_illness: Does the detainee have any mental health needs?
         mental_illness_details: Give details and explain the significance
         phobias: Does the detainee have any phobias?
         phobias_details: Give details and explain the significance
+      move_information:
+        reason_details: Give details
+      physical:
+        physical_issues: Does the detainee have any physical health needs?
+        physical_issues_details: Give details and explain the significance
       social:
         personal_hygiene: Does the detainee have personal hygiene issues?
         personal_hygiene_details: Give details and explain the significance
@@ -108,5 +127,6 @@ en:
       escort: Escort
       detainee: Detainee
   risks:
+    from_others: Risk from others
     to_self: Risk to self
     violence: Risk to others

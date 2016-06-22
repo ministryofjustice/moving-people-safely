@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       end
     end
 
-    %i[ to_self violence ].each do |step|
+    %i[ to_self from_others violence ].each do |step|
       resource step, only: %i[ show update ], controller: :risks, step: step do
         match '/',
           action: :update_and_redirect_to_profile, via: %i[ put patch ],
