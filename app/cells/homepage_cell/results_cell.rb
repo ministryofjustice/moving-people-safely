@@ -5,8 +5,6 @@ class HomepageCell
     property :detainee_prison_number
     property :detainee_surname
     property :detainee_forenames
-    property :detainee_date_of_birth
-    property :move_date
     property :move_to
 
     def show
@@ -14,6 +12,14 @@ class HomepageCell
     end
 
     private
+
+    def detainee_date_of_birth
+      model.detainee_date_of_birth&.to_s(:humanized)
+    end
+
+    def move_date
+      model.move_date&.to_s(:humanized)
+    end
 
     def review_profile
       link_to('Review profile', profile_path(model), class: 'button')

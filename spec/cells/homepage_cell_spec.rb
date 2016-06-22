@@ -51,8 +51,8 @@ RSpec.describe HomepageCell, type: :cell do
         expect(html).to have_content('A1234BC').
           and have_content('Alcatraz').
           and have_content('Trump Donald').
-          and have_content('14/06/1946').
-          and have_content('10/07/2016')
+          and have_content('14 Jun 1946').
+          and have_content('10 Jul 2016')
       end
 
       def create_escort_with_detainee_and_move
