@@ -1,0 +1,5 @@
+= form_for form, url: form_path, method: :put do |f|
+  = f.radio_toggle_with_textarea :drugs
+  = f.radio_toggle_with_textarea :alcohol
+
+  = render view: :buttons, locals: { f: f }

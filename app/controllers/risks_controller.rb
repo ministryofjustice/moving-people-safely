@@ -22,6 +22,14 @@ class RisksController < ApplicationController
     end
   end
 
+  def add_non_association_marker
+    step.form
+    step.form.deserialize(params[step_name])
+    step.form.add_non_association_marker
+
+    render_cell :risks, step
+  end
+
   private
 
   delegate :form, :next_path, to: :step

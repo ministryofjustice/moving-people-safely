@@ -1,0 +1,10 @@
+= form_for form, url: form_path, method: :put do |f|
+  = f.radio_toggle :arson do
+    .form-group
+      = f.radio_button_fieldset :arson_value,
+        choices: form.arson_values
+    = f.text_area :arson_details
+
+  = f.radio_toggle_with_textarea :damage_to_property
+
+  = render view: :buttons, locals: { f: f }

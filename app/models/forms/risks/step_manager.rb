@@ -7,6 +7,11 @@ module Forms
         l << Forms::Risks::Violence
         l << Forms::Risks::Harassments
         l << Forms::Risks::SexOffences
+        l << Forms::Risks::NonAssociationMarkers
+        l << Forms::Risks::Security
+        l << Forms::Risks::SubstanceMisuse
+        l << Forms::Risks::ConcealedWeapons
+        l << Forms::Risks::Arson
       end
 
       def self.build_step_for(step_name, escort)

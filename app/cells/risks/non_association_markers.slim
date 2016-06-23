@@ -1,0 +1,15 @@
+= form_for form, url: form_path, method: :put do |f|
+  = f.radio_toggle :non_association do
+    #error_non_association_markers_non_association_markers
+    - f.fields_for :non_association_markers do |naf|
+        = naf.hidden_field :id
+        .optional-section.panel.panel-border-narrow
+          .non-association-details-field
+            = naf.text_area :details
+          .remove-link
+            = naf.label :_delete, 'Remove', class: 'styled-as-link'
+            = naf.check_box :_delete
+
+    div = f.submit 'Add non-association entry', class: 'styled-as-link'
+
+  = render view: :buttons, locals: { f: f }
