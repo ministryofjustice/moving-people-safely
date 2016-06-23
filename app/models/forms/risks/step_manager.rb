@@ -12,6 +12,7 @@ module Forms
         l << Forms::Risks::SubstanceMisuse
         l << Forms::Risks::ConcealedWeapons
         l << Forms::Risks::Arson
+        l << Forms::Risks::Communication
       end
 
       def self.build_step_for(step_name, escort)

@@ -4,6 +4,10 @@ en:
       arson:
         arson: Arson?
         damage_to_property: Damage to property?
+      communication:
+        can_read_and_write: Able to read and write?
+        hearing_speach_sight: Hearing / speech / sight?
+        interpreter_required: Interpreter required?
       concealed_weapons:
         conceals_weapons: Conceals weapons or other items?
       harassments:
@@ -41,6 +45,13 @@ en:
         arson:
           unknown: Clear selection
         damage_to_property:
+          unknown: Clear selection
+      communication:
+        can_read_and_write:
+          unknown: Clear selection
+        hearing_speach_sight:
+          unknown: Clear selection
+        interpreter_required:
           unknown: Clear selection
       concealed_weapons:
         conceals_weapons:
@@ -138,6 +149,10 @@ en:
       arson:
         arson_details: Give details
         damage_to_property_details: Give details
+      communication:
+        can_read_and_write_details: Give details
+        hearing_speach_sight_details: Give details
+        interpreter_required_details: Language
       concealed_weapons:
         conceals_weapons_details: Give details
       detainee_details:
@@ -197,6 +212,7 @@ en:
       detainee: Detainee
   risks:
     arson: Arson and damage to property
+    communication: Communication / language difficulties
     concealed_weapons: Concealed weapons or other items
     from_others: Risk from others
     harassments: Risk to others

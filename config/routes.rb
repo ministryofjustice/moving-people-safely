@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       substance_misuse
       concealed_weapons
       arson
+      communication
     ].each do |step|
       resource step, only: %i[ show update ], controller: :risks, step: step do
         match '/',
