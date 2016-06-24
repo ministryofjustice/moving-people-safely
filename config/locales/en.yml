@@ -26,54 +26,56 @@ en:
       allergies:
         allergies:
           unknown: Clear selection
-        allergies_details: Give details and explain the significance
       mental:
         mental_illness:
           unknown: Clear selection
-        mental_illness_details: Give details and explain the significance
         phobias:
           unknown: Clear selection
-        phobias_details: Give details and explain the significance
       needs:
         dependencies:
           unknown: Clear selection
-        dependencies_details: Give details and explain the significance
         medication:
           unknown: Clear selection
       physical:
         physical_issues:
           unknown: Clear selection
-        physical_issues_details: Give details and explain the significance
       social:
         personal_hygiene:
           unknown: Clear selection
-        personal_hygiene_details: Give details and explain the significance
         personal_care:
           unknown: Clear selection
-        personal_care_details: Give details and explain the significance
       transport:
         mpv:
           unknown: Clear selection
-        mpv_details: Give details and explain the significance
 
     hint:
       detainee_details:
         date_of_birth: DD/MM/YYYY
+      move_information:
+        reason_details: Give details
       physical:
         physical_issues: Does the detainee have any physical health needs?
+        physical_issues_details: Give details and explain the significance
       mental:
         mental_illness: Does the detainee have any mental health needs?
+        mental_illness_details: Give details and explain the significance
         phobias: Does the detainee have any phobias?
+        phobias_details: Give details and explain the significance
       social:
         personal_hygiene: Does the detainee have personal hygiene issues?
+        personal_hygiene_details: Give details and explain the significance
         personal_care: Does the detainee have personal care issues?
+        personal_care_details: Give details and explain the significance
       allergies:
         allergies: Does the detainee have any allergies?
+        allergies_details: Give details and explain the significance
       needs:
         dependencies: Does the detainee have any dependencies or history of misuse?
+        dependencies_details: Give details and explain the significance
         medication: Is the detainee taking regular medications?
       transport:
         mpv: Does the detainee need an MPV?
+        mpv_details: Give details and explain the significance
 
   healthcare:
     physical: Physical healthcare
