@@ -47,7 +47,6 @@ RSpec.describe 'managing move destinations', type: :feature do
     expect(destination_els.size).to eq 1
     within_destination(:first) do
       expect(find_field('Establishment').value).to be_blank
-      expect(has_checked_field?('Clear selection')).to be true
       expect(find_field('reasons').value).to be_blank
     end
   end
@@ -62,7 +61,7 @@ RSpec.describe 'managing move destinations', type: :feature do
   end
 
   def add_destination
-    click_button 'Add a destination'
+    click_button 'Add establishment'
   end
 
   def fill_in_destination(position:)
@@ -78,7 +77,7 @@ RSpec.describe 'managing move destinations', type: :feature do
   end
 
   def delete_destination(position:)
-    within_destination(position) { check 'Delete' }
+    within_destination(position) { check 'Remove' }
   end
 
   def destination_els

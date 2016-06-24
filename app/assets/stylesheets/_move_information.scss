@@ -10,4 +10,20 @@
     font-weight: normal;
     padding-top: $padding-large;
   }
+
+  .establishment-field {
+    @extend .column-one-third;
+    .form-control {
+      width: 100%;
+    }
+  }
+
+  .must-return-field {
+    @extend .column-two-thirds;
+    @extend .inline;
+  }
+
+  .remove-link {
+    margin-top: 20px;
+  }
 }
