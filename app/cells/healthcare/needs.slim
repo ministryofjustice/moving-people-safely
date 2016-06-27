@@ -7,7 +7,9 @@
         choices: form.toggle_choices,
         inline: true
 
-    .optional-section-wrapper#error_needs_medications
+    .optional-section-wrapper
+      #medications
+      #error_needs_medications
       - f.fields_for :medications do |mf|
         .optional-section.panel.panel-border-narrow
           = mf.hidden_field :id
@@ -22,6 +24,8 @@
             = mf.label :_delete, 'Remove', class: 'styled-as-link'
             = mf.check_box :_delete
 
-      div = f.submit 'Add medication', class: 'styled-as-link'
+      = f.submit 'Add medication',
+        class: 'js-anchor-focus styled-as-link',
+        data: { 'anchor-focus' => 'medications' }
 
   = render view: :buttons, locals: { f: f }

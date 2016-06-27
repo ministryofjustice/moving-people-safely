@@ -19,20 +19,23 @@
 
     .js-show-hide
       = f.radio_toggle :has_destinations do
+        #establishments
         #error_move_destinations
-          - f.fields_for :destinations do |df|
-            .form-group.optional-section
-              = df.hidden_field :id
-              = df.text_field :establishment
-              .inline
-                = df.label_with_radio(:must_return, 'Must return', 'must_return')
-                = df.label_with_radio(:must_return, 'Must NOT return', 'must_not_return')
-                = df.label_with_radio(:must_return, 'Clear selection', 'unknown')
-              = df.text_area :reasons
-              .form-group
-                = df.label :_delete, class: 'styled-as-link'
-                = df.check_box :_delete
+        - f.fields_for :destinations do |df|
+          .form-group.optional-section.panel.panel-border-narrow
+            = df.hidden_field :id
+            = df.text_field :establishment
+            .inline
+              = df.label_with_radio(:must_return, 'Must return', 'must_return')
+              = df.label_with_radio(:must_return, 'Must NOT return', 'must_not_return')
+              = df.label_with_radio(:must_return, 'Clear selection', 'unknown')
+            = df.text_area :reasons
+            .form-group
+              = df.label :_delete, class: 'styled-as-link'
+              = df.check_box :_delete
 
-        = f.submit 'Add a destination', class: 'styled-as-link'
+        = f.submit 'Add a destination',
+          class: 'js-anchor-focus styled-as-link',
+          data: { 'anchor-focus' => 'establishments' }
 
     = f.submit 'Save and continue', class: 'button'
