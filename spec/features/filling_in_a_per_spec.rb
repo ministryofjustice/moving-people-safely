@@ -131,7 +131,7 @@ RSpec.feature 'filling in a PER', type: :feature do
   end
 
   def fill_in_medical_contact
-    fill_in 'Clinician name', with: 'Doctor Robert'
+    fill_in 'Healthcare professional', with: 'Doctor Robert'
     fill_in 'Contact number', with: '079876543'
   end
 

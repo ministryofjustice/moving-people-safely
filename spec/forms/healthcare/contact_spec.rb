@@ -5,7 +5,7 @@ RSpec.describe Forms::Healthcare::Contact, type: :form do
 
   let(:params) {
     {
-      clinician_name: 'Doctor Robert',
+      healthcare_professional: 'Doctor Robert',
       contact_number: '079876543',
     }.with_indifferent_access
   }

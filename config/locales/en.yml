@@ -4,6 +4,8 @@ en:
       move_information:
         has_destinations: Are there establishments the detainee must or must not be sent?
         reason: Reason for move
+      transport:
+        mpv: MPV
     label:
       detainee_details:
         surname: Surname
@@ -47,6 +49,7 @@ en:
       transport:
         mpv:
           unknown: Clear selection
+        mpv_details: MPV details
 
     hint:
       detainee_details:
