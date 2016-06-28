@@ -27,6 +27,8 @@ gem 'virtus'
 # gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
+  gem 'jasmine'
+  gem 'jasmine-jquery-rails'
   gem 'pry-byebug'
   gem 'pry-rails'
 end
