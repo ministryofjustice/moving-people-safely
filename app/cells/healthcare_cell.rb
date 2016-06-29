@@ -30,9 +30,6 @@ class HealthcareCell < Cell::ViewModel
   end
 
   def current_question_text
-    # current_question = step.node_position
-    # total_questions = Forms::Healthcare::StepManager.total_steps
-
     "Question #{current_question} of #{total_questions}"
   end
 
