@@ -31,8 +31,12 @@ Style/AlignParameters:
 
 # Don't worry about the complexity of spec methods
 Metrics/AbcSize:
+  Max: 20
   Exclude:
     - 'spec/**/*'
+
+Style/MethodLength:
+  Max: 12
 
 # Allow ===. It's useful.
 Style/CaseEquality:

@@ -11,11 +11,11 @@ class HealthcareController < ApplicationController
   end
 
   def update
-    if form.validate permitted_params
+    if form.validate form_params
       form.save
       redirect_after_update
     else
-      flash[:form_data] = permitted_params
+      flash[:form_data] = form_params
       redirect_to wizard_path
     end
   end
@@ -32,7 +32,7 @@ class HealthcareController < ApplicationController
 
   def add_medication
     if params.key? 'needs_add_medication'
-      form.deserialize permitted_params
+      form.deserialize form_params
       form.add_medication
       flash[:form_data] = form.to_parameter_hash
       flash[:no_validate] = 'true'
@@ -54,7 +54,7 @@ class HealthcareController < ApplicationController
     cell
   end
 
-  def permitted_params
+  def form_params
     params[step]
   end
 

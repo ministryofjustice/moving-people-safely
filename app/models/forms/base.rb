@@ -46,19 +46,15 @@ module Forms
 
       @fields.each do |k, v|
         if v.is_a? Array
-          param_hash[k] = v.map do |x|
-            if x.is_a? Reform::Form
-              x.to_parameter_hash
-            else
-              x
-            end
-          end
+          param_hash[k] =
+            v.map { |x| x.is_a?(Reform::Form) ? x.to_parameter_hash : x }
         elsif v.is_a? Reform::Form
           param_hash[k] = v.to_parameter_hash
         else
           param_hash[k] = v
         end
       end
+
       param_hash
     end
   end
