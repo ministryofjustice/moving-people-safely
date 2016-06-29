@@ -4,7 +4,7 @@ class HealthcareController < ApplicationController
   steps :physical, :mental, :social, :allergies, :needs, :transport, :contact
 
   def show
-    form.tap(&:prepopulate!)
+    form.prepopulate!
     run_form_validations
     render html: healthcare_form_cell, layout: true
   end
