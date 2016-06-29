@@ -18,14 +18,10 @@ class HealthcareController < ApplicationController
       redirect_to wizard_path
     elsif form.validate permitted_params
       form.save
-      if params.key? 'save_and_view_profile'
+      if params.key? 'save_and_view_profile' || end_of_wizard?
         redirect_to profile_path(escort)
       else
-        if is_next_step?
-          redirect_to next_wizard_path
-        else
-          redirect_to profile_path(escort)
-        end
+        redirect_to next_wizard_path
       end
     else
       flash[:form_data] = permitted_params
@@ -57,8 +53,8 @@ class HealthcareController < ApplicationController
     previous_step != step
   end
 
-  def is_next_step?
-    next_step != 'wicked_finish'
+  def end_of_wizard?
+    next_step == 'wicked_finish'
   end
 
   def run_form_validations
