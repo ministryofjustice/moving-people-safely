@@ -40,5 +40,26 @@ module Forms
     def toggle_choices
       TOGGLE_CHOICES
     end
+
+    def to_parameter_hash
+      param_hash = {}
+
+      @fields.each do |k, v|
+        if v.is_a? Array
+          param_hash[k] = v.map do |x|
+            if x.is_a? Reform::Form
+              x.to_parameter_hash
+            else
+              x
+            end
+          end
+        elsif v.is_a? Reform::Form
+          param_hash[k] = v.to_parameter_hash
+        else
+          param_hash[k] = v
+        end
+      end
+      param_hash
+    end
   end
 end

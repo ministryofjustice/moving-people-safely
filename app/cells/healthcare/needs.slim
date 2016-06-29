@@ -21,6 +21,7 @@
 
       = f.submit 'Add medication',
         class: 'js-anchor-focus styled-as-link',
-        data: { 'anchor-focus' => 'medications' }
+        data: { 'anchor-focus' => 'medications' },
+        name: "needs_add_medication"
 
   = render view: :buttons, locals: { f: f }

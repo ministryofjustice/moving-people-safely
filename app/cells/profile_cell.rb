@@ -16,7 +16,7 @@ class ProfileCell < Cell::ViewModel
   end
 
   def healthcare_link
-    link_to 'Healthcare', physical_path(escort)
+    link_to 'Healthcare', healthcare_path(escort, :physical)
   end
 
   def prison_number
