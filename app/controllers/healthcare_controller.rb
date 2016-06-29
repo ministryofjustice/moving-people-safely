@@ -1,7 +1,8 @@
 class HealthcareController < ApplicationController
   include Wicked::Wizard
-
   steps :physical, :mental, :social, :allergies, :needs, :transport, :contact
+
+  before_action :add_medication, only: [:update]
 
   def show
     form.prepopulate!
@@ -10,19 +11,9 @@ class HealthcareController < ApplicationController
   end
 
   def update
-    if params.key? 'needs_add_medication'
-      form.deserialize permitted_params
-      form.add_medication
-      flash[:form_data] = form.to_parameter_hash
-      flash[:no_validate] = 'true'
-      redirect_to wizard_path
-    elsif form.validate permitted_params
+    if form.validate permitted_params
       form.save
-      if params.key? 'save_and_view_profile' || end_of_wizard?
-        redirect_to profile_path(escort)
-      else
-        redirect_to next_wizard_path
-      end
+      redirect_after_update
     else
       flash[:form_data] = permitted_params
       redirect_to wizard_path
@@ -30,6 +21,24 @@ class HealthcareController < ApplicationController
   end
 
   private
+
+  def redirect_after_update
+    if params.key?('save_and_view_profile') || end_of_wizard?
+      redirect_to profile_path(escort)
+    else
+      redirect_to next_wizard_path
+    end
+  end
+
+  def add_medication
+    if params.key? 'needs_add_medication'
+      form.deserialize permitted_params
+      form.add_medication
+      flash[:form_data] = form.to_parameter_hash
+      flash[:no_validate] = 'true'
+      redirect_to wizard_path
+    end
+  end
 
   def healthcare_form_cell
     cell = cell(:healthcare, form)
