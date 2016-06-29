@@ -42,7 +42,7 @@ module Forms
     end
 
     def to_parameter_hash
-      @fields.each_with_object({}) do |(k,v), acc|
+      @fields.each_with_object({}) do |(k, v), acc|
         if v.is_a? Array
           acc[k] =
             v.map { |x| x.is_a?(Reform::Form) ? x.to_parameter_hash : x }
