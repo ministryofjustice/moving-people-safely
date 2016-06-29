@@ -36,7 +36,7 @@ class HealthcareController < ApplicationController
 
     cell.form_title = form.class.name
     cell.prev_path = previous_wizard_path if is_prev_step?
-    cell.next_path = next_wizard_path if is_next_step?
+    cell.next_path = next_wizard_path unless end_of_wizard?
     cell.current_question = current_step_index + 1
     cell.total_questions = wizard_steps.size
     cell.template_name = form.class.name
