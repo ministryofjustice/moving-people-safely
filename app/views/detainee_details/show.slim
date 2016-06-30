@@ -5,12 +5,11 @@
   = GovukElementsErrorsHelper.error_summary form,
     'There were problems saving this form', ''
 
-  label class = 'form-label'
-    | Prison number
+  label.form-label Prison number
 
   p = form.prison_number
 
-  = form_for form, url: form_url, method: :put do |f|
+  = form_for form, url: detainee_details_url(escort), method: :put do |f|
     = f.text_field :surname
     = f.text_field :forenames
     = f.text_field :date_of_birth
