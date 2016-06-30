@@ -1,22 +1,22 @@
 class DetaineeDetailsController < ApplicationController
   def show
-    form = Forms::DetaineeDetails.new(escort.detainee)
-    view_context = FormModelPair.new(form, escort)
-
-    render_cell :detainee_details, view_context
+    form.validate(flash[:form_data]) if flash[:form_data]
+    render :show, locals: { form: form, escort: escort }
   end
 
   def update
-    form = Forms::DetaineeDetails.new(escort.detainee)
-
     if form.validate(params[:detainee_details])
       form.save
       redirect_to profile_path(escort)
     else
-      view_context = FormModelPair.new(form, escort)
-      render_cell :detainee_details, view_context
+      flash[:form_data] = params[:detainee_details]
+      redirect_to detainee_details_path(escort)
     end
   end
 
-  FormModelPair = Struct.new(:form, :escort)
+  private
+
+  def form
+    @_form ||= Forms::DetaineeDetails.new(escort.detainee)
+  end
 end
