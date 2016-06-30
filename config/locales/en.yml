@@ -1,12 +1,61 @@
 en:
   helpers:
     fieldset:
+      arson:
+        arson: Arson?
+        damage_to_property: Damage to property?
+      communication:
+        can_read_and_write: Able to read and write?
+        hearing_speach_sight: Hearing / speech / sight?
+        interpreter_required: Interpreter required?
+      concealed_weapons:
+        conceals_weapons: Conceals weapons or other items?
+      harassments:
+        hostage_taker_stalker_harasser: Hostage taker / Stalker / Harasser / Intimidation / Bullying?
+      from_others:
+        rule_45: Rule 45?
+        csra: CSRA?
+        verbal_abuse: At risk of verbal abuse?
+        physical_abuse: At risk of physical abuse?
       move_information:
         has_destinations: Are there establishments the detainee must or must not be sent?
         reason: Reason for move
+      non_association_markers:
+        non_association: Non-association markers?
+      security:
+        category_a: Category A?
+        current_e_risk: Current E risk?
+        escape_list: Escape list?
+        other_escape_risk_info: Is there other escape risk information?
+        restricted_status: Restricted status?
+      sex_offences:
+        sex_offence: Sex offence?
+      substance_misuse:
+        alcohol: Alcohol?
+        drugs: Drugs?
+      to_self:
+        open_acct: Open or recent ACCT?
+        suicide: Risk of suicide or self-harm?
       transport:
         mpv: MPV
+      violence:
+        violent: Violent?
     label:
+      arson:
+        arson:
+          unknown: Clear selection
+        damage_to_property:
+          unknown: Clear selection
+      communication:
+        can_read_and_write:
+          unknown: Clear selection
+        hearing_speach_sight:
+          unknown: Clear selection
+        interpreter_required:
+          unknown: Clear selection
+      concealed_weapons:
+        conceals_weapons:
+          unknown: Clear selection
       detainee_details:
         surname: Surname
         forenames: Forename(s)
@@ -15,6 +64,9 @@ en:
         cro_number: CRO number
         gender: Gender
         aliases: Aliases
+      harassments:
+        hostage_taker_stalker_harasser:
+          unknown: Clear selection
       move_information:
         from: From
         to: To
@@ -28,6 +80,15 @@ en:
       allergies:
         allergies:
           unknown: Clear selection
+      from_others:
+        rule_45:
+          unknown: Clear selection
+        csra:
+          unknown: Clear selection
+        verbal_abuse:
+          unknown: Clear selection
+        physical_abuse:
+          unknown: Clear selection
       mental:
         mental_illness:
           unknown: Clear selection
@@ -38,44 +99,102 @@ en:
           unknown: Clear selection
         medication:
           unknown: Clear selection
+      non_association_markers:
+        non_association:
+          unknown: Clear selection
       physical:
         physical_issues:
+          unknown: Clear selection
+      security:
+        category_a:
+          unknown: Clear selection
+        current_e_risk:
+          unknown: Clear selection
+        escape_list:
+          unknown: Clear selection
+        other_escape_risk_info:
+          unknown: Clear selection
+        restricted_status:
+          unknown: Clear selection
+      sex_offences:
+        sex_offence:
           unknown: Clear selection
       social:
         personal_hygiene:
           unknown: Clear selection
         personal_care:
           unknown: Clear selection
+      substance_misuse:
+        alcohol:
+          unknown: Clear selection
+        drugs:
+          unknown: Clear selection
+      to_self:
+        open_acct:
+          unknown: Clear selection
+        suicide:
+          unknown: Clear selection
       transport:
         mpv:
           unknown: Clear selection
         mpv_details: MPV details
+      violence:
+        violent:
+          unknown: Clear selection
 
     hint:
+      allergies:
+        allergies: Does the detainee have any allergies?
+        allergies_details: Give details and explain the significance
+      arson:
+        arson_details: Give details
+        damage_to_property_details: Give details
+      communication:
+        can_read_and_write_details: Give details
+        hearing_speach_sight_details: Give details
+        interpreter_required_details: Language
+      concealed_weapons:
+        conceals_weapons_details: Give details
       detainee_details:
         date_of_birth: DD/MM/YYYY
-      move_information:
-        reason_details: Give details
-      physical:
-        physical_issues: Does the detainee have any physical health needs?
-        physical_issues_details: Give details and explain the significance
+      from_others:
+        rule_45_details: Give details
+        csra_details: Give details
+        verbal_abuse_details: Give details
+        physical_abuse_details: Give details
       mental:
         mental_illness: Does the detainee have any mental health needs?
         mental_illness_details: Give details and explain the significance
         phobias: Does the detainee have any phobias?
         phobias_details: Give details and explain the significance
+      move_information:
+        reason_details: Give details
+      needs:
+        dependencies: Does the detainee have any dependencies or history of misuse?
+        dependencies_details: Give details and explain the significance
+        medication: Is the detainee taking regular medications?
+      physical:
+        physical_issues: Does the detainee have any physical health needs?
+        physical_issues_details: Give details and explain the significance
+      security:
+        category_a_details: Give details
+        current_e_risk_details: Give details
+        escape_list_details: Give details
+        other_escape_risk_info_details: Give details
+        restricted_status_details: Give details
+      sex_offences:
+        sex_offence_details: Give details, if under 18 state gender and age if known
       social:
         personal_hygiene: Does the detainee have personal hygiene issues?
         personal_hygiene_details: Give details and explain the significance
         personal_care: Does the detainee have personal care issues?
         personal_care_details: Give details and explain the significance
-      allergies:
-        allergies: Does the detainee have any allergies?
-        allergies_details: Give details and explain the significance
-      needs:
-        dependencies: Does the detainee have any dependencies or history of misuse?
-        dependencies_details: Give details and explain the significance
-        medication: Is the detainee taking regular medications?
+      substance_misuse:
+        alcohol_details: Give details
+        drugs_details: Give details
+      to_self:
+        open_acct_details: Give details and dates of open or recent ACCTS
+        suicide_details: Give details
       transport:
         mpv: Does the detainee need an MPV?
         mpv_details: Give details and explain the significance
@@ -91,3 +210,15 @@ en:
     carrier:
       escort: Escort
       detainee: Detainee
+  risks:
+    arson: Arson and damage to property
+    communication: Communication / language difficulties
+    concealed_weapons: Concealed weapons or other items
+    from_others: Risk from others
+    harassments: Risk to others
+    non_association_markers: Risk to others
+    security: Security
+    sex_offences: Risk to others
+    substance_misuse: Substance misuse
+    to_self: Risk to self
+    violence: Risk to others

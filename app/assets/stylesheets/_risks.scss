@@ -1,0 +1,14 @@
+.risks {
+  h1 {
+    @extend .heading-large;
+  }
+  .heading-medium {
+    @extend .heading-small;
+  }
+  .non-association-details-field {
+    @extend .column-two-thirds;
+  }
+  .remove-link {
+    @extend .column-one-third;
+  }
+}

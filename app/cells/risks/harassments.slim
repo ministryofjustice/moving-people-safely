@@ -1,0 +1,13 @@
+= form_for form, url: form_path, method: :put do |f|
+  = f.radio_toggle :hostage_taker_stalker_harasser do
+    fieldset
+      span class="form-hint"
+        | Select all that apply
+
+      = f.simple_textarea :hostage_taker
+      = f.simple_textarea :stalker
+      = f.simple_textarea :harasser
+      = f.simple_textarea :intimidation
+      = f.simple_textarea :bullying
+
+  = render view: :buttons, locals: { f: f }

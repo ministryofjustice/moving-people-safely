@@ -1,0 +1,6 @@
+= form_for form, url: form_path, method: :put do |f|
+  = f.radio_toggle_with_textarea :interpreter_required
+  = f.radio_toggle_with_textarea :hearing_speach_sight
+  = f.radio_toggle_with_textarea :can_read_and_write
+
+  = render view: :buttons, locals: { f: f }

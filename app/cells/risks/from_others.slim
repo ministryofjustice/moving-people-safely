@@ -1,0 +1,7 @@
+= form_for form, url: form_path, method: :put do |f|
+  = f.radio_toggle_with_textarea :rule_45
+  = f.radio_toggle_with_textarea :csra
+  = f.radio_toggle_with_textarea :verbal_abuse
+  = f.radio_toggle_with_textarea :physical_abuse
+
+  = render view: :buttons, locals: { f: f }

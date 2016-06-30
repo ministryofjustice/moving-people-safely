@@ -12,6 +12,29 @@ Rails.application.routes.draw do
 
     resources :healthcare
 
+    %i[
+      to_self
+      from_others
+      violence
+      harassments
+      sex_offences
+      non_association_markers
+      security
+      substance_misuse
+      concealed_weapons
+      arson
+      communication
+    ].each do |step|
+      resource step, only: %i[ show update ], controller: :risks, step: step do
+        match '/',
+          action: :update_and_redirect_to_profile, via: %i[ put patch ],
+          constraints: -> (r) { r.params['commit'] =~ /Save and view profile/ }
+        match '/',
+          action: :add_non_association_marker, via: %i[ put patch ],
+          constraints: -> (r) { r.params['commit'] =~ /Add/ }
+      end
+    end
+
     get :profile, to: 'profiles#show'
   end
 
