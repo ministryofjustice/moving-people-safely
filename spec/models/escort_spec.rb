@@ -25,6 +25,13 @@ RSpec.describe Escort, type: :model do
     end
   end
 
+  describe '#move' do
+    context 'when there is no associated record' do
+      before { subject.move = nil }
+      its(:move) { is_expected.to be_a Move }
+    end
+  end
+
   describe '#healthcare' do
     context 'when there is no associated record' do
       before { subject.healthcare = nil }

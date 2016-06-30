@@ -12,6 +12,10 @@ class Escort < ApplicationRecord
 
   delegate :date, :to, to: :move, allow_nil: true, prefix: true
 
+  def move
+    super || build_move
+  end
+
   def healthcare
     super || build_healthcare
   end

@@ -1,38 +1,45 @@
 class MoveInformationController < ApplicationController
+  before_action :add_destination, only: [:update]
+
   def show
-    form = Forms::MoveInformation.new(move).tap(&:prepopulate!)
-    view_context = FormModelPair.new(form, escort)
-
-    render_cell :move_information, view_context
-  end
-
-  def add_destination
-    form = Forms::MoveInformation.new(move)
-    form.deserialize(params[:move_information])
-    form.add_destination
-    view_context = FormModelPair.new(form, escort)
-
-    render_cell :move_information, view_context
+    form.prepopulate!
+    run_form_validations
+    render :show, locals: { form: form }
   end
 
   def update
-    form = Forms::MoveInformation.new(move)
-
     if form.validate(params[:move_information])
       form.save
       redirect_to profile_path(escort)
     else
-      form.prepopulate!
-      view_context = FormModelPair.new(form, escort)
-      render_cell :move_information, view_context
+      flash[:form_data] = params[:move_information]
+      redirect_to move_information_path(escort)
     end
   end
 
   private
 
-  def move
-    @move ||= (escort.move || escort.build_move)
+  def form
+    @_form ||= Forms::MoveInformation.new(escort.move)
   end
 
-  FormModelPair = Struct.new(:form, :escort)
+  def add_destination
+    if params.key? 'move_add_destination'
+      form.deserialize params[:move_information]
+      form.add_destination
+      flash[:form_data] = form.to_parameter_hash
+      flash[:no_validate] = 'true'
+      redirect_to move_information_path(escort)
+    end
+  end
+
+  def run_form_validations
+    if flash[:form_data]
+      if flash[:no_validate]
+        form.deserialize(flash[:form_data])
+      else
+        form.validate(flash[:form_data])
+      end
+    end
+  end
 end
