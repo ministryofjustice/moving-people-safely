@@ -100,6 +100,14 @@ ActiveRecord::Schema.define(version: 20160701171430) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "risks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid   "escort_id"
+    t.string "open_acct",         default: "unknown"
+    t.text   "open_acct_details"
+    t.string "suicide",           default: "unknown"
+    t.text   "suicide_details"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
