@@ -7,7 +7,7 @@ class HealthcareController < ApplicationController
   def show
     form.prepopulate!
     run_form_validations
-    render html: healthcare_form_cell, layout: true
+    render :show, locals: { form: form, template_name: form.class.name, cell_content:  }
   end
 
   def update
@@ -41,7 +41,7 @@ class HealthcareController < ApplicationController
   end
 
   def healthcare_form_cell
-    cell = cell(:healthcare, form)
+    cell = cell(:multi_step, form)
 
     cell.form_title = form.class.name
     cell.prev_path = previous_wizard_path if is_prev_step?

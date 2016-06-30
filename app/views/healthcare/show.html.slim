@@ -1,0 +1,15 @@
+.questions-nav
+  span = back_link
+  span.current-question = current_question_text
+  span = next_link
+
+div class = page_class
+  header
+    h1 = title
+
+  = GovukElementsErrorsHelper.error_summary form,
+    'There were problems saving this form', ''
+
+  = form_content
+
+  = render_partial template_name, locals: { form: form }
