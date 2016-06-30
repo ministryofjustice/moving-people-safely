@@ -1,17 +1,12 @@
 = form_for form, url: form_path, method: :put do |f|
   = f.radio_toggle_with_textarea :dependencies
 
-  .js-show-hide
-    .form-group.controls-optional-section
-      = f.radio_button_fieldset :medication,
-        choices: form.toggle_choices,
-        inline: true
-
+  = f.radio_toggle :medication do
     .optional-section-wrapper
       #medications
       #error_needs_medications
       - f.fields_for :medications do |mf|
-        .optional-section.panel.panel-border-narrow
+        .form-group.optional-section
           = mf.hidden_field :id
           .nested-medication-field
             = mf.text_field :description
