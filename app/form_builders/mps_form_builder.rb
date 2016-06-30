@@ -1,5 +1,4 @@
 class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
-  # rubocop:disable MethodLength
   def radio_toggle(attribute, attribute_with_error = nil, &_blk)
     style = 'optional-section-wrapper'
     style << ' panel panel-border-narrow' unless error_for? attribute_with_error

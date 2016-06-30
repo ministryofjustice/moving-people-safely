@@ -20,6 +20,7 @@ gem 'moj_template', '0.23.2'
 gem 'reform'
 gem 'reform-rails'
 gem 'virtus'
+gem 'wicked'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

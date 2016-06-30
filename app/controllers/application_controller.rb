@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def escort
-    @escort ||= Escort.find(params[:id])
+    @escort ||= Escort.find(params[:escort_id])
   end
 
   def render_cell(*cell_attrs)
