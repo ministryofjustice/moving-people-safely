@@ -35,7 +35,7 @@ Metrics/AbcSize:
   Exclude:
     - 'spec/**/*'
 
-Style/MethodLength:
+Metrics/MethodLength:
   Max: 12
 
 # Allow ===. It's useful.
