@@ -4,6 +4,7 @@ RSpec.describe Escort, type: :model do
   it { is_expected.to have_one(:detainee).dependent(:destroy) }
   it { is_expected.to have_one(:move).dependent(:destroy) }
   it { is_expected.to have_one(:healthcare).dependent(:destroy) }
+  it { is_expected.to have_one(:offences).dependent(:destroy) }
 
   describe '.find_detainee_by_prison_number' do
     subject { described_class.find_detainee_by_prison_number('A1234BC') }
@@ -39,13 +40,13 @@ RSpec.describe Escort, type: :model do
     end
   end
 
-  describe "#offenses" do
+  describe "#offences" do
     let(:subject) { described_class.new }
-    let(:result) { subject.offenses }
+    let(:result) { subject.offences }
 
     context "when there is no associated record" do
-      it "returns an Offenses object" do
-        expect(result).to be_an Offenses
+      it "returns an Offences object" do
+        expect(result).to be_an Offences
       end
     end
   end
