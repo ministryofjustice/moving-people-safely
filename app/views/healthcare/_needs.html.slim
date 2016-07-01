@@ -1,7 +1,7 @@
 = form_for form, url: form_path, method: :put do |f|
   = f.radio_toggle_with_textarea :dependencies
 
-  = f.radio_toggle :medication do
+  .medication= f.radio_toggle :medication do
     .optional-section-wrapper
       #medications
       #error_needs_medications

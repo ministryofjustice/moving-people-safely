@@ -8,16 +8,13 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
       dependencies: 'yes',
       dependencies_details: 'Drugs',
       medication: 'yes',
-      medications_attributes: {
-        "0": {
-          id: nil,
-          description: 'Aspirin',
-          administration: 'Once a day',
-          carrier: 'Detainee',
-          _delete: '0'
-        }
-      }
-    }.stringify_keys
+      medications: [
+        description: 'Aspirin',
+        administration: 'Once a day',
+        carrier: 'Detainee',
+        _delete: '0'
+      ]
+    }.with_indifferent_access
   }
 
   describe 'defaults' do
@@ -83,20 +80,16 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
           dependencies: 'yes',
           dependencies_details: 'Drugs',
           medication: 'yes',
-          medications_attributes: {
-            "0": {
-              id: nil,
-              description: 'Aspirin',
-              administration: 'Once a day',
-              carrier: 'Detainee',
-              _delete: '1'
-            }
-          }
-        }.stringify_keys
+          medications: [
+            description: 'Aspirin',
+            administration: 'Once a day',
+            carrier: 'Detainee',
+            _delete: '1'
+          ]
+        }.with_indifferent_access
       }
 
       it 'doesnt pass the medication object to the model for saving' do
-        binding.pry
         subject.validate(params_with_medication_marked_for_delete)
         subject.save
 

@@ -9,7 +9,7 @@
 
 .healthcare
   header
-    h1 = title
+    h1 = title(template_name)
 
   = GovukElementsErrorsHelper.error_summary form,
     'There were problems saving this form', ''

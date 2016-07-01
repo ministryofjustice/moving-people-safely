@@ -5,12 +5,11 @@ class HealthcareController < ApplicationController
   before_action :add_medication, only: [:update]
 
   def show
-    populate_form
-    render :show, locals: { title: form.class.name, form: form, template_name: form.class.name }
+    form.prepopulate!
+    render :show, locals: { form: form, template_name: form.class.name }
   end
 
   def update
-    raise
     if form.validate form_params
       form.save
       redirect_after_update
@@ -52,7 +51,7 @@ class HealthcareController < ApplicationController
   end
 
   def redirect_after_update
-    if params.key?('save_and_view_profile')
+    if params.key?('save_and_view_profile') || step == :contact
       redirect_to profile_path(escort)
     else
       redirect_to next_wizard_path
@@ -63,24 +62,12 @@ class HealthcareController < ApplicationController
     if params.key? 'needs_add_medication'
       form.deserialize form_params
       form.add_medication
-      flash[:form_data] = form.to_parameter_hash
-      flash[:no_validate] = 'true'
-      redirect_to wizard_path
+      render :show, locals: { form: form, template_name: form.class.name }
     end
   end
 
   def form_params
     params[step]
-  end
-
-  def populate_form
-    if flash[:form_data]
-      if flash[:no_validate]
-        form.deserialize(flash[:form_data])
-      else
-        form.validate(flash[:form_data])
-      end
-    end
   end
 
   def form
