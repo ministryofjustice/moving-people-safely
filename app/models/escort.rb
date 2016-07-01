@@ -2,7 +2,7 @@ class Escort < ApplicationRecord
   has_one :detainee, dependent: :destroy
   has_one :move, dependent: :destroy
   has_one :healthcare, dependent: :destroy
-  has_one :offenses, dependent: :destroy
+  has_one :offences, dependent: :destroy
 
   def self.find_detainee_by_prison_number(number)
     joins(:detainee).where(detainees: { prison_number: number }).first
@@ -21,7 +21,7 @@ class Escort < ApplicationRecord
     super || build_healthcare
   end
 
-  def offenses
-    super || build_offenses
+  def offences
+    super || build_offences
   end
 end
