@@ -13,10 +13,18 @@ RSpec.describe Forms::MoveInformation, type: :form do
       reason_details: 'Has to move',
       has_destinations: 'yes',
       destinations: [
-        establishment: 'Hospital',
-        must_return: 'must_return',
-        reasons: 'Violence',
-        _delete: '0'
+        {
+          establishment: 'Hospital',
+          must_return: 'must_return',
+          reasons: 'Not feeling good',
+          _delete: '0'
+        },
+        {
+          establishment: 'Tribunal',
+          must_return: 'must_return',
+          reasons: 'Sentence',
+          _delete: '0'
+        }
       ]
     }.with_indifferent_access
   }
@@ -37,10 +45,18 @@ RSpec.describe Forms::MoveInformation, type: :form do
       coerced_params = params.merge(
         date: Date.civil(2017, 2, 1),
         destinations: [
-          establishment: 'Hospital',
-          must_return: 'must_return',
-          reasons: 'Violence',
-          _delete: false
+          {
+            establishment: 'Hospital',
+            must_return: 'must_return',
+            reasons: 'Not feeling good',
+            _delete: false
+          },
+          {
+            establishment: 'Tribunal',
+            must_return: 'must_return',
+            reasons: 'Sentence',
+            _delete: false
+          }
         ]
       )
 
@@ -85,23 +101,6 @@ RSpec.describe Forms::MoveInformation, type: :form do
           expect(subject.errors).to include :date
         end
       end
-    end
-  end
-
-  describe '#deserialize' do
-    it 'deserializes the form from the params' do
-      coerced_params = params.merge(
-        date: Date.civil(2017, 2, 1),
-        destinations: [
-          establishment: 'Hospital',
-          must_return: 'must_return',
-          reasons: 'Violence',
-          _delete: false
-        ]
-      )
-
-      subject.deserialize(params)
-      expect(subject.to_nested_hash).to eq coerced_params
     end
   end
 

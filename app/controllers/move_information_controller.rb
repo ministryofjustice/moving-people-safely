@@ -1,38 +1,31 @@
 class MoveInformationController < ApplicationController
+  before_action :add_destination, only: [:update]
+
   def show
-    form = Forms::MoveInformation.new(move).tap(&:prepopulate!)
-    view_context = FormModelPair.new(form, escort)
-
-    render_cell :move_information, view_context
-  end
-
-  def add_destination
-    form = Forms::MoveInformation.new(move)
-    form.deserialize(params[:move_information])
-    form.add_destination
-    view_context = FormModelPair.new(form, escort)
-
-    render_cell :move_information, view_context
+    form.prepopulate!
+    render locals: { form: form, escort: escort }
   end
 
   def update
-    form = Forms::MoveInformation.new(move)
-
     if form.validate(params[:move_information])
       form.save
       redirect_to profile_path(escort)
     else
-      form.prepopulate!
-      view_context = FormModelPair.new(form, escort)
-      render_cell :move_information, view_context
+      render :show, locals: { form: form, escort: escort }
     end
   end
 
   private
 
-  def move
-    @move ||= (escort.move || escort.build_move)
+  def form
+    @_form ||= Forms::MoveInformation.new(escort.move)
   end
 
-  FormModelPair = Struct.new(:form, :escort)
+  def add_destination
+    if params.key? 'move_add_destination'
+      form.deserialize params[:move_information]
+      form.add_destination
+      render :show, locals: { form: form, escort: escort }
+    end
+  end
 end
