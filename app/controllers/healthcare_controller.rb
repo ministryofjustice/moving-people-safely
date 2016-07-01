@@ -14,8 +14,7 @@ class HealthcareController < ApplicationController
       form.save
       redirect_after_update
     else
-      flash[:form_data] = form_params
-      redirect_to wizard_path
+      render :show, locals: { form: form, template_name: form.class.name }
     end
   end
 
