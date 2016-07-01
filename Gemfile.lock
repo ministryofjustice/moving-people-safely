@@ -330,7 +330,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.0)
   rails (>= 5.0.0.rc2, < 5.1)
-  reform
+  reform (= 2.1.0)
   reform-rails
   rspec-cells
   rspec-its
