@@ -1,15 +1,17 @@
 .questions-nav
-  span = back_link
-  span.current-question = current_question_text
-  span = next_link
+  - if can_go_back?
+    span = link_to '< Back', previous_wizard_path
 
-div class = page_class
+  span.current-question = "Question #{current_question} of #{total_questions}"
+
+  - if can_skip?
+    span = link_to 'Skip >', next_wizard_path
+
+.healthcare
   header
     h1 = title
 
   = GovukElementsErrorsHelper.error_summary form,
     'There were problems saving this form', ''
 
-  = form_content
-
-  = render_partial template_name, locals: { form: form }
+  = render partial: "healthcare/#{template_name}", locals: { form: form }
