@@ -18,7 +18,7 @@ module Forms
     collection :destinations,
       form: Forms::MoveDestination,
       prepopulator: :populate_destinations,
-      populator: :handle_incoming_destination_params
+      populator: :handle_incoming_nested_params
 
     validates :reason,
       inclusion: { in: REASONS },
@@ -57,19 +57,13 @@ module Forms
       add_destination if destinations.empty?
     end
 
-    # TODO: improve readability of this method
-    #
-    # rubocop:disable MethodLength
-    def handle_incoming_destination_params(
-      collection:,
-      fragment:,
-      represented:,
-      **)
+    def handle_incoming_nested_params(collection:, fragment:, represented:, **)
+      item = destinations.find { |d| d.id.present? && (d.id == fragment['id']) }
 
-      item = destinations.find { |d| d.id == fragment['id'] }
+      marked_to_be_deleted = fragment['_delete'] == '1'
+      all_to_be_deleted = %w[ yes ].exclude?(represented.has_destinations)
 
-      if fragment['_delete'] == '1' ||
-          %w[ yes ].exclude?(represented.has_destinations)
+      if marked_to_be_deleted || all_to_be_deleted
         destinations.delete(item)
         return skip!
       end

@@ -5,7 +5,7 @@
   = GovukElementsErrorsHelper.error_summary form,
     'There were problems saving this form', ''
 
-  = form_for form, url: form_url, method: :put do |f|
+  = form_for form, url: move_information_url(escort), method: :put do |f|
     = f.text_field :from
     = f.text_field :to
     = f.text_field :date
@@ -20,7 +20,7 @@
     = f.radio_toggle :has_destinations do
       #establishments
       #error_move_destinations
-      - f.fields_for :destinations do |df|
+      = f.fields_for :destinations do |df|
         .form-group.optional-section
           = df.hidden_field :id
           .form-group
@@ -36,6 +36,7 @@
 
       = f.submit 'Add establishment',
         class: 'js-anchor-focus styled-as-link',
-        data: { 'anchor-focus' => 'establishments' }
+        data: { 'anchor-focus' => 'establishments' },
+        name: "move_add_destination"
 
     = f.submit 'Save and continue', class: 'button'
