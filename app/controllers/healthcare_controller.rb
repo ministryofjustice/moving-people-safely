@@ -6,8 +6,7 @@ class HealthcareController < ApplicationController
 
   def show
     form.prepopulate!
-    run_form_validations
-    render html: healthcare_form_cell, layout: true
+    render :show, locals: { form: form, template_name: form.class.name }
   end
 
   def update
@@ -22,8 +21,37 @@ class HealthcareController < ApplicationController
 
   private
 
+  def form_path
+    wizard_path
+  end
+  helper_method :form_path
+
+  def current_question
+    current_step_index + 1
+  end
+  helper_method :current_question
+
+  def total_questions
+    wizard_steps.size
+  end
+  helper_method :total_questions
+
+  def can_go_back?
+    previous_step != step
+  end
+  helper_method :can_go_back?
+
+  def can_skip?
+    next_step != 'wicked_finish'
+  end
+  helper_method :can_skip?
+
+  def finish_wizard_path
+    redirect_to profile_path(escort)
+  end
+
   def redirect_after_update
-    if params.key?('save_and_view_profile') || end_of_wizard?
+    if params.key?('save_and_view_profile') || step == :contact
       redirect_to profile_path(escort)
     else
       redirect_to next_wizard_path
@@ -34,46 +62,12 @@ class HealthcareController < ApplicationController
     if params.key? 'needs_add_medication'
       form.deserialize form_params
       form.add_medication
-      flash[:form_data] = form.to_parameter_hash
-      flash[:no_validate] = 'true'
-      redirect_to wizard_path
+      render :show, locals: { form: form, template_name: form.class.name }
     end
-  end
-
-  def healthcare_form_cell
-    cell = cell(:healthcare, form)
-
-    cell.form_title = form.class.name
-    cell.prev_path = previous_wizard_path if is_prev_step?
-    cell.next_path = next_wizard_path unless end_of_wizard?
-    cell.current_question = current_step_index + 1
-    cell.total_questions = wizard_steps.size
-    cell.template_name = form.class.name
-    cell.form_path = wizard_path
-
-    cell
   end
 
   def form_params
     params[step]
-  end
-
-  def is_prev_step?
-    previous_step != step
-  end
-
-  def end_of_wizard?
-    next_step == 'wicked_finish'
-  end
-
-  def run_form_validations
-    if flash[:form_data]
-      if flash[:no_validate]
-        form.deserialize(flash[:form_data])
-      else
-        form.validate(flash[:form_data])
-      end
-    end
   end
 
   def form

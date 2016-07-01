@@ -1,11 +1,11 @@
 = form_for form, url: form_path, method: :put do |f|
   = f.radio_toggle_with_textarea :dependencies
 
-  = f.radio_toggle :medication do
+  .medication= f.radio_toggle :medication do
     .optional-section-wrapper
       #medications
       #error_needs_medications
-      - f.fields_for :medications do |mf|
+      = f.fields_for :medications do |mf|
         .form-group.optional-section
           = mf.hidden_field :id
           .nested-medication-field
@@ -14,7 +14,7 @@
             = mf.text_field :administration
           .nested-medication-field
             = mf.label :carrier, class: 'form-label'
-            .form-group = mf.select :carrier, select_values_for(:carrier), include_blank: true
+            .form-group = mf.select :carrier, select_values_for_carrier, include_blank: true
           .nested-medication-field.remove-link
             = mf.label :_delete, 'Remove', class: 'styled-as-link'
             = mf.check_box :_delete
@@ -24,4 +24,4 @@
         data: { 'anchor-focus' => 'medications' },
         name: "needs_add_medication"
 
-  = render view: :buttons, locals: { f: f }
+  = render partial: 'buttons', locals: { f: f }

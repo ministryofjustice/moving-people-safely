@@ -3,11 +3,11 @@
   span.current-question = current_question_text
   span = next_link
 
-.healthcare
+div class = page_class
   header
     h1 = title
 
   = GovukElementsErrorsHelper.error_summary form,
     'There were problems saving this form', ''
 
-  = render template_name
+  = form_content

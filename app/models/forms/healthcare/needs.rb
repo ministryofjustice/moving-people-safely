@@ -7,7 +7,7 @@ module Forms
       collection :medications,
         form: Forms::Healthcare::Medication,
         prepopulator: :populate_medications,
-        populator: :handle_incoming_medication_params
+        populator: :handle_nested_params
 
       def add_medication
         medications << new_medication
@@ -19,19 +19,13 @@ module Forms
         add_medication if medications.empty?
       end
 
-      # TODO: improve readability of this method
-      #
-      # rubocop:disable MethodLength
-      def handle_incoming_medication_params(
-        collection:,
-        fragment:,
-        represented:,
-        **)
+      def handle_nested_params(collection:, fragment:, **)
+        item = medications.find { |d| (d.id == fragment['id']) }
 
-        item = medications.find { |d| d.id == fragment['id'] }
+        marked_to_be_deleted = fragment['_delete'] == '1'
+        all_to_be_deleted = %w[ yes ].exclude?(medication)
 
-        if fragment['_delete'] == '1' ||
-            %w[ yes ].exclude?(represented.medication)
+        if marked_to_be_deleted || all_to_be_deleted
           medications.delete(item)
           return skip!
         end
@@ -42,7 +36,6 @@ module Forms
           collection.append(new_medication)
         end
       end
-      # rubocop:enable MethodLength
 
       def new_medication
         model.medications.build
