@@ -38,4 +38,15 @@ RSpec.describe Escort, type: :model do
       its(:healthcare) { is_expected.to be_a Healthcare }
     end
   end
+
+  describe "#offenses" do
+    let(:subject) { described_class.new }
+    let(:result) { subject.offenses }
+
+    context "when there is no associated record" do
+      it "returns an Offenses object" do
+        expect(result).to be_an Offenses
+      end
+    end
+  end
 end
