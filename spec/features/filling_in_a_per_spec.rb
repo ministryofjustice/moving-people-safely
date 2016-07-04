@@ -44,6 +44,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     save_and_continue
     fill_in_risk_from_others
     save_and_continue
+    fill_in_violence
+    save_and_continue
 
     expect_to_be_sent_to_profile_page
   end
@@ -163,6 +165,12 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in 'risk_from_others[verbal_abuse_details]', with: 'Details for verbal abuse'
     choose 'risk_from_others_physical_abuse_yes'
     fill_in 'risk_from_others[physical_abuse_details]', with: 'Details for physical abuse'
+  end
+
+  def fill_in_violence
+    choose 'violence_violent_yes'
+    check 'Prison staff'
+    fill_in 'violence[prison_staff_details]', with: 'Details for violent to prison stuff'
   end
 
   def save_and_continue

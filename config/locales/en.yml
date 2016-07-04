@@ -14,6 +14,8 @@ en:
         suicide: Risk of suicide or self-harm?
       transport:
         mpv: MPV
+      violence:
+        violent: Violent?
     label:
       allergies:
         allergies:
@@ -75,7 +77,9 @@ en:
         mpv:
           unknown: Clear selection
         mpv_details: MPV details
-
+      violence:
+        violent:
+          unknown: Clear selection
     hint:
       allergies:
         allergies: Does the detainee have any allergies?
@@ -112,7 +116,16 @@ en:
       transport:
         mpv: Does the detainee need an MPV?
         mpv_details: Give details and explain the significance
-
+      violence:
+        escort_or_court_staff_details: Give details
+        healthcare_staff_details: Give details
+        homophobic_details: Give details
+        other_detainees_details: Give details
+        police_details: Give details
+        prison_staff_details: Give details
+        public_offence_related_details: Give details
+        racist_details: Give details
+        risk_to_females_details: Give details
   healthcare:
     show:
       physical: Physical healthcare
@@ -129,3 +142,4 @@ en:
     show:
       risks_to_self: Risks to self
       risk_from_others: Risk from others
+      violence: Risk from others

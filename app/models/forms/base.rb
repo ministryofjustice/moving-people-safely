@@ -31,6 +31,15 @@ module Forms
           presence: true,
           if: -> { public_send(field_name) == TOGGLE_YES }
       end
+
+      def optional_checkbox(field_name, toggle = nil)
+        property field_name, type: Axiom::Types::Boolean, default: false
+        property "#{field_name}_details", type: StrictString
+        validates "#{field_name}_details",
+          presence: true,
+          if:
+            -> { public_send(field_name) && public_send(toggle) == TOGGLE_YES }
+      end
     end
 
     def invalid?

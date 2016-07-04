@@ -2,7 +2,7 @@ class RisksController < ApplicationController
   include Wicked::Wizard
   include Wizardable
 
-  steps :risks_to_self, :risk_from_others
+  steps :risks_to_self, :risk_from_others, :violence
 
   def show
     form.prepopulate!
@@ -27,7 +27,8 @@ class RisksController < ApplicationController
   def form
     @_form ||= {
       risks_to_self: Forms::Risks::RisksToSelf,
-      risk_from_others: Forms::Risks::RiskFromOthers
+      risk_from_others: Forms::Risks::RiskFromOthers,
+      violence: Forms::Risks::Violence
     }[step].new(escort.risks)
   end
 end
