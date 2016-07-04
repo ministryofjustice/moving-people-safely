@@ -48,6 +48,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     save_and_continue
     fill_in_harassments
     save_and_continue
+    fill_in_sex_offences
+    save_and_continue
 
     expect_to_be_sent_to_profile_page
   end
@@ -179,6 +181,12 @@ RSpec.feature 'filling in a PER', type: :feature do
     choose 'harassments_stalker_harasser_bully_yes'
     check 'Intimidator'
     fill_in 'harassments[intimidator_details]', with: 'Aggressive personality'
+  end
+
+  def fill_in_sex_offences
+    choose 'sex_offences_sex_offence_yes'
+    choose 'Under 18'
+    fill_in 'sex_offences[sex_offence_details]', with: '17 years old'
   end
 
   def save_and_continue

@@ -6,6 +6,9 @@ en:
       move_information:
         has_destinations: Are there establishments the detainee must or must not be sent?
         reason: Reason for move
+      sex_offences:
+        sex_offence: Sex offender?
+        sex_offence_victim: ''
       risk_from_others:
         rule_45: Rule 45?
         csra: CSRA?
@@ -73,6 +76,9 @@ en:
         suicide:
           unknown: Clear selection
         suicide_details: Risk of suicide or self-harm details
+      sex_offences:
+        sex_offence:
+          unknown: Clear selection
       social:
         personal_hygiene:
           unknown: Clear selection
@@ -119,6 +125,8 @@ en:
       risks_to_self:
         open_acct_details: Give details and dates of open or recent ACCTs
         suicide_details: Give details
+      sex_offences:
+        sex_offence_details: Give details, if under 18 state gender and age if known
       social:
         personal_hygiene: Does the detainee have personal hygiene issues?
         personal_hygiene_details: Give details and explain the significance
@@ -151,7 +159,8 @@ en:
         detainee: Detainee
   risks:
     show:
-      harassments: Risk from others
-      risks_to_self: Risks to self
+      harassments: Risk to others
+      risks_to_self: Risk to self
       risk_from_others: Risk from others
-      violence: Risk from others
+      sex_offences: Risk to others
+      violence: Risk to others
