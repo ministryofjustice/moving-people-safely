@@ -330,7 +330,7 @@ DEPENDENCIES
   reform-rails
   rspec-cells
   rspec-its
-  rspec-rails (~> 3.5.0.beta3)
+  rspec-rails
   rubocop (~> 0.35.1)
   sass-rails (~> 5.0)
   shoulda-matchers

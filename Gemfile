@@ -48,7 +48,7 @@ group :test do
   gem 'codeclimate-test-reporter', require: nil
   gem 'launchy'
   gem 'rspec-its'
-  gem 'rspec-rails', '~> 3.5.0.beta3'
+  gem 'rspec-rails'
   gem 'rspec-cells'
   gem 'shoulda-matchers'
 end
