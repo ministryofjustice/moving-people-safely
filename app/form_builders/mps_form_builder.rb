@@ -1,12 +1,13 @@
 class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
-  def radio_toggle(attribute, attribute_with_error = nil, &_blk)
+  def radio_toggle(attribute, attribute_with_error = nil, choices = nil, &_blk)
     style = 'optional-section-wrapper'
     style << ' panel panel-border-narrow' unless error_for? attribute_with_error
+    choices ||= object.toggle_choices
     content_tag(:div, class: 'js-show-hide') do
       safe_join([
         content_tag(:div, class: 'form-group controls-optional-section') do
           radio_button_fieldset attribute,
-            choices: object.toggle_choices, inline: true
+            choices: choices, inline: true
         end,
         content_tag(:div, class: style) { yield }
       ])
@@ -26,7 +27,8 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
       id: form_group_id(attribute) do
       text_area_tag =
         ActionView::Helpers::Tags::TextArea.new(
-          object.class.name, attribute, self, class: 'form-control'
+          object.class.name, attribute, self,
+          value: object.public_send(attribute), class: 'form-control'
         ).render
       hint_tag = content_tag(:span, hint_text(attribute), class: 'form-hint')
       (hint_tag + text_area_tag).html_safe

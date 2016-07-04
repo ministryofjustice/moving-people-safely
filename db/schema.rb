@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160701171430) do
+ActiveRecord::Schema.define(version: 20160704125939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,10 +102,18 @@ ActiveRecord::Schema.define(version: 20160701171430) do
 
   create_table "risks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid   "escort_id"
-    t.string "open_acct",         default: "unknown"
+    t.string "open_acct",              default: "unknown"
     t.text   "open_acct_details"
-    t.string "suicide",           default: "unknown"
+    t.string "suicide",                default: "unknown"
     t.text   "suicide_details"
+    t.string "rule_45",                default: "unknown"
+    t.text   "rule_45_details"
+    t.string "csra",                   default: "unknown"
+    t.text   "csra_details"
+    t.string "verbal_abuse",           default: "unknown"
+    t.text   "verbal_abuse_details"
+    t.string "physical_abuse",         default: "unknown"
+    t.text   "physical_abuse_details"
   end
 
   create_table "users", force: :cascade do |t|
