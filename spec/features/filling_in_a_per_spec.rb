@@ -42,6 +42,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     go_to_risks_page
     fill_in_risks_to_self
     save_and_continue
+    fill_in_risk_from_others
+    save_and_continue
 
     expect_to_be_sent_to_profile_page
   end
@@ -150,6 +152,17 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in 'risks_to_self[open_acct_details]', with: 'Needs ACCT'
     choose 'risks_to_self_suicide_yes'
     fill_in 'risks_to_self[suicide_details]', with: 'Tried twice'
+  end
+
+  def fill_in_risk_from_others
+    choose 'risk_from_others_rule_45_yes'
+    fill_in 'risk_from_others[rule_45_details]', with: 'Details for Rule 45'
+    choose 'risk_from_others_csra_high'
+    fill_in 'risk_from_others[csra_details]', with: 'High CSRA'
+    choose 'risk_from_others_verbal_abuse_yes'
+    fill_in 'risk_from_others[verbal_abuse_details]', with: 'Details for verbal abuse'
+    choose 'risk_from_others_physical_abuse_yes'
+    fill_in 'risk_from_others[physical_abuse_details]', with: 'Details for physical abuse'
   end
 
   def save_and_continue

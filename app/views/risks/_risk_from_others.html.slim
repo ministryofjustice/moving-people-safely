@@ -1,0 +1,8 @@
+= f.radio_toggle_with_textarea :rule_45
+
+= f.radio_toggle(:csra, :csra_details, f.object.csra_toggle_choices) do
+  = f.text_area_without_label :csra_details
+
+= f.radio_toggle_with_textarea :verbal_abuse
+
+= f.radio_toggle_with_textarea :physical_abuse
