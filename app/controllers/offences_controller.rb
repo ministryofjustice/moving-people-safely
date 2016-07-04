@@ -1,4 +1,4 @@
-class OffensesController < ApplicationController
+class OffencesController < ApplicationController
   def show
     form.validate(flash[:form_data]) if flash[:form_data]
     render locals: { form: form }
@@ -17,6 +17,6 @@ class OffensesController < ApplicationController
   private
 
   def form
-    @_form ||= Forms::Offenses.new(escort.offenses)
+    @_form ||= Forms::Offences.new(escort.offences)
   end
 end

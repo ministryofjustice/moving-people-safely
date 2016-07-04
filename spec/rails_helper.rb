@@ -56,7 +56,7 @@ RSpec.configure do |config|
   config.include(FeatureHelpers::Sessions, type: :feature)
   config.include(Shoulda::Matchers::ActiveModel, type: :form)
   config.include(ActiveSupport::Testing::TimeHelpers)
-  config.include(Devise::TestHelpers, type: :controller)
+  config.include(Devise::Test::IntegrationHelpers, type: :request)
 end
 
 Shoulda::Matchers.configure do |config|
