@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704143658) do
+ActiveRecord::Schema.define(version: 20160704161322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,6 +133,17 @@ ActiveRecord::Schema.define(version: 20160704143658) do
     t.text    "public_offence_related_details"
     t.boolean "police"
     t.text    "police_details"
+    t.string  "stalker_harasser_bully",         default: "unknown"
+    t.boolean "hostage_taker"
+    t.text    "hostage_taker_details"
+    t.boolean "stalker"
+    t.text    "stalker_details"
+    t.boolean "harasser"
+    t.text    "harasser_details"
+    t.boolean "intimidator"
+    t.text    "intimidator_details"
+    t.boolean "bully"
+    t.text    "bully_details"
   end
 
   create_table "users", force: :cascade do |t|

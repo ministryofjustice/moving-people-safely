@@ -74,6 +74,41 @@ $(function () {
           $optional_checkbox_section_wrapper.hide();
         }
         break;
+      case /_hostage_taker$/.test(id):
+        if ($input.is(":checked")) {
+          $optional_checkbox_section_wrapper.show();
+        } else {
+          $optional_checkbox_section_wrapper.hide();
+        }
+        break;
+      case /_stalker$/.test(id):
+        if ($input.is(":checked")) {
+          $optional_checkbox_section_wrapper.show();
+        } else {
+          $optional_checkbox_section_wrapper.hide();
+        }
+        break;
+      case /_harasser$/.test(id):
+        if ($input.is(":checked")) {
+          $optional_checkbox_section_wrapper.show();
+        } else {
+          $optional_checkbox_section_wrapper.hide();
+        }
+        break;
+      case /_intimidator$/.test(id):
+        if ($input.is(":checked")) {
+          $optional_checkbox_section_wrapper.show();
+        } else {
+          $optional_checkbox_section_wrapper.hide();
+        }
+        break;
+      case /_bully$/.test(id):
+        if ($input.is(":checked")) {
+          $optional_checkbox_section_wrapper.show();
+        } else {
+          $optional_checkbox_section_wrapper.hide();
+        }
+        break;
       default:
         $optional_checkbox_section_wrapper.hide();
     }
