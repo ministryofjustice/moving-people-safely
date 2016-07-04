@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resource :detainee_details, only: %i[ show update ], path: 'detainee-details'
     resource :move_information, only: %i[ show update ], path: 'move-info'
     resources :healthcare
+    resources :risks
     get :profile, to: 'profiles#show'
   end
 

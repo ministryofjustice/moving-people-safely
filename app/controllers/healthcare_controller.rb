@@ -1,5 +1,7 @@
 class HealthcareController < ApplicationController
   include Wicked::Wizard
+  include Wizardable
+
   steps :physical, :mental, :social, :allergies, :needs, :transport, :contact
 
   before_action :add_medication, only: [:update]
@@ -19,43 +21,6 @@ class HealthcareController < ApplicationController
   end
 
   private
-
-  def form_path
-    wizard_path
-  end
-  helper_method :form_path
-
-  def current_question
-    current_step_index + 1
-  end
-  helper_method :current_question
-
-  def total_questions
-    wizard_steps.size
-  end
-  helper_method :total_questions
-
-  def can_go_back?
-    previous_step != step
-  end
-  helper_method :can_go_back?
-
-  def can_skip?
-    next_step != 'wicked_finish'
-  end
-  helper_method :can_skip?
-
-  def finish_wizard_path
-    redirect_to profile_path(escort)
-  end
-
-  def redirect_after_update
-    if params.key?('save_and_view_profile') || step == :contact
-      redirect_to profile_path(escort)
-    else
-      redirect_to next_wizard_path
-    end
-  end
 
   def add_medication
     if params.key? 'needs_add_medication'

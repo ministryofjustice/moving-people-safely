@@ -38,6 +38,12 @@ RSpec.feature 'filling in a PER', type: :feature do
     save_and_continue
 
     expect_to_be_sent_to_profile_page
+
+    go_to_risks_page
+    fill_in_risks_to_self
+    save_and_continue
+
+    expect_to_be_sent_to_profile_page
   end
 
   def search_prisoner
@@ -133,6 +139,17 @@ RSpec.feature 'filling in a PER', type: :feature do
   def fill_in_medical_contact
     fill_in 'Healthcare professional', with: 'Doctor Robert'
     fill_in 'Contact number', with: '079876543'
+  end
+
+  def go_to_risks_page
+    click_link 'Risks'
+  end
+
+  def fill_in_risks_to_self
+    choose 'risks_to_self_open_acct_yes'
+    fill_in 'risks_to_self[open_acct_details]', with: 'Needs ACCT'
+    choose 'risks_to_self_suicide_yes'
+    fill_in 'risks_to_self[suicide_details]', with: 'Tried twice'
   end
 
   def save_and_continue
