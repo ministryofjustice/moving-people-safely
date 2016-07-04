@@ -7,6 +7,7 @@ $(function () {
    * @param {jQuery wrapped input} $input - A radio button.
    */
 
+  // TODO this style applies to page risk from others - violence and needs to be rethought
   var manageStateOfOptionalCheckboxSection = function ($input, $optional_checkbox_section_wrapper) {
     var id = $input.attr('id');
     switch (true) {
