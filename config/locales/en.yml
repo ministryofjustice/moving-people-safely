@@ -4,9 +4,15 @@ en:
       move_information:
         has_destinations: Are there establishments the detainee must or must not be sent?
         reason: Reason for move
+      risks_to_self:
+        open_acct: Open or recent ACCT?
+        suicide: Risk of suicide or self-harm?
       transport:
         mpv: MPV
     label:
+      allergies:
+        allergies:
+          unknown: Clear selection
       detainee_details:
         surname: Surname
         forenames: Forename(s)
@@ -15,6 +21,11 @@ en:
         cro_number: CRO number
         gender: Gender
         aliases: Aliases
+      mental:
+        mental_illness:
+          unknown: Clear selection
+        phobias:
+          unknown: Clear selection
       move_information:
         from: From
         to: To
@@ -25,14 +36,6 @@ en:
         destinations:
           establishment: Establishment
           reasons: List the reasons, eg medical treatment, medical hold, treatment programmes or offender behaviour.
-      allergies:
-        allergies:
-          unknown: Clear selection
-      mental:
-        mental_illness:
-          unknown: Clear selection
-        phobias:
-          unknown: Clear selection
       needs:
         dependencies:
           unknown: Clear selection
@@ -41,6 +44,13 @@ en:
       physical:
         physical_issues:
           unknown: Clear selection
+      risks_to_self:
+        open_acct:
+          unknown: Clear selection
+        open_acct_details: Open ACCT details
+        suicide:
+          unknown: Clear selection
+        suicide_details: Risk of suicide or self-harm details
       social:
         personal_hygiene:
           unknown: Clear selection
@@ -52,42 +62,49 @@ en:
         mpv_details: MPV details
 
     hint:
+      allergies:
+        allergies: Does the detainee have any allergies?
+        allergies_details: Give details and explain the significance
       detainee_details:
         date_of_birth: DD/MM/YYYY
-      move_information:
-        reason_details: Give details
-      physical:
-        physical_issues: Does the detainee have any physical health needs?
-        physical_issues_details: Give details and explain the significance
       mental:
         mental_illness: Does the detainee have any mental health needs?
         mental_illness_details: Give details and explain the significance
         phobias: Does the detainee have any phobias?
         phobias_details: Give details and explain the significance
+      move_information:
+        reason_details: Give details
+      needs:
+        dependencies: Does the detainee have any dependencies or history of misuse?
+        dependencies_details: Give details and explain the significance
+        medication: Is the detainee taking regular medications?
+      physical:
+        physical_issues: Does the detainee have any physical health needs?
+        physical_issues_details: Give details and explain the significance
+      risks_to_self:
+        open_acct_details: Give details and dates of open or recent ACCTs
+        suicide_details: Give details
       social:
         personal_hygiene: Does the detainee have personal hygiene issues?
         personal_hygiene_details: Give details and explain the significance
         personal_care: Does the detainee have personal care issues?
         personal_care_details: Give details and explain the significance
-      allergies:
-        allergies: Does the detainee have any allergies?
-        allergies_details: Give details and explain the significance
-      needs:
-        dependencies: Does the detainee have any dependencies or history of misuse?
-        dependencies_details: Give details and explain the significance
-        medication: Is the detainee taking regular medications?
       transport:
         mpv: Does the detainee need an MPV?
         mpv_details: Give details and explain the significance
 
   healthcare:
-    physical: Physical healthcare
-    mental: Mental healthcare
-    social: Social healthcare
-    allergies: Allergies
-    needs: Medical health needs
-    transport: Transport
-    contact: Medical contact
-    carrier:
-      escort: Escort
-      detainee: Detainee
+    show:
+      physical: Physical healthcare
+      mental: Mental healthcare
+      social: Social healthcare
+      allergies: Allergies
+      needs: Medical health needs
+      transport: Transport
+      contact: Medical contact
+      carrier:
+        escort: Escort
+        detainee: Detainee
+  risks:
+    show:
+      risks_to_self: Risks to self
