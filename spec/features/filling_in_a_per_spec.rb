@@ -46,6 +46,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     save_and_continue
     fill_in_violence
     save_and_continue
+    fill_in_harassments
+    save_and_continue
 
     expect_to_be_sent_to_profile_page
   end
@@ -171,6 +173,12 @@ RSpec.feature 'filling in a PER', type: :feature do
     choose 'violence_violent_yes'
     check 'Prison staff'
     fill_in 'violence[prison_staff_details]', with: 'Details for violent to prison stuff'
+  end
+
+  def fill_in_harassments
+    choose 'harassments_stalker_harasser_bully_yes'
+    check 'Intimidator'
+    fill_in 'harassments[intimidator_details]', with: 'Aggressive personality'
   end
 
   def save_and_continue

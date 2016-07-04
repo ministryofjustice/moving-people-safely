@@ -1,6 +1,8 @@
 en:
   helpers:
     fieldset:
+      harassments:
+        stalker_harasser_bully: Hostage taker / stalker / harasser / intimidator / bully?
       move_information:
         has_destinations: Are there establishments the detainee must or must not be sent?
         reason: Reason for move
@@ -28,6 +30,9 @@ en:
         cro_number: CRO number
         gender: Gender
         aliases: Aliases
+      harassments:
+        stalker_harasser_bully:
+          unknown: Clear selection
       mental:
         mental_illness:
           unknown: Clear selection
@@ -86,6 +91,12 @@ en:
         allergies_details: Give details and explain the significance
       detainee_details:
         date_of_birth: DD/MM/YYYY
+      harassments:
+        hostage_taker_details: Give details
+        stalker_details: Give details
+        harasser_details: Give details
+        intimidator_details: Give details
+        bully_details: Give details
       mental:
         mental_illness: Does the detainee have any mental health needs?
         mental_illness_details: Give details and explain the significance
@@ -140,6 +151,7 @@ en:
         detainee: Detainee
   risks:
     show:
+      harassments: Risk from others
       risks_to_self: Risks to self
       risk_from_others: Risk from others
       violence: Risk from others
