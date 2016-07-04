@@ -40,4 +40,18 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
       safe_join([text, radio_button(attribute, value)])
     end
   end
+
+  def checkbox_with_textarea(attribute)
+    content_tag(:div, class: 'js-checkbox-show-hide form-group') do
+      label(attribute, class: 'block-label') do
+        content_tag(:div, class: 'controls-optional-checkbox-section') do
+          check_box attribute
+        end +
+          localized_label(attribute)
+      end +
+        content_tag(:div, class: 'optional-checkbox-section-wrapper') do
+          text_area_without_label "#{attribute}_details"
+        end
+    end
+  end
 end

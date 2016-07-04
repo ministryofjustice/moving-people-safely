@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704125939) do
+ActiveRecord::Schema.define(version: 20160704143658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,19 +101,38 @@ ActiveRecord::Schema.define(version: 20160704125939) do
   end
 
   create_table "risks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid   "escort_id"
-    t.string "open_acct",              default: "unknown"
-    t.text   "open_acct_details"
-    t.string "suicide",                default: "unknown"
-    t.text   "suicide_details"
-    t.string "rule_45",                default: "unknown"
-    t.text   "rule_45_details"
-    t.string "csra",                   default: "unknown"
-    t.text   "csra_details"
-    t.string "verbal_abuse",           default: "unknown"
-    t.text   "verbal_abuse_details"
-    t.string "physical_abuse",         default: "unknown"
-    t.text   "physical_abuse_details"
+    t.uuid    "escort_id"
+    t.string  "open_acct",                      default: "unknown"
+    t.text    "open_acct_details"
+    t.string  "suicide",                        default: "unknown"
+    t.text    "suicide_details"
+    t.string  "rule_45",                        default: "unknown"
+    t.text    "rule_45_details"
+    t.string  "csra",                           default: "unknown"
+    t.text    "csra_details"
+    t.string  "verbal_abuse",                   default: "unknown"
+    t.text    "verbal_abuse_details"
+    t.string  "physical_abuse",                 default: "unknown"
+    t.text    "physical_abuse_details"
+    t.string  "violent",                        default: "unknown"
+    t.boolean "prison_staff"
+    t.text    "prison_staff_details"
+    t.boolean "risk_to_females"
+    t.text    "risk_to_females_details"
+    t.boolean "escort_or_court_staff"
+    t.text    "escort_or_court_staff_details"
+    t.boolean "healthcare_staff"
+    t.text    "healthcare_staff_details"
+    t.boolean "other_detainees"
+    t.text    "other_detainees_details"
+    t.boolean "homophobic"
+    t.text    "homophobic_details"
+    t.boolean "racist"
+    t.text    "racist_details"
+    t.boolean "public_offence_related"
+    t.text    "public_offence_related_details"
+    t.boolean "police"
+    t.text    "police_details"
   end
 
   create_table "users", force: :cascade do |t|
