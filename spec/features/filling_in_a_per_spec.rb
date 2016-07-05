@@ -52,6 +52,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     save_and_continue
     fill_in_non_association_markers
     save_and_continue
+    fill_in_security
+    save_and_continue
 
     expect_to_be_sent_to_profile_page
   end
@@ -189,6 +191,22 @@ RSpec.feature 'filling in a PER', type: :feature do
     choose 'sex_offences_sex_offence_yes'
     choose 'Under 18'
     fill_in 'sex_offences[sex_offence_details]', with: '17 years old'
+  end
+
+  def fill_in_security
+    choose 'security_current_e_risk_yes'
+    fill_in 'security[current_e_risk_details]', with: 'There is current E risk'
+    choose 'security_escape_list_yes'
+    fill_in 'security[escape_list_details]', with: 'Tried 2 times'
+    choose 'security_other_escape_risk_info_yes'
+    fill_in 'security[other_escape_risk_info_details]', with: 'Used a hammer'
+    choose 'security_category_a_yes'
+    fill_in 'security[category_a_details]', with: 'Category A information'
+    choose 'security_restricted_status_yes'
+    fill_in 'security[restricted_status_details]', with: 'Restricted status details info'
+    check 'Escape pack'
+    check 'Escape risk assessment'
+    check 'Cuffing protocol'
   end
 
   def fill_in_non_association_markers

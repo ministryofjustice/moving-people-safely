@@ -41,6 +41,14 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     end
   end
 
+  def label_with_checkbox(attribute)
+    content_tag(:div, class: 'form-group') do
+      label(attribute) do
+        safe_join([check_box(attribute), localized_label(attribute)])
+      end
+    end
+  end
+
   def checkbox_with_textarea(attribute)
     content_tag(:div, class: 'js-checkbox-show-hide form-group') do
       label(attribute, class: 'block-label') do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705090659) do
+ActiveRecord::Schema.define(version: 20160705094944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,19 @@ ActiveRecord::Schema.define(version: 20160705090659) do
     t.text    "sex_offence_details"
     t.string  "non_association_markers",         default: "unknown"
     t.text    "non_association_markers_details"
+    t.string  "current_e_risk",                  default: "unknown"
+    t.text    "current_e_risk_details"
+    t.string  "escape_list",                     default: "unknown"
+    t.text    "escape_list_details"
+    t.string  "other_escape_risk_info",          default: "unknown"
+    t.text    "other_escape_risk_info_details"
+    t.string  "category_a",                      default: "unknown"
+    t.text    "category_a_details"
+    t.string  "restricted_status",               default: "unknown"
+    t.text    "restricted_status_details"
+    t.boolean "escape_pack"
+    t.boolean "escape_risk_assessment"
+    t.boolean "cuffing_protocol"
   end
 
   create_table "users", force: :cascade do |t|
