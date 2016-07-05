@@ -110,6 +110,9 @@ GEM
     execjs (2.7.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     faker (1.6.3)
       i18n (~> 0.5)
     ffi (1.9.10)
@@ -316,7 +319,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   devise
   devise_invitable (= 1.6.0)
-  factory_girl
+  factory_girl_rails
   faker
   govuk_elements_form_builder!
   govuk_elements_rails
