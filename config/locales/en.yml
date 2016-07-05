@@ -1,6 +1,8 @@
 en:
   helpers:
     fieldset:
+      concealed_weapons:
+        conceals_weapons: Conceals weapons or other items?
       harassments:
         stalker_harasser_bully: Hostage taker / stalker / harasser / intimidator / bully?
       move_information:
@@ -35,6 +37,9 @@ en:
     label:
       allergies:
         allergies:
+          unknown: Clear selection
+      concealed_weapons:
+        conceals_weapons:
           unknown: Clear selection
       detainee_details:
         surname: Surname
@@ -128,6 +133,8 @@ en:
       allergies:
         allergies: Does the detainee have any allergies?
         allergies_details: Give details and explain the significance
+      concealed_weapons:
+        conceals_weapons_details: Give details
       detainee_details:
         date_of_birth: DD/MM/YYYY
       harassments:
@@ -203,6 +210,7 @@ en:
         detainee: Detainee
   risks:
     show:
+      concealed_weapons: Concealed weapons or other items
       harassments: Risk to others
       non_association_markers: Risk to others
       risks_to_self: Risk to self

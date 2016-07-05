@@ -56,6 +56,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     save_and_continue
     fill_in_substance_misuse
     save_and_continue
+    fill_in_concealed_weapons
+    save_and_continue
 
     expect_to_be_sent_to_profile_page
   end
@@ -221,6 +223,11 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in 'substance_misuse[drugs_details]', with: 'Heroin'
     choose 'substance_misuse_alcohol_yes'
     fill_in 'substance_misuse[alcohol_details]', with: 'Lots of beer'
+  end
+
+  def fill_in_concealed_weapons
+    choose 'concealed_weapons_conceals_weapons_yes'
+    fill_in 'concealed_weapons[conceals_weapons_details]', with: 'Guns and rifles'
   end
 
   def save_and_continue
