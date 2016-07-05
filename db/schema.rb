@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705113746) do
+ActiveRecord::Schema.define(version: 20160705115256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,6 +173,12 @@ ActiveRecord::Schema.define(version: 20160705113746) do
     t.string  "arson_value"
     t.string  "damage_to_property",              default: "unknown"
     t.text    "damage_to_property_details"
+    t.string  "interpreter_required",            default: "unknown"
+    t.text    "language"
+    t.string  "hearing_speach_sight",            default: "unknown"
+    t.text    "hearing_speach_sight_details"
+    t.string  "can_read_and_write",              default: "unknown"
+    t.text    "can_read_and_write_details"
   end
 
   create_table "users", force: :cascade do |t|

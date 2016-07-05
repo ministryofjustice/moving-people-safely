@@ -60,6 +60,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     save_and_continue
     fill_in_arson
     save_and_continue
+    fill_in_communication
+    save_and_continue
 
     expect_to_be_sent_to_profile_page
   end
@@ -236,6 +238,15 @@ RSpec.feature 'filling in a PER', type: :feature do
     choose 'arson_arson_yes'
     choose 'arson_arson_value_high'
     fill_in 'arson[arson_details]', with: 'Burnt several houses'
+  end
+
+  def fill_in_communication
+    choose 'communication_interpreter_required_yes'
+    fill_in 'communication[language]', with: 'German'
+    choose 'communication_hearing_speach_sight_yes'
+    fill_in 'communication[hearing_speach_sight_details]', with: 'Blind'
+    choose 'communication_can_read_and_write_yes'
+    fill_in 'communication[can_read_and_write_details]', with: 'Can only read'
   end
 
   def save_and_continue
