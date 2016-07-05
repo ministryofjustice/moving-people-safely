@@ -58,6 +58,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     save_and_continue
     fill_in_concealed_weapons
     save_and_continue
+    fill_in_arson
+    save_and_continue
 
     expect_to_be_sent_to_profile_page
   end
@@ -228,6 +230,12 @@ RSpec.feature 'filling in a PER', type: :feature do
   def fill_in_concealed_weapons
     choose 'concealed_weapons_conceals_weapons_yes'
     fill_in 'concealed_weapons[conceals_weapons_details]', with: 'Guns and rifles'
+  end
+
+  def fill_in_arson
+    choose 'arson_arson_yes'
+    choose 'arson_arson_value_high'
+    fill_in 'arson[arson_details]', with: 'Burnt several houses'
   end
 
   def save_and_continue

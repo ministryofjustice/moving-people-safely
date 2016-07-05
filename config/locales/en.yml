@@ -1,6 +1,10 @@
 en:
   helpers:
     fieldset:
+      arson:
+        arson: Arson?
+        arson_value: ''
+        damage_to_property: Damage to property?
       concealed_weapons:
         conceals_weapons: Conceals weapons or other items?
       harassments:
@@ -37,6 +41,11 @@ en:
     label:
       allergies:
         allergies:
+          unknown: Clear selection
+      arson:
+        arson:
+          unknown: Clear selection
+        damage_to_property:
           unknown: Clear selection
       concealed_weapons:
         conceals_weapons:
@@ -133,6 +142,9 @@ en:
       allergies:
         allergies: Does the detainee have any allergies?
         allergies_details: Give details and explain the significance
+      arson:
+        arson_details: Give details
+        damage_to_property_details: Give details
       concealed_weapons:
         conceals_weapons_details: Give details
       detainee_details:
@@ -210,6 +222,7 @@ en:
         detainee: Detainee
   risks:
     show:
+      arson: Arson and damage to property
       concealed_weapons: Concealed weapons or other items
       harassments: Risk to others
       non_association_markers: Risk to others
