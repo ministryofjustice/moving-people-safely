@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704165023) do
+ActiveRecord::Schema.define(version: 20160705090659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,19 +102,19 @@ ActiveRecord::Schema.define(version: 20160704165023) do
 
   create_table "risks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid    "escort_id"
-    t.string  "open_acct",                      default: "unknown"
+    t.string  "open_acct",                       default: "unknown"
     t.text    "open_acct_details"
-    t.string  "suicide",                        default: "unknown"
+    t.string  "suicide",                         default: "unknown"
     t.text    "suicide_details"
-    t.string  "rule_45",                        default: "unknown"
+    t.string  "rule_45",                         default: "unknown"
     t.text    "rule_45_details"
-    t.string  "csra",                           default: "unknown"
+    t.string  "csra",                            default: "unknown"
     t.text    "csra_details"
-    t.string  "verbal_abuse",                   default: "unknown"
+    t.string  "verbal_abuse",                    default: "unknown"
     t.text    "verbal_abuse_details"
-    t.string  "physical_abuse",                 default: "unknown"
+    t.string  "physical_abuse",                  default: "unknown"
     t.text    "physical_abuse_details"
-    t.string  "violent",                        default: "unknown"
+    t.string  "violent",                         default: "unknown"
     t.boolean "prison_staff"
     t.text    "prison_staff_details"
     t.boolean "risk_to_females"
@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(version: 20160704165023) do
     t.text    "public_offence_related_details"
     t.boolean "police"
     t.text    "police_details"
-    t.string  "stalker_harasser_bully",         default: "unknown"
+    t.string  "stalker_harasser_bully",          default: "unknown"
     t.boolean "hostage_taker"
     t.text    "hostage_taker_details"
     t.boolean "stalker"
@@ -144,9 +144,11 @@ ActiveRecord::Schema.define(version: 20160704165023) do
     t.text    "intimidator_details"
     t.boolean "bully"
     t.text    "bully_details"
-    t.string  "sex_offence",                    default: "unknown"
+    t.string  "sex_offence",                     default: "unknown"
     t.string  "sex_offence_victim"
     t.text    "sex_offence_details"
+    t.string  "non_association_markers",         default: "unknown"
+    t.text    "non_association_markers_details"
   end
 
   create_table "users", force: :cascade do |t|
