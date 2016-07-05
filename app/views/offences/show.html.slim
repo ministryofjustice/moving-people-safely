@@ -1,0 +1,11 @@
+.offences
+  header
+    h1 Offences
+
+  = GovukElementsErrorsHelper.error_summary form,
+    'There were problems saving this form', ''
+
+  = form_for form, url: offences_path(@escort), method: :put do |f|
+    = f.text_field :release_date
+
+    = f.submit 'Save and continue', class: 'button'

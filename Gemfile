@@ -46,6 +46,8 @@ end
 group :test do
   gem 'capybara'
   gem 'codeclimate-test-reporter', require: nil
+  gem 'factory_girl'
+  gem 'faker'
   gem 'launchy'
   gem 'rspec-its'
   gem 'rspec-rails'
