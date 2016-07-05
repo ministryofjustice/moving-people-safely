@@ -25,6 +25,9 @@ en:
         escape_list: Escape list?
         other_escape_risk_info: Is there other escape risk information?
         restricted_status: Restricted status?
+      substance_misuse:
+        alcohol: Alcohol?
+        drugs: Drugs?
       transport:
         mpv: MPV
       violence:
@@ -109,6 +112,11 @@ en:
           unknown: Clear selection
         personal_care:
           unknown: Clear selection
+      substance_misuse:
+        alcohol:
+          unknown: Clear selection
+        drugs:
+          unknown: Clear selection
       transport:
         mpv:
           unknown: Clear selection
@@ -165,6 +173,9 @@ en:
         personal_hygiene_details: Give details and explain the significance
         personal_care: Does the detainee have personal care issues?
         personal_care_details: Give details and explain the significance
+      substance_misuse:
+        alcohol_details: Give details
+        drugs_details: Give details
       transport:
         mpv: Does the detainee need an MPV?
         mpv_details: Give details and explain the significance
@@ -198,4 +209,5 @@ en:
       risk_from_others: Risk from others
       security: Security
       sex_offences: Risk to others
+      substance_misuse: Substance misuse
       violence: Risk to others
