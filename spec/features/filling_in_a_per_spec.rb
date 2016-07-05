@@ -50,6 +50,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     save_and_continue
     fill_in_sex_offences
     save_and_continue
+    fill_in_non_association_markers
+    save_and_continue
 
     expect_to_be_sent_to_profile_page
   end
@@ -187,6 +189,11 @@ RSpec.feature 'filling in a PER', type: :feature do
     choose 'sex_offences_sex_offence_yes'
     choose 'Under 18'
     fill_in 'sex_offences[sex_offence_details]', with: '17 years old'
+  end
+
+  def fill_in_non_association_markers
+    choose 'non_association_markers_non_association_markers_yes'
+    fill_in 'non_association_markers[non_association_markers_details]', with: 'Prisoner A1234BC and Z9876XY'
   end
 
   def save_and_continue

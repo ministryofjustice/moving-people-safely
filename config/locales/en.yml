@@ -6,6 +6,8 @@ en:
       move_information:
         has_destinations: Are there establishments the detainee must or must not be sent?
         reason: Reason for move
+      non_association_markers:
+        non_association_markers: Non-association markers?
       sex_offences:
         sex_offence: Sex offender?
         sex_offence_victim: ''
@@ -55,6 +57,9 @@ en:
         dependencies:
           unknown: Clear selection
         medication:
+          unknown: Clear selection
+      non_association_markers:
+        non_association_markers:
           unknown: Clear selection
       physical:
         physical_issues:
@@ -114,6 +119,8 @@ en:
         dependencies: Does the detainee have any dependencies or history of misuse?
         dependencies_details: Give details and explain the significance
         medication: Is the detainee taking regular medications?
+      non_association_markers:
+        non_association_markers_details: Give details, include prison numbers, names or establishments
       physical:
         physical_issues: Does the detainee have any physical health needs?
         physical_issues_details: Give details and explain the significance
@@ -160,6 +167,7 @@ en:
   risks:
     show:
       harassments: Risk to others
+      non_association_markers: Risk to others
       risks_to_self: Risk to self
       risk_from_others: Risk from others
       sex_offences: Risk to others
