@@ -21,18 +21,26 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     end
   end
 
-  def text_area_without_label(attribute)
+  def field_without_label(field_type, attribute)
     content_tag :div,
       class: form_group_classes(attribute),
       id: form_group_id(attribute) do
-      text_area_tag =
-        ActionView::Helpers::Tags::TextArea.new(
+      field_tag =
+        field_type.new(
           object.class.name, attribute, self,
           value: object.public_send(attribute), class: 'form-control'
         ).render
       hint_tag = content_tag(:span, hint_text(attribute), class: 'form-hint')
-      (hint_tag + text_area_tag).html_safe
+      (hint_tag + field_tag).html_safe
     end
+  end
+
+  def text_area_without_label(attribute)
+    field_without_label ActionView::Helpers::Tags::TextArea, attribute
+  end
+
+  def text_field_without_label(attribute)
+    field_without_label ActionView::Helpers::Tags::TextField, attribute
   end
 
   def label_with_radio(attribute, text, value)

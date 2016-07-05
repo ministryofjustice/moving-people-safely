@@ -4,7 +4,7 @@ class RisksController < ApplicationController
 
   steps :risks_to_self, :risk_from_others, :violence, :harassments,
     :sex_offences, :non_association_markers, :security, :substance_misuse,
-    :concealed_weapons, :arson
+    :concealed_weapons, :arson, :communication
 
   def show
     form.prepopulate!
@@ -37,7 +37,8 @@ class RisksController < ApplicationController
       security: Forms::Risks::Security,
       substance_misuse: Forms::Risks::SubstanceMisuse,
       concealed_weapons: Forms::Risks::ConcealedWeapons,
-      arson: Forms::Risks::Arson
+      arson: Forms::Risks::Arson,
+      communication: Forms::Risks::Communication
     }[step].new(escort.risks)
   end
 end
