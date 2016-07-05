@@ -3,7 +3,9 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-# Add additional requires below this line. Rails is not loaded until this point!
+require 'devise'
+
+
 
 # FIXME Rails 5 Cells workaround
 require "#{Rails.root}/lib/overrides/cells/testing"
@@ -54,6 +56,8 @@ RSpec.configure do |config|
   config.include(FeatureHelpers::Sessions, type: :feature)
   config.include(Shoulda::Matchers::ActiveModel, type: :form)
   config.include(ActiveSupport::Testing::TimeHelpers)
+  config.include(Devise::Test::ControllerHelpers, type: :controller)
+  config.include(Devise::Test::IntegrationHelpers, type: :request)
 end
 
 Shoulda::Matchers.configure do |config|

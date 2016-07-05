@@ -23,6 +23,10 @@ class ProfileCell < Cell::ViewModel
     link_to 'Risks', risks_path(escort, :risks_to_self)
   end
 
+  def offences_link
+    link_to 'Offences', offences_path(escort)
+  end
+
   def prison_number
     escort.detainee.prison_number
   end

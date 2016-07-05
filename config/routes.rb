@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resource :move_information, only: %i[ show update ], path: 'move-info'
     resources :healthcare
     resources :risks
+    resource :offences, only: %i[ show update ]
     get :profile, to: 'profiles#show'
   end
 
