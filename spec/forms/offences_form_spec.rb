@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe OffencesForm, type: :form do
-  subject { described_class.new(Offences.new) }
+  subject { described_class.new(model) }
+  let(:model) { Offences.new }
 
   let(:form_data) do
     {
@@ -27,5 +28,17 @@ RSpec.describe OffencesForm, type: :form do
 
     it { is_expected.to validate_presence_of(:release_date) }
     it { is_expected.to validate_string_as_date(:release_date) }
+  end
+
+  describe "#save" do
+    it 'sets the data on the model' do
+      subject.validate(form_data)
+      subject.save
+
+      form_attributes = subject.to_nested_hash
+      model_attributes = model.attributes
+
+      expect(model_attributes).to include form_attributes
+    end
   end
 end
