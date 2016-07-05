@@ -54,6 +54,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     save_and_continue
     fill_in_security
     save_and_continue
+    fill_in_substance_misuse
+    save_and_continue
 
     expect_to_be_sent_to_profile_page
   end
@@ -212,6 +214,13 @@ RSpec.feature 'filling in a PER', type: :feature do
   def fill_in_non_association_markers
     choose 'non_association_markers_non_association_markers_yes'
     fill_in 'non_association_markers[non_association_markers_details]', with: 'Prisoner A1234BC and Z9876XY'
+  end
+
+  def fill_in_substance_misuse
+    choose 'substance_misuse_drugs_yes'
+    fill_in 'substance_misuse[drugs_details]', with: 'Heroin'
+    choose 'substance_misuse_alcohol_yes'
+    fill_in 'substance_misuse[alcohol_details]', with: 'Lots of beer'
   end
 
   def save_and_continue
