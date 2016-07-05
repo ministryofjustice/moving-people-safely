@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705110936) do
+ActiveRecord::Schema.define(version: 20160705113746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,6 +168,11 @@ ActiveRecord::Schema.define(version: 20160705110936) do
     t.text    "alcohol_details"
     t.string  "conceals_weapons",                default: "unknown"
     t.text    "conceals_weapons_details"
+    t.string  "arson",                           default: "unknown"
+    t.text    "arson_details"
+    t.string  "arson_value"
+    t.string  "damage_to_property",              default: "unknown"
+    t.text    "damage_to_property_details"
   end
 
   create_table "users", force: :cascade do |t|

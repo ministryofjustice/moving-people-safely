@@ -1,0 +1,7 @@
+= f.radio_toggle :arson do
+  .form-group
+    = f.radio_button_fieldset :arson_value,
+      choices: f.object.arson_values
+  = f.text_area_without_label :arson_details
+
+= f.radio_toggle_with_textarea :damage_to_property
