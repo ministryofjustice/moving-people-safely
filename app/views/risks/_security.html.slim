@@ -1,0 +1,12 @@
+= f.radio_toggle_with_textarea :current_e_risk
+= f.radio_toggle_with_textarea :escape_list
+= f.radio_toggle_with_textarea :other_escape_risk_info
+= f.radio_toggle_with_textarea :category_a
+= f.radio_toggle_with_textarea :restricted_status
+
+fieldset
+  legend.heading-medium
+    | Ensure the following documents accompany the detainee:
+  = f.label_with_checkbox :escape_pack
+  = f.label_with_checkbox :escape_risk_assessment
+  = f.label_with_checkbox :cuffing_protocol

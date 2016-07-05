@@ -3,7 +3,7 @@ class RisksController < ApplicationController
   include Wizardable
 
   steps :risks_to_self, :risk_from_others, :violence, :harassments,
-    :sex_offences, :non_association_markers
+    :sex_offences, :non_association_markers, :security
 
   def show
     form.prepopulate!
@@ -32,7 +32,8 @@ class RisksController < ApplicationController
       violence: Forms::Risks::Violence,
       harassments: Forms::Risks::Harassments,
       sex_offences: Forms::Risks::SexOffences,
-      non_association_markers: Forms::Risks::NonAssociationMarkers
+      non_association_markers: Forms::Risks::NonAssociationMarkers,
+      security: Forms::Risks::Security
     }[step].new(escort.risks)
   end
 end
