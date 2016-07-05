@@ -19,6 +19,12 @@ en:
       risks_to_self:
         open_acct: Open or recent ACCT?
         suicide: Risk of suicide or self-harm?
+      security:
+        category_a: Category A?
+        current_e_risk: Current E risk?
+        escape_list: Escape list?
+        other_escape_risk_info: Is there other escape risk information?
+        restricted_status: Restricted status?
       transport:
         mpv: MPV
       violence:
@@ -61,6 +67,7 @@ en:
       non_association_markers:
         non_association_markers:
           unknown: Clear selection
+        non_association_markers_details: Non-association markers details
       physical:
         physical_issues:
           unknown: Clear selection
@@ -81,6 +88,19 @@ en:
         suicide:
           unknown: Clear selection
         suicide_details: Risk of suicide or self-harm details
+      security:
+        category_a:
+          unknown: Clear selection
+        category_a_details: Category A details
+        current_e_risk:
+          unknown: Clear selection
+        current_e_risk_details: Current E risk details
+        escape_list:
+          unknown: Clear selection
+        other_escape_risk_info:
+          unknown: Clear selection
+        restricted_status:
+          unknown: Clear selection
       sex_offences:
         sex_offence:
           unknown: Clear selection
@@ -132,6 +152,12 @@ en:
       risks_to_self:
         open_acct_details: Give details and dates of open or recent ACCTs
         suicide_details: Give details
+      security:
+        category_a_details: Give details
+        current_e_risk_details: Give details
+        escape_list_details: Give details
+        other_escape_risk_info_details: Give details
+        restricted_status_details: Give details
       sex_offences:
         sex_offence_details: Give details, if under 18 state gender and age if known
       social:
@@ -170,5 +196,6 @@ en:
       non_association_markers: Risk to others
       risks_to_self: Risk to self
       risk_from_others: Risk from others
+      security: Security
       sex_offences: Risk to others
       violence: Risk to others
