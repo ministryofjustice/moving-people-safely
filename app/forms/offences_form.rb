@@ -1,6 +1,6 @@
 class OffencesForm < Forms::Base
-  property :release_date,           type: TextDate,   validates: { presence: true }
-  property :not_for_release,        type: Axiom::Types::Boolean
+  property :release_date, type: TextDate, validates: { presence: true }
+  property :not_for_release, type: Axiom::Types::Boolean
   property :not_for_release_reason, type: String
 
   validate :validate_release_date
