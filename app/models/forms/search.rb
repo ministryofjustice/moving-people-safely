@@ -16,10 +16,6 @@ module Forms
       presence: true,
       format: { with: PRISON_NUMBER_REGEX }
 
-    def assign_attributes(attrs)
-      validate(attrs)
-    end
-
     def escort
       ::Escort.find_detainee_by_prison_number(prison_number) if valid?
     end

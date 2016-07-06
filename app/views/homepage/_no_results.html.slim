@@ -1,0 +1,6 @@
+p
+  | There is no previously created profile on
+  |  Moving People Safely for detainee number
+  |  #{prison_number}
+
+= button_to('Create new profile', escort_path, params: { prison_number: prison_number }, class: 'button')

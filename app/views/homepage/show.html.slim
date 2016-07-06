@@ -1,0 +1,16 @@
+.search_module
+  .search_block
+    h2 Find a detainee
+
+    = form_for form, url: search_path, method: :post do |f|
+      label Search by prison number. E.g. A1234AB
+      .search_input_wrapper
+        = f.search_text_field :prison_number
+        = f.submit class: 'search_button', value: 'Search'
+
+  - if form.escort.present?
+    = render partial: 'results', locals: { escort: form.escort }
+  - elsif form.valid?
+    = render partial: 'no_results', locals: { prison_number: form.prison_number }
+  - elsif form.prison_number.present?
+    = render partial: 'error', locals: { prison_number: form.prison_number }
