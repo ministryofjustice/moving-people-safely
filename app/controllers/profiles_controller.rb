@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
   def show
-    render_cell :profile, escort
+    render locals: { escort: escort }
   end
 end
