@@ -65,8 +65,7 @@ module Forms
       end
 
       def _define_has_if_property_missing(field_name)
-        singularized_field_name = singularize field_name
-        unless respond_to?("has_#{field_name}")
+        unless respond_to?("has_#{field_name}".to_sym)
           define_method "has_#{field_name}" do
             'yes'
           end
@@ -88,7 +87,7 @@ module Forms
           item = collection.find { |d| ( d.id.present? && d.id == fragment['id']) }
           marked_to_be_deleted = fragment['_delete'] == '1'
           all_to_be_deleted = %w[ yes ].exclude?(
-            public_send(singularized_field_name)
+            public_send("has_#{field_name}")
           )
 
           if marked_to_be_deleted || all_to_be_deleted
