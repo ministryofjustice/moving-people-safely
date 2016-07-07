@@ -58,4 +58,45 @@ RSpec.describe Escort, type: :model do
       its(:risks) { is_expected.to be_a Risks }
     end
   end
+
+  describe '#with_future_move?' do
+    context 'when there is a future move' do
+      subject { build :escort }
+      its(:with_future_move?) { is_expected.to be true }
+    end
+
+    context 'when there is not a future move' do
+      subject { build :escort, :with_past_move }
+      its(:with_future_move?) { is_expected.to be_blank }
+    end
+  end
+
+  describe '#with_past_move?' do
+    context 'when there is a past move' do
+      subject { build :escort, :with_past_move }
+      its(:with_past_move?) { is_expected.to be true }
+    end
+
+    context 'when there is a future move' do
+      subject { build :escort }
+      its(:with_past_move?) { is_expected.to be_blank }
+    end
+  end
+
+  describe '#with_move?' do
+    context 'when there is a past move' do
+      subject { build :escort, :with_past_move }
+      its(:with_move?) { is_expected.to be true }
+    end
+
+    context 'when there is a future move' do
+      subject { build :escort }
+      its(:with_move?) { is_expected.to be true }
+    end
+
+    context 'when there is no move' do
+      subject { build :escort, move: nil }
+      its(:with_move?) { is_expected.to be_blank }
+    end
+  end
 end

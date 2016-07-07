@@ -1,11 +1,11 @@
 class HomepageController < ApplicationController
   def show
-    render :show, locals: { form: form }
+    render :show, locals: { form: form, escort: form.escort }
   end
 
   def search
     form.validate(params[:search])
-    render :show, locals: { form: form }
+    render :show, locals: { form: form, escort: form.escort }
   end
 
   private
