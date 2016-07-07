@@ -14,7 +14,7 @@ module Forms
       property :reason,           type: StrictString
       property :reason_details,   type: StrictString
 
-      optional_field :destination
+      optional_field :has_destinations
       prepopulated_collection :destinations
 
       validates :reason,

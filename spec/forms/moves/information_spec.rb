@@ -11,7 +11,7 @@ RSpec.describe Forms::Moves::Information, type: :form do
       date: '1/2/2017',
       reason: 'other',
       reason_details: 'Has to move',
-      destination: 'yes',
+      has_destinations: 'yes',
       destinations: [
         {
           establishment: 'Hospital',
