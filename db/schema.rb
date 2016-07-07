@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705115555) do
+ActiveRecord::Schema.define(version: 20160707134020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20160705115555) do
     t.text     "allergies_details"
     t.string   "dependencies",             default: "unknown"
     t.text     "dependencies_details"
-    t.string   "medication",               default: "unknown"
+    t.string   "has_medications",          default: "unknown"
     t.string   "mpv",                      default: "unknown"
     t.text     "mpv_details"
     t.string   "healthcare_professional"

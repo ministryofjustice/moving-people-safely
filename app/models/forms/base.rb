@@ -66,8 +66,8 @@ module Forms
 
       def _define_has_if_property_missing(field_name)
         singularized_field_name = singularize field_name
-        unless respond_to?(singularized_field_name.to_sym)
-          define_method singularized_field_name do
+        unless respond_to?("has_#{field_name}")
+          define_method "has_#{field_name}" do
             'yes'
           end
         end
@@ -85,7 +85,7 @@ module Forms
       def _define_populator(field_name)
         singularized_field_name = singularize field_name
         define_method "handle_nested_params_for_#{field_name}" do |collection:, fragment:, **|
-          item = collection.find { |d| (d.id == fragment['id']) }
+          item = collection.find { |d| ( d.id.present? && d.id == fragment['id']) }
           marked_to_be_deleted = fragment['_delete'] == '1'
           all_to_be_deleted = %w[ yes ].exclude?(
             public_send(singularized_field_name)
