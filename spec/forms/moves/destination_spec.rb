@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Forms::MoveDestination, type: :form do
+RSpec.describe Forms::Moves::Destination, type: :form do
   let(:model) { Destination.new }
   subject { described_class.new(model) }
 

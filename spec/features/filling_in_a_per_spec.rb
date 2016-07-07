@@ -102,7 +102,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in 'To', with: 'Some court'
     fill_in 'Date', with: '12/09/2016'
     choose 'Other'
-    fill_in 'move_information[reason_details]', with: 'Has to move'
+    fill_in 'information[reason_details]', with: 'Has to move'
     choose 'No'
   end
 

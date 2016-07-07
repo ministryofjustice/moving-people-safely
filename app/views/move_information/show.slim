@@ -17,7 +17,7 @@
       .form-group.panel.panel-border-narrow.optional-section-wrapper
         = f.text_area :reason_details
 
-    = f.radio_toggle :has_destinations do
+    = f.radio_toggle :destination do
       #establishments
       #error_move_destinations
       = f.fields_for :destinations do |df|
