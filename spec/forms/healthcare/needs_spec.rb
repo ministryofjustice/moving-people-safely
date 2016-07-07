@@ -9,10 +9,18 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
       dependencies_details: 'Drugs',
       medication: 'yes',
       medications: [
-        description: 'Aspirin',
-        administration: 'Once a day',
-        carrier: 'Detainee',
-        _delete: '0'
+        {
+          description: 'Aspirin',
+          administration: 'Once a day',
+          carrier: 'Detainee',
+          _delete: '0'
+        },
+        {
+          description: 'Ibrufen',
+          administration: 'Weekly',
+          carrier: 'Detainee',
+          _delete: '0'
+        }
       ]
     }.with_indifferent_access
   }
