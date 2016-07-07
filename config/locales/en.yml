@@ -13,7 +13,7 @@ en:
         conceals_weapons: Conceals weapons or other items?
       harassments:
         stalker_harasser_bully: Hostage taker / stalker / harasser / intimidator / bully?
-      move_information:
+      information:
         has_destinations: Are there establishments the detainee must or must not be sent?
         reason: Reason for move
       non_association_markers:
@@ -72,12 +72,7 @@ en:
       harassments:
         stalker_harasser_bully:
           unknown: Clear selection
-      mental:
-        mental_illness:
-          unknown: Clear selection
-        phobias:
-          unknown: Clear selection
-      move_information:
+      information:
         from: From
         to: To
         date: Date of move
@@ -87,10 +82,15 @@ en:
         destinations:
           establishment: Establishment
           reasons: List the reasons, eg medical treatment, medical hold, treatment programmes or offender behaviour.
+      mental:
+        mental_illness:
+          unknown: Clear selection
+        phobias:
+          unknown: Clear selection
       needs:
         dependencies:
           unknown: Clear selection
-        medication:
+        has_medications:
           unknown: Clear selection
       non_association_markers:
         non_association_markers:
@@ -170,17 +170,17 @@ en:
         harasser_details: Give details
         intimidator_details: Give details
         bully_details: Give details
+      information:
+        reason_details: Give details
       mental:
         mental_illness: Does the detainee have any mental health needs?
         mental_illness_details: Give details and explain the significance
         phobias: Does the detainee have any phobias?
         phobias_details: Give details and explain the significance
-      move_information:
-        reason_details: Give details
       needs:
         dependencies: Does the detainee have any dependencies or history of misuse?
         dependencies_details: Give details and explain the significance
-        medication: Is the detainee taking regular medications?
+        has_medications: Is the detainee taking regular medications?
       non_association_markers:
         non_association_markers_details: Give details, include prison numbers, names or establishments
       physical:

@@ -145,7 +145,7 @@ RSpec.feature 'filling in a PER', type: :feature do
   def fill_in_healthcare_needs
     choose 'needs_dependencies_yes'
     fill_in 'needs[dependencies_details]', with: 'Heroin'
-    choose 'needs_medication_yes'
+    choose 'needs_has_medications_yes'
     fill_in 'Description', with: 'Aspirin'
     fill_in 'Administration', with: 'Once a day'
     select 'Detainee', from: 'Carrier'

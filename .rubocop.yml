@@ -10,6 +10,7 @@ AllCops:
     - '**/Rakefile'
     - 'spec/**/*'
     - 'config/**/*'
+    - 'app/models/forms/base.rb' # this is just too horrible
 
 # Just a preference to use %w[] over %w()
 Style/PercentLiteralDelimiters:
