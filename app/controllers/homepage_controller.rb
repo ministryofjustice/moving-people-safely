@@ -1,17 +1,16 @@
 class HomepageController < ApplicationController
   def show
-    render_cell :homepage, Forms::Search.new
+    render :show, locals: { form: form }
   end
 
   def search
-    form = Forms::Search.new
-    form.assign_attributes(search_attributes)
-    render_cell :homepage, form
+    form.validate(params[:search])
+    render :show, locals: { form: form }
   end
 
   private
 
-  def search_attributes
-    params[:search]
+  def form
+    @_form ||= Forms::Search.new
   end
 end

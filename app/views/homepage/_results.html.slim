@@ -1,0 +1,19 @@
+table
+  tr
+    th Prison number
+    th Destination
+    th Name
+    th Date of birth
+    th Move date
+  tr
+    td = escort.detainee.prison_number
+    td = escort.move.to
+    td
+      span.strong-text
+        | #{escort.detainee.surname}
+      span
+        |  #{escort.detainee.forenames}
+    td = escort.detainee.date_of_birth&.to_s(:humanized)
+    td = escort.move.date&.to_s(:humanized)
+
+= link_to('Review profile', profile_path(escort), class: 'button')

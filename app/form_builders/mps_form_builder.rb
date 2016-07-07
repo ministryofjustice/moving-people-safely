@@ -36,6 +36,13 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     end
   end
 
+  def search_text_field(attribute)
+    ActionView::Helpers::Tags::TextField.new(
+      object.class.name, attribute, self,
+      value: object.public_send(attribute), class: 'form-control'
+    ).render
+  end
+
   def text_area_without_label(attribute)
     field_without_label ActionView::Helpers::Tags::TextArea, attribute
   end
