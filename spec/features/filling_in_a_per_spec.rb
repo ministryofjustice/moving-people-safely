@@ -102,7 +102,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in 'To', with: 'Some court'
     fill_in 'Date', with: '12/09/2016'
     choose 'Other'
-    fill_in 'move_information[reason_details]', with: 'Has to move'
+    fill_in 'information[reason_details]', with: 'Has to move'
     choose 'No'
   end
 
@@ -145,7 +145,7 @@ RSpec.feature 'filling in a PER', type: :feature do
   def fill_in_healthcare_needs
     choose 'needs_dependencies_yes'
     fill_in 'needs[dependencies_details]', with: 'Heroin'
-    choose 'needs_medication_yes'
+    choose 'needs_has_medications_yes'
     fill_in 'Description', with: 'Aspirin'
     fill_in 'Administration', with: 'Once a day'
     select 'Detainee', from: 'Carrier'

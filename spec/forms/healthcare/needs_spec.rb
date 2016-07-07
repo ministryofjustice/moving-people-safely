@@ -7,19 +7,27 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
     {
       dependencies: 'yes',
       dependencies_details: 'Drugs',
-      medication: 'yes',
+      has_medications: 'yes',
       medications: [
-        description: 'Aspirin',
-        administration: 'Once a day',
-        carrier: 'Detainee',
-        _delete: '0'
+        {
+          description: 'Aspirin',
+          administration: 'Once a day',
+          carrier: 'Detainee',
+          _delete: '0'
+        },
+        {
+          description: 'Ibrufen',
+          administration: 'Weekly',
+          carrier: 'Detainee',
+          _delete: '0'
+        }
       ]
     }.with_indifferent_access
   }
 
   describe 'defaults' do
     its(:dependencies) { is_expected.to eq 'unknown' }
-    its(:medication)   { is_expected.to eq 'unknown' }
+    its(:has_medications)   { is_expected.to eq 'unknown' }
   end
 
   describe '#validate' do
@@ -42,7 +50,7 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
 
     it do
       is_expected.
-        to validate_inclusion_of(:medication).
+        to validate_inclusion_of(:has_medications).
         in_array(%w[ yes no unknown ])
     end
   end
@@ -79,7 +87,7 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
         {
           dependencies: 'yes',
           dependencies_details: 'Drugs',
-          medication: 'yes',
+          has_medications: 'yes',
           medications: [
             description: 'Aspirin',
             administration: 'Once a day',
@@ -99,7 +107,7 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
       context 'when medications not set to yes' do
         it 'doesnt save the medication objects' do
           %w[ no unknown ].each do |medication_value|
-            params[:medication] = medication_value
+            params[:has_medications] = medication_value
             subject.validate(params)
             subject.save
 

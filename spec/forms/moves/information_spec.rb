@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Forms::MoveInformation, type: :form do
+RSpec.describe Forms::Moves::Information, type: :form do
   let(:model) { Move.new }
   subject { described_class.new(model) }
 
@@ -73,7 +73,7 @@ RSpec.describe Forms::MoveInformation, type: :form do
     it do
       is_expected.
         to validate_inclusion_of(:has_destinations).
-        in_array(subject.has_destinations_values)
+        in_array(%w[ yes no unknown ])
     end
 
     context 'when reason is other' do
@@ -157,8 +157,8 @@ RSpec.describe Forms::MoveInformation, type: :form do
 
       context 'when has destinations is not set to yes' do
         it 'doesnt save the destination objects' do
-          %w[ no unknown ].each do |has_destinations_value|
-            params[:has_destinations] = has_destinations_value
+          %w[ no unknown ].each do |destination_value|
+            params[:has_destinations] = destination_value
             subject.validate(params)
             subject.save
 

@@ -7,7 +7,7 @@ class MoveInformationController < ApplicationController
   end
 
   def update
-    if form.validate(params[:move_information])
+    if form.validate(params[:information])
       form.save
       redirect_to profile_path(escort)
     else
@@ -18,12 +18,12 @@ class MoveInformationController < ApplicationController
   private
 
   def form
-    @_form ||= Forms::MoveInformation.new(escort.move)
+    @_form ||= Forms::Moves::Information.new(escort.move)
   end
 
   def add_destination
     if params.key? 'move_add_destination'
-      form.deserialize params[:move_information]
+      form.deserialize params[:information]
       form.add_destination
       render :show, locals: { form: form, escort: escort }
     end
