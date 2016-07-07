@@ -16,6 +16,8 @@ en:
       information:
         has_destinations: Are there establishments the detainee must or must not be sent?
         reason: Reason for move
+      offences:
+        has_past_offences: Does the detainee have significant past offences?
       needs:
         has_medications: Medication
       non_association_markers:

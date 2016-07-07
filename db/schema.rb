@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707171055) do
+ActiveRecord::Schema.define(version: 20160707171057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,9 +103,17 @@ ActiveRecord::Schema.define(version: 20160707171055) do
     t.uuid     "escort_id"
     t.date     "release_date"
     t.boolean  "not_for_release"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.text     "not_for_release_details"
+    t.string   "has_past_offences",       default: "unknown"
+  end
+
+  create_table "past_offences", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "offences_id"
+    t.string   "offence"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "risks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

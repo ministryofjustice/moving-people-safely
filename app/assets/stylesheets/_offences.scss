@@ -16,7 +16,17 @@
     }
   }
 
+  .js-checkbox-show-hide {
+    margin-bottom: 30px;
+
+    label {
+      margin-bottom: 10px;
+    }
+  }
+
   .current-offences {
+    margin-bottom: 30px;
+
     .current-offence {
       margin-bottom: 0px;
 
@@ -39,5 +49,9 @@
 
   .remove-link {
     margin-top: 35px;
+  }
+
+  .add-past-offence {
+    margin-bottom: 30px;
   }
 }

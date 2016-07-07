@@ -27,4 +27,19 @@
         class: 'js-anchor-focus styled-as-link',
         name: "offences_add_offence"
 
+    .past-offences= f.radio_toggle :has_past_offences do
+      .optional-section-wrapper.past-offences
+        = f.fields_for :past_offences do |pf|
+          .form-group.optional-section
+            = pf.hidden_field :id
+            .nested-offences-field
+              = pf.text_field :offence
+            .nested-offences-field.remove-link
+              = pf.label :_delete, 'Remove', class: 'styled-as-link'
+              = pf.check_box :_delete
+
+        =f.submit 'Add past offence',
+          class: 'js-anchor-focus styled-as-link',
+          name: "offences_add_past_offence"
+
     = f.submit 'Save and continue', class: 'button'
