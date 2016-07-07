@@ -7,5 +7,24 @@
 
   = form_for form, url: offences_path(@escort), method: :put do |f|
     = f.text_field :release_date
+    = f.checkbox_with_textarea :not_for_release
+
+    h2 Current offences
+
+    .optional-section-wrapper.current-offences
+      = f.fields_for :current_offences do |cf|
+        .form-group.optional-section.current-offence
+          = cf.hidden_field :id
+          .nested-offences-field
+            = cf.text_field :offence
+          .nested-offences-field
+            = cf.text_field :case_reference
+          .nested-offences-field.remove-link
+            = cf.label :_delete, 'Remove', class: 'styled-as-link'
+            = cf.check_box :_delete
+
+      =f.submit 'Add offence',
+        class: 'js-anchor-focus styled-as-link',
+        name: "offences_add_offence"
 
     = f.submit 'Save and continue', class: 'button'

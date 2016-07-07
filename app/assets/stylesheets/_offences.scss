@@ -2,4 +2,42 @@
   h1 {
     @extend .heading-large;
   }
+
+  h2 {
+    font-weight: bold;
+  }
+
+  .nested-offences-field {
+    @extend .column-one-quarter;
+    padding-left: 0;
+
+    .form-control {
+      width: 100%;
+    }
+  }
+
+  .current-offences {
+    .current-offence {
+      margin-bottom: 0px;
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: none;
+      }
+    }
+
+    .current-offence:first-child {
+      label {
+        display: inherit;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .remove-link {
+    margin-top: 35px;
+  }
 }
