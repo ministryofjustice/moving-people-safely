@@ -12,13 +12,13 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
         {
           description: 'Aspirin',
           administration: 'Once a day',
-          carrier: 'Detainee',
+          carrier: 'detainee',
           _delete: '0'
         },
         {
           description: 'Ibrufen',
           administration: 'Weekly',
-          carrier: 'Detainee',
+          carrier: 'detainee',
           _delete: '0'
         }
       ]
@@ -31,6 +31,8 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
   end
 
   describe '#validate' do
+    it { is_expected.to validate_prepopulated_collection :medications }
+
     describe 'nilifies empty strings' do
       %w[ dependencies_details ].each do |attribute|
         it { is_expected.to nilify_empty_strings_for(attribute) }
