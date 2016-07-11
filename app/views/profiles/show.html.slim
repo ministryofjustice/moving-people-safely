@@ -2,10 +2,11 @@
   = render partial: 'header',
     locals: { escort: escort }
 
+  = render partial: 'move',
+    locals: { escort: escort, move: MovePresenter.new(escort.move) }
+
   = render partial: 'detainee',
     locals: { escort: escort, detainee: DetaineePresenter.new(escort.detainee) }
-
-  div = link_to 'Move information', move_information_path(escort)
 
   div = link_to 'Healthcare', healthcare_path(escort, :physical)
 
