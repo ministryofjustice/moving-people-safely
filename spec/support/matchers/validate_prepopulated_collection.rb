@@ -1,30 +1,36 @@
-RSpec::Matchers.define :validate_prepopulated_collection do |field_name|
+class ValidatePrepopulatedCollection
   attr_reader :subject, :field_name
 
-  match do |subject|
-    @subject = subject
+  def initialize(field_name)
     @field_name = field_name
+  end
 
-    # subject is a form object
-    # field_name is the collection (as a symbol)
+  def matches?(subject)
+    @subject = subject
 
     has_ &&
       prepopulate! &&
       validate_collection &&
       handle_subform_deletion &&
       handle_collection_deletion
-
   end
 
-  failure_message do
-    "expected that #{field_name} would validate as a prepopulated collection"
+  def failure_message
+    msg = "Expected that #{field_name} would validate as a prepopulated collection.\n"
+    msg << @error if @error.present?
+    msg
   end
 
-  description do
-    "validate that :#{field_name} accepts nested form"
+  def description
+    "validate that :#{field_name} accepts nested form."
   end
 
   private
+
+  # if the has_* method was defined at run-time, our form has different behaviour
+  def has_defined_at_runtime?
+    subject.public_send("has_#{field_name}") == 'yes'
+  end
 
   def params
     {
@@ -35,13 +41,19 @@ RSpec::Matchers.define :validate_prepopulated_collection do |field_name|
 
   def reset_subject
     subject.public_send("#{field_name}=", [])
+    true
   end
 
   def handle_collection_deletion
-    p2 = params
-    p2["has_#{field_name}"] = 'no'
-    subject.validate(p2)
-    expect(subject.public_send(field_name)).to eql []
+    unless has_defined_at_runtime?
+      p2 = params
+      p2["has_#{field_name}"] = 'no'
+      subject.validate(p2)
+      unless collection == []
+        set_error "Error handling form validation when nested collection should be empty. Received #{collection}"
+        return false
+      end
+    end
     reset_subject
   end
 
@@ -49,13 +61,19 @@ RSpec::Matchers.define :validate_prepopulated_collection do |field_name|
     p2 = params
     p2[field_name.to_s][0]['_delete'] = '1'
     subject.validate(p2)
-    expect(subject.public_send(field_name).size).to eql 1
+    unless collection.size == 1
+      set_error "Error handling nested model deletion. Received #{collection}."
+      return false
+    end
     reset_subject
   end
 
   def validate_collection
     subject.validate(params)
-    expect(subject.public_send(field_name).size).to eql 2
+    unless collection.size == 2
+      set_error "Failed to validate multiple nested #{field_name}. Got #{collection}"
+      return false
+    end
     reset_subject
   end
 
@@ -92,15 +110,39 @@ RSpec::Matchers.define :validate_prepopulated_collection do |field_name|
   end
 
   def has_
-    has_method = "has_#{field_name}".to_sym
-    subject.respond_to? has_method
-    expect(subject.public_send(has_method)).to eql "unknown"
+    result = subject.respond_to?("has_#{field_name}".to_sym)
+    unless result == true
+      set_error "Expected that #{subject.class.to_s} would implement has_#{field_name}, but it doesn't."
+      return false
+    end
+    unless has_defined_at_runtime?
+      result = subject.public_send("has_#{field_name}")
+      unless result == "unknown"
+        set_error "Expected #{subject.class.to_s}#has_#{field_name} to return 'unknown', got '#{result}'."
+        return false
+      end
+    end
+    true
   end
 
   def prepopulate!
-    expect(subject.public_send(field_name)).to eql []
+    unless collection == []
+      set_error "Expected #{field_name} to default to [], got #{collection}"
+      return false
+    end
     subject.prepopulate!
-    expect(subject.public_send(field_name).size).to eql 1
+    unless collection.size == 1
+      set_error "Expected #prepopulate! method to add a #{subform_model_class.to_s} to the #{field_name} collection, got #{collection} instead."
+      return false
+    end
     reset_subject
+  end
+
+  def set_error(msg)
+    @error = msg
+  end
+
+  def collection
+    subject.public_send(field_name)
   end
 end
