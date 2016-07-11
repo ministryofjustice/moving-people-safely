@@ -34,9 +34,14 @@
         margin-bottom: 20px;
       }
 
-      label {
+      label.form-label {
         display: none;
       }
+
+      .remove-link {
+        margin-top: 5px;
+      }
+
     }
 
     .current-offence:first-child {
@@ -44,14 +49,35 @@
         display: inherit;
         font-weight: normal;
       }
+
+      .remove-link {
+        margin-top: 35px;
+      }
     }
   }
 
-  .remove-link {
-    margin-top: 35px;
+  .past-offences {
+    .past-offence {
+      label.form-label {
+        display: none;
+      }
+
+      .add-past-offence {
+        margin-bottom: 30px;
+      }
+
+      .remove-link {
+        margin-top: 35px;
+      }
+    }
+
+    .past-offence:first-child {
+      label.form-label {
+        display: inherit;
+        font-weight: normal;
+      }
+    }
   }
 
-  .add-past-offence {
-    margin-bottom: 30px;
-  }
+
 }

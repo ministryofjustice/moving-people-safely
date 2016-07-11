@@ -30,7 +30,7 @@
     .past-offences= f.radio_toggle :has_past_offences do
       .optional-section-wrapper.past-offences
         = f.fields_for :past_offences do |pf|
-          .form-group.optional-section
+          .form-group.optional-section.past-offence
             = pf.hidden_field :id
             .nested-offences-field
               = pf.text_field :offence
