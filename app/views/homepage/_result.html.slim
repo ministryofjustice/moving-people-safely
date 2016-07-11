@@ -6,7 +6,7 @@ table
     th Destination
     th Move date
   tr
-    td = link_to(detainee.prison_number, profile_path(escort), class: 'button')
+    td = link_to(detainee.prison_number, profile_path(escort))
     td
       span.strong-text
         | #{detainee.surname}
