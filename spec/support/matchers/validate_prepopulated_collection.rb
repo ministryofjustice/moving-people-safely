@@ -69,7 +69,6 @@ class ValidatePrepopulatedCollection
     p2 = params
     p2[field_name.to_s][0]['_delete'] = '1'
     subject.validate(p2)
-    binding.pry
     unless collection.size == 1
       set_error "Error handling nested model deletion. Received #{collection}."
       return false
