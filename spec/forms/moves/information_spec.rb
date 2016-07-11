@@ -35,6 +35,8 @@ RSpec.describe Forms::Moves::Information, type: :form do
   end
 
   describe '#validate' do
+    it { is_expected.to validate_prepopulated_collection :destinations }
+
     describe 'nilifies empty strings' do
       %w[ from to reason ].each do |attribute|
         it { is_expected.to nilify_empty_strings_for(attribute) }
