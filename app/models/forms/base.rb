@@ -120,10 +120,6 @@ module Forms
       end
     end
 
-    def invalid?
-      !valid?
-    end
-
     def toggle_choices
       TOGGLE_CHOICES
     end

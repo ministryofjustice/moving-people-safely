@@ -11,11 +11,6 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in_detainee_details
     save
 
-    expect_to_be_sent_to_profile_page
-
-    expect_profile_page_to_have_links
-
-    go_to_move_information_page
     fill_in_move_information
     save
 

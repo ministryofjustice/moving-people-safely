@@ -29,4 +29,16 @@ class Escort < ApplicationRecord
   def risks
     super || build_risks
   end
+
+  def with_future_move?
+    move.date && move.date > Date.current
+  end
+
+  def with_past_move?
+    move.date && move.date <= Date.current
+  end
+
+  def with_move?
+    with_future_move? || with_past_move?
+  end
 end
