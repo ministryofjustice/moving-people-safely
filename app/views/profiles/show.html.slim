@@ -1,11 +1,9 @@
 .profile
-  header
-    h1
-      | Profile: #{escort.detainee_prison_number}
+  = render partial: 'header',
+    locals: { escort: escort }
 
-  div = link_to 'Homepage', root_path
-
-  div = link_to 'Detainee details', detainee_details_path(escort)
+  = render partial: 'detainee',
+    locals: { escort: escort, detainee: DetaineePresenter.new(escort.detainee) }
 
   div = link_to 'Move information', move_information_path(escort)
 

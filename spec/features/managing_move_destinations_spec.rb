@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'managing move destinations', type: :feature do
-  let(:escort) { Escort.new.tap {|e| e.build_detainee && e.save } }
+  let(:escort) { create :escort }
 
   scenario 'adding and removing move destinations' do
     login

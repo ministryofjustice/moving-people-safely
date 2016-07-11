@@ -1,0 +1,42 @@
+#personal-details
+  .pull-right-content
+    = link_to 'Edit', detainee_details_path(escort)
+  h2
+    ' Personal details
+  .info-table
+    .grid-row
+      .column-one-half
+        .grid-row
+          .column-one-third
+            small
+              | Prisoner number
+            p = detainee.prison_number
+          .column-one-third
+            small
+              | CRO number
+            p = detainee.cro_number
+          .column-one-third
+            small
+              | PNC number
+            p = detainee.pnc_number
+        .grid-row
+          .column-one-third
+            small
+              | Date of birth
+            p = detainee.humanized_date_of_birth
+          .column-one-sixth
+            small
+              | Age
+            p = detainee.age
+          .column-one-sixth
+            small
+              | Sex
+            p = detainee.short_gender
+          .column-one-third
+            small
+              | Nationality
+            p = detainee.nationalities
+      .column-one-half
+        small
+          | Aliases
+        p = detainee.aliases
