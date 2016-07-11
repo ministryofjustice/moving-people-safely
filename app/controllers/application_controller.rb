@@ -10,8 +10,4 @@ class ApplicationController < ActionController::Base
   def escort
     @escort ||= Escort.find(params[:escort_id])
   end
-
-  def render_cell(*cell_attrs)
-    render html: cell(*cell_attrs), layout: true
-  end
 end
