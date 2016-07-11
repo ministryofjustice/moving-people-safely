@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature 'filling in a PER', type: :feature do
+  around(:each) do |example|
+    travel_to(Time.new(2016, 7, 3, 9, 30, 0)) { example.run }
+  end
+
   scenario 'adding a new escort and filling it in' do
     login
 
@@ -14,7 +18,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in_move_information
     save
 
-    expect_to_be_sent_to_profile_page
+    expect_profile_page_to_have_header
+    expect_profile_page_to_have_detainee_details
 
     go_to_healthcare_page
     fill_in_physical_healthcare
@@ -77,15 +82,32 @@ RSpec.feature 'filling in a PER', type: :feature do
   def fill_in_detainee_details
     fill_in 'Surname', with: 'Trump'
     fill_in 'Forename(s)', with: 'Donald'
-    fill_in 'Date of birth', with: '10/09/1985'
+    fill_in 'Date of birth', with: '14/06/1946'
     fill_in 'Nationalities', with: 'American'
     choose 'Male'
+    fill_in 'PNC number', with: 'PNC123'
+    fill_in 'CRO number', with: 'CRO987'
+    fill_in 'Aliases', with: 'Donald duck'
   end
 
-  def expect_profile_page_to_have_links
-    expect(page).to have_link('Homepage', href: root_path)
-    expect(page).to have_link('Detainee details', href: detainee_details_path(escort))
-    expect(page).to have_link('Move information', href: move_information_path(escort))
+  def expect_profile_page_to_have_header
+    within('#header') do
+      expect(page).to have_content('Trump, Donald')
+    end
+  end
+
+  def expect_profile_page_to_have_detainee_details
+    within('#personal-details') do
+      expect(page).to have_link('Edit', href: detainee_details_path(escort))
+      expect(page).to have_content('A1234BC')
+      expect(page).to have_content('14 Jun 1946')
+      expect(page).to have_content('American')
+      expect(page).to have_content('M')
+      expect(page).to have_content('PNC123')
+      expect(page).to have_content('CRO987')
+      expect(page).to have_content('Donald duck')
+      expect(page).to have_content('70')
+    end
   end
 
   def go_to_move_information_page
