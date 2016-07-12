@@ -48,6 +48,6 @@ class HomepageController < ApplicationController
   end
 
   def search_form
-    @_form ||= Forms::Search.new
+    @_search_form ||= Forms::Search.new
   end
 end

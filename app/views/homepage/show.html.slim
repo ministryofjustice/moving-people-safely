@@ -18,11 +18,16 @@
       = render partial: 'error',
         locals: { prison_number: search_form.prison_number }
 
-h1 Detainees due to move on
-= form_for date_picker, params do |f|
-  input type="hidden" name="search" value="#{prison_number}"
-  = f.text_field :date
-  = f.submit value: 'Go'
-  = f.submit value: '<'
-  = f.submit value: 'today'
-  = f.submit value: '>'
+.date-picker
+  = form_for date_picker, params do |f|
+    input type="hidden" name="search" value="#{prison_number}"
+
+    label
+      span.label Detainees due to move on
+      span.date-field
+        = f.search_text_field :date
+    = f.submit value: 'Go', class: 'go', data: { disable_with: false }
+    span.nav-group
+      = f.submit value: '<', data: { disable_with: false }
+      = f.submit value: 'today', data: { disable_with: false }
+      = f.submit value: '>', data: { disable_with: false }
