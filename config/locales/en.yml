@@ -103,6 +103,8 @@ en:
       offences:
         release_date: The detainee's confirmed release date
         not_for_release: The detainee is 'not for release'
+        has_past_offences:
+          unknown: Clear selection
       physical:
         physical_issues:
           unknown: Clear selection

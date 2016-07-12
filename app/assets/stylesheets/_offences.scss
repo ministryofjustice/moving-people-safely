@@ -7,12 +7,25 @@
     font-weight: bold;
   }
 
-  .nested-offences-field {
-    @extend .column-one-quarter;
-    padding-left: 0;
+  .multiple {
+    .multiple-inline {
+      margin-bottom: 20px;
+      label.form-label { display: none; }
+      .remove-link { margin-top: 5px; }
+    }
 
-    .form-control {
-      width: 100%;
+    .multiple-inline:first-child {
+      label.form-label { display: inherit; font-weight: normal; }
+      .remove-link { margin-top: 35px; }
+    }
+
+    .multiple-inline-field {
+      @extend .column-one-quarter;
+      padding-left: 0;
+
+      .form-control {
+        width: 100%;
+      }
     }
   }
 
@@ -29,55 +42,6 @@
 
     .current-offence {
       margin-bottom: 0px;
-
-      .form-group {
-        margin-bottom: 20px;
-      }
-
-      label.form-label {
-        display: none;
-      }
-
-      .remove-link {
-        margin-top: 5px;
-      }
-
-    }
-
-    .current-offence:first-child {
-      label {
-        display: inherit;
-        font-weight: normal;
-      }
-
-      .remove-link {
-        margin-top: 35px;
-      }
     }
   }
-
-  .past-offences {
-    .past-offence {
-      label.form-label {
-        display: none;
-      }
-
-      .add-past-offence {
-        margin-bottom: 30px;
-      }
-
-      .remove-link {
-        margin-top: 35px;
-      }
-    }
-
-    .past-offence:first-child {
-      label.form-label {
-        display: inherit;
-        font-weight: normal;
-      }
-    }
-  }
-
-
 }
