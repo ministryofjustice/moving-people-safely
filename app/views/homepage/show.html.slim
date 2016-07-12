@@ -17,3 +17,11 @@
     - elsif form.prison_number
       = render partial: 'error',
         locals: { prison_number: form.prison_number }
+
+h1 Detainees due to move on
+= form_for date_picker, url: date_picker_path, method: :post do |f|
+  = f.text_field :date
+  = f.submit value: 'Go'
+  = f.submit value: '<'
+  = f.submit value: 'today'
+  = f.submit value: '>'

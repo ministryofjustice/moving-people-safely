@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resource :escort, only: :create
 
-  post '/', to: 'homepage#search', as: 'search'
+  post '/search', to: 'homepage#search', as: 'search'
+  post '/date', to: 'homepage#date_picker', as: 'date_picker'
   root to: 'homepage#show'
 end
