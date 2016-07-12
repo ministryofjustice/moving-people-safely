@@ -67,6 +67,12 @@ RSpec.feature 'filling in a PER', type: :feature do
     save_and_continue
 
     expect_profile_page_with_completed_risks
+
+    go_to_offences_page
+    fill_in_offences
+    save_and_continue
+
+    expect_profile_page_with_completed_offences
   end
 
   def search_prisoner
@@ -318,6 +324,36 @@ RSpec.feature 'filling in a PER', type: :feature do
       within('.answered_no') do
         expect(page).to have_content('1')
       end
+    end
+  end
+
+  def go_to_offences_page
+    within('#offences') do
+      click_link 'Edit'
+    end
+  end
+
+  def fill_in_offences
+    fill_in 'offences[release_date]', with: '05/07/2016'
+    check 'offences[not_for_release]'
+    fill_in 'offences_current_offences_attributes_0_offence', with: 'Burglary'
+    fill_in 'offences_current_offences_attributes_0_case_reference', with: 'Ref 3064'
+    click_button 'Add offence'
+    fill_in 'offences_current_offences_attributes_1_offence', with: 'Attempted murder'
+    fill_in 'offences_current_offences_attributes_1_case_reference', with: 'Ref 7291'
+    choose 'Yes'
+    click_button 'Add past offence'
+    fill_in 'offences_past_offences_attributes_0_offence', with: 'Arson'
+    click_button 'Add past offence'
+    fill_in 'offences_past_offences_attributes_1_offence', with: 'Armed robbery'
+  end
+
+  def expect_profile_page_with_completed_offences
+    within('#offences') do
+      expect(page).to have_content('Burglary')
+      expect(page).to have_content('Attempted murder')
+      expect(page).to have_content('Arson')
+      expect(page).to have_content('Armed robbery')
     end
   end
 
