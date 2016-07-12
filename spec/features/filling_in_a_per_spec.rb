@@ -20,6 +20,7 @@ RSpec.feature 'filling in a PER', type: :feature do
 
     expect_profile_page_to_have_header
     expect_profile_page_to_have_detainee_details
+    expect_profile_page_to_have_move
 
     go_to_healthcare_page
     fill_in_physical_healthcare
@@ -90,6 +91,15 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in 'Aliases', with: 'Donald duck'
   end
 
+  def fill_in_move_information
+    fill_in 'From', with: 'Some prison'
+    fill_in 'To', with: 'Some court'
+    fill_in 'Date', with: '12/09/2016'
+    choose 'Other'
+    fill_in 'information[reason_details]', with: 'Has to move'
+    choose 'No'
+  end
+
   def expect_profile_page_to_have_header
     within('#header') do
       expect(page).to have_content('Trump, Donald')
@@ -110,17 +120,13 @@ RSpec.feature 'filling in a PER', type: :feature do
     end
   end
 
-  def go_to_move_information_page
-    click_link 'Move information'
-  end
-
-  def fill_in_move_information
-    fill_in 'From', with: 'Some prison'
-    fill_in 'To', with: 'Some court'
-    fill_in 'Date', with: '12/09/2016'
-    choose 'Other'
-    fill_in 'information[reason_details]', with: 'Has to move'
-    choose 'No'
+  def expect_profile_page_to_have_move
+    within('.move-information') do
+      expect(page).to have_link('Edit', href: move_information_path(escort))
+      expect(page).to have_content('Some court')
+      expect(page).to have_content('12 Sep 2016')
+      expect(page).to have_content('Has to move')
+    end
   end
 
   def expect_to_be_sent_to_profile_page
