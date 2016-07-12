@@ -21,6 +21,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     expect_profile_page_to_have_header
     expect_profile_page_to_have_detainee_details
     expect_profile_page_to_have_move
+    expect_profile_page_with_incompleted_healthcare
+    expect_profile_page_with_incompleted_risks
 
     go_to_healthcare_page
     fill_in_physical_healthcare
@@ -38,7 +40,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in_medical_contact
     save_and_continue
 
-    expect_to_be_sent_to_profile_page
+    expect_profile_page_with_completed_healthcare
 
     go_to_risks_page
     fill_in_risks_to_self
@@ -64,7 +66,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in_communication
     save_and_continue
 
-    expect_to_be_sent_to_profile_page
+    expect_profile_page_with_completed_risks
   end
 
   def search_prisoner
@@ -129,8 +131,22 @@ RSpec.feature 'filling in a PER', type: :feature do
     end
   end
 
-  def expect_to_be_sent_to_profile_page
-    expect(current_path).to eq profile_path(escort)
+  def expect_profile_page_with_incompleted_healthcare
+    within('#healthcare') do
+      expect(page).to have_content('Incomplete')
+      within('.not_answered') do
+        expect(page).to have_content('9')
+      end
+    end
+  end
+
+  def expect_profile_page_with_incompleted_risks
+    within('#risks') do
+      expect(page).to have_content('Incomplete')
+      within('.not_answered') do
+        expect(page).to have_content('23')
+      end
+    end
   end
 
   def save
@@ -138,7 +154,9 @@ RSpec.feature 'filling in a PER', type: :feature do
   end
 
   def go_to_healthcare_page
-    click_link 'Healthcare'
+    within('#healthcare') do
+      click_link 'Edit'
+    end
   end
 
   def fill_in_physical_healthcare
@@ -184,8 +202,22 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in 'Contact number', with: '079876543'
   end
 
+  def expect_profile_page_with_completed_healthcare
+    within('#healthcare') do
+      expect(page).to have_content('Complete')
+      within('.answered_yes') do
+        expect(page).to have_content('9')
+      end
+      within('.answered_no') do
+        expect(page).to have_content('0')
+      end
+    end
+  end
+
   def go_to_risks_page
-    click_link 'Risks'
+    within('#risks') do
+      click_link 'Edit'
+    end
   end
 
   def fill_in_risks_to_self
@@ -261,6 +293,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     choose 'arson_arson_yes'
     choose 'arson_arson_value_high'
     fill_in 'arson[arson_details]', with: 'Burnt several houses'
+    choose 'arson_damage_to_property_no'
   end
 
   def fill_in_communication
@@ -274,6 +307,18 @@ RSpec.feature 'filling in a PER', type: :feature do
 
   def save_and_continue
     click_button 'Save and continue'
+  end
+
+  def expect_profile_page_with_completed_risks
+    within('#risks') do
+      expect(page).to have_content('Complete')
+      within('.answered_yes') do
+        expect(page).to have_content('22')
+      end
+      within('.answered_no') do
+        expect(page).to have_content('1')
+      end
+    end
   end
 
   def escort
