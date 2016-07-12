@@ -1,0 +1,23 @@
+#healthcare
+  .pull-right-content
+    - if healthcare.all_questions_answered?
+      span.complete-label Complete
+    - else
+      span.incomplete-label Incomplete
+    = link_to 'Edit', healthcare_path(escort, :physical)
+  h2
+    ' Healthcare
+    / small 16:44 | 04 Apr 2016
+  .info-table.info-table-big
+    .grid-row
+      - unless healthcare.no_questions_answered?
+        .column-one-sixth.answered_yes
+          small Needs
+          p = healthcare.questions_answered_yes
+        .column-one-sixth.answered_no
+          small No need
+          p = healthcare.questions_answered_no
+      - unless healthcare.all_questions_answered?
+        .column-one-sixth.text-error.not_answered
+          small Missing
+          p = healthcare.questions_not_answered

@@ -8,8 +8,10 @@
   = render partial: 'detainee',
     locals: { escort: escort, detainee: DetaineePresenter.new(escort.detainee) }
 
-  div = link_to 'Healthcare', healthcare_path(escort, :physical)
+  = render partial: 'risks',
+    locals: { escort: escort, risks: escort.risks }
 
-  div = link_to 'Risks', risks_path(escort, :risks_to_self)
+  = render partial: 'healthcare',
+    locals: { escort: escort, healthcare: escort.healthcare }
 
   div = link_to 'Offences', offences_path(escort)

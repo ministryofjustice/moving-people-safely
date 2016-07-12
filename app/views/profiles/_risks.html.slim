@@ -1,0 +1,23 @@
+#risks
+  .pull-right-content
+    - if risks.all_questions_answered?
+      span.complete-label Complete
+    - else
+      span.incomplete-label Incomplete
+    = link_to 'Edit', risks_path(escort, :risks_to_self)
+  h2
+    ' Risk
+    / small 16:44 | 04 Apr 2016
+  .info-table.info-table-big
+    .grid-row
+      - unless risks.no_questions_answered?
+        .column-one-sixth.answered_yes
+          small Risks
+          p = risks.questions_answered_yes
+        .column-one-sixth.answered_no
+          small No risk
+          p = risks.questions_answered_no
+      - unless risks.all_questions_answered?
+        .column-one-sixth.text-error.not_answered
+          small Missing
+          p = risks.questions_not_answered
