@@ -2,7 +2,7 @@
   .search_block
     h2 Find a detainee
 
-    = form_for form, url: search_path, method: :post do |f|
+    = form_for search_form, url: search_path, method: :post do |f|
       label Search by prison number. E.g. A1234AB
       .search_input_wrapper
         = f.search_text_field :prison_number
@@ -11,15 +11,16 @@
     - if result
       = render partial: 'result',
         locals: { result: result, detainee: result.detainee, move: result.move }
-    - elsif form.valid?
+    - elsif search_form.valid?
       = render partial: 'no_result',
-        locals: { prison_number: form.prison_number }
-    - elsif form.prison_number
+        locals: { prison_number: search_form.prison_number }
+    - elsif search_form.prison_number
       = render partial: 'error',
-        locals: { prison_number: form.prison_number }
+        locals: { prison_number: search_form.prison_number }
 
 h1 Detainees due to move on
-= form_for date_picker, url: date_picker_path, method: :post do |f|
+= form_for date_picker, params do |f|
+  input type="hidden" name="search" value="#{prison_number}"
   = f.text_field :date
   = f.submit value: 'Go'
   = f.submit value: '<'

@@ -1,6 +1,7 @@
 class HomepageController < ApplicationController
   def show
-    form.validate(prison_number: params[:search]) if params[:search]
+    search_form.validate(prison_number: params[:search]) if params[:search]
+    date_picker_form.validate(date: date_to_show)
     render :show, locals: locals
   end
 
@@ -35,9 +36,10 @@ class HomepageController < ApplicationController
 
   def locals
     {
-      form: form,
-      result: form.escort,
-      date_picker: date_picker_form
+      search_form: search_form,
+      result: search_form.escort,
+      date_picker: date_picker_form,
+      prison_number: params[:search]
     }
   end
 
@@ -45,7 +47,7 @@ class HomepageController < ApplicationController
     @_date_picker_form ||= Forms::DatePicker.new
   end
 
-  def form
+  def search_form
     @_form ||= Forms::Search.new
   end
 end
