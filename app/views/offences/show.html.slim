@@ -11,35 +11,37 @@
 
     h2 Current offences
 
-    .optional-section-wrapper.current-offences
+    #error_offences_current_offences
+    .optional-section-wrapper.current-offences.multiple
       = f.fields_for :current_offences do |cf|
-        .form-group.optional-section.current-offence
+        .form-group.optional-section.current-offence.multiple-inline
           = cf.hidden_field :id
-          .nested-offences-field
+          .multiple-inline-field
             = cf.text_field :offence
-          .nested-offences-field
+          .multiple-inline-field
             = cf.text_field :case_reference
-          .nested-offences-field.remove-link
+          .multiple-inline-field.remove-link
             = cf.label :_delete, 'Remove', class: 'styled-as-link'
             = cf.check_box :_delete
 
       =f.submit 'Add offence',
-        class: 'js-anchor-focus styled-as-link',
+        class: 'js-anchor-focus styled-as-link multiple-add-button',
         name: "offences_add_offence"
 
+    #error_offences_past_offences
     .past-offences= f.radio_toggle :has_past_offences do
-      .optional-section-wrapper.past-offences
+      .optional-section-wrapper.past-offences.multiple
         = f.fields_for :past_offences do |pf|
-          .form-group.optional-section
+          .form-group.optional-section.past-offence.multiple-inline
             = pf.hidden_field :id
-            .nested-offences-field
+            .multiple-inline-field
               = pf.text_field :offence
-            .nested-offences-field.remove-link
+            .multiple-inline-field.remove-link
               = pf.label :_delete, 'Remove', class: 'styled-as-link'
               = pf.check_box :_delete
 
         =f.submit 'Add past offence',
-          class: 'js-anchor-focus styled-as-link',
+          class: 'js-anchor-focus styled-as-link multiple-add-button',
           name: "offences_add_past_offence"
 
     = f.submit 'Save and continue', class: 'button'

@@ -2,8 +2,8 @@ class OffencesController < ApplicationController
   before_action :add_offence, only: [:update]
 
   def show
-    form.prepopulate!
     form.validate(flash[:form_data]) if flash[:form_data]
+    form.prepopulate!
     render locals: { form: form }
   end
 
