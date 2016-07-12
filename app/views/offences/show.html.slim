@@ -11,6 +11,7 @@
 
     h2 Current offences
 
+    #error_offences_current_offences
     .optional-section-wrapper.current-offences.multiple
       = f.fields_for :current_offences do |cf|
         .form-group.optional-section.current-offence.multiple-inline
@@ -27,6 +28,7 @@
         class: 'js-anchor-focus styled-as-link multiple-add-button',
         name: "offences_add_offence"
 
+    #error_offences_past_offences
     .past-offences= f.radio_toggle :has_past_offences do
       .optional-section-wrapper.past-offences.multiple
         = f.fields_for :past_offences do |pf|
