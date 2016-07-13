@@ -1,5 +1,26 @@
 header#header
-  .pull-right-content
-    = link_to 'Edit', detainee_details_path(escort)
   h1
     ' #{detainee.prison_number}: #{detainee.surname}, #{detainee.forenames}
+  .info-tiles
+    .tile
+      div = image_tag "not_for_release_#{offences.not_for_release}.png"
+      = offences.not_for_release_details
+
+    .tile
+      div = image_tag "csra_#{risks.csra}.png"
+      = risks.csra_details
+
+    .tile
+      div = image_tag "open_acct_#{risks.open_acct}.png"
+      = risks.open_acct_details
+
+  .info-tiles
+    .tile
+      div = image_tag "rule_45_#{risks.rule_45}.png"
+      = risks.rule_45_details
+
+    .tile
+      div = image_tag "category_a_#{risks.category_a}.png"
+      = risks.category_a_details
+
+    .empty
