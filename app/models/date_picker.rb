@@ -41,9 +41,7 @@ class DatePicker
   private
 
   def set_date_if_valid
-    if valid?(@string_date)
-      @date = cast(@string_date)
-    end
+    @date = cast(@string_date) if valid?(@string_date)
   end
 
   def valid?(string_date)
