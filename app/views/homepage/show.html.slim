@@ -19,8 +19,8 @@
         locals: { prison_number: search_form.prison_number }
 
 .date-picker
-  = form_tag date_picker_path(search: params[:prison_number]) do
-    input type="hidden" name="search" value="#{params[:prison_number]}"
+  = form_tag(date_picker_path) do
+    input type="hidden" name="search" value="#{prison_number}"
 
     label
       span.label Detainees due to move on

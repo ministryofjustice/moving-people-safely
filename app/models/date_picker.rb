@@ -10,11 +10,11 @@ class DatePicker
   end
 
   def date
-    @date || today
+    @date
   end
 
   def to_s
-    if @string_date.nil?
+    if @date.present?
       @date.strftime(FORMAT)
     else
       @string_date.to_s
@@ -27,11 +27,13 @@ class DatePicker
   end
 
   def forward
-    @date = date + 1.day
+    @date || today
+    @date += 1.day
   end
 
   def back
-    @date = date - 1.day
+    @date || today
+    @date -= 1.day
   end
 
   def today
