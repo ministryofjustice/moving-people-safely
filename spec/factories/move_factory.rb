@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :move do
-    from 'HMP Bedford'
-    to 'Alcatraz'
+    from { Faker::Company.name }
+    to { Faker::Company.name }
     date { 3.days.from_now }
     reason 'production_to_court'
     has_destinations 'no'
