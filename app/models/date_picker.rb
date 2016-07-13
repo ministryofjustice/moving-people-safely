@@ -10,7 +10,7 @@ class DatePicker
   end
 
   def date
-    @date
+    @date || today
   end
 
   def to_s

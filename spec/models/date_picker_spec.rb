@@ -48,8 +48,8 @@ RSpec.describe DatePicker do
           expect(subject.date).to eql Date.new(2027, 9, 15)
         end
 
-        it "changes the date returned by #to_s" do
-          expect(subject.to_s).to eql new_date
+        it "doesn't change the date returned by #to_s" do
+          expect(subject.to_s).to eql date
         end
       end
     end
@@ -109,8 +109,8 @@ RSpec.describe DatePicker do
         expect(subject.date).to eql Date.tomorrow
       end
 
-      it "#to_s returns the initializing string" do
-        expect(subject.to_s).to eql date
+      it "#to_s returns tomorrows date" do
+        expect(subject.to_s).to eql Date.tomorrow.strftime('%d/%m/%Y')
       end
     end
   end
