@@ -20,8 +20,6 @@ RSpec.feature 'filling in a PER', type: :feature do
 
     expect_profile_page_to_have_detainee_details
     expect_profile_page_to_have_move
-    expect_profile_page_with_incompleted_healthcare
-    expect_profile_page_with_incompleted_risks
 
     go_to_healthcare_page
     fill_in_physical_healthcare
@@ -129,24 +127,6 @@ RSpec.feature 'filling in a PER', type: :feature do
       expect(page).to have_content('Some court')
       expect(page).to have_content('12 Sep 2016')
       expect(page).to have_content('Has to move')
-    end
-  end
-
-  def expect_profile_page_with_incompleted_healthcare
-    within('#healthcare') do
-      expect(page).to have_content('Incomplete')
-      within('.not_answered') do
-        expect(page).to have_content('9')
-      end
-    end
-  end
-
-  def expect_profile_page_with_incompleted_risks
-    within('#risks') do
-      expect(page).to have_content('Incomplete')
-      within('.not_answered') do
-        expect(page).to have_content('23')
-      end
     end
   end
 
