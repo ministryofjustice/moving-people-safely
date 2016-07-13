@@ -87,3 +87,43 @@
     margin-top: $margin-unit;
   }
 }
+
+.date-picker {
+  > input { float: left; }
+  margin-top: 20px;
+
+  span.label {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  .date-field input {
+    max-width: 6em;
+  }
+  input.go {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 6px;
+    margin-right: 10px;
+    margin-left: 2px;
+  }
+  .nav-group input {
+    background-color: #EFF0F1;
+    border-color: #AEAEAE;
+    border-width: 1px;
+    border-style: solid;
+    color: #3D7EB4;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .nav-group input[value='today'] {
+    text-decoration: underline;
+    border-left-width: 0px;
+    border-right-width: 0px;
+  }
+  input[type='submit'] { cursor: pointer; }
+}
