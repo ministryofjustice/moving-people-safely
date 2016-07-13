@@ -1,7 +1,7 @@
 class DetaineeDetailsController < ApplicationController
   def show
     form.validate(flash[:form_data]) if flash[:form_data]
-    render :show, locals: { form: form, escort: escort }
+    render :show, locals: { form: form }
   end
 
   def update
@@ -25,6 +25,6 @@ class DetaineeDetailsController < ApplicationController
   end
 
   def form
-    @_form ||= Forms::DetaineeDetails.new(escort.detainee)
+    @_form ||= Forms::DetaineeDetails.new(detainee)
   end
 end

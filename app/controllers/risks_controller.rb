@@ -39,6 +39,6 @@ class RisksController < ApplicationController
       concealed_weapons: Forms::Risks::ConcealedWeapons,
       arson: Forms::Risks::Arson,
       communication: Forms::Risks::Communication
-    }[step].new(escort.risks)
+    }[step].new(risks)
   end
 end

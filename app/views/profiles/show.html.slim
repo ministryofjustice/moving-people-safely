@@ -1,18 +1,7 @@
 .profile
-  = render partial: 'header',
-    locals: { escort: escort }
-
-  = render partial: 'move',
-    locals: { escort: escort, move: MovePresenter.new(escort.move) }
-
-  = render partial: 'detainee',
-    locals: { escort: escort, detainee: DetaineePresenter.new(escort.detainee) }
-
-  = render partial: 'risks',
-    locals: { escort: escort, risks: escort.risks }
-
-  = render partial: 'healthcare',
-    locals: { escort: escort, healthcare: escort.healthcare }
-
-  = render partial: 'offences',
-    locals: { escort: escort, offences: OffencesPresenter.new(escort.offences) }
+  = render partial: 'header'
+  = render partial: 'move', locals: { move: MovePresenter.new(move) }
+  = render partial: 'detainee', locals: { detainee: DetaineePresenter.new(detainee) }
+  = render partial: 'risks'
+  = render partial: 'healthcare'
+  = render partial: 'offences', locals: { offences: OffencesPresenter.new(offences) }

@@ -1,7 +1,7 @@
 class HomepageController < ApplicationController
   def show
     form.validate(prison_number: params[:search]) if params[:search]
-    render :show, locals: { form: form, escort: form.escort }
+    render :show, locals: { form: form, result: form.escort }
   end
 
   def search

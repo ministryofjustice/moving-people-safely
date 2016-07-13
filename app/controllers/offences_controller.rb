@@ -36,6 +36,6 @@ class OffencesController < ApplicationController
   end
 
   def form
-    @_form ||= Forms::Offences.new(escort.offences)
+    @_form ||= Forms::Offences.new(offences)
   end
 end
