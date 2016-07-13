@@ -1,0 +1,22 @@
+- if moves
+  table
+    tr
+      th Prisoner No.
+      th Name
+      th Destination
+      th Risk
+      th Health
+      th Offences
+      th
+    - moves.each do |move|
+      tr
+        td = link_to move.detainee.prison_number, profile_path(move.escort)
+        td
+          span.strong-text
+            | #{move.detainee.surname}
+          span
+            |  #{move.detainee.forenames}
+        td = move.destinations.join(', ')
+        td class="true"
+        td class="false"
+        td class="true"

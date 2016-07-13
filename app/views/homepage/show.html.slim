@@ -31,3 +31,5 @@
       input type='submit' value='<' name='commit'
       input type='submit' value='today' name='commit'
       input type='submit' value='>' name='commit'
+
+= render partial: 'moves', locals: { moves: moves } if moves

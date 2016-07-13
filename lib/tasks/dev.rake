@@ -10,4 +10,13 @@ namespace :dev do
       password_confirmation: 'secret123'
     )
   end
+
+  desc 'creates some escorts for todays date'
+  task escorts: :environment do
+    10.times do
+      binding.pry
+      e = FactoryGirl.create(:escort)
+      puts "Creating #{e.detainee.forenames} #{e.detainee.surname}"
+    end
+  end
 end

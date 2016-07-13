@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :detainee do
-    forenames 'Donald'
-    surname 'Trump'
-    date_of_birth Date.civil(1946, 6, 14)
+    forenames { Faker::Name.first_name }
+    surname { Faker::Name.last_name }
+    date_of_birth { Faker::Date.between(80.years.ago, 20.years.ago) }
     gender 'male'
     prison_number 'A1234BC'
     nationalities 'American'

@@ -26,6 +26,8 @@ gem 'wicked'
 # gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'jasmine'
   gem 'jasmine-jquery-rails'
   gem 'pry-byebug'
@@ -45,8 +47,6 @@ end
 group :test do
   gem 'capybara'
   gem 'codeclimate-test-reporter', require: nil
-  gem 'factory_girl_rails'
-  gem 'faker'
   gem 'launchy'
   gem 'rspec-its'
   gem 'rspec-rails'
