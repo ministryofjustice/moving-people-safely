@@ -18,7 +18,6 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in_move_information
     save
 
-    expect_profile_page_to_have_header
     expect_profile_page_to_have_detainee_details
     expect_profile_page_to_have_move
     expect_profile_page_with_incompleted_healthcare
@@ -73,6 +72,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     save_and_continue
 
     expect_profile_page_with_completed_offences
+
+    expect_profile_page_to_have_header
   end
 
   def search_prisoner
@@ -106,12 +107,6 @@ RSpec.feature 'filling in a PER', type: :feature do
     choose 'Other'
     fill_in 'information[reason_details]', with: 'Has to move'
     choose 'No'
-  end
-
-  def expect_profile_page_to_have_header
-    within('#header') do
-      expect(page).to have_content('Trump, Donald')
-    end
   end
 
   def expect_profile_page_to_have_detainee_details
@@ -336,6 +331,7 @@ RSpec.feature 'filling in a PER', type: :feature do
   def fill_in_offences
     fill_in 'offences[release_date]', with: '05/07/2016'
     check 'offences[not_for_release]'
+    fill_in 'offences_not_for_release_details', with: 'Serving Sentence'
     fill_in 'offences_current_offences_attributes_0_offence', with: 'Burglary'
     fill_in 'offences_current_offences_attributes_0_case_reference', with: 'Ref 3064'
     click_button 'Add offence'
@@ -354,6 +350,17 @@ RSpec.feature 'filling in a PER', type: :feature do
       expect(page).to have_content('Attempted murder')
       expect(page).to have_content('Arson')
       expect(page).to have_content('Armed robbery')
+    end
+  end
+
+  def expect_profile_page_to_have_header
+    within('#header') do
+      expect(page).to have_content('A1234BC: Trump, Donald')
+      expect(page).to have_content('Serving Sentence')
+      expect(page).to have_content('High CSRA')
+      expect(page).to have_content('Needs ACCT')
+      expect(page).to have_content('Details for Rule 45')
+      expect(page).to have_content('Category A information')
     end
   end
 
