@@ -43,6 +43,6 @@ class HealthcareController < ApplicationController
       needs: Forms::Healthcare::Needs,
       transport: Forms::Healthcare::Transport,
       contact: Forms::Healthcare::Contact
-    }[step].new(escort.healthcare)
+    }[step].new(healthcare)
   end
 end

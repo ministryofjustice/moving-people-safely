@@ -5,7 +5,27 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
-  private
+  helper_method :escort, :offences, :risks, :healthcare, :detainee, :move
+
+  def move
+    escort.move
+  end
+
+  def detainee
+    escort.detainee
+  end
+
+  def offences
+    escort.offences
+  end
+
+  def risks
+    escort.risks
+  end
+
+  def healthcare
+    escort.healthcare
+  end
 
   def escort
     @escort ||= Escort.find(params[:escort_id])

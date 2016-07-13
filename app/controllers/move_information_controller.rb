@@ -3,7 +3,7 @@ class MoveInformationController < ApplicationController
 
   def show
     form.prepopulate!
-    render locals: { form: form, escort: escort }
+    render locals: { form: form }
   end
 
   def update
@@ -18,14 +18,14 @@ class MoveInformationController < ApplicationController
   private
 
   def form
-    @_form ||= Forms::Moves::Information.new(escort.move)
+    @_form ||= Forms::Moves::Information.new(move)
   end
 
   def add_destination
     if params.key? 'move_add_destination'
       form.deserialize params[:information]
       form.add_destination
-      render :show, locals: { form: form, escort: escort }
+      render :show, locals: { form: form }
     end
   end
 end
