@@ -19,15 +19,15 @@
         locals: { prison_number: search_form.prison_number }
 
 .date-picker
-  = form_for date_picker, params do |f|
-    input type="hidden" name="search" value="#{prison_number}"
+  = form_tag date_picker_path(search: params[:prison_number]) do
+    input type="hidden" name="search" value="#{params[:prison_number]}"
 
     label
       span.label Detainees due to move on
       span.date-field
-        = f.search_text_field :date
-    = f.submit value: 'Go', class: 'go', data: { disable_with: false }
+        input.form-control type='text' value="#{date_picker}" name='date_picker'
+    input.go type='submit' value='Go' name='commit'
     span.nav-group
-      = f.submit value: '<', data: { disable_with: false }
-      = f.submit value: 'today', data: { disable_with: false }
-      = f.submit value: '>', data: { disable_with: false }
+      input type='submit' value='<' name='commit'
+      input type='submit' value='today' name='commit'
+      input type='submit' value='>' name='commit'
