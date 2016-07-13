@@ -14,4 +14,5 @@
   = render partial: 'healthcare',
     locals: { escort: escort, healthcare: escort.healthcare }
 
-  div = link_to 'Offences', offences_path(escort)
+  = render partial: 'offences',
+    locals: { escort: escort, offences: OffencesPresenter.new(escort.offences) }
