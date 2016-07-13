@@ -1,4 +1,6 @@
 class HomepageController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def show
     search_form.validate(prison_number: params[:search]) if params[:search]
     render :show, locals: locals
