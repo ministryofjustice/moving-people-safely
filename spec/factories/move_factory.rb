@@ -1,7 +1,9 @@
+require_relative '../support/fixture_data'
+
 FactoryGirl.define do
   factory :move do
-    from { Data.prison }
-    to { Data.county_court }
+    from { FixtureData.prison }
+    to { FixtureData.county_court }
     date { Date.today }
     reason 'production_to_court'
     has_destinations 'no'

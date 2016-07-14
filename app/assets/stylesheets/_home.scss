@@ -137,7 +137,8 @@
     font-size: 90%;
   }
   th.prisoner_number { width: 5.5em; }
-  th.name { width: 12em; }
+  th.name { width: 17em; }
+  th.destination { width: 13em; }
 
   tr:nth-child(even) {
     background-color: #F2F3F4;
@@ -155,8 +156,8 @@
 
   .completion-status span {
     display: inline-block;
-    width: 6em;
-    height: 20px;
+    width: 3em;
+    height: 13px;
     border-width: 2px;
     border-style: solid;
   }
