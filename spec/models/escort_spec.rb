@@ -61,7 +61,7 @@ RSpec.describe Escort, type: :model do
 
   describe '#with_future_move?' do
     context 'when there is a future move' do
-      subject { build :escort }
+      subject { build :escort, :with_future_move }
       its(:with_future_move?) { is_expected.to be true }
     end
 
@@ -78,7 +78,7 @@ RSpec.describe Escort, type: :model do
     end
 
     context 'when there is a future move' do
-      subject { build :escort }
+      subject { build :escort, :with_future_move }
       its(:with_past_move?) { is_expected.to be_blank }
     end
   end

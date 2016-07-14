@@ -127,3 +127,38 @@
   }
   input[type='submit'] { cursor: pointer; }
 }
+
+.moves {
+  margin-top:40px;
+
+  span.strong-text { font-weight: bold; }
+  th {
+    font-weight: normal;
+    font-size: 90%;
+  }
+  th.prisoner_number { width: 5.5em; }
+  th.name { width: 17em; }
+  th.destination { width: 13em; }
+
+  tr:nth-child(even) {
+    background-color: #F2F3F4;
+  }
+
+  span.true {
+    background-color: #108245;
+    border-color: #108245;
+  }
+
+  span.false {
+    background-color: white;
+    border-color: #DF464D;
+  }
+
+  .completion-status span {
+    display: inline-block;
+    width: 3em;
+    height: 13px;
+    border-width: 2px;
+    border-style: solid;
+  }
+}

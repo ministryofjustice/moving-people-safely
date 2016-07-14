@@ -41,7 +41,8 @@ class HomepageController < ApplicationController
       search_form: search_form,
       result: search_form.escort,
       date_picker: date_picker,
-      prison_number: params[:search]
+      prison_number: params[:search],
+      moves: Move.for_date(date_picker.date)
     }
   end
 

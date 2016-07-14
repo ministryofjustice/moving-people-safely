@@ -7,5 +7,9 @@ FactoryGirl.define do
     trait :with_past_move do
       association :move, :past_move, factory: :move, strategy: :build
     end
+
+    trait :with_future_move do
+      association :move, :future_move, factory: :move, strategy: :build
+    end
   end
 end
