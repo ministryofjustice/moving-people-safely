@@ -9,6 +9,7 @@ class Move < ApplicationRecord
 
   scope :for_date, (lambda do |search_date|
     where(date: search_date).
+      order(created_at: :desc).
       eager_load(
         :detainee,
         :escort,
