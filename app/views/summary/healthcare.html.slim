@@ -1,0 +1,28 @@
+.summary
+  header
+    h1
+      | Healthcare
+  h3
+    ' Status
+    - if healthcare.all_questions_answered?
+      span.status-label.status-label--complete Complete
+    - else
+      span.status-label.status-label--incomplete Incomplete
+
+  = render partial: 'summary/section',
+    locals: { presenter: SummaryPresenter.new(healthcare), section: 'physical', questions: %w[ physical_issues ], path: healthcare_path(escort, 'physical') }
+
+  = render partial: 'summary/section',
+    locals: { presenter: SummaryPresenter.new(healthcare), section: 'mental', questions: %w[ mental_illness phobias ], path: healthcare_path(escort, 'mental') }
+
+  = render partial: 'summary/section',
+    locals: { presenter: SummaryPresenter.new(healthcare), section: 'social', questions: %w[ personal_hygiene personal_care ], path: healthcare_path(escort, 'social') }
+
+  = render partial: 'summary/section',
+    locals: { presenter: SummaryPresenter.new(healthcare), section: 'allergies', questions: %w[ allergies ], path: healthcare_path(escort, 'allergies') }
+
+  = render partial: 'summary/section',
+    locals: { presenter: SummaryPresenter.new(healthcare), section: 'needs', questions: %w[ dependencies has_medications ], path: healthcare_path(escort, 'needs') }
+
+  = render partial: 'summary/section',
+    locals: { presenter: SummaryPresenter.new(healthcare), section: 'transport', questions: %w[ mpv ], path: healthcare_path(escort, 'transport') }

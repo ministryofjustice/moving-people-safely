@@ -1,9 +1,9 @@
 #offences
-  .pull-right-content
+  .float-right
     - if offences.all_questions_answered?
-      span.complete-label Complete
+      span.status-label.status-label--complete Complete
     - else
-      span.incomplete-label Incomplete
+      span.status-label.status-label--incomplete Incomplete
     = link_to 'Edit', offences_path(escort)
   h2
     ' Offences

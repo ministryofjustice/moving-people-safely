@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :healthcare, only: %i[ show update ]
     resources :risks, only: %i[ show update ]
     resource :offences, only: %i[ show update ]
+    resource :risk_summary, only: %i[ show ], path: 'risk-summary'
+    resource :healthcare_summary, only: %i[ show ], path: 'healthcare-summary'
     get :profile, to: 'profiles#show'
   end
 
