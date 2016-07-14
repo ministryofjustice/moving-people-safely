@@ -15,6 +15,7 @@ class HealthcareController < ApplicationController
   def update
     if form.validate form_params
       form.save
+      update_document_workflow
       redirect_after_update
     else
       flash[:form_data] = form_params
@@ -23,6 +24,12 @@ class HealthcareController < ApplicationController
   end
 
   private
+
+  def update_document_workflow
+    workflow = DocumentWorkflow.new(healthcare)
+    workflow.update_status(:complete) ||
+      workflow.update_status(:incomplete)
+  end
 
   def add_medication
     if params.key? 'needs_add_medication'

@@ -47,6 +47,9 @@ Style/CaseEquality:
 Style/DotPosition:
   EnforcedStyle: trailing
 
+Style/LineLength:
+  Max: 120
+
 # It's not really clearer to replace every if with a return if.
 Style/GuardClause:
   Enabled: false
