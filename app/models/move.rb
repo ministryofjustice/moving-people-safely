@@ -7,7 +7,6 @@ class Move < ApplicationRecord
   has_one :offences, through: :escort
   has_one :risks, through: :escort
 
-
   scope :for_date, ->(search_date) do
     where(date: search_date).
     eager_load(
@@ -17,5 +16,9 @@ class Move < ApplicationRecord
       :offences,
       :risks
     )
+  end
+
+  def complete?
+    [true, false].sample
   end
 end

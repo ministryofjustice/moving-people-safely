@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :move do
-    from { Faker::Company.name }
-    to { Faker::Company.name }
-    date { 3.days.from_now }
+    from { Data.prison }
+    to { Data.county_court }
+    date { Date.today }
     reason 'production_to_court'
     has_destinations 'no'
 
