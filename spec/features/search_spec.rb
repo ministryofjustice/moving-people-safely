@@ -81,8 +81,4 @@ RSpec.feature 'searching for a prisoner', type: :feature do
   def create_escort_with_detainee_and_no_move
     create :escort, move: nil
   end
-
-  def escort
-    Escort.last
-  end
 end
