@@ -60,5 +60,3 @@ module FixtureData
     ]
   end
 end
-
-
