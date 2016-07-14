@@ -11,5 +11,9 @@ FactoryGirl.define do
     trait :past_move do
       date { 1.week.ago }
     end
+
+    trait :future_move do
+      date { 1.week.from_now }
+    end
   end
 end

@@ -9,24 +9,26 @@ RSpec.feature 'searching for a prisoner', type: :feature do
     end
 
     scenario 'prisoner present with a future move' do
-      create_escort_with_detainee_and_future_move
+      escort = create_escort_with_detainee_and_future_move
       login
-      search_with_valid_prison_number
-      expect_result_with_future_move
+      search_with_valid_prison_number(escort.detainee.prison_number)
+      expect(page).to have_link('View profile', href: profile_path(escort))
+      expect_result_with_move(escort.move)
     end
 
     scenario 'prisoner present with a past move' do
-      create_escort_with_detainee_and_past_move
+      escort = create_escort_with_detainee_and_past_move
       login
-      search_with_valid_prison_number
-      expect_result_with_past_move
+      search_with_valid_prison_number(escort.detainee.prison_number)
+      expect(page).to have_link('Add new move', href: move_information_path(escort))
+      expect_result_with_move(escort.move)
     end
 
     scenario 'prisoner present with no move' do
-      create_escort_with_detainee_and_no_move
+      escort = create_escort_with_detainee_and_no_move
       login
-      search_with_valid_prison_number
-      expect_result_with_no_move
+      search_with_valid_prison_number(escort.detainee.prison_number)
+      expect_result_with_no_move(escort)
     end
   end
 
@@ -36,8 +38,8 @@ RSpec.feature 'searching for a prisoner', type: :feature do
     expect_error_message
   end
 
-  def search_with_valid_prison_number
-    fill_in 'search_prison_number', with: 'A1234BC'
+  def search_with_valid_prison_number(prison_number = 'A1234BC')
+    fill_in 'search_prison_number', with: prison_number
     click_button 'Search'
   end
 
@@ -54,35 +56,22 @@ RSpec.feature 'searching for a prisoner', type: :feature do
     expect(page).to have_content("The prison number 'invalid-prison-number' inserted is not valid")
   end
 
-  def expect_result_with_future_move
-    date = 3.days.from_now.to_date.to_s(:humanized)
-    expect(page).to have_link('View profile', href: profile_path(escort))
-    expect(page).to have_content('A1234BC').
-      and have_content('Trump Donald').
-      and have_content('14 Jun 1946').
-      and have_content('Alcatraz').
-      and have_content(date)
+  def expect_result_with_move(move)
+    expect(page).to have_content(move.detainee.prison_number).
+      and have_content(move.detainee.surname).
+      and have_content(move.detainee.date_of_birth.strftime('%d %b %Y')).
+      and have_content(move.to).
+      and have_content(move.date.strftime('%d %b %Y'))
   end
 
-  def expect_result_with_past_move
-    date = 1.weeks.ago.to_date.to_s(:humanized)
+  def expect_result_with_no_move(escort)
     expect(page).to have_link('Add new move', href: move_information_path(escort))
-    expect(page).to have_content('A1234BC').
-      and have_content('Trump Donald').
-      and have_content('14 Jun 1946').
-      and have_content('Alcatraz').
-      and have_content(date)
-  end
-
-  def expect_result_with_no_move
-    expect(page).to have_link('Add new move', href: move_information_path(escort))
-    expect(page).to have_content('A1234BC').
-      and have_content('Trump Donald').
-      and have_content('None')
+    expect(page).to have_content(escort.detainee.prison_number).
+      and have_content(escort.detainee.surname)
   end
 
   def create_escort_with_detainee_and_future_move
-    create :escort
+    create :escort, :with_future_move
   end
 
   def create_escort_with_detainee_and_past_move
