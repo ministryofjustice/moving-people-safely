@@ -19,6 +19,23 @@ class Move < ApplicationRecord
       )
   end)
 
+  INCOMPLETE_STATUSES = ['not_started', 'incomplete', 'needs_review']
+
+  scope :with_incomplete_risks, -> {
+    joins(:risks).
+    where('risks.workflow_status IN (?)', INCOMPLETE_STATUSES)
+  }
+
+  scope :with_incomplete_healthcare, -> {
+    joins(:healthcare).
+    where('healthcare.workflow_status IN (?)', INCOMPLETE_STATUSES)
+  }
+
+  scope :with_incomplete_offences, -> {
+    joins(:offences).
+    where('offences.workflow_status IN (?)', INCOMPLETE_STATUSES)
+  }
+
   def risks_complete?
     risks.present? && risks.all_questions_answered?
   end

@@ -37,12 +37,17 @@ class HomepageController < ApplicationController
   end
 
   def locals
+    moves_for_date = Move.for_date(date_picker.date)
+
     {
       search_form: search_form,
       result: search_form.escort,
       date_picker: date_picker,
       prison_number: params[:search],
-      moves: Move.for_date(date_picker.date)
+      moves: moves_for_date,
+      count_of_incomplete_risks: moves_for_date.with_incomplete_risks.count,
+      count_of_incomplete_healthcare: moves_for_date.with_incomplete_healthcare.count,
+      count_of_incomplete_offences: moves_for_date.with_incomplete_offences.count
     }
   end
 
