@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   scope ':escort_id' do
     resource :detainee_details, only: %i[ show update ], path: 'detainee-details'
     resource :move_information, only: %i[ show update ], path: 'move-info'
-    resources :healthcare
-    resources :risks
+    resources :healthcare, only: %i[ show update ]
+    resources :risks, only: %i[ show update ]
     resource :offences, only: %i[ show update ]
     get :profile, to: 'profiles#show'
   end

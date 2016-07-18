@@ -7,6 +7,7 @@ class HealthcareController < ApplicationController
   before_action :add_medication, only: [:update]
 
   def show
+    form.validate(flash[:form_data]) if flash[:form_data]
     form.prepopulate!
     render :show, locals: { form: form, template_name: form.class.name }
   end
@@ -16,7 +17,8 @@ class HealthcareController < ApplicationController
       form.save
       redirect_after_update
     else
-      render :show, locals: { form: form, template_name: form.class.name }
+      flash[:form_data] = form_params
+      redirect_to healthcare_path(escort)
     end
   end
 
