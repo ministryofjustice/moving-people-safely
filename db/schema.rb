@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707171057) do
+ActiveRecord::Schema.define(version: 20160714151758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,8 +74,9 @@ ActiveRecord::Schema.define(version: 20160707171057) do
     t.text     "mpv_details"
     t.string   "healthcare_professional"
     t.string   "contact_number"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.string   "workflow_status",          default: "not_started"
   end
 
   create_table "medications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -103,10 +104,11 @@ ActiveRecord::Schema.define(version: 20160707171057) do
     t.uuid     "escort_id"
     t.date     "release_date"
     t.boolean  "not_for_release"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.text     "not_for_release_details"
     t.string   "has_past_offences",       default: "unknown"
+    t.string   "workflow_status",         default: "not_started"
   end
 
   create_table "past_offences", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -195,6 +197,7 @@ ActiveRecord::Schema.define(version: 20160707171057) do
     t.text    "hearing_speach_sight_details"
     t.string  "can_read_and_write",              default: "unknown"
     t.text    "can_read_and_write_details"
+    t.string  "workflow_status",                 default: "not_started"
   end
 
   create_table "users", force: :cascade do |t|
