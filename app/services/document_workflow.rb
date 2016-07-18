@@ -10,7 +10,8 @@ class DocumentWorkflow
     check_status!(new_status)
 
     if can_transition_to?(new_status)
-      model.workflow_status = new_status
+      model.update_attribute(:workflow_status, new_status)
+      new_status
     else
       false
     end

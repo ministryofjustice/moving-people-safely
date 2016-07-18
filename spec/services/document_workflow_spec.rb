@@ -51,7 +51,7 @@ RSpec.describe DocumentWorkflow do
       before { allow(model).to receive(:all_questions_answered?).and_return(true) }
 
       it "updates the workflow status of the model" do
-        allow(model).to receive(:workflow_status=)
+        allow(model).to receive(:update_attribute)
         subject.update_status!(:complete)
       end
     end
@@ -69,7 +69,7 @@ RSpec.describe DocumentWorkflow do
     end
 
     context "when it is OK to update the status" do
-      before { allow(model).to receive(:workflow_status=) }
+      before { allow(model).to receive(:update_attribute) }
       let(:new_status) { :incomplete } # no validations on transitions to this state
 
       it "returns the new status" do
