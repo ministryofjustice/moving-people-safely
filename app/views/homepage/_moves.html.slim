@@ -19,10 +19,10 @@
               |  #{move.detainee.forenames}
           td = move.to
           td.completion-status
-            span class="#{move.complete?}"
+            span class="#{move.risks_complete?}"
           td.completion-status
-            span class="#{move.complete?}"
+            span class="#{move.healthcare_complete?}"
           td.completion-status
-            span class="#{move.complete?}"
+            span class="#{move.offences_complete?}"
           td.print
              = link_to 'Print', '#'

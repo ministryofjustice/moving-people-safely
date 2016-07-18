@@ -15,6 +15,7 @@ class RisksController < ApplicationController
   def update
     if form.validate form_params
       form.save
+      update_document_workflow
       redirect_after_update
     else
       flash[:form_data] = form_params
@@ -23,6 +24,12 @@ class RisksController < ApplicationController
   end
 
   private
+
+  def update_document_workflow
+    workflow = DocumentWorkflow.new(risks)
+    workflow.update_status(:complete) ||
+      workflow.update_status(:incomplete)
+  end
 
   def form_params
     params[step]

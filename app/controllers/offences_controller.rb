@@ -10,6 +10,7 @@ class OffencesController < ApplicationController
   def update
     if form.validate form_data
       form.save
+      update_document_workflow
       redirect_to profile_path(escort)
     else
       flash[:form_data] = form_data
@@ -18,6 +19,12 @@ class OffencesController < ApplicationController
   end
 
   private
+
+  def update_document_workflow
+    workflow = DocumentWorkflow.new(offences)
+    workflow.update_status(:complete) ||
+      workflow.update_status(:incomplete)
+  end
 
   def add_offence
     if params.key? 'offences_add_offence'

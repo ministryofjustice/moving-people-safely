@@ -19,8 +19,15 @@ class Move < ApplicationRecord
       )
   end)
 
-  # Dummy data for now.
-  def complete?
-    [true, false].sample
+  def risks_complete?
+    risks.present? && risks.all_questions_answered?
+  end
+
+  def healthcare_complete?
+    healthcare.present? && healthcare.all_questions_answered?
+  end
+
+  def offences_complete?
+    offences.present? && offences.all_questions_answered?
   end
 end
