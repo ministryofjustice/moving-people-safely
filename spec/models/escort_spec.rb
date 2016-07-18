@@ -1,11 +1,46 @@
 require 'rails_helper'
 
 RSpec.describe Escort, type: :model do
-  it { is_expected.to have_one(:detainee).dependent(:destroy) }
-  it { is_expected.to have_one(:move).dependent(:destroy) }
-  it { is_expected.to have_one(:healthcare).dependent(:destroy) }
-  it { is_expected.to have_one(:offences).dependent(:destroy) }
-  it { is_expected.to have_one(:risks).dependent(:destroy) }
+  describe ".create_with_children" do
+    let(:result) { described_class.create_with_children(prison_number: prison_number) }
+    let(:prison_number) { 'pxn' }
+
+    it "creates a detainee with the prison_number" do
+      detainee = result.detainee
+      expect(detainee).to be_a Detainee
+      expect(detainee.prison_number).to eql prison_number
+      result.destroy
+      expect(detainee).to be_destroyed
+    end
+
+    it "creates an associated move record" do
+      move = result.move
+      expect(move).to be_a Move
+      result.destroy
+      expect(move).to be_destroyed
+    end
+
+    it "creates an associated healthcare record" do
+      healthcare = result.healthcare
+      expect(healthcare).to be_a Healthcare
+      result.destroy
+      expect(healthcare).to be_destroyed
+    end
+
+    it "creates an associated offences record" do
+      offences = result.offences
+      expect(offences).to be_a Offences
+      result.destroy
+      expect(offences).to be_destroyed
+    end
+
+    it "creates an associated risks record" do
+      risks = result.risks
+      expect(risks).to be_a Risks
+      result.destroy
+      expect(risks).to be_destroyed
+    end
+  end
 
   describe '.find_detainee_by_prison_number' do
     subject { described_class.find_detainee_by_prison_number('A1234BC') }
@@ -24,38 +59,6 @@ RSpec.describe Escort, type: :model do
       it 'returns nil' do
         expect(subject).to be_nil
       end
-    end
-  end
-
-  describe '#move' do
-    context 'when there is no associated record' do
-      before { subject.move = nil }
-      its(:move) { is_expected.to be_a Move }
-    end
-  end
-
-  describe '#healthcare' do
-    context 'when there is no associated record' do
-      before { subject.healthcare = nil }
-      its(:healthcare) { is_expected.to be_a Healthcare }
-    end
-  end
-
-  describe "#offences" do
-    let(:subject) { described_class.new }
-    let(:result) { subject.offences }
-
-    context "when there is no associated record" do
-      it "returns an Offences object" do
-        expect(result).to be_an Offences
-      end
-    end
-  end
-
-  describe '#risks' do
-    context 'when there is no associated record' do
-      before { subject.risks = nil }
-      its(:risks) { is_expected.to be_a Risks }
     end
   end
 
@@ -92,11 +95,6 @@ RSpec.describe Escort, type: :model do
     context 'when there is a future move' do
       subject { build :escort }
       its(:with_move?) { is_expected.to be true }
-    end
-
-    context 'when there is no move' do
-      subject { build :escort, move: nil }
-      its(:with_move?) { is_expected.to be_blank }
     end
   end
 end

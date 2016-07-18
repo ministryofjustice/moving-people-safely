@@ -3,10 +3,7 @@ class EscortsController < ApplicationController
     form = Forms::Search.new
 
     if form.validate(prison_number: params[:prison_number])
-      escort = Escort.new
-      escort.build_detainee(prison_number: form.prison_number)
-      escort.save!
-
+      escort = Escort.create_with_children(prison_number: form.prison_number)
       redirect_to detainee_details_path(escort)
     else
       redirect_to root_path

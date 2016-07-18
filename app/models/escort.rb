@@ -9,20 +9,18 @@ class Escort < ApplicationRecord
     joins(:detainee).where(detainees: { prison_number: number }).first
   end
 
+  def self.create_with_children(prison_number:)
+    new.tap do |escort|
+      escort.build_detainee(prison_number: prison_number)
+      escort.build_healthcare
+      escort.build_offences
+      escort.build_risks
+      escort.save!
+    end
+  end
+
   def move
     super || build_move
-  end
-
-  def healthcare
-    super || build_healthcare
-  end
-
-  def offences
-    super || build_offences
-  end
-
-  def risks
-    super || build_risks
   end
 
   def with_future_move?
