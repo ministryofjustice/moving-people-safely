@@ -1,13 +1,14 @@
 class DocumentWorkflow
-  class WorkflowStateChangeError < RuntimeError; end
   class InvalidWorkflowStateError < StandardError; end
+
+  WORKFLOW_STATES = %i[ not_started incomplete needs_review complete ]
 
   def initialize(model)
     @model = model
   end
 
   def update_status(new_status)
-    check_status!(new_status)
+    validate_status!(new_status)
 
     if can_transition_to?(new_status)
       model.update_attribute(:workflow_status, new_status)
@@ -17,22 +18,12 @@ class DocumentWorkflow
     end
   end
 
-  def can_update_status?(new_status)
-    can_transition_to?(new_status)
-  end
-
-  def update_status!(new_status)
-    unless update_status(new_status)
-      fail WorkflowStateChangeError, "Cannot change to #{new_status}"
-    end
-  end
-
   private
 
   attr_reader :model
 
-  def check_status!(new_status)
-    unless %i[ not_started incomplete needs_review complete ].include? new_status
+  def validate_status!(new_status)
+    unless WORKFLOW_STATES.include? new_status
       fail InvalidWorkflowStateError, "#{new_status} is not a valid workflow state."
     end
   end

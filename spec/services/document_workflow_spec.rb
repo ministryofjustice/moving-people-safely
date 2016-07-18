@@ -3,60 +3,6 @@ RSpec.describe DocumentWorkflow do
   let(:model) { double(:model, workflow_status: initial_status) }
   let(:initial_status) { :not_started }
 
-  describe "#can_update_status?" do
-    let(:result) { subject.can_update_status?(new_status) }
-
-    context "transition to :incomplete" do
-      let(:new_status) { :incomplete }
-
-      it "returns true" do
-        expect(result).to be true
-      end
-    end
-
-    context "transition to :complete" do
-      before { expect(model).to receive(:all_questions_answered?).and_return(all_answered) }
-      let(:new_status) { :complete }
-
-      context "when all questions have been answered" do
-        let(:all_answered) { true }
-
-        it "returns true" do
-          expect(result).to be true
-        end
-      end
-
-      context "when not all questions have been answered" do
-        let(:all_answered) { false }
-
-        it "returns false" do
-          expect(result).to be false
-        end
-      end
-    end
-  end
-
-  describe "#update_status!" do
-    let(:result) { subject.update_status!(:complete) }
-
-    context "when it cannot update the status" do
-      before { allow(model).to receive(:all_questions_answered?).and_return(false) }
-
-      it "throws an exception" do
-        expect { result }.to raise_error DocumentWorkflow::WorkflowStateChangeError
-      end
-    end
-
-    context "when it can update the status" do
-      before { allow(model).to receive(:all_questions_answered?).and_return(true) }
-
-      it "updates the workflow status of the model" do
-        allow(model).to receive(:update_attribute)
-        subject.update_status!(:complete)
-      end
-    end
-  end
-
   describe "#update_status" do
     let(:result) { subject.update_status(new_status) }
 
@@ -74,6 +20,20 @@ RSpec.describe DocumentWorkflow do
 
       it "returns the new status" do
         expect(result).to eql new_status
+      end
+    end
+
+    context "when it is not possible to move to the new state" do
+      before do
+        allow(subject).
+          to receive(:can_transition_to?).
+          with(:not_started).
+          and_return(false)
+      end
+      let(:new_status) { :not_started }
+
+      it "returns false" do
+        expect(result).to be false
       end
     end
   end
