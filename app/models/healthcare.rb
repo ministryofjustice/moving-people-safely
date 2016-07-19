@@ -11,4 +11,8 @@ class Healthcare < ApplicationRecord
   def question_fields
     QUESTION_FIELDS
   end
+
+  def complete?
+    workflow_status == 'complete'
+  end
 end
