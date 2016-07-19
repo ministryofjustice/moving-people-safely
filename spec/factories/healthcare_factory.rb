@@ -1,18 +1,18 @@
 FactoryGirl.define do
   factory :healthcare do
-    allergies 'No'
-    physical_issues 'No'
-    mental_illness 'No'
-    phobias 'No'
-    personal_hygiene 'No'
-    personal_care 'No'
-    dependencies 'No'
-    mpv 'No'
-    has_medications 'No'
+    allergies 'no'
+    physical_issues 'no'
+    mental_illness 'no'
+    phobias 'no'
+    personal_hygiene 'no'
+    personal_care 'no'
+    dependencies 'no'
+    mpv 'no'
+    has_medications 'no'
     workflow_status 'complete'
 
     trait :incomplete do
-      allergies 'Yes'
+      allergies 'yes'
       workflow_status 'incomplete'
     end
   end
