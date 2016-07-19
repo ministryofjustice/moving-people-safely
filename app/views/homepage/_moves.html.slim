@@ -24,5 +24,5 @@
         td.completion-status
           span class="#{move.offences_complete?}"
         td.print
-          - if AccessPolicy.print?(move.escort)
+          - if AccessPolicy.print?(escort: move.escort)
            = link_to 'Print', '#'
