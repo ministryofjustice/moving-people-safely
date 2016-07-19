@@ -1,0 +1,57 @@
+.summary {
+  header {
+    h1 {
+      @extend .heading-large;
+    }
+
+    p {
+      @include heading-24;
+    }
+  }
+
+  h3 {
+    @extend .heading-small;
+  }
+
+  table {
+    border-bottom: 2px solid $border-colour;
+    margin-bottom: 1em;
+
+    th,
+    td {
+      border-bottom: none;
+    }
+
+    th {
+      padding-top: 0.6em 0;
+
+      a {
+        font-weight: 300;
+      }
+    }
+
+    td {
+      padding: 0.6em;
+    }
+
+    b {
+      font-weight: 700;
+    }
+
+    .first-column {
+      width: 30%;
+    }
+
+    .second-column {
+      width: 10%;
+    }
+
+    .third-column {
+      width: 60%;
+    }
+  }
+
+  tr.odd td {
+    background-color: $highlight-colour;
+  }
+}

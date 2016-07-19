@@ -260,3 +260,70 @@ en:
       sex_offences: Risk to others
       substance_misuse: Substance misuse
       violence: Risk to others
+
+  summary:
+    section:
+      questions:
+        arson:
+          arson: Arson
+          damage_to_property: Damage to property
+        communication:
+          can_read_and_write: Reading / writing issues
+          hearing_speach_sight: Hearing / speech / sight issues
+          interpreter_required: Interpreter required
+        concealed_weapons:
+          conceals_weapons: Concealed weapons or other items
+        harassments:
+          stalker_harasser_bully: Hostage taker / stalker / harasser / intimidator / bully
+        needs:
+          has_medications: Medication
+        non_association_markers:
+          non_association_markers: Non-association markers
+        sex_offences:
+          sex_offence: Sex offender
+          sex_offence_victim: ''
+        risk_from_others:
+          rule_45: Rule 45
+          csra: Cell Share Risk Assessment
+          verbal_abuse: At risk of verbal abuse
+          physical_abuse: At risk of physical abuse
+        risks_to_self:
+          open_acct: Open ACCT
+          suicide: Risk of suicide or self-harm
+        security:
+          category_a: Category A
+          current_e_risk: Current E risk
+          escape_list: Escape list
+          other_escape_risk_info: Other escape risk information
+          restricted_status: Restricted status
+        substance_misuse:
+          alcohol: Alcohol
+          drugs: Drugs
+        transport:
+          mpv: MPV
+        violence:
+          escort_or_court_staff: Escort or court staff
+          healthcare_staff: Healthcare staff
+          homophobic: Homosexuals
+          other_detainees: Other detainees
+          racist: Other races
+          police: Police
+          prison_staff: Prison staff
+          public_offence_related: Public/offence related
+          risk_to_females: Females
+      titles:
+        arson: Arson and damage to property
+        communication: Communication / language difficulties
+        concealed_weapons: Concealed weapons or other items
+        harassments: "Risk to others: Hostage taker / stalker / harasser / intimidator / bully"
+        mental: Mental healthcare
+        needs: Medical health needs
+        non_association_markers: Risk to others
+        physical: Physical healthcare
+        risks_to_self: Risk to self
+        risk_from_others: Risk from others
+        security: Security
+        sex_offences: "Risk to others: Sex offender"
+        social: Social healthcare
+        substance_misuse: Substance misuse
+        violence: "Risk to others: Violent"

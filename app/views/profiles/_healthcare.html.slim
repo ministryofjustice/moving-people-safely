@@ -1,9 +1,9 @@
 #healthcare
-  .pull-right-content
+  .float-right
     - if healthcare.all_questions_answered?
-      span.complete-label Complete
+      span.status-label.status-label--complete Complete
     - else
-      span.incomplete-label Incomplete
+      span.status-label.status-label--incomplete Incomplete
     = link_to 'Edit', healthcare_path(escort, :physical)
   h2
     ' Healthcare

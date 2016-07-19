@@ -1,0 +1,22 @@
+@mixin status-label-colour($colour: $text-colour) {
+  color: $colour;
+  border: 2px solid $colour;
+}
+
+.status-label {
+  display: inline-block;
+  min-width: 120px;
+  padding: 0 .6em;
+  border-radius: 8px;
+  margin-right: 20px;
+  text-align: center;
+  @include status-label-colour;
+}
+
+.status-label--complete {
+  @include status-label-colour(green);
+}
+
+.status-label--incomplete {
+  @include status-label-colour(red);
+}
