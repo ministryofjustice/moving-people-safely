@@ -20,8 +20,8 @@
     .tile
       | Must return to
       br
-      b
+      b == move.must_return_to
     .tile
       | Must NOT return to
       br
-      b 
+      b == move.must_not_return_to

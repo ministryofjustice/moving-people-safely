@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe OffencesPresenter, type: :model do
+RSpec.describe OffencesPresenter, type: :presenter do
   let(:offences) { build :offences }
   subject { described_class.new offences }
 

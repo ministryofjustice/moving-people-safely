@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DetaineePresenter, type: :model do
+RSpec.describe DetaineePresenter, type: :presenter do
   let(:detainee) { build :detainee }
   subject { described_class.new detainee }
 

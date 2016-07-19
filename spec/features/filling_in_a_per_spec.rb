@@ -106,7 +106,18 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in 'Date', with: '12/09/2016'
     choose 'Other'
     fill_in 'information[reason_details]', with: 'Has to move'
-    choose 'No'
+    choose 'Yes'
+    fill_in 'information_destinations_attributes_0_establishment', with: 'Hospital'
+    choose 'information_destinations_attributes_0_must_return_must_return'
+    click_button 'Add establishment'
+    fill_in 'information_destinations_attributes_1_establishment', with: 'Court'
+    choose 'information_destinations_attributes_1_must_return_must_return'
+    click_button 'Add establishment'
+    fill_in 'information_destinations_attributes_2_establishment', with: 'Dentist'
+    choose 'information_destinations_attributes_2_must_return_must_not_return'
+    click_button 'Add establishment'
+    fill_in 'information_destinations_attributes_3_establishment', with: 'Tribunal'
+    choose 'information_destinations_attributes_3_must_return_must_not_return'
   end
 
   def expect_profile_page_to_have_detainee_details
@@ -129,6 +140,8 @@ RSpec.feature 'filling in a PER', type: :feature do
       expect(page).to have_content('Some court')
       expect(page).to have_content('12 Sep 2016')
       expect(page).to have_content('Has to move')
+      expect(page).to have_content('Hospital, Court')
+      expect(page).to have_content('Dentist, Tribunal')
     end
   end
 

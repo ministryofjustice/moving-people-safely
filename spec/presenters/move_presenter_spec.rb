@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MovePresenter, type: :model do
+RSpec.describe MovePresenter, type: :presenter do
   let(:move) { build :move }
   subject { described_class.new move }
 
@@ -18,6 +18,34 @@ RSpec.describe MovePresenter, type: :model do
     context 'when other' do
       let(:move) { build :move, reason: 'other', reason_details: 'other reasons' }
       its(:humanized_reason) { is_expected.to eq 'other reasons' }
+    end
+  end
+
+  describe '#must_return_to' do
+    let(:escort) { create(:escort, :with_incomplete_healthcare) }
+    let(:move) { escort.move }
+
+    before do
+      move.destinations.create(establishment: 'hospital', must_return: 'must_return')
+      move.destinations.create(establishment: 'court', must_return: 'must_return')
+    end
+
+    it 'returns comma separated string of establishments where the detainee must return to' do
+      expect(subject.must_return_to).to eq 'hospital, court'
+    end
+  end
+
+  describe '#must_not_return_to' do
+    let(:escort) { create(:escort, :with_incomplete_healthcare) }
+    let(:move) { escort.move }
+
+    before do
+      move.destinations.create(establishment: 'hospital', must_return: 'must_not_return')
+      move.destinations.create(establishment: 'court', must_return: 'must_not_return')
+    end
+
+    it 'returns comma separated string of establishments where the detainee must not return to' do
+      expect(subject.must_not_return_to).to eq 'hospital, court'
     end
   end
 end
