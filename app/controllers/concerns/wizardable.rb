@@ -21,13 +21,5 @@ module Wizardable
       next_step != 'wicked_finish'
     end
     helper_method :can_skip?
-
-    def redirect_after_update
-      if params.key?('save_and_view_profile') || !can_skip?
-        redirect_to profile_path(escort)
-      else
-        redirect_to next_wizard_path
-      end
-    end
   end
 end
