@@ -9,7 +9,6 @@ require "active_support/dependencies"
     File.expand_path("../../app/#{dir}", __FILE__)
 end
 
-require 'factory_girl'
 require 'pry-byebug'
 
 RSpec.configure do |config|
