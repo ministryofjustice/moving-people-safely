@@ -24,4 +24,5 @@
         td.completion-status
           span class="#{move.offences_complete?}"
         td.print
+          - if move.complete?
            = link_to 'Print', '#'

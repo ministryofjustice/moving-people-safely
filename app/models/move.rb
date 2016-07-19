@@ -36,6 +36,12 @@ class Move < ApplicationRecord
     where('offences.workflow_status IN (?)', INCOMPLETE_STATUSES)
   end)
 
+  def complete?
+    risks_complete? &&
+      healthcare_complete? &&
+      offences_complete?
+  end
+
   def risks_complete?
     risks.complete?
   end
