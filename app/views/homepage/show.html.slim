@@ -32,14 +32,10 @@
       input type='submit' value='today' name='commit'
       input type='submit' value='>' name='commit'
 
-dl.status_counts
-  dt.ok Detainees
-  dd.ok = moves.count
-  dt.todo Incomplete risk
-  dd.todo = count_of_incomplete_risks
-  dt.todo Incomplete health
-  dd.todo = count_of_incomplete_healthcare
-  dt.todo Incomplete offences
-  dd.todo = count_of_incomplete_offences
+dl.status_gauges
+  = dashboard.render_detainees_indicator
+  = dashboard.render_risks_indicator
+  = dashboard.render_health_indicator
+  = dashboard.render_offences_indicator
 
-= render partial: 'moves', locals: { moves: moves } if moves
+= render partial: 'moves', locals: { moves: dashboard.moves } if dashboard.moves

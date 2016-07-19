@@ -128,6 +128,65 @@
   input[type='submit'] { cursor: pointer; }
 }
 
+.status_gauges {
+  float: left;
+  width: 100%;
+  margin: 25px 0;
+
+
+  .gauge_wrapper {
+    float:left;
+    margin-right: 50px;
+
+    .title { float: left; }
+
+    .gauge {
+      float: left;
+      clear: left;
+      height: 2em;
+      width: 2em;
+      line-height: 2em;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      border-radius: 50%;
+      border-width: 2px;
+      border-style: solid;
+      margin-top: 5px;
+    }
+  }
+
+  .gauge_wrapper.detainees {
+    .title { color: black; }
+    .gauge {
+      background-color: black;
+      color: white;
+      border-color: black;
+    }
+  }
+
+  .gauge_wrapper.incomplete {
+    .title { color: red; }
+    .gauge {
+      background-color: white;
+      color: red;
+      border-color: red;
+    }
+  }
+
+  .gauge_wrapper.complete {
+    .title { color: green; }
+    .gauge {
+      background-color: green;
+      border-color: green;
+      color: white;
+
+      span { display: none; }
+      &:after { content: '\2714'; }
+    }
+  }
+}
+
 .moves {
   margin-top:40px;
 
