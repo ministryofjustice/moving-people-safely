@@ -46,6 +46,8 @@ class DashboardPresenter
     render_indicator(cl, title, count_of_incomplete_offences)
   end
 
+  private
+
   def render_indicator(cl, title, value)
     "<div class='gauge_wrapper #{cl}'>
       <span class='title'>#{title}</span>

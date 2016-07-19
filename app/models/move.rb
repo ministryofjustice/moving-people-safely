@@ -37,14 +37,14 @@ class Move < ApplicationRecord
   end)
 
   def risks_complete?
-    risks.present? && risks.complete?
+    risks.complete?
   end
 
   def healthcare_complete?
-    healthcare.present? && healthcare.complete?
+    healthcare.complete?
   end
 
   def offences_complete?
-    offences.present? && offences.complete?
+    offences.complete?
   end
 end
