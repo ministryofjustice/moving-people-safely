@@ -19,22 +19,22 @@ class Move < ApplicationRecord
       )
   end)
 
-  INCOMPLETE_STATUSES = ['not_started', 'incomplete', 'needs_review']
+  INCOMPLETE_STATUSES = %w[not_started incomplete needs_review]
 
-  scope :with_incomplete_risks, -> {
+  scope :with_incomplete_risks, (lambda do
     joins(:risks).
     where('risks.workflow_status IN (?)', INCOMPLETE_STATUSES)
-  }
+  end)
 
-  scope :with_incomplete_healthcare, -> {
+  scope :with_incomplete_healthcare, (lambda do
     joins(:healthcare).
     where('healthcare.workflow_status IN (?)', INCOMPLETE_STATUSES)
-  }
+  end)
 
-  scope :with_incomplete_offences, -> {
+  scope :with_incomplete_offences, (lambda do
     joins(:offences).
     where('offences.workflow_status IN (?)', INCOMPLETE_STATUSES)
-  }
+  end)
 
   def risks_complete?
     risks.present? && risks.all_questions_answered?
