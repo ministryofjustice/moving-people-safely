@@ -37,6 +37,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in_medical_contact
     save_and_continue
 
+    expect_summary_page_with_completed_healthcare
     expect_profile_page_with_completed_healthcare
 
     go_to_risks_page
@@ -63,6 +64,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in_communication
     save_and_continue
 
+    expect_summary_page_with_completed_risks
     expect_profile_page_with_completed_risks
 
     go_to_offences_page
@@ -183,7 +185,14 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in 'Contact number', with: '079876543'
   end
 
+  def expect_summary_page_with_completed_healthcare
+    within('.status-label--complete') do
+      expect(page).to have_content('Complete')
+    end
+  end
+
   def expect_profile_page_with_completed_healthcare
+    visit profile_path(escort)
     within('#healthcare') do
       expect(page).to have_content('Complete')
       within('.answered_yes') do
@@ -290,7 +299,14 @@ RSpec.feature 'filling in a PER', type: :feature do
     click_button 'Save and continue'
   end
 
+  def expect_summary_page_with_completed_risks
+    within('.status-label--complete') do
+      expect(page).to have_content('Complete')
+    end
+  end
+
   def expect_profile_page_with_completed_risks
+    visit profile_path(escort)
     within('#risks') do
       expect(page).to have_content('Complete')
       within('.answered_yes') do

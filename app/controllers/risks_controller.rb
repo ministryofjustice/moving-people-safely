@@ -31,6 +31,14 @@ class RisksController < ApplicationController
       workflow.update_status(:incomplete)
   end
 
+  def redirect_after_update
+    if params.key?('save_and_view_summary') || !can_skip?
+      redirect_to risk_summary_path(escort)
+    else
+      redirect_to next_wizard_path
+    end
+  end
+
   def form_params
     params[step]
   end
