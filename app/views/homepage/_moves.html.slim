@@ -1,28 +1,28 @@
 .moves
-  - if moves
-    table
+  table
+    tr
+      th.prison_number Prison No.
+      th.name Name
+      th.destination Destination
+      th Risk
+      th Health
+      th Offences
+      th
+    - moves.each do |move|
       tr
-        th.prison_number Prison No.
-        th.name Name
-        th.destination Destination
-        th Risk
-        th Health
-        th Offences
-        th
-      - moves.each do |move|
-        tr
-          td = link_to move.detainee.prison_number, profile_path(move.escort)
-          td
-            span.strong-text
-              | #{move.detainee.surname}
-            span
-              |  #{move.detainee.forenames}
-          td = move.to
-          td.completion-status
-            span class="#{move.risks_complete?}"
-          td.completion-status
-            span class="#{move.healthcare_complete?}"
-          td.completion-status
-            span class="#{move.offences_complete?}"
-          td.print
-             = link_to 'Print', '#'
+        td = link_to move.detainee.prison_number, profile_path(move.escort)
+        td
+          span.strong-text
+            | #{move.detainee.surname}
+          span
+            |  #{move.detainee.forenames}
+        td = move.to
+        td.completion-status
+          span class="#{move.risks_complete?}"
+        td.completion-status
+          span class="#{move.healthcare_complete?}"
+        td.completion-status
+          span class="#{move.offences_complete?}"
+        td.print
+          - if move.complete?
+           = link_to 'Print', '#'
