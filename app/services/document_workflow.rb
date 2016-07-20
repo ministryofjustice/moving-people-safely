@@ -3,6 +3,10 @@ class DocumentWorkflow
 
   WORKFLOW_STATES = %i[ not_started incomplete needs_review complete ]
 
+  WORKFLOW_STATES.each do |state|
+    define_method("is_#{state}?") { model.workflow_status == state.to_s }
+  end
+
   def initialize(model)
     @model = model
   end
