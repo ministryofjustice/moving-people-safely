@@ -23,6 +23,10 @@ class HealthcareController < ApplicationController
     end
   end
 
+  def summary
+    render 'summary/healthcare'
+  end
+
   private
 
   def update_document_workflow
@@ -33,7 +37,7 @@ class HealthcareController < ApplicationController
 
   def redirect_after_update
     if params.key?('save_and_view_summary') || !can_skip?
-      redirect_to healthcare_summary_path(escort)
+      redirect_to summary_healthcare_index_path(escort)
     else
       redirect_to next_wizard_path
     end
