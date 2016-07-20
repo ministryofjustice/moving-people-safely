@@ -1,36 +1,36 @@
 require 'rails_helper'
 
-RSpec.describe Forms::Risks::NonAssociationMarkers, type: :form do
-  let(:model) { Risks.new }
+RSpec.describe Forms::Risk::ConcealedWeapons, type: :form do
+  let(:model) { Risk.new }
   subject { described_class.new(model) }
 
   let(:params) {
     {
-      'non_association_markers' => 'yes',
-      'non_association_markers_details' => 'Prisoner A1234BC and Z9876XY'
+      'conceals_weapons' => 'yes',
+      'conceals_weapons_details' => 'Guns and rifles',
     }
   }
 
   describe 'defaults' do
-    its(:non_association_markers) { is_expected.to eq 'unknown' }
+    its(:conceals_weapons) { is_expected.to eq 'unknown' }
   end
 
   describe '#validate' do
     describe 'nilifies empty strings' do
-      %w[ non_association_markers_details ].each do |attribute|
+      %w[ conceals_weapons_details ].each do |attribute|
         it { is_expected.to nilify_empty_strings_for(attribute) }
       end
     end
 
     it do
       is_expected.
-        to validate_inclusion_of(:non_association_markers).
+        to validate_inclusion_of(:conceals_weapons).
         in_array(%w[ yes no unknown ])
     end
 
-    context 'when non_association_markers is set to yes' do
-      before { subject.non_association_markers = 'yes' }
-      it { is_expected.to validate_presence_of(:non_association_markers_details) }
+    context 'when conceals_weapons is set to yes' do
+      before { subject.conceals_weapons = 'yes' }
+      it { is_expected.to validate_presence_of(:conceals_weapons_details) }
     end
   end
 

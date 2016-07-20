@@ -3,7 +3,7 @@ FactoryGirl.define do
     association :detainee, factory: :detainee, strategy: :build
     association :move, factory: :move, strategy: :build
     association :healthcare, factory: :healthcare, strategy: :build
-    association :risks, factory: :risks, strategy: :build
+    association :risk, factory: :risk, strategy: :build
     association :offences, factory: :offences, strategy: :build
 
     trait :with_past_move do
@@ -18,8 +18,8 @@ FactoryGirl.define do
       association :healthcare, :incomplete, factory: :healthcare, strategy: :build
     end
 
-    trait :with_incomplete_risks do
-      association :risks, :incomplete, factory: :risks, strategy: :build
+    trait :with_incomplete_risk do
+      association :risk, :incomplete, factory: :risk, strategy: :build
     end
 
     trait :with_incomplete_offences do

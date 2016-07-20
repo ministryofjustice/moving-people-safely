@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :risks do
+  factory :risk do
     open_acct 'no'
     suicide 'no'
     rule_45 'no'

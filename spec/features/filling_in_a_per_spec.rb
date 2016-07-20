@@ -40,8 +40,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     expect_summary_page_with_completed_healthcare
     expect_profile_page_with_completed_healthcare
 
-    go_to_risks_page
-    fill_in_risks_to_self
+    go_to_risk_page
+    fill_in_risk_to_self
     save_and_continue
     fill_in_risk_from_others
     save_and_continue
@@ -64,8 +64,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in_communication
     save_and_continue
 
-    expect_summary_page_with_completed_risks
-    expect_profile_page_with_completed_risks
+    expect_summary_page_with_completed_risk
+    expect_profile_page_with_completed_risk
 
     go_to_offences_page
     fill_in_offences
@@ -217,17 +217,17 @@ RSpec.feature 'filling in a PER', type: :feature do
     end
   end
 
-  def go_to_risks_page
-    within('#risks') do
+  def go_to_risk_page
+    within('#risk') do
       click_link 'Edit'
     end
   end
 
-  def fill_in_risks_to_self
-    choose 'risks_to_self_open_acct_yes'
-    fill_in 'risks_to_self[open_acct_details]', with: 'Needs ACCT'
-    choose 'risks_to_self_suicide_yes'
-    fill_in 'risks_to_self[suicide_details]', with: 'Tried twice'
+  def fill_in_risk_to_self
+    choose 'risk_to_self_open_acct_yes'
+    fill_in 'risk_to_self[open_acct_details]', with: 'Needs ACCT'
+    choose 'risk_to_self_suicide_yes'
+    fill_in 'risk_to_self[suicide_details]', with: 'Tried twice'
   end
 
   def fill_in_risk_from_others
@@ -312,15 +312,15 @@ RSpec.feature 'filling in a PER', type: :feature do
     click_button 'Save and continue'
   end
 
-  def expect_summary_page_with_completed_risks
+  def expect_summary_page_with_completed_risk
     within('.status-label--complete') do
       expect(page).to have_content('Complete')
     end
   end
 
-  def expect_profile_page_with_completed_risks
+  def expect_profile_page_with_completed_risk
     visit profile_path(escort)
-    within('#risks') do
+    within('#risk') do
       expect(page).to have_content('Complete')
       within('.answered_yes') do
         expect(page).to have_content('22')

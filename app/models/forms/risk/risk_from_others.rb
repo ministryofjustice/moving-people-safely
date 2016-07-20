@@ -1,5 +1,5 @@
 module Forms
-  module Risks
+  module Risk
     class RiskFromOthers < Forms::Base
       CSRA_TOGGLE_CHOICES = %w[ high standard unknown ]
 

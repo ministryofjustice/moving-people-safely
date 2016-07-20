@@ -1,5 +1,5 @@
 module Forms
-  module Risks
+  module Risk
     class Arson < Forms::Base
       ARSON_VALUES = %w[ high medium low ]
 

@@ -16,5 +16,5 @@
 # end
 
 ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.uncountable %w( move_information healthcare offences risks risk_summary healthcare_summary )
+  inflect.uncountable %w( move_information healthcare offences )
 end

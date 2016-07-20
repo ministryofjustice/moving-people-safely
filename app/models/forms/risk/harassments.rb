@@ -1,5 +1,5 @@
 module Forms
-  module Risks
+  module Risk
     class Harassments < Forms::Base
       optional_field :stalker_harasser_bully
       optional_checkbox :hostage_taker, :stalker_harasser_bully

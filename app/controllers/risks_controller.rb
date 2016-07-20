@@ -2,7 +2,7 @@ class RisksController < ApplicationController
   include Wicked::Wizard
   include Wizardable
 
-  steps :risks_to_self, :risk_from_others, :violence, :harassments,
+  steps :risk_to_self, :risk_from_others, :violence, :harassments,
     :sex_offences, :non_association_markers, :security, :substance_misuse,
     :concealed_weapons, :arson, :communication
 
@@ -19,7 +19,7 @@ class RisksController < ApplicationController
       redirect_after_update
     else
       flash[:form_data] = form_params
-      redirect_to risks_path(escort)
+      redirect_to risk_path(escort)
     end
   end
 
@@ -30,14 +30,14 @@ class RisksController < ApplicationController
   private
 
   def update_document_workflow
-    workflow = DocumentWorkflow.new(risks)
+    workflow = DocumentWorkflow.new(risk)
     workflow.update_status(:complete) ||
       workflow.update_status(:incomplete)
   end
 
   def redirect_after_update
     if params.key?('save_and_view_summary') || !can_skip?
-      redirect_to summary_risks_index_path(escort)
+      redirect_to summary_risks_path(escort)
     else
       redirect_to next_wizard_path
     end
@@ -49,17 +49,17 @@ class RisksController < ApplicationController
 
   def form
     @_form ||= {
-      risks_to_self: Forms::Risks::RisksToSelf,
-      risk_from_others: Forms::Risks::RiskFromOthers,
-      violence: Forms::Risks::Violence,
-      harassments: Forms::Risks::Harassments,
-      sex_offences: Forms::Risks::SexOffences,
-      non_association_markers: Forms::Risks::NonAssociationMarkers,
-      security: Forms::Risks::Security,
-      substance_misuse: Forms::Risks::SubstanceMisuse,
-      concealed_weapons: Forms::Risks::ConcealedWeapons,
-      arson: Forms::Risks::Arson,
-      communication: Forms::Risks::Communication
-    }[step].new(risks)
+      risk_to_self: Forms::Risk::RiskToSelf,
+      risk_from_others: Forms::Risk::RiskFromOthers,
+      violence: Forms::Risk::Violence,
+      harassments: Forms::Risk::Harassments,
+      sex_offences: Forms::Risk::SexOffences,
+      non_association_markers: Forms::Risk::NonAssociationMarkers,
+      security: Forms::Risk::Security,
+      substance_misuse: Forms::Risk::SubstanceMisuse,
+      concealed_weapons: Forms::Risk::ConcealedWeapons,
+      arson: Forms::Risk::Arson,
+      communication: Forms::Risk::Communication
+    }[step].new(risk)
   end
 end

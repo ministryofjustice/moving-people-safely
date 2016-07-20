@@ -1,5 +1,5 @@
 module Forms
-  module Risks
+  module Risk
     class SexOffences < Forms::Base
       VICTIM_VALUES = %w[ adult_male adult_female under_18 ]
 

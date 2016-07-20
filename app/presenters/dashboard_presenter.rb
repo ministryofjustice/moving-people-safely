@@ -10,16 +10,16 @@ class DashboardPresenter
     render_indicator('detainees', 'Detainees', @moves_count)
   end
 
-  def render_risks_indicator
-    if count_of_incomplete_risks == 0
-      cl = 'risks complete'
-      title = 'Risks completed'
+  def render_risk_indicator
+    if count_of_incomplete_risk == 0
+      cl = 'risk complete'
+      title = 'Risk completed'
     else
-      cl = 'risks incomplete'
-      title = 'Incomplete risks'
+      cl = 'risk incomplete'
+      title = 'Incomplete risk'
     end
 
-    render_indicator(cl, title, count_of_incomplete_risks)
+    render_indicator(cl, title, count_of_incomplete_risk)
   end
 
   def render_health_indicator
@@ -59,8 +59,8 @@ class DashboardPresenter
     @moves_count
   end
 
-  def count_of_incomplete_risks
-    moves.with_incomplete_risks.count
+  def count_of_incomplete_risk
+    moves.with_incomplete_risk.count
   end
 
   def count_of_incomplete_healthcare

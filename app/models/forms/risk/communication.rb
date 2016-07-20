@@ -1,5 +1,5 @@
 module Forms
-  module Risks
+  module Risk
     class Communication < Forms::Base
       optional_field :interpreter_required
       property :language, type: StrictString

@@ -30,7 +30,7 @@ en:
         csra: CSRA?
         verbal_abuse: Is the detainee at risk of verbal abuse from others?
         physical_abuse: Is the detainee at risk of physical abuse from others?
-      risks_to_self:
+      risk_to_self:
         open_acct: Open or recent ACCT?
         suicide: Risk of suicide or self-harm?
       security:
@@ -118,7 +118,7 @@ en:
           unknown: Clear selection
         physical_abuse:
           unknown: Clear selection
-      risks_to_self:
+      risk_to_self:
         open_acct:
           unknown: Clear selection
         open_acct_details: Open ACCT details
@@ -203,7 +203,7 @@ en:
         csra_details: Give details
         verbal_abuse_details: Give details
         physical_abuse_details: Give details
-      risks_to_self:
+      risk_to_self:
         open_acct_details: Give details and dates of open or recent ACCTs
         suicide_details: Give details
       security:
@@ -254,7 +254,7 @@ en:
       concealed_weapons: Concealed weapons or other items
       harassments: Risk to others
       non_association_markers: Risk to others
-      risks_to_self: Risk to self
+      risk_to_self: Risk to self
       risk_from_others: Risk from others
       security: Security
       sex_offences: Risk to others
@@ -287,7 +287,7 @@ en:
           csra: Cell Share Risk Assessment
           verbal_abuse: At risk of verbal abuse
           physical_abuse: At risk of physical abuse
-        risks_to_self:
+        risk_to_self:
           open_acct: Open ACCT
           suicide: Risk of suicide or self-harm
         security:
@@ -320,7 +320,7 @@ en:
         needs: Medical health needs
         non_association_markers: Risk to others
         physical: Physical healthcare
-        risks_to_self: Risk to self
+        risk_to_self: Risk to self
         risk_from_others: Risk from others
         security: Security
         sex_offences: "Risk to others: Sex offender"

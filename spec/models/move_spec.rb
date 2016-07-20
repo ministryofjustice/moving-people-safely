@@ -16,13 +16,13 @@ RSpec.describe Move, type: :model do
     end
   end
 
-  describe ".incomplete_risks" do
-    let(:result) { described_class.with_incomplete_risks }
+  describe ".incomplete_risk" do
+    let(:result) { described_class.with_incomplete_risk }
 
-    context "when there are associated incompleted risks records" do
+    context "when there are associated incompleted risk records" do
       it "returns all the Moves with the associated incomplete records" do
         FactoryGirl.create :escort
-        escort = FactoryGirl.create(:escort, :with_incomplete_risks)
+        escort = FactoryGirl.create(:escort, :with_incomplete_risk)
         expect(result.to_a).to eql [escort.move]
       end
     end

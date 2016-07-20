@@ -1,4 +1,4 @@
-class Risks < ApplicationRecord
+class Risk < ApplicationRecord
   include Questionable
 
   QUESTION_FIELDS =
