@@ -47,7 +47,8 @@ Style/CaseEquality:
 Style/DotPosition:
   EnforcedStyle: trailing
 
-Style/LineLength:
+# No-one in this team uses a fixed-width terminal
+Metrics/LineLength:
   Max: 120
 
 # It's not really clearer to replace every if with a return if.
