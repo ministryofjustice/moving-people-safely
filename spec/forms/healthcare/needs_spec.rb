@@ -27,7 +27,6 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
 
   describe 'defaults' do
     its(:dependencies) { is_expected.to eq 'unknown' }
-    its(:has_medications)   { is_expected.to eq 'unknown' }
   end
 
   describe '#validate' do
@@ -50,11 +49,7 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
       it { is_expected.to validate_presence_of(:dependencies_details) }
     end
 
-    it do
-      is_expected.
-        to validate_inclusion_of(:has_medications).
-        in_array(%w[ yes no unknown ])
-    end
+    it { is_expected.to validate_optional_field(:has_medications) }
   end
 
   describe '#save' do
