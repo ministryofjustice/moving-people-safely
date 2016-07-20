@@ -29,7 +29,7 @@ class ValidateOptionalField
       matches?(subject)
 
     unless result
-      set_error "Attribute did not validate inclusion in #{FIELD_OPTIONS.to_sentence}."
+      set_error "Attribute value was not included in: #{FIELD_OPTIONS.to_sentence}."
     end
 
     result
