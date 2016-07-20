@@ -33,9 +33,9 @@
       input type='submit' value='>' name='commit'
 
 dl.status_gauges
-  = dashboard.render_detainees_indicator
-  = dashboard.render_risks_indicator
-  = dashboard.render_health_indicator
-  = dashboard.render_offences_indicator
+  == dashboard.render_detainees_indicator
+  == dashboard.render_risks_indicator
+  == dashboard.render_health_indicator
+  == dashboard.render_offences_indicator
 
 = render partial: 'moves', locals: { moves: dashboard.moves } if dashboard.moves
