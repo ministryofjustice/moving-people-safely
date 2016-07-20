@@ -3,6 +3,7 @@ module FeatureHelpers
     def login
       create_user
       visit root_path
+      binding.pry
       fill_in 'user[email]', with: 'staff@some.prison.com'
       fill_in 'user[password]', with: 'secret123'
       click_button 'Log in'
