@@ -7,7 +7,7 @@ class ValidateOptionalField
 
   def matches?(subject)
     @subject = subject
-    has_default_value && validates_inclusion
+    validates_inclusion
   end
 
   def description
@@ -19,19 +19,6 @@ class ValidateOptionalField
   end
 
   private
-
-  EXPECTED_DEFAULT_VALUE = 'unknown'
-
-  def has_default_value
-    default_value = subject.schema[method_name.to_s][:default].instance_variable_get("@value")
-    result = default_value == EXPECTED_DEFAULT_VALUE
-
-    unless result
-      set_error "Attribute had a default value of #{default_value} instead of #{EXPECTED_DEFAULT_VALUE}."
-    end
-
-    result
-  end
 
   FIELD_OPTIONS = %w[ yes no unknown ]
 
