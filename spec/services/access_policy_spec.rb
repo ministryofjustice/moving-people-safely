@@ -33,7 +33,7 @@ RSpec.describe AccessPolicy do
     end
 
     context "with a previously printed PER" do
-      let(:escort) { double(:escort, workflow_status: 'printed') }
+      let(:escort) { double(:escort, workflow_status: 'issued') }
 
       it "is false" do
         expect(result).to be false
