@@ -25,4 +25,4 @@
           span class="#{move.offences_complete?}"
         td.print
           - if AccessPolicy.print?(escort: move.escort)
-           = link_to 'Print', '#'
+           = link_to 'Print', print_path(move.escort)

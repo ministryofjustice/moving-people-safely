@@ -73,4 +73,38 @@ RSpec.describe DocumentWorkflow do
       end
     end
   end
+
+  describe "#update_status!" do
+    let(:result) { subject.update_status!(new_status) }
+
+    context "when it is not possible to transition to the new state" do
+      before do
+        allow(subject).
+          to receive(:can_transition_to?).
+          and_return(false)
+      end
+      let(:new_status) { :complete }
+
+      it "throws a StateChangeError exception" do
+        expect { result }.to raise_exception 'DocumentWorkflow::StateChangeError'
+      end
+    end
+
+    context "when it is OK to update the status" do
+      before { allow(model).to receive(:update_attribute) }
+      let(:new_status) { :incomplete }
+
+      it "returns the new status" do
+        expect(subject.update_status!(new_status)).to eql new_status
+      end
+    end
+
+    context "with an invalid workflow state" do
+      let(:new_status) { :monkies }
+
+      it "raises an InvalidWorkflowStateError" do
+        expect { result }.to raise_error DocumentWorkflow::InvalidWorkflowStateError
+      end
+    end
+  end
 end

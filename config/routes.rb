@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get :summary, on: :collection
     end
     resource :offences, only: %i[ show update ]
+    get :print, to: 'print#show'
     get :profile, to: 'profiles#show'
   end
 
