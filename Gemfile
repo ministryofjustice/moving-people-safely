@@ -47,8 +47,10 @@ end
 group :test do
   gem 'capybara'
   gem 'codeclimate-test-reporter', require: nil
+  gem 'database_cleaner'
   gem 'launchy'
   gem 'rspec-its'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
 end
