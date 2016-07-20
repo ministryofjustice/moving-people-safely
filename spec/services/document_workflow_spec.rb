@@ -9,18 +9,12 @@ RSpec.describe DocumentWorkflow do
 
       context "model is in #{state} state" do
         let(:initial_status) { state }
-
-        it "is true" do
-          expect(result).to be true
-        end
+        it { expect(result).to be true }
       end
 
       context "model is in a different state" do
         let(:initial_status) { 'not_me' }
-
-        it "is false" do
-          expect(result).to be false
-        end
+        it { expect(result).to be false }
       end
     end
 
