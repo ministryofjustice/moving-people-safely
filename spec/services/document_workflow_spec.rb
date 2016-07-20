@@ -49,7 +49,7 @@ RSpec.describe DocumentWorkflow do
     let(:result) { subject.update_status(new_status) }
 
     context "with an invalid workflow state" do
-      let(:new_status) { 'monkies' }
+      let(:new_status) { :monkies }
 
       it "raises an InvalidWorkflowStateError" do
         expect { result }.to raise_error DocumentWorkflow::InvalidWorkflowStateError
