@@ -52,7 +52,7 @@ class DashboardPresenter
     "<div class='gauge_wrapper #{cl}'>
       <span class='title'>#{title}</span>
       <span class='gauge'><span>#{value}</span></span>
-    </div>".html_safe
+    </div>"
   end
 
   def count_of_detainees
