@@ -23,6 +23,10 @@ class RisksController < ApplicationController
     end
   end
 
+  def summary
+    render 'summary/risk'
+  end
+
   private
 
   def update_document_workflow
@@ -33,7 +37,7 @@ class RisksController < ApplicationController
 
   def redirect_after_update
     if params.key?('save_and_view_summary') || !can_skip?
-      redirect_to risk_summary_path(escort)
+      redirect_to summary_risks_index_path(escort)
     else
       redirect_to next_wizard_path
     end
