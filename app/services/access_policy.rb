@@ -2,7 +2,7 @@ module AccessPolicy
   module_function
 
   def edit?(escort:)
-    escort.workflow_status != 'printed'
+    DocumentWorkflow.new(escort).is_issued?
   end
 
   def print?(escort:)
