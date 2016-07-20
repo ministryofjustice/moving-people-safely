@@ -1,7 +1,7 @@
 class DocumentWorkflow
   class InvalidWorkflowStateError < StandardError; end
 
-  WORKFLOW_STATES = %i[ not_started incomplete needs_review complete issued]
+  WORKFLOW_STATES = %i[ not_started incomplete needs_review complete issued ]
 
   WORKFLOW_STATES.each do |state|
     define_method("is_#{state}?") { model.workflow_status == state.to_s }
