@@ -9,7 +9,7 @@
       th Offences
       th
     - moves.each do |move|
-      tr
+      tr id="prison_number_#{move.detainee.prison_number}"
         - if AccessPolicy.edit?(escort: move.escort)
           td = link_to move.detainee.prison_number, profile_path(move.escort)
         - else
