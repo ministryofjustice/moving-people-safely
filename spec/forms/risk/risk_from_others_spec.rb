@@ -25,12 +25,6 @@ RSpec.describe Forms::Risk::RiskFromOthers, type: :form do
   end
 
   describe '#validate' do
-    describe 'nilifies empty strings' do
-      %w[ rule_45 csra verbal_abuse physical_abuse ].each do |attribute|
-        it { is_expected.to nilify_empty_strings_for(attribute) }
-      end
-    end
-
     it do
       is_expected.
         to validate_inclusion_of(:rule_45).

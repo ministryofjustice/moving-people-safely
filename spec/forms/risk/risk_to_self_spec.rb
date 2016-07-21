@@ -19,12 +19,6 @@ RSpec.describe Forms::Risk::RiskToSelf, type: :form do
   end
 
   describe '#validate' do
-    describe 'nilifies empty strings' do
-      %w[ open_acct suicide ].each do |attribute|
-        it { is_expected.to nilify_empty_strings_for(attribute) }
-      end
-    end
-
     it do
       is_expected.
         to validate_inclusion_of(:open_acct).
