@@ -1,4 +1,4 @@
-class OffencesController < ApplicationController
+class OffencesController < DocumentController
   before_action :add_offence, only: [:update]
 
   def show

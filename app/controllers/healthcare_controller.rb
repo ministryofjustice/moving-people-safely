@@ -1,4 +1,4 @@
-class HealthcareController < ApplicationController
+class HealthcareController < DocumentController
   include Wicked::Wizard
   include Wizardable
 
