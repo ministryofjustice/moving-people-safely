@@ -12,39 +12,9 @@ RSpec.describe Forms::Healthcare::Social, type: :form do
     }.with_indifferent_access
   }
 
-  describe 'defaults' do
-    its(:personal_hygiene) { is_expected.to eq 'unknown' }
-    its(:personal_care) { is_expected.to eq 'unknown' }
-  end
-
   describe '#validate' do
-    describe 'nilifies empty strings' do
-      %w[ personal_hygiene_details personal_care_details ].each do |attribute|
-        it { is_expected.to validate_strict_string(attribute) }
-      end
-    end
-
-    it do
-      is_expected.
-        to validate_inclusion_of(:personal_hygiene).
-        in_array(%w[ yes no unknown ])
-    end
-
-    context 'when personal_hygiene is set to yes' do
-      before { subject.personal_hygiene = 'yes' }
-      it { is_expected.to validate_presence_of(:personal_hygiene_details) }
-    end
-
-    it do
-      is_expected.
-        to validate_inclusion_of(:personal_care).
-        in_array(%w[ yes no unknown ])
-    end
-
-    context 'when personal_care is set to yes' do
-      before { subject.personal_care = 'yes' }
-      it { is_expected.to validate_presence_of(:personal_care_details) }
-    end
+    it { is_expected.to validate_optional_details_field(:personal_hygiene) }
+    it { is_expected.to validate_optional_details_field(:personal_care) }
   end
 
   describe '#save' do
