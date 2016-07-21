@@ -10,27 +10,8 @@ RSpec.describe Forms::Healthcare::Allergies, type: :form do
     }.with_indifferent_access
   }
 
-  describe 'defaults' do
-    its(:allergies) { is_expected.to eq 'unknown' }
-  end
-
   describe '#validate' do
-    describe 'nilifies empty strings' do
-      %w[ allergies_details ].each do |attribute|
-        it { is_expected.to validate_strict_string(attribute) }
-      end
-    end
-
-    it do
-      is_expected.
-        to validate_inclusion_of(:allergies).
-        in_array(%w[ yes no unknown ])
-    end
-
-    context 'when allergies is set to yes' do
-      before { subject.allergies = 'yes' }
-      it { is_expected.to validate_presence_of(:allergies_details) }
-    end
+    it { is_expected.to validate_optional_details_field(:allergies) }
   end
 
   describe '#save' do
