@@ -14,7 +14,7 @@ class PrintController < ApplicationController
   private
 
   def redirect_on_error
-    flash[:error] = "Cannot print this document at this time."
+    flash[:error] = 'Cannot print this document at this time.'
     redirect_back(fallback_location: root_path)
   end
 end
