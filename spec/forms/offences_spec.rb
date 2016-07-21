@@ -55,6 +55,7 @@ RSpec.describe Forms::Offences, type: :form do
     it { is_expected.to validate_string_as_date(:release_date) }
     it { is_expected.to validate_prepopulated_collection :current_offences }
     it { is_expected.to validate_prepopulated_collection :past_offences }
+    it { is_expected.to validate_optional_field(:has_past_offences) }
   end
 
   describe '#save' do
