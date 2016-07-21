@@ -1,10 +1,7 @@
 #risk
-  .float-right
-    - if risk.all_questions_answered?
-      span.status-label.status-label--complete Complete
-    - else
-      span.status-label.status-label--incomplete Incomplete
-    = link_to 'Edit', risk_path(escort, :risk_to_self)
+  = render partial: 'status',
+    locals: { workflow: DocumentWorkflow.new(risk), not_started_path: risk_path(escort, :risk_to_self), summary_path: summary_risks_path(escort) }
+
   h2
     ' Risk
     / small 16:44 | 04 Apr 2016

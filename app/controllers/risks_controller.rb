@@ -27,11 +27,16 @@ class RisksController < DocumentController
     render 'summary/risk'
   end
 
+  def confirm
+    DocumentWorkflow.new(risk).update_status(:complete)
+    redirect_to profile_path(escort)
+  end
+
   private
 
   def update_document_workflow
     workflow = DocumentWorkflow.new(risk)
-    workflow.update_status(:complete) ||
+    workflow.update_status(:needs_review) ||
       workflow.update_status(:incomplete)
   end
 

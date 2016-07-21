@@ -27,11 +27,16 @@ class HealthcareController < DocumentController
     render 'summary/healthcare'
   end
 
+  def confirm
+    DocumentWorkflow.new(healthcare).update_status(:complete)
+    redirect_to profile_path(escort)
+  end
+
   private
 
   def update_document_workflow
     workflow = DocumentWorkflow.new(healthcare)
-    workflow.update_status(:complete) ||
+    workflow.update_status(:needs_review) ||
       workflow.update_status(:incomplete)
   end
 

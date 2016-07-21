@@ -1,13 +1,5 @@
 .summary
-  header
-    h1
-      | Healthcare
-  h3
-    ' Status
-    - if healthcare.all_questions_answered?
-      span.status-label.status-label--complete Complete
-    - else
-      span.status-label.status-label--incomplete Incomplete
+  = render partial: 'summary/status', locals: { workflow: DocumentWorkflow.new(healthcare), title: 'Healthcare' }
 
   = render partial: 'summary/section',
     locals: { presenter: SummaryPresenter.new(healthcare), section: 'physical', questions: %w[ physical_issues ], path: healthcare_path(escort, 'physical') }
@@ -26,3 +18,6 @@
 
   = render partial: 'summary/section',
     locals: { presenter: SummaryPresenter.new(healthcare), section: 'transport', questions: %w[ mpv ], path: healthcare_path(escort, 'transport') }
+
+  - if DocumentWorkflow.new(healthcare).is_needs_review?
+    = render partial: 'summary/confirm_and_save', locals: { path: confirm_healthcare_index_path }

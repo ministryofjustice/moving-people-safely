@@ -6,9 +6,11 @@ Rails.application.routes.draw do
     resource :move_information, only: %i[ show update ], path: 'move-info'
     resources :healthcare, only: %i[ show update ] do
       get :summary, on: :collection
+      put :confirm, on: :collection
     end
     resources :risks, only: %i[ show update ], path: 'risk' do
       get :summary, on: :collection
+      put :confirm, on: :collection
     end
     resource :offences, only: %i[ show update ]
     get :print, to: 'print#show'
