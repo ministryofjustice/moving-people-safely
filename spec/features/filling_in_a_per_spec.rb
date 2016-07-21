@@ -7,7 +7,7 @@ RSpec.feature 'filling in a PER', type: :feature do
 
   scenario 'adding a new escort and filling it in' do
     login
-
+    binding.pry
     search_prisoner
     create_new_detainee_profile
     expect_prison_number_to_be_autofilled
