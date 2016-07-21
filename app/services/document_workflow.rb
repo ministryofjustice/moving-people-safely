@@ -1,5 +1,6 @@
 class DocumentWorkflow
   class InvalidWorkflowStateError < StandardError; end
+  class StateChangeError < RuntimeError; end
 
   WORKFLOW_STATES = %i[ not_started incomplete needs_review complete issued ]
 
@@ -22,6 +23,11 @@ class DocumentWorkflow
     end
   end
 
+  def update_status!(new_status)
+    fail StateChangeError unless update_status(new_status)
+    new_status
+  end
+
   private
 
   attr_reader :model
@@ -39,6 +45,10 @@ class DocumentWorkflow
     else
       true
     end
+  end
+
+  def can_transition_to_issued?
+    model.is_a?(Escort) && model.move.complete?
   end
 
   def can_transition_to_complete?

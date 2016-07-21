@@ -17,12 +17,18 @@
           span
             |  #{move.detainee.forenames}
         td = move.to
-        td.completion-status
-          span class="#{move.risk_complete?}"
-        td.completion-status
-          span class="#{move.healthcare_complete?}"
-        td.completion-status
-          span class="#{move.offences_complete?}"
-        td.print
-          - if AccessPolicy.print?(escort: move.escort)
-           = link_to 'Print', '#'
+        - if DocumentWorkflow.new(move.escort).is_issued?
+          td.issued colspan=3
+            | Issued
+          td.print
+            = link_to 'Reprint', print_path(move.escort)
+        - else
+          td.completion-status
+            span class="#{move.risk_complete?}"
+          td.completion-status
+            span class="#{move.healthcare_complete?}"
+          td.completion-status
+            span class="#{move.offences_complete?}"
+          td.print
+            - if AccessPolicy.print?(escort: move.escort)
+             = link_to 'Print', print_path(move.escort)
