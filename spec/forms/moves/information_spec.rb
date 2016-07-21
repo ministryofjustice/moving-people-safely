@@ -40,7 +40,7 @@ RSpec.describe Forms::Moves::Information, type: :form do
 
     describe 'nilifies empty strings' do
       %w[ from to reason ].each do |attribute|
-        it { is_expected.to nilify_empty_strings_for(attribute) }
+        it { is_expected.to validate_strict_string(attribute) }
       end
     end
 

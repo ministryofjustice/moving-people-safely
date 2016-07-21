@@ -37,7 +37,7 @@ RSpec.describe Forms::Risk::Security, type: :form do
           other_escape_risk_info_details
           category_a_details
           restricted_status_details ].each do |attribute|
-        it { is_expected.to nilify_empty_strings_for(attribute) }
+        it { is_expected.to validate_strict_string(attribute) }
       end
     end
 

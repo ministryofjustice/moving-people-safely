@@ -16,7 +16,7 @@ RSpec.describe Forms::Healthcare::Medication, type: :form do
   describe '#validate' do
     describe 'nilifies empty strings' do
       %w[ description administration ].each do |attribute|
-        it { is_expected.to nilify_empty_strings_for(attribute) }
+        it { is_expected.to validate_strict_string(attribute) }
       end
     end
 
