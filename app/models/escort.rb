@@ -3,7 +3,7 @@ class Escort < ApplicationRecord
   has_one :move, dependent: :destroy
   has_one :healthcare, dependent: :destroy
   has_one :offences, dependent: :destroy
-  has_one :risks, dependent: :destroy
+  has_one :risk, dependent: :destroy
 
   def self.find_detainee_by_prison_number(number)
     joins(:detainee).where(detainees: { prison_number: number }).first
@@ -14,7 +14,7 @@ class Escort < ApplicationRecord
       escort.build_detainee(prison_number: prison_number)
       escort.build_healthcare
       escort.build_offences
-      escort.build_risks
+      escort.build_risk
       escort.save!
     end
   end

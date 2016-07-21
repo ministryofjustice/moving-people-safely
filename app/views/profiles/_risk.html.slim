@@ -1,25 +1,25 @@
-#risks
+#risk
   .float-right
-    - if risks.all_questions_answered?
+    - if risk.all_questions_answered?
       span.status-label.status-label--complete Complete
     - else
       span.status-label.status-label--incomplete Incomplete
-    = link_to 'Edit', risks_path(escort, :risks_to_self)
+    = link_to 'Edit', risk_path(escort, :risk_to_self)
   h2
     ' Risk
     / small 16:44 | 04 Apr 2016
-  - unless risks.no_questions_answered?
+  - unless risk.no_questions_answered?
     .info-table.info-table-big
       .grid-row
         .column-one-sixth.answered_yes
-          small Risks
-          p = risks.questions_answered_yes
+          small Risk
+          p = risk.questions_answered_yes
         .column-one-sixth.answered_no
           small No risk
-          p = risks.questions_answered_no
-        - unless risks.all_questions_answered?
+          p = risk.questions_answered_no
+        - unless risk.all_questions_answered?
           .column-one-sixth.text-error.not_answered
             small Missing
-            p = risks.questions_not_answered
+            p = risk.questions_not_answered
   - else
     hr

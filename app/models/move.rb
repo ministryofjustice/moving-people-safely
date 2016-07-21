@@ -5,7 +5,7 @@ class Move < ApplicationRecord
   has_one :detainee, through: :escort
   has_one :healthcare, through: :escort
   has_one :offences, through: :escort
-  has_one :risks, through: :escort
+  has_one :risk, through: :escort
 
   scope :for_date, (lambda do |search_date|
     where(date: search_date).
@@ -15,14 +15,14 @@ class Move < ApplicationRecord
         :escort,
         :healthcare,
         :offences,
-        :risks
+        :risk
       )
   end)
 
   INCOMPLETE_STATUSES = %w[not_started incomplete needs_review]
 
-  scope :with_incomplete_risks, (lambda do
-    joins(:risks).
+  scope :with_incomplete_risk, (lambda do
+    joins(:risk).
     where('risks.workflow_status IN (?)', INCOMPLETE_STATUSES)
   end)
 
@@ -37,13 +37,13 @@ class Move < ApplicationRecord
   end)
 
   def complete?
-    risks_complete? &&
+    risk_complete? &&
       healthcare_complete? &&
       offences_complete?
   end
 
-  def risks_complete?
-    risks.complete?
+  def risk_complete?
+    risk.complete?
   end
 
   def healthcare_complete?

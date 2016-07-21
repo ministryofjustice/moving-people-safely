@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Forms::Risks::SexOffences, type: :form do
-  let(:model) { Risks.new }
+RSpec.describe Forms::Risk::SexOffences, type: :form do
+  let(:model) { Risk.new }
   subject { described_class.new(model) }
 
   let(:params) {

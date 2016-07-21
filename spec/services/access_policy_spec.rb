@@ -15,7 +15,7 @@ RSpec.describe AccessPolicy do
     end
 
     context "PER is incomplete" do
-      let(:escort) { create(:escort, :with_incomplete_risks) }
+      let(:escort) { create(:escort, :with_incomplete_risk) }
 
       it "is false" do
         expect(result).to be false

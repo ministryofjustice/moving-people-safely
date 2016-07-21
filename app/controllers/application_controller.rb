@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
-  helper_method :escort, :offences, :risks, :healthcare, :detainee, :move
+  helper_method :escort, :offences, :risk, :healthcare, :detainee, :move
 
   def move
     escort.move
@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
     escort.offences
   end
 
-  def risks
-    escort.risks
+  def risk
+    escort.risk
   end
 
   def healthcare

@@ -34,11 +34,11 @@ RSpec.describe Escort, type: :model do
       expect(offences).to be_destroyed
     end
 
-    it "creates an associated risks record" do
-      risks = result.risks
-      expect(risks).to be_a Risks
+    it "creates an associated risk record" do
+      risk = result.risk
+      expect(risk).to be_a Risk
       result.destroy
-      expect(risks).to be_destroyed
+      expect(risk).to be_destroyed
     end
   end
 

@@ -14,7 +14,7 @@ namespace :dev do
   desc 'creates some escorts for todays date'
   task escorts: :environment do
     10.times do
-      completenesses = %w[healthcare risks offences].shuffle.take(rand(4)).map { |w| "with_incomplete_#{w}".to_sym }
+      completenesses = %w[healthcare risk offences].shuffle.take(rand(4)).map { |w| "with_incomplete_#{w}".to_sym }
       e = FactoryGirl.create(:escort, *completenesses)
       puts "Creating #{e.detainee.forenames} #{e.detainee.surname} #{completenesses}"
     end

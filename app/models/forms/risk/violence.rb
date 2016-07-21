@@ -1,5 +1,5 @@
 module Forms
-  module Risks
+  module Risk
     class Violence < Forms::Base
       optional_field :violent
       optional_checkbox :prison_staff, :violent

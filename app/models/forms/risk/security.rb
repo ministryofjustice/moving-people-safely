@@ -1,5 +1,5 @@
 module Forms
-  module Risks
+  module Risk
     class Security < Forms::Base
       optional_details_field :current_e_risk
       optional_details_field :escape_list

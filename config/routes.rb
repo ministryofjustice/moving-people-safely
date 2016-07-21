@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :healthcare, only: %i[ show update ] do
       get :summary, on: :collection
     end
-    resources :risks, only: %i[ show update ] do
+    resources :risks, only: %i[ show update ], path: 'risk' do
       get :summary, on: :collection
     end
     resource :offences, only: %i[ show update ]
