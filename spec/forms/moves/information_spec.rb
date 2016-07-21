@@ -36,6 +36,7 @@ RSpec.describe Forms::Moves::Information, type: :form do
 
   describe '#validate' do
     it { is_expected.to validate_prepopulated_collection :destinations }
+    it { is_expected.to validate_optional_field(:has_destinations) }
 
     describe 'nilifies empty strings' do
       %w[ from to reason ].each do |attribute|
@@ -70,12 +71,6 @@ RSpec.describe Forms::Moves::Information, type: :form do
       is_expected.
         to validate_inclusion_of(:reason).
         in_array(subject.reasons)
-    end
-
-    it do
-      is_expected.
-        to validate_inclusion_of(:has_destinations).
-        in_array(%w[ yes no unknown ])
     end
 
     context 'when reason is other' do

@@ -16,7 +16,6 @@ RSpec.describe Forms::Risk::Communication, type: :form do
   }
 
   describe 'defaults' do
-    its(:interpreter_required) { is_expected.to eq 'unknown' }
     its(:hearing_speach_sight) { is_expected.to eq 'unknown' }
     its(:can_read_and_write) { is_expected.to eq 'unknown' }
   end
@@ -28,15 +27,13 @@ RSpec.describe Forms::Risk::Communication, type: :form do
       end
     end
 
-    it do
-      is_expected.
-        to validate_inclusion_of(:interpreter_required).
-        in_array(%w[ yes no unknown ])
-    end
+    context "for the 'interpreter_required' attribute" do
+      it { is_expected.to validate_optional_field(:interpreter_required) }
 
-    context 'when interpreter_required is set to yes' do
-      before { subject.interpreter_required = 'yes' }
-      it { is_expected.to validate_presence_of(:language) }
+      context 'when interpreter_required is set to yes' do
+        before { subject.interpreter_required = 'yes' }
+        it { is_expected.to validate_presence_of(:language) }
+      end
     end
 
     it do

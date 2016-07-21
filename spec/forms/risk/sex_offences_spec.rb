@@ -12,10 +12,6 @@ RSpec.describe Forms::Risk::SexOffences, type: :form do
     }
   }
 
-  describe 'defaults' do
-    its(:sex_offence) { is_expected.to eq 'unknown' }
-  end
-
   describe '#validate' do
     describe 'nilifies empty strings' do
       %w[ sex_offence_details ].each do |attribute|
@@ -23,21 +19,19 @@ RSpec.describe Forms::Risk::SexOffences, type: :form do
       end
     end
 
-    it do
-      is_expected.
-        to validate_inclusion_of(:sex_offence).
-        in_array(%w[ yes no unknown ])
+    context "for the 'sex_offence' attribute" do
+      it { is_expected.to validate_optional_field(:sex_offence) }
+
+      context 'when sex_offence is set to yes' do
+        before { subject.sex_offence = 'yes' }
+        it { is_expected.to validate_presence_of(:sex_offence_details) }
+      end
     end
 
     it do
       is_expected.
         to validate_inclusion_of(:sex_offence_victim).
         in_array(%w[ adult_male adult_female under_18 ])
-    end
-
-    context 'when sex_offence is set to yes' do
-      before { subject.sex_offence = 'yes' }
-      it { is_expected.to validate_presence_of(:sex_offence_details) }
     end
   end
 

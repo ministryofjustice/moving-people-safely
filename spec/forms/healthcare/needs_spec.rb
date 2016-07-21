@@ -31,6 +31,7 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
 
   describe '#validate' do
     it { is_expected.to validate_prepopulated_collection :medications }
+    it { is_expected.to validate_optional_field(:has_medications) }
 
     describe 'nilifies empty strings' do
       %w[ dependencies_details ].each do |attribute|
@@ -48,8 +49,6 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
       before { subject.dependencies = 'yes' }
       it { is_expected.to validate_presence_of(:dependencies_details) }
     end
-
-    it { is_expected.to validate_optional_field(:has_medications) }
   end
 
   describe '#save' do
