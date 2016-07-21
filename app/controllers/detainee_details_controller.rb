@@ -1,4 +1,4 @@
-class DetaineeDetailsController < ApplicationController
+class DetaineeDetailsController < DocumentController
   def show
     form.validate(flash[:form_data]) if flash[:form_data]
     render :show, locals: { form: form }
