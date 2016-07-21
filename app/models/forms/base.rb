@@ -23,7 +23,7 @@ module Forms
       end
 
       def optional_field(field_name)
-        property(field_name, type: StrictString, default: DEFAULT_CHOICE)
+        property(field_name, type: String, default: DEFAULT_CHOICE)
         validates field_name,
           inclusion: { in: TOGGLE_CHOICES },
           allow_blank: true

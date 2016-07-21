@@ -17,12 +17,6 @@ RSpec.describe Forms::Risk::Violence, type: :form do
   end
 
   describe '#validate' do
-    describe 'nilifies empty strings' do
-      %w[ violent ].each do |attribute|
-        it { is_expected.to nilify_empty_strings_for(attribute) }
-      end
-    end
-
     it do
       is_expected.
         to validate_inclusion_of(:violent).
