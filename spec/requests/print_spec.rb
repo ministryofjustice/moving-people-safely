@@ -16,10 +16,6 @@ RSpec.describe 'PrintController', type: :request do
       it "redirects to the home page" do
         expect(response).to redirect_to root_path
       end
-
-      it "sets a flash notice" do
-        expect(flash.keys).to include 'notice'
-      end
     end
 
     context "with an incomplete PER" do
@@ -31,10 +27,6 @@ RSpec.describe 'PrintController', type: :request do
 
       it "redirects back to the referring page" do
         expect(response).to redirect_to 'prev_page'
-      end
-
-      it "sets an error flash" do
-        expect(flash.keys).to include 'error'
       end
     end
   end
