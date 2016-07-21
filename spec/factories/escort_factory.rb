@@ -25,5 +25,9 @@ FactoryGirl.define do
     trait :with_incomplete_offences do
       association :offences, :incomplete, factory: :offences, strategy: :build
     end
+
+    trait :previously_issued do
+      workflow_status 'issued'
+    end
   end
 end

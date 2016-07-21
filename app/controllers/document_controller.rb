@@ -11,7 +11,7 @@ class DocumentController < ApplicationController
     to: :escort
 
   def escort
-    @escort ||= Escort.find(params[:escort_id])
+    @escort ||= Escort.find params[:escort_id]
   end
 
   private
