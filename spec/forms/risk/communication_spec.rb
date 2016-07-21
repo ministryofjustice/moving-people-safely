@@ -15,17 +15,8 @@ RSpec.describe Forms::Risk::Communication, type: :form do
     }
   }
 
-  describe 'defaults' do
-    its(:hearing_speach_sight) { is_expected.to eq 'unknown' }
-    its(:can_read_and_write) { is_expected.to eq 'unknown' }
-  end
-
   describe '#validate' do
-    describe 'nilifies empty strings' do
-      %w[ language hearing_speach_sight_details can_read_and_write_details ].each do |attribute|
-        it { is_expected.to validate_strict_string(attribute) }
-      end
-    end
+    it { is_expected.to validate_strict_string(:language) }
 
     context "for the 'interpreter_required' attribute" do
       it { is_expected.to validate_optional_field(:interpreter_required) }
@@ -36,27 +27,8 @@ RSpec.describe Forms::Risk::Communication, type: :form do
       end
     end
 
-    it do
-      is_expected.
-        to validate_inclusion_of(:hearing_speach_sight).
-        in_array(%w[ yes no unknown ])
-    end
-
-    context 'when hearing_speach_sight is set to yes' do
-      before { subject.hearing_speach_sight = 'yes' }
-      it { is_expected.to validate_presence_of(:hearing_speach_sight_details) }
-    end
-
-    it do
-      is_expected.
-        to validate_inclusion_of(:can_read_and_write).
-        in_array(%w[ yes no unknown ])
-    end
-
-    context 'when can_read_and_write is set to yes' do
-      before { subject.can_read_and_write = 'yes' }
-      it { is_expected.to validate_presence_of(:can_read_and_write_details) }
-    end
+    it { is_expected.to validate_optional_details_field(:hearing_speach_sight) }
+    it { is_expected.to validate_optional_details_field(:can_read_and_write) }
   end
 
   describe '#save' do

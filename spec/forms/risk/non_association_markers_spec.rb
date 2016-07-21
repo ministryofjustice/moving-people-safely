@@ -11,27 +11,8 @@ RSpec.describe Forms::Risk::NonAssociationMarkers, type: :form do
     }
   }
 
-  describe 'defaults' do
-    its(:non_association_markers) { is_expected.to eq 'unknown' }
-  end
-
   describe '#validate' do
-    describe 'nilifies empty strings' do
-      %w[ non_association_markers_details ].each do |attribute|
-        it { is_expected.to validate_strict_string(attribute) }
-      end
-    end
-
-    it do
-      is_expected.
-        to validate_inclusion_of(:non_association_markers).
-        in_array(%w[ yes no unknown ])
-    end
-
-    context 'when non_association_markers is set to yes' do
-      before { subject.non_association_markers = 'yes' }
-      it { is_expected.to validate_presence_of(:non_association_markers_details) }
-    end
+    it { is_expected.to validate_optional_details_field(:non_association_markers) }
   end
 
   describe '#save' do
