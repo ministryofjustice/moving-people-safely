@@ -120,23 +120,6 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
     end
   end
 
-  describe '#prepopulate!' do
-    context 'when medications are empty' do
-      it 'adds a new medication to the collection' do
-        expect { subject.prepopulate! }.
-          to change { subject.medications.size }.from(0).to(1)
-      end
-    end
-
-    context 'when at least one medication exists' do
-      it 'it doesnt alter the collection' do
-        subject.medications << Medication.new
-        expect { subject.prepopulate! }.
-          not_to change { subject.medications.size }
-      end
-    end
-  end
-
   describe '#add_medication' do
     it 'adds a new medication to the collection' do
       expect { subject.add_medication }.

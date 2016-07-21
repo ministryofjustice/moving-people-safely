@@ -171,23 +171,6 @@ RSpec.describe Forms::Moves::Information, type: :form do
     end
   end
 
-  describe '#prepopulate!' do
-    context 'when destinations are empty' do
-      it 'adds a new destination to the collection' do
-        expect { subject.prepopulate! }.
-          to change { subject.destinations.size }.from(0).to(1)
-      end
-    end
-
-    context 'when at least one destination exists' do
-      it 'it doesnt alter the collection' do
-        subject.destinations << Destination.new
-        expect { subject.prepopulate! }.
-          not_to change { subject.destinations.size }
-      end
-    end
-  end
-
   describe '#add_destination' do
     it 'adds a new destination to the collection' do
       expect { subject.add_destination }.
