@@ -18,7 +18,7 @@ RSpec.describe Forms::Risk::ConcealedWeapons, type: :form do
   describe '#validate' do
     describe 'nilifies empty strings' do
       %w[ conceals_weapons_details ].each do |attribute|
-        it { is_expected.to nilify_empty_strings_for(attribute) }
+        it { is_expected.to validate_strict_string(attribute) }
       end
     end
 

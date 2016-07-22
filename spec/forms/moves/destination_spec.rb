@@ -20,7 +20,7 @@ RSpec.describe Forms::Moves::Destination, type: :form do
   describe '#validate' do
     describe 'nilifies empty strings' do
       %w[ establishment must_return reasons ].each do |attribute|
-        it { is_expected.to nilify_empty_strings_for(attribute) }
+        it { is_expected.to validate_strict_string(attribute) }
       end
     end
 
