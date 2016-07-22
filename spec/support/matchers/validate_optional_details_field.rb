@@ -10,8 +10,8 @@ class ValidateOptionalDetailsField
     @original_subject = original_subject
 
     %i[ validate_optional_field
-        validates_presence_of_details_when_option_field_positive
-        doesnt_validate_presence_of_details_when_option_field_negative
+        validates_presence_of_details_field_when_option_field_positive
+        doesnt_validate_presence_of_details_field_when_option_field_negative
         validates_details_field_as_strict_string
     ].map { |assertion_name| reset_subject && send(assertion_name) }.all?
   end
@@ -31,6 +31,7 @@ class ValidateOptionalDetailsField
   end
 
   def reset_subject
+    # We need a fresh subject as Reform maintains errors across validations
     @subject = @original_subject.class.new(@original_subject.model)
   end
 
@@ -51,7 +52,7 @@ class ValidateOptionalDetailsField
     PresenceMatcher.new(details_field_method_name).matches?(subject)
   end
 
-  def validates_presence_of_details_when_option_field_positive
+  def validates_presence_of_details_field_when_option_field_positive
     result = perform_presence_validation_on_details_field(option_field_value: 'yes')
 
     unless result
@@ -61,7 +62,7 @@ class ValidateOptionalDetailsField
     result
   end
 
-  def doesnt_validate_presence_of_details_when_option_field_negative
+  def doesnt_validate_presence_of_details_field_when_option_field_negative
     %w[ no unknown ].reduce([]) do |acc, option_field_value|
       reset_subject
 
