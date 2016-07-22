@@ -1,0 +1,16 @@
+.status
+  - if workflow.is_not_started?
+    span.status-label.status-label--incomplete Incomplete
+    = link_to 'Edit', not_started_path
+
+  - elsif workflow.is_incomplete?
+    span.status-label.status-label--incomplete Incomplete
+    = link_to 'Edit', summary_path
+
+  - elsif workflow.is_needs_review?
+    span.status-label.status-label--incomplete Review
+    = link_to 'Edit', summary_path
+
+  - elsif workflow.is_complete?
+    span.status-label.status-label--complete Complete
+    = link_to 'Edit', summary_path

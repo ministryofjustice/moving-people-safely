@@ -1,10 +1,7 @@
 #offences
-  .float-right
-    - if offences.all_questions_answered?
-      span.status-label.status-label--complete Complete
-    - else
-      span.status-label.status-label--incomplete Incomplete
-    = link_to 'Edit', offences_path(escort)
+  = render partial: 'status',
+    locals: { workflow: DocumentWorkflow.new(offences), not_started_path: offences_path(escort), summary_path: offences_path(escort) }
+
   h2
     ' Offences
     / small 16:44 | 04 Apr 2016

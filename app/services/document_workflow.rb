@@ -54,4 +54,8 @@ class DocumentWorkflow
   def can_transition_to_complete?
     model.all_questions_answered?
   end
+
+  def can_transition_to_needs_review?
+    model.all_questions_answered?
+  end
 end

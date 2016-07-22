@@ -37,7 +37,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in_medical_contact
     save_and_continue
 
-    expect_summary_page_with_completed_healthcare
+    review_summary_page
+
     expect_profile_page_with_completed_healthcare
 
     go_to_risk_page
@@ -64,7 +65,8 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in_communication
     save_and_continue
 
-    expect_summary_page_with_completed_risk
+    review_summary_page
+
     expect_profile_page_with_completed_risk
 
     go_to_offences_page
@@ -145,10 +147,6 @@ RSpec.feature 'filling in a PER', type: :feature do
     end
   end
 
-  def save
-    click_button 'Save'
-  end
-
   def go_to_healthcare_page
     within('#healthcare') do
       click_link 'Edit'
@@ -196,12 +194,6 @@ RSpec.feature 'filling in a PER', type: :feature do
   def fill_in_medical_contact
     fill_in 'Healthcare professional', with: 'Doctor Robert'
     fill_in 'Contact number', with: '079876543'
-  end
-
-  def expect_summary_page_with_completed_healthcare
-    within('.status-label--complete') do
-      expect(page).to have_content('Complete')
-    end
   end
 
   def expect_profile_page_with_completed_healthcare
@@ -308,16 +300,6 @@ RSpec.feature 'filling in a PER', type: :feature do
     fill_in 'communication[can_read_and_write_details]', with: 'Can only read'
   end
 
-  def save_and_continue
-    click_button 'Save and continue'
-  end
-
-  def expect_summary_page_with_completed_risk
-    within('.status-label--complete') do
-      expect(page).to have_content('Complete')
-    end
-  end
-
   def expect_profile_page_with_completed_risk
     visit profile_path(escort)
     within('#risk') do
@@ -355,6 +337,7 @@ RSpec.feature 'filling in a PER', type: :feature do
 
   def expect_profile_page_with_completed_offences
     within('#offences') do
+      expect(page).to have_content('Complete')
       expect(page).to have_content('Burglary')
       expect(page).to have_content('Attempted murder')
       expect(page).to have_content('Arson')
@@ -371,6 +354,18 @@ RSpec.feature 'filling in a PER', type: :feature do
       expect(page).to have_content('Details for Rule 45')
       expect(page).to have_content('Category A information')
     end
+  end
+
+  def save
+    click_button 'Save'
+  end
+
+  def save_and_continue
+    click_button 'Save and continue'
+  end
+
+  def review_summary_page
+    click_button 'Confirm and save'
   end
 
   def escort
