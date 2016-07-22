@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'feature_helper'
 
 RSpec.feature 'filling in a PER', type: :feature do
   around(:each) do |example|
@@ -6,7 +6,12 @@ RSpec.feature 'filling in a PER', type: :feature do
   end
 
   scenario 'adding a new escort and filling it in' do
-    login
+    app = App.new
+    app.login
+
+    detainee = build(:detainee)
+
+    app.dashboard.search_for_detainee(detainee.prison_number)
     binding.pry
     search_prisoner
     create_new_detainee_profile

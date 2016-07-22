@@ -23,8 +23,14 @@ class DatePickerSection < SitePrism::Section
 end
 
 class DashboardPage < SitePrism::Page
+  set_url '/'
   section :detainee_search, DetaineeSearchSection, '.search_module'
   sections :search_results, DetaineeSearchResultsSection, '.search_module table tr'
 
   section :date_picker, DatePickerSection, '.date-picker'
+
+  def search_for_detainee(prison_number)
+    search_field.set prison_number
+    search_button.click
+  end
 end

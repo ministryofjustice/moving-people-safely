@@ -3,10 +3,10 @@ FactoryGirl.define do
     forenames { Faker::Name.first_name }
     surname { Faker::Name.last_name }
     date_of_birth { Faker::Date.between(80.years.ago, 20.years.ago) }
-    gender 'male'
+    gender { %w[ male female ].sample }
     nationalities 'American'
-    pnc_number '1234'
-    cro_number '9876'
+    pnc_number { rand(9999) }
+    cro_number { rand(9999) }
     aliases { Faker::Name.name }
     prison_number do
         a = 3.times.map { ('A'..'Z').to_a.sample }
