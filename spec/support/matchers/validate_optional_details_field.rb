@@ -9,9 +9,9 @@ class ValidateOptionalDetailsField
   def matches?(original_subject)
     @original_subject = original_subject
 
-    %i[
-        validate_optional_field
+    %i[ validate_optional_field
         validates_presence_of_details_when_option_field_positive
+        doesnt_validate_presence_of_details_when_option_field_negative
         details_field_nilifies_empty_strings
     ].map { |assertion_name| reset_subject && send(assertion_name) }.all?
   end
@@ -45,15 +45,34 @@ class ValidateOptionalDetailsField
 
   PresenceMatcher = Shoulda::Matchers::ActiveModel::ValidatePresenceOfMatcher
 
-  def validate_presence_of_details_field
-    subject.public_send("#{method_name}=", 'yes')
+  def perform_presence_validation_on_details_field(option_field_value:)
+    subject.public_send("#{method_name}=", option_field_value)
+    subject.public_send("#{details_field_method_name}=", nil)
+    PresenceMatcher.new(details_field_method_name).matches?(subject)
+  end
 
-    validator = PresenceMatcher.new(details_field_method_name)
-    result = validator.matches?(subject)
+  def validates_presence_of_details_when_option_field_positive
+    result = perform_presence_validation_on_details_field(option_field_value: 'yes')
 
-    set_error validator.failure_message unless result
+    unless result
+      set_error "Should not be able to set #{details_field_method_name} value to nil/empty string when the option field is set to: yes"
+    end
 
     result
+  end
+
+  def doesnt_validate_presence_of_details_when_option_field_negative
+    %w[ no unknown ].reduce([]) do |acc, option_field_value|
+      reset_subject
+
+      result = !perform_presence_validation_on_details_field(option_field_value: option_field_value)
+
+      unless result
+        set_error "Should be acceptable to set #{details_field_method_name} value to nil/empty string when the option field is set to: #{option_field_value}."
+      end
+
+      acc << result
+    end.all?
   end
 
   def details_field_nilifies_empty_strings
