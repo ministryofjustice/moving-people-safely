@@ -1,16 +1,19 @@
 class ValidateOptionalDetailsField
-  attr_reader :subject, :method_name, :details_field_method_name, :error
+  attr_reader :method_name, :details_field_method_name, :error
 
   def initialize(method_name)
     @method_name = method_name
     @details_field_method_name = "#{method_name}_details"
   end
 
-  def matches?(subject)
-    @subject = subject
-    validate_optional_field &&
-      validate_presence_of_details_field &&
-      details_field_nilifies_empty_strings
+  def matches?(original_subject)
+    @original_subject = original_subject
+
+    %i[
+        validate_optional_field
+        validates_presence_of_details_when_option_field_positive
+        details_field_nilifies_empty_strings
+    ].map { |assertion_name| reset_subject && send(assertion_name) }.all?
   end
 
   def description
@@ -22,6 +25,14 @@ class ValidateOptionalDetailsField
   end
 
   private
+
+  def subject
+    @subject
+  end
+
+  def reset_subject
+    @subject = @original_subject.class.new(@original_subject.model)
+  end
 
   def validate_optional_field
     validator = ValidateOptionalField.new(method_name)
