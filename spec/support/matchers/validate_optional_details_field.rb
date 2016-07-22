@@ -12,7 +12,7 @@ class ValidateOptionalDetailsField
     %i[ validate_optional_field
         validates_presence_of_details_when_option_field_positive
         doesnt_validate_presence_of_details_when_option_field_negative
-        details_field_nilifies_empty_strings
+        validates_details_field_as_strict_string
     ].map { |assertion_name| reset_subject && send(assertion_name) }.all?
   end
 
@@ -75,13 +75,11 @@ class ValidateOptionalDetailsField
     end.all?
   end
 
-  def details_field_nilifies_empty_strings
-    subject.public_send("#{details_field_method_name}=", '')
-    result = subject.public_send(details_field_method_name).nil?
+  def validates_details_field_as_strict_string
+    validator = ValidateStrictString.new(details_field_method_name)
+    result = validator.matches?(subject)
 
-    unless result
-      set_error "Attribute #{details_field_method_name} should not be able to be set as an empty string."
-    end
+    set_error validator.failure_message unless result
 
     result
   end
