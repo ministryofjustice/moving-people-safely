@@ -25,4 +25,12 @@ class App
   def profile
     @_profile ||= ProfilePage.new
   end
+
+  def healthcare
+    @_healthcare ||= HealthcarePage.new
+  end
+
+  def risk
+    @_risk ||= RiskPage.new
+  end
 end

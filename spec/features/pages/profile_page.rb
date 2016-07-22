@@ -6,7 +6,6 @@ class ProfilePage < SitePrism::Page
 
   def confirm_move_info(move)
     Capybara.within('.move-information') do
-      binding.pry
       # expect(page).to have_link('Edit', href: move_information_path(escort))
       expect(page).to have_content move.to
       expect(page).to have_content move.date.strftime('%d %b %Y')
@@ -27,6 +26,18 @@ class ProfilePage < SitePrism::Page
       expect(page).to have_content detainee.cro_number
       expect(page).to have_content detainee.aliases
       expect(page).to have_content age(detainee.date_of_birth)
+    end
+  end
+
+  def edit_healthcare
+    Capybara.within('#healthcare') do
+      click_link 'Edit'
+    end
+  end
+
+  def edit_risk
+    Capybara.within('#risk') do
+      click_link 'Edit'
     end
   end
 
