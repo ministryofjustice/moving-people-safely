@@ -25,30 +25,10 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
     }.with_indifferent_access
   }
 
-  describe 'defaults' do
-    its(:dependencies) { is_expected.to eq 'unknown' }
-  end
-
   describe '#validate' do
     it { is_expected.to validate_prepopulated_collection :medications }
     it { is_expected.to validate_optional_field(:has_medications) }
-
-    describe 'nilifies empty strings' do
-      %w[ dependencies_details ].each do |attribute|
-        it { is_expected.to validate_strict_string(attribute) }
-      end
-    end
-
-    it do
-      is_expected.
-        to validate_inclusion_of(:dependencies).
-        in_array(%w[ yes no unknown ])
-    end
-
-    context 'when dependencies is set to yes' do
-      before { subject.dependencies = 'yes' }
-      it { is_expected.to validate_presence_of(:dependencies_details) }
-    end
+    it { is_expected.to validate_optional_details_field(:dependencies) }
   end
 
   describe '#save' do

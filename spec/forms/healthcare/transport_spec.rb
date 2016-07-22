@@ -10,27 +10,8 @@ RSpec.describe Forms::Healthcare::Transport, type: :form do
     }.with_indifferent_access
   }
 
-  describe 'defaults' do
-    its(:mpv) { is_expected.to eq 'unknown' }
-  end
-
   describe '#validate' do
-    describe 'nilifies empty strings' do
-      %w[ mpv_details ].each do |attribute|
-        it { is_expected.to validate_strict_string(attribute) }
-      end
-    end
-
-    it do
-      is_expected.
-        to validate_inclusion_of(:mpv).
-        in_array(%w[ yes no unknown ])
-    end
-
-    context 'when mpv is set to yes' do
-      before { subject.mpv = 'yes' }
-      it { is_expected.to validate_presence_of(:mpv_details) }
-    end
+    it { is_expected.to validate_optional_details_field(:mpv) }
   end
 
   describe '#save' do

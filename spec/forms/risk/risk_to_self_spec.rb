@@ -13,33 +13,9 @@ RSpec.describe Forms::Risk::RiskToSelf, type: :form do
     }.with_indifferent_access
   }
 
-  describe 'defaults' do
-    its(:open_acct) { is_expected.to eq 'unknown' }
-    its(:suicide) { is_expected.to eq 'unknown' }
-  end
-
   describe '#validate' do
-    it do
-      is_expected.
-        to validate_inclusion_of(:open_acct).
-        in_array(%w[ yes no unknown ])
-    end
-
-    context 'when open_acct is set to yes' do
-      before { subject.open_acct = 'yes' }
-      it { is_expected.to validate_presence_of(:open_acct_details) }
-    end
-
-    it do
-      is_expected.
-        to validate_inclusion_of(:suicide).
-        in_array(%w[ yes no unknown ])
-    end
-
-    context 'when suicide is set to yes' do
-      before { subject.suicide = 'yes' }
-      it { is_expected.to validate_presence_of(:suicide_details) }
-    end
+    it { is_expected.to validate_optional_details_field(:open_acct) }
+    it { is_expected.to validate_optional_details_field(:suicide) }
   end
 
   describe '#save' do

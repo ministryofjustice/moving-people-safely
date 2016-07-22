@@ -7,6 +7,10 @@ module FormsHelper
     ValidateOptionalField.new(field_name)
   end
 
+  def validate_optional_details_field(field_name)
+    ValidateOptionalDetailsField.new(field_name)
+  end
+
   def validate_strict_string(field_name)
     ValidateStrictString.new(field_name)
   end

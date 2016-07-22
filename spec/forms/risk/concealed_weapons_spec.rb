@@ -11,27 +11,8 @@ RSpec.describe Forms::Risk::ConcealedWeapons, type: :form do
     }
   }
 
-  describe 'defaults' do
-    its(:conceals_weapons) { is_expected.to eq 'unknown' }
-  end
-
   describe '#validate' do
-    describe 'nilifies empty strings' do
-      %w[ conceals_weapons_details ].each do |attribute|
-        it { is_expected.to validate_strict_string(attribute) }
-      end
-    end
-
-    it do
-      is_expected.
-        to validate_inclusion_of(:conceals_weapons).
-        in_array(%w[ yes no unknown ])
-    end
-
-    context 'when conceals_weapons is set to yes' do
-      before { subject.conceals_weapons = 'yes' }
-      it { is_expected.to validate_presence_of(:conceals_weapons_details) }
-    end
+    it { is_expected.to validate_optional_details_field(:conceals_weapons) }
   end
 
   describe '#save' do

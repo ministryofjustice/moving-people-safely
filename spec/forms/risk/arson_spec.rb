@@ -14,45 +14,10 @@ RSpec.describe Forms::Risk::Arson, type: :form do
     }
   }
 
-  describe 'defaults' do
-    its(:arson) { is_expected.to eq 'unknown' }
-    its(:damage_to_property) { is_expected.to eq 'unknown' }
-  end
-
   describe '#validate' do
-    describe 'nilifies empty strings' do
-      %w[ arson_details damage_to_property_details ].each do |attribute|
-        it { is_expected.to validate_strict_string(attribute) }
-      end
-    end
-
-    it do
-      is_expected.
-        to validate_inclusion_of(:arson).
-        in_array(%w[ yes no unknown ])
-    end
-
-    context 'when arson is set to yes' do
-      before { subject.arson = 'yes' }
-      it { is_expected.to validate_presence_of(:arson_details) }
-    end
-
-    it do
-      is_expected.
-        to validate_inclusion_of(:damage_to_property).
-        in_array(%w[ yes no unknown ])
-    end
-
-    context 'when damage_to_property is set to yes' do
-      before { subject.damage_to_property = 'yes' }
-      it { is_expected.to validate_presence_of(:damage_to_property_details) }
-    end
-
-    it do
-      is_expected.
-        to validate_inclusion_of(:arson_value).
-        in_array(%w[ high medium low ])
-    end
+    it { is_expected.to validate_optional_details_field(:damage_to_property) }
+    it { is_expected.to validate_optional_details_field(:arson) }
+    it { is_expected.to validate_inclusion_of(:arson_value).in_array(%w[ high medium low ]) }
   end
 
   describe '#save' do
