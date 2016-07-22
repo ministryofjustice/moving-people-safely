@@ -10,21 +10,18 @@ RSpec.feature 'filling in a PER', type: :feature do
     app.login
 
     detainee = build(:detainee)
+    move = build(:move)
 
-    app.dashboard.search_for_detainee(detainee.prison_number)
-    binding.pry
-    search_prisoner
-    create_new_detainee_profile
-    expect_prison_number_to_be_autofilled
+    app.dashboard.search(detainee.prison_number)
+    app.dashboard.create_new_profile.click
 
-    fill_in_detainee_details
-    save
+    expect(app.detainee_details.prison_number.text).to eql detainee.prison_number
 
-    fill_in_move_information
-    save
+    app.detainee_details.complete_form(detainee)
+    app.move_details.complete_form(move)
 
-    expect_profile_page_to_have_detainee_details
-    expect_profile_page_to_have_move
+    app.profile.confirm_move_info(move)
+    app.profile.confirm_detainee_details(detainee)
 
     go_to_healthcare_page
     fill_in_physical_healthcare
@@ -83,73 +80,9 @@ RSpec.feature 'filling in a PER', type: :feature do
     expect_profile_page_to_have_header
   end
 
-  def search_prisoner
-    fill_in 'search_prison_number', with: 'A1234BC'
-    click_button 'Search'
-  end
 
-  def expect_prison_number_to_be_autofilled
-    expect(page).to have_content 'Prison numberA1234BC'
-  end
-
-  def create_new_detainee_profile
-    click_button 'Create new profile'
-  end
-
-  def fill_in_detainee_details
-    fill_in 'Surname', with: 'Trump'
-    fill_in 'Forename(s)', with: 'Donald'
-    fill_in 'Date of birth', with: '14/06/1946'
-    fill_in 'Nationalities', with: 'American'
-    choose 'Male'
-    fill_in 'PNC number', with: 'PNC123'
-    fill_in 'CRO number', with: 'CRO987'
-    fill_in 'Aliases', with: 'Donald duck'
-  end
-
-  def fill_in_move_information
-    fill_in 'From', with: 'Some prison'
-    fill_in 'To', with: 'Some court'
-    fill_in 'Date', with: '12/09/2016'
-    choose 'Other'
-    fill_in 'information[reason_details]', with: 'Has to move'
-    choose 'Yes'
-    fill_in 'information_destinations_attributes_0_establishment', with: 'Hospital'
-    choose 'information_destinations_attributes_0_must_return_must_return'
-    click_button 'Add establishment'
-    fill_in 'information_destinations_attributes_1_establishment', with: 'Court'
-    choose 'information_destinations_attributes_1_must_return_must_return'
-    click_button 'Add establishment'
-    fill_in 'information_destinations_attributes_2_establishment', with: 'Dentist'
-    choose 'information_destinations_attributes_2_must_return_must_not_return'
-    click_button 'Add establishment'
-    fill_in 'information_destinations_attributes_3_establishment', with: 'Tribunal'
-    choose 'information_destinations_attributes_3_must_return_must_not_return'
-  end
-
-  def expect_profile_page_to_have_detainee_details
-    within('#personal-details') do
-      expect(page).to have_link('Edit', href: detainee_details_path(escort))
-      expect(page).to have_content('A1234BC')
-      expect(page).to have_content('14 Jun 1946')
-      expect(page).to have_content('American')
-      expect(page).to have_content('M')
-      expect(page).to have_content('PNC123')
-      expect(page).to have_content('CRO987')
-      expect(page).to have_content('Donald duck')
-      expect(page).to have_content('70')
-    end
-  end
-
-  def expect_profile_page_to_have_move
-    within('.move-information') do
-      expect(page).to have_link('Edit', href: move_information_path(escort))
-      expect(page).to have_content('Some court')
-      expect(page).to have_content('12 Sep 2016')
-      expect(page).to have_content('Has to move')
-      expect(page).to have_content('Hospital, Court')
-      expect(page).to have_content('Dentist, Tribunal')
-    end
+  def save
+    click_button 'Save'
   end
 
   def go_to_healthcare_page

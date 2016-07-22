@@ -6,8 +6,7 @@
     'There were problems saving this form', ''
 
   label.form-label Prison number
-
-  p = form.prison_number
+  p.prison_number = form.prison_number
 
   = form_for form, url: detainee_details_url(escort), method: :put do |f|
     = f.text_field :surname

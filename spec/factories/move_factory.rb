@@ -5,7 +5,8 @@ FactoryGirl.define do
     from { FixtureData.prison }
     to { FixtureData.county_court }
     date { Date.today }
-    reason 'production_to_court'
+    reason 'other'
+    reason_details 'Has to move'
     has_destinations 'no'
 
     trait :past_move do

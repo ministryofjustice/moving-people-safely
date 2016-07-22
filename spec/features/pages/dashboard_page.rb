@@ -1,11 +1,3 @@
-class DetaineeSearchSection < SitePrism::Section
-  element :search_field, 'input#search_prison_number'
-  element :search_button, 'input.search_button'
-
-  element :add_new_move_button, 'Add new move'
-  element :create_new_profile, 'Create new profile'
-end
-
 class DetaineeSearchResultsSection < SitePrism::Section
   element :profile_link, 'td:n-th-child(0) a'
   element :detainee_name, 'td:nth-child(1)'
@@ -24,12 +16,16 @@ end
 
 class DashboardPage < SitePrism::Page
   set_url '/'
-  section :detainee_search, DetaineeSearchSection, '.search_module'
   sections :search_results, DetaineeSearchResultsSection, '.search_module table tr'
 
   section :date_picker, DatePickerSection, '.date-picker'
 
-  def search_for_detainee(prison_number)
+  element :search_field, '.search_module input#search_prison_number'
+  element :search_button, '.search_module input.search_button'
+  element :add_new_move_button, 'input[type="submit"][value="Add new move"]'
+  element :create_new_profile, 'input[type="submit"][value="Create new profile"]'
+
+  def search(prison_number)
     search_field.set prison_number
     search_button.click
   end
