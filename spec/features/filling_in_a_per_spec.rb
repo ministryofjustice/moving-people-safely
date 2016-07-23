@@ -6,32 +6,31 @@ RSpec.feature 'filling in a PER', type: :feature do
   end
 
   scenario 'adding a new escort and filling it in' do
-    app = App.new
-    app.login
+    login
 
     detainee = build(:detainee)
     move = build(:move)
 
-    app.dashboard.search(detainee.prison_number)
-    app.dashboard.create_new_profile.click
+    dashboard.search(detainee.prison_number)
+    dashboard.create_new_profile.click
 
-    expect(app.detainee_details.prison_number.text).to eql detainee.prison_number
+    expect(detainee_details.prison_number.text).to eql detainee.prison_number
 
-    app.detainee_details.complete_form(detainee)
-    app.move_details.complete_form(move)
+    detainee_details.complete_form(detainee)
+    move_details.complete_form(move)
 
-    app.profile.confirm_move_info(move)
-    app.profile.confirm_detainee_details(detainee)
+    profile.confirm_move_info(move)
+    profile.confirm_detainee_details(detainee)
 
-    app.profile.edit_healthcare
-    app.healthcare.complete_forms
+    profile.edit_healthcare
+    healthcare.complete_forms
 
     review_summary_page
 
     expect_profile_page_with_completed_healthcare
 
-    app.profile.edit_risk
-    app.risk.complete_forms
+    profile.edit_risk
+    risk.complete_forms
 
     review_summary_page
 

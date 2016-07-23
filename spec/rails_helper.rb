@@ -48,6 +48,7 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
+  config.include(ApplicationPageHelpers, type: :feature)
   config.include(Shoulda::Matchers::ActiveModel, type: :form)
   config.include(ActiveSupport::Testing::TimeHelpers)
   config.include(Devise::Test::IntegrationHelpers, type: :request)
