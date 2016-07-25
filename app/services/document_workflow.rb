@@ -2,7 +2,7 @@ class DocumentWorkflow
   class InvalidWorkflowStateError < StandardError; end
   class StateChangeError < RuntimeError; end
 
-  WORKFLOW_STATES = %i[ not_started incomplete needs_review complete issued ]
+  WORKFLOW_STATES = %i[ not_started incomplete needs_review reviewed unconfirmed confirmed issued ]
 
   WORKFLOW_STATES.each do |state|
     define_method("is_#{state}?") { model.workflow_status == state.to_s }
@@ -48,14 +48,20 @@ class DocumentWorkflow
   end
 
   def can_transition_to_issued?
-    model.is_a?(Escort) && model.move.complete?
+    model.is_a?(Escort) &&
+      (is_confirmed? || is_reviewed?) &&
+      model.move.complete?
   end
 
-  def can_transition_to_complete?
+  def can_transition_to_reviewed?
     model.all_questions_answered?
   end
 
-  def can_transition_to_needs_review?
+  def can_transition_to_confirmed?
+    is_unconfirmed?
+  end
+
+  def can_transition_to_unconfirmed?
     model.all_questions_answered?
   end
 end
