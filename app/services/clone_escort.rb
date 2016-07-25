@@ -9,9 +9,7 @@ module CloneEscort
     { offences: [:current_offences, :past_offences] }
   ].freeze
 
-  EXCEPT_GRAPH = [
-    { move: [:to, :date, :reason, :has_destinations, :reason_details] }
-  ].freeze
+  EXCEPT_GRAPH = [{ move: [:date] }].freeze
 
   REUSE_STATUS = 'needs_review'
 
