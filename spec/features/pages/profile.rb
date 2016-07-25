@@ -14,7 +14,6 @@ module Page
 
     def confirm_move_info(move)
       within('.move-information') do
-        # expect(page).to have_link('Edit', href: move_information_path(escort))
         expect(page).to have_content move.to
         expect(page).to have_content move.date.strftime('%d %b %Y')
         expect(page).to have_content move.reason_details
@@ -25,7 +24,6 @@ module Page
 
     def confirm_detainee_details(detainee)
       within('#personal-details') do
-        # expect(page).to have_link('Edit', href: detainee_details_path(escort))
         expect(page).to have_content detainee.prison_number
         expect(page).to have_content detainee.date_of_birth.strftime('%d %b %Y')
         expect(page).to have_content detainee.nationalities
