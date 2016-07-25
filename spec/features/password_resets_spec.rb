@@ -9,9 +9,9 @@ RSpec.feature 'resetting a password', type: :feature do
   end
 
   def start_password_reset
-    create_user
+    user = create(:user)
     visit new_user_password_path
-    fill_in 'user[email]', with: 'staff@some.prison.com'
+    fill_in 'user[email]', with: user.email
     click_button 'Send me reset password instructions'
   end
 

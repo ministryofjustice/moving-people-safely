@@ -1,10 +1,9 @@
 require 'rails_helper'
-
 require 'capybara/rspec'
 require 'database_cleaner'
 
 Capybara.default_driver = :selenium
-Capybara.page.driver.browser.manage.window.maximize
+
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
 

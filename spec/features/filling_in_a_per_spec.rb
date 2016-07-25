@@ -43,19 +43,7 @@ RSpec.feature 'filling in a PER', type: :feature do
 
     visit profile_path(Escort.last)
     profile.confirm_offences_details
-    expect_profile_page_to_have_header
-  end
-
-
-  def expect_profile_page_to_have_header
-    within('#header') do
-      expect(page).to have_content('A1234BC: Trump, Donald')
-      expect(page).to have_content('Serving Sentence')
-      expect(page).to have_content('High CSRA')
-      expect(page).to have_content('Needs ACCT')
-      expect(page).to have_content('Details for Rule 45')
-      expect(page).to have_content('Category A information')
-    end
+    profile.confirm_header_details(detainee)
   end
 
   def review_summary_page

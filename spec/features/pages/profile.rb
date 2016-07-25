@@ -1,7 +1,19 @@
 module Page
   class Profile < Base
+      def confirm_header_details(detainee)
+        within('#header') do
+          result = "#{detainee.prison_number}: #{detainee.surname}, #{detainee.forenames}"
+          expect(page).to have_content(result)
+          expect(page).to have_content('Serving Sentence')
+          expect(page).to have_content('High CSRA')
+          expect(page).to have_content('Needs ACCT')
+          expect(page).to have_content('Details for Rule 45')
+          expect(page).to have_content('Category A information')
+        end
+      end
+
     def confirm_move_info(move)
-      Capybara.within('.move-information') do
+      within('.move-information') do
         # expect(page).to have_link('Edit', href: move_information_path(escort))
         expect(page).to have_content move.to
         expect(page).to have_content move.date.strftime('%d %b %Y')
@@ -12,7 +24,7 @@ module Page
     end
 
     def confirm_detainee_details(detainee)
-      Capybara.within('#personal-details') do
+      within('#personal-details') do
         # expect(page).to have_link('Edit', href: detainee_details_path(escort))
         expect(page).to have_content detainee.prison_number
         expect(page).to have_content detainee.date_of_birth.strftime('%d %b %Y')
@@ -26,7 +38,7 @@ module Page
     end
 
     def confirm_healthcare_details
-      Capybara.within('#healthcare') do
+      within('#healthcare') do
         expect(page).to have_content('Complete')
         within('.answered_yes') do
           expect(page).to have_content('9')
@@ -51,7 +63,7 @@ module Page
 
     # TODO: reference a model
     def confirm_offences_details
-      Capybara.within('#offences') do
+      within('#offences') do
         expect(page).to have_content('Burglary')
         expect(page).to have_content('Attempted murder')
         expect(page).to have_content('Arson')
@@ -60,19 +72,19 @@ module Page
     end
 
     def click_edit_healthcare
-      Capybara.within('#healthcare') do
+      within('#healthcare') do
         click_link 'Edit'
       end
     end
 
     def click_edit_risk
-      Capybara.within('#risk') do
+      within('#risk') do
         click_link 'Edit'
       end
     end
 
     def click_edit_offences
-      Capybara.within('#offences') do
+      within('#offences') do
         click_link 'Edit'
       end
     end
