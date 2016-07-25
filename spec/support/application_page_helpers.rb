@@ -1,5 +1,5 @@
 module ApplicationPageHelpers
-  def login(user)
+  def login(user=nil)
     @_login ||= LoginPage.new.login(user)
   end
 

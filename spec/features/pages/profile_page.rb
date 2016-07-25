@@ -29,13 +29,13 @@ class ProfilePage < SitePrism::Page
     end
   end
 
-  def edit_healthcare
+  def click_edit_healthcare
     Capybara.within('#healthcare') do
       click_link 'Edit'
     end
   end
 
-  def edit_risk
+  def click_edit_risk
     Capybara.within('#risk') do
       click_link 'Edit'
     end

@@ -22,14 +22,14 @@ RSpec.feature 'filling in a PER', type: :feature do
     profile.confirm_move_info(move)
     profile.confirm_detainee_details(detainee)
 
-    profile.edit_healthcare
+    profile.click_edit_healthcare
     healthcare.complete_forms
 
     review_summary_page
 
     expect_profile_page_with_completed_healthcare
 
-    profile.edit_risk
+    profile.click_edit_risk
     risk.complete_forms
 
     review_summary_page
@@ -50,7 +50,11 @@ RSpec.feature 'filling in a PER', type: :feature do
     click_button 'Save'
   end
 
-
+  def expect_summary_page_with_completed_healthcare
+    within('.status-label--complete') do
+      expect(page).to have_content('Complete')
+    end
+  end
 
   def expect_profile_page_with_completed_healthcare
     visit profile_path(escort)
