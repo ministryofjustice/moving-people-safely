@@ -1,13 +1,5 @@
 module Page
   class Offences < Base
-    def expect_summary_page_with_completed_status
-      save_and_open_page
-      binding.pry
-      within('.status-label--complete') do
-        expect(page).to have_content('Complete')
-      end
-    end
-
     def complete_form
       fill_in 'offences[release_date]', with: '05/07/2016'
       check 'offences[not_for_release]'
