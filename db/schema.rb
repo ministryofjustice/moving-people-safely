@@ -105,9 +105,9 @@ ActiveRecord::Schema.define(version: 20160725153836) do
     t.uuid     "escort_id"
     t.date     "release_date"
     t.boolean  "not_for_release"
-    t.text     "not_for_release_details"
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.text     "not_for_release_details"
     t.string   "has_past_offences",       default: "unknown"
     t.string   "workflow_status",         default: "not_started"
   end

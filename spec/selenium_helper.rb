@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 require 'capybara/rspec'
 require 'database_cleaner'
 
@@ -14,6 +13,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
+    Capybara.page.driver.browser.manage.window.maximize
   end
 
   config.after(:each) do
