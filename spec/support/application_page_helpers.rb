@@ -1,29 +1,33 @@
 module ApplicationPageHelpers
   def login(user=nil)
-    @_login ||= LoginPage.new.login(user)
+    @_login ||= Page::Login.new.login(user)
   end
 
   def dashboard
-    @_dashboard ||= DashboardPage.new
+    @_dashboard ||= Page::Dashboard.new
   end
 
   def detainee_details
-    @_detainee_details ||= DetaineeDetailsPage.new
+    @_detainee_details ||= Page::DetaineeDetails.new
   end
 
   def move_details
-    @_move_details ||= MoveDetailsPage.new
+    @_move_details ||= Page::MoveDetails.new
   end
 
   def profile
-    @_profile ||= ProfilePage.new
+    @_profile ||= Page::Profile.new
   end
 
   def healthcare
-    @_healthcare ||= HealthcarePage.new
+    @_healthcare ||= Page::Healthcare.new
   end
 
   def risk
-    @_risk ||= RiskPage.new
+    @_risk ||= Page::Risk.new
+  end
+
+  def offences
+    @_offences ||= Page::Offences.new
   end
 end
