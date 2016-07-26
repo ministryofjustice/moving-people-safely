@@ -6,17 +6,15 @@ RSpec.describe OffencesPresenter, type: :presenter do
 
   describe '#styled_current_offences' do
     it 'shows them with <br>' do
-      offences.current_offences.build(offence: 'Armed robbery')
-      offences.current_offences.build(offence: 'Arson')
-      expect(subject.styled_current_offences).to eq 'Armed robbery<br>Arson'
+      expected_html = offences.current_offences.map(&:offence).join('<br>')
+      expect(subject.styled_current_offences).to eq expected_html
     end
   end
 
   describe '#styled_past_offences' do
     it 'shows them with <br>' do
-      offences.past_offences.build(offence: 'Armed robbery')
-      offences.past_offences.build(offence: 'Arson')
-      expect(subject.styled_past_offences).to eq 'Armed robbery<br>Arson'
+      expected_html = offences.past_offences.map(&:offence).join('<br>')
+      expect(subject.styled_past_offences).to eq expected_html
     end
   end
 end
