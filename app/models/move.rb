@@ -19,7 +19,7 @@ class Move < ApplicationRecord
       )
   end)
 
-  INCOMPLETE_STATES = DocumentWorkflow::INCOMPLETE_STATES.map { |state| state.to_s }
+  INCOMPLETE_STATES = DocumentWorkflow::INCOMPLETE_STATES.map(&:to_s)
 
   scope :with_incomplete_risk, (lambda do
     joins(:risk).
