@@ -27,6 +27,7 @@ class HealthcareController < DocumentController
     render 'summary/healthcare'
   end
 
+  # TODO: this can fail silently!
   def confirm
     workflow = DocumentWorkflow.new(healthcare)
     workflow.update_status(:confirmed)
@@ -36,9 +37,7 @@ class HealthcareController < DocumentController
   private
 
   def update_document_workflow
-    workflow = DocumentWorkflow.new(healthcare)
-    workflow.update_status(:unconfirmed) ||
-      workflow.update_status(:incomplete)
+    DocumentWorkflow.new(healthcare).advance_workflow
   end
 
   def redirect_after_update

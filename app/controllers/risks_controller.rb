@@ -36,9 +36,7 @@ class RisksController < DocumentController
   private
 
   def update_document_workflow
-    workflow = DocumentWorkflow.new(risk)
-    workflow.update_status(:unconfirmed) ||
-      workflow.update_status(:incomplete)
+    DocumentWorkflow.new(risk).advance_workflow
   end
 
   def redirect_after_update

@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :offences do
     release_date '15/09/2027'
-    workflow_status { %w[ confirmed issued ].sample }
+    workflow_status 'confirmed'
 
     current_offences { build_list :current_offence, rand(5) }
 

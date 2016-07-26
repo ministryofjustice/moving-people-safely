@@ -14,6 +14,10 @@ class DocumentWorkflow
     @model = model
   end
 
+  def advance_workflow
+    update_status(:unconfirmed) || update_status(:incomplete)
+  end
+
   def update_status(new_status)
     validate_status!(new_status)
 
@@ -50,8 +54,7 @@ class DocumentWorkflow
   end
 
   def can_transition_to_issued?
-    model.is_a?(Escort) &&
-      model.move.complete?
+    model.is_a?(Escort) && model.move.complete?
   end
 
   def can_transition_to_reviewed?
@@ -68,5 +71,9 @@ class DocumentWorkflow
 
   def can_transition_to_needs_review?
     is_reviewed?
+  end
+
+  def can_transition_to_incomplete?
+    is_not_started?
   end
 end
