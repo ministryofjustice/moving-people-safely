@@ -29,5 +29,10 @@ FactoryGirl.define do
     trait :previously_issued do
       workflow_status 'issued'
     end
+
+    trait :with_multiples do
+      association :move, :with_destinations, factory: :move, strategy: :build
+      association :healthcare, :with_medications, factory: :healthcare, strategy: :build
+    end
   end
 end
