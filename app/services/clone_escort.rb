@@ -2,7 +2,7 @@ module CloneEscort
   module_function
 
   INCLUDE_GRAPH = [
-    :move,
+    { move: [:destinations] },
     :detainee,
     :risk,
     { healthcare: [:medications] },
