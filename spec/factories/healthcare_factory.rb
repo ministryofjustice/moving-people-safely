@@ -15,5 +15,10 @@ FactoryGirl.define do
       allergies 'yes'
       workflow_status 'incomplete'
     end
+
+    trait :with_medications do
+      has_medications 'yes'
+      medications { build_list :medication, 2 }
+    end
   end
 end
