@@ -9,7 +9,7 @@ FactoryGirl.define do
     past_offences { build_list :past_offence, rand(5) }
 
     trait :incomplete do
-      workflow_status { %w[ incomplete needs_review unconfirmed ].sample }
+      workflow_status 'incomplete'
     end
   end
 end

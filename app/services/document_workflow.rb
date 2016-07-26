@@ -53,6 +53,7 @@ class DocumentWorkflow
     end
   end
 
+  # TODO: this is different for Escort
   def can_transition_to_issued?
     model.is_a?(Escort) && model.move.complete?
   end
@@ -61,8 +62,9 @@ class DocumentWorkflow
     is_needs_review? && model.all_questions_answered?
   end
 
+  # TODO: this is different for Offences
   def can_transition_to_confirmed?
-    is_unconfirmed? && model.all_questions_answered?
+    model.all_questions_answered? # && is_unconfirmed?
   end
 
   def can_transition_to_unconfirmed?
