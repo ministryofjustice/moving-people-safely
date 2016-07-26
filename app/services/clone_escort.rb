@@ -18,6 +18,7 @@ module CloneEscort
       include: INCLUDE_GRAPH,
       except: EXCEPT_GRAPH).
       tap do |clone|
+        clone.workflow_status = REUSE_STATUS
         clone.healthcare.workflow_status = REUSE_STATUS
         clone.risk.workflow_status = REUSE_STATUS
         clone.offences.workflow_status = REUSE_STATUS
