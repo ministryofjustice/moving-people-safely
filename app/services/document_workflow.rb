@@ -51,7 +51,6 @@ class DocumentWorkflow
 
   def can_transition_to_issued?
     model.is_a?(Escort) &&
-      is_confirmed? &&
       model.move.complete?
   end
 
