@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :offences do
     release_date '15/09/2027'
-    workflow_status 'complete'
+    workflow_status { %w[ confirmed issued ].sample }
 
     current_offences { build_list :current_offence, rand(5) }
 
@@ -9,7 +9,7 @@ FactoryGirl.define do
     past_offences { build_list :past_offence, rand(5) }
 
     trait :incomplete do
-      workflow_status 'incomplete'
+      workflow_status { %w[ incomplete needs_review unconfirmed ].sample }
     end
   end
 end

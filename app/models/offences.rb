@@ -6,8 +6,4 @@ class Offences < ApplicationRecord
   def all_questions_answered?
     release_date.present? && current_offences.any?
   end
-
-  def complete?
-    workflow_status == 'complete'
-  end
 end

@@ -19,21 +19,21 @@ class Move < ApplicationRecord
       )
   end)
 
-  INCOMPLETE_STATUSES = %w[not_started incomplete needs_review]
+  INCOMPLETE_STATES = DocumentWorkflow::INCOMPLETE_STATES.map { |state| state.to_s }
 
   scope :with_incomplete_risk, (lambda do
     joins(:risk).
-    where('risks.workflow_status IN (?)', INCOMPLETE_STATUSES)
+    where('risks.workflow_status IN (?)', INCOMPLETE_STATES)
   end)
 
   scope :with_incomplete_healthcare, (lambda do
     joins(:healthcare).
-    where('healthcare.workflow_status IN (?)', INCOMPLETE_STATUSES)
+    where('healthcare.workflow_status IN (?)', INCOMPLETE_STATES)
   end)
 
   scope :with_incomplete_offences, (lambda do
     joins(:offences).
-    where('offences.workflow_status IN (?)', INCOMPLETE_STATUSES)
+    where('offences.workflow_status IN (?)', INCOMPLETE_STATES)
   end)
 
   def complete?
@@ -43,14 +43,20 @@ class Move < ApplicationRecord
   end
 
   def risk_complete?
-    risk.complete?
+    test_completeness(risk)
   end
 
   def healthcare_complete?
-    healthcare.complete?
+    test_completeness(healthcare)
   end
 
   def offences_complete?
-    offences.complete?
+    test_completeness(offences)
+  end
+
+  private
+
+  def test_completeness(model)
+    DocumentWorkflow.new(model).is_confirmed?
   end
 end

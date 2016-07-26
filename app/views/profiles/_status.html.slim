@@ -3,14 +3,17 @@
     span.status-label.status-label--incomplete Incomplete
     = link_to 'Edit', not_started_path
 
-  - elsif workflow.is_incomplete?
-    span.status-label.status-label--incomplete Incomplete
-    = link_to 'Edit', summary_path
+  - else
+    - if workflow.is_incomplete?
+      span.status-label.status-label--incomplete Incomplete
 
-  - elsif workflow.is_needs_review?
-    span.status-label.status-label--incomplete Review
-    = link_to 'Edit', summary_path
+    - elsif workflow.is_needs_review?
+      span.status-label.status-label--incomplete Review
 
-  - elsif workflow.is_complete?
-    span.status-label.status-label--complete Complete
+    - elsif workflow.is_unconfirmed?
+      span.status-label.status-label--complete Confirm
+
+    - elsif workflow.is_confirmed?
+      span.status-label.status-label--complete Complete
+
     = link_to 'Edit', summary_path
