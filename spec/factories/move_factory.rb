@@ -16,5 +16,10 @@ FactoryGirl.define do
     trait :future_move do
       date { 1.week.from_now }
     end
+
+    trait :with_destinations do
+      has_destinations 'yes'
+      destinations { build_list :destination, 2 }
+    end
   end
 end
