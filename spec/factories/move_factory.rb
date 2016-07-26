@@ -19,7 +19,7 @@ FactoryGirl.define do
 
     trait :with_destinations do
       has_destinations 'yes'
-      destinations { build_list :destination, rand(5) }
+      destinations { build_list :destination, rand(1..5) }
     end
   end
 end
