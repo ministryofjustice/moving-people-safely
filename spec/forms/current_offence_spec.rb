@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Forms::CurrentOffence, type: :form do
   subject { described_class.new(model) }
-  let(:model) { CurrentOffence.new }
+
+  # FIXME: save spec explodes, we don't really need to test this as reform owns it
+  let(:model) { CurrentOffence.new(offences: Offences.new) }
 
   let(:form_data) do
     {
