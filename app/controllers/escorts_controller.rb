@@ -25,7 +25,7 @@ class EscortsController < ApplicationController
   end
 
   def redirect_if_no_clone_permission
-    unless AccessPolicy.clone_escort(escort: escort)
+    unless AccessPolicy.clone_escort?(escort: escort)
       redirect_back(fallback_location: root_path)
     end
   end

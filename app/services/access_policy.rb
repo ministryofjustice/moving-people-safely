@@ -1,7 +1,7 @@
 module AccessPolicy
   module_function
 
-  def clone_escort(escort:)
+  def clone_escort?(escort:)
     !escort.with_future_move? && escort.with_move?
   end
 

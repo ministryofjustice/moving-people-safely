@@ -41,8 +41,8 @@ RSpec.describe AccessPolicy do
     end
   end
 
-  describe "#clone_escort" do
-    let(:result) { subject.clone_escort(escort: escort) }
+  describe "#clone_escort?" do
+    let(:result) { subject.clone_escort?(escort: escort) }
 
     context "with an old move" do
       let(:escort) { double(:escort, with_future_move?: false, with_move?: true) }
