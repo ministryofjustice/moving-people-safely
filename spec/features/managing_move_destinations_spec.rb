@@ -52,7 +52,7 @@ RSpec.describe 'managing move destinations', type: :feature do
   end
 
   def fill_in_move_information
-    fill_in 'Date', with: '2/3/2016'
+    fill_in 'Date', with: '2/3/2065'
     choose 'Yes'
   end
 

@@ -8,7 +8,7 @@ RSpec.describe Forms::Moves::Information, type: :form do
     {
       from: 'Bedford',
       to: 'Albany',
-      date: '1/2/2017',
+      date: '1/2/2035',
       reason: 'other',
       reason_details: 'Has to move',
       has_destinations: 'yes',
@@ -46,7 +46,7 @@ RSpec.describe Forms::Moves::Information, type: :form do
 
     it 'coerces params' do
       coerced_params = params.merge(
-        date: Date.civil(2017, 2, 1),
+        date: Date.civil(2035, 2, 1),
         destinations: [
           {
             establishment: 'Hospital',
@@ -79,10 +79,17 @@ RSpec.describe Forms::Moves::Information, type: :form do
     end
 
     context 'date' do
-      context 'with a valid date' do
+      context 'with a valid future date' do
+        it 'returns true' do
+          params[:date] = '12/01/2060'
+          expect(subject.validate(params)).to be true
+        end
+      end
+
+      context 'with a valid past date' do
         it 'returns true' do
           params[:date] = '12/01/2016'
-          expect(subject.validate(params)).to be true
+          expect(subject.validate(params)).to be false
         end
       end
 

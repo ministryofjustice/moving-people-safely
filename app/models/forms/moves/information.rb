@@ -28,8 +28,11 @@ module Forms
       validate :validate_date
 
       def validate_date
-        # TODO: extract a common date validator
-        errors.add(:date) unless date.is_a? Date
+        if date.is_a? Date
+          errors.add(:date) if date.past?
+        else
+          errors.add(:date)
+        end
       end
 
       def reasons
