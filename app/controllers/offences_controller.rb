@@ -22,7 +22,7 @@ class OffencesController < DocumentController
 
   def update_document_workflow
     # There is not an incomplete status for offences
-    DocumentWorkflow.new(offences).update_status(:complete)
+    DocumentWorkflow.new(offences).update_status(:confirmed)
   end
 
   def add_offence

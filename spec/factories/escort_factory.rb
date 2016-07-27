@@ -5,6 +5,7 @@ FactoryGirl.define do
     association :healthcare, factory: :healthcare, strategy: :build
     association :risk, factory: :risk, strategy: :build
     association :offences, factory: :offences, strategy: :build
+    workflow_status 'confirmed'
 
     trait :with_past_move do
       association :move, :past_move, factory: :move, strategy: :build
@@ -16,14 +17,17 @@ FactoryGirl.define do
 
     trait :with_incomplete_healthcare do
       association :healthcare, :incomplete, factory: :healthcare, strategy: :build
+      workflow_status 'not_started'
     end
 
     trait :with_incomplete_risk do
       association :risk, :incomplete, factory: :risk, strategy: :build
+      workflow_status 'not_started'
     end
 
     trait :with_incomplete_offences do
       association :offences, :incomplete, factory: :offences, strategy: :build
+      workflow_status 'not_started'
     end
 
     trait :previously_issued do
