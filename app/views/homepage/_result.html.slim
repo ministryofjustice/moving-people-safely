@@ -23,6 +23,6 @@ table
 - if result.with_future_move?
   = link_to('View profile', profile_path(result), class: 'button')
 - elsif result.with_move?
-  = button_to('Add new move', duplicate_path(result), method: :post, class: 'button')
+  = button_to('Add new move', duplicate_escort_path(result), method: :post, class: 'button')
 - else
   = link_to('Add new move', move_information_path(result), class: 'button')
