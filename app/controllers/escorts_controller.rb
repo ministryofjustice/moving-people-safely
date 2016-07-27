@@ -9,4 +9,11 @@ class EscortsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def clone
+    escort = Escort.find(params[:escort_id])
+    new_escort = CloneEscort.for_reuse(escort)
+    new_escort.save
+    redirect_to move_information_path(new_escort)
+  end
 end

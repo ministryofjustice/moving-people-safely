@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'feature_helper'
 
 RSpec.feature 'searching for a prisoner', type: :feature do
   context 'with a valid prison number' do
@@ -20,7 +20,7 @@ RSpec.feature 'searching for a prisoner', type: :feature do
       escort = create_escort_with_detainee_and_past_move
       login
       search_with_valid_prison_number(escort.detainee.prison_number)
-      expect(page).to have_link('Add new move', href: move_information_path(escort))
+      expect(page).to have_button('Add new move')
       expect_result_with_move(escort.move)
     end
 

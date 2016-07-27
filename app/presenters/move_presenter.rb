@@ -1,6 +1,6 @@
 class MovePresenter < SimpleDelegator
   def humanized_date
-    date.to_s(:humanized)
+    date && date.to_s(:humanized)
   end
 
   def humanized_reason
