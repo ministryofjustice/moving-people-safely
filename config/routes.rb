@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resource :offences, only: %i[ show update ]
     get :print, to: 'print#show'
     get :profile, to: 'profiles#show'
+    post :duplicate, to: 'escorts#clone'
   end
 
   resource :escort, only: :create
