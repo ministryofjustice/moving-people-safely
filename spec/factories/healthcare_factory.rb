@@ -80,9 +80,7 @@ FactoryGirl.define do
       mpv_details { Faker::Lorem.sentence }
     end
 
-    has_medications 'yes'
-    medications { build_list :medication, rand(1..5) }
-
+    has_medications 'no'
     workflow_status 'confirmed'
 
     healthcare_professional { Faker::Name.name }
@@ -96,8 +94,9 @@ FactoryGirl.define do
       workflow_status 'needs_review'
     end
 
-    trait :without_medications do
-      has_medications 'no'
+    trait :with_medications do
+      has_medications 'yes'
+      medications { build_list :medication, rand(1..5) }
     end
 
     ignore do

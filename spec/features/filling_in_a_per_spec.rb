@@ -10,7 +10,7 @@ RSpec.feature 'filling in a PER', type: :feature do
 
     detainee = build(:detainee)
     move = build(:move)
-    hc = build(:healthcare)
+    hc = build(:healthcare, :with_medications)
 
     dashboard.search(detainee.prison_number)
     dashboard.create_new_profile.click
