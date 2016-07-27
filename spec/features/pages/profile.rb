@@ -35,14 +35,14 @@ module Page
       end
     end
 
-    def confirm_healthcare_details
+    def confirm_healthcare_details(hc)
       within('#healthcare') do
         expect(page).to have_content('Complete')
         within('.answered_yes') do
-          expect(page).to have_content('9')
+          expect(page).to have_content(hc.questions_answered_yes.to_s)
         end
         within('.answered_no') do
-          expect(page).to have_content('0')
+          expect(page).to have_content(hc.questions_answered_no.to_s)
         end
       end
     end
