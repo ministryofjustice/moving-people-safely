@@ -7,6 +7,7 @@ module Page
     end
 
     def complete_forms
+      binding.pry
       fill_in_physical_healthcare
       fill_in_mental_healthcare
       fill_in_social_healthcare
