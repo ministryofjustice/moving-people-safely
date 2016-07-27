@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'feature_helper'
 
 RSpec.feature 'printing a PER', type: :feature do
   scenario 'user prints a completed PER' do

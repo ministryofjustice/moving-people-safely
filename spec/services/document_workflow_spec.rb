@@ -26,12 +26,12 @@ RSpec.describe DocumentWorkflow do
       it_behaves_like "state_interrogator", 'incomplete'
     end
 
-    describe "#is_needs_review?" do
-      it_behaves_like "state_interrogator", 'needs_review'
+    describe "#is_unconfirmed?" do
+      it_behaves_like "state_interrogator", 'unconfirmed'
     end
 
-    describe "#is_complete?" do
-      it_behaves_like "state_interrogator", 'complete'
+    describe "#is_confirmed?" do
+      it_behaves_like "state_interrogator", 'confirmed'
     end
 
     describe "#is_issued?" do
@@ -83,7 +83,7 @@ RSpec.describe DocumentWorkflow do
           to receive(:can_transition_to?).
           and_return(false)
       end
-      let(:new_status) { :complete }
+      let(:new_status) { :issued }
 
       it "throws a StateChangeError exception" do
         expect { result }.to raise_exception 'DocumentWorkflow::StateChangeError'

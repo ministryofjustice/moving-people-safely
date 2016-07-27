@@ -19,5 +19,4 @@
   = render partial: 'summary/section',
     locals: { presenter: SummaryPresenter.new(healthcare), section: 'transport', questions: %w[ mpv ], path: healthcare_path(escort, 'transport') }
 
-  - if DocumentWorkflow.new(healthcare).is_needs_review?
-    = render partial: 'summary/confirm_and_save', locals: { path: confirm_healthcare_index_path }
+  = render partial: 'summary/call_to_action', locals: { workflow: DocumentWorkflow.new(healthcare), confirm_path: confirm_healthcare_index_path }
