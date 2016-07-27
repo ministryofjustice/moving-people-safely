@@ -34,5 +34,4 @@
   = render partial: 'summary/section',
     locals: { presenter: SummaryPresenter.new(risk), section: 'communication', questions: %w[ interpreter_required hearing_speach_sight can_read_and_write ], path: risk_path(escort, 'communication') }
 
-  - if DocumentWorkflow.new(risk).is_needs_review?
-    = render partial: 'summary/confirm_and_save', locals: { path: confirm_risks_path }
+  = render partial: 'summary/call_to_action', locals: { workflow: DocumentWorkflow.new(risk), confirm_path: confirm_risks_path }

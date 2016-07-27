@@ -12,7 +12,11 @@
     ' Status
     span.status-label.status-label--incomplete Review
 
-- elsif workflow.is_complete?
+- elsif workflow.is_unconfirmed?
+  header
+    h1 Check all answers, then confirm and save
+
+- elsif workflow.is_confirmed? || workflow.is_reviewed?
   header
     h1 = title
   h3
