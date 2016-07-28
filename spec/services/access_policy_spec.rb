@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe AccessPolicy do
   subject { described_class }
 
@@ -5,7 +7,7 @@ RSpec.describe AccessPolicy do
     let(:result) { subject.print?(escort: escort) }
 
     context "with a completed PER" do
-      let(:escort) { double(:escort, move: double(:move, complete?: true)) }
+      let(:escort) { instance_double(Escort, move: instance_double(Move, complete?: true)) }
 
       it "is true" do
         expect(result).to be true
@@ -13,7 +15,7 @@ RSpec.describe AccessPolicy do
     end
 
     context "PER is incomplete" do
-      let(:escort) { double(:escort, move: double(:move, complete?: false)) }
+      let(:escort) { instance_double(Escort, move: instance_double(Move, complete?: false)) }
 
       it "is false" do
         expect(result).to be false
@@ -25,7 +27,7 @@ RSpec.describe AccessPolicy do
     let(:result) { subject.edit?(escort: escort) }
 
     context "PER has not been printed" do
-      let(:escort) { double(:escort, workflow_status: 'complete') }
+      let(:escort) { instance_double(Escort, workflow_status: 'complete') }
 
       it "is true" do
         expect(result).to be true
@@ -33,7 +35,7 @@ RSpec.describe AccessPolicy do
     end
 
     context "with a previously printed PER" do
-      let(:escort) { double(:escort, workflow_status: 'issued') }
+      let(:escort) { instance_double(Escort, workflow_status: 'issued') }
 
       it "is false" do
         expect(result).to be false
@@ -45,7 +47,7 @@ RSpec.describe AccessPolicy do
     let(:result) { subject.clone_escort?(escort: escort) }
 
     context "with an old move" do
-      let(:escort) { double(:escort, with_future_move?: false, with_move?: true) }
+      let(:escort) { instance_double(Escort, with_future_move?: false, with_move?: true) }
 
       it "is true" do
         expect(result).to be true
@@ -53,7 +55,7 @@ RSpec.describe AccessPolicy do
     end
 
     context "with a future move" do
-      let(:escort) { double(:escort, with_future_move?: true, with_move?: true) }
+      let(:escort) { instance_double(Escort, with_future_move?: true, with_move?: true) }
 
       it "is false" do
         expect(result).to be false
