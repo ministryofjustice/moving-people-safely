@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, skip: %i[ registrations ]
 
-  scope ':escort_id' do
+  scope ':detainee_id' do
     resource :detainee_details, only: %i[ show update ], path: 'detainee-details'
-    resource :move_information, only: %i[ show update ], path: 'move-info'
     resources :healthcare, only: %i[ show update ] do
       get :summary, on: :collection
       put :confirm, on: :collection
@@ -13,9 +12,13 @@ Rails.application.routes.draw do
       put :confirm, on: :collection
     end
     resource :offences, only: %i[ show update ]
-    get :print, to: 'print#show'
+  end
+
+  scope ':escort_id' do
     get :profile, to: 'profiles#show'
     post :duplicate, to: 'escorts#clone', as: 'duplicate_escort'
+    resource :move_information, only: %i[ show update ], path: 'move-info'
+    get :print, to: 'print#show'
   end
 
   resource :escort, only: :create

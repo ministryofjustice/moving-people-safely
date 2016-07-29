@@ -3,15 +3,26 @@ class DocumentController < ApplicationController
 
   helper_method :escort, :offences, :risk, :healthcare, :detainee, :move
 
-  delegate :move,
-    :detainee,
-    :offences,
-    :risk,
-    :healthcare,
-    to: :escort
+  delegate :risk, :healthcare, :offences, to: :detainee
+
+  def move
+    escort.move
+  end
 
   def escort
-    @escort ||= Escort.find(params[:escort_id])
+    @escort ||= if params[:escort_id]
+      Escort.find(params[:escort_id])
+      else
+        detainee.escort
+      end
+  end
+
+  def detainee
+    @_detainee ||= if params[:detainee_id]
+      Detainee.find(params[:detainee_id])
+    else
+      escort.detainee
+    end
   end
 
   private

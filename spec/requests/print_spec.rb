@@ -7,7 +7,7 @@ RSpec.describe 'PrintController', type: :request do
     context "with a printable PER" do
       before { get print_path(escort) }
 
-      let(:escort) { FactoryGirl.create :escort }
+      let(:escort) { FactoryGirl.create(:escort) }
 
       it "marks the PER as issued" do
         expect(escort.workflow_status == 'issued')
@@ -23,7 +23,7 @@ RSpec.describe 'PrintController', type: :request do
         get print_path(escort), headers: { "HTTP_REFERER" => 'prev_page' }
       end
 
-      let(:escort) { FactoryGirl.create :escort, :with_incomplete_offences }
+      let(:escort) { FactoryGirl.create(:escort, :with_incomplete_offences) }
 
       it "redirects back to the referring page" do
         expect(response).to redirect_to 'prev_page'
