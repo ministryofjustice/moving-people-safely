@@ -30,5 +30,11 @@ module Page
       search_field.set prison_number
       search_button.click
     end
+
+    def choose_detainee(prison_number)
+      within "#prison_number_#{prison_number}" do
+        click_link "#{prison_number}"
+      end
+    end
   end
 end

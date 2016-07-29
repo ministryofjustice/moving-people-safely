@@ -6,7 +6,8 @@ module Page
       end
     end
 
-    def complete_forms
+    def complete_forms(healthcare)
+      @hc = healthcare
       fill_in_physical_healthcare
       fill_in_mental_healthcare
       fill_in_social_healthcare
@@ -17,36 +18,29 @@ module Page
     end
 
     def fill_in_physical_healthcare
-      choose 'physical_physical_issues_yes'
-      fill_in 'physical[physical_issues_details]', with: 'Back pain'
+      fill_in_optional_details('Physical issues', @hc.physical_issues, @hc.physical_issues_details)
       click_button 'Save and continue'
     end
 
     def fill_in_mental_healthcare
-      choose 'mental_mental_illness_yes'
-      fill_in 'mental[mental_illness_details]', with: 'Depressed'
-      choose 'mental_phobias_yes'
-      fill_in 'mental[phobias_details]', with: 'Spiders'
+      fill_in_optional_details('Mental illness', @hc.mental_illness, @hc.mental_illness_details)
+      fill_in_optional_details('Phobias', @hc.phobias, @hc.phobias_details)
       click_button 'Save and continue'
     end
 
     def fill_in_social_healthcare
-      choose 'social_personal_hygiene_yes'
-      fill_in 'social[personal_hygiene_details]', with: 'Dirty guy'
-      choose 'social_personal_care_yes'
-      fill_in 'social[personal_care_details]', with: 'Not taking care'
+      fill_in_optional_details('Personal hygiene', @hc.personal_hygiene, @hc.personal_hygiene_details)
+      fill_in_optional_details('Personal care', @hc.personal_care, @hc.personal_care_details)
       click_button 'Save and continue'
     end
 
     def fill_in_allergies
-      choose 'allergies_allergies_yes'
-      fill_in 'allergies[allergies_details]', with: 'Nuts'
+      fill_in_optional_details('Allergies', @hc.allergies, @hc.allergies_details)
       click_button 'Save and continue'
     end
 
     def fill_in_healthcare_needs
-      choose 'needs_dependencies_yes'
-      fill_in 'needs[dependencies_details]', with: 'Heroin'
+      fill_in_optional_details('Dependencies', @hc.dependencies, @hc.dependencies_details)
       choose 'needs_has_medications_yes'
       fill_in 'Description', with: 'Aspirin'
       fill_in 'Administration', with: 'Once a day'
@@ -55,14 +49,13 @@ module Page
     end
 
     def fill_in_transport
-      choose 'transport_mpv_yes'
-      fill_in 'transport[mpv_details]', with: 'Wheel chair'
+      fill_in_optional_details('MPV', @hc.mpv, @hc.mpv_details)
       click_button 'Save and continue'
     end
 
     def fill_in_medical_contact
-      fill_in 'Healthcare professional', with: 'Doctor Robert'
-      fill_in 'Contact number', with: '079876543'
+      fill_in 'Healthcare professional', with: @hc.healthcare_professional
+      fill_in 'Contact number', with: @hc.contact_number
       click_button 'Save and continue'
     end
   end
