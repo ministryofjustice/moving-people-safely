@@ -5,7 +5,10 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
-  helper_method :escort, :offences, :risk, :healthcare, :detainee, :move
+  helper_method :offences, :risk, :healthcare, :detainee, :move, :escort
+
+  delegate :risk, :healthcare, :offences, to: :detainee
+  delegate :move, to: :escort
 
   private
 
