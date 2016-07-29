@@ -1,4 +1,4 @@
-class MoveInformationController < DocumentController
+class MoveInformationController < MoveController
   before_action :add_destination, only: [:update]
 
   def show

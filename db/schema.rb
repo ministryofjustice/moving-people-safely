@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729124206) do
+ActiveRecord::Schema.define(version: 20160725153836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,9 +105,9 @@ ActiveRecord::Schema.define(version: 20160729124206) do
     t.uuid     "escort_id"
     t.date     "release_date"
     t.boolean  "not_for_release"
-    t.text     "not_for_release_details"
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.text     "not_for_release_details"
     t.string   "has_past_offences",       default: "unknown"
     t.string   "workflow_status",         default: "not_started"
   end

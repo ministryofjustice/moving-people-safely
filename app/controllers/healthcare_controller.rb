@@ -1,4 +1,4 @@
-class HealthcareController < DocumentController
+class HealthcareController < DetaineeController
   include Wicked::Wizard
   include Wizardable
 

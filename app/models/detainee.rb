@@ -12,8 +12,4 @@ class Detainee < ApplicationRecord
   def offences
     escort.offences
   end
-
-  def moves
-    Move.joins('escort').joins('detainee').where('detainee.prison_number = ?', prison_number)
-  end
 end

@@ -1,4 +1,4 @@
-class RisksController < DocumentController
+class RisksController < DetaineeController
   include Wicked::Wizard
   include Wizardable
 
