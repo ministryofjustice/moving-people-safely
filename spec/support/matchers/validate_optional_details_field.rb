@@ -87,7 +87,7 @@ class ValidateOptionalDetailsField
   end
 
   def validate_details_are_reset
-    validator = ValidateAttributesReset.new(details_field_method_name)
+    validator = ValidateAttributesAreReset.new(details_field_method_name)
     validator.when_attribute_is_disabled(method_name)
     result = validator.matches?(subject)
 

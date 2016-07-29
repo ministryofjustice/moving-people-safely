@@ -1,4 +1,4 @@
-class ValidateAttributesReset
+class ValidateAttributesAreReset
   attr_reader :attributes, :toggle_attribute, :subject, :error
 
   def initialize(*attributes)
