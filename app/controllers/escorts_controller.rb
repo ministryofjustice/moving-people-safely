@@ -1,4 +1,6 @@
 class EscortsController < ApplicationController
+  before_action :redirect_if_no_clone_permission, only: [:clone]
+
   def create
     form = Forms::Search.new
 
@@ -11,9 +13,20 @@ class EscortsController < ApplicationController
   end
 
   def clone
-    escort = Escort.find(params[:escort_id])
     new_escort = CloneEscort.for_reuse(escort)
     new_escort.save
     redirect_to move_information_path(new_escort)
+  end
+
+  private
+
+  def escort
+    @_escort ||= Escort.find(params[:escort_id])
+  end
+
+  def redirect_if_no_clone_permission
+    unless AccessPolicy.clone_escort?(escort: escort)
+      redirect_back(fallback_location: root_path)
+    end
   end
 end
