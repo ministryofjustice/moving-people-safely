@@ -29,14 +29,20 @@ class HealthcareController < DetaineeController
 
   def confirm
     fail unless healthcare.all_questions_answered?
-    active_move.healthcare_workflow.confirmed!
-    redirect_to profile_path(move)
+    healthcare_workflow.confirmed!
+    redirect_to profile_path(active_move)
   end
 
   private
 
   def update_document_workflow
-    DocumentWorkflow.new(healthcare).advance_workflow
+    if healthcare.no_questions_answered?
+      healthcare_workflow.not_started!
+    elsif healthcare.all_questions_answered?
+      healthcare_workflow.unconfirmed!
+    else
+      healthcare_workflow.incomplete!
+    end
   end
 
   def redirect_after_update

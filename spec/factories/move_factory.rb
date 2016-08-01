@@ -21,5 +21,9 @@ FactoryGirl.define do
       has_destinations 'yes'
       destinations { build_list :destination, rand(1..5) }
     end
+
+    trait :with_incomplete_risk_workflow do
+      association :risk_workflow, :incomplete, :risk, factory: :workflow, strategy: :build
+    end
   end
 end

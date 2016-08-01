@@ -2,7 +2,7 @@ class PrintController < MoveController
   rescue_from DocumentWorkflow::StateChangeError, with: :redirect_on_error
 
   def show
-    DocumentWorkflow.new(escort).update_status!(:issued)
+    move.workflow.issued!
     redirect_to root_path
   end
 

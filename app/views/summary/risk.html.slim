@@ -1,5 +1,5 @@
 .summary
-  = render partial: 'summary/status', locals: { workflow: DocumentWorkflow.new(risk), title: 'Risk' }
+  = render partial: 'summary/status', locals: { workflow: risk_workflow, title: 'Risk' }
 
   = render partial: 'summary/section',
     locals: { presenter: SummaryPresenter.new(risk), section: 'risk_to_self', questions: %w[ open_acct suicide ], path: risk_path(escort, 'risk_to_self') }

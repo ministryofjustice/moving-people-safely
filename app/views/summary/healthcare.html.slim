@@ -1,5 +1,5 @@
 .summary
-  = render partial: 'summary/status', locals: { workflow: DocumentWorkflow.new(healthcare), title: 'Healthcare' }
+  = render partial: 'summary/status', locals: { workflow: healthcare_workflow, title: 'Healthcare' }
 
   = render partial: 'summary/section',
     locals: { presenter: SummaryPresenter.new(healthcare), section: 'physical', questions: %w[ physical_issues ], path: healthcare_path(escort, 'physical') }
