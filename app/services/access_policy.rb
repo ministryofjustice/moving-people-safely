@@ -2,7 +2,7 @@ module AccessPolicy
   module_function
 
   def clone_escort?(escort:)
-    escort.detainee.active_move.empty?
+    escort.detainee.active_move.nil?
   end
 
   def edit?(escort:)

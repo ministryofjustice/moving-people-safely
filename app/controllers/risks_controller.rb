@@ -30,7 +30,7 @@ class RisksController < DetaineeController
   def confirm
     raise unless risk.all_questions_answered?
     risk_workflow.confirmed!
-    redirect_to profile_path(active_move)
+    redirect_to profile_path(escort)
   end
 
   private

@@ -1,14 +1,13 @@
 class PrintController < MoveController
-  rescue_from DocumentWorkflow::StateChangeError, with: :redirect_on_error
-
   def show
-    move.workflow.issued!
+    error_redirect and return unless active_move.workflow.confirmed?
+    active_move.workflow.issued!
     redirect_to root_path
   end
 
   private
 
-  def redirect_on_error
+  def error_redirect
     # TODO: error notification
     redirect_back(fallback_location: root_path)
   end
