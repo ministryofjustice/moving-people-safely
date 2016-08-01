@@ -1,5 +1,5 @@
 .summary
-  = render partial: 'summary/status', locals: { workflow: DocumentWorkflow.new(risk), title: 'Risk' }
+  = render partial: 'summary/status', locals: { workflow: risk_workflow, title: 'Risk' }
 
   = render partial: 'summary/section',
     locals: { presenter: SummaryPresenter.new(risk), section: 'risk_to_self', questions: %w[ open_acct suicide ], path: risk_path(escort, 'risk_to_self') }
@@ -34,4 +34,4 @@
   = render partial: 'summary/section',
     locals: { presenter: SummaryPresenter.new(risk), section: 'communication', questions: %w[ interpreter_required hearing_speach_sight can_read_and_write ], path: risk_path(escort, 'communication') }
 
-  = render partial: 'summary/call_to_action', locals: { workflow: DocumentWorkflow.new(risk), confirm_path: confirm_risks_path }
+  = render partial: 'summary/call_to_action', locals: { workflow: risk_workflow, confirm_path: confirm_risks_path }

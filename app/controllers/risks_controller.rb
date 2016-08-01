@@ -27,16 +27,23 @@ class RisksController < DetaineeController
     render 'summary/risk'
   end
 
+  # what does error state look like?
   def confirm
-    workflow = DocumentWorkflow.new(risk)
-    workflow.update_status(:confirmed)
+    fail unless risk.all_questions_answered?
+    risk_workflow.confirmed!
     redirect_to profile_path(escort)
   end
 
   private
 
   def update_document_workflow
-    DocumentWorkflow.new(risk).advance_workflow
+    if risk.no_questions_answered?
+      risk_workflow.not_started!
+    elsif risk.all_questions_answered?
+      risk_workflow.unconfirmed!
+    else
+      risk_workflow.incomplete!
+    end
   end
 
   def redirect_after_update

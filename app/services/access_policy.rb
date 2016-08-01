@@ -2,11 +2,11 @@ module AccessPolicy
   module_function
 
   def clone_escort?(escort:)
-    !escort.with_future_move? && escort.with_move?
+    escort.detainee.active_move.nil?
   end
 
   def edit?(escort:)
-    !DocumentWorkflow.new(escort).is_issued?
+    !escort.move.workflow.issued?
   end
 
   def print?(escort:)

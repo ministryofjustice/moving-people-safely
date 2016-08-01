@@ -1,4 +1,4 @@
-- if workflow.is_unconfirmed? || workflow.is_needs_review?
+- if workflow.unconfirmed? || workflow.needs_review?
   .alert.alert--warning
     p
       b

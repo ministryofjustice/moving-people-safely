@@ -2,6 +2,11 @@ class Move < ApplicationRecord
   belongs_to :escort
   has_many :destinations, dependent: :destroy
 
+  has_one :healthcare_workflow, -> { Workflow.healthcare }, class_name: 'Workflow'
+  has_one :risk_workflow, -> { Workflow.risk }, class_name: 'Workflow'
+  has_one :offences_workflow, -> { Workflow.offences }, class_name: 'Workflow'
+  has_one :workflow, -> { Workflow.move }, class_name: 'Workflow'
+
   has_one :detainee, through: :escort
   has_one :healthcare, through: :escort
   has_one :offences, through: :escort
@@ -19,22 +24,19 @@ class Move < ApplicationRecord
       )
   end)
 
-  INCOMPLETE_STATES = DocumentWorkflow::INCOMPLETE_STATES.map(&:to_s)
+  scope :active, -> { joins(:workflow).merge(Workflow.not_issued) }
 
-  scope :with_incomplete_risk, (lambda do
-    joins(:risk).
-    where('risks.workflow_status IN (?)', INCOMPLETE_STATES)
-  end)
+  scope :with_incomplete_risk, -> { joins(:risk_workflow).merge(Workflow.not_confirmed) }
+  scope :with_incomplete_healthcare, -> { joins(:healthcare_workflow).merge(Workflow.not_confirmed) }
+  scope :with_incomplete_offences, -> { joins(:offences_workflow).merge(Workflow.not_confirmed) }
 
-  scope :with_incomplete_healthcare, (lambda do
-    joins(:healthcare).
-    where('healthcare.workflow_status IN (?)', INCOMPLETE_STATES)
-  end)
-
-  scope :with_incomplete_offences, (lambda do
-    joins(:offences).
-    where('offences.workflow_status IN (?)', INCOMPLETE_STATES)
-  end)
+  def initialize(*)
+    super
+    build_workflow
+    build_risk_workflow
+    build_healthcare_workflow
+    build_offences_workflow
+  end
 
   def complete?
     risk_complete? &&
@@ -43,20 +45,14 @@ class Move < ApplicationRecord
   end
 
   def risk_complete?
-    test_completeness(risk)
+    risk_workflow.confirmed?
   end
 
   def healthcare_complete?
-    test_completeness(healthcare)
+    healthcare_workflow.confirmed?
   end
 
   def offences_complete?
-    test_completeness(offences)
-  end
-
-  private
-
-  def test_completeness(model)
-    DocumentWorkflow.new(model).is_confirmed?
+    offences_workflow.confirmed?
   end
 end

@@ -20,7 +20,7 @@
           span
             |  #{move.detainee.forenames}
         td = move.to
-        - if DocumentWorkflow.new(move.escort).is_issued?
+        - if move.workflow.issued?
           td.issued colspan=3
             | Issued
           td.print

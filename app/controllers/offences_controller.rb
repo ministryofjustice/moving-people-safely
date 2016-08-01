@@ -10,7 +10,7 @@ class OffencesController < DetaineeController
   def update
     if form.validate form_data
       form.save
-      update_document_workflow
+      offences_workflow.confirmed!
       redirect_to profile_path(escort)
     else
       flash[:form_data] = form_data
@@ -19,11 +19,6 @@ class OffencesController < DetaineeController
   end
 
   private
-
-  def update_document_workflow
-    # There is not an incomplete status for offences
-    DocumentWorkflow.new(offences).update_status(:confirmed)
-  end
 
   def add_offence
     if params.key? 'offences_add_offence'

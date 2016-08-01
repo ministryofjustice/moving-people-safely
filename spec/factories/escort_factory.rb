@@ -15,6 +15,10 @@ FactoryGirl.define do
       association :move, :future_move, factory: :move, strategy: :build
     end
 
+    trait :with_active_move do
+      association :move, :future_move, factory: :move, strategy: :build
+    end
+
     trait :with_incomplete_healthcare do
       association :healthcare, :incomplete, factory: :healthcare, strategy: :build
       workflow_status 'not_started'

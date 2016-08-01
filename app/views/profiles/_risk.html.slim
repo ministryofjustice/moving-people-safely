@@ -1,6 +1,6 @@
 #risk
   = render partial: 'status',
-    locals: { workflow: DocumentWorkflow.new(risk), not_started_path: risk_path(detainee, :risk_to_self), summary_path: summary_risks_path(detainee) }
+    locals: { workflow: risk_workflow, not_started_path: risk_path(detainee, :risk_to_self), summary_path: summary_risks_path(detainee) }
 
   h2
     ' Risk
