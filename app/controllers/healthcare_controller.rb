@@ -27,11 +27,10 @@ class HealthcareController < DetaineeController
     render 'summary/healthcare'
   end
 
-  # TODO: this can fail silently!
   def confirm
-    workflow = DocumentWorkflow.new(healthcare)
-    workflow.update_status(:confirmed)
-    redirect_to profile_path(escort)
+    fail unless healthcare.all_questions_answered?
+    active_move.healthcare_workflow.confirmed!
+    redirect_to profile_path(move)
   end
 
   private
