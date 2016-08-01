@@ -27,8 +27,9 @@ class RisksController < DetaineeController
     render 'summary/risk'
   end
 
+  # what does error state look like?
   def confirm
-    raise unless risk.all_questions_answered?
+    fail unless risk.all_questions_answered?
     risk_workflow.confirmed!
     redirect_to profile_path(escort)
   end

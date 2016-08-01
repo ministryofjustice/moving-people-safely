@@ -24,11 +24,11 @@ class Move < ApplicationRecord
       )
   end)
 
-  scope :active, ->{ joins(:workflow).merge(Workflow.not_issued) }
+  scope :active, -> { joins(:workflow).merge(Workflow.not_issued) }
 
-  scope :with_incomplete_risk, ->{ joins(:risk_workflow).merge(Workflow.not_confirmed) }
+  scope :with_incomplete_risk, -> { joins(:risk_workflow).merge(Workflow.not_confirmed) }
   scope :with_incomplete_healthcare, -> { joins(:healthcare_workflow).merge(Workflow.not_confirmed) }
-  scope :with_incomplete_offences, ->{ joins(:offences_workflow).merge(Workflow.not_confirmed) }
+  scope :with_incomplete_offences, -> { joins(:offences_workflow).merge(Workflow.not_confirmed) }
 
   def initialize(*)
     super
