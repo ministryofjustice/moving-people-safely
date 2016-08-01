@@ -1,6 +1,6 @@
 #healthcare
   = render partial: 'status',
-    locals: { workflow: DocumentWorkflow.new(healthcare), not_started_path: healthcare_path(escort, :physical), summary_path: summary_healthcare_index_path(escort) }
+    locals: { workflow: DocumentWorkflow.new(healthcare), not_started_path: healthcare_path(detainee, :physical), summary_path: summary_healthcare_index_path(detainee) }
 
   h2
     ' Healthcare

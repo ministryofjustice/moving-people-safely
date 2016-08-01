@@ -1,4 +1,4 @@
-class OffencesController < DocumentController
+class OffencesController < DetaineeController
   before_action :add_offence, only: [:update]
 
   def show
@@ -14,7 +14,7 @@ class OffencesController < DocumentController
       redirect_to profile_path(escort)
     else
       flash[:form_data] = form_data
-      redirect_to offences_path(escort)
+      redirect_to offences_path(detainee)
     end
   end
 

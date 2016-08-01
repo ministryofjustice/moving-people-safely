@@ -6,7 +6,7 @@ class EscortsController < ApplicationController
 
     if form.validate(prison_number: params[:prison_number])
       escort = Escort.create_with_children(prison_number: form.prison_number)
-      redirect_to detainee_details_path(escort)
+      redirect_to detainee_details_path(escort.detainee)
     else
       redirect_to root_path
     end

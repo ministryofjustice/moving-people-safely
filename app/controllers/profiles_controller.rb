@@ -1,4 +1,4 @@
-class ProfilesController < DocumentController
+class ProfilesController < MoveController
   def show
     render
   end

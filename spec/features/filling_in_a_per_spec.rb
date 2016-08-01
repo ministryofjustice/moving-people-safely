@@ -24,20 +24,16 @@ RSpec.feature 'filling in a PER', type: :feature do
     healthcare.complete_forms
     review_summary_page
 
-    visit profile_path(Escort.last)
     profile.confirm_healthcare_details
     profile.click_edit_risk
 
     risk.complete_forms
     review_summary_page
 
-    visit profile_path(Escort.last)
     profile.confirm_risk_details
-
     profile.click_edit_offences
-    offences.complete_form
 
-    visit profile_path(Escort.last)
+    offences.complete_form
     profile.confirm_offences_details
     profile.confirm_header_details(detainee)
   end

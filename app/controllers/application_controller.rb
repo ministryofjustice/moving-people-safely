@@ -4,4 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :authenticate_user!
+
+  helper_method :offences, :risk, :healthcare, :detainee, :move, :escort
+
+  delegate :risk, :healthcare, :offences, to: :detainee
+  delegate :move, to: :escort
+
+  private
+
+  def redirect_unless_document_editable
+    unless AccessPolicy.edit?(escort: escort)
+      redirect_back(fallback_location: root_path)
+    end
+  end
 end

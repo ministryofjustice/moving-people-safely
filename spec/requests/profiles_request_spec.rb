@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Profiles Requests', type: :request do
   before { sign_in FactoryGirl.create(:user) }
+  let(:detainee) { escort.detainee }
 
   describe "#show" do
     context "with a valid escort ID" do

@@ -1,4 +1,4 @@
-class DetaineeDetailsController < DocumentController
+class DetaineeDetailsController < DetaineeController
   def show
     form.validate(flash[:form_data]) if flash[:form_data]
     render :show, locals: { form: form }
@@ -10,7 +10,7 @@ class DetaineeDetailsController < DocumentController
       redirect_to_move_or_profile
     else
       flash[:form_data] = params[:detainee_details]
-      redirect_to detainee_details_path(escort)
+      redirect_to detainee_details_path(detainee)
     end
   end
 

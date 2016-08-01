@@ -1,4 +1,4 @@
-class HealthcareController < DocumentController
+class HealthcareController < DetaineeController
   include Wicked::Wizard
   include Wizardable
 
@@ -19,7 +19,7 @@ class HealthcareController < DocumentController
       redirect_after_update
     else
       flash[:form_data] = form_params
-      redirect_to healthcare_path(escort)
+      redirect_to healthcare_path(detainee)
     end
   end
 
@@ -42,7 +42,7 @@ class HealthcareController < DocumentController
 
   def redirect_after_update
     if params.key?('save_and_view_summary') || !can_skip?
-      redirect_to summary_healthcare_index_path(escort)
+      redirect_to summary_healthcare_index_path(detainee)
     else
       redirect_to next_wizard_path
     end

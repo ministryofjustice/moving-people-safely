@@ -12,7 +12,7 @@
   = GovukElementsErrorsHelper.error_summary form,
     'There were problems saving this form', ''
 
-  = form_for form, url: offences_path(@escort), method: :put do |f|
+  = form_for form, url: offences_path(detainee), method: :put do |f|
     = f.text_field :release_date
     = f.checkbox_with_textarea :not_for_release
 

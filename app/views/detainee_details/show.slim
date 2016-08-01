@@ -8,7 +8,7 @@
   label.form-label Prison number
   p.prison_number = form.prison_number
 
-  = form_for form, url: detainee_details_url(escort), method: :put do |f|
+  = form_for form, url: detainee_details_url(detainee), method: :put do |f|
     = f.text_field :surname
     = f.text_field :forenames
     = f.text_field :date_of_birth
