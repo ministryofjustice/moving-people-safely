@@ -5,7 +5,7 @@ RSpec.describe 'PrintController', type: :request do
 
   describe "#show" do
     context "with a printable PER" do
-      before { get print_path(escort) }
+      before { get print_path(move) }
 
       let(:escort) { FactoryGirl.create :escort, :with_active_move }
 
@@ -22,10 +22,10 @@ RSpec.describe 'PrintController', type: :request do
 
     context "with an incomplete PER" do
       before do
-        get print_path(escort), headers: { "HTTP_REFERER" => 'prev_page' }
+        get print_path(move), headers: { "HTTP_REFERER" => 'prev_page' }
       end
 
-      let(:escort) { FactoryGirl.create :escort, :with_incomplete_offences }
+      let(:move) { FactoryGirl.create :move, :incomplete }
 
       it "redirects back to the referring page" do
         expect(response).to redirect_to 'prev_page'

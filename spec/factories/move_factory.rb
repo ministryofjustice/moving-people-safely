@@ -9,6 +9,8 @@ FactoryGirl.define do
     reason_details 'Has to move'
     has_destinations 'no'
 
+    association :workflow, :incomplete, :move, factory: :risk, strategy: :build
+
     trait :past_move do
       date { 1.week.ago }
     end

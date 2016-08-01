@@ -1,5 +1,5 @@
 class Offences < ApplicationRecord
-  belongs_to :escort
+  belongs_to :detainee
   has_many :current_offences, dependent: :destroy
   has_many :past_offences, dependent: :destroy
 

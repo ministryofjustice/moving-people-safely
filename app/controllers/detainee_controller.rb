@@ -2,7 +2,7 @@ class DetaineeController < ApplicationController
   before_action :redirect_unless_document_editable
 
   def escort
-    detainee.escort
+    detainee.active_move
   end
 
   def detainee

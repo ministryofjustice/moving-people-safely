@@ -1,5 +1,5 @@
 class Move < ApplicationRecord
-  belongs_to :escort
+  belongs_to :detainee
   has_many :destinations, dependent: :destroy
 
   has_one :healthcare_workflow, -> { Workflow.healthcare }, class_name: 'Workflow'
@@ -7,21 +7,10 @@ class Move < ApplicationRecord
   has_one :offences_workflow, -> { Workflow.offences }, class_name: 'Workflow'
   has_one :workflow, -> { Workflow.move }, class_name: 'Workflow'
 
-  has_one :detainee, through: :escort
-  has_one :healthcare, through: :escort
-  has_one :offences, through: :escort
-  has_one :risk, through: :escort
-
   scope :for_date, (lambda do |search_date|
     where(date: search_date).
       order(created_at: :desc).
-      eager_load(
-        :detainee,
-        :escort,
-        :healthcare,
-        :offences,
-        :risk
-      )
+      eager_load(:detainee)
   end)
 
   scope :active, -> { joins(:workflow).merge(Workflow.not_issued) }
@@ -36,6 +25,18 @@ class Move < ApplicationRecord
     build_risk_workflow
     build_healthcare_workflow
     build_offences_workflow
+  end
+
+  scope :active, (lambda do
+    where('workflow_status IN (?)', INCOMPLETE_STATES)
+  end)
+
+  def escort
+    self
+  end
+
+  def move
+    self
   end
 
   def complete?

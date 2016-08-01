@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20160801135440) do
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
     t.string   "workflow_status",          default: "not_started"
+    t.uuid     "detainee_id"
   end
 
   create_table "medications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -95,10 +96,12 @@ ActiveRecord::Schema.define(version: 20160801135440) do
     t.string   "to"
     t.date     "date"
     t.string   "reason"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "has_destinations", default: "unknown"
     t.text     "reason_details"
+    t.uuid     "detainee_id"
+    t.string   "workflow_status",  default: "not_started"
   end
 
   create_table "offences", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -110,6 +113,7 @@ ActiveRecord::Schema.define(version: 20160801135440) do
     t.datetime "updated_at",                                      null: false
     t.string   "has_past_offences",       default: "unknown"
     t.string   "workflow_status",         default: "not_started"
+    t.uuid     "detainee_id"
   end
 
   create_table "past_offences", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -201,6 +205,7 @@ ActiveRecord::Schema.define(version: 20160801135440) do
     t.string   "workflow_status",                 default: "not_started"
     t.datetime "created_at",                                              null: false
     t.datetime "updated_at",                                              null: false
+    t.uuid     "detainee_id"
   end
 
   create_table "users", force: :cascade do |t|

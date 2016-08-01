@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resource :offences, only: %i[ show update ]
   end
 
-  scope ':escort_id' do
+  scope ':move_id' do
     get :profile, to: 'profiles#show'
     post :duplicate, to: 'escorts#clone', as: 'duplicate_escort'
     resource :move_information, only: %i[ show update ], path: 'move-info'

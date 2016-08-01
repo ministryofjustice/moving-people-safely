@@ -1,4 +1,5 @@
 class Healthcare < ApplicationRecord
+  belongs_to :detainee
   include Questionable
 
   QUESTION_FIELDS =
