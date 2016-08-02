@@ -24,7 +24,7 @@ RSpec.feature 'searching for a prisoner', type: :feature do
 
       login
       search_with_valid_prison_number(detainee.prison_number)
-      expect(page).to have_button('Add new move')
+      expect(page).to have_link('Add new move')
       expect_result_with_move(detainee.most_recent_move)
     end
 
