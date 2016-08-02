@@ -29,7 +29,7 @@ RSpec.describe AccessPolicy do
     let(:result) { subject.edit?(move: move) }
 
     context "PER has not been printed" do
-      before { allow(workflow).to receive(:issued?).and_return(false) }
+      before { allow(workflow).to receive(:active?).and_return(true) }
 
       it "is true" do
         expect(result).to be true
@@ -37,7 +37,7 @@ RSpec.describe AccessPolicy do
     end
 
     context "with a previously printed PER" do
-      before { allow(workflow).to receive(:issued?).and_return(true) }
+      before { allow(workflow).to receive(:active?).and_return(false) }
 
       it "is false" do
         expect(result).to be false
