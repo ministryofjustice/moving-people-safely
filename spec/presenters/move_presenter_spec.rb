@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe MovePresenter, type: :presenter do
-  let(:move) { build :move }
+  let(:move) { create :move }
   subject { described_class.new move }
 
   describe '#humanized_date' do
@@ -22,9 +22,6 @@ RSpec.describe MovePresenter, type: :presenter do
   end
 
   describe '#must_return_to' do
-    let(:escort) { create(:escort, :with_incomplete_healthcare) }
-    let(:move) { escort.move }
-
     before do
       move.destinations.create(establishment: 'hospital', must_return: 'must_return')
       move.destinations.create(establishment: 'court', must_return: 'must_return')
@@ -36,9 +33,6 @@ RSpec.describe MovePresenter, type: :presenter do
   end
 
   describe '#must_not_return_to' do
-    let(:escort) { create(:escort, :with_incomplete_healthcare) }
-    let(:move) { escort.move }
-
     before do
       move.destinations.create(establishment: 'hospital', must_return: 'must_not_return')
       move.destinations.create(establishment: 'court', must_return: 'must_not_return')

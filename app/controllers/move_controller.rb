@@ -1,11 +1,12 @@
 class MoveController < ApplicationController
   before_action :redirect_unless_document_editable
 
-  def escort
-    @escort ||= Escort.find(params[:escort_id])
+  def move
+    @_move ||= Move.find(params[:move_id])
   end
+  alias_method :active_move, :move
 
   def detainee
-    escort.detainee
+    move.detainee
   end
 end

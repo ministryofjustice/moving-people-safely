@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Forms::Offences, type: :form do
-  let(:escort) { Escort.create }
-  let(:model) { Offences.new(escort: escort) }
+  let(:model) { Offences.new }
   subject { described_class.new(model) }
 
   let(:form_data) do

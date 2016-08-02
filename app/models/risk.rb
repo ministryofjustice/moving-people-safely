@@ -1,4 +1,5 @@
 class Risk < ApplicationRecord
+  belongs_to :detainee
   include Questionable
 
   QUESTION_FIELDS =
@@ -8,8 +9,6 @@ class Risk < ApplicationRecord
         restricted_status drugs alcohol conceals_weapons arson
         damage_to_property interpreter_required hearing_speach_sight
         can_read_and_write  ]
-
-  belongs_to :escort
 
   def question_fields
     QUESTION_FIELDS

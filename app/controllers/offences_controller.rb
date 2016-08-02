@@ -10,8 +10,8 @@ class OffencesController < DetaineeController
   def update
     if form.validate form_data
       form.save
-      offences_workflow.confirmed!
-      redirect_to profile_path(escort)
+      active_move.offences_workflow.confirmed!
+      redirect_to profile_path(active_move)
     else
       flash[:form_data] = form_data
       redirect_to offences_path(detainee)

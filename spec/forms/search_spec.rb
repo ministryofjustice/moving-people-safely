@@ -17,24 +17,20 @@ RSpec.describe Forms::Search, type: :form do
     end
   end
 
-  describe '#escort' do
+  describe '#detainee' do
     context 'when the form is valid' do
-      context 'when an escort exists for a given prison number' do
+      context 'when an detainee exists for a given prison number' do
         it 'returns the escort' do
-          # FIXME: the process for creating an escort with a detainee
-          # is now duplicated - DRY it up
-          escort = Escort.create.tap do |e|
-            e.create_detainee(prison_number: 'A1234BC')
-          end
-          subject.validate(prison_number: 'A1234BC')
-          expect(subject.escort).to eq escort
+          detainee = create(:detainee)
+          subject.validate(prison_number: detainee.prison_number)
+          expect(subject.detainee).to eq detainee
         end
       end
 
-      context 'when no escort exists for a given prison number' do
+      context 'when no detainee exists for a given prison number' do
         it 'returns nothing' do
           subject.validate(prison_number: 'A1234BC')
-          expect(subject.escort).to be_nil
+          expect(subject.detainee).to be_nil
         end
       end
     end
@@ -42,7 +38,7 @@ RSpec.describe Forms::Search, type: :form do
     context 'when the form is invalid' do
       it 'returns nothing' do
         subject.validate(prison_number: 'invalid')
-        expect(subject.escort).to be_nil
+        expect(subject.detainee).to be_nil
       end
     end
   end

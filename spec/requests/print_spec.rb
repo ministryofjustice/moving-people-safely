@@ -1,18 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe 'PrintController', type: :request do
-  before { sign_in FactoryGirl.create(:user) }
+  before do
+    sign_in FactoryGirl.create(:user)
+    detainee.moves << move
+  end
+  let(:detainee) { create(:detainee) }
 
   describe "#show" do
     context "with a printable PER" do
-      before { get print_path(escort) }
-
-      let(:escort) { FactoryGirl.create :escort, :with_active_move }
+      before { get print_path(move) }
+      let(:move) { FactoryGirl.create(:move, :confirmed) }
 
       it "marks the PER as issued" do
-        # TODO FIX THIS WHEN ITS EASIER
-        # escort.reload # I HATE YOU ACTIVERECORD
-        # expect(escort.detainee.active_move.workflow.issued?).to be true
+        move.reload
+        expect(move.workflow.issued?).to be true
       end
 
       it "redirects to the home page" do
@@ -22,10 +24,9 @@ RSpec.describe 'PrintController', type: :request do
 
     context "with an incomplete PER" do
       before do
-        get print_path(escort), headers: { "HTTP_REFERER" => 'prev_page' }
+        get print_path(move), headers: { "HTTP_REFERER" => 'prev_page' }
       end
-
-      let(:escort) { FactoryGirl.create :escort, :with_incomplete_offences }
+      let(:move) { FactoryGirl.create :move }
 
       it "redirects back to the referring page" do
         expect(response).to redirect_to 'prev_page'

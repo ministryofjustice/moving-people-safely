@@ -8,9 +8,9 @@
         = f.search_text_field :prison_number
         = f.submit class: 'search_button', value: 'Search'
 
-    - if result
+    - if search_form.detainee
       = render partial: 'result',
-        locals: { result: result, detainee: result.detainee, move: result.move }
+        locals: { detainee: search_form.detainee, move: search_form.detainee.most_recent_move }
     - elsif search_form.valid?
       = render partial: 'no_result',
         locals: { prison_number: search_form.prison_number }

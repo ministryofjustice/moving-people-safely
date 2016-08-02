@@ -83,8 +83,6 @@ GEM
     debug_inspector (0.0.2)
     declarative (0.0.8)
       uber (>= 0.0.15)
-    deep_cloneable (2.2.1)
-      activerecord (>= 3.1.0, < 5.2.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (4.2.0)
@@ -93,9 +91,6 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    devise_invitable (1.6.0)
-      actionmailer (>= 3.2.6)
-      devise (>= 3.2.0)
     diff-lcs (1.2.5)
     disposable (0.2.6)
       declarative (~> 0.0.6)
@@ -325,9 +320,7 @@ DEPENDENCIES
   capybara
   codeclimate-test-reporter
   database_cleaner
-  deep_cloneable (~> 2.2.1)
   devise
-  devise_invitable (= 1.6.0)
   factory_girl_rails
   faker
   govuk_elements_form_builder!

@@ -9,12 +9,6 @@ FactoryGirl.define do
     dependencies 'no'
     mpv 'no'
     has_medications 'no'
-    workflow_status 'confirmed'
-
-    trait :incomplete do
-      allergies 'yes'
-      workflow_status { %w[ incomplete needs_review unconfirmed ].sample }
-    end
 
     trait :with_medications do
       has_medications 'yes'

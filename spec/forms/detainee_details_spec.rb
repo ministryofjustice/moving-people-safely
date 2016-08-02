@@ -13,7 +13,8 @@ RSpec.describe Forms::DetaineeDetails, type: :form do
       date_of_birth: '30/12/1946',
       cro_number: 'SOMECRO',
       pnc_number: 'SOMEPNC',
-      aliases: 'The Nailfile, Crocodile Shoes'
+      aliases: 'The Nailfile, Crocodile Shoes',
+      prison_number: 'A1234AB'
     }.with_indifferent_access
   }
 
@@ -60,12 +61,6 @@ RSpec.describe Forms::DetaineeDetails, type: :form do
 
     it { is_expected.to validate_presence_of(:surname) }
     it { is_expected.to validate_presence_of(:forenames) }
-  end
-
-  describe 'prison_number' do
-    it 'is read only' do
-      expect(subject).not_to respond_to('prison_number=')
-    end
   end
 
   describe '#save' do

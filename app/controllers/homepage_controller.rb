@@ -39,7 +39,6 @@ class HomepageController < ApplicationController
   def locals
     {
       search_form: search_form,
-      result: search_form.escort,
       date_picker: date_picker,
       prison_number: params[:search],
       dashboard: DashboardPresenter.new(date_picker.date)

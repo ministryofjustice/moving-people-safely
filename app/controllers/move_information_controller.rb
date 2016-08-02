@@ -2,16 +2,21 @@ class MoveInformationController < MoveController
   before_action :add_destination, only: [:update]
 
   def show
-    form.prepopulate!
-    render locals: { form: form }
+    if flash[:form_data]
+      form.validate flash[:form_data]
+    else
+      form.prepopulate!
+    end
+    render locals: { form: form, submit_path: move_information_path(active_move) }
   end
 
   def update
     if form.validate(params[:information])
       form.save
-      redirect_to profile_path(escort)
+      redirect_to profile_path(move)
     else
-      render :show, locals: { form: form, escort: escort }
+      flash[:form_data] = params[:information]
+      redirect_to move_information_path(move)
     end
   end
 
@@ -25,7 +30,7 @@ class MoveInformationController < MoveController
     if params.key? 'move_add_destination'
       form.deserialize params[:information]
       form.add_destination
-      render :show, locals: { form: form }
+      render :show, locals: { form: form, submit_path: move_information_path(move) }
     end
   end
 end

@@ -2,8 +2,7 @@ module Forms
   class DetaineeDetails < Forms::Base
     GENDERS = %w[ male female ]
 
-    delegate :prison_number, to: :model
-
+    property :prison_number, type: StrictString
     property :surname,       type: StrictString
     property :forenames,     type: StrictString
     property :date_of_birth, type: TextDate

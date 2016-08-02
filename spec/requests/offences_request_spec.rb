@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Offences', type: :request do
-  let(:escort) { FactoryGirl.create :escort }
-  let(:detainee) { escort.detainee }
-  let(:form_data) { { offences: escort.offences.attributes } }
+  let(:detainee) { create(:detainee) }
+  let(:form_data) { { offences: detainee.offences.attributes } }
 
   describe "when not logged in" do
     it "get #show redirects to /sign_in" do
@@ -24,6 +23,7 @@ RSpec.describe 'Offences', type: :request do
 
   context "while logged in" do
     before { sign_in FactoryGirl.create(:user) }
+    let(:detainee) { create(:detainee, :with_active_move) }
 
     describe "#show" do
       before { get "/#{detainee.id}/offences" }
@@ -39,7 +39,7 @@ RSpec.describe 'Offences', type: :request do
       context "with validating data" do
         it "redirects to the move overview" do
           expect(response.status).to eql 302
-          expect(response).to redirect_to "/#{escort.id}/profile"
+          expect(response).to redirect_to "/#{detainee.active_move.id}/profile"
         end
       end
 

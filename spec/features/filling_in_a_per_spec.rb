@@ -1,10 +1,6 @@
 require 'feature_helper'
 
 RSpec.feature 'filling in a PER', type: :feature do
-  around(:each) do |example|
-    travel_to(Time.new(2016, 7, 3, 9, 30, 0)) { example.run }
-  end
-
   scenario 'adding a new escort and filling it in' do
     login
 
