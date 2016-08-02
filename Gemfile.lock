@@ -83,8 +83,6 @@ GEM
     debug_inspector (0.0.2)
     declarative (0.0.8)
       uber (>= 0.0.15)
-    deep_cloneable (2.2.1)
-      activerecord (>= 3.1.0, < 5.2.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (4.2.0)
@@ -322,7 +320,6 @@ DEPENDENCIES
   capybara
   codeclimate-test-reporter
   database_cleaner
-  deep_cloneable
   devise
   factory_girl_rails
   faker
