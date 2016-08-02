@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801174100) do
+ActiveRecord::Schema.define(version: 20160802135906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
   create_table "current_offences", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "offences_id",    null: false
+    t.uuid     "offences_id"
     t.string   "offence"
     t.string   "case_reference"
     t.datetime "created_at",     null: false
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20160801174100) do
   end
 
   create_table "detainees", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "escort_id"
     t.string   "forenames"
     t.string   "surname"
     t.date     "date_of_birth"
@@ -48,14 +47,7 @@ ActiveRecord::Schema.define(version: 20160801174100) do
     t.datetime "updated_at",    null: false
   end
 
-  create_table "escorts", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.string   "workflow_status", default: "not_started"
-  end
-
   create_table "healthcare", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "escort_id"
     t.string   "physical_issues",          default: "unknown"
     t.text     "physical_issues_details"
     t.string   "mental_illness",           default: "unknown"
@@ -91,7 +83,6 @@ ActiveRecord::Schema.define(version: 20160801174100) do
   end
 
   create_table "moves", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "escort_id"
     t.string   "from"
     t.string   "to"
     t.date     "date"
@@ -104,7 +95,6 @@ ActiveRecord::Schema.define(version: 20160801174100) do
   end
 
   create_table "offences", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "escort_id"
     t.date     "release_date"
     t.boolean  "not_for_release"
     t.text     "not_for_release_details"
@@ -123,7 +113,6 @@ ActiveRecord::Schema.define(version: 20160801174100) do
   end
 
   create_table "risks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "escort_id"
     t.string   "open_acct",                       default: "unknown"
     t.text     "open_acct_details"
     t.string   "suicide",                         default: "unknown"

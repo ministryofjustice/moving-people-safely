@@ -10,8 +10,6 @@ class Risk < ApplicationRecord
         damage_to_property interpreter_required hearing_speach_sight
         can_read_and_write  ]
 
-  belongs_to :escort
-
   def question_fields
     QUESTION_FIELDS
   end

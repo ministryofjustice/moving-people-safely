@@ -91,9 +91,6 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    devise_invitable (1.6.0)
-      actionmailer (>= 3.2.6)
-      devise (>= 3.2.0)
     diff-lcs (1.2.5)
     disposable (0.2.6)
       declarative (~> 0.0.6)
@@ -324,7 +321,6 @@ DEPENDENCIES
   codeclimate-test-reporter
   database_cleaner
   devise
-  devise_invitable (= 1.6.0)
   factory_girl_rails
   faker
   govuk_elements_form_builder!
