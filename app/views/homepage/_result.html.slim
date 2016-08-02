@@ -6,23 +6,25 @@ table
     th Destination
     th Move date
   tr
-    td = link_to(detainee.prison_number, profile_path(result))
+    - if move
+      td = link_to(detainee.prison_number, profile_path(move))
+    - else
+      td = detainee.prison_number
     td
       span.strong-text
         | #{detainee.surname}
       span
         |  #{detainee.forenames}
     td = detainee.date_of_birth&.to_s(:humanized)
-    - if result.with_move?
+    - if move
       td = move.to
       td = move.date.to_s(:humanized)
     - else
-      td None
-      td None
+      td colspan=2
 
-- if result.with_future_move?
-  = link_to('View profile', profile_path(result), class: 'button')
-- elsif result.with_move?
-  = button_to('Add new move', duplicate_escort_path(result), method: :post, class: 'button')
+- if move && move.workflow.active?
+  = link_to('View profile', profile_path(move), class: 'button')
+- elsif move
+  = button_to('Add new move', copy_move_path(move), method: :post, class: 'button')
 - else
-  = link_to('Add new move', move_information_path(result), class: 'button')
+  = link_to('Add new move', new_move_path(detainee), class: 'button')

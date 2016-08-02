@@ -8,4 +8,8 @@ class Detainee < ApplicationRecord
   def active_move
     moves.active.first
   end
+
+  def most_recent_move
+    moves.present? && moves.order_by_recentness.first
+  end
 end

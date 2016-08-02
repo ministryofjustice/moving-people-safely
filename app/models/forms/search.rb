@@ -16,8 +16,10 @@ module Forms
       presence: true,
       format: { with: PRISON_NUMBER_REGEX }
 
-    def escort
-      ::Escort.find_detainee_by_prison_number(prison_number) if valid?
+    def detainee
+      @_detainee ||= if valid?
+        ::Detainee.find_by(prison_number: prison_number)
+      end
     end
   end
 end

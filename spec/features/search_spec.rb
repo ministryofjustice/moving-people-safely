@@ -8,27 +8,32 @@ RSpec.feature 'searching for a prisoner', type: :feature do
       expect_no_results
     end
 
-    scenario 'prisoner present with a future move' do
-      escort = create_escort_with_detainee_and_future_move
+    scenario 'prisoner present with an active move' do
+      detainee = create(:detainee, :with_active_move)
+      move = detainee.active_move
+
       login
-      search_with_valid_prison_number(escort.detainee.prison_number)
-      expect(page).to have_link('View profile', href: profile_path(escort))
-      expect_result_with_move(escort.move)
+      search_with_valid_prison_number(detainee.prison_number)
+      expect(page).to have_link('View profile', href: profile_path(move))
+      expect_result_with_move(move)
     end
 
-    scenario 'prisoner present with a past move' do
-      escort = create_escort_with_detainee_and_past_move
+    scenario 'prisoner present with a previously issued move' do
+      detainee = create(:detainee)
+      detainee.moves << create(:move, :issued)
+
       login
-      search_with_valid_prison_number(escort.detainee.prison_number)
+      search_with_valid_prison_number(detainee.prison_number)
       expect(page).to have_button('Add new move')
-      expect_result_with_move(escort.move)
+      expect_result_with_move(detainee.most_recent_move)
     end
 
     scenario 'prisoner present with no move' do
-      escort = create_escort_with_detainee_and_no_move
+      detainee = create(:detainee)
+
       login
-      search_with_valid_prison_number(escort.detainee.prison_number)
-      expect_result_with_no_move(escort)
+      search_with_valid_prison_number(detainee.prison_number)
+      expect_result_with_no_move(detainee)
     end
   end
 
@@ -64,21 +69,9 @@ RSpec.feature 'searching for a prisoner', type: :feature do
       and have_content(move.date.strftime('%d %b %Y'))
   end
 
-  def expect_result_with_no_move(escort)
-    expect(page).to have_link('Add new move', href: move_information_path(escort))
-    expect(page).to have_content(escort.detainee.prison_number).
-      and have_content(escort.detainee.surname)
-  end
-
-  def create_escort_with_detainee_and_future_move
-    create :escort, :with_future_move
-  end
-
-  def create_escort_with_detainee_and_past_move
-    create :escort, :with_past_move
-  end
-
-  def create_escort_with_detainee_and_no_move
-    create :escort, move: nil
+  def expect_result_with_no_move(detainee)
+    expect(page).to have_link('Add new move', href: new_move_path(detainee))
+    expect(page).to have_content(detainee.prison_number).
+      and have_content(detainee.surname)
   end
 end

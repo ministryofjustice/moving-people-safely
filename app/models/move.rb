@@ -19,16 +19,14 @@ class Move < ApplicationRecord
   scope :with_incomplete_healthcare, -> { joins(:healthcare_workflow).merge(Workflow.not_confirmed) }
   scope :with_incomplete_offences, -> { joins(:offences_workflow).merge(Workflow.not_confirmed) }
 
+  scope :order_by_recentness, -> { order(created_at: :desc) }
+
   def initialize(*)
     super
     build_workflow
     build_risk_workflow
     build_healthcare_workflow
     build_offences_workflow
-  end
-
-  def self.most_recent
-    order(created_at: :desc).first
   end
 
   def copy_without_saving
