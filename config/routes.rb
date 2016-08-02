@@ -12,9 +12,9 @@ Rails.application.routes.draw do
       put :confirm, on: :collection
     end
     resource :offences, only: %i[ show update ]
-    resource :move, only: %i[ new copy ], path: 'move', controller: 'move_information'
-    get '/move/copy', to: 'move_information#copy', as: 'copy_move'
-    post 'move/create', to: 'move_information#create', as: 'create_move'
+    get '/move/new', to: 'new_move#new', as: 'new_move'
+    get '/move/copy', to: 'new_move#copy', as: 'copy_move'
+    post 'move/create', to: 'new_move#create', as: 'create_move'
   end
 
   scope ':move_id' do
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     get :print, to: 'print#show'
   end
 
-  resource :escort, only: :create
+  resource :detainee, only: [ :new, :create ], controller: :detainee_details
 
   post '/search', to: 'homepage#search', as: 'search'
   post '/date', to: 'homepage#date', as: 'date_picker'

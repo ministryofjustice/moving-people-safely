@@ -1,12 +1,12 @@
-require 'rails_helper'
+require 'feature_helper'
 
 RSpec.describe 'managing move destinations', type: :feature do
-  let(:escort) { create :escort }
-
   scenario 'adding and removing move destinations' do
+    detainee = create(:detainee, :with_active_move)
+    move = detainee.active_move
     login
 
-    visit move_information_path(escort)
+    visit move_information_path(move)
     fill_in_move_information
 
     fill_in_destination position: :first
@@ -16,19 +16,19 @@ RSpec.describe 'managing move destinations', type: :feature do
     fill_in_destination position: :third
     save
 
-    visit move_information_path(escort)
+    visit move_information_path(move)
     expect_to_have_destinations_for positions: %i[ first second third ]
 
     delete_destination position: :third
     save
 
-    visit move_information_path(escort)
+    visit move_information_path(move)
     expect_to_have_destinations_for positions: %i[ first second ]
 
     select_no_destinations
     save
 
-    visit move_information_path(escort)
+    visit move_information_path(move)
     expect_all_destinations_to_be_deleted
   end
 

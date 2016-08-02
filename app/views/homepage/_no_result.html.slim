@@ -3,4 +3,4 @@ p
   |  Moving People Safely for detainee number
   |  #{prison_number}
 
-= button_to('Create new profile', escort_path, params: { prison_number: prison_number }, class: 'button')
+= button_to('Create new profile', new_detainee_path, params: { prison_number: prison_number }, class: 'button', method: :get)

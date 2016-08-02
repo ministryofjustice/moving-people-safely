@@ -1,7 +1,26 @@
 class DetaineeDetailsController < DetaineeController
+  skip_before_action :redirect_unless_document_editable, only: %i[ new create ]
+
+  def new
+    form = Forms::DetaineeDetails.new(Detainee.new(prison_number: params[:prison_number]))
+    form.validate(flash[:form_data]) if flash[:form_data]
+    render :show, locals: { form: form, submit_path: detainee_path }
+  end
+
+  def create
+    form = Forms::DetaineeDetails.new(Detainee.new)
+    if form.validate(params[:detainee_details])
+      form.save
+      redirect_to new_move_path(form.model.id)
+    else
+      flash[:form_data] = params[:detainee_details]
+      redirect_to new_detainee_path
+    end
+  end
+
   def show
     form.validate(flash[:form_data]) if flash[:form_data]
-    render :show, locals: { form: form }
+    render :show, locals: { form: form, submit_path: detainee_details_path(detainee) }
   end
 
   def update
