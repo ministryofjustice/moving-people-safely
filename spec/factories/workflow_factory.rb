@@ -25,5 +25,9 @@ FactoryGirl.define do
     trait :confirmed do
       status 4
     end
+
+    trait :issued do
+      status 5
+    end
   end
 end

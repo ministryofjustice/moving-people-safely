@@ -11,6 +11,10 @@ FactoryGirl.define do
 
     association :workflow, :incomplete, :move, factory: :workflow, strategy: :build
 
+    trait :issued do
+      association :workflow, :issued, :move, factory: :workflow, strategy: :build
+    end
+
     trait :past_move do
       date { 1.week.ago }
     end
