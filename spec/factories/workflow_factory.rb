@@ -13,5 +13,17 @@ FactoryGirl.define do
     trait :move do
       type 'move'
     end
+
+    trait :healthcare do
+      type 'healthcare'
+    end
+
+    trait :offences do
+      type 'offences'
+    end
+
+    trait :confirmed do
+      status 4
+    end
   end
 end

@@ -32,7 +32,7 @@ class Move < ApplicationRecord
   end
 
   def copy_without_saving
-    self.dup.tap do |move|
+    dup.tap do |move|
       move.date = nil
     end
   end

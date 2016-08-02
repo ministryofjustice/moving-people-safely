@@ -15,8 +15,14 @@ FactoryGirl.define do
       date { 1.week.ago }
     end
 
-    trait :future_move do
+    trait :active do
       date { 1.week.from_now }
+    end
+
+    trait :confirmed do
+      association :risk_workflow, :risk, :confirmed, factory: :workflow, strategy: :build
+      association :healthcare_workflow, :healthcare, :confirmed, factory: :workflow, strategy: :build
+      association :offences_workflow, :offences, :confirmed, factory: :workflow, strategy: :build
     end
 
     trait :with_destinations do

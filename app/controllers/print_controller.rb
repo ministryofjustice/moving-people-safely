@@ -1,6 +1,6 @@
 class PrintController < MoveController
   def show
-    error_redirect && return unless active_move.workflow.confirmed?
+    error_redirect && return unless active_move.complete?
     active_move.workflow.issued!
     redirect_to root_path
   end
