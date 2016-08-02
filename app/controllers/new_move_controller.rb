@@ -6,14 +6,18 @@ class NewMoveController < DetaineeController
     detainee = Detainee.find(params[:detainee_id])
     fail if detainee.active_move.present?
     form = Forms::Moves::Information.new(detainee.moves.build)
-    form.prepopulate!
+    if flash[:form_data]
+      form.validate flash[:form_data]
+    else
+      form.prepopulate!
+    end
     render 'move_information/show', locals: { form: form, submit_path: create_move_path(detainee) }
   end
 
   def copy
     detainee = Detainee.find(params[:detainee_id])
     fail if detainee.active_move.present? || detainee.moves.none?
-    form = Forms::Moves::Information.new(detainee.moves.most_recent.copy_without_saving)
+    form = Forms::Moves::Information.new(detainee.most_recent_move.copy_without_saving)
     render 'move_information/show', locals: { form: form, submit_path: create_move_path(detainee) }
   end
 

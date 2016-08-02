@@ -25,6 +25,6 @@ table
 - if move && move.workflow.active?
   = link_to('View profile', profile_path(move), class: 'button')
 - elsif move
-  = button_to('Add new move', copy_move_path(move), method: :post, class: 'button')
+  = link_to('Add new move', copy_move_path(detainee), class: 'button')
 - else
   = link_to('Add new move', new_move_path(detainee), class: 'button')
