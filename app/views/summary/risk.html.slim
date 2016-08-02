@@ -2,36 +2,36 @@
   = render partial: 'summary/status', locals: { workflow: risk_workflow, title: 'Risk' }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'risk_to_self', questions: %w[ open_acct suicide ], path: risk_path(escort, 'risk_to_self') }
+    locals: { presenter: SummaryPresenter.new(risk), section: 'risk_to_self', questions: %w[ open_acct suicide ], path: risk_path(detainee, 'risk_to_self') }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'risk_from_others', questions: %w[ rule_45 csra verbal_abuse physical_abuse ], path: risk_path(escort, 'risk_from_others') }
+    locals: { presenter: SummaryPresenter.new(risk), section: 'risk_from_others', questions: %w[ rule_45 csra verbal_abuse physical_abuse ], path: risk_path(detainee, 'risk_from_others') }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'violence', questions: %w[ prison_staff risk_to_females escort_or_court_staff healthcare_staff other_detainees homophobic racist public_offence_related police  ], path: risk_path(escort, 'violence') }
+    locals: { presenter: SummaryPresenter.new(risk), section: 'violence', questions: %w[ prison_staff risk_to_females escort_or_court_staff healthcare_staff other_detainees homophobic racist public_offence_related police  ], path: risk_path(detainee, 'violence') }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'harassments', questions: %w[ hostage_taker stalker harasser intimidator bully ], path: risk_path(escort, 'harassments') }
+    locals: { presenter: SummaryPresenter.new(risk), section: 'harassments', questions: %w[ hostage_taker stalker harasser intimidator bully ], path: risk_path(detainee, 'harassments') }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'sex_offences', questions: %w[ sex_offence ], path: risk_path(escort, 'sex_offences') }
+    locals: { presenter: SummaryPresenter.new(risk), section: 'sex_offences', questions: %w[ sex_offence ], path: risk_path(detainee, 'sex_offences') }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'non_association_markers', questions: %w[ non_association_markers ], path: risk_path(escort, 'non_association_markers') }
+    locals: { presenter: SummaryPresenter.new(risk), section: 'non_association_markers', questions: %w[ non_association_markers ], path: risk_path(detainee, 'non_association_markers') }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'security', questions: %w[ current_e_risk escape_list other_escape_risk_info category_a restricted_status escape_pack escape_risk_assessment cuffing_protocol ], path: risk_path(escort, 'security') }
+    locals: { presenter: SummaryPresenter.new(risk), section: 'security', questions: %w[ current_e_risk escape_list other_escape_risk_info category_a restricted_status escape_pack escape_risk_assessment cuffing_protocol ], path: risk_path(detainee, 'security') }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'substance_misuse', questions: %w[ drugs alcohol ], path: risk_path(escort, 'substance_misuse') }
+    locals: { presenter: SummaryPresenter.new(risk), section: 'substance_misuse', questions: %w[ drugs alcohol ], path: risk_path(detainee, 'substance_misuse') }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'concealed_weapons', questions: %w[ conceals_weapons ], path: risk_path(escort, 'conceals_weapons') }
+    locals: { presenter: SummaryPresenter.new(risk), section: 'concealed_weapons', questions: %w[ conceals_weapons ], path: risk_path(detainee, 'conceals_weapons') }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'arson', questions: %w[ arson damage_to_property ], path: risk_path(escort, 'arson') }
+    locals: { presenter: SummaryPresenter.new(risk), section: 'arson', questions: %w[ arson damage_to_property ], path: risk_path(detainee, 'arson') }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'communication', questions: %w[ interpreter_required hearing_speach_sight can_read_and_write ], path: risk_path(escort, 'communication') }
+    locals: { presenter: SummaryPresenter.new(risk), section: 'communication', questions: %w[ interpreter_required hearing_speach_sight can_read_and_write ], path: risk_path(detainee, 'communication') }
 
   = render partial: 'summary/call_to_action', locals: { workflow: risk_workflow, confirm_path: confirm_risks_path }

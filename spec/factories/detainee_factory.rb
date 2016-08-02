@@ -18,18 +18,6 @@ FactoryGirl.define do
     association :risk, factory: :risk, strategy: :build
     association :offences, factory: :offences, strategy: :build
 
-    trait :with_incomplete_healthcare do
-      association :healthcare, :incomplete, factory: :healthcare, strategy: :build
-    end
-
-    trait :with_incomplete_risk do
-      association :risk, :incomplete, factory: :risk, strategy: :build
-    end
-
-    trait :with_incomplete_offences do
-      association :offences, :incomplete, factory: :offences, strategy: :build
-    end
-
     trait :with_multiples do
       association :healthcare, :with_medications, factory: :healthcare, strategy: :build
     end

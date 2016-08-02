@@ -12,11 +12,13 @@ Rails.application.routes.draw do
       put :confirm, on: :collection
     end
     resource :offences, only: %i[ show update ]
+    resource :move, only: %i[ new copy ], path: 'move', controller: 'move_information'
+    get '/move/copy', to: 'move_information#copy', as: 'copy_move'
+    post 'move/create', to: 'move_information#create', as: 'create_move'
   end
 
   scope ':move_id' do
     get :profile, to: 'profiles#show'
-    post :duplicate, to: 'escorts#clone', as: 'duplicate_escort'
     resource :move_information, only: %i[ show update ], path: 'move-info'
     get :print, to: 'print#show'
   end

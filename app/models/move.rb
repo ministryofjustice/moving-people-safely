@@ -27,16 +27,14 @@ class Move < ApplicationRecord
     build_offences_workflow
   end
 
-  scope :active, (lambda do
-    where('workflow_status IN (?)', INCOMPLETE_STATES)
-  end)
-
-  def escort
-    self
+  def self.most_recent
+    order(created_at: :desc).first
   end
 
-  def move
-    self
+  def copy_without_saving
+    self.dup.tap do |move|
+      move.date = nil
+    end
   end
 
   def complete?

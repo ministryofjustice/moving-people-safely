@@ -5,7 +5,7 @@
   = GovukElementsErrorsHelper.error_summary form,
     'There were problems saving this form', ''
 
-  = form_for form, url: move_information_url(escort), method: :put do |f|
+  = form_for form, url: submit_path do |f|
     = f.text_field :from
     = f.text_field :to
     = f.text_field :date

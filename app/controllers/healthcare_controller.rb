@@ -30,7 +30,7 @@ class HealthcareController < DetaineeController
   def confirm
     fail unless healthcare.all_questions_answered?
     healthcare_workflow.confirmed!
-    redirect_to profile_path(escort)
+    redirect_to profile_path(active_move)
   end
 
   private

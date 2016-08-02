@@ -1,6 +1,6 @@
 .profile
   = render partial: 'header'
-  = render partial: 'move', locals: { move: MovePresenter.new(move) }
+  = render partial: 'move', locals: { move: MovePresenter.new(active_move) }
   = render partial: 'detainee', locals: { detainee: DetaineePresenter.new(detainee) }
   = render partial: 'risk'
   = render partial: 'healthcare'

@@ -5,11 +5,7 @@ class MoveController < ApplicationController
     @_move ||= Move.find(params[:move_id])
   end
 
-  def escort
-    @escort ||= Move.find(params[:move_id])
-  end
-
   def detainee
-    escort.detainee
+    move.detainee
   end
 end

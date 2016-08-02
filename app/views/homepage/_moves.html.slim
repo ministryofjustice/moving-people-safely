@@ -10,8 +10,8 @@
       th
     - moves.each do |move|
       tr id="prison_number_#{move.detainee.prison_number}"
-        - if AccessPolicy.edit?(escort: move.escort)
-          td = link_to move.detainee.prison_number, profile_path(move.escort)
+        - if AccessPolicy.edit?(move: move)
+          td = link_to move.detainee.prison_number, profile_path(move)
         - else
           td = move.detainee.prison_number
         td
@@ -24,7 +24,7 @@
           td.issued colspan=3
             | Issued
           td.print
-            = link_to 'Reprint', print_path(move.escort)
+            = link_to 'Reprint', print_path(move)
         - else
           td.completion-status
             span class="#{move.risk_complete?}"
@@ -33,5 +33,5 @@
           td.completion-status
             span class="#{move.offences_complete?}"
           td.print
-            - if AccessPolicy.print?(escort: move.escort)
-             = link_to 'Print', print_path(move.escort)
+            - if AccessPolicy.print?(move: move)
+             = link_to 'Print', print_path(move)

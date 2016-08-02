@@ -14,10 +14,9 @@ namespace :dev do
   desc 'creates some moves for todays date'
   task moves: :environment do
     10.times do
-      completenesses = %w[healthcare risk offences].shuffle.take(rand(4)).map { |w| "with_incomplete_#{w}".to_sym }
-      d = FactoryGirl.create(:detainee, *completenesses)
+      d = FactoryGirl.create(:detainee)
       d.moves << FactoryGirl.create(:move, :with_destinations)
-      puts "Creating #{d.forenames} #{d.surname} #{completenesses}"
+      puts "Creating #{d.forenames} #{d.surname}"
     end
   end
 end

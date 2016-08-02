@@ -23,12 +23,5 @@ FactoryGirl.define do
     interpreter_required 'no'
     hearing_speach_sight 'no'
     can_read_and_write 'no'
-
-    workflow_status 'confirmed'
-
-    trait :incomplete do
-      conceals_weapons 'yes'
-      workflow_status { %w[ incomplete needs_review unconfirmed ].sample }
-    end
   end
 end

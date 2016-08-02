@@ -17,6 +17,8 @@ module Forms
       optional_field :has_destinations
       prepopulated_collection :destinations
 
+      delegate :persisted?, to: :model
+
       validates :reason,
         inclusion: { in: REASONS },
         allow_blank: true

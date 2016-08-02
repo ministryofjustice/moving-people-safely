@@ -1,15 +1,11 @@
 module AccessPolicy
   module_function
 
-  def clone_escort?(escort:)
-    escort.detainee.active_move.nil?
+  def edit?(move:)
+    !move.workflow.issued?
   end
 
-  def edit?(escort:)
-    !escort.move.workflow.issued?
-  end
-
-  def print?(escort:)
-    escort.move.complete?
+  def print?(move:)
+    move.complete?
   end
 end

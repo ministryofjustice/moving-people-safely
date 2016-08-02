@@ -9,5 +9,9 @@ FactoryGirl.define do
     trait :risk do
       type 'risk'
     end
+
+    trait :move do
+      type 'move'
+    end
   end
 end
