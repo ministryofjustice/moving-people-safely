@@ -2,12 +2,11 @@ require 'rails_helper'
 
 RSpec.describe AccessPolicy do
   subject { described_class }
-  let(:escort) { instance_double(Escort, move: move) }
   let(:move) { instance_double(Move, workflow: workflow) }
   let(:workflow) { instance_double(Workflow) }
 
   describe "#print?" do
-    let(:result) { subject.print?(escort: escort) }
+    let(:result) { subject.print?(move: move) }
 
     context "with a completed PER" do
       before { allow(move).to receive(:complete?).and_return(true) }
@@ -27,7 +26,7 @@ RSpec.describe AccessPolicy do
   end
 
   describe "#edit?" do
-    let(:result) { subject.edit?(escort: escort) }
+    let(:result) { subject.edit?(move: move) }
 
     context "PER has not been printed" do
       before { allow(workflow).to receive(:issued?).and_return(false) }
