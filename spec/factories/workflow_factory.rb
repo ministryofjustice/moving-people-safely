@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :workflow do
     status 0
+    type 'invalid type'
 
     trait :incomplete do
       status 2
