@@ -30,7 +30,7 @@ class MoveInformationController < MoveController
     if params.key? 'move_add_destination'
       form.deserialize params[:information]
       form.add_destination
-      render :show, locals: { form: form, submit_path: move_information_path(move)}
+      render :show, locals: { form: form, submit_path: move_information_path(move) }
     end
   end
 end

@@ -35,7 +35,7 @@ class NewMoveController < DetaineeController
     if params.key? 'move_add_destination'
       form.deserialize params[:information]
       form.add_destination
-      render 'move_information/show', locals: { form: form, submit_path: create_move_path(detainee)}
+      render 'move_information/show', locals: { form: form, submit_path: create_move_path(detainee) }
     end
   end
 end

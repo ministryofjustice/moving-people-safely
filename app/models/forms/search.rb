@@ -17,9 +17,7 @@ module Forms
       format: { with: PRISON_NUMBER_REGEX }
 
     def detainee
-      @_detainee ||= if valid?
-        ::Detainee.find_by(prison_number: prison_number)
-      end
+      @_detainee ||= ::Detainee.find_by(prison_number: prison_number) if valid?
     end
   end
 end
