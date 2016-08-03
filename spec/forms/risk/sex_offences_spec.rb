@@ -17,10 +17,16 @@ RSpec.describe Forms::Risk::SexOffences, type: :form do
       it { is_expected.to validate_optional_field(:sex_offence) }
     end
 
+    it {
+      is_expected.
+        to validate_attributes_are_reset(:sex_offence_victim, :sex_offence_details).
+        when_attribute_is_disabled(:sex_offence)
+    }
+
     describe "sex_offence_details" do
       it { is_expected.to validate_strict_string(:sex_offence_details) }
 
-      context "when sex_offence is set to yes" do
+      context 'when sex_offence is set to yes' do
         before { subject.sex_offence = 'yes' }
 
         context "when the victim is set to under 18" do
