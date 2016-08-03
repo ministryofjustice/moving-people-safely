@@ -25,12 +25,12 @@ module Forms
         end
 
         def validate(*)
-          super.tap { |*| reset_attributes_if_disbaled_by_toggle }
+          super.tap { |*| reset_attributes_if_disabled_by_toggle }
         end
 
         private
 
-        def reset_attributes_if_disbaled_by_toggle
+        def reset_attributes_if_disabled_by_toggle
           self.class.resetters.each do |(attributes_to_reset, toggle_attribute)|
             if public_send(toggle_attribute) != TOGGLE_YES
               attributes_to_reset.each { |method| public_send("#{method}=", nil) }
