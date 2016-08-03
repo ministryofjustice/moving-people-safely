@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802135906) do
+ActiveRecord::Schema.define(version: 20160803163221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -230,10 +230,10 @@ ActiveRecord::Schema.define(version: 20160802135906) do
     t.uuid     "move_id"
     t.string   "type",                    null: false
     t.integer  "status",      default: 0
-    t.uuid     "reviewed_by"
     t.datetime "reviewed_at"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "reviewer_id"
   end
 
 end
