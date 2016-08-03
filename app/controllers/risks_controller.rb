@@ -30,7 +30,7 @@ class RisksController < DetaineeController
   # what does error state look like?
   def confirm
     fail unless risk.all_questions_answered?
-    risk_workflow.confirmed!
+    risk_workflow.confirm_with_user!(user: current_user)
     redirect_to profile_path(active_move)
   end
 

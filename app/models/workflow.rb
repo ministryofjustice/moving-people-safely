@@ -1,5 +1,6 @@
 class Workflow < ApplicationRecord
   belongs_to :move
+  belongs_to :reviewer, class_name: 'User'
 
   self.inheritance_column = :_type_disabled
 
@@ -20,6 +21,14 @@ class Workflow < ApplicationRecord
   scope :move, -> { where type: 'move' }
 
   scope :not_confirmed, -> { where.not(status: :confirmed) }
+
+  def confirm_with_user!(user:)
+    update_attributes!(
+      reviewer_id: user.id,
+      reviewed_at: DateTime.now,
+      status: :confirmed
+    )
+  end
 
   concerning :AppliesToMoveWorkflowOnly do
     included do
