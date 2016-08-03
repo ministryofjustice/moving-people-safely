@@ -12,7 +12,7 @@ module Page
       fill_in 'CRO number', with: detainee.cro_number
       fill_in 'Aliases', with: detainee.aliases
 
-      click_button 'Save and continue'
+      save_and_continue
     end
   end
 end

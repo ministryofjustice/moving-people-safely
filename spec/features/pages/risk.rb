@@ -25,7 +25,7 @@ module Page
       fill_in 'risk_to_self[open_acct_details]', with: 'Needs ACCT'
       choose 'risk_to_self_suicide_yes'
       fill_in 'risk_to_self[suicide_details]', with: 'Tried twice'
-      click_button 'Save and continue'
+      save_and_continue
     end
 
     def fill_in_risk_from_others
@@ -37,28 +37,28 @@ module Page
       fill_in 'risk_from_others[verbal_abuse_details]', with: 'Details for verbal abuse'
       choose 'risk_from_others_physical_abuse_yes'
       fill_in 'risk_from_others[physical_abuse_details]', with: 'Details for physical abuse'
-      click_button 'Save and continue'
+      save_and_continue
     end
 
     def fill_in_violence
       choose 'violence_violent_yes'
       check 'Prison staff'
       fill_in 'violence[prison_staff_details]', with: 'Details for violent to prison stuff'
-      click_button 'Save and continue'
+      save_and_continue
     end
 
     def fill_in_harassments
       choose 'harassments_stalker_harasser_bully_yes'
       check 'Intimidator'
       fill_in 'harassments[intimidator_details]', with: 'Aggressive personality'
-      click_button 'Save and continue'
+      save_and_continue
     end
 
     def fill_in_sex_offences
       choose 'sex_offences_sex_offence_yes'
       choose 'Under 18'
       fill_in 'sex_offences[sex_offence_details]', with: '17 years old'
-      click_button 'Save and continue'
+      save_and_continue
     end
 
     def fill_in_security
@@ -75,13 +75,13 @@ module Page
       check 'Escape pack'
       check 'Escape risk assessment'
       check 'Cuffing protocol'
-      click_button 'Save and continue'
+      save_and_continue
     end
 
     def fill_in_non_association_markers
       choose 'non_association_markers_non_association_markers_yes'
       fill_in 'non_association_markers[non_association_markers_details]', with: 'Prisoner A1234BC and Z9876XY'
-      click_button 'Save and continue'
+      save_and_continue
     end
 
     def fill_in_substance_misuse
@@ -89,13 +89,13 @@ module Page
       fill_in 'substance_misuse[drugs_details]', with: 'Heroin'
       choose 'substance_misuse_alcohol_yes'
       fill_in 'substance_misuse[alcohol_details]', with: 'Lots of beer'
-      click_button 'Save and continue'
+      save_and_continue
     end
 
     def fill_in_concealed_weapons
       choose 'concealed_weapons_conceals_weapons_yes'
       fill_in 'concealed_weapons[conceals_weapons_details]', with: 'Guns and rifles'
-      click_button 'Save and continue'
+      save_and_continue
     end
 
     def fill_in_arson
@@ -103,7 +103,7 @@ module Page
       choose 'arson_arson_value_high'
       fill_in 'arson[arson_details]', with: 'Burnt several houses'
       choose 'arson_damage_to_property_no'
-      click_button 'Save and continue'
+      save_and_continue
     end
 
     def fill_in_communication
@@ -113,7 +113,7 @@ module Page
       fill_in 'communication[hearing_speach_sight_details]', with: 'Blind'
       choose 'communication_can_read_and_write_yes'
       fill_in 'communication[can_read_and_write_details]', with: 'Can only read'
-      click_button 'Save and continue'
+      save_and_continue
     end
   end
 end

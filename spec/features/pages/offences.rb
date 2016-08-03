@@ -15,7 +15,7 @@ module Page
       click_button 'Add past offence'
       fill_in 'offences_past_offences_attributes_1_offence', with: 'Armed robbery'
 
-      click_button 'Save and continue'
+      save_and_continue
     end
   end
 end
