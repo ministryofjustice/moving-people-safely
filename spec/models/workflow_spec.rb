@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Workflow do
-  subject { described_class.new(type: 'move') }
+  subject { described_class.new(type: 'TYPE') }
 
   describe "#confirm_with_user!" do
     before { subject.confirm_with_user!(user: user) }
