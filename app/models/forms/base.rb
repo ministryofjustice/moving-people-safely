@@ -33,9 +33,7 @@ module Forms
         def reset_attributes_if_disbaled_by_toggle
           self.class.resetters.each do |(attributes_to_reset, toggle_attribute)|
             if public_send(toggle_attribute) != TOGGLE_YES
-              attributes_to_reset.each do |method_name|
-                public_send("#{method_name}=", nil)
-              end
+              attributes_to_reset.each { |method| public_send("#{method}=", nil) }
             end
           end
         end
@@ -117,8 +115,6 @@ module Forms
         define_method "handle_nested_params_for_#{field_name}" do |collection:, fragment:, **|
           item = collection.find { |d| ( d.id.present? && d.id == fragment['id']) }
           marked_to_be_deleted = fragment['_delete'] == '1'
-
-          # TODO this should be able to be removed with the addition of reset
           all_to_be_deleted = %w[ yes ].exclude?(
             public_send("has_#{field_name}")
           )
