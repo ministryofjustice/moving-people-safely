@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Homepage', type: :request do
-  let(:escort) { FactoryGirl.create :escort }
   before { sign_in FactoryGirl.create(:user) }
 
   describe "#show" do

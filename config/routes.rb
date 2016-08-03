@@ -12,9 +12,10 @@ Rails.application.routes.draw do
       put :confirm, on: :collection
     end
     resource :offences, only: %i[ show update ]
-    get '/move/new', to: 'new_move#new', as: 'new_move'
-    get '/move/copy', to: 'new_move#copy', as: 'copy_move'
-    post 'move/create', to: 'new_move#create', as: 'create_move'
+    get  '/move/new', to: 'new_move#new', as: 'new_move'
+    post '/move', to: 'new_move#create', as: 'create_move'
+    get  '/move/copy', to: 'copy_move#copy', as: 'copy_move'
+    post '/move/copy', to: 'copy_move#create', as: 'copy_move_create'
   end
 
   scope ':move_id' do
