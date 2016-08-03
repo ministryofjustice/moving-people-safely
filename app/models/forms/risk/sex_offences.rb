@@ -6,7 +6,7 @@ module Forms
 
       optional_field :sex_offence
       reset attributes: %i[sex_offence_victim sex_offence_details],
-        if_falsey: :sex_offence
+            if_falsey: :sex_offence
 
       property :sex_offence_victim, type: StrictString
       property :sex_offence_details, type: StrictString
