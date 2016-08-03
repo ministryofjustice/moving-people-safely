@@ -16,6 +16,16 @@ RSpec.describe Forms::Risk::Violence, type: :form do
     context "for the 'violent' attribute" do
       it { is_expected.to validate_optional_field(:violent) }
 
+      it {
+        is_expected.to validate_attributes_are_reset(
+          :prison_staff, :prison_staff_details, :risk_to_females, :risk_to_females_details,
+          :escort_or_court_staff, :escort_or_court_staff_details, :healthcare_staff,
+          :healthcare_staff_details, :other_detainees, :other_detainees_details, :homophobic,
+          :homophobic_details, :racist, :racist_details, :public_offence_related,
+          :public_offence_related_details, :police, :police_details
+        ).when_attribute_is_disabled(:violent)
+      }
+
       context 'when violent is set to yes' do
         before { subject.violent = 'yes' }
 
