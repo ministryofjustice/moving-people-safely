@@ -20,7 +20,7 @@ module Page
       click_button 'Add establishment'
       fill_in 'information_destinations_attributes_3_establishment', with: 'Tribunal'
       choose 'information_destinations_attributes_3_must_return_must_not_return'
-      click_button 'Save and continue'
+      save_and_continue
     end
   end
 end

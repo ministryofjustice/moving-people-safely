@@ -5,5 +5,9 @@ module Page
     include Capybara::DSL
 
     delegate :within, to: :Capybara
+
+    def save_and_continue
+      click_button 'Save and continue'
+    end
   end
 end
