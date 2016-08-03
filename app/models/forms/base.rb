@@ -18,7 +18,7 @@ module Forms
       end
 
       # checks class instance methods
-      def respond_to?(method_name)
+      def respond_to?(method_name, **args)
         instance_methods.include?(method_name)
       end
 

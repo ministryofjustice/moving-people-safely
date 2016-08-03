@@ -35,6 +35,16 @@ class Move < ApplicationRecord
     end
   end
 
+  def save_copy
+    transaction do
+      create_workflow
+      create_risk_workflow.needs_review!
+      create_healthcare_workflow.needs_review!
+      create_offences_workflow.needs_review!
+    end
+    save
+  end
+
   def complete?
     risk_complete? &&
       healthcare_complete? &&

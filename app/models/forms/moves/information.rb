@@ -37,6 +37,11 @@ module Forms
       def reasons
         REASONS
       end
+
+      def save_copy
+        sync
+        model.save_copy
+      end
     end
   end
 end

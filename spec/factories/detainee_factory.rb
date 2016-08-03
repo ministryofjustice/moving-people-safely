@@ -25,5 +25,9 @@ FactoryGirl.define do
     trait :with_active_move do
       moves { build_list :move, 1, :active }
     end
+
+    trait :with_completed_move do
+      moves { build_list :move, 1, :issued }
+    end
   end
 end
