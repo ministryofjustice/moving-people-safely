@@ -16,9 +16,18 @@ RSpec.describe Forms::Risk::Harassments, type: :form do
     context "for the 'stalker_harasser_bully' attribute" do
       it { is_expected.to validate_optional_field(:stalker_harasser_bully) }
 
+      it {
+        is_expected.
+          to validate_attributes_are_reset(
+            :hostage_taker, :hostage_taker_details, :stalker, :stalker_details, :harasser,
+            :harasser_details, :intimidator, :intimidator_details, :bully, :bully_details).
+          when_attribute_is_disabled(:stalker_harasser_bully)
+      }
+
       context 'when stalker_harasser_bully is set to yes' do
         before { subject.stalker_harasser_bully = 'yes' }
 
+        # TODO this smells of needing a checkbox validator
         %w[ hostage_taker stalker harasser intimidator bully ].each do |field|
           context "when #{field} is set to true" do
             before { subject.public_send("#{field}=", true) }
