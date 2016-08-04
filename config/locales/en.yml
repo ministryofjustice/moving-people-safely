@@ -51,6 +51,10 @@ en:
         allergies:
           unknown: Clear selection
       arson:
+        arson_value:
+          index_offence: Arson is the index offence
+          behavioural_issue: Arson is a behavioural issue
+          small_risk: Small risk of arson during move
         arson:
           unknown: Clear selection
         damage_to_property:
@@ -163,7 +167,7 @@ en:
         allergies: Does the detainee have any allergies?
         allergies_details: Give details and explain the significance
       arson:
-        arson_details: Give details
+        arson_details: Give details of last arson attack, including date
         damage_to_property_details: Give details
       communication:
         can_read_and_write_details: Give details

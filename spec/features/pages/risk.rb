@@ -100,7 +100,7 @@ module Page
 
     def fill_in_arson
       choose 'arson_arson_yes'
-      choose 'arson_arson_value_high'
+      choose 'arson_arson_value_index_offence'
       fill_in 'arson[arson_details]', with: 'Burnt several houses'
       choose 'arson_damage_to_property_no'
       save_and_continue

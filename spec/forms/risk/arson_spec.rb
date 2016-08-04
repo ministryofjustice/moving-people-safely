@@ -7,7 +7,7 @@ RSpec.describe Forms::Risk::Arson, type: :form do
   let(:params) {
     {
       'arson' => 'yes',
-      'arson_value' => 'high',
+      'arson_value' => 'index_offence',
       'arson_details' => 'Burnt entire forests',
       'damage_to_property' => 'yes',
       'damage_to_property_details' => 'Several garages',
@@ -17,7 +17,10 @@ RSpec.describe Forms::Risk::Arson, type: :form do
   describe '#validate' do
     it { is_expected.to validate_optional_details_field(:damage_to_property) }
     it { is_expected.to validate_optional_details_field(:arson) }
-    it { is_expected.to validate_inclusion_of(:arson_value).in_array(%w[ high medium low ]) }
+    it {
+      is_expected.to validate_inclusion_of(:arson_value).
+        in_array(%w[ index_offence behavioural_issue small_risk ])
+    }
   end
 
   describe '#save' do
