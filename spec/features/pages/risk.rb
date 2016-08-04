@@ -22,7 +22,6 @@ module Page
 
     def fill_in_risk_to_self
       choose 'risk_to_self_open_acct_yes'
-      fill_in 'risk_to_self[open_acct_details]', with: 'Needs ACCT'
       choose 'risk_to_self_suicide_yes'
       fill_in 'risk_to_self[suicide_details]', with: 'Tried twice'
       save_and_continue

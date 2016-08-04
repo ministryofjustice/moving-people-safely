@@ -6,7 +6,6 @@ module Page
           expect(page).to have_content(result)
           expect(page).to have_content('Serving Sentence')
           expect(page).to have_content('High CSRA')
-          expect(page).to have_content('Needs ACCT')
           expect(page).to have_content('Details for Rule 45')
           expect(page).to have_content('Category A information')
         end

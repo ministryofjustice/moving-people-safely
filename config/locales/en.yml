@@ -125,7 +125,6 @@ en:
       risk_to_self:
         open_acct:
           unknown: Clear selection
-        open_acct_details: Open ACCT details
         suicide:
           unknown: Clear selection
         suicide_details: Risk of suicide or self-harm details
@@ -208,7 +207,6 @@ en:
         verbal_abuse_details: Give details
         physical_abuse_details: Give details
       risk_to_self:
-        open_acct_details: Give details and dates of open or recent ACCTs
         suicide_details: Give details
       security:
         category_a_details: Give details
