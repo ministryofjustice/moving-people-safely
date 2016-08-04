@@ -70,4 +70,10 @@
   .status {
     float: right;
   }
+
+  .actions {
+    margin-top: 60px;
+    li { float: left; margin-right: 20px; }
+    li.link-return-home a { display: inline-block; margin-top: 10px; }
+  }
 }
