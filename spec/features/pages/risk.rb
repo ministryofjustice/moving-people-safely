@@ -6,7 +6,8 @@ module Page
       end
     end
 
-    def complete_forms
+    def complete_forms(risk)
+      @risk = risk
       fill_in_risk_to_self
       fill_in_risk_from_others
       fill_in_violence
@@ -21,35 +22,48 @@ module Page
     end
 
     def fill_in_risk_to_self
-      choose 'risk_to_self_open_acct_yes'
-      choose 'risk_to_self_suicide_yes'
-      fill_in 'risk_to_self[suicide_details]', with: 'Tried twice'
+      fill_in_optional_details('Open or recent ACCT?', @risk.open_acct, @risk.open_acct_details)
+      fill_in_optional_details('Risk of suicide or self-harm?', @risk.suicide, @risk.suicide_details)
       save_and_continue
     end
 
     def fill_in_risk_from_others
-      choose 'risk_from_others_rule_45_yes'
-      fill_in 'risk_from_others[rule_45_details]', with: 'Details for Rule 45'
-      choose 'risk_from_others_csra_high'
-      fill_in 'risk_from_others[csra_details]', with: 'High CSRA'
-      choose 'risk_from_others_verbal_abuse_yes'
-      fill_in 'risk_from_others[verbal_abuse_details]', with: 'Details for verbal abuse'
-      choose 'risk_from_others_physical_abuse_yes'
-      fill_in 'risk_from_others[physical_abuse_details]', with: 'Details for physical abuse'
+      fill_in_optional_details('Rule 45?', @risk.rule_45, @risk.rule_45_details)
+      fill_in_optional_details('CSRA?', @risk.csra, @risk.csra_details)
+      fill_in_optional_details('Is the detainee at risk of verbal abuse from others?', @risk.verbal_abuse, @risk.verbal_abuse_details)
+      fill_in_optional_details('Is the detainee at risk of physical abuse from others?', @risk.physical_abuse, @risk.physical_abuse_details)
       save_and_continue
     end
 
     def fill_in_violence
-      choose 'violence_violent_yes'
-      check 'Prison staff'
-      fill_in 'violence[prison_staff_details]', with: 'Details for violent to prison stuff'
+      if @risk.violent == 'yes'
+        choose 'violence_violent_yes'
+        fill_in_checkbox_with_details('Prison staff', @risk.prison_staff, @risk.prison_staff_details)
+        fill_in_checkbox_with_details('Risk to females', @risk.risk_to_females, @risk.risk_to_females_details)
+        fill_in_checkbox_with_details('Escort or court staff', @risk.escort_or_court_staff, @risk.escort_or_court_staff_details)
+        fill_in_checkbox_with_details('Healthcare staff', @risk.healthcare_staff, @risk.healthcare_staff_details)
+        fill_in_checkbox_with_details('Other detainees', @risk.other_detainees, @risk.other_detainees_details)
+        fill_in_checkbox_with_details('Homophobic', @risk.homophobic, @risk.homophobic_details)
+        fill_in_checkbox_with_details('Racist', @risk.racist, @risk.racist_details)
+        fill_in_checkbox_with_details('Public offence related', @risk.public_offence_related, @risk.public_offence_related_details)
+        fill_in_checkbox_with_details('Police', @risk.police, @risk.police_details)
+      else
+        choose 'violence_violent_no'
+      end
       save_and_continue
     end
 
     def fill_in_harassments
-      choose 'harassments_stalker_harasser_bully_yes'
-      check 'Intimidator'
-      fill_in 'harassments[intimidator_details]', with: 'Aggressive personality'
+      if @risk.stalker_harasser_bully == 'yes'
+        choose 'harassments_stalker_harasser_bully_yes'
+        fill_in_checkbox_with_details('Hostage taker', @risk.hostage_taker, @risk.hostage_taker_details)
+        fill_in_checkbox_with_details('Stalker', @risk.stalker, @risk.stalker_details)
+        fill_in_checkbox_with_details('Harasser', @risk.harasser, @risk.harasser_details)
+        fill_in_checkbox_with_details('Intimidator', @risk.intimidator, @risk.intimidator_details)
+        fill_in_checkbox_with_details('Bully', @risk.bully, @risk.bully_details)
+      else
+        choose 'harassments_stalker_harasser_bully_no'
+      end
       save_and_continue
     end
 
@@ -99,7 +113,7 @@ module Page
 
     def fill_in_arson
       choose 'arson_arson_yes'
-      choose 'arson_arson_value_index_offence'
+      choose 'arson_arson_value_high'
       fill_in 'arson[arson_details]', with: 'Burnt several houses'
       choose 'arson_damage_to_property_no'
       save_and_continue
