@@ -1,7 +1,9 @@
 module Forms
   module Risk
     class RiskFromOthers < Forms::Base
-      CSRA_TOGGLE_CHOICES = %w[ high standard unknown ]
+      CSRA_HIGH = 'high'
+      CSRA_STANDARD = 'standard'
+      CSRA_TOGGLE_CHOICES = [CSRA_HIGH, CSRA_STANDARD, DEFAULT_CHOICE]
 
       optional_details_field :rule_45
       optional_details_field :verbal_abuse
@@ -15,7 +17,7 @@ module Forms
       property(:csra_details, type: StrictString)
       validates :csra_details,
         presence: true,
-        if: -> { csra == 'high' || csra == 'standard' }
+        if: -> { csra == CSRA_HIGH || csra == CSRA_STANDARD }
 
       def csra_toggle_choices
         CSRA_TOGGLE_CHOICES
