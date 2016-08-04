@@ -19,8 +19,9 @@ RSpec.describe Forms::Risk::SexOffences, type: :form do
       end
     end
 
-    context "for the 'sex_offence' attribute" do
+    describe "sex_offence" do
       it { is_expected.to validate_optional_field(:sex_offence) }
+    end
 
     describe "sex_offence_details" do
       context "when sex_offence is set to yes" do
