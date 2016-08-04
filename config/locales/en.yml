@@ -31,7 +31,7 @@ en:
         verbal_abuse: Is the detainee at risk of verbal abuse from others?
         physical_abuse: Is the detainee at risk of physical abuse from others?
       risk_to_self:
-        open_acct: Open or recent ACCT?
+        open_acct: Open ACCT?
         suicide: Risk of suicide or self-harm?
       security:
         category_a: Category A?
@@ -207,6 +207,12 @@ en:
         verbal_abuse_details: Give details
         physical_abuse_details: Give details
       risk_to_self:
+        open_acct: |
+          If an ACCT is open, the ACCT plan should be present and there
+          should be a relevant alert on NOMIS
+        suicide: |
+          Give details of recent suicide or self-harm attempts and
+          previous ACCTS
         suicide_details: Give details
       security:
         category_a_details: Give details
