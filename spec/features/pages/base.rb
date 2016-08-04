@@ -9,5 +9,9 @@ module Page
     def save_and_continue
       click_button 'Save and continue'
     end
+
+    def confirm_and_save
+      click_button 'Confirm and save'
+    end
   end
 end

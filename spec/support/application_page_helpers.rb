@@ -30,4 +30,12 @@ module ApplicationPageHelpers
   def offences
     @_offences ||= Page::Offences.new
   end
+
+  def risk_summary
+    @_risk_summary ||= Page::RiskSummary.new
+  end
+
+  def healthcare_summary
+    @_healthcare_summary ||= Page::HealthcareSummary.new
+  end
 end
