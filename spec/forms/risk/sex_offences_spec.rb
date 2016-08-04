@@ -13,17 +13,13 @@ RSpec.describe Forms::Risk::SexOffences, type: :form do
   }
 
   describe '#validate' do
-    describe 'nilifies empty strings' do
-      %w[ sex_offence_details ].each do |attribute|
-        it { is_expected.to validate_strict_string(attribute) }
-      end
-    end
-
     describe "sex_offence" do
       it { is_expected.to validate_optional_field(:sex_offence) }
     end
 
     describe "sex_offence_details" do
+      it { is_expected.to validate_strict_string(:sex_offence_details) }
+
       context "when sex_offence is set to yes" do
         before { subject.sex_offence = 'yes' }
 
