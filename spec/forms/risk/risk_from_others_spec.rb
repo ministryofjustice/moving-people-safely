@@ -40,7 +40,7 @@ RSpec.describe Forms::Risk::RiskFromOthers, type: :form do
 
       context 'when csra is set to standard' do
         before { subject.csra = 'standard' }
-        it { is_expected.to validate_presence_of(:csra_details) }
+        it { is_expected.to_not validate_presence_of(:csra_details) }
       end
     end
   end

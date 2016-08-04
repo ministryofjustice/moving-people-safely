@@ -14,7 +14,7 @@ module Forms
         property(:csra_details, type: StrictString)
         validates :csra_details,
           presence: true,
-          if: -> { csra == CSRA_HIGH || csra == CSRA_STANDARD }
+          if: -> { csra == CSRA_HIGH }
       end
 
       optional_details_field :rule_45
