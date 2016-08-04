@@ -7,14 +7,13 @@ RSpec.describe Forms::Risk::RiskToSelf, type: :form do
   let(:params) {
     {
       open_acct: 'yes',
-      open_acct_details: 'There is an open ACCT',
       suicide: 'yes',
       suicide_details: 'Risk of suicide',
     }.with_indifferent_access
   }
 
   describe '#validate' do
-    it { is_expected.to validate_optional_details_field(:open_acct) }
+    it { is_expected.to validate_optional_field(:open_acct) }
     it { is_expected.to validate_optional_details_field(:suicide) }
   end
 

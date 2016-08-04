@@ -10,7 +10,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
           radio_button_fieldset attribute,
             choices: choices, inline: true
         end,
-        content_tag(:div, class: style) { yield }
+        (content_tag(:div, class: style) { yield } if block_given?)
       ])
     end
   end
