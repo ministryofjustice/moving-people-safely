@@ -6,7 +6,7 @@ class CopyMoveController < DetaineeController
   def copy
     form = Forms::Moves::Information.new(detainee.most_recent_move.copy_without_saving)
     form.validate(flash[:form_data]) if flash[:form_data]
-    render 'move_information/show', locals: { form: form, submit_path: create_move_path(detainee) }
+    render 'move_information/show', locals: { form: form, submit_path: copy_move_create_path(detainee) }
   end
 
   def create
@@ -33,7 +33,7 @@ class CopyMoveController < DetaineeController
     if params.key? 'move_add_destination'
       form.deserialize params[:information]
       form.add_destination
-      render 'move_information/show', locals: { form: form, submit_path: create_move_path(detainee) }
+      render 'move_information/show', locals: { form: form, submit_path: copy_move_create_path(detainee) }
     end
   end
 end

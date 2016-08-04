@@ -1,16 +1,16 @@
 - if workflow.incomplete?
   header
     h1 Please complete the missing answers
-  h3
-    ' Status
-    span.status-label.status-label--incomplete Incomplete
+    h3
+      ' Status
+      span.status-label.status-label--incomplete Incomplete
 
 - elsif workflow.needs_review?
   header
     h1 Check all answers, then confirm and save
-  h3
-    ' Status
-    span.status-label.status-label--incomplete Review
+    h3
+      ' Status
+      span.status-label.status-label--incomplete Review
 
 - elsif workflow.unconfirmed?
   header
@@ -19,6 +19,6 @@
 - elsif workflow.confirmed?
   header
     h1 = title
-  h3
-    ' Status
-    span.status-label.status-label--complete Complete
+    h3
+      ' Status
+      span.status-label.status-label--complete Complete

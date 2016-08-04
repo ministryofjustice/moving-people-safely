@@ -22,5 +22,10 @@ module Page
       choose 'information_destinations_attributes_3_must_return_must_not_return'
       save_and_continue
     end
+
+    def complete_date_field(date)
+      fill_in 'Date', with: date
+      save_and_continue
+    end
   end
 end

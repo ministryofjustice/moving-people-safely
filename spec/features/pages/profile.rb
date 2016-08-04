@@ -35,9 +35,14 @@ module Page
       end
     end
 
+    def confirm_healthcare_status(expected_status='Complete')
+      within('#healthcare') do
+        expect(page).to have_content(expected_status)
+      end
+    end
+
     def confirm_healthcare_details
       within('#healthcare') do
-        expect(page).to have_content('Complete')
         within('.answered_yes') do
           expect(page).to have_content('9')
         end
@@ -47,9 +52,14 @@ module Page
       end
     end
 
+    def confirm_risk_status(expected_status='Complete')
+      within('#risk') do
+        expect(page).to have_content(expected_status)
+      end
+    end
+
     def confirm_risk_details
       within('#risk') do
-        expect(page).to have_content('Complete')
         within('.answered_yes') do
           expect(page).to have_content('22')
         end
@@ -59,7 +69,12 @@ module Page
       end
     end
 
-    # TODO: reference a model
+    def confirm_offences_status(expected_status='Complete')
+      within('#offences') do
+        expect(page).to have_content(expected_status)
+      end
+    end
+
     def confirm_offences_details
       within('#offences') do
         expect(page).to have_content('Burglary')
@@ -85,6 +100,10 @@ module Page
       within('#offences') do
         click_link 'Edit'
       end
+    end
+
+    def click_print
+      click_link 'Print'
     end
 
     private
