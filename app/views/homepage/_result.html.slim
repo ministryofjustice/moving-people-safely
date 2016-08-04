@@ -6,7 +6,7 @@ table
     th Destination
     th Move date
   tr
-    - if move
+    - if move && move.workflow.active?
       td = link_to(detainee.prison_number, profile_path(move))
     - else
       td = detainee.prison_number
