@@ -22,9 +22,19 @@ RSpec.describe Forms::Risk::SexOffences, type: :form do
     context "for the 'sex_offence' attribute" do
       it { is_expected.to validate_optional_field(:sex_offence) }
 
-      context 'when sex_offence is set to yes' do
+    describe "sex_offence_details" do
+      context "when sex_offence is set to yes" do
         before { subject.sex_offence = 'yes' }
-        it { is_expected.to validate_presence_of(:sex_offence_details) }
+
+        context "when the victim is set to under 18" do
+           before { subject.sex_offence_victim = 'under_18' }
+           it { is_expected.to validate_presence_of(:sex_offence_details) }
+        end
+
+        %w[ adult_male adult_female ].each do |sex_offence_victim|
+          before { subject.sex_offence_victim = sex_offence_victim }
+          it { is_expected.not_to validate_presence_of(:sex_offence_details) }
+        end
       end
     end
 
