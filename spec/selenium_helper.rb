@@ -56,4 +56,4 @@ module SlowItDown
   end
 end
 
-Page::Base.prepend SlowItDown
+#Page::Base.prepend SlowItDown

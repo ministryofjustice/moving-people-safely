@@ -10,17 +10,20 @@ module Page
       click_button 'Save and continue'
     end
 
+    def confirm_and_save
+      click_button 'Confirm and save'
+    end
+
     def fill_in_optional_details(label, option, details)
-      id = false
+      details_field = nil
       within_fieldset(label) do
-        if option == 'yes'
-          choose 'Yes'
-          id = find_field('Yes')[:id].sub('_yes', '_details')
-        elsif option == 'no'
-          choose 'No'
-        end
+        opt = option.titlecase
+        choose opt
+        opt_field_id = find_field(opt)[:id]
+        details_field_id = opt_field_id.sub("_#{option}", '_details')
+        details_field = page.first(:css, "textarea##{details_field_id}")
       end
-      page.find(:css, "textarea##{id}").set(details) if id
+      details_field.set(details) if details_field
     end
 
     def fill_in_checkbox_with_details(label, option, details)

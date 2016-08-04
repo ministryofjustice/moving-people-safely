@@ -3,7 +3,7 @@ FactoryGirl.define do
     open_acct 'no'
     suicide 'no'
     rule_45 'no'
-    csra 'no'
+    csra 'standard'
     verbal_abuse 'no'
     physical_abuse 'no'
     violent 'no'

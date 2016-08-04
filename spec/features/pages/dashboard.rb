@@ -23,7 +23,6 @@ module Page
 
     element :search_field, '.search_module input#search_prison_number'
     element :search_button, '.search_module input.search_button'
-    element :add_new_move_button, 'input[type="submit"][value="Add new move"]'
     element :create_new_profile, 'input[type="submit"][value="Create new profile"]'
 
     def search(prison_number)
@@ -39,6 +38,10 @@ module Page
 
     def click_view_profile
       click_link 'View profile'
+    end
+
+    def click_add_new_move
+      click_link 'Add new move'
     end
   end
 end
