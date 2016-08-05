@@ -19,6 +19,9 @@ module Forms
         presence: true,
         if: -> { sex_offence == 'yes' && sex_offence_victim == UNDER_18 }
 
+      reset attributes: %i[ sex_offence_details ],
+        if_falsey: :sex_offence_victim, enabled_value: UNDER_18
+
       def victim_values
         VICTIM_VALUES
       end
