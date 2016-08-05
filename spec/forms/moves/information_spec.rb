@@ -81,7 +81,7 @@ RSpec.describe Forms::Moves::Information, type: :form do
     context 'date' do
       context 'with a valid date' do
         it 'returns true' do
-          params[:date] = '12/01/2016'
+          params[:date] = '12/01/2030'
           expect(subject.validate(params)).to be true
         end
       end
@@ -96,6 +96,20 @@ RSpec.describe Forms::Moves::Information, type: :form do
           params[:date] = 'invalid'
           subject.validate(params)
           expect(subject.errors).to include :date
+        end
+      end
+
+      context "with a date in the past" do
+        it 'returns false' do
+          params[:date] = '01/01/2015'
+          expect(subject.validate(params)).to be false
+        end
+
+        it 'sets a descriptive error on date' do
+          params[:date] = '01/01/2015'
+          subject.validate(params)
+          expect(subject.errors).to include :date
+          expect(subject.errors[:date]).to include 'Date must not be in the past.'
         end
       end
     end
