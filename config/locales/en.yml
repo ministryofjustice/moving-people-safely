@@ -212,7 +212,7 @@ en:
           should be a relevant alert on NOMIS
         suicide: |
           Give details of recent suicide or self-harm attempts and
-          previous ACCTS
+          previous ACCTs
         suicide_details: Give details
       security:
         category_a_details: Give details
