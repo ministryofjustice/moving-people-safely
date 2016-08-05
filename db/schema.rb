@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804111953) do
+ActiveRecord::Schema.define(version: 20160804150738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160804111953) do
     t.string   "case_reference"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.index ["offences_id"], name: "index_current_offences_on_offences_id", using: :btree
   end
 
   create_table "destinations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 20160804111953) do
     t.text     "reasons"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.index ["move_id"], name: "index_destinations_on_move_id", using: :btree
   end
 
   create_table "detainees", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160804111953) do
     t.datetime "updated_at",                                       null: false
     t.string   "workflow_status",          default: "not_started"
     t.uuid     "detainee_id"
+    t.index ["detainee_id"], name: "index_healthcare_on_detainee_id", using: :btree
   end
 
   create_table "medications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -80,6 +83,7 @@ ActiveRecord::Schema.define(version: 20160804111953) do
     t.string   "carrier"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.index ["healthcare_id"], name: "index_medications_on_healthcare_id", using: :btree
   end
 
   create_table "moves", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -92,6 +96,7 @@ ActiveRecord::Schema.define(version: 20160804111953) do
     t.string   "has_destinations", default: "unknown"
     t.text     "reason_details"
     t.uuid     "detainee_id"
+    t.index ["detainee_id"], name: "index_moves_on_detainee_id", using: :btree
   end
 
   create_table "offences", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -103,6 +108,7 @@ ActiveRecord::Schema.define(version: 20160804111953) do
     t.string   "has_past_offences",       default: "unknown"
     t.string   "workflow_status",         default: "not_started"
     t.uuid     "detainee_id"
+    t.index ["detainee_id"], name: "index_offences_on_detainee_id", using: :btree
   end
 
   create_table "past_offences", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -110,6 +116,7 @@ ActiveRecord::Schema.define(version: 20160804111953) do
     t.string   "offence"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["offences_id"], name: "index_past_offences_on_offences_id", using: :btree
   end
 
   create_table "risks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -193,6 +200,7 @@ ActiveRecord::Schema.define(version: 20160804111953) do
     t.datetime "created_at",                                              null: false
     t.datetime "updated_at",                                              null: false
     t.uuid     "detainee_id"
+    t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -233,6 +241,8 @@ ActiveRecord::Schema.define(version: 20160804111953) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "reviewer_id"
+    t.index ["move_id"], name: "index_workflows_on_move_id", using: :btree
+    t.index ["type"], name: "index_workflows_on_type", using: :btree
   end
 
 end
