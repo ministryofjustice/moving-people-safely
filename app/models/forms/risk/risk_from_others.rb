@@ -22,7 +22,7 @@ module Forms
             if: -> { csra == CSRA_HIGH }
 
           reset attributes: %i[ csra_details ],
-            if_falsey: :csra, enabled_value: CSRA_HIGH
+                if_falsey: :csra, enabled_value: CSRA_HIGH
         end
 
         def csra_toggle_choices
