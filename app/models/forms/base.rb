@@ -15,8 +15,8 @@ module Forms
     concerning :ResetAttributes do
       included do
         class << self
-          def reset(attributes:, if_falsey:)
-            resetters << [attributes, if_falsey]
+          def reset(attributes:, if_falsey:, enabled_value: TOGGLE_YES)
+            resetters << [attributes, if_falsey, enabled_value]
           end
 
           def resetters
@@ -34,8 +34,8 @@ module Forms
         private
 
         def reset_attributes_if_disabled_by_toggle
-          self.class.resetters.each do |(attributes_to_reset, toggle_attribute)|
-            if public_send(toggle_attribute) != TOGGLE_YES
+          self.class.resetters.each do |(attributes_to_reset, toggle_attribute, enabled_value)|
+            if public_send(toggle_attribute) != enabled_value
               attributes_to_reset.each { |method| public_send("#{method}=", nil) }
             end
           end
