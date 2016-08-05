@@ -76,6 +76,7 @@ module Forms
           presence: true,
           if:
             -> { public_send(field_name) && public_send(toggle) == TOGGLE_YES }
+        reset attributes: ["#{field_name}_details"], if_falsey: field_name, enabled_value: true
       end
 
       def singularize(field_name)
