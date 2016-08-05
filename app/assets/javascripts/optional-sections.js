@@ -19,7 +19,7 @@ $(function () {
         $clear_selection_control.show();
         break;
       case /_standard$/.test(id):
-        $optional_section_wrapper.show();
+        $optional_section_wrapper.hide();
         $clear_selection_control.show();
         break;
       case /_no$/.test(id):
