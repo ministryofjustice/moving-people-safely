@@ -16,13 +16,13 @@ RSpec.describe Forms::Risk::Harassments, type: :form do
     context "for the 'stalker_harasser_bully' attribute" do
       it { is_expected.to validate_optional_field(:stalker_harasser_bully) }
 
-      it {
-        is_expected.
-          to validate_attributes_are_reset(
-            :hostage_taker, :hostage_taker_details, :stalker, :stalker_details, :harasser,
-            :harasser_details, :intimidator, :intimidator_details, :bully, :bully_details).
-          when_attribute_is_disabled(:stalker_harasser_bully)
-      }
+      # FIXME this is super hard to grok.. the validator is just complicating the spec
+      it "resets all attributes unless the 'stalker_harasser_bully' toggle is enabled" do
+        is_expected.to validate_attributes_are_reset(
+          :hostage_taker, :hostage_taker_details, :stalker, :stalker_details, :harasser,
+          :harasser_details, :intimidator, :intimidator_details, :bully, :bully_details).
+          when_attribute_is_disabled(:stalker_harasser_bully).with_attribute_value_set_as(true)
+      end
 
       context 'when stalker_harasser_bully is set to yes' do
         before { subject.stalker_harasser_bully = 'yes' }
