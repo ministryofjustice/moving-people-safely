@@ -18,9 +18,13 @@ RSpec.describe Forms::Risk::SexOffences, type: :form do
     end
 
     it {
-      is_expected.
-        to validate_attributes_are_reset(:sex_offence_victim, :sex_offence_details).
+      is_expected.to validate_attributes_are_reset(:sex_offence_details).
         when_attribute_is_disabled(:sex_offence)
+    }
+
+    it {
+      is_expected.to validate_attributes_are_reset(:sex_offence_victim).
+        when_attribute_is_disabled(:sex_offence).with_attribute_value_set_as('adult_male')
     }
 
     describe "sex_offence_details" do
