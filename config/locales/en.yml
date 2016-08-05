@@ -212,7 +212,7 @@ en:
           should be a relevant alert on NOMIS
         suicide: |
           Give details of recent suicide or self-harm attempts and
-          previous ACCTS
+          previous ACCTs
         suicide_details: Give details
       security:
         category_a_details: Give details
@@ -221,7 +221,7 @@ en:
         other_escape_risk_info_details: Give details
         restricted_status_details: Give details
       sex_offences:
-        sex_offence_details: Give details, if under 18 state gender and age if known
+        sex_offence_details: Give details - state gender and age when under 18, if known
       social:
         personal_hygiene: Does the detainee have personal hygiene issues?
         personal_hygiene_details: Give details and explain the significance
