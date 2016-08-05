@@ -1,8 +1,10 @@
 class ValidateAttributesAreReset
-  attr_reader :attributes, :toggle_attribute, :subject, :error
+  attr_reader :attributes, :toggle_attribute, :subject,
+    :error, :attribute_value
 
   def initialize(*attributes)
     @attributes = attributes
+    @attribute_value = "some user input"
   end
 
   def matches?(subject)
@@ -18,6 +20,11 @@ class ValidateAttributesAreReset
     self
   end
 
+  def with_attribute_value_set_as(value)
+    @attribute_value = value
+    self
+  end
+
   def description
     "validate that #{attributes.to_sentence} are reset when #{toggle_attribute} is disabled."
   end
@@ -28,15 +35,13 @@ class ValidateAttributesAreReset
 
   private
 
-  MOCK_USER_INPUT = "some user input"
-
   def validate_attributes_retained_when_toggle_attribute_is_yes
     populate_attributes_under_test
     set_toggle_attribute_to "yes"
     simulate_form_being_validated
 
     attributes.all? do |attr|
-      result = subject.public_send(attr) == MOCK_USER_INPUT
+      result = subject.public_send(attr) == attribute_value
 
       unless result
         set_error "Expected #{attr} to be retained when #{toggle_attribute} set to yes"
@@ -63,7 +68,7 @@ class ValidateAttributesAreReset
   end
 
   def populate_attributes_under_test
-    attributes.each { |attr| subject.public_send("#{attr}=", MOCK_USER_INPUT) }
+    attributes.each { |attr| subject.public_send("#{attr}=", attribute_value) }
   end
 
   def set_toggle_attribute_to(value)
