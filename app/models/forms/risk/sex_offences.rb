@@ -1,7 +1,8 @@
 module Forms
   module Risk
     class SexOffences < Forms::Base
-      VICTIM_VALUES = %w[ adult_male adult_female under_18 ]
+      UNDER_18 = 'under_18'
+      VICTIM_VALUES = ['adult_male', 'adult_female', UNDER_18]
 
       optional_field :sex_offence
       property :sex_offence_victim, type: StrictString
@@ -13,7 +14,7 @@ module Forms
 
       validates :sex_offence_details,
         presence: true,
-        if: -> { sex_offence == 'yes' }
+        if: -> { sex_offence == 'yes' && sex_offence_victim == UNDER_18 }
 
       def victim_values
         VICTIM_VALUES
