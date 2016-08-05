@@ -25,7 +25,10 @@ module Forms
         end
 
         def validate(*)
-          super.tap { |*| reset_attributes_if_disabled_by_toggle }
+          result = super
+          reset_attributes_if_disabled_by_toggle if result
+
+          result
         end
 
         private
