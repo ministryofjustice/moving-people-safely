@@ -15,6 +15,9 @@ FactoryGirl.define do
     other_escape_risk_info 'no'
     category_a 'no'
     restricted_status 'no'
+    escape_pack false
+    escape_risk_assessment false
+    cuffing_protocol false
     drugs 'no'
     alcohol 'no'
     conceals_weapons 'no'
