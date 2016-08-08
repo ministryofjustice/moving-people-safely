@@ -108,7 +108,6 @@ RSpec.describe Forms::Moves::Information, type: :form do
         it 'sets a descriptive error on date' do
           params[:date] = '01/01/2015'
           subject.validate(params)
-          expect(subject.errors).to include :date
           expect(subject.errors[:date]).to include 'Date must not be in the past.'
         end
       end
