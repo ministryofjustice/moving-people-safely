@@ -23,5 +23,10 @@ FactoryGirl.define do
     interpreter_required 'no'
     hearing_speach_sight 'no'
     can_read_and_write 'no'
+
+    trait :with_high_csra do
+      csra 'high'
+      csra_details { Faker::Lorem.sentence }
+    end
   end
 end

@@ -18,29 +18,29 @@ module Page
     end
 
     def fill_in_physical_healthcare
-      fill_in_optional_details('Physical issues', @hc.physical_issues, @hc.physical_issues_details)
+      fill_in_optional_details('Physical issues', @hc, :physical_issues)
       click_button 'Save and continue'
     end
 
     def fill_in_mental_healthcare
-      fill_in_optional_details('Mental illness', @hc.mental_illness, @hc.mental_illness_details)
-      fill_in_optional_details('Phobias', @hc.phobias, @hc.phobias_details)
+      fill_in_optional_details('Mental illness', @hc, :mental_illness)
+      fill_in_optional_details('Phobias', @hc, :phobias)
       click_button 'Save and continue'
     end
 
     def fill_in_social_healthcare
-      fill_in_optional_details('Personal hygiene', @hc.personal_hygiene, @hc.personal_hygiene_details)
-      fill_in_optional_details('Personal care', @hc.personal_care, @hc.personal_care_details)
+      fill_in_optional_details('Personal hygiene', @hc, :personal_hygiene)
+      fill_in_optional_details('Personal care', @hc, :personal_care)
       click_button 'Save and continue'
     end
 
     def fill_in_allergies
-      fill_in_optional_details('Allergies', @hc.allergies, @hc.allergies_details)
+      fill_in_optional_details('Allergies', @hc, :allergies)
       click_button 'Save and continue'
     end
 
     def fill_in_healthcare_needs
-      fill_in_optional_details('Dependencies', @hc.dependencies, @hc.dependencies_details)
+      fill_in_optional_details('Dependencies', @hc, :dependencies)
       choose 'needs_has_medications_yes'
       fill_in 'Description', with: 'Aspirin'
       fill_in 'Administration', with: 'Once a day'
@@ -49,7 +49,7 @@ module Page
     end
 
     def fill_in_transport
-      fill_in_optional_details('MPV', @hc.mpv, @hc.mpv_details)
+      fill_in_optional_details('MPV', @hc, :mpv)
       click_button 'Save and continue'
     end
 

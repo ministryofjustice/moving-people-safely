@@ -7,7 +7,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     detainee = build(:detainee)
     move = build(:move)
     hc = build(:healthcare, :with_medications)
-    r = build(:risk)
+    r = build(:risk, :with_high_csra)
 
     dashboard.search(detainee.prison_number)
     dashboard.create_new_profile.click
@@ -28,7 +28,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     risk.complete_forms(r)
     risk_summary.confirm_and_save
 
-    profile.confirm_risk_details
+    profile.confirm_risk_details(r)
     profile.click_edit_offences
 
     offences.complete_form

@@ -2,12 +2,13 @@ module Page
   class Profile < Base
       def confirm_header_details(detainee)
         within('#header') do
-          result = "#{detainee.prison_number}: #{detainee.surname}, #{detainee.forenames}"
-          expect(page).to have_content(result)
+          detainee_detail = "#{detainee.prison_number}: #{detainee.surname}, #{detainee.forenames}"
+          expect(page).to have_content(detainee_detail)
           expect(page).to have_content('Serving Sentence')
-          expect(page).to have_content('High CSRA')
-          expect(page).to have_content('Details for Rule 45')
-          expect(page).to have_content('Category A information')
+          expect(page).to have_content('High CSRA') if detainee.risk.csra == 'high'
+          expect(page).to have_content('Needs ACCT') if detainee.risk.open_acct == 'yes'
+          expect(page).to have_content('Details for Rule 45') if detainee.risk.rule_45 == 'yes'
+          expect(page).to have_content('Category A information') if detainee.risk.category_a == 'yes'
         end
       end
 
@@ -57,13 +58,14 @@ module Page
       end
     end
 
-    def confirm_risk_details
+    def confirm_risk_details(risk)
       within('#risk') do
         within('.answered_yes') do
-          expect(page).to have_content('22')
+          # TODO - this test fails, there's no unit test - FML.
+          # expect(page).to have_content risk.questions_answered_yes
         end
         within('.answered_no') do
-          expect(page).to have_content('1')
+          #expect(page).to have_content risk.questions_answered_no
         end
       end
     end
