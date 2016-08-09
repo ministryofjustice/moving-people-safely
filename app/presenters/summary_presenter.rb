@@ -8,6 +8,8 @@ class SummaryPresenter < SimpleDelegator
       'No'
     when true
       '<b>Yes</b>'
+    when 'standard'
+      'Standard'
     else
       "<b>#{value.humanize}</b>"
     end
