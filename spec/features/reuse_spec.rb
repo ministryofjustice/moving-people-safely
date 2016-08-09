@@ -1,7 +1,7 @@
 require 'feature_helper'
 
 RSpec.feature 'Reuse of previously entered PER data', type: :feature do
-  scenario 'reused documents need review before a PER can be issued' do
+  scenario 'Reviewing the data of a reused PER' do
     login
 
     detainee = create(:detainee, :with_completed_move)
@@ -34,5 +34,22 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     profile.confirm_offences_status('Complete')
 
     profile.click_print
+  end
+
+  scenario 'Editing a completed document' do
+    login
+    detainee = create(:detainee)
+    move = create(:move, :active, :confirmed)
+    detainee.moves << move
+
+    dashboard.search(detainee.prison_number)
+    dashboard.click_view_profile
+    profile.confirm_healthcare_status('Complete')
+    profile.click_edit_healthcare
+
+    find("a", :text => /\AChange\z/, match: :first).click
+    choose 'Clear selection'
+    click_button 'Save and view summary'
+    healthcare_summary.confirm_status 'Incomplete'
   end
 end

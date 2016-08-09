@@ -33,5 +33,9 @@ module Page
     def click_add_new_move
       click_link 'Add new move'
     end
+
+    def click_view_profile
+      click_link 'View profile'
+    end
   end
 end
