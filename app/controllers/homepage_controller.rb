@@ -7,9 +7,12 @@ class HomepageController < ApplicationController
   end
 
   def search
+    # just for User Testing purposes 9/8/2016
     if params[:search]['prison_number'] == 'B2222BB'
       d = create_peter_smith
       redirect_to root_path redirect_params(d.prison_number)
+    # end of testing code
+
     else
       redirect_to root_path redirect_params(params[:search]['prison_number'])
     end

@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   delegate :risk, :healthcare, :offences, :active_move, to: :detainee
   delegate :healthcare_workflow, :risk_workflow, :offences_workflow, to: :active_move
 
-  #private
+  private
 
   def redirect_unless_document_editable
     unless AccessPolicy.edit?(move: active_move)
