@@ -30,12 +30,18 @@ module Page
       search_button.click
     end
 
-    def click_add_new_move
-      click_link 'Add new move'
+    def choose_detainee(prison_number)
+      within "#prison_number_#{prison_number}" do
+        click_link "#{prison_number}"
+      end
     end
 
     def click_view_profile
       click_link 'View profile'
+    end
+
+    def click_add_new_move
+      click_link 'Add new move'
     end
   end
 end

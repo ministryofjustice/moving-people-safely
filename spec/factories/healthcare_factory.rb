@@ -10,6 +10,9 @@ FactoryGirl.define do
     mpv 'no'
     has_medications 'no'
 
+    healthcare_professional { Faker::Name.name }
+    contact_number { Faker::PhoneNumber.cell_phone }
+
     trait :with_medications do
       has_medications 'yes'
       medications { build_list :medication, rand(1..5) }

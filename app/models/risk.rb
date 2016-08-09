@@ -8,7 +8,7 @@ class Risk < ApplicationRecord
         current_e_risk escape_list other_escape_risk_info category_a
         restricted_status drugs alcohol conceals_weapons arson
         damage_to_property interpreter_required hearing_speach_sight
-        can_read_and_write  ]
+        can_read_and_write ]
 
   def question_fields
     QUESTION_FIELDS
