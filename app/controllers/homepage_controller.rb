@@ -7,8 +7,8 @@ class HomepageController < ApplicationController
   end
 
   def search
-    if params[:search]['prison_number'] == 'Z6789BD'
-      d = create_lennie_godber_with_completed_move
+    if params[:search]['prison_number'] == 'B2222BB'
+      d = create_peter_smith
       redirect_to root_path redirect_params(d.prison_number)
     else
       redirect_to root_path redirect_params(params[:search]['prison_number'])

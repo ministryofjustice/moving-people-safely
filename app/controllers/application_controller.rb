@@ -40,17 +40,50 @@ class ApplicationController < ActionController::Base
     }
   end
 
-  def create_lennie_godber_with_completed_move
-    lennie = Detainee.create(attributes_for_lennie_godber)
-    lennie.risk = Risk.create({
+  def create_peter_smith
+    detainee = Detainee.create({
+      forenames: 'Peter',
+      surname: 'Smith',
+      date_of_birth: '12/12/1977',
+      gender: 'male',
+      nationalities: 'British, Irish',
+      pnc_number: '123/456',
+      cro_number: '456/123',
+      aliases: 'Paul Gold',
+      prison_number: "Z#{rand.to_s[2..5]}ZZ"
+    })
+    detainee.moves << Move.create({
+      from: 'HMP Bedford',
+      to: 'St Albans Crown Court',
+      date: Date.new(2016, 8, 11),
+      reason: 'production_to_court',
+      has_destinations: 'no'
+    })
+    detainee.risk = Risk.create({
       open_acct: 'no',
       suicide: 'no',
       rule_45: 'no',
       csra: 'standard',
       verbal_abuse: 'no',
       physical_abuse: 'no',
-      violent: 'no',
-      stalker_harasser_bully: 'no',
+      violent: 'yes',
+      prison_staff: 'no',
+      risk_to_females: 'no',
+      escort_or_court_staff: 'no',
+      healthcare_staff: 'no',
+      other_detainees: 'no',
+      homophobic: 'no',
+      racist: 'no',
+      public_offence_related: 'no',
+      police: 'yes',
+      police_details: 'Violently resisting arrest. Used bladed item.',
+      stalker_harasser_bully: 'yes',
+      hostage_taker: 'no',
+      stalker: 'no',
+      harasser: 'no',
+      intimidator: 'yes',
+      intimidator_details: 'History of intimidating police officers',
+      bully: 'no',
       sex_offence: 'no',
       non_association_markers: 'no',
       current_e_risk: 'no',
@@ -60,33 +93,53 @@ class ApplicationController < ActionController::Base
       restricted_status: 'no',
       escape_pack: false,
       escape_risk_assessment: false,
-      cuffing_protocol: false,
-      drugs: 'no',
+      cuffing_protocol: true,
+      drugs: 'yes',
+      drugs_details: 'Heroin',
       alcohol: 'no',
       conceals_weapons: 'no',
-      arson: 'no',
-      damage_to_property: 'no',
+      arson: 'yes',
+      arson_details: 'Secreted lighter found during last escort',
+      arson_value: 'behavioural_issue',
+      damage_to_property: 'yes',
+      damage_to_property_details: 'Damage to police custody cell and prison reception holding cell',
       interpreter_required: 'no',
       hearing_speach_sight: 'no',
       can_read_and_write: 'no'
     })
-    lennie.healthcare = Healthcare.create({
+    detainee.healthcare = Healthcare.create({
       physical_issues: 'no',
-      mental_illness: 'no',
+      mental_illness: 'yes',
+      mental_illness_details: 'Depression. Victim old vulnarable couple.',
       phobias: 'no',
       personal_hygiene: 'no',
       personal_care: 'no',
       allergies: 'no',
       dependencies: 'no',
-      has_medications: 'no',
+      has_medications: 'yes',
+      mpv: 'no',
       healthcare_professional: 'Walker Marquardt',
       contact_number: '(205) 562-0855'
     })
-    lennie.offences = Offences.create({
+    detainee.healthcare.medications << Medication.create({
+      description: 'Paracetamol',
+      administration: '400mg every 4 hours',
+      carrier: 'escort'
+    })
+    detainee.offences = Offences.create({
       release_date: Date.new(2019, 06, 12),
       not_for_release: true,
       not_for_release_details: 'Serving sentence',
       has_past_offences: "no"
     })
+    detainee.offences.current_offences << CurrentOffence.create({
+      offence: 'Aggravated burglary',
+      case_reference: 'XXX'
+    })
+    detainee.active_move.risk_workflow.confirmed!
+    detainee.active_move.healthcare_workflow.confirmed!
+    detainee.active_move.offences_workflow.confirmed!
+    detainee.active_move.workflow.issued!
+    detainee
   end
 end
