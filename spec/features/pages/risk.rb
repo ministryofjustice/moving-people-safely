@@ -22,7 +22,7 @@ module Page
     end
 
     def fill_in_risk_to_self
-      fill_in_optional_details('Open or recent ACCT?', @risk, :open_acct)
+      fill_in_optional_details('Open ACCT?', @risk, :open_acct)
       fill_in_optional_details('Risk of suicide or self-harm?', @risk, :suicide)
       save_and_continue
     end
