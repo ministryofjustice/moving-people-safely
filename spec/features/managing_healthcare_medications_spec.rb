@@ -36,9 +36,9 @@ RSpec.describe 'managing healthcare medications', type: :feature do
     expect(medication_els.size).to eq positions.size
     positions.each do |position|
       within_medication(position) do
-        expect(find_field('Description').value).to eq text_for(:description, position)
-        expect(find_field('Administration').value).to eq text_for(:administration, position)
-        expect(has_select?('Carrier', selected: 'Escort')).to be true
+        expect(find_field('What is it?').value).to eq text_for(:description, position)
+        expect(find_field('How is it given?').value).to eq text_for(:administration, position)
+        expect(has_select?('Who carries it?', selected: 'Escort')).to be true
       end
     end
   end
@@ -46,8 +46,8 @@ RSpec.describe 'managing healthcare medications', type: :feature do
   def expect_all_medications_to_be_deleted
     expect(medication_els.size).to eq 1
     within_medication(:first) do
-      expect(find_field('Description').value).to be_blank
-      expect(find_field('Administration').value).to be_blank
+      expect(find_field('What is it?').value).to be_blank
+      expect(find_field('How is it given?').value).to be_blank
     end
   end
 
@@ -69,9 +69,9 @@ RSpec.describe 'managing healthcare medications', type: :feature do
 
   def fill_in_medication(position:)
     within_medication(position) do
-      fill_in 'Description', with: text_for(:description, position)
-      fill_in 'Administration', with: text_for(:administration, position)
-      select 'Escort', from: 'Carrier'
+      fill_in 'What is it?', with: text_for(:description, position)
+      fill_in 'How is it given?', with: text_for(:administration, position)
+      select 'Escort', from: 'Who carries it?'
     end
   end
 
