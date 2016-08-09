@@ -43,12 +43,8 @@ module Page
     end
 
     def check_change_link(doc, section)
-      detainee_id = doc.detainee.id
-      doc_type = doc.class.to_s.downcase
-      path_fragment = section.underscore
-      path_fragment = section == 'concealed_weapons' ? 'conceals_weapons' : section
       within("table.#{section}") do
-        within('thead') { expect(page).to have_link "Change", href: "/#{detainee_id}/#{doc_type}/#{path_fragment}" }
+        within('thead') { expect(page).to have_link "Change" }
       end
     end
 
@@ -64,13 +60,13 @@ module Page
     def check_question(doc, section, question)
       within("table.#{section}") do
         within("tr.#{question.underscore} td:nth-child(2)") do
-          result = doc.public_send(question.to_sym)
-          boolean_result = [true, false].include?(result)
-          if boolean_result || doc.public_send(question.to_sym)
+          option = doc.public_send(question.to_sym)
+          boolean_result = [true, false].include?(option)
+          if boolean_result || option
             if boolean_result
-              expected_answer = result ? 'Yes' : 'No'
+              expected_answer = option ? 'Yes' : 'No'
             else
-              expected_answer = result.titlecase
+              expected_answer = option.titlecase
             end
             expect(page).to have_text(expected_answer),
               "Expected #{section}/#{question} to be shown: wasn't."
