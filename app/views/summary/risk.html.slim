@@ -7,10 +7,10 @@
   = render partial: 'summary/section',
     locals: { presenter: SummaryPresenter.new(risk), section: 'risk_from_others', questions: %w[ rule_45 csra verbal_abuse physical_abuse ], path: risk_path(detainee, 'risk_from_others') }
 
-  = render partial: 'summary/section',
+  = render partial: 'summary/violence_section',
     locals: { presenter: SummaryPresenter.new(risk), section: 'violence', questions: %w[ prison_staff risk_to_females escort_or_court_staff healthcare_staff other_detainees homophobic racist public_offence_related police  ], path: risk_path(detainee, 'violence') }
 
-  = render partial: 'summary/section',
+  = render partial: 'summary/harassments_section',
     locals: { presenter: SummaryPresenter.new(risk), section: 'harassments', questions: %w[ hostage_taker stalker harasser intimidator bully ], path: risk_path(detainee, 'harassments') }
 
   = render partial: 'summary/section',

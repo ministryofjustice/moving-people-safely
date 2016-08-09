@@ -93,9 +93,7 @@ module Page
     end
 
     def fill_in_non_association_markers
-      fill_in_checkbox_with_details('Non-association markers?', @risk, :non_association_markers)
-      choose 'non_association_markers_non_association_markers_yes'
-      fill_in 'non_association_markers[non_association_markers_details]', with: 'Prisoner A1234BC and Z9876XY'
+      fill_in_optional_details('Non-association markers?', @risk, :non_association_markers)
       save_and_continue
     end
 

@@ -11,6 +11,10 @@ table class="#{section}"
        td.first-column
          = t(".questions.#{section}.#{question}")
        td.second-column
-         == presenter.answer_for(question)
+         - if presenter.stalker_harasser_bully == 'yes'
+           == presenter.answer_for(question)
+         - else
+           == 'No'
        td.third-column
-         == presenter.details_for(question)
+         - if presenter.stalker_harasser_bully == 'yes'
+           == presenter.details_for(question)

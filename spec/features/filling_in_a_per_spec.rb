@@ -26,6 +26,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     profile.click_edit_risk
 
     risk.complete_forms(risk_data)
+    risk_summary.confirm_risk_details(risk_data)
     risk_summary.confirm_and_save
 
     profile.confirm_risk_details(risk_data)
