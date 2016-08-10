@@ -98,13 +98,13 @@ module Page
     end
 
     def fill_in_substance_misuse
-      fill_in_optional_details('Drugs?', @risk, :drugs)
-      fill_in_optional_details('Alcohol?', @risk, :alcohol)
+      fill_in_optional_details('Is there a risk of the detainee using or supplying drugs?', @risk, :drugs)
+      fill_in_optional_details('Is there a risk of the detainee using or supplying alcohol?', @risk, :alcohol)
       save_and_continue
     end
 
     def fill_in_concealed_weapons
-      fill_in_optional_details('Conceals weapons or other items?', @risk, :conceals_weapons)
+      fill_in_optional_details('Concealed weapons, mobile phones or other items', @risk, :conceals_weapons)
       save_and_continue
     end
 
@@ -127,8 +127,8 @@ module Page
       else
         choose 'communication_interpreter_required_no'
       end
-      fill_in_optional_details('Does the detainee have hearing / speech / sight issues?', @risk, :hearing_speach_sight)
-      fill_in_optional_details('Does the detainee need help reading and writing?', @risk, :can_read_and_write)
+      fill_in_optional_details('Does the detainee have hearing / speech / sight impairments?', @risk, :hearing_speach_sight)
+      fill_in_optional_details('Does the detainee have reading / writing issues?', @risk, :can_read_and_write)
       save_and_continue
     end
   end
