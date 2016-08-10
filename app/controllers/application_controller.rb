@@ -25,6 +25,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  LENNIE_GODBER = 'A1111AA'
+  PETER_SMITH = 'B2222BB'
+
   # dummy data for user testing
   def attributes_for_lennie_godber
     {

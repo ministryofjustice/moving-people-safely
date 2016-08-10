@@ -5,9 +5,9 @@ class DetaineeDetailsController < DetaineeController
     form = Forms::DetaineeDetails.new(Detainee.new(prison_number: params[:prison_number]))
 
     # just for User Testing purposes 9/8/2016
-    if params[:prison_number].upcase == 'A1111AA'
+    if params[:prison_number].upcase == LENNIE_GODBER
       form.validate attributes_for_lennie_godber
-    # end of testing code
+    # end of testing code. TODO: delete me
 
     elsif flash[:form_data]
       form.validate flash[:form_data]
