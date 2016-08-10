@@ -8,11 +8,11 @@ en:
         arson_value: ''
         damage_to_property: Damage to property?
       communication:
-        can_read_and_write: Does the detainee need help reading and writing?
-        hearing_speach_sight: Does the detainee have hearing / speech / sight issues?
+        can_read_and_write: Does the detainee have reading / writing issues?
+        hearing_speach_sight: Does the detainee have hearing / speech / sight impairments?
         interpreter_required: Interpreter required?
       concealed_weapons:
-        conceals_weapons: Conceals weapons or other items?
+        conceals_weapons: Concealed weapons, mobile phones or other items
       harassments:
         stalker_harasser_bully: Hostage taker / stalker / harasser / intimidator / bully?
       information:
@@ -44,6 +44,7 @@ en:
         escape_list: Escape list?
         other_escape_risk_info: Is there other escape risk information?
         restricted_status: Restricted status?
+        documents: Has the detainee got the following documents with him?
       sex_offences:
         sex_offence: Sex offender?
         sex_offence_victim: ''
@@ -51,8 +52,8 @@ en:
         personal_hygiene: Personal hygiene issues?
         personal_care: Personal care issues?
       substance_misuse:
-        alcohol: Alcohol?
-        drugs: Drugs?
+        alcohol: Is there a risk of the detainee using or supplying alcohol?
+        drugs: Is there a risk of the detainee using or supplying drugs?
       transport:
         mpv: Requires MPV?
       violence:
@@ -182,21 +183,23 @@ en:
         allergies_details: Give details and explain the significance
       arson:
         arson_details: Give details of last arson attack, including date
+        damage_to_property: Eg damage to own cell, to others' property, check adjudications
         damage_to_property_details: Give details
       communication:
         can_read_and_write_details: Give details
         hearing_speach_sight_details: Give details
-        language: Language
+        language: For which language?
       concealed_weapons:
+        conceals_weapons: Eg drugs, blade, mobile phone, cash, lighter, sim card
         conceals_weapons_details: Give details
       detainee_details:
         date_of_birth: DD/MM/YYYY
       harassments:
-        hostage_taker_details: Give details
-        stalker_details: Give details
-        harasser_details: Give details
-        intimidator_details: Give details
-        bully_details: Give details
+        hostage_taker_details: Give details about the type of abuse and when it happened
+        stalker_details: Give details about the type of abuse and when it happened. Include any court imposed restrictions such as restraining orders.
+        harasser_details: Give details about the type of abuse and when it happened. Include any court imposed restrictions such as restraining orders.
+        intimidator_details: Give details about the type of abuse and when it happened. Include any court imposed restrictions such as restraining orders.
+        bully_details: Give details about the type of abuse and when it happened
       information:
         reason_details: Give details
       mental:
@@ -209,7 +212,8 @@ en:
         dependencies_details: Give details and explain the significance
         has_medications: Eg methadone, anti-inflammatories, anti-depressants, beta-blockers, insulin, migraine tablets, asthma or epilepsy drugs
       non_association_markers:
-        non_association_markers_details: Give details, include prison numbers, names or establishments
+        non_association_markers: Are there any prisoners or staff this prisoner should NOT associate with?
+        non_association_markers_details: Give details, include prisoner numbers, names or establishments
       offences:
         release_date: DD/MM/YYYY
         not_for_release_details: State the reason the detainee is 'not for release'
@@ -219,8 +223,12 @@ en:
       risk_from_others:
         rule_45_details: Give details
         csra_details: Give details
-        verbal_abuse_details: Give details
-        physical_abuse_details: Give details
+        verbal_abuse_details: |
+          Eg, is the detainee a victim of bullying or high profile in the media
+          (police or prison officer / celebrity)
+        physical_abuse_details: |
+          Eg, is the detainee a victim of bullying or high profile in the media
+          (police or prison office / celebrity)
       risk_to_self:
         open_acct: |
           If an ACCT is open, the ACCT plan should be present and there
@@ -231,9 +239,11 @@ en:
         suicide_details: Give details
       security:
         category_a_details: Give details
+        current_e_risk: Please see PSI 2011/56 Management and Security of Escape List (E List prisoners)
         current_e_risk_details: Give details
         escape_list_details: Give details
         other_escape_risk_info_details: Give details
+        restricted_status: Please see PSI 08/2013 The Review of Security Category - CAT A Restricted Status
         restricted_status_details: Give details
       sex_offences:
         sex_offence_details: Give details - state gender and age when under 18, if known
@@ -243,21 +253,21 @@ en:
         personal_care: Eg needs help with dressing, eating or drinking
         personal_care_details: Give details and explain the significance
       substance_misuse:
-        alcohol_details: Give details
-        drugs_details: Give details
+        alcohol_details: Give details, if relevant to the move
+        drugs_details: Give details, if relevant to the move
       transport:
         mpv: Eg disability, claustrophobia, pregnancy.
         mpv_details: Give details and explain the significance
       violence:
-        escort_or_court_staff_details: Give details
-        healthcare_staff_details: Give details
-        homophobic_details: Give details
-        other_detainees_details: Give details
-        police_details: Give details
-        prison_staff_details: Give details
-        public_offence_related_details: Give details
-        racist_details: Give details
-        risk_to_females_details: Give details
+        escort_or_court_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
+        healthcare_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
+        homophobic_details: Give details eg spits, punches, kicks, shouts, uses weapons
+        other_detainees_details: Give details eg spits, punches, kicks, shouts, uses weapons
+        police_details: Give details eg spits, punches, kicks, shouts, uses weapons
+        prison_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
+        public_offence_related_details: Give details eg spits, punches, kicks, shouts, uses weapons
+        racist_details: Give details eg spits, punches, kicks, shouts, uses weapons
+        risk_to_females_details: Give details eg spits, punches, kicks, shouts, uses weapons
   healthcare:
     show:
       physical: Physical healthcare
@@ -281,7 +291,7 @@ en:
       risk_from_others: Risk from others
       security: Security
       sex_offences: Risk to others
-      substance_misuse: Substance misuse
+      substance_misuse: Substance risk
       violence: Risk to others
 
   summary:

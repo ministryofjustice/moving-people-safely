@@ -40,3 +40,19 @@ input[type=text].form-control {
     max-width: 13em;
   }
 }
+
+#wrapper .panel {
+  padding: 8px 0 15px 10px;
+}
+
+@media (min-width: 641px) {
+  .form-hint {
+    padding: 10px 0 8px 0;
+  }
+
+  legend .form-hint { padding: 0; }
+
+  .panel > fieldset > .form-hint { padding-top: 0; }
+  .panel > .form-group > .form-hint { padding-top: 0; }
+}
+
