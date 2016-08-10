@@ -32,7 +32,7 @@ module Forms
       def validate_date
         # TODO: extract a common date validator
         if date.is_a? Date
-          errors[:date] << 'Date must not be in the past.' if date < Date.today
+          errors[:date] << 'must not be in the past.' if date < Date.today
         else
           errors.add(:date)
         end
