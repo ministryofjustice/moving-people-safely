@@ -16,4 +16,21 @@
   .remove-link {
     margin-top: 30px;
   }
+
+  .panel {
+    padding: 8px 0 15px 10px;
+  }
+
+  #medications {
+    label {
+      font-weight: normal;
+    }
+  }
+
+  .add_medication {
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+    margin-left: 30px;
+  }
 }

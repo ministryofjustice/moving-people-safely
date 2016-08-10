@@ -3,22 +3,23 @@
 .medication= f.radio_toggle :has_medications do
   .optional-section-wrapper
     #medications
-    #error_needs_medications
-    = f.fields_for :medications do |mf|
-      .form-group.optional-section
-        = mf.hidden_field :id
-        .nested-medication-field
-          = mf.text_field :description
-        .nested-medication-field
-          = mf.text_field :administration
-        .nested-medication-field
-          = mf.label :carrier, class: 'form-label'
-          .form-group = mf.select :carrier, select_values_for_carrier, include_blank: true
-        .nested-medication-field.remove-link
-          = mf.label :_delete, 'Remove', class: 'styled-as-link'
-          = mf.check_box :_delete
+      #error_needs_medications
+      = f.fields_for :medications do |mf|
+        .form-group.optional-section
+          = mf.hidden_field :id
+          .nested-medication-field
+            = mf.text_field :description
+          .nested-medication-field
+            = mf.text_field :administration
+          .nested-medication-field
+            = mf.label :carrier, class: 'form-label'
+            .form-group = mf.select :carrier, select_values_for_carrier, include_blank: true
+          .nested-medication-field.remove-link
+            = mf.label :_delete, 'Remove', class: 'styled-as-link'
+            = mf.check_box :_delete
 
-    = f.submit 'Add medication',
-      class: 'js-anchor-focus styled-as-link',
-      data: { 'anchor-focus' => 'medications' },
-      name: "needs_add_medication"
+.add_medication
+  = f.submit 'Add medication',
+    class: 'js-anchor-focus styled-as-link',
+    data: { 'anchor-focus' => 'medications' },
+    name: "needs_add_medication"
