@@ -178,7 +178,7 @@ en:
           unknown: Clear selection
     hint:
       allergies:
-        allergies: Eg dietary such as gluten, nuts, eggs or any allergy that might result in anaphylactic shock.
+        allergies: "Eg dietary, environmental or medical, such as: nuts, pollen, penicillin"
         allergies_details: Give details and explain the significance
       arson:
         arson_details: Give details of last arson attack, including date
@@ -200,14 +200,14 @@ en:
       information:
         reason_details: Give details
       mental:
-        mental_illness: Eg depression presenting as paranoia or non-responsiveness or euphoria, mania, drug-induced high, poor coper.
+        mental_illness: Eg depression, paranoia, anxiety, personality disorder
         mental_illness_details: Give details and explain the significance
-        phobias: Eg claustrophobia, social, environmental, animal, situational.
+        phobias: Eg claustrophobia, agoraphobia
         phobias_details: Give details and explain the significance
       needs:
-        dependencies: Eg early stages of detox, alcohol withdrawal.
+        dependencies: Eg early stages of detox, alcohol withdrawal
         dependencies_details: Give details and explain the significance
-        has_medications: Eg methadone, anti-inflammatories, anti-depressants, beta-blockers, insulin, migraine tablets, asthma or epilepsy drugs.
+        has_medications: Eg methadone, anti-inflammatories, anti-depressants, beta-blockers, insulin, migraine tablets, asthma or epilepsy drugs
       non_association_markers:
         non_association_markers_details: Give details, include prison numbers, names or establishments
       offences:
@@ -238,15 +238,15 @@ en:
       sex_offences:
         sex_offence_details: Give details - state gender and age when under 18, if known
       social:
-        personal_hygiene: Eg OCD, needs toilet support. For more information refer to the Social Care Act.
+        personal_hygiene: Eg OCD, needs toilet support. For more information refer to the Social Care Act
         personal_hygiene_details: Give details and explain the significance
-        personal_care: Eg help dessing for court, feeding.
+        personal_care: Eg needs help with dressing, eating or drinking
         personal_care_details: Give details and explain the significance
       substance_misuse:
         alcohol_details: Give details
         drugs_details: Give details
       transport:
-        mpv: Eg disability, sickness, claustrophobia, pregnancy.
+        mpv: Eg disability, claustrophobia, pregnancy.
         mpv_details: Give details and explain the significance
       violence:
         escort_or_court_staff_details: Give details
