@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804150738) do
+ActiveRecord::Schema.define(version: 20160809154957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,9 +69,8 @@ ActiveRecord::Schema.define(version: 20160804150738) do
     t.text     "mpv_details"
     t.string   "healthcare_professional"
     t.string   "contact_number"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-    t.string   "workflow_status",          default: "not_started"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.uuid     "detainee_id"
     t.index ["detainee_id"], name: "index_healthcare_on_detainee_id", using: :btree
   end
@@ -103,10 +102,9 @@ ActiveRecord::Schema.define(version: 20160804150738) do
     t.date     "release_date"
     t.boolean  "not_for_release"
     t.text     "not_for_release_details"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.string   "has_past_offences",       default: "unknown"
-    t.string   "workflow_status",         default: "not_started"
     t.uuid     "detainee_id"
     t.index ["detainee_id"], name: "index_offences_on_detainee_id", using: :btree
   end
@@ -196,9 +194,8 @@ ActiveRecord::Schema.define(version: 20160804150738) do
     t.text     "hearing_speach_sight_details"
     t.string   "can_read_and_write",              default: "unknown"
     t.text     "can_read_and_write_details"
-    t.string   "workflow_status",                 default: "not_started"
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.uuid     "detainee_id"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
   end
