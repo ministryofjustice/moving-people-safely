@@ -1,6 +1,8 @@
 en:
   helpers:
     fieldset:
+      allergies:
+        allergies: Allergies?
       arson:
         arson: Arson?
         arson_value: ''
@@ -16,15 +18,18 @@ en:
       information:
         has_destinations: Are there establishments the detainee must or must not be sent?
         reason: Reason for move
-      offences:
-        has_past_offences: Does the detainee have significant past offences?
+      mental:
+        mental_illness: Mental health issues?
+        phobias: Phobias?
       needs:
-        has_medications: Medication
+        dependencies: Any dependencies or history of misuse?
+        has_medications: Regular medication?
       non_association_markers:
         non_association_markers: Non-association markers?
-      sex_offences:
-        sex_offence: Sex offender?
-        sex_offence_victim: ''
+      offences:
+        has_past_offences: Does the detainee have significant past offences?
+      physical:
+        physical_issues: Physical health needs?
       risk_from_others:
         rule_45: Rule 45?
         csra: CSRA?
@@ -39,11 +44,17 @@ en:
         escape_list: Escape list?
         other_escape_risk_info: Is there other escape risk information?
         restricted_status: Restricted status?
+      sex_offences:
+        sex_offence: Sex offender?
+        sex_offence_victim: ''
+      social:
+        personal_hygiene: Personal hygiene issues?
+        personal_care: Personal care issues?
       substance_misuse:
         alcohol: Alcohol?
         drugs: Drugs?
       transport:
-        mpv: MPV
+        mpv: Requires MPV?
       violence:
         violent: Violent?
     label:
@@ -100,6 +111,10 @@ en:
           unknown: Clear selection
         has_medications:
           unknown: Clear selection
+        medications:
+          description: What is it?
+          administration: How is it given?
+          carrier: Who carries it?
       non_association_markers:
         non_association_markers:
           unknown: Clear selection
@@ -163,7 +178,7 @@ en:
           unknown: Clear selection
     hint:
       allergies:
-        allergies: Does the detainee have any allergies?
+        allergies: "Eg dietary, environmental or medical, such as: nuts, pollen, penicillin"
         allergies_details: Give details and explain the significance
       arson:
         arson_details: Give details of last arson attack, including date
@@ -185,21 +200,21 @@ en:
       information:
         reason_details: Give details
       mental:
-        mental_illness: Does the detainee have any mental health needs?
+        mental_illness: Eg depression, paranoia, anxiety, personality disorder
         mental_illness_details: Give details and explain the significance
-        phobias: Does the detainee have any phobias?
+        phobias: Eg claustrophobia, agoraphobia
         phobias_details: Give details and explain the significance
       needs:
-        dependencies: Does the detainee have any dependencies or history of misuse?
+        dependencies: Eg early stages of detox, alcohol withdrawal
         dependencies_details: Give details and explain the significance
-        has_medications: Is the detainee taking regular medications?
+        has_medications: Eg methadone, anti-inflammatories, anti-depressants, beta-blockers, insulin, migraine tablets, asthma or epilepsy drugs
       non_association_markers:
         non_association_markers_details: Give details, include prison numbers, names or establishments
       offences:
         release_date: DD/MM/YYYY
         not_for_release_details: State the reason the detainee is 'not for release'
       physical:
-        physical_issues: Does the detainee have any physical health needs?
+        physical_issues: Eg disabilities, prosthetic limbs, crutches.
         physical_issues_details: Give details and explain the significance
       risk_from_others:
         rule_45_details: Give details
@@ -223,15 +238,15 @@ en:
       sex_offences:
         sex_offence_details: Give details - state gender and age when under 18, if known
       social:
-        personal_hygiene: Does the detainee have personal hygiene issues?
+        personal_hygiene: Eg OCD, needs toilet support. For more information refer to the Social Care Act
         personal_hygiene_details: Give details and explain the significance
-        personal_care: Does the detainee have personal care issues?
+        personal_care: Eg needs help with dressing, eating or drinking
         personal_care_details: Give details and explain the significance
       substance_misuse:
         alcohol_details: Give details
         drugs_details: Give details
       transport:
-        mpv: Does the detainee need an MPV?
+        mpv: Eg disability, claustrophobia, pregnancy.
         mpv_details: Give details and explain the significance
       violence:
         escort_or_court_staff_details: Give details
