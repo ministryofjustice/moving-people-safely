@@ -1,25 +1,47 @@
-= content_for :stylesheets do
+= content_for :head do
   = stylesheet_link_tag "application.css"
-
-= content_for :javascripts do
   = javascript_include_tag "application.js"
 
-= content_for :content_override do
+= content_for :header_class do
+  = "with-proposition"
+
+= content_for :proposition_header do
+  .header-proposition
+    .content
+      nav#proposition-menu
+        = link_to 'Moving people safely', root_path, id: 'proposition-name'
+        - if user_signed_in?
+          .sign-out
+            = button_to 'Sign out', destroy_user_session_path, method: :delete
+
+= content_for :content do
   main id="wrapper" role="main"
     .container
-      section class="content inner cf" id="content"
+      section class="content inner cf" id="content" role="main"
         .phase-banner-beta
           p
             strong class="phase-tag" Beta
             span
               | This is a new service.
               |  If you have any comments or need help please contact us
-        == yield
+        = yield
 
-= content_for :proposition_links do
-  - if user_signed_in?
-    .sign-out
-      = button_to 'Sign out', destroy_user_session_path, method: :delete
+= content_for :footer_support_links do
+  h2.visuallyhidden Support links
+  ul
+    li
+      = link_to 'Help', "http://www.gov.uk/help"
+    li
+      = link_to "Cookies", "http://www.gov.uk/help/cookies"
+    li
+      = link_to "Contact", "http://www.gov.uk/contact"
+    li
+      = link_to "Cymraeg", "http://www.gov.uk/cymraeg", lang: "cy"
+    li
+      | Built by
+      a<> href="https://mojdigital.blog.gov.uk/"
+        abbr> title="Ministry of Justice" MOJ
+        | Digital Services
 
-= render template: "layouts/moj_template"
 
+= render template: "layouts/govuk_template"
