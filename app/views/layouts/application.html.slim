@@ -1,6 +1,12 @@
 = content_for :head do
   = stylesheet_link_tag "application.css"
-  = javascript_include_tag "application.js"
+
+= content_for :body_end
+  .javascript
+    = javascript_include_tag "application.js"
+
+= content_for :homepage_url
+  = root_path
 
 = content_for :header_class do
   = "with-proposition"
@@ -25,23 +31,5 @@
               | This is a new service.
               |  If you have any comments or need help please contact us
         = yield
-
-= content_for :footer_support_links do
-  h2.visuallyhidden Support links
-  ul
-    li
-      = link_to 'Help', "http://www.gov.uk/help"
-    li
-      = link_to "Cookies", "http://www.gov.uk/help/cookies"
-    li
-      = link_to "Contact", "http://www.gov.uk/contact"
-    li
-      = link_to "Cymraeg", "http://www.gov.uk/cymraeg", lang: "cy"
-    li
-      | Built by
-      a<> href="https://mojdigital.blog.gov.uk/"
-        abbr> title="Ministry of Justice" MOJ
-        | Digital Services
-
 
 = render template: "layouts/govuk_template"
