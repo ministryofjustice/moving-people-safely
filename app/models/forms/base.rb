@@ -12,6 +12,24 @@ module Forms
     StrictString = Forms::StrictString
     TextDate = Forms::TextDate
 
+    concerning :ResetAttributes do
+      included do
+        class << self
+          def reset(attributes:, if_falsey:, enabled_value: TOGGLE_YES)
+            resettable_attributes.add(attributes, if_falsey, enabled_value)
+          end
+
+          def resettable_attributes
+            @_resettable_attributes ||= Forms::AttributeResetCollection.new
+          end
+        end
+
+        def validate(*)
+          super.tap { |valid| self.class.resettable_attributes.perform(self) if valid }
+        end
+      end
+    end
+
     class << self
       def name
         super.demodulize.underscore
@@ -35,6 +53,7 @@ module Forms
         validates "#{field_name}_details",
           presence: true,
           if: -> { public_send(field_name) == TOGGLE_YES }
+        reset attributes: ["#{field_name}_details"], if_falsey: field_name
       end
 
       def optional_checkbox(field_name, toggle = nil)
