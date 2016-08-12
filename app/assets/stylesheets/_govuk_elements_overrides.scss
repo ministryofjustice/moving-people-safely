@@ -56,3 +56,10 @@ input[type=text].form-control {
   .panel > .form-group > .form-hint { padding-top: 0; }
 }
 
+#wrapper {
+  border-bottom: 10px solid #005ea5;
+}
+
+#global-cookie-message {
+  display: none !important;
+}
