@@ -51,7 +51,7 @@ RSpec.describe Forms::Base, "resetting attributes" do
       let(:must_be_present) { nil }
 
       it "doesn't reset the attributes" do
-        params = { foo: must_be_present, bar: "i like cats" }
+        params = { foo: must_be_present, bar: quote }
         subject.validate(params)
 
         expect(subject).not_to be_valid
