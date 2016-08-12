@@ -19,16 +19,7 @@ select {
   max-width: auto;
 }
 
-.styled-as-link {
-  color: $govuk-blue;
-  text-decoration: underline;
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  &:hover {
-    cursor: pointer;
-  }
-}
+
 
 label[for$=_unknown] {
   background-color: transparent;

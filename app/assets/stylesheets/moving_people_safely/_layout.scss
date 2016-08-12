@@ -1,0 +1,26 @@
+#wrapper {
+  border-bottom: 10px solid #005ea5;
+}
+
+h1 {
+  @extend .heading-large;
+}
+
+input.styled-as-link {
+  color: $govuk-blue;
+  text-decoration: underline;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.header-proposition {
+  position: relative;
+}
+
+.link-wrapper {
+  padding: $padding-large 0;
+}

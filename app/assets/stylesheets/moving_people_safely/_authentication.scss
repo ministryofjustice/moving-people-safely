@@ -1,0 +1,9 @@
+.sign-out {
+  display: inline-block;
+  position: absolute;
+  right: 15px;
+  input {
+    @extend .font-small;
+    color: $white;
+  }
+}
