@@ -25,6 +25,11 @@ RSpec.describe Forms::Risk::Communication, type: :form do
         before { subject.interpreter_required = 'yes' }
         it { is_expected.to validate_presence_of(:language) }
       end
+
+      it {
+        is_expected.to validate_attributes_are_reset(:language).
+          when_attribute_is_disabled(:interpreter_required)
+      }
     end
 
     it { is_expected.to validate_optional_details_field(:hearing_speach_sight) }

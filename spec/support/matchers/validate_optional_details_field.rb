@@ -13,6 +13,7 @@ class ValidateOptionalDetailsField
         validates_presence_of_details_field_when_option_field_positive
         doesnt_validate_presence_of_details_field_when_option_field_negative
         validates_details_field_as_strict_string
+        validate_details_are_reset
     ].map { |assertion_name| reset_subject && send(assertion_name) }.all?
   end
 
@@ -78,6 +79,16 @@ class ValidateOptionalDetailsField
 
   def validates_details_field_as_strict_string
     validator = ValidateStrictString.new(details_field_method_name)
+    result = validator.matches?(subject)
+
+    set_error validator.failure_message unless result
+
+    result
+  end
+
+  def validate_details_are_reset
+    validator = ValidateAttributesAreReset.new(details_field_method_name)
+    validator.when_attribute_is_disabled(method_name)
     result = validator.matches?(subject)
 
     set_error validator.failure_message unless result

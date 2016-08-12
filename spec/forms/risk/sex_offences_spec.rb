@@ -15,12 +15,27 @@ RSpec.describe Forms::Risk::SexOffences, type: :form do
   describe '#validate' do
     describe "sex_offence" do
       it { is_expected.to validate_optional_field(:sex_offence) }
+
+      context "when the sex offence victim is set to 'under_18'" do
+        it "resets the sex offence details attribute" do
+          subject.sex_offence_victim = "under_18"
+
+          is_expected.to validate_attributes_are_reset(:sex_offence_details).
+            when_attribute_is_disabled(:sex_offence)
+        end
+      end
+
+      # FIXME this is super hard to grok.. the validator is just complicating the spec
+      it "resets the sex offence victim" do
+        is_expected.to validate_attributes_are_reset(:sex_offence_victim).
+          when_attribute_is_disabled(:sex_offence).with_attribute_value_set_as('adult_male')
+      end
     end
 
     describe "sex_offence_details" do
       it { is_expected.to validate_strict_string(:sex_offence_details) }
 
-      context "when sex_offence is set to yes" do
+      context 'when sex_offence is set to yes' do
         before { subject.sex_offence = 'yes' }
 
         context "when the victim is set to under 18" do
