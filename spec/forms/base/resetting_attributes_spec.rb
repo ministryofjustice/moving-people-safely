@@ -9,6 +9,10 @@ RSpec.describe Forms::Base, "resetting attributes" do
       reset attributes: %i[ bar ], if_falsey: :foo, enabled_value: "yes"
 
       def self.name; "LOL"; end # form base will keel over and die without it
+
+      def default_attribute_values
+        { foo: nil, bar: nil }
+      end
     end
   end
 
