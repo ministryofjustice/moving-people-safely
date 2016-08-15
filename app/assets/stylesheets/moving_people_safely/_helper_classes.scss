@@ -19,21 +19,6 @@ select {
   max-width: auto;
 }
 
-
-
-label[for$=_unknown] {
-  background-color: transparent;
-  border-color: transparent;
-  padding-left: $padding-unit;
-  text-decoration: underline;
-  &:hover {
-    border-color: transparent;
-  }
-  input {
-    @extend .visuallyhidden;
-  }
-}
-
 .js-show-hide {
   @extend .form-group;
 }

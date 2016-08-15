@@ -49,6 +49,7 @@ module Forms
       end
 
       def optional_field(field_name)
+        _define_attribute_is_on(field_name, TOGGLE_YES)
         property(field_name, type: String)
         validates field_name,
           inclusion: { in: TOGGLE_CHOICES },
@@ -64,6 +65,7 @@ module Forms
       end
 
       def optional_checkbox(field_name, toggle = nil)
+        _define_attribute_is_on(field_name, true)
         property field_name, type: Axiom::Types::Boolean, default: false
         property "#{field_name}_details", type: StrictString
         validates "#{field_name}_details",
@@ -74,6 +76,12 @@ module Forms
 
       def singularize(field_name)
         field_name.to_s.singularize
+      end
+
+      def _define_attribute_is_on(field_name, on_attr)
+        define_method "#{field_name}_on?" do
+          public_send(field_name) == on_attr
+        end
       end
 
       def _define_add_singularized_field_name(field_name)
@@ -145,6 +153,8 @@ module Forms
         _define_populator(field_name)
       end
     end
+
+    # instance methods
 
     def toggle_choices
       TOGGLE_CHOICES

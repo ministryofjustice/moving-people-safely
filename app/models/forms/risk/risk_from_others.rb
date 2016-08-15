@@ -11,6 +11,7 @@ module Forms
           CSRA_STANDARD = 'standard'
           CSRA_TOGGLE_CHOICES = [CSRA_HIGH, CSRA_STANDARD, DEFAULT_CHOICE]
 
+          _define_attribute_is_on(:csra, 'high')
           property(:csra, type: StrictString, default: DEFAULT_CHOICE)
           validates :csra,
             inclusion: { in: CSRA_TOGGLE_CHOICES },

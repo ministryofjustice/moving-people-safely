@@ -1,6 +1,7 @@
 class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
   def radio_toggle(attribute, attribute_with_error = nil, choices = nil, &_blk)
     style = 'optional-section-wrapper'
+    style << ' mps-hide' unless object.public_send("#{attribute}_on?")
     style << ' panel panel-border-narrow' unless error_for? attribute_with_error
     style << ' toggle_with_error' if error_for? attribute_with_error
     choices ||= object.toggle_choices
@@ -66,6 +67,8 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
   end
 
   def checkbox_with_textarea(attribute)
+    style = 'optional-checkbox-section-wrapper'
+    style << ' mps-hide' unless object.public_send("#{attribute}_on?")
     content_tag(:div, class: 'js-checkbox-show-hide form-group') do
       label(attribute, class: 'block-label') do
         content_tag(:div, class: 'controls-optional-checkbox-section') do
@@ -73,7 +76,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
         end +
           localized_label(attribute)
       end +
-        content_tag(:div, class: 'optional-checkbox-section-wrapper') do
+        content_tag(:div, class: style) do
           text_area_without_label "#{attribute}_details"
         end
     end
