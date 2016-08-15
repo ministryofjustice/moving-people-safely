@@ -12,6 +12,32 @@ module Forms
     StrictString = Forms::StrictString
     TextDate = Forms::TextDate
 
+    concerning :ResetAttributes do
+      included do
+        class << self
+          def reset(attributes:, if_falsey:, enabled_value: TOGGLE_YES)
+            resettable_attributes.add(attributes, if_falsey, enabled_value)
+          end
+
+          def resettable_attributes
+            @_resettable_attributes ||= Forms::AttributeResetCollection.new
+          end
+        end
+
+        def validate(*)
+          super.tap do |valid|
+            if valid && self.class.resettable_attributes.any?
+              self.class.resettable_attributes.reset_all(self, default_attribute_values)
+            end
+          end
+        end
+
+        def default_attribute_values
+          model.class.column_defaults
+        end
+      end
+    end
+
     class << self
       def name
         super.demodulize.underscore
