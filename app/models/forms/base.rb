@@ -27,7 +27,7 @@ module Forms
         def validate(*)
           super.tap do |valid|
             if valid && self.class.resettable_attributes.any?
-              self.class.resettable_attributes.perform(self, default_attribute_values)
+              self.class.resettable_attributes.reset_all(self, default_attribute_values)
             end
           end
         end
