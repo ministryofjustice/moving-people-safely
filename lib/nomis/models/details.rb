@@ -1,13 +1,11 @@
 require 'virtus'
 require 'nomis/models/nationality'
+require 'active_support/core_ext/array/conversions'
 
 module Nomis
   class Details
     include Virtus.model
 
-    attribute :prison_number,   String
-    attribute :forenames,       String
-    attribute :surname,         String
     attribute :birth_date,      Date
     attribute :nationalities,   Array[Nationality]
     attribute :sex,             String
@@ -16,12 +14,15 @@ module Nomis
     attribute :working_name,    Boolean
     attribute :agency_location, String
 
-    def current?
-      working_name
+    %i[ forenames surname ].each do |attr|
+      attribute attr, String
+      define_method(attr) { super()&.humanize.strip }
     end
 
+    alias_method :current?, :working_name
+
     def nationalities
-      super.presence && super.map(&:nationality).join(', ')
+      super&.map(&:nationality).map(&:humanize).to_sentence
     end
 
     SEX_MAPPING = { 'M' => 'male', 'F' => 'female' }.freeze
