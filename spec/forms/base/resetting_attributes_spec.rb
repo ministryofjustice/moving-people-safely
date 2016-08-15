@@ -11,7 +11,7 @@ RSpec.describe Forms::Base, "resetting attributes" do
       def self.name; "LOL"; end # form base will keel over and die without it
 
       def default_attribute_values
-        { foo: nil, bar: nil }
+        { foo: nil, bar: "default" }
       end
     end
   end
@@ -32,8 +32,10 @@ RSpec.describe Forms::Base, "resetting attributes" do
           subject.validate(params)
 
           expect(subject).to be_valid
-          expect(subject.bar).to be_nil
           expect(subject.foo).to eq unexpected_enabled_value
+
+          default_field_value_on_reset = "default"
+          expect(subject.bar).to eq default_field_value_on_reset
         end
       end
 
