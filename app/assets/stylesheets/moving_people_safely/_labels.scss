@@ -4,13 +4,13 @@
 }
 
 .status-label {
+  @include status-label-colour;
   display: inline-block;
   min-width: 120px;
   padding: 0 .6em;
   border-radius: 8px;
   margin-right: 20px;
   text-align: center;
-  @include status-label-colour;
 }
 
 .status-label--complete {

@@ -1,0 +1,34 @@
+form {
+  @include media(desktop) {
+    .form-hint {
+      padding: 10px 0 8px 0;
+    }
+
+    legend .form-hint { padding: 0; }
+    .panel > fieldset > .form-hint { padding-top: 0; }
+    .panel > .form-group > .form-hint { padding-top: 0; }
+  }
+
+  input[type=text].form-control {
+    @include media(desktop) {
+      max-width: 13em;
+    }
+  }
+
+  label.form-label {
+    font-weight: bold;
+  }
+
+  label[for$=_unknown] {
+    background-color: transparent;
+    border-color: transparent;
+    padding-left: $padding-unit;
+    text-decoration: underline;
+    &:hover {
+      border-color: transparent;
+    }
+    input {
+      @extend .visuallyhidden;
+    }
+  }
+}
