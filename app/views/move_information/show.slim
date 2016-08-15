@@ -24,9 +24,9 @@
         .form-group.optional-section
           = df.hidden_field :id
           .form-group
-            .establishment-field
-              = df.text_field :establishment
-            .must-return-field
+            = df.text_field :establishment
+          fieldset.inline
+            .form-group
               = df.label_with_radio(:must_return, 'Must return', 'must_return')
               = df.label_with_radio(:must_return, 'Must NOT return', 'must_not_return')
               .remove-link
@@ -34,6 +34,7 @@
               = df.check_box :_delete
           = df.text_area :reasons
 
+    .add-destination
       = f.submit 'Add establishment',
         class: 'js-anchor-focus styled-as-link',
         data: { 'anchor-focus' => 'establishments' },
