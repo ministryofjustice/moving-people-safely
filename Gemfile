@@ -54,4 +54,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'site_prism'
+  gem 'webmock'
 end
