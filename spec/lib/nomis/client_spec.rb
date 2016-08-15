@@ -1,6 +1,8 @@
 require 'webmock/rspec'
 require 'nomis/client'
 
+WebMock.disable_net_connect!(allow: 'codeclimate.com')
+
 RSpec.describe Nomis::Client do
   subject { described_class.new }
 
