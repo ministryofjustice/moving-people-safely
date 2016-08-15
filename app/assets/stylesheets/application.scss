@@ -60,7 +60,6 @@ $js-enabled: false !default;
   }
 }
 
-
 .mps-hide {
   @include js-only {
     display: none;
