@@ -16,13 +16,14 @@ module Nomis
 
     %i[ forenames surname ].each do |attr|
       attribute attr, String
-      define_method(attr) { super()&.humanize.strip }
+      define_method(attr) { super()&.strip.humanize }
     end
 
     alias_method :current?, :working_name
 
     def nationalities
-      super&.map(&:nationality).map(&:humanize).to_sentence
+      super.presence &&
+        super.map(&:nationality).map(&:humanize).to_sentence
     end
 
     SEX_MAPPING = { 'M' => 'male', 'F' => 'female' }.freeze
