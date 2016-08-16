@@ -5,16 +5,21 @@ require 'nomis/error'
 WebMock.disable_net_connect!(allow: 'codeclimate.com')
 
 RSpec.describe Nomis::Client do
-  subject { described_class.new }
+  let(:endpoint) { 'https://example.com/' }
+
+  subject { described_class.new(endpoint: endpoint) }
+
+  let(:noms_id) { 'A1401AE' }
+  let(:url) { "#{endpoint}offender_details?noms_id=#{noms_id}" }
 
   describe '#offender_details' do
     before do
-      stub_request(:get, 'https://serene-chamber-74280.herokuapp.com/offender_details?noms_id=A1401AE').
+      stub_request(:get, url).
         to_return(body: "{\"OffenderDetails\":[{\"Working_name\":\"Y\",\"Surname\":\"HALL\",\"Sex\":\"F\",\"Nationalities\":[{\"Nationality\":\"BRITISH\"}, {\"Nationality\":\"SPANISH\"}],\"Forenames\":\"JILLY \",\"Birth_date\":\"1970-01-01\",\"Agency_location\":\"LEEDS (HMP)\", \"CRO_Number\": \"CRO29478\", \"PNC_Number\": \"PNC948223\"}]}")
     end
 
     it 'returns a list of details value objects' do
-      result = subject.offender_details(prison_number: 'A1401AE')
+      result = subject.offender_details(prison_number: noms_id)
 
       expect(result.size).to eq 1
       expect(result[0].agency_location).to eq "LEEDS (HMP)"
@@ -32,23 +37,22 @@ RSpec.describe Nomis::Client do
     context 'handling errors' do
       context 'timeouts' do
         before do
-          stub_request(:get,'https://serene-chamber-74280.herokuapp.com/offender_details?noms_id=A1401AE').to_timeout
+          stub_request(:get, url).to_timeout
         end
 
         it 'raises a RequestTimeout error' do
-          expect { subject.offender_details(prison_number: 'A1401AE') }.
+          expect { subject.offender_details(prison_number: noms_id) }.
             to raise_error(Nomis::Error::RequestTimeout)
         end
       end
 
       context 'invalid response' do
         before do
-          stub_request(:get,'https://serene-chamber-74280.herokuapp.com/offender_details?noms_id=A1401AE').
-            to_return(body: 'Invalid')
+          stub_request(:get, url).to_return(body: 'Invalid')
         end
 
         it 'raises an InvalidResponse error' do
-          expect { subject.offender_details(prison_number: 'A1401AE') }.
+          expect { subject.offender_details(prison_number: noms_id) }.
             to raise_error(Nomis::Error::InvalidResponse)
         end
       end

@@ -6,6 +6,10 @@ require 'nomis/error'
 
 module Nomis
   class Client
+    def initialize(endpoint:)
+      @endpoint = endpoint
+    end
+
     def offender_details(prison_number:)
       res = get(path: '/offender_details', prison_number: prison_number)
       res[:offenderdetails].map { |h| Details.new(h) }
@@ -21,10 +25,8 @@ module Nomis
       raise Nomis::Error::InvalidResponse, error
     end
 
-    ENDPOINT = 'https://serene-chamber-74280.herokuapp.com/'
-
     def connection
-      @connection ||= Faraday.new(ENDPOINT) do |c|
+      @connection ||= Faraday.new(@endpoint) do |c|
         c.use ParseJson
         c.use Faraday::Adapter::NetHttp
       end
