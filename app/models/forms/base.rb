@@ -62,6 +62,7 @@ module Forms
         validates "#{field_name}_details",
           presence: true,
           if: -> { public_send(field_name) == TOGGLE_YES }
+        reset attributes: ["#{field_name}_details"], if_falsey: field_name
       end
 
       def optional_checkbox(field_name, toggle = nil)
