@@ -38,7 +38,7 @@ Metrics/AbcSize:
     - 'spec/**/*'
 
 Metrics/MethodLength:
-  Max: 13
+  Max: 15
 
 # Allow ===. It's useful.
 Style/CaseEquality:

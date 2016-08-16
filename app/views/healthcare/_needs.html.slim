@@ -1,24 +1,25 @@
 = f.radio_toggle_with_textarea :dependencies
 
-= f.radio_toggle :has_medications do
-  - if f.object.has_medications_on?
-    #medications
-    #error_needs_medications
-  = f.fields_for :medications do |mf|
-    .multiple-wrapper class=(mf.index == 0 ? 'multiple-first' : 'multiple-not-first')
-      = mf.hidden_field :id
-      .multiple-field.inline
-        = mf.text_field :description
-      .multiple-field.inline
-        = mf.text_field :administration
-      .multiple-field.inline
-        .form-group
-          = mf.label :carrier, class: 'form-label'
-          = mf.select :carrier, select_values_for_carrier, include_blank: true
-      .multiple-field.remove-link.inline
-        .form-group
-          = mf.label :_delete, 'Remove'
-          = mf.check_box :_delete
+.medication
+  = f.radio_toggle :has_medications do
+    - if f.object.has_medications_on?
+      #medications
+      #error_needs_medications
+    = f.fields_for :medications do |mf|
+      .multiple-wrapper class=(mf.index == 0 ? 'multiple-first' : 'multiple-not-first')
+        = mf.hidden_field :id
+        .multiple-field.inline
+          = mf.text_field :description
+        .multiple-field.inline
+          = mf.text_field :administration
+        .multiple-field.inline
+          .form-group
+            = mf.label :carrier, class: 'form-label'
+            = mf.select :carrier, select_values_for_carrier, include_blank: true
+        .multiple-field.remove-link.inline
+          .form-group
+            = mf.label :_delete, 'Remove'
+            = mf.check_box :_delete
 
   .multiple-field.multiple-add
     = f.submit 'Add medication',

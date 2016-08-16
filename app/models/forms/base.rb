@@ -71,7 +71,7 @@ module Forms
         validates "#{field_name}_details",
           presence: true,
           if:
-            -> { public_send(field_name) && public_send(toggle) == TOGGLE_YES }
+            -> { (public_send(field_name) && toggle.nil?) || (public_send(field_name) && public_send(toggle) == TOGGLE_YES) }
       end
 
       def singularize(field_name)
