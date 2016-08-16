@@ -52,10 +52,8 @@
 //   }
 // }
 
-$js-enabled: false !default;
-
 @mixin js-only {
-  @if $js-enabled {
+  .js-enabled & {
     @content;
   }
 }
