@@ -40,6 +40,18 @@ RSpec.describe Nomis::Client do
             to raise_error(Nomis::Error::RequestTimeout)
         end
       end
+
+      context 'invalid response' do
+        before do
+          stub_request(:get,'https://serene-chamber-74280.herokuapp.com/offender_details?noms_id=A1401AE').
+            to_return(body: 'Invalid')
+        end
+
+        it 'raises an InvalidResponse error' do
+          expect { subject.offender_details(prison_number: 'A1401AE') }.
+            to raise_error(Nomis::Error::InvalidResponse)
+        end
+      end
     end
   end
 end

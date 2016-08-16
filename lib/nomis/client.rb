@@ -17,6 +17,8 @@ module Nomis
       connection.get(path, noms_id: prison_number).body
     rescue Faraday::Error::TimeoutError => error
       raise Nomis::Error::RequestTimeout, error
+    rescue JSON::ParserError => error
+      raise Nomis::Error::InvalidResponse, error
     end
 
     ENDPOINT = 'https://serene-chamber-74280.herokuapp.com/'
