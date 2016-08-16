@@ -1,10 +1,14 @@
 require 'virtus'
-require 'nomis/models/nationality'
 require 'active_support/core_ext/array/conversions'
 
 module Nomis
   class Details
     include Virtus.model
+
+    class Nationality
+      include Virtus.model
+      attribute :nationality, String
+    end
 
     attribute :birth_date,      Date
     attribute :nationalities,   Array[Nationality]
