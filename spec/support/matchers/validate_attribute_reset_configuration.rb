@@ -49,25 +49,22 @@ class ValidateAttributeResetConfiguration
       set_error('No matching ResetData object found in the collection of resettable attributes.')
   end
 
-  def configured_to_correct_master_attribute
-    value = matching_reset_data_obj.master_attribute
+  delegate :master_attribute, :enabled_value, to: :matching_reset_data_obj, prefix: 'reset_obj'
 
-    (value == master_attribute) ||
+  def configured_to_correct_master_attribute
+    (reset_obj_master_attribute == master_attribute) ||
       set_error("No matching master attribute found in the ResetData object. " +
-                "Expected: #{master_attribute} got: #{value}.")
+                "Expected: #{master_attribute} got: #{reset_obj_master_attribute}.")
   end
 
   def configured_to_reset_on_correct_value
-    value = matching_reset_data_obj.enabled_value
-
-    (value == master_attribute_on_value) ||
+    (reset_obj_enabled_value == master_attribute_on_value) ||
       set_error("No matching enabled value found in the ResetData object. " +
-                 "Expected: #{master_attribute_on_value} got: #{value}.")
+                 "Expected: #{master_attribute_on_value} got: #{reset_obj_enabled_value}.")
   end
 
   def set_error(msg)
     @error = msg
-
     false
   end
 end
