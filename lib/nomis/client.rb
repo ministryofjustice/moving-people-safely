@@ -2,6 +2,7 @@ require 'faraday'
 require 'json'
 require 'nomis/middlewares/parse_json'
 require 'nomis/models/details'
+require 'nomis/error'
 
 module Nomis
   class Client
@@ -14,6 +15,8 @@ module Nomis
 
     def get(path:, prison_number:)
       connection.get(path, noms_id: prison_number).body
+    rescue Faraday::Error::TimeoutError => error
+      raise Nomis::Error::RequestTimeout, error
     end
 
     ENDPOINT = 'https://serene-chamber-74280.herokuapp.com/'
