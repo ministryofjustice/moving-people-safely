@@ -1,8 +1,4 @@
 .healthcare {
-  .heading-medium {
-    @extend .heading-small;
-  }
-
   .nested-medication-field {
     @extend .column-one-quarter;
     .form-control {

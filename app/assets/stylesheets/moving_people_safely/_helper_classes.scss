@@ -13,12 +13,6 @@
   }
 }
 
-select {
-  @extend .form-control;
-  border: 1px solid $grey-2;
-  max-width: auto;
-}
-
 .js-show-hide {
   @extend .form-group;
 }

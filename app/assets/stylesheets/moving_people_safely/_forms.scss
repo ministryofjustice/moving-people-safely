@@ -31,4 +31,14 @@ form {
       @extend .visuallyhidden;
     }
   }
+
+  select {
+    @extend .form-control;
+    border: 1px solid $grey-2;
+    max-width: auto;
+  }
+
+  .checkbox-list input[type='checkbox'] {
+    margin-right: 20px;
+  }
 }
