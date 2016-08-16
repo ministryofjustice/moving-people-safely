@@ -41,9 +41,10 @@ form {
   }
 
   select {
-    @extend input.form-control;
+    font-size: 19px;
+    line-height: 1.31579;
     border: 1px solid $grey-2;
-    max-width: auto;
+    width: 13em;
   }
 
   .multiple-wrapper {
@@ -67,7 +68,7 @@ form {
           display: none;
         }
 
-        .form-control {
+        .form-control, select {
           margin-top: 0 !important;
         }
 
@@ -96,6 +97,10 @@ form {
 
           .form-control {
             width: 100%;
+            margin-top: 30px;
+          }
+
+          select {
             margin-top: 30px;
           }
 
