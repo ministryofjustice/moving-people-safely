@@ -6,15 +6,8 @@ h1 {
   @extend .heading-large;
 }
 
-input.styled-as-link {
-  color: $govuk-blue;
-  text-decoration: underline;
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  &:hover {
-    cursor: pointer;
-  }
+.heading-medium {
+  @extend .heading-small;
 }
 
 .header-proposition {

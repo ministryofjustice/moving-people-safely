@@ -16,39 +16,41 @@
     = f.text_field :release_date
     = f.checkbox_with_textarea :not_for_release
 
-    h2 Current offences
+    fieldset.form-group
+      legend.heading-medium Current offences
 
-    #error_offences_current_offences
-    .optional-section-wrapper.current-offences.multiple
       = f.fields_for :current_offences do |cf|
-        .form-group.optional-section.current-offence.multiple-inline
+        .multiple-wrapper class=(cf.index == 0 ? 'multiple-first' : 'multiple-not-first')
           = cf.hidden_field :id
-          .multiple-inline-field
+          .multiple-field.inline
             = cf.text_field :offence
-          .multiple-inline-field
+          .multiple-field.inline
             = cf.text_field :case_reference
-          .multiple-inline-field.remove-link
-            = cf.label :_delete, 'Remove', class: 'styled-as-link'
+          .multiple-field.inline.remove-link
+            = cf.label :_delete, 'Remove'
             = cf.check_box :_delete
 
-      =f.submit 'Add offence',
-        class: 'js-anchor-focus styled-as-link multiple-add-button',
-        name: "offences_add_offence"
+      .multiple-field.multiple-add
+        =f.submit 'Add offence',
+          class: 'js-anchor-focus',
+          name: "offences_add_offence"
 
-    #error_offences_past_offences
-    .past-offences= f.radio_toggle :has_past_offences do
-      .optional-section-wrapper.past-offences.multiple
-        = f.fields_for :past_offences do |pf|
-          .form-group.optional-section.past-offence.multiple-inline
-            = pf.hidden_field :id
-            .multiple-inline-field
-              = pf.text_field :offence
-            .multiple-inline-field.remove-link
-              = pf.label :_delete, 'Remove', class: 'styled-as-link'
-              = pf.check_box :_delete
 
+    = f.radio_toggle :has_past_offences do
+      - if f.object.has_past_offences_on?
+        #error_offences_past_offences
+      = f.fields_for :past_offences do |pf|
+        .multiple-wrapper class=(pf.index == 0 ? 'multiple-first' : 'multiple-not-first')
+          = pf.hidden_field :id
+          .multiple-field.inline
+            = pf.text_field :offence
+          .multiple-field.inline.remove-link
+            = pf.label :_delete, 'Remove'
+            = pf.check_box :_delete
+
+      .multiple-field.multiple-add
         =f.submit 'Add past offence',
-          class: 'js-anchor-focus styled-as-link multiple-add-button',
+          class: 'js-anchor-focus',
           name: "offences_add_past_offence"
 
     = f.submit 'Save and continue', class: 'button'

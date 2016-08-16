@@ -28,3 +28,40 @@
 .float-right {
   float: right;
 }
+
+// Style a label or an Input to look like a link
+.styled-as-link {
+  color: $govuk-blue;
+  text-decoration: underline;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+// Javascript helper - makes it slightly easier to include non-JS specific styles
+// in your component style blocks.
+
+// Usage: write base styles for site with no JS, then add js-only styles on top.
+//
+// .object {
+//   display: none;
+//
+//   @include js-only {
+//     display: block;
+//   }
+// }
+
+@mixin js-only {
+  .js-enabled & {
+    @content;
+  }
+}
+
+.mps-hide {
+  @include js-only {
+    display: none;
+  }
+}
