@@ -10,6 +10,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'slim-rails'
 gem 'devise'
+gem 'faraday'
 gem 'govuk_elements_rails'
 gem 'govuk_elements_form_builder', git: 'https://github.com/ministryofjustice/govuk_elements_form_builder.git'
 gem 'govuk_frontend_toolkit'
@@ -53,4 +54,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'site_prism'
+  gem 'webmock'
 end
