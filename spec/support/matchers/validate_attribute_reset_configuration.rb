@@ -8,9 +8,7 @@ class ValidateAttributeResetConfiguration
   def matches?(subject)
     @subject = subject
 
-    has_configuration &&
-      configured_to_correct_master_attribute &&
-      configured_to_reset_on_correct_value
+    has_configuration
   end
 
   attr_reader :subject, :attributes, :master_attribute, :master_attribute_on_value, :error
@@ -39,28 +37,17 @@ class ValidateAttributeResetConfiguration
     subject.class.resettable_attributes.collection
   end
 
-  def matching_reset_data_obj
-    @matching_reset_data_obj ||=
-      resettable_attributes.find { |i| (attributes - i.attributes_to_reset).empty? }
-  end
-
   def has_configuration
-    matching_reset_data_obj ||
-      set_error('No matching ResetData object found in the collection of resettable attributes.')
+    resettable_attributes.any? { |i| i.values == expected_as_tuple } || set_error(error_text)
   end
 
-  delegate :master_attribute, :enabled_value, to: :matching_reset_data_obj, prefix: 'reset_obj'
-
-  def configured_to_correct_master_attribute
-    (reset_obj_master_attribute == master_attribute) ||
-      set_error("No matching master attribute found in the ResetData object. " +
-                "Expected: #{master_attribute} got: #{reset_obj_master_attribute}.")
+  def expected_as_tuple
+    [attributes, master_attribute, master_attribute_on_value]
   end
 
-  def configured_to_reset_on_correct_value
-    (reset_obj_enabled_value == master_attribute_on_value) ||
-      set_error("No matching enabled value found in the ResetData object. " +
-                 "Expected: #{master_attribute_on_value} got: #{reset_obj_enabled_value}.")
+  def error_text
+    expected = %i[ attributes if_falsey enabled_value ].zip(expected_as_tuple).to_h
+    "Failed to find #{expected}"
   end
 
   def set_error(msg)
