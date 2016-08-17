@@ -47,6 +47,12 @@ form {
     width: 13em;
   }
 
+  .multiple {
+    position: relative;
+    margin-bottom: 20px;
+    float: left;
+  }
+
   .multiple-wrapper {
     float: left;
     clear: left;
@@ -128,10 +134,16 @@ form {
   }
 
   .multiple-add {
-    clear: left;
+    position: absolute;
+    top: 100%;
+    margin-top: -20px;
 
     input {
       @extend .styled-as-link;
     }
+  }
+
+  .form-actions {
+    clear: both;
   }
 }
