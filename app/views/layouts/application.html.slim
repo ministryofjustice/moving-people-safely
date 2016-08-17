@@ -1,5 +1,9 @@
 = content_for :head do
-  = stylesheet_link_tag "application.css"
+  | <!--[if (gte IE 9)|!(IE)]<!-->
+  = stylesheet_link_tag "main.css"
+  | <!--<![endif]-->
+  /[if IE 8]
+    = stylesheet_link_tag "main-ie8.css"
 
 = content_for :body_end
   .javascript
@@ -18,18 +22,12 @@
         = link_to 'Moving people safely', root_path, id: 'proposition-name'
         - if user_signed_in?
           .sign-out
-            = button_to 'Sign out', destroy_user_session_path, method: :delete
+            = button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'styled-as-link'
 
 = content_for :content do
   main id="wrapper" role="main"
     .container
       section class="content inner cf" id="content" role="main"
-        .phase-banner-beta
-          p
-            strong class="phase-tag" Beta
-            span
-              | This is a new service.
-              |  If you have any comments or need help please contact us
         = yield
 
 = render template: "layouts/govuk_template"

@@ -12,11 +12,6 @@ $(function () {
     return this.each(function () {
       var $this = $(this);
 
-      // Hide checkbox - if no JS then we would want to
-      // show some sort of visual indication that the
-      // multiple is marked for deletion.
-      $this.find('input[name$="[_delete]"]').hide();
-
       // Hide multiple from when 'delete' radio state changes
       $this.on('change', function (e) {
         var changed_element_id = $(e.target).attr('id');
@@ -27,6 +22,6 @@ $(function () {
     })
   };
 
-  $('.optional-section').multiples();
+  $('.multiple-wrapper').multiples();
 
 });

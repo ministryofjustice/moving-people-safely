@@ -1,0 +1,137 @@
+form {
+  @include media(desktop) {
+    .form-hint {
+      padding: 10px 0 8px 0;
+    }
+
+    legend .form-hint { padding: 0; }
+    .panel > fieldset > .form-hint { padding-top: 0; }
+    .panel > .form-group > .form-hint { padding-top: 0; }
+  }
+
+  legend {
+    font-weight: bold;
+  }
+
+  label.form-label {
+    font-weight: bold;
+  }
+
+  label[for$=_unknown] {
+    background-color: transparent;
+    border-color: transparent;
+    padding-left: $padding-unit;
+    text-decoration: underline;
+    &:hover {
+      border-color: transparent;
+    }
+    input {
+      @extend .visuallyhidden;
+    }
+  }
+
+  .checkbox-list input[type='checkbox'] {
+    margin-right: 20px;
+  }
+
+  input.form-control {
+    @include media(desktop) {
+      max-width: 13em;
+    }
+  }
+
+  select {
+    font-size: 19px;
+    line-height: 1.31579;
+    border: 1px solid $grey-2;
+    width: 13em;
+  }
+
+  .multiple-wrapper {
+    float: left;
+    clear: left;
+    width: 100%;
+
+    .remove-link {
+      label {
+        @extend .styled-as-link;
+      }
+
+      @include js-only {
+        input { display: none; }
+      }
+    }
+
+    &.multiple-not-first {
+      @include media(desktop) {
+        label.form-label {
+          display: none;
+        }
+
+        .form-control, select {
+          margin-top: 0 !important;
+        }
+
+        .remove-link {
+          margin-top: 5px !important;
+        }
+      }
+    }
+
+    .multiple-field {
+      float: left;
+      clear: left;
+      width: 100%;
+      margin-bottom: 20px;
+
+      .form-group {
+        margin-bottom: 0;
+      }
+
+      &.inline {
+        @include media(desktop) {
+          clear: none;
+          width: auto;
+          margin-right: 28px;
+          position: relative;
+
+          .form-control {
+            width: 100%;
+            margin-top: 30px;
+          }
+
+          select {
+            margin-top: 30px;
+          }
+
+          .form-label {
+            position: absolute;
+          }
+
+          &.remove-link {
+            margin-top: 35px;
+            margin-right: 0;
+          }
+        }
+      }
+
+      &.clear {
+        @include media(tablet) {
+          clear: both;
+        }
+      }
+
+      label {
+        font-weight: normal;
+      }
+    }
+  }
+
+  .multiple-add {
+    clear: left;
+
+    input {
+      @extend .styled-as-link;
+    }
+  }
+}

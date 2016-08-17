@@ -84,7 +84,7 @@ RSpec.describe 'managing healthcare medications', type: :feature do
   end
 
   def medication_els
-    all('.optional-section').to_a
+    all('.multiple-wrapper').to_a
   end
 
   def within_medication(position, &_blk)

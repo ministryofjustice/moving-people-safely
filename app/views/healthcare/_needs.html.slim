@@ -1,25 +1,28 @@
 = f.radio_toggle_with_textarea :dependencies
 
-.medication= f.radio_toggle :has_medications do
-  .optional-section-wrapper
-    #medications
+.medication
+  = f.radio_toggle :has_medications do
+    - if f.object.has_medications_on?
+      #medications
       #error_needs_medications
-      = f.fields_for :medications do |mf|
-        .form-group.optional-section
-          = mf.hidden_field :id
-          .nested-medication-field
-            = mf.text_field :description
-          .nested-medication-field
-            = mf.text_field :administration
-          .nested-medication-field
+    = f.fields_for :medications do |mf|
+      .multiple-wrapper class=(mf.index == 0 ? 'multiple-first' : 'multiple-not-first')
+        = mf.hidden_field :id
+        .multiple-field.inline
+          = mf.text_field :description
+        .multiple-field.inline
+          = mf.text_field :administration
+        .multiple-field.inline
+          .form-group
             = mf.label :carrier, class: 'form-label'
-            .form-group = mf.select :carrier, select_values_for_carrier, include_blank: true
-          .nested-medication-field.remove-link
-            = mf.label :_delete, 'Remove', class: 'styled-as-link'
+            = mf.select :carrier, select_values_for_carrier, include_blank: true
+        .multiple-field.remove-link.inline
+          .form-group
+            = mf.label :_delete, 'Remove'
             = mf.check_box :_delete
 
-.add_medication
-  = f.submit 'Add medication',
-    class: 'js-anchor-focus styled-as-link',
-    data: { 'anchor-focus' => 'medications' },
-    name: "needs_add_medication"
+  .multiple-field.multiple-add
+    = f.submit 'Add medication',
+      class: 'js-anchor-focus',
+      data: { 'anchor-focus' => 'medications' },
+      name: "needs_add_medication"

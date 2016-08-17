@@ -1,18 +1,22 @@
 .search_module {
-  @extend .padded;
+  padding: $padding-large $padding-unit;
   border-bottom: 1px solid $grey-3;
   background-color: $grey-3;
+
   table {
     margin-top: $margin-unit;
     margin-bottom: $margin-unit;
+
     th {
       font-weight: normal;
       border: none;
     }
+
     td {
       border: none;
     }
-    @media screen and (min-width: $responsive-break-large) {
+
+    @include media(desktop) {
       max-width: 85%;
     }
   }
@@ -26,7 +30,7 @@
   h2 {
     @extend .heading-medium;
     margin: 0;
-    @media screen and (min-width: $responsive-break-large) {
+    @include media(desktop) {
       position: relative;
       top: 0.1em;
       display: inline-block;
@@ -35,7 +39,7 @@
   }
 
   form {
-    @media screen and (min-width: $responsive-break-large) {
+    @include media(desktop) {
       display: inline-block;
       margin-right: $margin_unit;
     }
@@ -46,7 +50,7 @@
   }
 
   label {
-    @media screen and (min-width: $responsive-break-large) {
+    @include media(desktop) {
       position: relative;
       top: 0.1em;
       margin-right: $margin_unit;
@@ -54,7 +58,7 @@
   }
 
   .form-group {
-    @media screen and (min-width: $responsive-break-large) {
+    @include media(desktop) {
       display: inline-block;
       width: 18em;
       float: none;
@@ -75,10 +79,11 @@
     &:hover {
       color: transparent;
     }
+    text-indent: -9999px;
   }
 
   .search_input_wrapper {
-    @media screen and (min-width: $responsive-break-large) {
+    @include media(desktop) {
       display: inline-block;
       width: 18em;
     }

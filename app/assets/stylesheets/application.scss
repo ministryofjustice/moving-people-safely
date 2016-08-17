@@ -1,20 +1,36 @@
-// Dependency imports
-@import 'govuk_elements';
+@import "elements/reset";
 
-// Helpers
-@import 'variables';
-@import 'helper_classes';
-@import 'govuk_elements_overrides';
+// GOV.UK front end toolkit
+@import "colours";
+@import "conditionals";
+@import "grid_layout";
+@import "measurements";
+@import "typography";
+@import "design-patterns/breadcrumbs";
+@import "design-patterns/buttons";
+@import "design-patterns/alpha-beta";
 
-// Section specific styles
-@import 'home';
-@import 'detainee_details';
-@import 'move_information';
-@import 'healthcare';
-@import 'risk';
-@import 'offences';
-@import 'profile';
-@import 'summary';
-@import 'labels';
-@import 'alerts';
-@import 'authentication';
+// GOV.UK elements
+@import "elements/helpers";
+@import "elements/buttons";
+@import "elements/elements-typography";
+@import "elements/forms";
+@import "elements/forms/form-block-labels";
+@import "elements/forms/form-validation";
+@import "elements/icons";
+@import "elements/layout";
+@import "elements/panels";
+@import "elements/tables";
+
+// Application
+@import "variables";
+@import "moving_people_safely/helper_classes";
+@import "moving_people_safely/layout";
+@import "moving_people_safely/alerts";
+@import "moving_people_safely/authentication";
+@import "moving_people_safely/buttons";
+@import "moving_people_safely/forms";
+@import "moving_people_safely/home";
+@import "moving_people_safely/labels";
+@import "moving_people_safely/profile";
+@import "moving_people_safely/summary";

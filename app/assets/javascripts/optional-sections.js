@@ -11,33 +11,41 @@ $(function () {
     var id = $input.attr('id');
     switch (true) {
       case /_yes$/.test(id):
-        $optional_section_wrapper.show();
-        $clear_selection_control.show();
+        show($optional_section_wrapper);
+        show($clear_selection_control);
         break;
       case /_high$/.test(id):
-        $optional_section_wrapper.show();
-        $clear_selection_control.show();
+        show($optional_section_wrapper);
+        show($clear_selection_control);
         break;
       case /_standard$/.test(id):
-        $optional_section_wrapper.hide();
-        $clear_selection_control.show();
+        hide($optional_section_wrapper);
+        show($clear_selection_control);
         break;
       case /_no$/.test(id):
-        $optional_section_wrapper.hide();
-        $clear_selection_control.show();
+        hide($optional_section_wrapper);
+        show($clear_selection_control);
         break;
       case /_unknown$/.test(id):
-        $optional_section_wrapper.hide();
-        $clear_selection_control.hide();
+        hide($optional_section_wrapper);
+        hide($clear_selection_control);
         break;
       case /_other$/.test(id):
-        $optional_section_wrapper.show();
+        show($optional_section_wrapper);
         break;
       default:
-        $optional_section_wrapper.hide();
-        $clear_selection_control.hide();
+        hide($optional_section_wrapper);
+        hide($clear_selection_control);
     }
   };
+
+  var show = function($el) {
+    $el.removeClass('mps-hide');
+  }
+
+  var hide = function($el) {
+    $el.addClass('mps-hide');
+  }
 
   $.fn.optional_section = function (options) {
 

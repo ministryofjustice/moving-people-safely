@@ -58,7 +58,7 @@ module Page
     end
 
     def fill_in_medication(med, i)
-      el = all('#medications .optional-section').to_a[i]
+      el = all('.multiple-wrapper').to_a[i]
       within(el) do
         fill_in 'What is it?', with: med.description
         fill_in 'How is it given?', with: med.administration

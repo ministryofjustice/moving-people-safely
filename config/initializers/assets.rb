@@ -16,4 +16,6 @@ Rails.application.config.assets.precompile += %w(
     apple-touch-icon-60x60.png
     opengraph-image.png
     gov.uk_logotype_crown.png
+    main-ie8
+    main
 )

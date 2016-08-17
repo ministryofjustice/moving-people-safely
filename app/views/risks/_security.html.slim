@@ -4,8 +4,8 @@
 = f.radio_toggle_with_textarea :category_a
 = f.radio_toggle_with_textarea :restricted_status
 
-fieldset.security-documents
-  legend.heading-medium = t('helpers.fieldset.security.documents')
+fieldset.checkbox-list
+  legend.heading-small = t('helpers.fieldset.security.documents')
   = f.label_with_checkbox :escape_pack
   = f.label_with_checkbox :escape_risk_assessment
   = f.label_with_checkbox :cuffing_protocol

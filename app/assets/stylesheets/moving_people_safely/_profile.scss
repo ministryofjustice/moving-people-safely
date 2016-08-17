@@ -3,10 +3,11 @@
     font-weight: bold;
   }
 
-  h1,
   h2 {
     @extend .heading-medium;
     margin-bottom: .25em;
+    margin-top: 1.875em;
+    font-size: 24px;
 
     small {
       font-size: .75em;
@@ -73,6 +74,7 @@
 
   .actions {
     margin-top: 60px;
+    list-style-type: none;
     li { float: left; margin-right: 20px; }
     li.link-return-home a { display: inline-block; margin-top: 10px; }
   }

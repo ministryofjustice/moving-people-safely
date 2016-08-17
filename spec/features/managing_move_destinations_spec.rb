@@ -81,7 +81,7 @@ RSpec.describe 'managing move destinations', type: :feature do
   end
 
   def destination_els
-    all('.optional-section').to_a
+    all('.multiple-wrapper').to_a
   end
 
   def within_destination(position, &_blk)

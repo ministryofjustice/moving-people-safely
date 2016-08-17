@@ -18,25 +18,28 @@
         = f.text_area :reason_details
 
     = f.radio_toggle :has_destinations do
-      #establishments
-      #error_move_destinations
+      - if f.object.has_destinations_on?
+        #establishments
+        #error_move_destinations
       = f.fields_for :destinations do |df|
-        .form-group.optional-section
+        .multiple-wrapper
           = df.hidden_field :id
-          .form-group
-            .establishment-field
-              = df.text_field :establishment
-            .must-return-field
+          .multiple-field.inline
+            = df.text_field :establishment
+          .multiple-field.remove-link.inline
+            = df.label :_delete, 'Remove', class: 'styled-as-link'
+            = df.check_box :_delete
+          .multiple-field.inline.clear
+            .form-group
               = df.label_with_radio(:must_return, 'Must return', 'must_return')
               = df.label_with_radio(:must_return, 'Must NOT return', 'must_not_return')
-              .remove-link
-                = df.label :_delete, 'Remove', class: 'styled-as-link'
-              = df.check_box :_delete
-          = df.text_area :reasons
+          .multiple-field
+            = df.text_area :reasons
 
-      = f.submit 'Add establishment',
-        class: 'js-anchor-focus styled-as-link',
-        data: { 'anchor-focus' => 'establishments' },
-        name: "move_add_destination"
+      .multiple-field.multiple-add
+        = f.submit 'Add establishment',
+          class: 'js-anchor-focus',
+          data: { 'anchor-focus' => 'establishments' },
+          name: "move_add_destination"
 
     = f.submit 'Save and continue', class: 'button'

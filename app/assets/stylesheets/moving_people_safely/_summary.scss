@@ -23,10 +23,18 @@
     }
 
     th {
-      padding-top: 0.6em 0;
 
       a {
         font-weight: 300;
+      }
+
+      &.title {
+        font-weight: bold;
+        text-align: left;
+      }
+
+      &.edit {
+        text-align: right;
       }
     }
 

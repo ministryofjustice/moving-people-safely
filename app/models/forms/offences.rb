@@ -4,8 +4,7 @@ module Forms
   class Offences < Forms::Base
     property :release_date, type: TextDate, validates: { presence: true }
 
-    property :not_for_release, type: Axiom::Types::Boolean
-    property :not_for_release_details, type: String
+    optional_checkbox :not_for_release
 
     prepopulated_collection :current_offences
 
