@@ -1,9 +1,9 @@
 = content_for :head do
-  /[if IE 8]
-    = stylesheet_link_tag "main-ie8.css"
   | <!--[if (gte IE 9)|!(IE)]<!-->
   = stylesheet_link_tag "main.css"
   | <!--<![endif]-->
+  /[if IE 8]
+    = stylesheet_link_tag "main-ie8.css"
 
 = content_for :body_end
   .javascript
