@@ -158,6 +158,11 @@
       border-width: 2px;
       border-style: solid;
       margin-top: 5px;
+
+      @include ie(8) {
+        behavior: url(asset-path("vendor/pie/PIE.htc"));
+        position: relative;
+      }
     }
   }
 
