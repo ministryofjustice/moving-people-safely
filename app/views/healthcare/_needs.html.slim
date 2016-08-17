@@ -1,6 +1,6 @@
 = f.radio_toggle_with_textarea :dependencies
 
-.medication
+.medication.multiple
   = f.radio_toggle :has_medications do
     - if f.object.has_medications_on?
       #medications
@@ -21,8 +21,8 @@
             = mf.label :_delete, 'Remove'
             = mf.check_box :_delete
 
-  .multiple-field.multiple-add
-    = f.submit 'Add medication',
-      class: 'js-anchor-focus',
-      data: { 'anchor-focus' => 'medications' },
-      name: "needs_add_medication"
+    .multiple-field.multiple-add
+      = f.submit 'Add medication',
+        class: 'js-anchor-focus',
+        data: { 'anchor-focus' => 'medications' },
+        name: "needs_add_medication"
