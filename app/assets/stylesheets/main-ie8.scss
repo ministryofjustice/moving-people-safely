@@ -1,4 +1,13 @@
 $is-ie: true;
 $ie-version: 8;
 
-@import "application"
+@import "application";
+
+
+.block-label {
+  float: left !important;
+}
+
+textarea.form-control {
+  width: 50% !important;
+}
