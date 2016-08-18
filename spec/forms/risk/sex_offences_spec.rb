@@ -36,6 +36,11 @@ RSpec.describe Forms::Risk::SexOffences, type: :form do
     end
 
     it do
+      is_expected.to be_configured_to_reset(%i[ sex_offence_victim sex_offence_details ]).
+        when(:sex_offence).not_set_to('yes')
+    end
+
+    it do
       is_expected.
         to validate_inclusion_of(:sex_offence_victim).
         in_array(%w[ adult_male adult_female under_18 ])
