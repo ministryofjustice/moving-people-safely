@@ -81,9 +81,12 @@ module Page
     end
 
     def fill_in_security
-      fill_in_optional_details('Current E risk?', @risk, :current_e_risk)
-      fill_in_optional_details('Escape list?', @risk, :escape_list)
-      fill_in_optional_details('Is there other escape risk information?', @risk, :other_escape_risk_info)
+      if @risk.current_e_risk == 'yes'
+        choose 'security_current_e_risk_yes'
+        choose "security_current_e_risk_details_#{@risk.current_e_risk_details}"
+      else
+        choose 'security_current_e_risk_no'
+      end
       fill_in_optional_details('Category A?', @risk, :category_a)
       fill_in_optional_details('Restricted status?', @risk, :restricted_status)
       check 'Escape pack' if @risk.escape_pack
