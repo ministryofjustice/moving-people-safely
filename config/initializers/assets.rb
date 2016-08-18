@@ -18,5 +18,4 @@ Rails.application.config.assets.precompile += %w(
     gov.uk_logotype_crown.png
     main-ie8
     main
-    vendor/pie/
 )
