@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809154957) do
+ActiveRecord::Schema.define(version: 20160818090339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,10 +177,10 @@ ActiveRecord::Schema.define(version: 20160809154957) do
     t.boolean  "escape_pack"
     t.boolean  "escape_risk_assessment"
     t.boolean  "cuffing_protocol"
-    t.string   "drugs",                           default: "unknown"
-    t.text     "drugs_details"
-    t.string   "alcohol",                         default: "unknown"
-    t.text     "alcohol_details"
+    t.string   "substance_supply",                default: "unknown"
+    t.text     "substance_supply_details"
+    t.string   "substance_use",                   default: "unknown"
+    t.text     "substance_use_details"
     t.string   "conceals_weapons",                default: "unknown"
     t.text     "conceals_weapons_details"
     t.string   "arson",                           default: "unknown"

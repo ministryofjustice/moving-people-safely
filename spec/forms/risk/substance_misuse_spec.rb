@@ -6,16 +6,16 @@ RSpec.describe Forms::Risk::SubstanceMisuse, type: :form do
 
   let(:params) {
     {
-      'drugs' => 'yes',
-      'drugs_details' => 'Heroin use',
-      'alcohol' => 'yes',
-      'alcohol_details' => 'Lots of beer',
+      'substance_supply' => 'yes',
+      'substance_supply_details' => 'known dealer',
+      'substance_use' => 'yes',
+      'substance_use_details' => 'booze hound',
     }
   }
 
   describe '#validate' do
-    it { is_expected.to validate_optional_details_field(:drugs) }
-    it { is_expected.to validate_optional_details_field(:alcohol) }
+    it { is_expected.to validate_optional_details_field(:substance_supply) }
+    it { is_expected.to validate_optional_details_field(:substance_use) }
   end
 
   describe '#save' do

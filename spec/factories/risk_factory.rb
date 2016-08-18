@@ -18,8 +18,8 @@ FactoryGirl.define do
     escape_pack false
     escape_risk_assessment false
     cuffing_protocol false
-    drugs 'no'
-    alcohol 'no'
+    substance_supply 'no'
+    substance_use 'no'
     conceals_weapons 'no'
     arson 'no'
     damage_to_property 'no'
