@@ -11,8 +11,6 @@ FactoryGirl.define do
     sex_offence 'no'
     non_association_markers 'no'
     current_e_risk 'no'
-    escape_list 'no'
-    other_escape_risk_info 'no'
     category_a 'no'
     restricted_status 'no'
     escape_pack false
