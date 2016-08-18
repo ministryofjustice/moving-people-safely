@@ -52,8 +52,8 @@ en:
         personal_hygiene: Personal hygiene issues?
         personal_care: Personal care issues?
       substance_misuse:
-        alcohol: Is there a risk of the detainee using or supplying alcohol?
-        drugs: Is there a risk of the detainee using or supplying drugs?
+        substance_supply: Is there a risk of them SUPPLYING drugs or alcohol?
+        substance_use: Is there a risk of them USING drugs or alcohol?
       transport:
         mpv: Requires MPV?
       violence:
@@ -253,8 +253,8 @@ en:
         personal_care: Eg needs help with dressing, eating or drinking
         personal_care_details: Give details and explain the significance
       substance_misuse:
-        alcohol_details: Give details, if relevant to the move
-        drugs_details: Give details, if relevant to the move
+        substance_use_details: Give details, if relevant to the move
+        substance_supply_details: Give details, if relevant to the move
       transport:
         mpv: Eg disability, claustrophobia, pregnancy.
         mpv_details: Give details and explain the significance
@@ -330,8 +330,8 @@ en:
           other_escape_risk_info: Other escape risk information
           restricted_status: Restricted status
         substance_misuse:
-          alcohol: Alcohol
-          drugs: Drugs
+          substance_supply: Substance supply
+          substance_use: Substance use
         transport:
           mpv: MPV
         violence:
