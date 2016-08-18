@@ -7,11 +7,7 @@ RSpec.describe Forms::Risk::Security, type: :form do
   let(:params) {
     {
       'current_e_risk' => 'yes',
-      'current_e_risk_details' => 'Current E risk present',
-      'escape_list' => 'yes',
-      'escape_list_details' => 'Escaped 2 times',
-      'other_escape_risk_info' => 'yes',
-      'other_escape_risk_info_details' => 'Used a small hammer',
+      'current_e_risk_details' => 'e_list_standard',
       'category_a' => 'yes',
       'category_a_details' => 'Category A present',
       'restricted_status' => 'yes',
@@ -24,8 +20,6 @@ RSpec.describe Forms::Risk::Security, type: :form do
 
   describe '#validate' do
     it { is_expected.to validate_optional_details_field(:current_e_risk) }
-    it { is_expected.to validate_optional_details_field(:escape_list) }
-    it { is_expected.to validate_optional_details_field(:other_escape_risk_info) }
     it { is_expected.to validate_optional_details_field(:category_a) }
     it { is_expected.to validate_optional_details_field(:restricted_status) }
 

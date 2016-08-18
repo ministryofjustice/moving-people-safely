@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818090339) do
+ActiveRecord::Schema.define(version: 20160818134016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,10 +166,6 @@ ActiveRecord::Schema.define(version: 20160818090339) do
     t.text     "non_association_markers_details"
     t.string   "current_e_risk",                  default: "unknown"
     t.text     "current_e_risk_details"
-    t.string   "escape_list",                     default: "unknown"
-    t.text     "escape_list_details"
-    t.string   "other_escape_risk_info",          default: "unknown"
-    t.text     "other_escape_risk_info_details"
     t.string   "category_a",                      default: "unknown"
     t.text     "category_a_details"
     t.string   "restricted_status",               default: "unknown"

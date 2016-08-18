@@ -20,7 +20,7 @@
     locals: { presenter: SummaryPresenter.new(risk), section: 'non_association_markers', questions: %w[ non_association_markers ], path: risk_path(detainee, 'non_association_markers') }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'security', questions: %w[ current_e_risk escape_list other_escape_risk_info category_a restricted_status escape_pack escape_risk_assessment cuffing_protocol ], path: risk_path(detainee, 'security') }
+    locals: { presenter: SummaryPresenter.new(risk), section: 'security', questions: %w[ current_e_risk  category_a restricted_status escape_pack escape_risk_assessment cuffing_protocol ], path: risk_path(detainee, 'security') }
 
   = render partial: 'summary/section',
     locals: { presenter: SummaryPresenter.new(risk), section: 'substance_misuse', questions: %w[ substance_supply substance_use ], path: risk_path(detainee, 'substance_misuse') }

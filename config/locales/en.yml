@@ -40,11 +40,10 @@ en:
         suicide: Risk of suicide or self-harm?
       security:
         category_a: Category A?
-        current_e_risk: Current E risk?
-        escape_list: Escape list?
-        other_escape_risk_info: Is there other escape risk information?
+        current_e_risk: Current E-risk?
+        current_e_risk_details: ''
         restricted_status: Restricted status?
-        documents: Has the detainee got the following documents with him?
+        documents: "Ensure the following documents accompany the detainee:"
       sex_offences:
         sex_offence: Sex offender?
         sex_offence_victim: ''
@@ -147,14 +146,13 @@ en:
       security:
         category_a:
           unknown: Clear selection
-        category_a_details: Category A details
+        category_a_details: Give details
         current_e_risk:
           unknown: Clear selection
-        current_e_risk_details: Current E risk details
-        escape_list:
-          unknown: Clear selection
-        other_escape_risk_info:
-          unknown: Clear selection
+        current_e_risk_details:
+          e_list_standard: E-List-Standard
+          e_list_escort: E-List-Escort
+          e_list_heightened: E-List-Heightened
         restricted_status:
           unknown: Clear selection
       sex_offences:
@@ -240,9 +238,6 @@ en:
       security:
         category_a_details: Give details
         current_e_risk: Please see PSI 2011/56 Management and Security of Escape List (E List prisoners)
-        current_e_risk_details: Give details
-        escape_list_details: Give details
-        other_escape_risk_info_details: Give details
         restricted_status: Please see PSI 08/2013 The Review of Security Category - CAT A Restricted Status
         restricted_status_details: Give details
       sex_offences:
