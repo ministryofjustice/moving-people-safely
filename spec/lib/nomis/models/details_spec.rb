@@ -27,11 +27,11 @@ RSpec.describe Nomis::Details do
   end
 
   describe '#current?' do
-    it 'coerces & returns a boolean(an alias to working_name)' do
+    it 'is an alias to working_name' do
       subject.working_name = 'Y'
-      expect(subject.working_name).to be true
+      expect(subject).to be_current
       subject.working_name = 'N'
-      expect(subject.working_name).to be false
+      expect(subject).not_to be_current
     end
   end
 

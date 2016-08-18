@@ -21,7 +21,7 @@ module Page
       end
       check_section(risk, 'sex_offences', %w[ sex_offence ])
       check_section(risk, 'non_association_markers', %w[ non_association_markers ])
-      check_section(risk, 'security', %w[ current_e_risk escape_list other_escape_risk_info category_a restricted_status escape_pack escape_risk_assessment cuffing_protocol ])
+      check_section(risk, 'security', %w[ current_e_risk category_a restricted_status escape_pack escape_risk_assessment cuffing_protocol ])
       check_section(risk, 'substance_misuse', %w[ substance_supply substance_use ])
       check_section(risk, 'concealed_weapons', %w[ conceals_weapons ])
       check_section(risk, 'arson', %w[ arson damage_to_property ])

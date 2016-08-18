@@ -6,8 +6,8 @@ table class="#{section}"
      th.edit
        = link_to 'Change', path
   tbody
-    - questions.each do |question|
-      tr class=(cycle('odd', 'even') + ' ' + question.underscore)
+    - questions.each_with_index do |question, i|
+      tr class=(%w[even odd][i%2] + ' ' + question.underscore)
        td.first-column
          = t(".questions.#{section}.#{question}")
        td.second-column

@@ -1,7 +1,6 @@
 module Nomis
-  module Error
-    Error = Class.new(StandardError)
-    RequestTimeout = Class.new(Error)
-    InvalidResponse = Class.new(Error)
+  class Error < StandardError
+    RequestTimeout = Class.new(self)
+    InvalidResponse = Class.new(self)
   end
 end
