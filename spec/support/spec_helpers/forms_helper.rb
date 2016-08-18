@@ -14,4 +14,8 @@ module FormsHelper
   def validate_strict_string(field_name)
     ValidateStrictString.new(field_name)
   end
+
+  def be_configured_to_reset(field_names)
+    ValidateAttributeResetConfiguration.new(field_names)
+  end
 end
