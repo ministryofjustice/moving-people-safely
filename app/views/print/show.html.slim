@@ -36,7 +36,9 @@ html
               span.strong-text = "#{detainee.prison_number}: #{detainee.surname} "
               = detainee.forenames
         tr.indicators
-          td colspan=2 Not for release
+          td colspan=2
+            div = image_tag "not_for_release_#{offences.not_for_release}.png"
+            = offences.not_for_release_details
           td colspan=2 E-list
           td MPV
         tr
