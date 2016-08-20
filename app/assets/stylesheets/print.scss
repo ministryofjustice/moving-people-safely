@@ -1,0 +1,157 @@
+$is-print: true;
+
+@import "elements/reset";
+@import "colours";
+@import "typography";
+@import "measurements";
+@import "shims";
+@import "elements/elements-typography";
+
+body {
+  background-color: white;
+}
+
+main {
+  text-align: left;
+  margin: 10px 25px 0 50px;
+  height: 29.7cm;
+  width: 21cm;
+  position: relative;
+}
+
+table {
+  width: 100%;
+}
+
+span.strong-text {
+  font-weight: bold;
+}
+
+table.vehicles {
+  tr.header-row {
+    height: 30px;
+    th {
+      border-top: 2px solid black;
+      font-weight: bold;
+    }
+  }
+
+  tr {
+    height: 150px;
+  }
+
+  td {
+    position: relative;
+    font-weight: lighter;
+  }
+
+  td.first-column {
+    width: 30%;
+  }
+
+  td.second-column {
+    width: 30%;
+  }
+
+  div.title {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px dotted black;
+  }
+}
+
+table.detainee {
+  margin-top: 20px;
+  padding-bottom: 20px;
+
+  th {
+    border-top: 2px solid black;
+    border-bottom: 1px dotted black;
+    font-weight: normal;
+    @extend .font-medium;
+    padding: 5px 0;
+    height: auto;
+  }
+
+  tr.indicators {
+    td {
+      height: 100px;
+      padding: 0;
+      border-bottom: 1px dotted black;
+    }
+  }
+
+  td {
+    padding-top: 10px;
+    vertical-align: top;
+
+    div.title {
+      font-weight: lighter;
+    }
+
+    div {
+      font-weight: bold;
+    }
+  }
+
+  td.image {
+    text-align: right;
+  }
+}
+
+table.move {
+  tr.header-row {
+    height: 30px;
+    th {
+      border-top: 2px solid black;
+      border-bottom: 1px dotted black;
+      font-weight: bold;
+      @extend .font-small;
+      padding: 5px 0;
+    }
+  }
+
+  td {
+    padding-top: 10px;
+    vertical-align: top;
+
+    div.title {
+      font-weight: lighter;
+    }
+
+    div {
+      font-weight: bold;
+    }
+  }
+}
+
+table.about {
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid black;
+
+  th {
+    @extend .font-medium;
+    padding: 5px 0 20px 0;
+  }
+
+  td.panel {
+    border-left: 5px solid grey;
+    padding-left: 20px;
+
+    div.first {
+      font-weight: normal;
+      padding-top: 0;
+    }
+
+    div {
+      font-weight: lighter;
+      padding-top: 5px;
+    }
+  }
+}
