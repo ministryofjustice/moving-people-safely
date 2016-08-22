@@ -14,7 +14,7 @@
     locals: { presenter: SummaryPresenter.new(risk), section: 'harassments', questions: %w[ hostage_taker stalker harasser intimidator bully ], path: risk_path(detainee, 'harassments') }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'sex_offences', questions: %w[ sex_offence ], path: risk_path(detainee, 'sex_offences') }
+    locals: { presenter: Summary::SexOffencesPresenter.new(risk), section: 'sex_offences', questions: %w[ sex_offence ], path: risk_path(detainee, 'sex_offences') }
 
   = render partial: 'summary/section',
     locals: { presenter: SummaryPresenter.new(risk), section: 'non_association_markers', questions: %w[ non_association_markers ], path: risk_path(detainee, 'non_association_markers') }
