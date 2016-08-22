@@ -20,7 +20,7 @@ class Detainee < ApplicationRecord
   end
 
   def age
-    (Date.today - date_of_birth).to_i / 365
+    AgeCalculator.age(date_of_birth)
   end
 
   def each_alias
