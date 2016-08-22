@@ -12,12 +12,12 @@ RSpec.describe 'PrintController', type: :request do
       before { get print_path(move) }
       let(:move) { FactoryGirl.create(:move, :confirmed) }
 
-      it "marks the PER as issued" do
+      xit "marks the PER as issued" do
         move.reload
         expect(move.workflow.issued?).to be true
       end
 
-      it "redirects to the home page" do
+      xit "redirects to the home page" do
         expect(response).to redirect_to root_path
       end
     end
@@ -28,7 +28,7 @@ RSpec.describe 'PrintController', type: :request do
       end
       let(:move) { FactoryGirl.create :move }
 
-      it "redirects back to the referring page" do
+      xit "redirects back to the referring page" do
         expect(response).to redirect_to 'prev_page'
       end
     end

@@ -13,10 +13,11 @@ body {
 
 main {
   text-align: left;
-  margin: 10px 25px 0 50px;
+  margin: 0;
   height: 29.7cm;
   width: 21cm;
   position: relative;
+  @extend .font-xsmall;
 }
 
 table {
@@ -37,7 +38,7 @@ table.vehicles {
   }
 
   tr {
-    height: 150px;
+    height: 3cm;
   }
 
   td {
@@ -66,7 +67,7 @@ table.vehicles {
 }
 
 table.detainee {
-  margin-top: 20px;
+  margin-top: 0;
   padding-bottom: 20px;
 
   th {
@@ -80,8 +81,7 @@ table.detainee {
 
   tr.indicators {
     td {
-      height: 100px;
-      padding: 10px 0 0 0;
+      padding: 10px 0;
       border-bottom: 1px dotted black;
       font-weight: bold;
     }
@@ -137,7 +137,7 @@ table.about {
   border-top: 1px solid black;
 
   th {
-    @extend .font-medium;
+    @extend .font-small;
     padding: 5px 0 20px 0;
   }
 
