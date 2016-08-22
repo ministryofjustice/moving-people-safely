@@ -1,5 +1,5 @@
 module AgeCalculator
-module_function
+  module_function
 
   def age(date_of_birth, today = Time.zone.today)
     adjustment = had_birthday_this_year?(date_of_birth, today) ? 0 : 1

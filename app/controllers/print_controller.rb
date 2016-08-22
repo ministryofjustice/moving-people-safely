@@ -2,8 +2,8 @@ class PrintController < MoveController
   layout false
 
   def show
-    #error_redirect && return unless active_move.complete?
-    #active_move.workflow.issued!
+    # error_redirect && return unless active_move.complete?
+    # active_move.workflow.issued!
   end
 
   private
