@@ -200,6 +200,7 @@ en:
         bully_details: Give details about the type of abuse and when it happened
       information:
         reason_details: Give details
+        date : DD/MM/YYYY
       mental:
         mental_illness: Eg depression, paranoia, anxiety, personality disorder
         mental_illness_details: Give details and explain the significance
