@@ -1,0 +1,94 @@
+doctype html
+html
+  head
+    title Print view
+    | <!--[if (gte IE 9)|!(IE)]<!-->
+    = stylesheet_link_tag "print.css", media: 'all'
+    | <!--<![endif]-->
+    /[if IE 8]
+      = stylesheet_link_tag "print-ie8.css", media: 'all'
+
+  body
+    main.page-one
+      table.vehicles
+        tr.header-row
+          th colspan=3 Outbound vehicle
+        tr
+          td.first-column
+            div.title Registration
+          td.second-column
+            div.title Cell number
+          td.third-column
+            div.title PECS Barcode
+        tr.header-row
+          th colspan=2 Return vehicle
+          tth.empty
+        tr
+          td
+            div.title Registration
+          td
+            div.title Cell number
+          td.empty
+      table.detainee
+        tr.header-row
+          th colspan=5
+            hi
+              span.strong-text = "#{detainee.prison_number}: #{detainee.surname} "
+              = detainee.forenames
+        tr.indicators
+          td colspan=2
+            div = image_tag "not_for_release_#{offences.not_for_release}.png"
+            = offences.not_for_release_details
+          td colspan=2 E-list
+          td MPV
+        tr
+          td
+            div.title Prison number
+            div = detainee.prison_number
+          td
+            div.title CRO number
+            div = detainee.cro_number
+          td
+            div.title PNC number
+            div = detainee.pnc_number
+          td rowspan=2
+            div.title Aliases
+            - detainee.each_alias do |a|
+              div = a
+          td.image rowspan=2
+            = image_tag "detainee.png", height: '200', width: '150'
+        tr
+          td
+            div.title Date of birth
+            div = detainee.date_of_birth
+          td
+            div.title Age
+            div = detainee.age
+          td
+            div.title Gender
+            div = detainee.gender == 'male' ? 'M' : 'F'
+      table.move
+        tr.header-row
+          th colspan=4 Move details
+        tr
+          td
+            div.title Date of travel
+            div = active_move.date
+          td
+            div.title From
+            div = active_move.from
+          td
+            div.title To
+            div = active_move.to
+          td
+            div.title Reason
+            div = active_move.reason.humanize
+      table.about
+        tr
+          th About this Person Escort Record
+        tr
+          td.panel
+            div.first This person escort record was printed from the Moving People Safely web site.
+            div To find out more about the Person Escort Record go to exmaple.com
+            div If you have feedback or suggestions please email feedback@example.com
+

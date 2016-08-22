@@ -18,4 +18,12 @@ class Detainee < ApplicationRecord
   def most_recent_move
     moves.present? && moves.order_by_recentness.first
   end
+
+  def age
+    AgeCalculator.age(date_of_birth)
+  end
+
+  def each_alias
+    aliases.split(',').each { |a| yield a }
+  end
 end
