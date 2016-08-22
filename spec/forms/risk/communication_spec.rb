@@ -27,6 +27,8 @@ RSpec.describe Forms::Risk::Communication, type: :form do
       end
     end
 
+    it { is_expected.to be_configured_to_reset(%i[ language ]).when(:interpreter_required).not_set_to('yes') }
+
     it { is_expected.to validate_optional_details_field(:hearing_speach_sight) }
     it { is_expected.to validate_optional_details_field(:can_read_and_write) }
   end

@@ -42,6 +42,8 @@ RSpec.describe Forms::Risk::RiskFromOthers, type: :form do
         before { subject.csra = 'standard' }
         it { is_expected.to_not validate_presence_of(:csra_details) }
       end
+
+      it { is_expected.to be_configured_to_reset(%i[ csra_details ]).when(:csra).not_set_to('high') }
     end
   end
 
