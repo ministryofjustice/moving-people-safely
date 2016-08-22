@@ -26,6 +26,13 @@ RSpec.describe Forms::Risk::Harassments, type: :form do
           end
         end
       end
+
+      it do
+        is_expected.to be_configured_to_reset(%i[
+          hostage_taker hostage_taker_details stalker stalker_details harasser
+          harasser_details intimidator intimidator_details bully bully_details
+        ]).when(:stalker_harasser_bully).not_set_to('yes')
+      end
     end
   end
 

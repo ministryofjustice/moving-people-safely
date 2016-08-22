@@ -5,7 +5,15 @@ module Forms
       VICTIM_VALUES = ['adult_male', 'adult_female', UNDER_18]
 
       optional_field :sex_offence
+
+      reset attributes: %i[sex_offence_victim sex_offence_details],
+            if_falsey: :sex_offence
+
       property :sex_offence_victim, type: StrictString
+
+      reset attributes: %i[ sex_offence_details ],
+            if_falsey: :sex_offence_victim, enabled_value: UNDER_18
+
       property :sex_offence_details, type: StrictString
 
       validates :sex_offence_victim,
