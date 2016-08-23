@@ -45,6 +45,18 @@ RSpec.describe Forms::Risk::Violence, type: :form do
         ]).when(:violent).not_set_to('yes')
       end
     end
+
+    describe 'details fields associated with checkboxes' do
+      it { is_expected.to be_configured_to_reset(['prison_staff_details']).when(:prison_staff).not_set_to(true) }
+      it { is_expected.to be_configured_to_reset(['risk_to_females_details']).when(:risk_to_females).not_set_to(true) }
+      it { is_expected.to be_configured_to_reset(['escort_or_court_staff_details']).when(:escort_or_court_staff).not_set_to(true) }
+      it { is_expected.to be_configured_to_reset(['healthcare_staff_details']).when(:healthcare_staff).not_set_to(true) }
+      it { is_expected.to be_configured_to_reset(['other_detainees_details']).when(:other_detainees).not_set_to(true) }
+      it { is_expected.to be_configured_to_reset(['homophobic_details']).when(:homophobic).not_set_to(true) }
+      it { is_expected.to be_configured_to_reset(['racist_details']).when(:racist).not_set_to(true) }
+      it { is_expected.to be_configured_to_reset(['public_offence_related_details']).when(:public_offence_related).not_set_to(true) }
+      it { is_expected.to be_configured_to_reset(['police_details']).when(:police).not_set_to(true) }
+    end
   end
 
   describe '#save' do
