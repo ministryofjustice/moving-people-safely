@@ -20,6 +20,10 @@ main {
   @extend .font-xsmall;
 }
 
+main.page-one {
+  page-break-after: always;
+}
+
 table {
   width: 100%;
 }
@@ -154,5 +158,27 @@ table.about {
       font-weight: lighter;
       padding-top: 5px;
     }
+  }
+}
+
+table.summary {
+  border-top: 2px solid black;
+  @extend .font-xsmall;
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  td.spacer {
+    width: 0.2cm;
+    border: none;
+  }
+
+  th.subhead {
+    font-weight: lighter;
+    width: 5.8cm;
+  }
+
+  th, td {
+    border-top: 1px dotted black;
+    padding: 4px 0;
   }
 }
