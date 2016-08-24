@@ -71,8 +71,11 @@ module Forms
         property "#{field_name}_details", type: StrictString
         validates "#{field_name}_details",
           presence: true,
-          if:
-            -> { (public_send(field_name) && toggle.nil?) || (public_send(field_name) && public_send(toggle) == TOGGLE_YES) }
+          if: -> {
+            (public_send(field_name) && toggle.nil?) ||
+              (public_send(field_name) && public_send(toggle) == TOGGLE_YES)
+          }
+        reset attributes: ["#{field_name}_details"], if_falsey: field_name, enabled_value: true
       end
 
       def singularize(field_name)

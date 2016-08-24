@@ -55,6 +55,10 @@ RSpec.describe Forms::Offences, type: :form do
     it { is_expected.to validate_prepopulated_collection :current_offences }
     it { is_expected.to validate_prepopulated_collection :past_offences }
     it { is_expected.to validate_optional_field(:has_past_offences) }
+
+    describe 'details fields associated with checkboxes' do
+      it { is_expected.to be_configured_to_reset(['not_for_release_details']).when(:not_for_release).not_set_to(true) }
+    end
   end
 
   describe '#save' do
