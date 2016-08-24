@@ -11,10 +11,6 @@ table class="#{section}"
        td.first-column
          = t(".questions.#{section}.#{question}")
        td.second-column
-         - if presenter.violent == 'yes'
            == presenter.answer_for(question)
-         - else
-           == 'No'
        td.third-column
-         - if presenter.violent == 'yes'
            == presenter.details_for(question)
