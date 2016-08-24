@@ -34,6 +34,14 @@ RSpec.describe Forms::Risk::Harassments, type: :form do
         ]).when(:stalker_harasser_bully).not_set_to('yes')
       end
     end
+
+    describe 'details fields associated with checkboxes' do
+      it { is_expected.to be_configured_to_reset(['hostage_taker_details']).when(:hostage_taker).not_set_to(true) }
+      it { is_expected.to be_configured_to_reset(['stalker_details']).when(:stalker).not_set_to(true) }
+      it { is_expected.to be_configured_to_reset(['harasser_details']).when(:harasser).not_set_to(true) }
+      it { is_expected.to be_configured_to_reset(['intimidator_details']).when(:intimidator).not_set_to(true) }
+      it { is_expected.to be_configured_to_reset(['bully_details']).when(:bully).not_set_to(true) }
+    end
   end
 
   describe '#save' do
