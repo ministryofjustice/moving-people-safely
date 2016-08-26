@@ -39,8 +39,7 @@ module Considerable
     end
 
     def branch(field, values:, on_values:, child_fields: [])
-      existance_query_method = "is_#{field}_a_branch?"
-      possible_values_method = "#{field}_possible_values"
+      all_values_method = "#{field}_all_values"
       on_values_method = "#{field}_on_values"
       branch_enabled_method = "#{field}_on?"
       child_fields_method = "#{field}_children"
@@ -49,11 +48,7 @@ module Considerable
         child_fields
       end
 
-      define_method existance_query_method do
-        true
-      end
-
-      define_method possible_values_method do
+      define_method all_values_method do
         values
       end
 

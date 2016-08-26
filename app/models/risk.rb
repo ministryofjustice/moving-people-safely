@@ -7,22 +7,6 @@ class Risk < ApplicationRecord
     self.class.considerations
   end
 
-  def self.csra_and_details_type_options(_field)
-    {
-      values: %w[ high standard unknown ],
-      on_values: %w[ high ],
-      child_fields: [ details_field(:csra_details) ]
-    }
-  end
-
-  def self.sex_offence_victim_type_options(_field)
-    {
-      values: %w[adult_male adult_female under_18],
-      on_values: %w[ under_18 ],
-      child_fields: [ details_field(:sex_offence_details) ]
-    }
-  end
-
   consideration :damage_to_property, type: :ternary_and_details_field
   consideration :non_association_markers, type: :ternary_and_details_field
   consideration :open_acct, type: :ternary
@@ -74,18 +58,19 @@ class Risk < ApplicationRecord
   ]
 
 
-  # # RiskPrintPresenter
-  #   summarize_section(:violent, {
-  #     prison_staff: true,
-  #     risk_to_females: true,
-  #     escort_or_court_staff: true,
-  #     healthcare_staff: true,
-  #     other_detainees: true,
-  #     homophobic: true,
-  #     racist: true,
-  #     public_offence_related: true,
-  #     police: true
-  #   })
+  def self.csra_and_details_type_options(_field)
+    {
+      values: %w[ high standard unknown ],
+      on_values: %w[ high ],
+      child_fields: [ details_field(:csra_details) ]
+    }
+  end
 
-
+  def self.sex_offence_victim_type_options(_field)
+    {
+      values: %w[adult_male adult_female under_18],
+      on_values: %w[ under_18 ],
+      child_fields: [ details_field(:sex_offence_details) ]
+    }
+  end
 end
