@@ -82,9 +82,9 @@ RSpec.describe Risk, type: :model do
 
       it "returns the on_values for each item in the input array" do
         expect(result).to eql ({
-          current_e_risk: 'yes',
-          hostage_taker: true,
-          sex_offence_victim: 'under_18'
+          current_e_risk: ['yes'],
+          hostage_taker: [true],
+          sex_offence_victim: ['under_18']
         })
       end
     end

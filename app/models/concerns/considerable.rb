@@ -17,7 +17,8 @@ module Considerable
       end
     end
 
-    def on_values_for(**fields)
+    def on_values_for(fields)
+      fields = *fields
       fields.each_with_object({}) { |field, obj| obj[field] = public_send "#{field}_on_values" }
     end
   end
@@ -39,17 +40,12 @@ module Considerable
     end
 
     def branch(field, values:, on_values:, child_fields: [])
-      all_values_method = "#{field}_all_values"
       on_values_method = "#{field}_on_values"
       branch_enabled_method = "#{field}_on?"
       child_fields_method = "#{field}_children"
 
       define_method child_fields_method do
         child_fields
-      end
-
-      define_method all_values_method do
-        values
       end
 
       define_method on_values_method do
@@ -60,10 +56,14 @@ module Considerable
         public_send(on_values_method).include? public_send(field)
       end
 
+      define_all_values_method(field, values)
+
       field
     end
 
     def details_field(field, options = {})
+      values = options.fetch(:values, nil)
+      define_all_values_method(field, values) if values
       field
     end
 
@@ -94,6 +94,18 @@ module Considerable
 
     def ternary_and_details_field_type_options(field)
       ternary_type_options(field).merge(child_fields: [ details_field(:"#{field}_details") ])
+    end
+
+    private
+
+    def define_all_values_method(field, values)
+      all_values_method = "#{field}_all_values"
+      define_method all_values_method do
+        values
+      end
+      define_singleton_method all_values_method do
+        values
+      end
     end
   end
 end
