@@ -4,7 +4,10 @@ module Considerable
   included do
     def on_values_for(fields)
       fields = *fields
-      fields.each_with_object({}) { |field, obj| obj[field] = public_send "#{field}_on_values" }
+      fields.each_with_object({}) do |field, obj|
+        method = self.class.send(:on_values_method, field)
+        obj[field] = self.class.send(method)
+      end
     end
   end
 
@@ -30,7 +33,8 @@ module Considerable
       end
 
       define_method "#{field}_on?" do
-        public_send(on_values_method(field)).include? public_send(field)
+        method = self.class.send(:on_values_method, field)
+        self.class.send(method).include? public_send(field)
       end
 
       define_on_values_method(field, on_values)
@@ -60,7 +64,6 @@ module Considerable
       field
     end
 
-    # TODO: standard options business
     def boolean_and_details_field(field)
       options = get_type_options :boolean, field
       options[:child_fields] = [details_field(:"#{field}_details")]
@@ -72,6 +75,8 @@ module Considerable
       options.merge! type_options
       branch field, **options.slice(:values, :on_values, :child_fields)
     end
+
+    private
 
     def get_type_options(type, field)
       send("#{type}_type_options", field)
@@ -88,8 +93,6 @@ module Considerable
     def ternary_and_details_field_type_options(field)
       ternary_type_options(field).merge(child_fields: [details_field(:"#{field}_details")])
     end
-
-    private
 
     def on_values_method(field)
       "#{field}_on_values"

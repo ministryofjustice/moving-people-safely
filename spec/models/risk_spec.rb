@@ -20,6 +20,26 @@ RSpec.describe Risk, type: :model do
       end
     end
 
+    describe "#violent_on?" do
+      let(:result) { subject.violent_on? }
+
+      context "when the violent field is set to 'yes'" do
+        before { subject.violent = 'yes' }
+
+        it "returns true" do
+          expect(result).to be true
+        end
+      end
+
+      context "when the violent field is set to 'no'" do
+        before { subject.violent = 'no' }
+
+        it "returns false" do
+          expect(result).to be false
+        end
+      end
+    end
+
     describe "#on_values_for" do
       let(:result) { subject.on_values_for(field) }
 
@@ -92,6 +112,12 @@ RSpec.describe Risk, type: :model do
           homophobic_details racist racist_details public_offence_related
           public_offence_related_details police police_details
         ]
+      end
+    end
+
+    describe "./field/_on_values" do
+      it "returns an array of values" do
+        expect(subject.violent_on_values).to eql ['yes']
       end
     end
   end
