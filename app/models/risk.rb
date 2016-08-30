@@ -11,7 +11,7 @@ class Risk < ApplicationRecord
     {
       values: %w[ high standard unknown ],
       on_values: %w[ high ],
-      child_fields: [ details_field(:csra_details) ]
+      child_fields: [details_field(:csra_details)]
     }
   end
 
@@ -19,7 +19,7 @@ class Risk < ApplicationRecord
     {
       values: %w[adult_male adult_female under_18],
       on_values: %w[ under_18 ],
-      child_fields: [ details_field(:sex_offence_details) ]
+      child_fields: [details_field(:sex_offence_details)]
     }
   end
 

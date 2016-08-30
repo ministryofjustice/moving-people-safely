@@ -2,6 +2,8 @@ module Considerable
   extend ActiveSupport::Concern
 
   included do
+    attr_reader :considerations
+
     def on_values_for(fields)
       fields = *fields
       fields.each_with_object({}) { |field, obj| obj[field] = public_send "#{field}_on_values" }
@@ -9,10 +11,6 @@ module Considerable
   end
 
   class_methods do
-    def considerations
-      @considerations
-    end
-
     def consideration(field, options)
       @considerations ||= []
       @considerations << field
@@ -25,35 +23,22 @@ module Considerable
     end
 
     def branch(field, values:, on_values:, child_fields: [])
-      on_values_method = "#{field}_on_values"
-      branch_enabled_method = "#{field}_on?"
-      child_fields_method = "#{field}_children"
-
-      define_singleton_method child_fields_method do
+      define_singleton_method "#{field}_children" do
         child_fields
       end
 
-      define_singleton_method on_values_method do
-        on_values
+      define_method "#{field}_on?" do
+        public_send(on_values_method(field)).include? public_send(field)
       end
 
-      define_method on_values_method do
-        on_values
-      end
-
-      define_method branch_enabled_method do
-        public_send(on_values_method).include? public_send(field)
-      end
-
+      define_on_values_method(field, on_values)
       define_all_values_method(field, values)
 
       field
     end
 
     def children_of(field, recursive: false)
-      unless recursive
-        public_send("#{field}_children")
-      else
+      if recursive
         if respond_to?("#{field}_children")
           children = public_send("#{field}_children")
           children.reduce(children.dup) do |acc, sub_child|
@@ -62,6 +47,8 @@ module Considerable
         else
           []
         end
+      else
+        public_send("#{field}_children")
       end
     end
 
@@ -74,7 +61,7 @@ module Considerable
     # TODO: standard options business
     def boolean_and_details_field(field)
       options = get_type_options :boolean, field
-      options[:child_fields] = [ details_field(:"#{field}_details") ]
+      options[:child_fields] = [details_field(:"#{field}_details")]
       branch field, **options.slice(:values, :on_values, :child_fields)
     end
 
@@ -97,10 +84,23 @@ module Considerable
     end
 
     def ternary_and_details_field_type_options(field)
-      ternary_type_options(field).merge(child_fields: [ details_field(:"#{field}_details") ])
+      ternary_type_options(field).merge(child_fields: [details_field(:"#{field}_details")])
     end
 
     private
+
+    def on_values_method(field)
+      "#{field}_on_values"
+    end
+
+    def define_on_values_method(field, on_values)
+      define_method on_values_method(field) do
+        on_values
+      end
+      define_singleton_method on_values_method(field) do
+        on_values
+      end
+    end
 
     def define_all_values_method(field, values)
       all_values_method = "#{field}_all_values"

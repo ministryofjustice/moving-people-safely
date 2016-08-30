@@ -5,8 +5,7 @@ module Forms
     class Harassments < Forms::Base
       optional_field :stalker_harasser_bully
 
-      reset attributes: ::Risk.children_of(:stalker_harasser_bully, recursive: true),
-        if_falsey: :stalker_harasser_bully
+      reset attributes: ::Risk.children_of(:stalker_harasser_bully, recursive: true), if_falsey: :stalker_harasser_bully
 
       optional_checkbox :hostage_taker, :stalker_harasser_bully
       optional_checkbox :stalker, :stalker_harasser_bully
