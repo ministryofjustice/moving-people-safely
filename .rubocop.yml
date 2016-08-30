@@ -61,3 +61,6 @@ Style/PredicateName:
 
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
+
+Style/TrivialAccessors:
+  Enabled: false

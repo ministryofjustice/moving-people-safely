@@ -2,8 +2,6 @@ module Considerable
   extend ActiveSupport::Concern
 
   included do
-    attr_reader :considerations
-
     def on_values_for(fields)
       fields = *fields
       fields.each_with_object({}) { |field, obj| obj[field] = public_send "#{field}_on_values" }
@@ -11,6 +9,10 @@ module Considerable
   end
 
   class_methods do
+    def considerations
+      @considerations
+    end
+
     def consideration(field, options)
       @considerations ||= []
       @considerations << field
