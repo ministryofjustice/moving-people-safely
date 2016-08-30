@@ -7,27 +7,23 @@ module Forms
 
       concerning :CsraSection do
         included do
-          CSRA_HIGH = 'high'
-          CSRA_STANDARD = 'standard'
-          CSRA_TOGGLE_CHOICES = [CSRA_HIGH, CSRA_STANDARD, DEFAULT_CHOICE]
-
           _define_attribute_is_on(:csra, 'high')
           property(:csra, type: StrictString, default: DEFAULT_CHOICE)
           validates :csra,
-            inclusion: { in: CSRA_TOGGLE_CHOICES },
+            inclusion: { in: ::Risk.csra_all_values },
             allow_blank: true
 
           property(:csra_details, type: StrictString)
           validates :csra_details,
             presence: true,
-            if: -> { csra == CSRA_HIGH }
+            if: -> { csra == ::Risk.csra_on_values[0] }
 
-          reset attributes: %i[ csra_details ],
-                if_falsey: :csra, enabled_value: CSRA_HIGH
+          reset attributes: ::Risk.children_of(:csra),
+                if_falsey: :csra, enabled_value: ::Risk.csra_on_values[0]
         end
 
         def csra_toggle_choices
-          CSRA_TOGGLE_CHOICES
+          ::Risk.csra_all_values
         end
       end
     end

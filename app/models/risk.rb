@@ -31,7 +31,6 @@ class Risk < ApplicationRecord
   consideration :csra, type: :csra_and_details
   consideration :verbal_abuse, type: :ternary_and_details_field
   consideration :physical_abuse, type: :ternary_and_details_field
-  consideration :current_e_risk, type: :ternary_and_details_field
   consideration :category_a, type: :ternary_and_details_field
   consideration :restricted_status, type: :ternary_and_details_field
   consideration :substance_supply, type: :ternary_and_details_field
@@ -66,6 +65,10 @@ class Risk < ApplicationRecord
 
   consideration :interpreter_required, type: :ternary, child_fields: [
     details_field(:language)
+  ]
+
+  consideration :current_e_risk, type: :ternary, child_fields: [
+    details_field(:current_e_risk_details, values: %w[ e_list_standard e_list_escort e_list_heightened ])
   ]
 
   consideration :arson, type: :ternary, child_fields: [
