@@ -2,21 +2,6 @@ module Considerable
   extend ActiveSupport::Concern
 
   included do
-    def children_of(field, recursive: false)
-      unless recursive
-        public_send("#{field}_children")
-      else
-        if respond_to?("#{field}_children")
-          children = public_send("#{field}_children")
-          children.reduce(children.dup) do |acc, sub_child|
-            acc.concat children_of(sub_child, recursive: true)
-          end
-        else
-          []
-        end
-      end
-    end
-
     def on_values_for(fields)
       fields = *fields
       fields.each_with_object({}) { |field, obj| obj[field] = public_send "#{field}_on_values" }
@@ -44,8 +29,12 @@ module Considerable
       branch_enabled_method = "#{field}_on?"
       child_fields_method = "#{field}_children"
 
-      define_method child_fields_method do
+      define_singleton_method child_fields_method do
         child_fields
+      end
+
+      define_singleton_method on_values_method do
+        on_values
       end
 
       define_method on_values_method do
@@ -59,6 +48,21 @@ module Considerable
       define_all_values_method(field, values)
 
       field
+    end
+
+    def children_of(field, recursive: false)
+      unless recursive
+        public_send("#{field}_children")
+      else
+        if respond_to?("#{field}_children")
+          children = public_send("#{field}_children")
+          children.reduce(children.dup) do |acc, sub_child|
+            acc.concat children_of(sub_child, recursive: true)
+          end
+        else
+          []
+        end
+      end
     end
 
     def details_field(field, options = {})

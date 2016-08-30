@@ -9,8 +9,8 @@ module Forms
 
     attr_reader :collection
 
-    def add(*args)
-      collection << ResetData.new(*args)
+    def add(attributes, master_attribute, enabled_value)
+      collection << ResetData.new(attributes, master_attribute, enabled_value)
     end
 
     def any?

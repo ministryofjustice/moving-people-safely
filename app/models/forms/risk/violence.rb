@@ -3,13 +3,7 @@ module Forms
     class Violence < Forms::Base
       optional_field :violent
 
-      reset attributes: %i[
-        prison_staff prison_staff_details risk_to_females risk_to_females_details
-        escort_or_court_staff escort_or_court_staff_details healthcare_staff
-        healthcare_staff_details other_detainees other_detainees_details homophobic
-        homophobic_details racist racist_details public_offence_related
-        public_offence_related_details police police_details
-      ], if_falsey: :violent
+      reset attributes: ::Risk.children_of(:violent, recursive: true), if_falsey: :violent
 
       optional_checkbox :prison_staff, :violent
       optional_checkbox :risk_to_females, :violent

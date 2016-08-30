@@ -40,8 +40,12 @@ class ValidateAttributeResetConfiguration
   end
 
   def has_configuration
-    resettable_attributes.any? { |i| i.values == expected_as_tuple } ||
+    resettable_attributes.any? { |i| compare_tuples(i.values, expected_as_tuple ) } ||
       set_error(missing_configuration_error_text)
+  end
+
+  def compare_tuples(this, that)
+    this.each_with_index.any? { |el, i| el == that[i] }
   end
 
   def subject_has_reader_method_for_master_attribute
