@@ -19,12 +19,7 @@ module Considerable
     def consideration(field, options)
       @considerations ||= []
       @considerations << field
-
-      type_options = get_type_options options.fetch(:type), field
-
-      options.merge!(type_options)
-
-      branch field, **options.slice(:values, :on_values, :child_fields)
+      branch field, **type_options(field, options)
     end
 
     def branch(field, values:, on_values:, child_fields: [])
@@ -65,20 +60,25 @@ module Considerable
     end
 
     def boolean_and_details_field(field)
-      options = get_type_options :boolean, field
-      options[:child_fields] = [details_field(:"#{field}_details")]
-      branch field, **options.slice(:values, :on_values, :child_fields)
+      options = { type: :boolean, child_fields: [details_field(:"#{field}_details")] }
+      branch field, **type_options(field, options)
     end
 
     def values_and_details_field(field, options = {})
-      type_options = get_type_options options.fetch(:type), field
-      options.merge! type_options
-      branch field, **options.slice(:values, :on_values, :child_fields)
+      branch field, **type_options(field, options)
     end
 
     private
 
-    def get_type_options(type, field)
+    def type_options(field, options)
+      if options.fetch(:type, false)
+        type_options = get_type_option_defaults options.fetch(:type), field
+        options.merge!(type_options)
+      end
+      options.slice(:values, :on_values, :child_fields)
+    end
+
+    def get_type_option_defaults(type, field)
       send("#{type}_type_options", field)
     end
 
