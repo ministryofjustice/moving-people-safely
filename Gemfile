@@ -21,6 +21,10 @@ gem 'reform-rails'
 gem 'virtus'
 gem 'wicked'
 
+group :production do
+  gem 'logstasher'
+end
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
