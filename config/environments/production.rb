@@ -44,18 +44,10 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
-  config.log_level = :debug
-  config.log_tags = [ :request_id ]
-  config.log_formatter = ::Logger::Formatter.new
-  config.logstasher.enabled = false
-
-  # this is only going to happen when we are in a docker environment
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    config.logstasher.enabled = true
-    config.logstasher.suppress_app_log = true
-    config.logstasher.log_level = Logger::INFO
-    config.logstasher.logger_path = STDOUT
-  end
+  config.logstasher.enabled = true
+  config.logstasher.suppress_app_log = true
+  config.logstasher.log_level = Logger::INFO
+  config.logstasher.logger_path = STDOUT
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
