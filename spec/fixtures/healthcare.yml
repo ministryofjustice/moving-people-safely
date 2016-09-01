@@ -1,0 +1,32 @@
+allergies:
+  option: 'yes'
+  details: cripling hayfever
+dependencies:
+  option: 'no'
+medications:
+  option: 'no'
+  collection:
+    -
+      description: paracetamol
+      administration: no more than 500mg every 4 hours
+      carrier: escort
+mental_illness:
+  option: 'no'
+phobias:
+  option: 'no'
+clinician:
+  healthcare_professional: MD House
+  contact_number: 123 1234567
+physical_issues:
+  option: 'no'
+mpv:
+  option: 'no'
+personal_hygiene:
+  option: 'no'
+personal_care:
+  option: 'no'
+substance_supply:
+  option: 'no'
+substance_use:
+  option: 'no'
+

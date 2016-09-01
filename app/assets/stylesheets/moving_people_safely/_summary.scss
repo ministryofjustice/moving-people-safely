@@ -52,6 +52,10 @@
 
     .second-column {
       width: 10%;
+
+      span.unknown { color: red; }
+      span.missing { color: red; }
+      span.yes { font-weight: bold; }
     }
 
     .third-column {

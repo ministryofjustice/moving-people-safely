@@ -2,29 +2,42 @@ class RisksController < DetaineeController
   include Wicked::Wizard
   include Wizardable
 
-  steps :risk_to_self, :risk_from_others, :violence, :harassments,
-    :sex_offences, :non_association_markers, :security, :substance_misuse,
-    :concealed_weapons, :arson, :communication
+  steps *%i[
+      risk_to_self
+      risk_from_others
+      violence
+      harassments
+      sex_offences
+      non_association_markers
+      security
+      substance_misuse
+      concealed_weapons
+      arson
+      communication
+    ]
 
   def show
-    form.validate(flash[:form_data]) if flash[:form_data]
-    form.prepopulate!
-    render :show, locals: { form: form, template_name: form.class.name }
+    if flash[:form_data]
+      form.assign_attributes flash[:form_data]
+      form.validate
+    end
+    render :show, locals: { form: form, template_name: step.to_s }
   end
 
   def update
-    if form.validate form_params
-      form.save
+    form.assign_attributes permitted_params
+    if form.save
       update_document_workflow
       redirect_after_update
     else
-      flash[:form_data] = form_params
+      flash[:form_data] = permitted_params
       redirect_to risk_path(detainee)
     end
   end
 
   def summary
-    render 'summary/risk'
+    sections = wizard_steps.map { |section| Considerations::FormFactory.new(detainee).(section) }
+    render 'summary/risk', locals: { sections: sections }
   end
 
   # what does error state look like?
@@ -54,23 +67,14 @@ class RisksController < DetaineeController
     end
   end
 
-  def form_params
-    params[step]
+  def permitted_params
+    form.models.map(&:name).inject({}) do |acc, name|
+      acc[name] = params.require(name).permit!.to_h
+      acc
+    end
   end
 
   def form
-    @_form ||= {
-      risk_to_self: Forms::Risk::RiskToSelf,
-      risk_from_others: Forms::Risk::RiskFromOthers,
-      violence: Forms::Risk::Violence,
-      harassments: Forms::Risk::Harassments,
-      sex_offences: Forms::Risk::SexOffences,
-      non_association_markers: Forms::Risk::NonAssociationMarkers,
-      security: Forms::Risk::Security,
-      substance_misuse: Forms::Risk::SubstanceMisuse,
-      concealed_weapons: Forms::Risk::ConcealedWeapons,
-      arson: Forms::Risk::Arson,
-      communication: Forms::Risk::Communication
-    }[step].new(risk)
+    @_form ||= Considerations::FormFactory.new(detainee).(step)
   end
 end

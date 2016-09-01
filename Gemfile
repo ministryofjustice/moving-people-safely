@@ -11,6 +11,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'slim-rails'
 gem 'devise'
+gem 'dry-types'
+gem 'dry-validation', '~> 0.10'
 gem 'faraday'
 gem 'govuk_elements_rails'
 gem 'govuk_elements_form_builder', git: 'https://github.com/ministryofjustice/govuk_elements_form_builder.git'
@@ -39,6 +41,7 @@ group :development do
   gem 'rubocop', '~> 0.35.1', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'i18n-debug', group: :development
 end
 
 group :test do

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   scope ':detainee_id' do
     resource :detainee_details, only: %i[ show update ], path: 'detainee-details'
-    resources :healthcare, only: %i[ show update ] do
+    resources :healthcare, only: %i[ show update ], path: 'healthcare' do
       get :summary, on: :collection
       put :confirm, on: :collection
     end
@@ -11,7 +11,9 @@ Rails.application.routes.draw do
       get :summary, on: :collection
       put :confirm, on: :collection
     end
-    resource :offences, only: %i[ show update ]
+    resource :offences, only: %i[ show update ], path: 'offences' do
+      put :confirm, on: :collection
+    end
     get  '/move/new', to: 'new_move#new', as: 'new_move'
     post '/move', to: 'new_move#create', as: 'create_move'
     get  '/move/copy', to: 'copy_move#copy', as: 'copy_move'

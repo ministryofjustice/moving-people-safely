@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
     detainee.moves << Move.create({
       from: 'HMP Bedford',
       to: 'St Albans Crown Court',
-      date: Date.new(2016, 8, 11),
+      date: Date.today,
       reason: 'production_to_court',
       has_destinations: 'no'
     })

@@ -1,48 +1,64 @@
 class DetaineeDetailsController < DetaineeController
-  skip_before_action :redirect_unless_document_editable, only: %i[ new create ]
+  skip_before_action :redirect_unless_document_editable,
+  only: %i[ new create ]
 
   def new
-    form = Forms::DetaineeDetails.new(Detainee.new(prison_number: params[:prison_number]))
+    detainee = Detainee.new(prison_number: params[:prison_number])
 
     # just for User Testing purposes 9/8/2016
     if params[:prison_number].upcase == LENNIE_GODBER
-      form.validate attributes_for_lennie_godber
+      detainee.assign_attributes attributes_for_lennie_godber
     # end of testing code. TODO: delete me
 
     elsif flash[:form_data]
-      form.validate flash[:form_data]
+      detainee.assign_attributes flash[:form_data]
     end
 
-    render :show, locals: { form: form, submit_path: detainee_path }
+    render :show,
+    locals: { form: detainee, submit_path: detainee_path }
   end
 
   def create
-    form = Forms::DetaineeDetails.new(Detainee.new)
-    if form.validate(params[:detainee_details])
-      form.save
-      redirect_to new_move_path(form.model.id)
+    detainee = Detainee.new permitted_params
+    if detainee.save
+      redirect_to new_move_path(detainee.id)
     else
-      flash[:form_data] = params[:detainee_details]
+      flash[:form_data] = permitted_params
       redirect_to new_detainee_path
     end
   end
 
   def show
-    form.validate(flash[:form_data]) if flash[:form_data]
-    render :show, locals: { form: form, submit_path: detainee_details_path(detainee) }
+    detainee = Detainee.new
+    detainee.assign_attributes(flash[:form_data]) if flash[:form_data]
+    render :show, locals: { form: detainee, submit_path: detainee_details_path(detainee) }
   end
 
   def update
-    if form.validate(params[:detainee_details])
-      form.save
+    detainee = Detainee.new permitted_params
+    if detainee.save
       redirect_to_move_or_profile
     else
-      flash[:form_data] = params[:detainee_details]
+      flash[:form_data] = permitted_params
       redirect_to detainee_details_path(detainee)
     end
   end
 
   private
+
+  def permitted_params
+    params.require(:detainee).permit(
+      :forenames,
+      :surname,
+      :date_of_birth,
+      :gender,
+      :nationalities,
+      :pnc_number,
+      :cro_number,
+      :aliases,
+      :prison_number
+    )
+  end
 
   def redirect_to_move_or_profile
     if active_move.present?
@@ -52,9 +68,5 @@ class DetaineeDetailsController < DetaineeController
     else
       redirect_to new_move_path(detainee)
     end
-  end
-
-  def form
-    @_form ||= Forms::DetaineeDetails.new(detainee)
   end
 end

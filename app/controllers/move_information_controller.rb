@@ -2,17 +2,13 @@ class MoveInformationController < MoveController
   before_action :add_destination, only: [:update]
 
   def show
-    if flash[:form_data]
-      form.validate flash[:form_data]
-    else
-      form.prepopulate!
-    end
-    render locals: { form: form, submit_path: move_information_path(active_move) }
+    move.assign_attributes flash[:form_data] if flash[:form_data]
+    render locals: { form: move, submit_path: move_information_path(active_move) }
   end
 
   def update
-    if form.validate(params[:information])
-      form.save
+    move.assign_attributes permitted_params
+    if move.save
       redirect_to profile_path(move)
     else
       flash[:form_data] = params[:information]
@@ -22,8 +18,8 @@ class MoveInformationController < MoveController
 
   private
 
-  def form
-    @_form ||= Forms::Moves::Information.new(move)
+  def permitted_params
+    params.require(:move).permit(:from, :to, :reason, :reason_details, :date)
   end
 
   def add_destination

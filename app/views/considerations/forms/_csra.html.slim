@@ -1,0 +1,18 @@
+.form-group.js-show-hide
+  .controls-optional-section class = consideration.option
+    fieldset.inline
+      legend.heading-medium = I18n.t(consideration.name, scope: "helpers.fieldset.#{form_name}")
+      label.block-label
+        = radio_button_tag "#{consideration.name}[option]", "high", consideration.option == 'high'
+        | High
+      label.block-label
+        = radio_button_tag "#{consideration.name}[option]", "standard", consideration.option == 'standard'
+        | Standard
+      label.block-label for = 'xxx_unknown'
+        = radio_button_tag "#{consideration.name}[option]", "unknown", consideration.option == 'unknown'
+        = I18n.t('unknown', scope: "helpers.label.#{form_name}.#{consideration.name}")
+
+  .optional-section-wrapper.panel.panel-border-narrow
+    .form-group
+      span.form-hint = I18n.t("#{consideration.name}_details", scope: "helpers.hint.#{form_name}")
+      = text_area_tag "#{consideration.name}[details]", consideration.details, class: 'form-control'

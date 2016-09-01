@@ -9,19 +9,19 @@ module Page
     def confirm_risk_details(risk)
       check_section(risk, 'risk_to_self', %w[ open_acct suicide ])
       check_section(risk, 'risk_from_others', %w[ rule_45 csra verbal_abuse physical_abuse ])
-      if risk.violent == 'yes'
+      if risk.violence.on?
         check_section(risk, 'violence', %w[ prison_staff risk_to_females escort_or_court_staff healthcare_staff other_detainees homophobic racist public_offence_related police ])
       else
         check_section_is_all_no(risk, 'violence', %w[ prison_staff risk_to_females escort_or_court_staff healthcare_staff other_detainees homophobic racist public_offence_related police ])
       end
-      if risk.stalker_harasser_bully == 'yes'
+      if risk.harassment.on?
         check_section(risk, 'harassments', %w[ hostage_taker stalker harasser intimidator bully ])
       else
         check_section_is_all_no(risk, 'harassments', %w[ hostage_taker stalker harasser intimidator bully ])
       end
       check_section(risk, 'sex_offences', %w[ sex_offence ])
       check_section(risk, 'non_association_markers', %w[ non_association_markers ])
-      check_section(risk, 'security', %w[ current_e_risk category_a restricted_status escape_pack escape_risk_assessment cuffing_protocol ])
+      check_section(risk, 'security', %w[ current_e_risk category_a restricted_status ])
       check_section(risk, 'substance_misuse', %w[ substance_supply substance_use ])
       check_section(risk, 'concealed_weapons', %w[ conceals_weapons ])
       check_section(risk, 'arson', %w[ arson damage_to_property ])
@@ -60,13 +60,17 @@ module Page
     def check_question(doc, section, question)
       within("table.#{section}") do
         within("tr.#{question.underscore} td:nth-child(2)") do
-          option = doc.public_send(question.to_sym)
-          boolean_result = [true, false].include?(option)
-          if boolean_result || option
+          consideration = doc.public_send(question.to_sym)
+          boolean_result = [true, false].include?(consideration.option)
+          if boolean_result || consideration
             if boolean_result
-              expected_answer = option ? 'Yes' : 'No'
+              expected_answer = boolean_result ? 'Yes' : 'No'
             else
-              expected_answer = option.titlecase
+              if consideration.option == 'unknown'
+                expected_answer = 'Missing'
+              else
+                expected_answer = consideration.option.humanize
+              end
             end
             expect(page).to have_text(expected_answer),
               "Expected #{section}/#{question} to be shown: wasn't."

@@ -14,20 +14,22 @@ FactoryGirl.define do
       [a[0],b[0],b[1],b[2],b[3],a[1],a[2]].join
     end
 
-    association :healthcare, factory: :healthcare, strategy: :build
-    association :risk, factory: :risk, strategy: :build
-    association :offences, factory: :offences, strategy: :build
-
-    trait :with_multiples do
-      association :healthcare, :with_medications, factory: :healthcare, strategy: :build
-    end
-
     trait :with_active_move do
       moves { build_list :move, 1, :active }
     end
 
     trait :with_completed_move do
       moves { build_list :move, 1, :issued }
+    end
+
+    trait :with_completed_considerations do
+      after(:create) do |detainee, evaluator|
+        %i[ risk healthcare offences ].each do |form_name|
+          form = Considerations::FormFactory.new(detainee).(form_name)
+          form.assign_attributes FixtureData.consideration(form_name)
+          form.save!
+        end
+      end
     end
   end
 end

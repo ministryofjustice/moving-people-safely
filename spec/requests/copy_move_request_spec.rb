@@ -34,7 +34,7 @@ RSpec.describe 'Copy Move requests', type: :request do
   describe "#create" do
     let(:detainee) { create(:detainee) }
 
-    before { post "/#{detainee.id}/move/copy", params: { information: move_attrs } }
+    before { post "/#{detainee.id}/move/copy", params: { move: move_attrs } }
 
     context "when the submitted move validates" do
       let(:move_attrs) { attributes_for(:move) }

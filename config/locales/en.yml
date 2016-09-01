@@ -14,21 +14,21 @@ en:
       concealed_weapons:
         conceals_weapons: Concealed weapons, mobile phones or other items
       harassments:
-        stalker_harasser_bully: Hostage taker / stalker / harasser / intimidator / bully?
+        harassment: Hostage taker / stalker / harasser / intimidator / bully?
+      healthcare_needs:
+        dependencies: Any dependencies or history of misuse?
+        medications: Regular medication?
       information:
         has_destinations: Are there establishments the detainee must or must not be sent?
         reason: Reason for move
-      mental:
+      mental_healthcare:
         mental_illness: Mental health issues?
         phobias: Phobias?
-      needs:
-        dependencies: Any dependencies or history of misuse?
-        has_medications: Regular medication?
       non_association_markers:
         non_association_markers: Non-association markers?
       offences:
-        has_past_offences: Does the detainee have significant past offences?
-      physical:
+        past_offences: Does the detainee have significant past offences?
+      physical_issues:
         physical_issues: Physical health needs?
       risk_from_others:
         rule_45: Rule 45?
@@ -47,7 +47,7 @@ en:
       sex_offences:
         sex_offence: Sex offender?
         sex_offence_victim: ''
-      social:
+      social_healthcare:
         personal_hygiene: Personal hygiene issues?
         personal_care: Personal care issues?
       substance_misuse:
@@ -56,7 +56,7 @@ en:
       transport:
         mpv: Requires MPV?
       violence:
-        violent: Violent?
+        violence: Violent?
     label:
       allergies:
         allergies:
@@ -80,7 +80,7 @@ en:
       concealed_weapons:
         conceals_weapons:
           unknown: Clear selection
-      detainee_details:
+      detainee:
         surname: Surname
         forenames: Forename(s)
         nationalities: Nationalities
@@ -89,8 +89,16 @@ en:
         gender: Gender
         aliases: Aliases
       harassments:
-        stalker_harasser_bully:
+        harassment:
           unknown: Clear selection
+      healthcare_needs:
+        dependencies:
+          unknown: Clear selection
+        medications:
+          unknown: Clear selection
+          description: What is it?
+          administration: How is it given?
+          carrier: Who carries it?
       information:
         from: From
         to: To
@@ -101,30 +109,25 @@ en:
         destinations:
           establishment: Establishment
           reasons: List the reasons, eg medical treatment, medical hold, treatment programmes or offender behaviour.
-      mental:
+      mental_healthcare:
         mental_illness:
           unknown: Clear selection
         phobias:
           unknown: Clear selection
-      needs:
-        dependencies:
-          unknown: Clear selection
-        has_medications:
-          unknown: Clear selection
-        medications:
-          description: What is it?
-          administration: How is it given?
-          carrier: Who carries it?
       non_association_markers:
         non_association_markers:
           unknown: Clear selection
         non_association_markers_details: Non-association markers details
       offences:
+        current_offences:
+          offence: Offence
+          case_reference: Case reference
+          remove: Remove
         release_date: The detainee's confirmed release date
         not_for_release: The detainee is 'not for release'
-        has_past_offences:
+        past_offences:
           unknown: Clear selection
-      physical:
+      physical_issues:
         physical_issues:
           unknown: Clear selection
       risk_from_others:
@@ -158,7 +161,7 @@ en:
       sex_offences:
         sex_offence:
           unknown: Clear selection
-      social:
+      social_healthcare:
         personal_hygiene:
           unknown: Clear selection
         personal_care:
@@ -173,7 +176,7 @@ en:
           unknown: Clear selection
         mpv_details: MPV details
       violence:
-        violent:
+        violence:
           unknown: Clear selection
     hint:
       allergies:
@@ -192,31 +195,31 @@ en:
         conceals_weapons_details: Give details
       detainee_details:
         date_of_birth: DD/MM/YYYY
-      harassments:
+      harassment:
         hostage_taker_details: Give details about the type of abuse and when it happened
         stalker_details: Give details about the type of abuse and when it happened. Include any court imposed restrictions such as restraining orders.
         harasser_details: Give details about the type of abuse and when it happened. Include any court imposed restrictions such as restraining orders.
         intimidator_details: Give details about the type of abuse and when it happened. Include any court imposed restrictions such as restraining orders.
         bully_details: Give details about the type of abuse and when it happened
+      healthcare_needs:
+        dependencies: Eg early stages of detox, alcohol withdrawal
+        dependencies_details: Give details and explain the significance
+        has_medications: Eg methadone, anti-inflammatories, anti-depressants, beta-blockers, insulin, migraine tablets, asthma or epilepsy drugs
       information:
         reason_details: Give details
         date : DD/MM/YYYY
-      mental:
+      mental_healthcare:
         mental_illness: Eg depression, paranoia, anxiety, personality disorder
         mental_illness_details: Give details and explain the significance
         phobias: Eg claustrophobia, agoraphobia
         phobias_details: Give details and explain the significance
-      needs:
-        dependencies: Eg early stages of detox, alcohol withdrawal
-        dependencies_details: Give details and explain the significance
-        has_medications: Eg methadone, anti-inflammatories, anti-depressants, beta-blockers, insulin, migraine tablets, asthma or epilepsy drugs
       non_association_markers:
         non_association_markers: Are there any prisoners or staff this prisoner should NOT associate with?
         non_association_markers_details: Give details, include prisoner numbers, names or establishments
       offences:
         release_date: DD/MM/YYYY
         not_for_release_details: State the reason the detainee is 'not for release'
-      physical:
+      physical_issues:
         physical_issues: Eg disabilities, prosthetic limbs, crutches.
         physical_issues_details: Give details and explain the significance
       risk_from_others:
@@ -243,7 +246,7 @@ en:
         restricted_status_details: Give details
       sex_offences:
         sex_offence_details: Give details - state gender and age when under 18, if known
-      social:
+      social_healthcare:
         personal_hygiene: Eg OCD, needs toilet support. For more information refer to the Social Care Act
         personal_hygiene_details: Give details and explain the significance
         personal_care: Eg needs help with dressing, eating or drinking
@@ -266,9 +269,9 @@ en:
         risk_to_females_details: Give details eg spits, punches, kicks, shouts, uses weapons
   healthcare:
     show:
-      physical: Physical healthcare
-      mental: Mental healthcare
-      social: Social healthcare
+      physical_issues: Physical healthcare
+      mental_healthcare: Mental healthcare
+      social_healthcare: Social healthcare
       allergies: Allergies
       needs: Medical health needs
       transport: Transport
@@ -289,70 +292,68 @@ en:
       sex_offences: Risk to others
       substance_misuse: Substance risk
       violence: Risk to others
-
   summary:
-    section:
-      questions:
-        arson:
-          arson: Arson
-          damage_to_property: Damage to property
-        communication:
-          can_read_and_write: Reading / writing issues
-          hearing_speach_sight: Hearing / speech / sight issues
-          interpreter_required: Interpreter required
-        concealed_weapons:
-          conceals_weapons: Concealed weapons or other items
-        harassments:
-          stalker_harasser_bully: Hostage taker / stalker / harasser / intimidator / bully
-        needs:
-          has_medications: Medication
-        non_association_markers:
-          non_association_markers: Non-association markers
-        sex_offences:
-          sex_offence: Sex offender
-          sex_offence_victim: ''
-        risk_from_others:
-          rule_45: Rule 45
-          csra: Cell Share Risk Assessment
-          verbal_abuse: At risk of verbal abuse
-          physical_abuse: At risk of physical abuse
-        risk_to_self:
-          open_acct: Open ACCT
-          suicide: Risk of suicide or self-harm
-        security:
-          category_a: Category A
-          current_e_risk: Current E risk
-          escape_list: Escape list
-          other_escape_risk_info: Other escape risk information
-          restricted_status: Restricted status
-        substance_misuse:
-          substance_supply: Substance supply
-          substance_use: Substance use
-        transport:
-          mpv: MPV
-        violence:
-          escort_or_court_staff: Escort or court staff
-          healthcare_staff: Healthcare staff
-          homophobic: Homosexuals
-          other_detainees: Other detainees
-          racist: Other races
-          police: Police
-          prison_staff: Prison staff
-          public_offence_related: Public/offence related
-          risk_to_females: Females
-      titles:
-        arson: Arson and damage to property
-        communication: Communication / language difficulties
-        concealed_weapons: Concealed weapons or other items
-        harassments: "Risk to others: Hostage taker / stalker / harasser / intimidator / bully"
-        mental: Mental healthcare
-        needs: Medical health needs
-        non_association_markers: Risk to others
-        physical: Physical healthcare
-        risk_to_self: Risk to self
-        risk_from_others: Risk from others
-        security: Security
-        sex_offences: "Risk to others: Sex offender"
-        social: Social healthcare
-        substance_misuse: Substance misuse
-        violence: "Risk to others: Violent"
+    questions:
+      arson:
+        arson: Arson
+        damage_to_property: Damage to property
+      communication:
+        can_read_and_write: Reading / writing issues
+        hearing_speach_sight: Hearing / speech / sight issues
+        interpreter_required: Interpreter required
+      concealed_weapons:
+        conceals_weapons: Concealed weapons or other items
+      harassments:
+        stalker_harasser_bully: Hostage taker / stalker / harasser / intimidator / bully
+      needs:
+        has_medications: Medication
+      non_association_markers:
+        non_association_markers: Non-association markers
+      sex_offences:
+        sex_offence: Sex offender
+        sex_offence_victim: ''
+      risk_from_others:
+        rule_45: Rule 45
+        csra: Cell Share Risk Assessment
+        verbal_abuse: At risk of verbal abuse
+        physical_abuse: At risk of physical abuse
+      risk_to_self:
+        open_acct: Open ACCT
+        suicide: Risk of suicide or self-harm
+      security:
+        category_a: Category A
+        current_e_risk: Current E risk
+        escape_list: Escape list
+        other_escape_risk_info: Other escape risk information
+        restricted_status: Restricted status
+      substance_misuse:
+        substance_supply: Substance supply
+        substance_use: Substance use
+      transport:
+        mpv: MPV
+      violence:
+        escort_or_court_staff: Escort or court staff
+        healthcare_staff: Healthcare staff
+        homophobic: Homosexuals
+        other_detainees: Other detainees
+        racist: Other races
+        police: Police
+        prison_staff: Prison staff
+        public_offence_related: Public/offence related
+        risk_to_females: Females
+    titles:
+      arson: Arson and damage to property
+      communication: Communication / language difficulties
+      concealed_weapons: Concealed weapons or other items
+      harassments: "Risk to others: Hostage taker / stalker / harasser / intimidator / bully"
+      mental: Mental healthcare
+      needs: Medical health needs
+      non_association_markers: Risk to others
+      physical: Physical healthcare
+      risk_to_self: Risk to self
+      risk_from_others: Risk from others
+      security: Security
+      sex_offences: "Risk to others: Sex offender"
+      social: Social healthcare
+      substance_misuse: Substance misuse
+      violence: "Risk to others: Violent"

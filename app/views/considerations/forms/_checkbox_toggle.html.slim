@@ -1,0 +1,5 @@
+label.block-label for="#{form_name}_#{consideration_name}"
+  div.controls-optional-checkbox-section
+    input name="#{form_name}[#{consideration_name}]" type="hidden" value="0" checked=!checked
+    input type="checkbox" value="1" name="#{form_name}[#{consideration_name}]" id="#{form_name}_#{consideration_name}" checked=checked
+  = I18n.t(consideration_name, scope: "helpers.label.#{form_name}", default: consideration_name.to_s.humanize.capitalize)

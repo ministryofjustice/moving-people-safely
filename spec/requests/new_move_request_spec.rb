@@ -34,7 +34,7 @@ RSpec.describe 'New Move requests', type: :request do
   describe "#create" do
     let(:detainee) { create(:detainee) }
 
-    before { post "/#{detainee.id}/move", params: { information: move_attrs } }
+    before { post "/#{detainee.id}/move", params: { move: move_attrs } }
 
     context "when the submitted move validates" do
       let(:move_attrs) { attributes_for(:move) }

@@ -1,0 +1,23 @@
+table class="#{form}"
+  thead
+    tr
+      th.title colspan="2"
+        = t(".titles.#{form}")
+      th.edit
+        = link_to 'Change', risk_path(detainee, form.name)
+  tbody
+    - form.harassment.fields.each_with_index do |field, i|
+      tr class=(%w[even odd][i%2] + ' ' + "#{field}")
+        td.first-column
+          = t(".questions.harassments.#{field}")
+        td.second-column
+          - if form.harassment.on?
+            - value = form.harassment.send(field) ? 'yes' : 'no'
+          - elsif form.harassment.option == 'no'
+            - value = 'no'
+          - else
+            - value = 'missing'
+          span class=value
+            = value.humanize
+        td.third-column
+          = form.harassment.try(:"#{field}_details")

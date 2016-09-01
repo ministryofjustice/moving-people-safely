@@ -17,8 +17,6 @@ module Page
         expect(page).to have_content move.to
         expect(page).to have_content move.date.strftime('%d %b %Y')
         expect(page).to have_content move.reason_details
-        expect(page).to have_content('Hospital, Court')
-        expect(page).to have_content('Dentist, Tribunal')
       end
     end
 
@@ -44,10 +42,10 @@ module Page
     def confirm_healthcare_details(hc)
       within('#healthcare') do
         within('.answered_yes') do
-          expect(page).to have_content(hc.questions_answered_yes.to_s)
+          expect(page).to have_content(hc.questions_answered.to_s)
         end
         within('.answered_no') do
-          expect(page).to have_content(hc.questions_answered_no.to_s)
+          expect(page).to have_content(hc.questions_unanswered.to_s)
         end
       end
     end
@@ -62,10 +60,10 @@ module Page
       within('#risk') do
         within('.answered_yes') do
           # TODO - this test fails, there's no unit test - FML.
-          # expect(page).to have_content risk.questions_answered_yes
+          expect(page).to have_content risk.questions_answered
         end
         within('.answered_no') do
-          #expect(page).to have_content risk.questions_answered_no
+          expect(page).to have_content risk.questions_unanswered
         end
       end
     end

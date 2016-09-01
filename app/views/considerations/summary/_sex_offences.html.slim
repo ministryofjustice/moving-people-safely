@@ -1,0 +1,17 @@
+table class="#{form}"
+  thead
+    tr
+      th.title colspan="2"
+        = t(form, scope: 'summary.titles')
+      th.edit
+        = link_to 'Change', risk_path(detainee, form.name)
+  tbody
+    - form.models.each_with_index do |consideration, i|
+      tr class=(%w[even odd][i%2] + ' ' + "#{consideration}")
+        td.first-column
+          = t(consideration, scope: "summary.questions.#{form}")
+        td.second-column
+          span class=consideration.option
+            = consideration.option == 'unknown' ? 'Missing' : consideration.option.humanize
+        td.third-column
+         = "#{consideration.victim}. #{consideration.try(:details)}"

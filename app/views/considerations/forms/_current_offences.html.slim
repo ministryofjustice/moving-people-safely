@@ -1,0 +1,22 @@
+fieldset.form-group
+  legend.heading-medium Current offences
+
+  .multiple
+    - consideration.offences.each_with_index do |offence, index|
+      .multiple-wrapper class=(index == 0 ? 'multiple-first' : 'multiple-not-first')
+        .multiple-field.inline
+          .form-group
+            = label_tag "#{consideration.name}[#{index}][offence]", I18n.t('offence', scope: "helpers.label.#{form_name}.#{consideration.name}"), class: 'form-label'
+            = text_field_tag "#{consideration.name}[#{index}][offence]", offence[:offence], class: 'form-control'
+        .multiple-field.inline
+          .form-group
+            = label_tag "#{consideration.name}[#{index}][case_reference]", I18n.t('case_reference', scope: "helpers.label.#{form_name}.#{consideration.name}"), class: 'form-label'
+            = text_field_tag "#{consideration.name}[#{index}][case_reference]", offence[:case_reference], class: 'form-control'
+        .multiple-field.inline.remove-link
+          = label_tag "#{consideration.name}[#{index}][_delete]", I18n.t('remove', scope: "helpers.label.#{form_name}.#{consideration.name}", default: 'Remove')
+          = check_box_tag "#{consideration.name}[#{index}][_delete]"
+
+    .multiple-field.multiple-add
+      = submit_tag 'Add offence',
+        class: 'js-anchor-focus',
+        name: "add_offence"

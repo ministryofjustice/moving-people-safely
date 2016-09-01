@@ -15,7 +15,7 @@ namespace :dev do
   task moves: :environment do
     10.times do
       d = FactoryGirl.create(:detainee)
-      d.moves << FactoryGirl.create(:move, :with_destinations)
+      d.moves << FactoryGirl.create(:move)
       puts "Creating #{d.forenames} #{d.surname}"
     end
   end

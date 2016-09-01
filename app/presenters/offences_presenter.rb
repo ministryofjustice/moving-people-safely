@@ -1,9 +1,9 @@
 class OffencesPresenter < SimpleDelegator
   def styled_current_offences
-    current_offences.map(&:offence).join('<br>')
+    current_offences.offences.map { |o| o.fetch(:offence, []) }.join('<br>')
   end
 
   def styled_past_offences
-    past_offences.map(&:offence).join('<br>')
+    past_offences.offences.map { |o| o.fetch(:offence, []) }.join('<br>')
   end
 end
