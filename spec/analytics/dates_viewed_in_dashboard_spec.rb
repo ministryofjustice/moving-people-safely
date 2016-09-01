@@ -1,5 +1,3 @@
-#315
-
 require 'rails_helper'
 
 RSpec.describe 'Dashboard analytics', type: :request do
