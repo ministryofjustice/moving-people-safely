@@ -11,8 +11,6 @@ class AnalyticsEvent
     end
   end
 
-  private
-
   def self.instrumentation_class_from_params(params)
     params.delete(:instrumentation_class) { |_| ActiveSupport::Notifications }
   end
