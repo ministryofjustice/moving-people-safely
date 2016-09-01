@@ -7,14 +7,11 @@ RSpec.describe AnalyticsEvent do
       expect(instrumentation_class).to receive(:instrument).with(:event, params: :hash)
       subject.publish(:event, params: :hash, instrumentation_class: instrumentation_class)
     end
-  end
 
-  describe ".publish_with_timings" do
-    it "pushes the event to the instrumentation class, yielding a block" do
-      proc = Proc.new { :proc }
-      expect(instrumentation_class).to receive(:instrument).with(:event, params: :hash, &proc)
-      subject.publish_with_timings(:event, params: :hash, instrumentation_class: instrumentation_class) do
-        proc
+    it "yields a block if given" do
+      expect(instrumentation_class).to receive(:instrument).and_yield
+      subject.publish(:event, instrumentation_class: instrumentation_class) do
+        :block
       end
     end
   end

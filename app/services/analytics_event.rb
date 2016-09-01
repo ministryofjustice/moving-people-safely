@@ -1,13 +1,8 @@
 class AnalyticsEvent
   def self.publish(event, **params)
     instrumentation_class = instrumentation_class_from_params(params)
-    instrumentation_class.instrument(event, **params)
-  end
-
-  def self.publish_with_timings(event, **params)
-    instrumentation_class = instrumentation_class_from_params(params)
     instrumentation_class.instrument(event, **params) do
-      yield
+      yield if block_given?
     end
   end
 
