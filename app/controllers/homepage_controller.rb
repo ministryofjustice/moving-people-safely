@@ -19,6 +19,14 @@ class HomepageController < ApplicationController
   end
 
   def date
+    configure_date_picker
+    session[:date_in_view] = date_picker.to_s
+    redirect_to root_path redirect_params(params[:search])
+  end
+
+  private
+
+  def configure_date_picker
     case params[:commit]
     when 'today'
       AnalyticsEvent.publish('date_change', new_date: :today)
@@ -33,12 +41,7 @@ class HomepageController < ApplicationController
       AnalyticsEvent.publish('date_change', new_date: params[:date_picker])
       date_picker.date = params[:date_picker]
     end
-
-    session[:date_in_view] = date_picker.to_s
-    redirect_to root_path redirect_params(params[:search])
   end
-
-  private
 
   def redirect_params(search_query)
     if search_query.present?
