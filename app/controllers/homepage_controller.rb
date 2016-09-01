@@ -21,12 +21,16 @@ class HomepageController < ApplicationController
   def date
     case params[:commit]
     when 'today'
+      AnalyticsEvent.publish('date_change', new_date: :today)
       date_picker.today
     when '<'
+      AnalyticsEvent.publish('date_change', new_date: :back)
       date_picker.back
     when '>'
+      AnalyticsEvent.publish('date_change', new_date: :forward)
       date_picker.forward
     when 'Go'
+      AnalyticsEvent.publish('date_change', new_date: params[:date_picker])
       date_picker.date = params[:date_picker]
     end
 
