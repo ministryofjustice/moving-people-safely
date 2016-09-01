@@ -22,7 +22,7 @@ gem 'virtus'
 gem 'wicked'
 
 group :production do
-  gem 'logstasher'
+  gem 'logstasher', github: 'shadabahmed/logstasher', ref: '4b19d78d6d043c042fa6c17d3980702015e8645f'
 end
 
 group :development, :test do

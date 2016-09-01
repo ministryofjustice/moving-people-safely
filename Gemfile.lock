@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/shadabahmed/logstasher.git
+  revision: 4b19d78d6d043c042fa6c17d3980702015e8645f
+  ref: 4b19d78d6d043c042fa6c17d3980702015e8645f
+  specs:
+    logstasher (1.0.1)
+      activerecord (>= 4.0)
+      activesupport (>= 4.0)
+      logstash-event (~> 1.2.0)
+      request_store
+
+GIT
   remote: https://github.com/ministryofjustice/govuk_elements_form_builder.git
   revision: a27071223a9ab2338dd69b357c88365c902a6fdf
   specs:
@@ -150,11 +161,6 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     logstash-event (1.2.02)
-    logstasher (1.0.1)
-      activerecord (>= 4.0)
-      activesupport (>= 4.0)
-      logstash-event (~> 1.2.0)
-      request_store
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -359,7 +365,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (~> 3.0.5)
-  logstasher
+  logstasher!
   meta_request
   pg (~> 0.18)
   pry-byebug
