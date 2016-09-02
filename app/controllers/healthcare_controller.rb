@@ -9,7 +9,7 @@ class HealthcareController < DetaineeController
   def show
     form.validate(flash[:form_data]) if flash[:form_data]
     form.prepopulate!
-    render :show, locals: { form: form, template_name: form.class.name }
+    render :show, locals: { form: form, template_name: step.to_s }
   end
 
   def update
@@ -57,7 +57,7 @@ class HealthcareController < DetaineeController
     if params.key? 'needs_add_medication'
       form.deserialize form_params
       form.add_medication
-      render :show, locals: { form: form, template_name: form.class.name }
+      render :show, locals: { form: form, template_name: step.to_s }
     end
   end
 
