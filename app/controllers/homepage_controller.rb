@@ -19,22 +19,29 @@ class HomepageController < ApplicationController
   end
 
   def date
-    case params[:commit]
-    when 'today'
-      date_picker.today
-    when '<'
-      date_picker.back
-    when '>'
-      date_picker.forward
-    when 'Go'
-      date_picker.date = params[:date_picker]
-    end
-
+    configure_date_picker
     session[:date_in_view] = date_picker.to_s
     redirect_to root_path redirect_params(params[:search])
   end
 
   private
+
+  def configure_date_picker
+    case params[:commit]
+    when 'today'
+      AnalyticsEvent.publish('date_change', new_date: :today)
+      date_picker.today
+    when '<'
+      AnalyticsEvent.publish('date_change', new_date: :back)
+      date_picker.back
+    when '>'
+      AnalyticsEvent.publish('date_change', new_date: :forward)
+      date_picker.forward
+    when 'Go'
+      AnalyticsEvent.publish('date_change', new_date: params[:date_picker])
+      date_picker.date = params[:date_picker]
+    end
+  end
 
   def redirect_params(search_query)
     if search_query.present?
