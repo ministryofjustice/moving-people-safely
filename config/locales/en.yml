@@ -184,8 +184,8 @@ en:
         damage_to_property: Eg damage to own cell, to others' property, check adjudications
         damage_to_property_details: Give details
       communication:
-        can_read_and_write_details: Give details
-        hearing_speach_sight_details: Give details
+        can_read_and_write_details: Record any barriers (including language barriers) to reading or written communication
+        hearing_speach_sight_details: Record any barriers (including language barriers) to verbal communication
         language: For which language?
       concealed_weapons:
         conceals_weapons: Eg drugs, blade, mobile phone, cash, lighter, sim card
