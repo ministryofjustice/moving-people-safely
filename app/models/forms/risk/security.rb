@@ -1,10 +1,9 @@
 module Forms
   module Risk
     class Security < Forms::Base
-      E_RISK_VALUES = %w[ e_list_standard e_list_escort e_list_heightened ]
       optional_details_field :current_e_risk
       validates :current_e_risk_details,
-        inclusion: { in: E_RISK_VALUES },
+        inclusion: { in: ::Risk.current_e_risk_details_all_values },
         allow_blank: true
       optional_details_field :category_a
       optional_details_field :restricted_status
@@ -16,7 +15,7 @@ module Forms
         type: Axiom::Types::Boolean, default: false
 
       def e_risk_values
-        E_RISK_VALUES
+        ::Risk.current_e_risk_details_all_values
       end
     end
   end
