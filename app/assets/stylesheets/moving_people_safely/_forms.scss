@@ -146,4 +146,13 @@ form {
   .form-actions {
     clear: both;
   }
+
+  .more-info {
+    clear: both;
+    width: 70%;
+    margin-bottom: 30px;
+
+    h2 { font-weight: bold; }
+    p { margin: 0; }
+  }
 }
