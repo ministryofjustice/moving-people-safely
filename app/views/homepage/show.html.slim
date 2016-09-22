@@ -32,10 +32,14 @@
       input type='submit' value='today' name='commit'
       input type='submit' value='>' name='commit'
 
-dl.status_gauges
-  == dashboard.render_detainees_indicator
-  == dashboard.render_risk_indicator
-  == dashboard.render_health_indicator
-  == dashboard.render_offences_indicator
+- unless dashboard.moves.empty?
+  dl.status_gauges
+    == dashboard.render_detainees_indicator
+    == dashboard.render_risk_indicator
+    == dashboard.render_health_indicator
+    == dashboard.render_offences_indicator
 
-= render partial: 'moves', locals: { moves: dashboard.moves } if dashboard.moves
+  = render partial: 'moves', locals: { moves: dashboard.moves }
+- else
+  p = "There are no detainees due to move on #{date_picker}."
+  p To initiate a PER for a detainee enter the prisoner number and search to view any existing records. If there are no records, you will be given the opportunity to start a new one.

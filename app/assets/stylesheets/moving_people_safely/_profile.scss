@@ -14,6 +14,40 @@
     }
   }
 
+  table.detainee {
+    width: 100%;
+    margin-bottom: 1px;
+
+    td {
+      background-color: $grey-3;
+      border-left: 1px solid white;
+      border-color: white;
+      height: 90px;
+      padding:0;
+      position: relative;
+
+      img {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
+
+      span.text {
+        display: none; // temporary hack 22/09/2016
+      }
+    }
+
+    td.image {
+      width: 128px;
+      height: 180px;
+
+      img {
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+
   .info-tiles {
     display: table;
     width: 100%;
