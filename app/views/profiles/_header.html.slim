@@ -1,25 +1,25 @@
 header#header
   h1
     ' #{detainee.prison_number}: #{detainee.surname}, #{detainee.forenames}
-  .info-tiles
-    .tile
-      div = image_tag "not_for_release_#{offences.not_for_release}.png"
-      = offences.not_for_release_details
+  table.info-tiles
+    tr
+      - if detainee.image_filename.present?
+        td rowspan=2 class='image'
+          = image_tag detainee.image_filename, size: '128x180'
 
-    .tile
-      div = image_tag "csra_#{risk.csra}.png"
-      = risk.csra_details
+      td = image_tag "not_for_release_#{offences.not_for_release}.png"
+        | = offences.not_for_release_details
 
-    .tile
-      div = image_tag "open_acct_#{risk.open_acct}.png"
+      td = image_tag "csra_#{risk.csra}.png"
+        | = risk.csra_details
 
-  .info-tiles
-    .tile
-      div = image_tag "rule_45_#{risk.rule_45}.png"
-      = risk.rule_45_details
+      td = image_tag "open_acct_#{risk.open_acct}.png"
 
-    .tile
-      div = image_tag "category_a_#{risk.category_a}.png"
-      = risk.category_a_details
+    tr
+      td = image_tag "rule_45_#{risk.rule_45}.png"
+        | = risk.rule_45_details
 
-    .empty
+      td = image_tag "category_a_#{risk.category_a}.png"
+        | = risk.category_a_details
+
+      td

@@ -39,7 +39,8 @@ class ApplicationController < ActionController::Base
       pnc_number: 'CD23456F',
       cro_number: 'AB12345D',
       aliases: 'Richard Arthur Beckinsale',
-      prison_number: "Z#{rand.to_s[2..5]}ZZ"
+      prison_number: "Z#{rand.to_s[2..5]}ZZ",
+      image_filename: 'lennie_godber.jpg'
     }
   end
 
@@ -53,7 +54,8 @@ class ApplicationController < ActionController::Base
       pnc_number: '123/456',
       cro_number: '456/123',
       aliases: 'Paul Gold',
-      prison_number: "Z#{rand.to_s[2..5]}ZZ"
+      prison_number: "Z#{rand.to_s[2..5]}ZZ",
+      image_filename: 'peter_smith.jpg'
     })
     detainee.moves << Move.create({
       from: 'HMP Bedford',

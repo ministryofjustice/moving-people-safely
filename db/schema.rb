@@ -10,11 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818143833) do
+ActiveRecord::Schema.define(version: 20160922130855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "considerations", force: :cascade do |t|
+    t.string   "name"
+    t.jsonb    "properties",  default: {}
+    t.string   "type"
+    t.uuid     "detainee_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["detainee_id"], name: "index_considerations_on_detainee_id", using: :btree
+  end
 
   create_table "current_offences", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "offences_id"
@@ -45,8 +55,9 @@ ActiveRecord::Schema.define(version: 20160818143833) do
     t.string   "pnc_number"
     t.string   "cro_number"
     t.text     "aliases"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "image_filename", default: ""
   end
 
   create_table "healthcare", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

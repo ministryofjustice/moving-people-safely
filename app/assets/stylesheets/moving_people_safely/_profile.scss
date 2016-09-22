@@ -14,22 +14,39 @@
     }
   }
 
-  .info-tiles {
-    display: table;
+  table.info-tiles {
     width: 100%;
     margin-bottom: 1px;
+
+    td {
+      background-color: $grey-3;
+      border-left: 1px solid white;
+      border-color: white;
+      height: 90px;
+      padding:0;
+      position: relative;
+    }
+
+    td img {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    td.image {
+      width: 128px;
+      height: 180px;
+
+      img {
+        top: 0;
+        left: 0;
+      }
+    }
   }
 
   .empty {
     display: table-cell;
     width: (100% / 3);
-  }
-
-  .tile {
-    @extend .empty;
-    @extend .padded;
-    background-color: $grey-3;
-    border-left: 1px solid white;
   }
 
   .float-right {

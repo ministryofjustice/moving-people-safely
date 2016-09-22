@@ -11,6 +11,7 @@ module Forms
     property :pnc_number,    type: StrictString
     property :cro_number,    type: StrictString
     property :aliases,       type: StrictString
+    property :image_filename,type: StrictString
 
     validates :surname, :forenames, presence: true
 
