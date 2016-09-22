@@ -14,7 +14,7 @@
     }
   }
 
-  table.info-tiles {
+  table.detainee {
     width: 100%;
     margin-bottom: 1px;
 
@@ -44,9 +44,22 @@
     }
   }
 
+  .info-tiles {
+    display: table;
+    width: 100%;
+    margin-bottom: 1px;
+  }
+
   .empty {
     display: table-cell;
     width: (100% / 3);
+  }
+
+  .tile {
+    @extend .empty;
+    @extend .padded;
+    background-color: $grey-3;
+    border-left: 1px solid white;
   }
 
   .float-right {
