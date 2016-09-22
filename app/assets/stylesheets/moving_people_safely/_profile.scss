@@ -25,12 +25,16 @@
       height: 90px;
       padding:0;
       position: relative;
-    }
 
-    td img {
-      position: absolute;
-      top: 10px;
-      left: 10px;
+      img {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
+
+      span.text {
+        display: none; // temporary hack 22/09/2016
+      }
     }
 
     td.image {

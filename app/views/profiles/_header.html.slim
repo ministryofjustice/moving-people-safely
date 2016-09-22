@@ -7,19 +7,24 @@ table.detainee
       td rowspan=2 class='image'
         = image_tag detainee.image_filename, size: '128x180'
 
-    td = image_tag "not_for_release_#{offences.not_for_release}.png"
-      | = offences.not_for_release_details
+    td
+      span = image_tag "not_for_release_#{offences.not_for_release}.png"
+      span.text = offences.not_for_release_details
 
-    td = image_tag "csra_#{risk.csra}.png"
-      | = risk.csra_details
+    td
+      span = image_tag "csra_#{risk.csra}.png"
+      span.text = risk.csra_details
 
-    td = image_tag "open_acct_#{risk.open_acct}.png"
+    td
+      span = image_tag "open_acct_#{risk.open_acct}.png"
 
   tr
-    td = image_tag "rule_45_#{risk.rule_45}.png"
-      | = risk.rule_45_details
+    td
+      span = image_tag "rule_45_#{risk.rule_45}.png"
+      span.text = risk.rule_45_details
 
-    td = image_tag "category_a_#{risk.category_a}.png"
-      | = risk.category_a_details
+    td
+      span = image_tag "category_a_#{risk.category_a}.png"
+      span.text = risk.category_a_details
 
     td

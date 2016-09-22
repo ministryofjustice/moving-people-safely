@@ -14,7 +14,8 @@ RSpec.describe Forms::DetaineeDetails, type: :form do
       cro_number: 'SOMECRO',
       pnc_number: 'SOMEPNC',
       aliases: 'The Nailfile, Crocodile Shoes',
-      prison_number: 'A1234AB'
+      prison_number: 'A1234AB',
+      image_filename: ''
     }.with_indifferent_access
   }
 
