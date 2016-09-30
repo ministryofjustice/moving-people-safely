@@ -1,4 +1,9 @@
 class RiskPrintPresenter < SimpleDelegator
+  def initialize(risk, view_context)
+    @view_context = view_context
+    super(risk)
+  end
+
   def risk_to_self_section
     summarize_section(:risk_to_self, {
       open_acct: 'yes',
@@ -48,33 +53,19 @@ class RiskPrintPresenter < SimpleDelegator
   end
 
   def summarize_section(key, fields)
-    detail_rows = fields.reduce('') { |memo, obj| memo + detail_row(obj[0], obj[1]).to_s }
     title = I18n.t("helpers.print.#{key}", default: key.to_s.humanize)
-    is_detail = detail_rows ? 'Yes' : 'No'
+    details = fields.reduce('') { |memo, obj| memo + detail_row(obj[0], obj[1]).to_s }
 
-    out = "<tr>"
-    out += "<th colspan='2'>#{title}</th>"
-    out += "<td>#{is_detail}</td>"
-    out += "<td></td>"
-    out += detail_rows.to_s
-    out.html_safe
+    @view_context.render partial: 'summary', locals: { title: title, details: details }
   end
 
   def detail_row(field, on_attribute)
     matched_attribute = field_matches_attribute(field, on_attribute)
     if matched_attribute
       title = I18n.t("helpers.print.#{field}", default: field.to_s.humanize)
-      out = "<tr>"
-      out += "<td class='spacer'></td><th class='subhead'>#{title}</th>"
-      out += "<td>#{humanize_attribute(matched_attribute)}</td>"
-
-      if respond_to? "#{field}_details"
-        details = public_send("#{field}_details")
-      end
-
-      out += "<td>#{details}</td>"
-      out += "</tr>"
-      out
+      attribute = humanize_attribute(matched_attribute)
+      details = public_send("#{field}_details") if respond_to? "#{field}_details"
+      @view_context.render partial: 'attribute', locals: { title: title, attribute: attribute, details: details }
     end
   end
 

@@ -4,7 +4,7 @@ class PrintController < MoveController
   def show
     # error_redirect && return unless active_move.complete?
     # active_move.workflow.issued!
-    render 'show', locals: { risk: RiskPrintPresenter.new(risk) }
+    render 'show', locals: { risk: RiskPrintPresenter.new(risk, view_context) }
   end
 
   private
