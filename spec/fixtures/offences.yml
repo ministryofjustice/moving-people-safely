@@ -1,0 +1,15 @@
+release_date:
+  date: 19/03/2020
+not_for_release:
+  option: true
+  details: you want details?
+current_offences:
+  offences:
+    -
+      offence: Burglary
+      case_reference: xx123xx
+past_offences:
+  option: 'yes'
+  offences:
+    -
+      offence: Theft of things

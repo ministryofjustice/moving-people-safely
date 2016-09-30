@@ -55,9 +55,8 @@ ActiveRecord::Schema.define(version: 20160922130855) do
     t.string   "pnc_number"
     t.string   "cro_number"
     t.text     "aliases"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "image_filename", default: ""
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "healthcare", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

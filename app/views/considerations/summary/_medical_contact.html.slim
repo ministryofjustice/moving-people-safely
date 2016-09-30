@@ -1,0 +1,24 @@
+table class="#{form}"
+  thead
+    tr
+      th.title colspan="2"
+        = t(form, scope: 'summary.titles')
+      th.edit
+        = link_to 'Change', healthcare_path(detainee, form.name)
+  tbody
+    tr class="even healthcare_professional"
+      td.first-column
+        = t('healthcare_professional', scope: "summary.questions.#{form}")
+      td.second-column
+        - if form.clinician.healthcare_professional.empty?
+          span.missing = 'Missing'
+      td.third-column
+        = form.clinician.healthcare_professional
+    tr class="odd contact_number"
+      td.first_column
+        = t('contact_number', scope: "summary.questions.#{form}")
+      td.second-column
+        - if form.clinician.contact_number.empty?
+          span.missing = "Missing"
+      td.third-column
+        = form.clinician.contact_number

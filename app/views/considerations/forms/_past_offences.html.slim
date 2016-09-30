@@ -1,0 +1,16 @@
+.multiple
+  = render partial: "considerations/forms/radio_toggle", locals: { consideration: consideration, form_name: form_name }
+  - if consideration.on?
+    #error_offences_past_offences
+  - consideration.offences.each_with_index do |offence, index|
+    .multiple-wrapper class=(index == 0 ? 'multiple-first' : 'multiple-not-first')
+      .multiple-field.inline
+        = text_field_tag "#{consideration.name}[#{index}][offence]", offence[:offence]
+      .multiple-field.inline.remove-link
+        = label_tag "#{consideration.name}[#{index}][_delete]", I18n.t(consideration.name, scope: "helpers.label.#{form_name}")
+        = check_box_tag "#{consideration.name}[#{index}][_delete]"
+
+  .multiple-field.multiple-add
+    = submit_tag 'Add past offence',
+      class: 'js-anchor-focus',
+      name: "add_past_offence"

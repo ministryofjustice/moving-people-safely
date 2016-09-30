@@ -1,0 +1,9 @@
+div.form-group
+  label.form-label for="#{consideration.name}[healthcare_professional]"
+    = I18n.t('healthcare_professional', scope: 'helpers.labels.clinician', default: 'Healthcare professional')
+  = text_field_tag "#{consideration.name}[healthcare_professional]", consideration.healthcare_professional, class: 'form-control'
+
+div.form-group
+  label.form-label for="#{consideration.name}[contact_number]"
+    = I18n.t('contact_number', scope: 'helpers.labels.clinician', default: 'Contact number')
+  = text_field_tag "#{consideration.name}[contact_number]", consideration.contact_number, class: 'form-control'

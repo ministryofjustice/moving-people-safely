@@ -1,0 +1,6 @@
+.form-group.js-show-hide
+  = render partial: "considerations/forms/checkbox_toggle", locals: { consideration_name: consideration.name, form_name: form_name, checked: consideration.on? }
+  .optional-section-wrapper.panel.panel-border-narrow
+    .form-group
+      span.form-hint = I18n.t("#{consideration.name}_details", scope: "helpers.hint.#{form_name}")
+      = text_area_tag "#{consideration.name}[details]", consideration.details

@@ -2,29 +2,41 @@ class HealthcareController < DetaineeController
   include Wicked::Wizard
   include Wizardable
 
-  steps :physical, :mental, :social, :allergies, :needs, :transport, :contact
+  steps *%i[
+      physical_issues
+      mental_healthcare
+      social_healthcare
+      allergies
+      healthcare_needs
+      transport
+      medical_contact
+    ]
 
   before_action :add_medication, only: [:update]
 
   def show
-    form.validate(flash[:form_data]) if flash[:form_data]
-    form.prepopulate!
-    render :show, locals: { form: form, template_name: form.class.name }
+    if flash[:form_data]
+      form.assign_attributes(flash[:form_data])
+      form.validate
+    end
+
+    render :show, locals: { form: form, template_name: step.to_s }
   end
 
   def update
-    if form.validate form_params
-      form.save
+    form.assign_attributes permitted_params
+    if form.save
       update_document_workflow
       redirect_after_update
     else
-      flash[:form_data] = form_params
+      flash[:form_data] = permitted_params
       redirect_to healthcare_path(detainee)
     end
   end
 
   def summary
-    render 'summary/healthcare'
+    sections = wizard_steps.map { |section| Considerations::FormFactory.new(detainee).(section) }
+    render 'summary/healthcare', locals: { sections: sections }
   end
 
   def confirm
@@ -55,25 +67,21 @@ class HealthcareController < DetaineeController
 
   def add_medication
     if params.key? 'needs_add_medication'
-      form.deserialize form_params
-      form.add_medication
-      render :show, locals: { form: form, template_name: form.class.name }
+      form.assign_attributes permitted_params
+      form.medications.add
+      flash[:form_data] = form.to_params
+      redirect_to healthcare_path(detainee)
     end
   end
 
-  def form_params
-    params[step]
+  def permitted_params
+    form.models.map(&:name).inject({}) do |acc, name|
+      acc[name] = params.require(name).permit!.to_h
+      acc
+    end
   end
 
   def form
-    @_form ||= {
-      physical: Forms::Healthcare::Physical,
-      mental: Forms::Healthcare::Mental,
-      social: Forms::Healthcare::Social,
-      allergies: Forms::Healthcare::Allergies,
-      needs: Forms::Healthcare::Needs,
-      transport: Forms::Healthcare::Transport,
-      contact: Forms::Healthcare::Contact
-    }[step].new(healthcare)
+    @_form ||= Considerations::FormFactory.new(detainee).(step)
   end
 end

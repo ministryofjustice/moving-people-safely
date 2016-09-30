@@ -7,7 +7,6 @@ FactoryGirl.define do
     date { Date.today }
     reason 'other'
     reason_details 'Has to move'
-    has_destinations 'no'
 
     association :workflow, :incomplete, :move, factory: :workflow, strategy: :build
 
@@ -27,11 +26,6 @@ FactoryGirl.define do
       association :risk_workflow, :risk, :confirmed, factory: :workflow, strategy: :build
       association :healthcare_workflow, :healthcare, :confirmed, factory: :workflow, strategy: :build
       association :offences_workflow, :offences, :confirmed, factory: :workflow, strategy: :build
-    end
-
-    trait :with_destinations do
-      has_destinations 'yes'
-      destinations { build_list :destination, rand(1..5) }
     end
 
     trait :with_incomplete_risk_workflow do

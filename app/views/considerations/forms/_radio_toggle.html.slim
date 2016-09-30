@@ -1,0 +1,7 @@
+.controls-optional-section
+  fieldset.inline
+    legend.heading-medium = I18n.t(consideration.name, scope: "helpers.fieldset.#{form_name}")
+    - consideration.values.each do |value|
+      label.block-label
+        = radio_button_tag "#{consideration.name}[option]", value, consideration.option == value
+        = I18n.t(value, scope: "helpers.label.#{consideration}.option", default: value.humanize)

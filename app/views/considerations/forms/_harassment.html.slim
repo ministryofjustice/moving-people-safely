@@ -1,0 +1,9 @@
+.form-group.js-show-hide
+  = render partial: "considerations/forms/radio_toggle", locals: { consideration: consideration, form_name: form_name }
+  .optional-section-wrapper.panel.panel-border-narrow
+    fieldset
+      span.form-hint
+        | Select all that apply
+
+      - consideration.fields.each do |field|
+          = render partial: "considerations/forms/checkbox_toggle_for_subfield", locals: { consideration: consideration, field: field, form_name: 'harassment'}

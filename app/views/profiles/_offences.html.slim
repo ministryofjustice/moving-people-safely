@@ -5,14 +5,11 @@
   h2
     ' Offences
     / small 16:44 | 04 Apr 2016
-  - if offences.all_questions_answered?
-    .info-table
-      .grid-row
-        .column-one-half
-          small Current offences
-          p == offences.styled_current_offences
-        .column-one-half
-          small Significant past offences
-          p == offences.styled_past_offences
-  - else
-    hr
+  .info-table
+    .grid-row
+      .column-one-half
+        small Current offences
+        p == offences.styled_current_offences
+      .column-one-half
+        small Significant past offences
+        p == offences.styled_past_offences

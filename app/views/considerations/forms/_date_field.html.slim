@@ -1,0 +1,8 @@
+div.form-group
+  label.form-label for="#{consideration.name}"
+    = I18n.t(consideration.name, scope: "helpers.label.#{form_name}")
+    span.form-hint
+      = I18n.t(consideration.name, scope: "helpers.hint.#{form_name}")
+  input.form-control type="text" name="#{consideration.name}" id="#{consideration.name}"
+
+

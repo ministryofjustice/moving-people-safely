@@ -1,0 +1,43 @@
+arson:
+  option: 'yes'
+  more_info: behavioural_issue
+  details: enjoys burning things
+interpreter_required:
+  option: 'yes'
+  language: canadian
+hearing_speach_sight:
+  option: 'yes'
+  details: impaired
+can_read_and_write:
+  option: 'no'
+conceals_weapons:
+  option: 'no'
+harassment:
+  option: 'no'
+non_association_markers:
+  option: 'no'
+rule_45:
+  option: 'no'
+csra:
+  option: 'standard'
+verbal_abuse:
+  option: 'no'
+physical_abuse:
+  option: 'no'
+open_acct:
+  option: 'yes'
+suicide:
+  option: 'no'
+current_e_risk:
+  option: 'no'
+category_a:
+  option: 'no'
+restricted_status:
+  option: 'no'
+sex_offence:
+  option: 'yes'
+  victim: 'under_18'
+  details: details
+violence:
+  option: 'no'
+

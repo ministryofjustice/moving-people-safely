@@ -2,7 +2,7 @@
   .search_block
     h2 Find a detainee
 
-    = form_for search_form, url: search_path, method: :post do |f|
+    = form_for search_form, as: 'search', builder: MpsFormBuilder, url: search_path, method: :post do |f|
       label Search by prison number. E.g. A1234AB
       .search_input_wrapper
         = f.search_text_field :prison_number

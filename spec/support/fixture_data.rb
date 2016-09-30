@@ -1,6 +1,11 @@
 module FixtureData
   module_function
 
+  def consideration(name)
+    file = File.join(Rails.root, 'spec', 'fixtures', "#{name}.yml")
+    YAML.load_file(file)
+  end
+
   def prison
     prisons.sample
   end

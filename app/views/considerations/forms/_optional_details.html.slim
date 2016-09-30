@@ -1,0 +1,6 @@
+.form-group.js-show-hide
+  = render partial: "considerations/forms/radio_toggle", locals: { consideration: consideration, form_name: form_name }
+  .optional-section-wrapper.panel.panel-border-narrow
+    .form-group
+      span.form-hint = I18n.t("#{consideration.name}_details", scope: "helpers.hint.#{form_name}")
+      = text_area_tag "#{consideration.name}[details]", consideration.details, class: 'form-control'

@@ -5,18 +5,11 @@
   h2
     ' Risk
     / small 16:44 | 04 Apr 2016
-  - unless risk.no_questions_answered?
-    .info-table.info-table-big
-      .grid-row
-        .column-one-sixth.answered_yes
-          small Risk
-          p = risk.questions_answered_yes
-        .column-one-sixth.answered_no
-          small No risk
-          p = risk.questions_answered_no
-        - unless risk.all_questions_answered?
-          .column-one-sixth.text-error.not_answered
-            small Missing
-            p = risk.questions_not_answered
-  - else
-    hr
+  .info-table.info-table-big
+    .grid-row
+      .column-one-sixth.answered_yes
+        small Answered
+        p = risk.questions_answered
+      .column-one-sixth.answered_no
+        small Unanswered
+        p = risk.questions_unanswered

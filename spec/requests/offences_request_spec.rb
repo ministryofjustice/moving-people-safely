@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Offences', type: :request do
   let(:detainee) { create(:detainee) }
-  let(:form_data) { { offences: detainee.offences.attributes } }
+  let(:form_data) { FixtureData.consideration(:offences) }
 
   describe "when not logged in" do
     it "get #show redirects to /sign_in" do
@@ -44,7 +44,11 @@ RSpec.describe 'Offences', type: :request do
       end
 
       context "posted data fails validation" do
-        let(:form_data) { { offences: { release_date: 'not a real date' } } }
+        let(:form_data) do
+          FixtureData.consideration(:offences).merge ({
+            release_date: { date: 'not a real date' }
+          })
+        end
 
         it "redirects to #show" do
           expect(response).to redirect_to "/#{detainee.id}/offences"

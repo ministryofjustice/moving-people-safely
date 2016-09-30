@@ -1,22 +1,16 @@
 #healthcare
   = render partial: 'status',
-    locals: { workflow: healthcare_workflow, not_started_path: healthcare_path(detainee, :physical), summary_path: summary_healthcare_index_path(detainee) }
+    locals: { workflow: healthcare_workflow, not_started_path: healthcare_path(detainee, :physical_issues), summary_path: summary_healthcare_index_path(detainee) }
 
   h2
     ' Healthcare
     / small 16:44 | 04 Apr 2016
-  - unless healthcare.no_questions_answered?
-    .info-table.info-table-big
-      .grid-row
-        .column-one-sixth.answered_yes
-          small Needs
-          p = healthcare.questions_answered_yes
-        .column-one-sixth.answered_no
-          small No need
-          p = healthcare.questions_answered_no
-        - unless healthcare.all_questions_answered?
-          .column-one-sixth.text-error.not_answered
-            small Missing
-            p = healthcare.questions_not_answered
-  - else
-    hr
+  .info-table.info-table-big
+    .grid-row
+      .column-one-sixth.answered_yes
+        small Answered
+        p = healthcare.questions_answered
+      .column-one-sixth.answered_no
+        small Unanswered
+        p = healthcare.questions_unanswered
+

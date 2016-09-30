@@ -4,7 +4,7 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
   scenario 'Reviewing the data of a reused PER' do
     login
 
-    detainee = create(:detainee, :with_completed_move)
+    detainee = create(:detainee, :with_completed_move, :with_completed_considerations)
 
     dashboard.search(detainee.prison_number)
     dashboard.click_add_new_move
@@ -30,10 +30,10 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     profile.confirm_offences_status('Review')
     profile.click_edit_offences
     offences.confirm_status('Review')
-    offences.save_and_continue
+    offences.confirm_and_save
     profile.confirm_offences_status('Complete')
 
-    profile.click_print
+    # profile.click_print
   end
 
   scenario 'Editing a completed document' do

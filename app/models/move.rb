@@ -23,6 +23,33 @@ class Move < ApplicationRecord
 
   scope :order_by_recentness, -> { order(created_at: :desc) }
 
+  # this should be in some kind of form, lol
+
+  REASONS = %w[
+    discharge_to_court
+    production_to_court
+    police_production
+    other
+  ]
+
+  validates :reason, inclusion: { in: REASONS }, allow_blank: true
+  validates :reason_details, presence: true, if: -> { reason == 'other' }
+  validate :validate_date
+
+  def validate_date
+    if date.is_a? Date
+      errors[:date] << 'must not be in the past.' if date < Date.today
+    else
+      errors.add(:date)
+    end
+  end
+
+  def reasons
+    REASONS
+  end
+
+  ####
+
   def initialize(*)
     super
     build_workflow

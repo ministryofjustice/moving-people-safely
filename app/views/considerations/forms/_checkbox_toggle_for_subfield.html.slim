@@ -1,0 +1,6 @@
+.form-group.js-checkbox-show-hide
+  = render partial: "considerations/forms/checkbox_toggle", locals: { consideration_name: field, form_name: form_name, checked: consideration.send(field) }
+  .optional-checkbox-section-wrapper
+    .form-group
+      span.form-hint = I18n.t("#{field}_details", scope: "helpers.hint.#{form_name}", default: field.to_s.humanize.capitalize)
+      = text_area_tag "#{consideration.name}[#{field}_details]", consideration.send("#{field}_details"), class: 'form-control'

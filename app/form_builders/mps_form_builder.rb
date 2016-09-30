@@ -1,15 +1,15 @@
 class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
   def radio_toggle(attribute, attribute_with_error = nil, choices = nil, &_blk)
     style = 'optional-section-wrapper'
-    style << ' mps-hide' unless object.public_send("#{attribute}_on?")
+    style << ' mps-hide' unless object.public_send("#{attribute}").try :on? # FIXME
     style << ' panel panel-border-narrow' unless error_for? attribute_with_error
     style << ' toggle_with_error' if error_for? attribute_with_error
-    choices ||= object.toggle_choices
+    choices ||= object.public_send(attribute).try :toggle_choices # FIXME
+    name = Considerations::Naming.namespaced_method_name(attribute, "option")
     content_tag(:div, class: 'form-group js-show-hide') do
       safe_join([
         content_tag(:div, class: 'controls-optional-section') do
-          radio_button_fieldset attribute,
-            choices: choices, inline: true
+          radio_button_fieldset name, choices: choices, inline: true
         end,
         (content_tag(:div, class: style) { yield } if block_given?)
       ])
@@ -17,20 +17,22 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
   end
 
   def radio_toggle_with_textarea(attribute)
-    attribute_details = :"#{attribute}_details"
+    attribute_details = Considerations::Naming.namespaced_method_name(attribute, "details")
     radio_toggle(attribute, attribute_details) do
-      text_area_without_label attribute_details
+      #text_area_without_label attribute_details
+      text_area_without_label attribute
     end
   end
 
   def field_without_label(field_type, attribute)
+    attribute_details = Considerations::Naming.namespaced_method_name(attribute, "details")
     content_tag :div,
-      class: form_group_classes(attribute),
-      id: form_group_id(attribute) do
+      class: attribute,
+      id: attribute do
       field_tag =
         field_type.new(
-          object.class.name, attribute, self,
-          value: object.public_send(attribute), class: 'form-control'
+          attribute, attribute_details, self,
+          value: object.public_send(attribute).details, class: 'form-control'
         ).render
       hint_tag = content_tag(:span, hint_text(attribute), class: 'form-hint')
       (hint_tag + field_tag).html_safe
@@ -39,7 +41,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
 
   def search_text_field(attribute)
     ActionView::Helpers::Tags::TextField.new(
-      object.class.name, attribute, self,
+      'search', attribute, self,
       value: object.public_send(attribute), class: 'form-control'
     ).render
   end
