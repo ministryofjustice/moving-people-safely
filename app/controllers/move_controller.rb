@@ -4,7 +4,7 @@ class MoveController < ApplicationController
   def move
     @_move ||= Move.find(params[:move_id])
   end
-  alias_method :active_move, :move
+  alias active_move move
 
   def detainee
     move.detainee

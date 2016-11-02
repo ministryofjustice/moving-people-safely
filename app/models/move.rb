@@ -12,7 +12,8 @@ class Move < ApplicationRecord
       order(created_at: :desc).
       eager_load(
         :detainee,
-        :workflow)
+        :workflow
+      )
   end)
 
   scope :active, -> { joins(:workflow).merge(Workflow.not_issued) }

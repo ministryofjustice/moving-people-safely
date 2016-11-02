@@ -23,7 +23,7 @@ module Nomis
       define_method(attr) { super()&.strip.humanize }
     end
 
-    alias_method :current?, :working_name
+    alias current? working_name
 
     def nationalities
       super.presence &&

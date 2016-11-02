@@ -1,6 +1,6 @@
 module Questionable
   def all_questions_answered?
-    questions_not_answered == 0
+    questions_not_answered.zero?
   end
 
   def no_questions_answered?
