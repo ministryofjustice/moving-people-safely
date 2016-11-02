@@ -36,7 +36,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'listen', '~> 3.0.5'
   gem 'meta_request'
-  gem 'rubocop', '~> 0.35.1', require: false
+  gem 'rubocop', '~> 0.45.0', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
