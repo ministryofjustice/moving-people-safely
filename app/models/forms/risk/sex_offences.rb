@@ -11,7 +11,7 @@ module Forms
 
       property :sex_offence_victim, type: StrictString
 
-      reset attributes: %i[ sex_offence_details ],
+      reset attributes: %i[sex_offence_details],
             if_falsey: :sex_offence_victim, enabled_value: UNDER_18
 
       property :sex_offence_details, type: StrictString

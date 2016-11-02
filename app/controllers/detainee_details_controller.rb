@@ -1,5 +1,5 @@
 class DetaineeDetailsController < DetaineeController
-  skip_before_action :redirect_unless_document_editable, only: %i[ new create ]
+  skip_before_action :redirect_unless_document_editable, only: %i[new create]
 
   def new
     form = Forms::DetaineeDetails.new(Detainee.new(prison_number: params[:prison_number]))

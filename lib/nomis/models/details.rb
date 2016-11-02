@@ -18,7 +18,7 @@ module Nomis
     attribute :working_name,    Boolean
     attribute :agency_location, String
 
-    %i[ forenames surname ].each do |attr|
+    %i[forenames surname].each do |attr|
       attribute attr, String
       define_method(attr) { super()&.strip.humanize }
     end

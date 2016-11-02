@@ -1,7 +1,7 @@
 module Forms
   module Healthcare
     class Medication < Forms::Base
-      CARRIER_VALUES = %w[ escort detainee ]
+      CARRIER_VALUES = %w[escort detainee]
 
       property :description,    type: StrictString
       property :administration, type: StrictString
