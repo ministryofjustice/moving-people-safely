@@ -1,7 +1,7 @@
 module Forms
   module Risk
     class Security < Forms::Base
-      E_RISK_VALUES = %w[ e_list_standard e_list_escort e_list_heightened ]
+      E_RISK_VALUES = %w[e_list_standard e_list_escort e_list_heightened].freeze
       optional_details_field :current_e_risk
       validates :current_e_risk_details,
         inclusion: { in: E_RISK_VALUES },

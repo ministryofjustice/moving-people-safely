@@ -1,7 +1,7 @@
 module Forms
   module Risk
     class Arson < Forms::Base
-      ARSON_VALUES = %w[ index_offence behavioural_issue small_risk ]
+      ARSON_VALUES = %w[index_offence behavioural_issue small_risk].freeze
 
       optional_details_field :arson
       property :arson_value, type: StrictString

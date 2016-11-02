@@ -11,7 +11,7 @@ class DashboardPresenter
   end
 
   def render_risk_indicator
-    if count_of_incomplete_risk == 0
+    if count_of_incomplete_risk.zero?
       cl = 'risk complete'
       title = 'Risk completed'
     else
@@ -23,7 +23,7 @@ class DashboardPresenter
   end
 
   def render_health_indicator
-    if count_of_incomplete_healthcare == 0
+    if count_of_incomplete_healthcare.zero?
       cl = 'healthcare complete'
       title = 'Health completed'
     else
@@ -35,7 +35,7 @@ class DashboardPresenter
   end
 
   def render_offences_indicator
-    if count_of_incomplete_offences == 0
+    if count_of_incomplete_offences.zero?
       cl = 'offences complete'
       title = 'Offences completed'
     else

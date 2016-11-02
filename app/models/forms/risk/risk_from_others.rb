@@ -7,9 +7,9 @@ module Forms
 
       concerning :CsraSection do
         included do
-          CSRA_HIGH = 'high'
-          CSRA_STANDARD = 'standard'
-          CSRA_TOGGLE_CHOICES = [CSRA_HIGH, CSRA_STANDARD, DEFAULT_CHOICE]
+          CSRA_HIGH = 'high'.freeze
+          CSRA_STANDARD = 'standard'.freeze
+          CSRA_TOGGLE_CHOICES = [CSRA_HIGH, CSRA_STANDARD, DEFAULT_CHOICE].freeze
 
           _define_attribute_is_on(:csra, 'high')
           property(:csra, type: StrictString, default: DEFAULT_CHOICE)
@@ -22,7 +22,7 @@ module Forms
             presence: true,
             if: -> { csra == CSRA_HIGH }
 
-          reset attributes: %i[ csra_details ],
+          reset attributes: %i[csra_details],
                 if_falsey: :csra, enabled_value: CSRA_HIGH
         end
 

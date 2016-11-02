@@ -11,7 +11,7 @@ class Workflow < ApplicationRecord
     unconfirmed: 3,
     confirmed: 4,
     issued: 5
-  }
+  }.freeze
 
   enum status: WORKFLOW_STATES
 

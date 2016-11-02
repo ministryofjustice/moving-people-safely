@@ -8,7 +8,7 @@ class Risk < ApplicationRecord
         current_e_risk category_a
         restricted_status substance_supply substance_use conceals_weapons arson
         damage_to_property interpreter_required hearing_speach_sight
-        can_read_and_write ]
+        can_read_and_write ].freeze
 
   def question_fields
     QUESTION_FIELDS

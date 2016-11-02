@@ -1,8 +1,8 @@
 module Forms
   module Risk
     class SexOffences < Forms::Base
-      UNDER_18 = 'under_18'
-      VICTIM_VALUES = ['adult_male', 'adult_female', UNDER_18]
+      UNDER_18 = 'under_18'.freeze
+      VICTIM_VALUES = ['adult_male', 'adult_female', UNDER_18].freeze
 
       optional_field :sex_offence
 
@@ -11,7 +11,7 @@ module Forms
 
       property :sex_offence_victim, type: StrictString
 
-      reset attributes: %i[ sex_offence_details ],
+      reset attributes: %i[sex_offence_details],
             if_falsey: :sex_offence_victim, enabled_value: UNDER_18
 
       property :sex_offence_details, type: StrictString

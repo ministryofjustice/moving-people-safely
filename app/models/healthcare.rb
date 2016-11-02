@@ -4,7 +4,7 @@ class Healthcare < ApplicationRecord
 
   QUESTION_FIELDS =
     %w[ physical_issues mental_illness phobias personal_hygiene
-        personal_care allergies dependencies has_medications mpv ]
+        personal_care allergies dependencies has_medications mpv ].freeze
 
   has_many :medications, dependent: :destroy
 
