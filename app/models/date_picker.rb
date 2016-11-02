@@ -1,5 +1,5 @@
 class DatePicker
-  FORMAT = '%d/%m/%Y'
+  FORMAT = '%d/%m/%Y'.freeze
 
   def initialize(date_from_session)
     if date_from_session.present?

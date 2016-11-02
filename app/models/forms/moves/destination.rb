@@ -1,7 +1,7 @@
 module Forms
   module Moves
     class Destination < Forms::Base
-      MUST_RETURN_VALUES = %w[must_return must_not_return unknown]
+      MUST_RETURN_VALUES = %w[must_return must_not_return unknown].freeze
 
       property :establishment, type: StrictString
       property :must_return,   type: StrictString, default: 'unknown'

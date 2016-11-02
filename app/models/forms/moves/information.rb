@@ -6,7 +6,7 @@ module Forms
         production_to_court
         police_production
         other
-      ]
+      ].freeze
 
       property :from,             type: StrictString, default: 'HMP Bedford'
       property :to,               type: StrictString

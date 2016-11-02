@@ -1,6 +1,6 @@
 module Forms
   class DetaineeDetails < Forms::Base
-    GENDERS = %w[male female]
+    GENDERS = %w[male female].freeze
 
     property :prison_number, type: StrictString
     property :surname,       type: StrictString
