@@ -31,12 +31,10 @@
   
 ## Setup
 
-* Install dependencies by running `bundle`
-
-* Setup database
+* Install dependencies and setup database
 
   ```bash
-  bundle exec rake db:setup
+  bundle exec bin/setup
   ```
 
 * Seeding data for **development** environment **only**
@@ -57,6 +55,13 @@
   ```bash
   bundle exec rspec
   ```
+  
+# Running cops
+
+  ```bash
+  bundle exec rubocop
+  ```
+  
 # Deployment
 
   TBD
