@@ -1,5 +1,12 @@
 GIT
-  remote: git://github.com/shadabahmed/logstasher.git
+  remote: https://github.com/ministryofjustice/govuk_elements_form_builder.git
+  revision: a27071223a9ab2338dd69b357c88365c902a6fdf
+  specs:
+    govuk_elements_form_builder (0.0.1)
+      rails (>= 4.2)
+
+GIT
+  remote: https://github.com/shadabahmed/logstasher.git
   revision: 4b19d78d6d043c042fa6c17d3980702015e8645f
   ref: 4b19d78d6d043c042fa6c17d3980702015e8645f
   specs:
@@ -8,13 +15,6 @@ GIT
       activesupport (>= 4.0)
       logstash-event (~> 1.2.0)
       request_store
-
-GIT
-  remote: https://github.com/ministryofjustice/govuk_elements_form_builder.git
-  revision: a27071223a9ab2338dd69b357c88365c902a6fdf
-  specs:
-    govuk_elements_form_builder (0.0.1)
-      rails (>= 4.2)
 
 GEM
   remote: https://rubygems.org/
