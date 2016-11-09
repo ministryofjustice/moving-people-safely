@@ -5,7 +5,7 @@
     = form_for search_form, url: search_path, method: :post do |f|
       label Search by prison number. E.g. A1234AB
       .search_input_wrapper
-        = f.search_text_field :prison_number
+        = f.search_text_field :prison_number, name: 'prison_number'
         = f.submit class: 'search_button', value: 'Search'
 
     - if search_form.detainee
@@ -20,7 +20,7 @@
 
 .date-picker
   = form_tag(date_picker_path) do
-    input type="hidden" name="search" value="#{prison_number}"
+    = hidden_field_tag "prison_number", prison_number
 
     label
       span.label Detainees due to move on

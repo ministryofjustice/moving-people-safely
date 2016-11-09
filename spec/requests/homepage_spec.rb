@@ -12,8 +12,8 @@ RSpec.describe 'Homepage', type: :request do
       end
     end
 
-    context "with validating search params" do
-      before { get '/?search=A1234AB' }
+    context "with valid search params" do
+      before { get '/?prison_number=A1234AB' }
 
       it "responds with a 200 code" do
         expect(response.status).to eql 200
@@ -21,7 +21,7 @@ RSpec.describe 'Homepage', type: :request do
     end
 
     context "with invalid search params" do
-      before { get '/?search=FAIL' }
+      before { get '/?prison_number=FAIL' }
 
       it "responds with a 200 code" do
         expect(response.status).to eql 200
@@ -31,16 +31,11 @@ RSpec.describe 'Homepage', type: :request do
 
   describe "#search" do
     before do
-      post "/search",
-        params: {
-          search: {
-            'prison_number' => 'XXX'
-          }
-        }
+      post "/search", params: { 'prison_number' => 'XXX' }
     end
 
     it "redirects to /" do
-      expect(response).to redirect_to "/?search=XXX"
+      expect(response).to redirect_to "/?prison_number=XXX"
     end
   end
 
@@ -48,19 +43,19 @@ RSpec.describe 'Homepage', type: :request do
     before do
       post "/date",
         params: {
-          search: search,
+          prison_number: prison_number,
           date_picker: date,
           commit: commit
         }
     end
 
-    let(:search) { 'A1234AB' }
+    let(:prison_number) { 'A1234AB' }
     let(:date) { '01/02/2003' }
     let(:commit) { 'Go' }
 
     context "with a valid date" do
       it "redirects to /" do
-        expect(response).to redirect_to "/?search=#{search}"
+        expect(response).to redirect_to "/?prison_number=#{prison_number}"
       end
 
       it "leaves the user submitted value in the session" do
@@ -81,7 +76,7 @@ RSpec.describe 'Homepage', type: :request do
         it "increments the date in the session" do
           post "/date",
             params: {
-              search: search,
+              prison_number: prison_number,
               date_picker: date,
               commit: '>'
             }

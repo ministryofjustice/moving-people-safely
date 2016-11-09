@@ -2,18 +2,18 @@ class HomepageController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def show
-    search_form.validate(prison_number: params[:search]) if params[:search]
+    search_form.validate(search_params) if search_params
     render :show, locals: locals
   end
 
   def search
-    redirect_to root_path redirect_params(params[:search]['prison_number'])
+    redirect_to root_path(search_params)
   end
 
   def date
     configure_date_picker
     session[:date_in_view] = date_picker.to_s
-    redirect_to root_path redirect_params(params[:search])
+    redirect_to root_path(search_params)
   end
 
   private
@@ -35,19 +35,11 @@ class HomepageController < ApplicationController
     end
   end
 
-  def redirect_params(search_query)
-    if search_query.present?
-      { search: search_query }
-    else
-      {}
-    end
-  end
-
   def locals
     {
       search_form: search_form,
       date_picker: date_picker,
-      prison_number: params[:search],
+      prison_number: params[:prison_number],
       dashboard: DashboardPresenter.new(date_picker.date)
     }
   end
@@ -58,5 +50,9 @@ class HomepageController < ApplicationController
 
   def search_form
     @_search_form ||= Forms::Search.new
+  end
+
+  def search_params
+    params.permit(:prison_number)
   end
 end
