@@ -18,6 +18,3 @@
 
 # Ignore test artifacts
 /spec/examples.txt
-
-# OMG OSX
-.DS_Store
