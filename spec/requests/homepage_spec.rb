@@ -29,9 +29,9 @@ RSpec.describe 'Homepage', type: :request do
     end
   end
 
-  describe "#search" do
+  describe "#detainees" do
     before do
-      post "/search", params: { 'prison_number' => 'XXX' }
+      post detainees_search_path, params: { 'prison_number' => 'XXX' }
     end
 
     it "redirects to /" do
@@ -39,14 +39,16 @@ RSpec.describe 'Homepage', type: :request do
     end
   end
 
-  describe "#date_picker" do
+  describe "#moves" do
+    let(:params) {
+      {
+        prison_number: prison_number,
+        moves_due_on: date,
+        commit: commit
+      }
+    }
     before do
-      post "/date",
-        params: {
-          prison_number: prison_number,
-          date_picker: date,
-          commit: commit
-        }
+      post moves_search_path, params: params
     end
 
     let(:prison_number) { 'A1234AB' }
@@ -55,11 +57,11 @@ RSpec.describe 'Homepage', type: :request do
 
     context "with a valid date" do
       it "redirects to /" do
-        expect(response).to redirect_to "/?prison_number=#{prison_number}"
+        expect(response).to redirect_to root_path(prison_number: prison_number)
       end
 
       it "leaves the user submitted value in the session" do
-        expect(session[:date_in_view]).to eql date
+        expect(session[:moves_due_on]).to eql date
       end
     end
 
@@ -67,21 +69,21 @@ RSpec.describe 'Homepage', type: :request do
       let(:commit) { 'today' }
 
       it "sets todays date in the session" do
-        expect(session[:date_in_view]).to eql Date.today.strftime('%d/%m/%Y')
+        expect(session[:moves_due_on]).to eql Date.today.strftime('%d/%m/%Y')
       end
     end
 
     context "with a previously viewed date in the session" do
       describe ">" do
         it "increments the date in the session" do
-          post "/date",
+          post moves_search_path,
             params: {
               prison_number: prison_number,
-              date_picker: date,
+              moves_due_on: date,
               commit: '>'
             }
 
-            expect(session[:date_in_view]).to eql '02/02/2003'
+            expect(session[:moves_due_on]).to eql '02/02/2003'
         end
       end
     end

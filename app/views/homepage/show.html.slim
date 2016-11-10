@@ -2,7 +2,7 @@
   .search_block
     h2 Find a detainee
 
-    = form_for search_form, url: search_path, method: :post do |f|
+    = form_for search_form, url: detainees_search_path, method: :post do |f|
       label Search by prison number. E.g. A1234AB
       .search_input_wrapper
         = f.search_text_field :prison_number, name: 'prison_number'
@@ -19,13 +19,13 @@
         locals: { prison_number: search_form.prison_number }
 
 .date-picker
-  = form_tag(date_picker_path) do
+  = form_tag(moves_search_path) do
     = hidden_field_tag "prison_number", prison_number
 
     label
       span.label Detainees due to move on
       span.date-field
-        input.form-control type='text' value="#{date_picker}" name='date_picker'
+        = text_field_tag 'moves_due_on', date_picker, class: 'form-control'
     input.go type='submit' value='Go' name='commit'
     span.nav-group
       input type='submit' value='<' name='commit'

@@ -2,50 +2,34 @@ class HomepageController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def show
-    search_form.validate(search_params) if search_params
+    search_form.validate(search_params) if search_params.present?
+    @moves = Move.for_date(date_picker.date)
     render :show, locals: locals
   end
 
-  def search
+  def detainees
     redirect_to root_path(search_params)
   end
 
-  def date
-    configure_date_picker
-    session[:date_in_view] = date_picker.to_s
+  def moves
+    date_picker.configure(date_picker_params)
+    session[:moves_due_on] = date_picker.to_s
     redirect_to root_path(search_params)
   end
 
   private
-
-  def configure_date_picker
-    case params[:commit]
-    when 'today'
-      AnalyticsEvent.publish('date_change', new_date: :today)
-      date_picker.today
-    when '<'
-      AnalyticsEvent.publish('date_change', new_date: :back)
-      date_picker.back
-    when '>'
-      AnalyticsEvent.publish('date_change', new_date: :forward)
-      date_picker.forward
-    when 'Go'
-      AnalyticsEvent.publish('date_change', new_date: params[:date_picker])
-      date_picker.date = params[:date_picker]
-    end
-  end
 
   def locals
     {
       search_form: search_form,
       date_picker: date_picker,
       prison_number: params[:prison_number],
-      dashboard: DashboardPresenter.new(date_picker.date)
+      dashboard: DashboardPresenter.new(@moves)
     }
   end
 
   def date_picker
-    @_date_picker ||= DatePicker.new(session[:date_in_view])
+    @_date_picker ||= DatePickerPresenter.new(session[:moves_due_on])
   end
 
   def search_form
@@ -53,6 +37,10 @@ class HomepageController < ApplicationController
   end
 
   def search_params
-    params.permit(:prison_number)
+    params.permit(:prison_number).delete_if { |_key, value| value.blank? }
+  end
+
+  def date_picker_params
+    { date_shift: params[:commit], date: params[:moves_due_on] }.delete_if { |_key, value| value.blank? }
   end
 end

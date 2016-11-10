@@ -10,10 +10,7 @@ class Move < ApplicationRecord
   scope :for_date, (lambda do |search_date|
     where(date: search_date).
       order(created_at: :desc).
-      eager_load(
-        :detainee,
-        :workflow
-      )
+      eager_load(:detainee, :workflow)
   end)
 
   scope :active, -> { joins(:workflow).merge(Workflow.not_issued) }
