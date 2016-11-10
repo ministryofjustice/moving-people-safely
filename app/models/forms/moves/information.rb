@@ -1,18 +1,20 @@
 module Forms
   module Moves
     class Information < Forms::Base
-      REASONS = %w[
+      REASON_WITH_DETAILS = 'other'.freeze
+      REASONS = (%w[
         discharge_to_court
         production_to_court
         police_production
-        other
-      ].freeze
+      ] + [REASON_WITH_DETAILS]).freeze
 
       property :from,             type: StrictString, default: 'HMP Bedford'
       property :to,               type: StrictString
       property :date,             type: TextDate
-      property :reason,           type: StrictString
-      property :reason_details,   type: StrictString
+
+      _define_attribute_is_on(:reason, REASON_WITH_DETAILS)
+      property :reason, type: StrictString
+      property :reason_details, type: StrictString
 
       optional_field :has_destinations
       prepopulated_collection :destinations
@@ -25,7 +27,10 @@ module Forms
 
       validates :reason_details,
         presence: true,
-        if: -> { reason == 'other' }
+        if: -> { reason == REASON_WITH_DETAILS }
+      reset attributes: [:reason_details],
+            if_falsey: :reason,
+            enabled_value: REASON_WITH_DETAILS
 
       validate :validate_date
 

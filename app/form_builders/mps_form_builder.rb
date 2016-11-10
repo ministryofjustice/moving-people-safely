@@ -1,5 +1,5 @@
 class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
-  def radio_toggle(attribute, attribute_with_error = nil, choices = nil, &_blk)
+  def radio_toggle(attribute, attribute_with_error = nil, choices = nil, options = {}, &_blk)
     style = 'optional-section-wrapper'
     style << ' mps-hide' unless object.public_send("#{attribute}_on?")
     style << ' panel panel-border-narrow' unless error_for? attribute_with_error
@@ -9,16 +9,16 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
       safe_join([
         content_tag(:div, class: 'controls-optional-section') do
           radio_button_fieldset attribute,
-            choices: choices, inline: true
+            choices: choices, inline: options.fetch(:inline_choices, true)
         end,
         (content_tag(:div, class: style) { yield } if block_given?)
       ])
     end
   end
 
-  def radio_toggle_with_textarea(attribute)
+  def radio_toggle_with_textarea(attribute, options = {})
     attribute_details = :"#{attribute}_details"
-    radio_toggle(attribute, attribute_details) do
+    radio_toggle(attribute, attribute_details, options[:choices], options) do
       text_area_without_label attribute_details
     end
   end

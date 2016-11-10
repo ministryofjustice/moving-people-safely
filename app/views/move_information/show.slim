@@ -9,13 +9,7 @@
     = f.text_field :from
     = f.text_field :to
     = f.text_field :date
-
-    .js-show-hide
-      .form-group.controls-optional-section
-        = f.radio_button_fieldset :reason,
-          choices: form.reasons
-      .form-group.panel.panel-border-narrow.optional-section-wrapper
-        = f.text_area :reason_details
+    = f.radio_toggle_with_textarea :reason, choices: form.reasons, inline_choices: false
 
     .multiple
       = f.radio_toggle :has_destinations do
