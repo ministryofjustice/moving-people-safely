@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, skip: %i[ registrations ]
+  devise_for :users, skip: %i[ registrations ],
+		controllers: { omniauth_callbacks: 'callbacks' }
 
   scope ':detainee_id' do
     resource :detainee_details, only: %i[ show update ], path: 'detainee-details'
