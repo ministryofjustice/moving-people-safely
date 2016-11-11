@@ -62,6 +62,7 @@
 
 .mps-hide {
   @include js-only {
-    display: none;
+    left: -1000px;
+    position: absolute;
   }
 }
