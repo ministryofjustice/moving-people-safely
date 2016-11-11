@@ -12,25 +12,15 @@ module Forms
       property :to,               type: StrictString
       property :date,             type: TextDate
 
-      _define_attribute_is_on(:reason, REASON_WITH_DETAILS)
-      property :reason, type: StrictString
-      property :reason_details, type: StrictString
+      property_with_details :reason,
+        type: StrictString,
+        options: REASONS,
+        option_with_details: REASON_WITH_DETAILS
 
       optional_field :has_destinations
       prepopulated_collection :destinations
 
       delegate :persisted?, to: :model
-
-      validates :reason,
-        inclusion: { in: REASONS },
-        allow_blank: true
-
-      validates :reason_details,
-        presence: true,
-        if: -> { reason == REASON_WITH_DETAILS }
-      reset attributes: [:reason_details],
-            if_falsey: :reason,
-            enabled_value: REASON_WITH_DETAILS
 
       validate :validate_date
 
