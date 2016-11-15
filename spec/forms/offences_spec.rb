@@ -50,11 +50,28 @@ RSpec.describe Forms::Offences, type: :form do
       expect(subject.to_nested_hash).to eq coerced_params
     end
 
-    it { is_expected.to validate_presence_of(:release_date) }
-    it { is_expected.to validate_string_as_date(:release_date) }
     it { is_expected.to validate_prepopulated_collection :current_offences }
     it { is_expected.to validate_prepopulated_collection :past_offences }
     it { is_expected.to validate_optional_field(:has_past_offences) }
+
+    specify { expect(subject.validate(form_data)).to eq(true) }
+
+    context 'when release date is not provided' do
+      specify { expect(subject.validate(form_data.except('release_date'))).to eq(true) }
+    end
+
+    context 'when release date is blank' do
+      specify { expect(subject.validate(form_data.merge('release_date' => ''))).to eq(true) }
+    end
+
+    context 'when release date is not a valid date' do
+      before do
+        subject.validate(form_data.merge('release_date' => 'not-a-date'))
+      end
+
+      specify { expect(subject.valid?).to eq(false) }
+      specify { expect(subject.errors[:release_date]).to eq([I18n.t(:invalid, scope: 'errors.messages')]) }
+    end
 
     describe 'details fields associated with checkboxes' do
       it { is_expected.to be_configured_to_reset(['not_for_release_details']).when(:not_for_release).not_set_to(true) }
