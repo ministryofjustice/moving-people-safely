@@ -48,11 +48,11 @@ module Forms
         instance_methods.include?(method_name)
       end
 
-      def optional_field(field_name)
-        _define_attribute_is_on(field_name, TOGGLE_YES)
-        property(field_name, type: String)
+      def optional_field(field_name, options = {})
+        _define_attribute_is_on(field_name, options.fetch(:option_with_details, TOGGLE_YES))
+        property(field_name, type: options.fetch(:type, String))
         validates field_name,
-          inclusion: { in: TOGGLE_CHOICES },
+          inclusion: { in: options.fetch(:options, TOGGLE_CHOICES) },
           allow_blank: true
       end
 
@@ -63,6 +63,18 @@ module Forms
           presence: true,
           if: -> { public_send(field_name) == TOGGLE_YES }
         reset attributes: ["#{field_name}_details"], if_falsey: field_name
+      end
+
+      def property_with_details(field_name, options = {})
+        optional_field(field_name, options)
+        property("#{field_name}_details", type: StrictString)
+        option_with_details = options.fetch(:option_with_details, TOGGLE_YES)
+        validates "#{field_name}_details",
+          presence: true,
+          if: -> { public_send(field_name) == option_with_details }
+        reset attributes: ["#{field_name}_details"],
+          if_falsey: field_name,
+          enabled_value: option_with_details
       end
 
       def optional_checkbox(field_name, toggle = nil)
