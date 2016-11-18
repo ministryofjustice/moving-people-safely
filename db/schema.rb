@@ -16,16 +16,6 @@ ActiveRecord::Schema.define(version: 20160922130855) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "considerations", force: :cascade do |t|
-    t.string   "name"
-    t.jsonb    "properties",  default: {}
-    t.string   "type"
-    t.uuid     "detainee_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.index ["detainee_id"], name: "index_considerations_on_detainee_id", using: :btree
-  end
-
   create_table "current_offences", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "offences_id"
     t.string   "offence"
