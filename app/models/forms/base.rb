@@ -53,7 +53,7 @@ module Forms
         property(field_name, type: options.fetch(:type, String))
         validates field_name,
           inclusion: { in: options.fetch(:options, TOGGLE_CHOICES) },
-          allow_blank: true
+          allow_blank: options.fetch(:allow_blank, true)
       end
 
       def optional_details_field(field_name)
@@ -174,6 +174,10 @@ module Forms
 
     def toggle_choices
       TOGGLE_CHOICES
+    end
+
+    def toggle_field
+      TOGGLE_YES
     end
   end
 end

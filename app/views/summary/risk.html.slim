@@ -2,7 +2,7 @@
   = render partial: 'summary/status', locals: { workflow: risk_workflow, title: 'Risk' }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'risk_to_self', questions: %w[ open_acct suicide ], path: risk_path(detainee, 'risk_to_self') }
+    locals: { presenter: SummaryPresenter.new(risk), section: 'risk_to_self', questions: %w[acct_status], path: risk_path(detainee, 'risk_to_self') }
 
   = render partial: 'summary/section',
     locals: { presenter: SummaryPresenter.new(risk), section: 'risk_from_others', questions: %w[ rule_45 csra verbal_abuse physical_abuse ], path: risk_path(detainee, 'risk_from_others') }

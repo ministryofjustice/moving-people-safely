@@ -36,8 +36,7 @@ en:
         verbal_abuse: Is the detainee at risk of verbal abuse from others?
         physical_abuse: Is the detainee at risk of physical abuse from others?
       risk_to_self:
-        open_acct: Open ACCT?
-        suicide: Risk of suicide or self-harm?
+        acct_status: What is the most recent ACCT status of the detainee?
       security:
         category_a: Category A?
         current_e_risk: Current E-risk?
@@ -138,11 +137,13 @@ en:
         physical_abuse:
           unknown: Clear selection
       risk_to_self:
-        open_acct:
-          unknown: Clear selection
-        suicide:
-          unknown: Clear selection
-        suicide_details: Risk of suicide or self-harm details
+        acct_status: ACCT Status
+        acct_status_details: Give details
+          # open: ACCT Open
+          # post_closure: ACCT Post Closure
+          # closed_in_last_6_months: ACCT Closed, in the last 6 months
+          # not_available: None of the above
+        date_of_most_recently_closed_acct: Date of most recently closed ACCT
       security:
         category_a:
           unknown: Clear selection
@@ -236,6 +237,7 @@ en:
           Give details of recent suicide or self-harm attempts and
           previous ACCTs
         suicide_details: Give details
+        date_of_most_recently_closed_acct: DD/MM/YYYY
       security:
         category_a_details: Give details
         current_e_risk: Please see PSI 2011/56 Management and Security of Escape List (E List prisoners)

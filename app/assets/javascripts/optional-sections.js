@@ -9,33 +9,14 @@ $(function () {
 
   var manageStateOfOptionalSection = function ($input, $optional_section_wrapper, $clear_selection_control) {
     var id = $input.attr('id');
-    switch (true) {
-      case /_yes$/.test(id):
-        show($optional_section_wrapper);
-        show($clear_selection_control);
-        break;
-      case /_high$/.test(id):
-        show($optional_section_wrapper);
-        show($clear_selection_control);
-        break;
-      case /_standard$/.test(id):
-        hide($optional_section_wrapper);
-        show($clear_selection_control);
-        break;
-      case /_no$/.test(id):
-        hide($optional_section_wrapper);
-        show($clear_selection_control);
-        break;
-      case /_unknown$/.test(id):
-        hide($optional_section_wrapper);
-        hide($clear_selection_control);
-        break;
-      case /_other$/.test(id):
-        show($optional_section_wrapper);
-        break;
-      default:
-        hide($optional_section_wrapper);
-        hide($clear_selection_control);
+    var data = $input.closest($.fn.optional_section.defaults['controls_for_optional_section']).attr('data-toggle-field');
+
+    if($input.val() != undefined && $input.val() == data){
+      show($optional_section_wrapper);
+      show($clear_selection_control);
+    } else {
+      hide($optional_section_wrapper);
+      show($clear_selection_control);
     }
   };
 

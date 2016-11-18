@@ -29,6 +29,10 @@ module Forms
         def csra_toggle_choices
           CSRA_TOGGLE_CHOICES
         end
+
+        def csra_toggle_field
+          CSRA_HIGH
+        end
       end
     end
   end

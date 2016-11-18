@@ -1,5 +1,5 @@
 class DateValidator < ActiveModel::EachValidator
-  DEFAULT_FORMAT = '%d/%m/%Y'
+  DEFAULT_FORMAT = '%d/%m/%Y'.freeze
 
   def validate_each(record, attribute, value)
     value = parse_date(value, options[:format]) if value.is_a?(String)

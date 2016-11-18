@@ -7,7 +7,7 @@ module Page
     end
 
     def confirm_risk_details(risk)
-      check_section(risk, 'risk_to_self', %w[ open_acct suicide ])
+      check_section(risk, 'risk_to_self', %w[acct_status])
       check_section(risk, 'risk_from_others', %w[ rule_45 csra verbal_abuse physical_abuse ])
       if risk.violent == 'yes'
         check_section(risk, 'violence', %w[ prison_staff risk_to_females escort_or_court_staff healthcare_staff other_detainees homophobic racist public_offence_related police ])
