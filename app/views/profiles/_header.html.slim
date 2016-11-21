@@ -16,7 +16,7 @@ table.detainee
       span.text = risk.csra_details
 
     td
-      span = image_tag "open_acct_#{risk.acct_status}.png"
+      span = image_tag "#{acct_status_image(risk.acct_status)}.png"
 
   tr
     td
