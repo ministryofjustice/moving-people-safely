@@ -46,8 +46,8 @@ RSpec.describe 'managing move destinations', type: :feature do
   def expect_all_destinations_to_be_deleted
     expect(destination_els.size).to eq 1
     within_destination(:first) do
-      expect(find_field('Establishment').value).to be_blank
-      expect(find_field('reasons').value).to be_blank
+      expect(find_field('Establishment', visible: false).value).to be_blank
+      expect(find_field('reasons', visible: false).value).to be_blank
     end
   end
 
@@ -77,11 +77,13 @@ RSpec.describe 'managing move destinations', type: :feature do
   end
 
   def delete_destination(position:)
-    within_destination(position) { check 'Remove' }
+    within_destination(position) {
+      find('label', text: 'Remove').click || check('Remove')
+    }
   end
 
   def destination_els
-    all('.multiple-wrapper').to_a
+    all('.multiple-wrapper', visible: false).to_a
   end
 
   def within_destination(position, &_blk)

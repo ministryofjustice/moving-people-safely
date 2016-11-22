@@ -8,23 +8,23 @@ table.detainee
         = image_tag detainee.image_filename, size: '128x180'
 
     td
-      span = image_tag "not_for_release_#{offences.not_for_release}.png"
+      span#not_for_release_header = image_tag "not_for_release_#{offences.not_for_release}.png"
       span.text = offences.not_for_release_details
 
     td
-      span = image_tag "csra_#{risk.csra}.png"
+      span#csra_header = image_tag "csra_#{risk.csra}.png"
       span.text = risk.csra_details
 
     td
-      span = image_tag "#{acct_status_image(risk.acct_status)}.png"
+      span#acct_status_header = image_tag "#{acct_status_image(risk.acct_status)}.png"
 
   tr
     td
-      span = image_tag "rule_45_#{risk.rule_45}.png"
+      span#rule_45_header = image_tag "rule_45_#{risk.rule_45}.png"
       span.text = risk.rule_45_details
 
     td
-      span = image_tag "category_a_#{risk.category_a}.png"
+      span#category_a_header = image_tag "category_a_#{risk.category_a}.png"
       span.text = risk.category_a_details
 
     td

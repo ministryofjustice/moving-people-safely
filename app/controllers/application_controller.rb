@@ -65,8 +65,6 @@ class ApplicationController < ActionController::Base
       has_destinations: 'no'
     })
     detainee.risk = Risk.create({
-      open_acct: 'no',
-      suicide: 'no',
       rule_45: 'no',
       csra: 'standard',
       verbal_abuse: 'no',
