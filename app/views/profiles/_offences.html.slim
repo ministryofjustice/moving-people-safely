@@ -4,15 +4,24 @@
 
   h2
     ' Offences
-    / small 16:44 | 04 Apr 2016
   - if offences.all_questions_answered?
-    .info-table
+    #offences-summary.info-table
       .grid-row
-        .column-one-half
+        #current-offences-summary.column-one-half
           small Current offences
-          p == offences.styled_current_offences
-        .column-one-half
+          - if offences.current_offences.empty?
+            p = 'None'
+          - else
+            ul.info-list
+              - offences.current_offences.each do |offence|
+                li == offence.offence
+        #past-offences-summary.column-one-half
           small Significant past offences
-          p == offences.styled_past_offences
+          - if offences.past_offences.empty?
+            p = 'None'
+          - else
+            ul.info-list
+              - offences.past_offences.each do |offence|
+                li == offence.offence
   - else
     hr

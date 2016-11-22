@@ -4,6 +4,6 @@ class Offences < ApplicationRecord
   has_many :past_offences, dependent: :destroy
 
   def all_questions_answered?
-    release_date.present? && current_offences.any?
+    current_offences.any?
   end
 end

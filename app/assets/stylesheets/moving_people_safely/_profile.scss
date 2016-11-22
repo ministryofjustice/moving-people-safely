@@ -90,6 +90,15 @@
     }
   }
 
+  ul.info-list {
+    list-style: none;
+    margin-top: 5px;
+
+    li {
+      font-weight: bold;
+    }
+  }
+
   .column-one-sixth {
     @extend .column-one-third;
     width: (100% / 6);

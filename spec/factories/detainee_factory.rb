@@ -29,5 +29,13 @@ FactoryGirl.define do
     trait :with_completed_move do
       moves { build_list :move, 1, :issued }
     end
+
+    trait :with_no_offences do
+      offences { build :offences, :empty_record }
+    end
+
+    trait :with_no_current_offences do
+      association :offences, :with_no_current_offences, factory: :offences, strategy: :build
+    end
   end
 end
