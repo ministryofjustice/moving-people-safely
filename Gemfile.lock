@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/ministryofjustice/govuk_elements_form_builder.git
-  revision: a27071223a9ab2338dd69b357c88365c902a6fdf
+  revision: 72d4f260de4175660c23c96b855f106059000cfc
   specs:
     govuk_elements_form_builder (0.0.1)
       rails (>= 4.2)
@@ -63,7 +63,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    arel (7.1.2)
+    arel (7.1.4)
     ast (2.3.0)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
