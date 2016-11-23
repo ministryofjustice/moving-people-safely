@@ -37,7 +37,11 @@ module Page
     end
 
     def fill_past_offences(offences)
-      return unless offences && !offences.empty?
+      unless offences && !offences.empty?
+        choose 'No'
+        return
+      end
+
       choose 'Yes'
       offences.each_with_index do |offence, index|
         field_prefix = 'offences_past_offences_attributes'

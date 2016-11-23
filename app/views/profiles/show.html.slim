@@ -4,5 +4,5 @@
   = render partial: 'detainee', locals: { detainee: DetaineePresenter.new(detainee) }
   = render partial: 'risk'
   = render partial: 'healthcare'
-  = render partial: 'offences', locals: { offences: offences }
+  = render partial: 'offences', locals: { offences: OffencesPresenter.new(offences) }
   = render partial: 'actions'

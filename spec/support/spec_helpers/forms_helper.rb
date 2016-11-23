@@ -3,8 +3,8 @@ module FormsHelper
     ValidatePrepopulatedCollection.new(field_name)
   end
 
-  def validate_optional_field(field_name)
-    ValidateOptionalField.new(field_name)
+  def validate_optional_field(field_name, options = {})
+    ValidateOptionalField.new(field_name, options)
   end
 
   def validate_optional_details_field(field_name)
