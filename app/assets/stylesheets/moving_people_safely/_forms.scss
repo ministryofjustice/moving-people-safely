@@ -134,10 +134,6 @@ form {
   }
 
   .multiple-add {
-    position: absolute;
-    top: 100%;
-    margin-top: -20px;
-
     input {
       @extend .styled-as-link;
     }

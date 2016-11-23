@@ -64,5 +64,6 @@
   @include js-only {
     left: -1000px;
     position: absolute;
+    visibility: hidden;
   }
 }
