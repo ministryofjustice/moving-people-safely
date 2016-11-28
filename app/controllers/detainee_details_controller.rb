@@ -3,15 +3,7 @@ class DetaineeDetailsController < DetaineeController
 
   def new
     form = Forms::DetaineeDetails.new(Detainee.new(prison_number: params[:prison_number]))
-
-    # just for User Testing purposes 9/8/2016
-    if params[:prison_number].upcase == LENNIE_GODBER
-      form.validate attributes_for_lennie_godber
-    # end of testing code. TODO: delete me
-
-    elsif flash[:form_data]
-      form.validate flash[:form_data]
-    end
+    form.validate flash[:form_data] if flash[:form_data]
 
     render :show, locals: { form: form, submit_path: detainee_path }
   end

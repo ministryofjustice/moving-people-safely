@@ -7,15 +7,7 @@ class HomepageController < ApplicationController
   end
 
   def search
-    # just for User Testing purposes 9/8/2016
-    if params[:search]['prison_number'].upcase == PETER_SMITH
-      d = create_peter_smith
-      redirect_to root_path redirect_params(d.prison_number)
-    # end of testing code. TODO - delete me
-
-    else
-      redirect_to root_path redirect_params(params[:search]['prison_number'])
-    end
+    redirect_to root_path redirect_params(params[:search]['prison_number'])
   end
 
   def date
