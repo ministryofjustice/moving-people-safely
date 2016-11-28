@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Forms::CurrentOffence, type: :form do
-  subject { described_class.new(model) }
+  subject(:form) { described_class.new(model) }
 
   # FIXME: save spec explodes, we don't really need to test this as reform owns it
   let(:model) { CurrentOffence.new(offences: Offences.new) }
@@ -15,7 +15,10 @@ RSpec.describe Forms::CurrentOffence, type: :form do
 
   describe "#validate" do
     it { is_expected.to validate_presence_of(:offence) }
-    it { is_expected.to validate_presence_of(:case_reference) }
+
+    context 'when case reference is not provided' do
+      specify { expect(form.validate(form_data.except('case_reference'))).to eq(true) }
+    end
   end
 
   describe '#save' do

@@ -1,9 +1,8 @@
 class OffencesPresenter < SimpleDelegator
-  def styled_current_offences
-    current_offences.map(&:offence).join('<br>')
-  end
+  attr_reader :current_offences
 
-  def styled_past_offences
-    past_offences.map(&:offence).join('<br>')
+  def initialize(offences)
+    @current_offences = offences.current_offences.map { |offence| CurrentOffencePresenter.new(offence) }
+    super
   end
 end

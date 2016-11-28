@@ -356,3 +356,14 @@ en:
         social: Social healthcare
         substance_misuse: Substance misuse
         violence: "Risk to others: Violent"
+  activemodel:
+    errors:
+      models:
+        offences:
+          attributes:
+            has_past_offences:
+              inclusion: 'Past offences: You must select an option'
+  errors:
+    attributes:
+      base:
+        minimum_current_offence: 'At least one current offence needs to be provided'

@@ -5,11 +5,19 @@ $(function () {
     var controls = '.controls-optional-checkbox-section',
       optional_section_wrapper = '.optional-checkbox-section-wrapper',
 
+      show = function($el) {
+        $el.removeClass('mps-hide');
+      }
+
+      hide = function($el) {
+        $el.addClass('mps-hide');
+      }
+
       set_visibility = function (visible, $wrapper) {
         if(visible) {
-          $wrapper.show();
+          show($wrapper);
         } else {
-          $wrapper.hide();
+          hide($wrapper);
         }
       };
 

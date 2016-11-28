@@ -1,8 +1,9 @@
 class ValidateOptionalField
-  attr_reader :subject, :method_name, :error
+  attr_reader :subject, :method_name, :inclusion, :error
 
-  def initialize(method_name)
+  def initialize(method_name, options = {})
     @method_name = method_name
+    @inclusion = options[:inclusion]
   end
 
   def matches?(subject)
@@ -23,13 +24,15 @@ class ValidateOptionalField
   FIELD_OPTIONS = %w[ yes no unknown ]
 
   def validates_inclusion
+    in_values = FIELD_OPTIONS
+    in_values = inclusion[:in] if inclusion.present? && inclusion[:in].present?
     result = Shoulda::Matchers::ActiveModel::ValidateInclusionOfMatcher.
       new(method_name).
-      in_array(FIELD_OPTIONS).
+      in_array(in_values).
       matches?(subject)
 
     unless result
-      set_error "Attribute value was not included in: #{FIELD_OPTIONS.to_sentence}."
+      set_error "Attribute value was not included in: #{in_values.to_sentence}."
     end
 
     result

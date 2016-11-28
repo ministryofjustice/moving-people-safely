@@ -25,7 +25,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
 
   def field_without_label(field_type, attribute)
     content_tag :div,
-      class: form_group_classes(attribute),
+      class: form_group_classes(attribute.to_sym),
       id: form_group_id(attribute) do
       field_tag =
         field_type.new(
