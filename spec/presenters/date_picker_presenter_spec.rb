@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DatePicker do
+RSpec.describe DatePickerPresenter do
   subject { described_class.new(date) }
 
   context "initialized with a valid date string" do
@@ -23,34 +23,6 @@ RSpec.describe DatePicker do
 
       it "returns the initializing date as correctly formatted string" do
         expect(result).to eq date
-      end
-    end
-
-    describe "#date=" do
-      before { subject.date = new_date }
-
-      context "with a valid date string" do
-        let(:new_date) { '01/01/2001' }
-
-        it "sets the date" do
-          expect(subject.date).to eql Date.new(2001, 1, 1)
-        end
-
-        it "sets the date string" do
-          expect(subject.to_s).to eql new_date
-        end
-      end
-
-      context "with an invalid date string" do
-        let(:new_date) { 'elephant' }
-
-        it "doesn't change the #date" do
-          expect(subject.date).to eql Date.new(2027, 9, 15)
-        end
-
-        it "doesn't change the date returned by #to_s" do
-          expect(subject.to_s).to eql date
-        end
       end
     end
 
@@ -98,7 +70,7 @@ RSpec.describe DatePicker do
       let(:result) { subject.to_s }
 
       it "returns the initializing string" do
-        expect(result).to eq date
+        expect(result).to eql Date.today.to_s
       end
     end
 

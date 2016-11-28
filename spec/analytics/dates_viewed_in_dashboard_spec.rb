@@ -8,7 +8,7 @@ RSpec.describe 'Dashboard analytics', type: :request do
 
     let(:event_data) do
       notification_payload_for('date_change') do
-        post '/date', params: { commit: commit_value, date_picker: date }
+        post moves_search_path, params: { commit: commit_value, moves_due_on: date }
       end
     end
 
