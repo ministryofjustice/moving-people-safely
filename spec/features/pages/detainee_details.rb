@@ -14,5 +14,75 @@ module Page
 
       save_and_continue
     end
+
+    def assert_unprefilled_form(prison_number = nil)
+      if prison_number
+        expect(prison_number_input).to eq(nil)
+      else
+        expect(prison_number_input.value).to be_blank
+      end
+      expect(surname_input.value).to be_blank
+      expect(forenames_input.value).to be_blank
+      expect(dob_input.value).to be_blank
+      expect(nationalities_input.value).to be_blank
+      expect(gender_input).to eq(nil)
+      expect(pnc_number_input.value).to be_blank
+      expect(cro_number_input.value).to be_blank
+      expect(aliases_input.value).to be_blank
+    end
+
+    def assert_prefilled_form(options)
+      expect(prison_number_input).to eq(nil)
+      expect(surname_input.value).to eq(options.fetch(:surname))
+      expect(forenames_input.value).to eq(options.fetch(:forenames))
+      expect(dob_input.value).to eq(options.fetch(:date_of_birth))
+      expect(nationalities_input.value).to eq(options.fetch(:nationalities))
+      expect(gender_input.value).to eq(options.fetch(:gender))
+      expect(pnc_number_input.value).to eq(options.fetch(:pnc_number))
+      expect(cro_number_input.value).to eq(options.fetch(:cro_number))
+      expect(aliases_input.value).to eq('')
+    end
+
+    private
+
+    def prison_number_input
+      find('#detainee_details_prison_number')
+    rescue Capybara::ElementNotFound
+      nil
+    end
+
+    def surname_input
+      find('#detainee_details_surname')
+    end
+
+    def forenames_input
+      find('#detainee_details_forenames')
+    end
+
+    def dob_input
+      find('#detainee_details_date_of_birth')
+    end
+
+    def nationalities_input
+      find('#detainee_details_nationalities')
+    end
+
+    def pnc_number_input
+      find('#detainee_details_pnc_number')
+    end
+
+    def cro_number_input
+      find('#detainee_details_cro_number')
+    end
+
+    def aliases_input
+      find('#detainee_details_aliases')
+    end
+
+    def gender_input
+      find(:radio_button, 'detainee_details[gender]', checked: true)
+    rescue Capybara::ElementNotFound
+      nil
+    end
   end
 end

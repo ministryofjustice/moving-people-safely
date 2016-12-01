@@ -28,6 +28,10 @@ RSpec.feature 'filling in a PER', type: :feature do
     detainee = build(:detainee, risk: risk_data, healthcare: healthcare_data)
     move_data = build(:move)
 
+    stub_offenders_api_request(:get, '/offenders/search',
+                               with: { params: { noms_id: detainee.prison_number} },
+                               return: { body: {}, status: 201})
+
     dashboard.search(detainee.prison_number)
     dashboard.create_new_profile.click
 

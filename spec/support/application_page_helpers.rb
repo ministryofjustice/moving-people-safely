@@ -11,6 +11,10 @@ module ApplicationPageHelpers
     @_detainee_details ||= Page::DetaineeDetails.new
   end
 
+  def new_detainee_page
+    @_new_detainee_page ||= Page::DetaineeDetails.new
+  end
+
   def move_details
     @_move_details ||= Page::MoveDetails.new
   end
