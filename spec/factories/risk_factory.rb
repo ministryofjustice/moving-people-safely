@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :risk do
-    open_acct 'no'
-    suicide 'no'
+    acct_status 'open'
     rule_45 'no'
     csra 'standard'
     verbal_abuse 'no'

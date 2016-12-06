@@ -18,6 +18,11 @@ module Questionable
   end
 
   def questions_not_answered
-    question_fields.count { |question| public_send(question) == 'unknown' }
+    # THIS IS NOT RIGHT: 'unknown' shouldn't be considered to be an answer
+    # that represents not been anwered, the value either has been selected or not
+    # if it hasn't, it hasn't been answered.
+    # For now and to keep it compatible with the current version I'll leave
+    # the support for this, but this needs to be addressed, eventually
+    question_fields.count { |question| public_send(question).blank? || public_send(question) == 'unknown' }
   end
 end

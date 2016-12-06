@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922130855) do
+ActiveRecord::Schema.define(version: 20161116143327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,18 +119,15 @@ ActiveRecord::Schema.define(version: 20160922130855) do
   end
 
   create_table "risks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "open_acct",                       default: "unknown"
-    t.string   "suicide",                         default: "unknown"
-    t.text     "suicide_details"
-    t.string   "rule_45",                         default: "unknown"
+    t.string   "rule_45",                           default: "unknown"
     t.text     "rule_45_details"
-    t.string   "csra",                            default: "unknown"
+    t.string   "csra",                              default: "unknown"
     t.text     "csra_details"
-    t.string   "verbal_abuse",                    default: "unknown"
+    t.string   "verbal_abuse",                      default: "unknown"
     t.text     "verbal_abuse_details"
-    t.string   "physical_abuse",                  default: "unknown"
+    t.string   "physical_abuse",                    default: "unknown"
     t.text     "physical_abuse_details"
-    t.string   "violent",                         default: "unknown"
+    t.string   "violent",                           default: "unknown"
     t.boolean  "prison_staff"
     t.text     "prison_staff_details"
     t.boolean  "risk_to_females"
@@ -149,7 +146,7 @@ ActiveRecord::Schema.define(version: 20160922130855) do
     t.text     "public_offence_related_details"
     t.boolean  "police"
     t.text     "police_details"
-    t.string   "stalker_harasser_bully",          default: "unknown"
+    t.string   "stalker_harasser_bully",            default: "unknown"
     t.boolean  "hostage_taker"
     t.text     "hostage_taker_details"
     t.boolean  "stalker"
@@ -160,40 +157,43 @@ ActiveRecord::Schema.define(version: 20160922130855) do
     t.text     "intimidator_details"
     t.boolean  "bully"
     t.text     "bully_details"
-    t.string   "sex_offence",                     default: "unknown"
+    t.string   "sex_offence",                       default: "unknown"
     t.string   "sex_offence_victim"
     t.text     "sex_offence_details"
-    t.string   "non_association_markers",         default: "unknown"
+    t.string   "non_association_markers",           default: "unknown"
     t.text     "non_association_markers_details"
-    t.string   "current_e_risk",                  default: "unknown"
+    t.string   "current_e_risk",                    default: "unknown"
     t.text     "current_e_risk_details"
-    t.string   "category_a",                      default: "unknown"
+    t.string   "category_a",                        default: "unknown"
     t.text     "category_a_details"
-    t.string   "restricted_status",               default: "unknown"
+    t.string   "restricted_status",                 default: "unknown"
     t.text     "restricted_status_details"
     t.boolean  "escape_pack"
     t.boolean  "escape_risk_assessment"
     t.boolean  "cuffing_protocol"
-    t.string   "substance_supply",                default: "unknown"
+    t.string   "substance_supply",                  default: "unknown"
     t.text     "substance_supply_details"
-    t.string   "substance_use",                   default: "unknown"
+    t.string   "substance_use",                     default: "unknown"
     t.text     "substance_use_details"
-    t.string   "conceals_weapons",                default: "unknown"
+    t.string   "conceals_weapons",                  default: "unknown"
     t.text     "conceals_weapons_details"
-    t.string   "arson",                           default: "unknown"
+    t.string   "arson",                             default: "unknown"
     t.text     "arson_details"
     t.string   "arson_value"
-    t.string   "damage_to_property",              default: "unknown"
+    t.string   "damage_to_property",                default: "unknown"
     t.text     "damage_to_property_details"
-    t.string   "interpreter_required",            default: "unknown"
+    t.string   "interpreter_required",              default: "unknown"
     t.text     "language"
-    t.string   "hearing_speach_sight",            default: "unknown"
+    t.string   "hearing_speach_sight",              default: "unknown"
     t.text     "hearing_speach_sight_details"
-    t.string   "can_read_and_write",              default: "unknown"
+    t.string   "can_read_and_write",                default: "unknown"
     t.text     "can_read_and_write_details"
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
     t.uuid     "detainee_id"
+    t.string   "acct_status"
+    t.text     "acct_status_details"
+    t.date     "date_of_most_recently_closed_acct"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
   end
 

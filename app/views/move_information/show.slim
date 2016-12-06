@@ -9,7 +9,10 @@
     = f.text_field :from
     = f.text_field :to
     = f.text_field :date
-    = f.radio_toggle_with_textarea :reason, choices: form.reasons, inline_choices: false
+    = f.radio_toggle_with_textarea :reason,
+      choices: form.reasons,
+      inline_choices: false,
+      data: { 'toggle-field' => f.object.reason_with_details }
 
     .multiple
       = f.radio_toggle :has_destinations do

@@ -22,8 +22,7 @@ module Page
     end
 
     def fill_in_risk_to_self
-      fill_in_optional_details('Open ACCT?', @risk, :open_acct)
-      fill_in_optional_details('Risk of suicide or self-harm?', @risk, :suicide)
+      fill_in_optional_details('What is the most recent ACCT status of the detainee?', @risk, :acct_status)
       save_and_continue
     end
 

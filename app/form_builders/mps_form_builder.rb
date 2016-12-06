@@ -1,13 +1,18 @@
 class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
+  def error_style_for_attr(attribute)
+    return ' toggle_with_error' if attribute && error_for?(attribute)
+    ' panel panel-border-narrow'
+  end
+
   def radio_toggle(attribute, attribute_with_error = nil, choices = nil, options = {}, &_blk)
     style = 'optional-section-wrapper'
     style << ' mps-hide' unless object.public_send("#{attribute}_on?")
-    style << ' panel panel-border-narrow' unless error_for? attribute_with_error
-    style << ' toggle_with_error' if error_for? attribute_with_error
+    style << error_style_for_attr(attribute_with_error)
     choices ||= object.toggle_choices
+    data = options[:data] || { 'toggle-field' => object.toggle_field }
     content_tag(:div, class: 'form-group js-show-hide') do
       safe_join([
-        content_tag(:div, class: 'controls-optional-section') do
+        content_tag(:div, class: 'controls-optional-section', data: data) do
           radio_button_fieldset attribute,
             choices: choices, inline: options.fetch(:inline_choices, true)
         end,

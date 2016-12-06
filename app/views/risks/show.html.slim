@@ -1,22 +1,4 @@
-.questions-nav
-  - if can_go_back?
-    span = link_to '< Back', previous_wizard_path
-
-  span.current-question = "Question #{current_question} of #{total_questions}"
-
-  - if can_skip?
-    span = link_to 'Skip >', next_wizard_path
+= render partial: 'shared/wizard_header'
 
 .risk
-  header
-    h1 = t(".#{template_name}")
-
-  = GovukElementsErrorsHelper.error_summary form,
-    'There were problems saving this form', ''
-
-  = form_for form, url: wizard_path, method: :put do |f|
-    = render partial: template_name, locals: { f: f }
-
-    .form-actions
-      = f.submit 'Save and continue', class: 'button'
-      = f.submit 'Save and view summary', class: 'button button-secondary', name: "save_and_view_summary"
+  = render partial: 'shared/wizard_step_form', locals: { form: form, template_name: template_name }

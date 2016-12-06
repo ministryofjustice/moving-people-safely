@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-shared_examples_for "questionable" do
+RSpec.shared_examples_for "questionable" do
   let(:model) { described_class.new }
 
   describe '#questions_answered_yes' do

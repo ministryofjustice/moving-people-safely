@@ -1,16 +1,13 @@
 module Page
   class Profile < Base
-      def confirm_header_details(detainee)
-        within('#header') do
-          detainee_detail = "#{detainee.prison_number}: #{detainee.surname}, #{detainee.forenames}"
-          expect(page).to have_content(detainee_detail)
-          expect(page).to have_content('Serving Sentence')
-          expect(page).to have_content('High CSRA') if detainee.risk.csra == 'high'
-          expect(page).to have_content('Needs ACCT') if detainee.risk.open_acct == 'yes'
-          expect(page).to have_content('Details for Rule 45') if detainee.risk.rule_45 == 'yes'
-          expect(page).to have_content('Category A information') if detainee.risk.category_a == 'yes'
-        end
+    def confirm_header_details(detainee)
+      within('#header') do
+        detainee_detail = "#{detainee.prison_number}: #{detainee.surname}, #{detainee.forenames}"
+        expect(page).to have_content(detainee_detail)
       end
+
+      confirm_risk_flags(detainee.risk)
+    end
 
     def confirm_move_info(move)
       within('.move-information') do
@@ -136,6 +133,32 @@ module Page
     def age(dob)
       now = Time.now.utc.to_date
       now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+    end
+
+    def confirm_risk_flags(risk)
+      within('.detainee') do
+        within('#csra_header') do
+          expect(page).to have_image(alt: img_alt(risk, :csra))
+        end
+        within('#acct_status_header') do
+          expect(page).to have_image(alt: acct_status_img_alt(risk.acct_status))
+        end
+        within('#rule_45_header') do
+          expect(page).to have_image(alt: img_alt(risk, :rule_45))
+        end
+        within('#category_a_header') do
+          expect(page).to have_image(alt: img_alt(risk, :category_a))
+        end
+      end
+    end
+
+    def img_alt(object, attr)
+      "#{attr} #{object.send(attr)}".humanize
+    end
+
+    def acct_status_img_alt(acct_status)
+      return 'Open acct' if acct_status == 'open'
+      'Not open acct'
     end
   end
 end

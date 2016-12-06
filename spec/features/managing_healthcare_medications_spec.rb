@@ -46,8 +46,8 @@ RSpec.describe 'managing healthcare medications', type: :feature do
   def expect_all_medications_to_be_deleted
     expect(medication_els.size).to eq 1
     within_medication(:first) do
-      expect(find_field('What is it?').value).to be_blank
-      expect(find_field('How is it given?').value).to be_blank
+      expect(find_field('What is it?', visible: false).value).to be_blank
+      expect(find_field('How is it given?', visible: false).value).to be_blank
     end
   end
 
@@ -80,11 +80,13 @@ RSpec.describe 'managing healthcare medications', type: :feature do
   end
 
   def delete_medication(position:)
-    within_medication(position) { check 'Remove' }
+    within_medication(position) {
+      find('label', text: 'Remove').click || check('Remove')
+    }
   end
 
   def medication_els
-    all('.multiple-wrapper').to_a
+    all('.multiple-wrapper', visible: false).to_a
   end
 
   def within_medication(position, &_blk)

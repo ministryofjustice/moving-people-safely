@@ -23,10 +23,10 @@ RSpec.feature 'filling in a PER', type: :feature do
   scenario 'adding a new escort and filling it in' do
     login
 
-    detainee = build(:detainee)
-    move_data = build(:move)
     healthcare_data = build(:healthcare, :with_medications)
     risk_data = build(:risk, :with_high_csra)
+    detainee = build(:detainee, risk: risk_data, healthcare: healthcare_data)
+    move_data = build(:move)
 
     dashboard.search(detainee.prison_number)
     dashboard.create_new_profile.click
@@ -54,7 +54,6 @@ RSpec.feature 'filling in a PER', type: :feature do
     offences.complete_form(offences_data)
     profile.confirm_offences_details(offences_data)
 
-    # FIXME 22/09/2016
-    # profile.confirm_header_details(detainee)
+    profile.confirm_header_details(detainee)
   end
 end

@@ -2,9 +2,7 @@ class RisksController < DetaineeController
   include Wicked::Wizard
   include Wizardable
 
-  steps :risk_to_self, :risk_from_others, :violence, :harassments,
-    :sex_offences, :non_association_markers, :security, :substance_misuse,
-    :concealed_weapons, :arson, :communication
+  steps(*RiskWorkflow.steps)
 
   def show
     form.validate(flash[:form_data]) if flash[:form_data]
