@@ -137,12 +137,12 @@ en:
         physical_abuse:
           unknown: Clear selection
       risk_to_self:
-        acct_status: ACCT Status
+        acct_status:
+          open: ACCT Open
+          post_closure: ACCT Post Closure
+          closed_in_last_6_months: ACCT Closed, in the last 6 months
+          not_available: None of the above
         acct_status_details: Give details
-          # open: ACCT Open
-          # post_closure: ACCT Post Closure
-          # closed_in_last_6_months: ACCT Closed, in the last 6 months
-          # not_available: None of the above
         date_of_most_recently_closed_acct: Date of most recently closed ACCT
       security:
         category_a:
