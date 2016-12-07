@@ -54,14 +54,15 @@ module Forms
 
       def optional_field(field_name, options = {})
         _define_attribute_is_on(field_name, options.fetch(:option_with_details, TOGGLE_YES))
-        property(field_name, type: options.fetch(:type, String))
+        property_options = { type: options.fetch(:type, String), default: options[:default] }
+        property(field_name, property_options)
         validates field_name,
           inclusion: { in: options.fetch(:options, TOGGLE_CHOICES) },
           allow_blank: options.fetch(:allow_blank, true)
       end
 
-      def optional_details_field(field_name)
-        optional_field(field_name)
+      def optional_details_field(field_name, options = {})
+        optional_field(field_name, options)
         property("#{field_name}_details", type: StrictString)
         validates "#{field_name}_details",
           presence: true,

@@ -27,10 +27,10 @@ module Page
     end
 
     def fill_in_risk_from_others
-      fill_in_optional_details('Rule 45?', @risk, :rule_45)
-      fill_in_optional_details('CSRA?', @risk, :csra)
-      fill_in_optional_details('Is the detainee at risk of verbal abuse from others?', @risk, :verbal_abuse)
-      fill_in_optional_details('Is the detainee at risk of physical abuse from others?', @risk, :physical_abuse)
+      fill_in_optional_details('Rule 45 (Detainee separated for their own protection)?', @risk, :rule_45)
+      fill_in_optional_details('CSRA (Cell Share Risk Assessment)?', @risk, :csra)
+      fill_in_optional_details('Is the detainee a victim or possible victim of abuse within prison?', @risk, :victim_of_abuse)
+      fill_in_optional_details('Is the detainee of high public interest?', @risk, :high_profile)
       save_and_continue
     end
 

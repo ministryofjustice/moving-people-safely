@@ -31,10 +31,10 @@ en:
       physical:
         physical_issues: Physical health needs?
       risk_from_others:
-        rule_45: Rule 45?
-        csra: CSRA?
-        verbal_abuse: Is the detainee at risk of verbal abuse from others?
-        physical_abuse: Is the detainee at risk of physical abuse from others?
+        rule_45: Rule 45 (Detainee separated for their own protection)?
+        csra: CSRA (Cell Share Risk Assessment)?
+        victim_of_abuse: Is the detainee a victim or possible victim of abuse within prison?
+        high_profile: Is the detainee of high public interest?
       risk_to_self:
         acct_status: What is the most recent ACCT status of the detainee?
       security:
@@ -131,10 +131,9 @@ en:
           unknown: Clear selection
         csra:
           unknown: Clear selection
-        csra_details: CSRA details
-        verbal_abuse:
+        victim_of_abuse:
           unknown: Clear selection
-        physical_abuse:
+        high_profile:
           unknown: Clear selection
       risk_to_self:
         acct_status:
@@ -221,14 +220,8 @@ en:
         physical_issues: Eg disabilities, prosthetic limbs, crutches.
         physical_issues_details: Give details and explain the significance
       risk_from_others:
-        rule_45_details: Give details
-        csra_details: Give details
-        verbal_abuse_details: |
-          Eg, is the detainee a victim of bullying or high profile in the media
-          (police or prison officer / celebrity)
-        physical_abuse_details: |
-          Eg, is the detainee a victim of bullying or high profile in the media
-          (police or prison office / celebrity)
+        victim_of_abuse_details: Give details
+        high_profile_details: Give details
       risk_to_self:
         open_acct: |
           If an ACCT is open, the ACCT plan should be present and there
@@ -316,8 +309,6 @@ en:
         risk_from_others:
           rule_45: Rule 45
           csra: Cell Share Risk Assessment
-          verbal_abuse: At risk of verbal abuse
-          physical_abuse: At risk of physical abuse
         risk_to_self:
           open_acct: Open ACCT
           suicide: Risk of suicide or self-harm

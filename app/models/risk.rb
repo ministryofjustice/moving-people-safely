@@ -3,7 +3,7 @@ class Risk < ApplicationRecord
   include Questionable
 
   QUESTION_FIELDS =
-    %w[ acct_status rule_45 csra verbal_abuse physical_abuse violent
+    %w[ acct_status rule_45 csra victim_of_abuse high_profile violent
         stalker_harasser_bully sex_offence non_association_markers
         current_e_risk category_a
         restricted_status substance_supply substance_use conceals_weapons arson

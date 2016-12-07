@@ -5,7 +5,7 @@
     locals: { presenter: SummaryPresenter.new(risk), section: 'risk_to_self', questions: %w[acct_status], path: risk_path(detainee, 'risk_to_self') }
 
   = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(risk), section: 'risk_from_others', questions: %w[ rule_45 csra verbal_abuse physical_abuse ], path: risk_path(detainee, 'risk_from_others') }
+    locals: { presenter: SummaryPresenter.new(risk), section: 'risk_from_others', questions: %w[ rule_45 csra victim_of_abuse high_profile ], path: risk_path(detainee, 'risk_from_others') }
 
   = render partial: 'summary/violence_section',
     locals: { presenter: Summary::ViolencePresenter.new(risk), section: 'violence', questions: %w[ prison_staff risk_to_females escort_or_court_staff healthcare_staff other_detainees homophobic racist public_offence_related police  ], path: risk_path(detainee, 'violence') }
