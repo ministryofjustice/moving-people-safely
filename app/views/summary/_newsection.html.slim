@@ -1,0 +1,16 @@
+table class="#{section.name}"
+  thead
+    tr
+     th.title colspan="2"
+       = t("summary.section.titles.#{section.name}")
+     th.edit
+       = link_to 'Change', path
+  tbody
+    - section.questions.each_with_index do |question, i|
+      tr class=(%w[even odd][i%2] + ' ' + question.underscore)
+       td.first-column
+         = t("summary.section.questions.#{section.name}.#{question}")
+       td.second-column
+         == section.answer_for(question)
+       td.third-column
+         == section.details_for(question)

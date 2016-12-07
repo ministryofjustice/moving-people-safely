@@ -1,8 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe Summary::ViolencePresenter, type: :presenter do
+RSpec.describe Summary::Risks::ViolenceSectionPresenter, type: :presenter do
   let(:model) { instance_double(Risk) }
-  subject { described_class.new(model) }
+  let(:section) { 'violence' }
+  subject { described_class.new(model, section: section) }
 
   # it already implements the details_for method etc
   it { is_expected.to be_a SummaryPresenter }

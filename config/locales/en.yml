@@ -310,7 +310,7 @@ en:
           rule_45: Rule 45
           csra: Cell Share Risk Assessment
         risk_to_self:
-          open_acct: Open ACCT
+          acct_status: ACCT status
           suicide: Risk of suicide or self-harm
         security:
           category_a: Category A
