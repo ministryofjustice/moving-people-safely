@@ -9,6 +9,13 @@ RSpec.describe Forms::Risk::RiskToSelf, type: :form do
   }
 
   describe '#validate' do
+    specify { is_expected.to validate_inclusion_of(:acct_status).in_array(%w(open post_closure closed_in_last_6_months not_available)) }
+
+    context 'when ACCT status is empty' do
+      specify { expect(form.validate(acct_status: nil)).to be_truthy }
+      specify { expect(form.validate(acct_status: '')).to be_truthy }
+    end
+
     context 'when ACCT status requires additional details' do
       let(:params) {
         {

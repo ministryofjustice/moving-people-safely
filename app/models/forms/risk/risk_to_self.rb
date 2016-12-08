@@ -8,7 +8,7 @@ module Forms
         type: StrictString,
         options: ACCT_STATUSES,
         option_with_details: ACCT_STATUS_WITH_DETAILS,
-        allow_blank: false
+        allow_blank: true
 
       property :date_of_most_recently_closed_acct, type: TextDate
       reset attributes: %i[date_of_most_recently_closed_acct],
