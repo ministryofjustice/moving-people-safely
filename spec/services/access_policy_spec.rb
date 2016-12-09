@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe AccessPolicy do
   subject { described_class }
-  let(:move) { instance_double(Move, workflow: workflow) }
-  let(:workflow) { instance_double(Workflow) }
+  let(:move) { FactoryGirl.build(:move, move_workflow: workflow) }
+  let(:workflow) { FactoryGirl.build(:move_workflow) }
 
   describe "#print?" do
     let(:result) { subject.print?(move: move) }

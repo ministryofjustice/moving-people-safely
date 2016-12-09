@@ -1,0 +1,2 @@
+class MoveWorkflow < Workflow
+end

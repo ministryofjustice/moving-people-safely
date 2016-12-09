@@ -2,7 +2,7 @@ class HealthcareController < DetaineeController
   include Wicked::Wizard
   include Wizardable
 
-  steps :physical, :mental, :social, :allergies, :needs, :transport, :contact
+  steps(*HealthcareWorkflow.sections)
 
   before_action :add_medication, only: [:update]
 

@@ -14,7 +14,7 @@ RSpec.describe 'PrintController', type: :request do
 
       xit "marks the PER as issued" do
         move.reload
-        expect(move.workflow.issued?).to be true
+        expect(move.move_workflow.issued?).to be true
       end
 
       xit "redirects to the home page" do

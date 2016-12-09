@@ -7,7 +7,7 @@ RSpec.describe Move, type: :model do
     before { subject.save_copy }
 
     it "creates a not-started workflow" do
-      expect(subject.workflow.not_started?).to be true
+      expect(subject.move_workflow.not_started?).to be true
     end
 
     it "creates a needs-review workflow for risk" do

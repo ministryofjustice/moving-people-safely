@@ -9,10 +9,10 @@ FactoryGirl.define do
     reason_details 'Has to move'
     has_destinations 'no'
 
-    association :workflow, :incomplete, :move, factory: :workflow, strategy: :build
+    association :move_workflow, :incomplete, strategy: :build
 
     trait :issued do
-      association :workflow, :issued, :move, factory: :workflow, strategy: :build
+      association :move_workflow, :issued, strategy: :build
     end
 
     trait :past_move do
@@ -24,9 +24,9 @@ FactoryGirl.define do
     end
 
     trait :confirmed do
-      association :risk_workflow, :risk, :confirmed, factory: :workflow, strategy: :build
-      association :healthcare_workflow, :healthcare, :confirmed, factory: :workflow, strategy: :build
-      association :offences_workflow, :offences, :confirmed, factory: :workflow, strategy: :build
+      association :risk_workflow, :confirmed, strategy: :build
+      association :healthcare_workflow, :confirmed, strategy: :build
+      association :offences_workflow, :confirmed, strategy: :build
     end
 
     trait :with_destinations do
@@ -35,7 +35,7 @@ FactoryGirl.define do
     end
 
     trait :with_incomplete_risk_workflow do
-      association :risk_workflow, :incomplete, :risk, factory: :workflow, strategy: :build
+      association :risk_workflow, :incomplete, strategy: :build
     end
   end
 end

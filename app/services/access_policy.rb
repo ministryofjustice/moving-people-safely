@@ -2,7 +2,7 @@ module AccessPolicy
   module_function
 
   def edit?(move:)
-    move && move.workflow.active?
+    move && move.active?
   end
 
   def print?(move:)

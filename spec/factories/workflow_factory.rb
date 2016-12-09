@@ -1,26 +1,9 @@
 FactoryGirl.define do
   factory :workflow do
     status 0
-    type 'invalid type'
 
     trait :incomplete do
       status 2
-    end
-
-    trait :risk do
-      type 'risk'
-    end
-
-    trait :move do
-      type 'move'
-    end
-
-    trait :healthcare do
-      type 'healthcare'
-    end
-
-    trait :offences do
-      type 'offences'
     end
 
     trait :confirmed do
@@ -30,5 +13,17 @@ FactoryGirl.define do
     trait :issued do
       status 5
     end
+  end
+
+  factory :move_workflow, parent: :workflow, class: 'MoveWorkflow' do
+  end
+
+  factory :risk_workflow, parent: :workflow, class: 'RiskWorkflow' do
+  end
+
+  factory :healthcare_workflow, parent: :workflow, class: 'HealthcareWorkflow' do
+  end
+
+  factory :offences_workflow, parent: :workflow, class: 'OffencesWorkflow' do
   end
 end

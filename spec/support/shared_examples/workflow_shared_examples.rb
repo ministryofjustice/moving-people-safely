@@ -1,11 +1,10 @@
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe Workflow do
-  subject { described_class.new(type: 'TYPE') }
-
+RSpec.shared_examples_for 'workflow' do
   describe "#confirm_with_user!" do
-    before { subject.confirm_with_user!(user: user) }
     let(:user) { create(:user) }
+
+    before { subject.confirm_with_user!(user: user) }
 
     it "sets the reviewed_by attribute" do
       expect(subject.reviewer).to eql user

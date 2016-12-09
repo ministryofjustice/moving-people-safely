@@ -3,7 +3,7 @@ class PrintController < MoveController
 
   def show
     # error_redirect && return unless active_move.complete?
-    # active_move.workflow.issued!
+    # active_move.move_workflow.issued!
   end
 
   private

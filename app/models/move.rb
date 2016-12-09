@@ -2,21 +2,21 @@ class Move < ApplicationRecord
   belongs_to :detainee
   has_many :destinations, dependent: :destroy
 
-  has_one :healthcare_workflow, -> { Workflow.healthcare }, class_name: 'Workflow'
-  has_one :risk_workflow, -> { Workflow.risk }, class_name: 'Workflow'
-  has_one :offences_workflow, -> { Workflow.offences }, class_name: 'Workflow'
-  has_one :workflow, -> { Workflow.move }, class_name: 'Workflow'
+  has_one :healthcare_workflow
+  has_one :risk_workflow
+  has_one :offences_workflow
+  has_one :move_workflow
 
   scope :for_date, (lambda do |search_date|
     where(date: search_date).
       order(created_at: :desc).
       eager_load(
         :detainee,
-        :workflow
+        :move_workflow
       )
   end)
 
-  scope :active, -> { joins(:workflow).merge(Workflow.not_issued) }
+  scope :active, -> { joins(:move_workflow).merge(Workflow.not_issued) }
 
   scope :with_incomplete_risk, -> { joins(:risk_workflow).merge(Workflow.not_confirmed) }
   scope :with_incomplete_healthcare, -> { joins(:healthcare_workflow).merge(Workflow.not_confirmed) }
@@ -24,9 +24,11 @@ class Move < ApplicationRecord
 
   scope :order_by_recentness, -> { order(created_at: :desc) }
 
+  delegate :active?, to: :move_workflow
+
   def initialize(*)
     super
-    build_workflow
+    build_move_workflow
     build_risk_workflow
     build_healthcare_workflow
     build_offences_workflow
@@ -40,7 +42,7 @@ class Move < ApplicationRecord
 
   def save_copy
     transaction do
-      create_workflow
+      create_move_workflow
       create_risk_workflow.needs_review!
       create_healthcare_workflow.needs_review!
       create_offences_workflow.needs_review!
