@@ -8,11 +8,14 @@
   - if form.image_filename
     = image_tag form.image_filename
 
-  label.form-label Prison number
-  p.prison_number = form.prison_number
 
   = form_for form, url: submit_path do |f|
-    = f.hidden_field :prison_number
+    - if form.prison_number
+      label.form-label Prison number
+      p.prison_number = form.prison_number
+      = f.hidden_field :prison_number
+    - else
+      = f.text_field :prison_number
     = f.hidden_field :image_filename
     = f.text_field :surname
     = f.text_field :forenames
