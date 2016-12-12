@@ -14,3 +14,7 @@
 .alert--warning {
   @include alert-variant(#F4D188, #FAF1C5)
 }
+
+.alert--alert {
+  @include alert-variant(#F4D188, #FAF1C5)
+}
