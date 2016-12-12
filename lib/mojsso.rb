@@ -4,7 +4,6 @@ module OmniAuth
   module Strategies
     class Mojsso < OmniAuth::Strategies::OAuth2
       option :name, 'mojsso'
-      option :client_options, site: ''
 
       uid do
         raw_info.fetch('id')
