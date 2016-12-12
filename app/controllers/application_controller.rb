@@ -67,8 +67,6 @@ class ApplicationController < ActionController::Base
     detainee.risk = Risk.create({
       rule_45: 'no',
       csra: 'standard',
-      verbal_abuse: 'no',
-      physical_abuse: 'no',
       violent: 'yes',
       prison_staff: 'no',
       risk_to_females: 'no',

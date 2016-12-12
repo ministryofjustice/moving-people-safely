@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201120724) do
+ActiveRecord::Schema.define(version: 20161207133056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,13 +121,7 @@ ActiveRecord::Schema.define(version: 20161201120724) do
 
   create_table "risks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "rule_45",                           default: "unknown"
-    t.text     "rule_45_details"
     t.string   "csra",                              default: "unknown"
-    t.text     "csra_details"
-    t.string   "verbal_abuse",                      default: "unknown"
-    t.text     "verbal_abuse_details"
-    t.string   "physical_abuse",                    default: "unknown"
-    t.text     "physical_abuse_details"
     t.string   "violent",                           default: "unknown"
     t.boolean  "prison_staff"
     t.text     "prison_staff_details"
@@ -195,6 +189,10 @@ ActiveRecord::Schema.define(version: 20161201120724) do
     t.string   "acct_status"
     t.text     "acct_status_details"
     t.date     "date_of_most_recently_closed_acct"
+    t.string   "victim_of_abuse"
+    t.text     "victim_of_abuse_details"
+    t.string   "high_profile"
+    t.text     "high_profile_details"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
   end
 

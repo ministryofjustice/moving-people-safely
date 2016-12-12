@@ -13,7 +13,6 @@ table.detainee
 
     td
       span#csra_header = image_tag "csra_#{risk.csra}.png"
-      span.text = risk.csra_details
 
     td
       span#acct_status_header = image_tag "#{acct_status_image(risk.acct_status)}.png"
@@ -21,7 +20,6 @@ table.detainee
   tr
     td
       span#rule_45_header = image_tag "rule_45_#{risk.rule_45}.png"
-      span.text = risk.rule_45_details
 
     td
       span#category_a_header = image_tag "category_a_#{risk.category_a}.png"

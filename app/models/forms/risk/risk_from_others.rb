@@ -1,9 +1,9 @@
 module Forms
   module Risk
     class RiskFromOthers < Forms::Base
-      optional_details_field :rule_45
-      optional_details_field :verbal_abuse
-      optional_details_field :physical_abuse
+      optional_field :rule_45
+      optional_details_field :victim_of_abuse, default: 'unknown'
+      optional_details_field :high_profile, default: 'unknown'
 
       concerning :CsraSection do
         included do
@@ -16,22 +16,10 @@ module Forms
           validates :csra,
             inclusion: { in: CSRA_TOGGLE_CHOICES },
             allow_blank: true
-
-          property(:csra_details, type: StrictString)
-          validates :csra_details,
-            presence: true,
-            if: -> { csra == CSRA_HIGH }
-
-          reset attributes: %i[csra_details],
-                if_falsey: :csra, enabled_value: CSRA_HIGH
         end
 
         def csra_toggle_choices
           CSRA_TOGGLE_CHOICES
-        end
-
-        def csra_toggle_field
-          CSRA_HIGH
         end
       end
     end

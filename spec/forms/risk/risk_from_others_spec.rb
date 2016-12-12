@@ -7,13 +7,11 @@ RSpec.describe Forms::Risk::RiskFromOthers, type: :form do
   let(:params) {
     {
       'rule_45' => 'yes',
-      'rule_45_details' => 'Rule 45 present',
       'csra' => 'high',
-      'csra_details' => 'High risk of CSRA',
-      'verbal_abuse' => 'yes',
-      'verbal_abuse_details' => 'Many verbal abuses',
-      'physical_abuse' => 'yes',
-      'physical_abuse_details' => 'some physical abuses',
+      'victim_of_abuse' => 'yes',
+      'victim_of_abuse_details' => 'Many verbal abuses',
+      'high_profile' => 'yes',
+      'high_profile_details' => 'former TV host',
     }
   }
 
@@ -22,9 +20,9 @@ RSpec.describe Forms::Risk::RiskFromOthers, type: :form do
   end
 
   describe '#validate' do
-    it { is_expected.to validate_optional_details_field(:rule_45) }
-    it { is_expected.to validate_optional_details_field(:verbal_abuse) }
-    it { is_expected.to validate_optional_details_field(:physical_abuse) }
+    it { is_expected.to validate_optional_field(:rule_45) }
+    it { is_expected.to validate_optional_details_field(:victim_of_abuse) }
+    it { is_expected.to validate_optional_details_field(:high_profile) }
 
     describe 'csra attribute' do
       it do
@@ -32,18 +30,6 @@ RSpec.describe Forms::Risk::RiskFromOthers, type: :form do
           to validate_inclusion_of(:csra).
           in_array(%w[ high standard unknown ])
       end
-
-      context 'when csra is set to high' do
-        before { subject.csra = 'high' }
-        it { is_expected.to validate_presence_of(:csra_details) }
-      end
-
-      context 'when csra is set to standard' do
-        before { subject.csra = 'standard' }
-        it { is_expected.to_not validate_presence_of(:csra_details) }
-      end
-
-      it { is_expected.to be_configured_to_reset(%i[ csra_details ]).when(:csra).not_set_to('high') }
     end
   end
 

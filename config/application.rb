@@ -24,6 +24,7 @@ module MovingPeopleSafely
     config.phase = 'beta'
     config.product_type = 'service'
     config.feedback_url = ''
+    config.autoload_paths << "#{Rails.root}/app/models/sections"
 
     require "#{config.root}/app/form_builders/govuk_elements_errors_helper"
     require "#{config.root}/app/form_builders/mps_form_builder"

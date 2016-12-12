@@ -2,7 +2,7 @@ class RisksController < DetaineeController
   include Wicked::Wizard
   include Wizardable
 
-  steps(*RiskWorkflow.steps)
+  steps(*RiskWorkflow.sections)
 
   def show
     form.validate(flash[:form_data]) if flash[:form_data]
@@ -57,18 +57,10 @@ class RisksController < DetaineeController
   end
 
   def form
-    @_form ||= {
-      risk_to_self: Forms::Risk::RiskToSelf,
-      risk_from_others: Forms::Risk::RiskFromOthers,
-      violence: Forms::Risk::Violence,
-      harassments: Forms::Risk::Harassments,
-      sex_offences: Forms::Risk::SexOffences,
-      non_association_markers: Forms::Risk::NonAssociationMarkers,
-      security: Forms::Risk::Security,
-      substance_misuse: Forms::Risk::SubstanceMisuse,
-      concealed_weapons: Forms::Risk::ConcealedWeapons,
-      arson: Forms::Risk::Arson,
-      communication: Forms::Risk::Communication
-    }[step].new(risk)
+    @_form ||= form_for_risk_section(step).new(risk)
+  end
+
+  def form_for_risk_section(section)
+    "Forms::Risk::#{section.to_s.camelcase}".constantize
   end
 end

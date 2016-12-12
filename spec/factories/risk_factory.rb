@@ -3,8 +3,8 @@ FactoryGirl.define do
     acct_status 'open'
     rule_45 'no'
     csra 'standard'
-    verbal_abuse 'no'
-    physical_abuse 'no'
+    victim_of_abuse 'no'
+    high_profile 'no'
     violent 'no'
     stalker_harasser_bully 'no'
     sex_offence 'no'
@@ -26,7 +26,6 @@ FactoryGirl.define do
 
     trait :with_high_csra do
       csra 'high'
-      csra_details { Faker::Lorem.sentence }
     end
   end
 end
