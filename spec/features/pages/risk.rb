@@ -35,21 +35,53 @@ module Page
     end
 
     def fill_in_violence
-      if @risk.violent == 'yes'
-        choose 'violence_violent_yes'
-        fill_in_checkbox_with_details('Prison staff', @risk, :prison_staff)
-        fill_in_checkbox_with_details('Risk to females', @risk, :risk_to_females)
-        fill_in_checkbox_with_details('Escort or court staff', @risk, :escort_or_court_staff)
-        fill_in_checkbox_with_details('Healthcare staff', @risk, :healthcare_staff)
-        fill_in_checkbox_with_details('Other detainees', @risk, :other_detainees)
-        fill_in_checkbox_with_details('Homophobic', @risk, :homophobic)
-        fill_in_checkbox_with_details('Racist', @risk, :racist)
-        fill_in_checkbox_with_details('Public offence related', @risk, :public_offence_related)
-        fill_in_checkbox_with_details('Police', @risk, :police)
-      else
-        choose 'violence_violent_no'
-      end
+      fill_in_violence_due_to_discrimination
+      fill_in_violence_to_staff
+      fill_in_violence_to_other_detainees
+      fill_in_violence_to_general_public
       save_and_continue
+    end
+
+    def fill_in_violence_due_to_discrimination
+      if @risk.violence_due_to_discrimination == 'yes'
+        choose 'violence_violence_due_to_discrimination_yes'
+        check 'Risk to females'
+        check 'Homosexuals'
+        fill_in_checkbox_with_details('Racist', @risk, :racist)
+        fill_in_checkbox_with_details('Other', @risk, :other_violence_due_to_discrimination)
+      else
+        choose 'violence_violence_due_to_discrimination_no'
+      end
+    end
+
+    def fill_in_violence_to_staff
+      if @risk.violence_to_staff == 'yes'
+        choose 'violence_violence_to_staff_yes'
+        check 'Staff custody'
+        check 'Staff community'
+      else
+        choose 'violence_violence_to_staff_no'
+      end
+    end
+
+    def fill_in_violence_to_other_detainees
+      if @risk.violence_to_other_detainees == 'yes'
+        choose 'violence_violence_to_other_detainees_yes'
+        fill_in_checkbox_with_details('Co-defendant', @risk, :co_defendant)
+        fill_in_checkbox_with_details('Gang member', @risk, :gang_member)
+        fill_in_checkbox_with_details('Other known conflicts', @risk, :other_violence_to_other_detainees)
+      else
+        choose 'violence_violence_to_other_detainees_no'
+      end
+    end
+
+    def fill_in_violence_to_general_public
+      if @risk.violence_to_general_public == 'yes'
+        choose 'violence_violence_to_general_public_yes'
+        fill_in 'violence_violence_to_general_public_details', with: @risk.violence_to_general_public_details
+      else
+        choose 'violence_violence_to_general_public_no'
+      end
     end
 
     def fill_in_harassments

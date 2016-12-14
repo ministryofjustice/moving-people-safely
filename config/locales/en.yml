@@ -55,7 +55,10 @@ en:
       transport:
         mpv: Requires MPV?
       violence:
-        violent: Violent?
+        violence_due_to_discrimination: Risk of violence due to discrimination
+        violence_to_general_public: Violent to general public
+        violence_to_other_detainees: Violent to other detainees
+        violence_to_staff: Violent to staff
     label:
       allergies:
         allergies:
@@ -173,7 +176,27 @@ en:
           unknown: Clear selection
         mpv_details: MPV details
       violence:
-        violent:
+        co_defendant: Co-defendant
+        co_defendant_details: Co-defendant violence details
+        gang_member_details: Gang member violence details
+        homophobic: Homosexuals
+        other_violence_due_to_discrimination: Other
+        other_violence_due_to_discrimination_details: Details for risk of violence due to other types of discrimination
+        other_violence_to_other_detainees: Other known conflicts
+        other_violence_to_other_detainees_details: Other known conflicts details
+        racist: Racist
+        racist_details: Details for risk of violence due to racist discrimination
+        risk_to_females: Risk to females
+        violence_due_to_discrimination:
+          unknown: Clear selection
+        violence_to_general_public:
+          unknown: Clear selection
+        violence_to_general_public_details: Violent to general public details
+        violence_to_staff:
+          unknown: Clear selection
+        violence_to_staff_custody: Staff custody
+        violence_to_staff_community: Staff community
+        violence_to_other_detainees:
           unknown: Clear selection
     hint:
       allergies:
@@ -250,15 +273,21 @@ en:
         mpv: Eg disability, claustrophobia, pregnancy.
         mpv_details: Give details and explain the significance
       violence:
+        co_defendant_details: Give details
         escort_or_court_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
+        gang_member_details: Give details
         healthcare_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
-        homophobic_details: Give details eg spits, punches, kicks, shouts, uses weapons
+        homophobic_details: Give details
         other_detainees_details: Give details eg spits, punches, kicks, shouts, uses weapons
+        other_violence_due_to_discrimination_details: Give details
+        other_violence_to_other_detainees_details: Give details
         police_details: Give details eg spits, punches, kicks, shouts, uses weapons
         prison_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
         public_offence_related_details: Give details eg spits, punches, kicks, shouts, uses weapons
-        racist_details: Give details eg spits, punches, kicks, shouts, uses weapons
-        risk_to_females_details: Give details eg spits, punches, kicks, shouts, uses weapons
+        racist_details: Give details
+        risk_to_females_details: Give details
+        violence_to_general_public_details: Give names
+        violence_due_to_discrimination: For example, risk to females, homosexuals, other races
   healthcare:
     show:
       physical: Physical healthcare
@@ -324,6 +353,7 @@ en:
         transport:
           mpv: MPV
         violence:
+          co_defendant: Co-Defendant
           escort_or_court_staff: Escort or court staff
           healthcare_staff: Healthcare staff
           homophobic: Homosexuals

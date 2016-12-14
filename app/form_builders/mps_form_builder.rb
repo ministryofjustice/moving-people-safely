@@ -71,6 +71,19 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     end
   end
 
+  def checkbox(attribute)
+    style = 'optional-checkbox-section-wrapper'
+    style << ' mps-hide' unless object.public_send("#{attribute}_on?")
+    content_tag(:div, class: 'js-checkbox-show-hide form-group') do
+      label(attribute, class: 'block-label') do
+        content_tag(:div, class: 'controls-optional-checkbox-section') do
+          check_box attribute
+        end +
+          localized_label(attribute)
+      end
+    end
+  end
+
   def checkbox_with_textarea(attribute)
     style = 'optional-checkbox-section-wrapper'
     style << ' mps-hide' unless object.public_send("#{attribute}_on?")

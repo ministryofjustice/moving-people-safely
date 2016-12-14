@@ -1,14 +1,26 @@
-= f.radio_toggle :violent do
+= f.radio_toggle :violence_due_to_discrimination do
   fieldset
     span.form-hint
-      | Is the detainee a violent risk to:
+      | Select all that apply
 
-    = f.checkbox_with_textarea :prison_staff
-    = f.checkbox_with_textarea :risk_to_females
-    = f.checkbox_with_textarea :escort_or_court_staff
-    = f.checkbox_with_textarea :healthcare_staff
-    = f.checkbox_with_textarea :other_detainees
-    = f.checkbox_with_textarea :homophobic
+    = f.checkbox :risk_to_females
+    = f.checkbox :homophobic
     = f.checkbox_with_textarea :racist
-    = f.checkbox_with_textarea :public_offence_related
-    = f.checkbox_with_textarea :police
+    = f.checkbox_with_textarea :other_violence_due_to_discrimination
+
+= f.radio_toggle :violence_to_staff do
+  fieldset
+    span.form-hint
+      | Select all that apply
+    = f.checkbox :violence_to_staff_custody
+    = f.checkbox :violence_to_staff_community
+
+= f.radio_toggle :violence_to_other_detainees do
+  fieldset
+    span.form-hint
+      | Select all that apply
+    = f.checkbox_with_textarea :co_defendant
+    = f.checkbox_with_textarea :gang_member
+    = f.checkbox_with_textarea :other_violence_to_other_detainees
+
+= f.radio_toggle_with_textarea :violence_to_general_public

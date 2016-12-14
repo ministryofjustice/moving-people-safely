@@ -1,25 +1,30 @@
 module Forms
   module Risk
     class Violence < Forms::Base
-      optional_field :violent
+      optional_field :violence_due_to_discrimination, default: 'unknown'
+      optional_checkbox :risk_to_females
+      optional_checkbox :homophobic
+      optional_checkbox_with_details :racist, :violence_due_to_discrimination
+      optional_checkbox_with_details :other_violence_due_to_discrimination, :violence_due_to_discrimination
+      reset attributes: %i[risk_to_females homophobic racist racist_details
+                           other_violence_due_to_discrimination other_violence_due_to_discrimination_details],
+            if_falsey: :violence_due_to_discrimination
 
-      reset attributes: %i[
-        prison_staff prison_staff_details risk_to_females risk_to_females_details
-        escort_or_court_staff escort_or_court_staff_details healthcare_staff
-        healthcare_staff_details other_detainees other_detainees_details homophobic
-        homophobic_details racist racist_details public_offence_related
-        public_offence_related_details police police_details
-      ], if_falsey: :violent
+      optional_field :violence_to_staff, default: 'unknown'
+      optional_checkbox :violence_to_staff_custody
+      optional_checkbox :violence_to_staff_community
+      reset attributes: %i[violence_to_staff_custody violence_to_staff_community], if_falsey: :violence_to_staff
 
-      optional_checkbox :prison_staff, :violent
-      optional_checkbox :risk_to_females, :violent
-      optional_checkbox :escort_or_court_staff, :violent
-      optional_checkbox :healthcare_staff, :violent
-      optional_checkbox :other_detainees, :violent
-      optional_checkbox :homophobic, :violent
-      optional_checkbox :racist, :violent
-      optional_checkbox :public_offence_related, :violent
-      optional_checkbox :police, :violent
+      optional_field :violence_to_other_detainees, default: 'unknown'
+      optional_checkbox_with_details :co_defendant, :violence_to_other_detainees
+      optional_checkbox_with_details :gang_member, :violence_to_other_detainees
+      optional_checkbox_with_details :other_violence_to_other_detainees, :violence_to_other_detainees
+      reset attributes: %i[co_defendant co_defendant_details gang_member
+                           gang_member_details other_violence_to_other_detainees
+                           other_violence_to_other_detainees_details],
+            if_falsey: :violence_to_other_detainees
+
+      optional_details_field :violence_to_general_public, default: 'unknown'
     end
   end
 end

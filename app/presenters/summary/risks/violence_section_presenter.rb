@@ -1,10 +1,13 @@
 module Summary
   module Risks
     class ViolenceSectionPresenter < RiskPresenter
+      delegate :question_is_conditional?, :question_condition, to: :section
+
       def answer_for(attribute)
-        if violence_question_unanswered?
+        return super(attribute) unless question_is_conditional?(attribute)
+        if question_condition_unanswered?(attribute)
           "<span class='text-error'>Missing</span>"
-        elsif violence_question_answered_yes? && checkbox_checked?(attribute)
+        elsif question_condition_answered_yes?(attribute) && checkbox_checked?(attribute)
           '<b>Yes</b>'
         else
           'No'
@@ -13,16 +16,12 @@ module Summary
 
       private
 
-      def violence_question_unanswered?
-        violent_question_value == 'unknown'
+      def question_condition_unanswered?(attribute)
+        public_send(question_condition(attribute)) == 'unknown'
       end
 
-      def violence_question_answered_yes?
-        violent_question_value == 'yes'
-      end
-
-      def violent_question_value
-        public_send(:violent)
+      def question_condition_answered_yes?(attribute)
+        public_send(question_condition(attribute)) == 'yes'
       end
 
       def checkbox_checked?(attribute)
