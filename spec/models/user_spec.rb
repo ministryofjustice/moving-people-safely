@@ -27,7 +27,26 @@ RSpec.describe User, type: :model do
     }
     let(:auth) { OmniAuth::AuthHash.new(hash) }
 
-    context 'when the user already exists in the local database' do
+    context 'when the user with provided email already exists in the local database' do
+      before do
+        FactoryGirl.create(:user, email: 'bob@example.com')
+      end
+
+      it 'does not create a new user' do
+        expect { described_class.from_omniauth(auth) }.not_to change { User.count }
+      end
+
+      it 'updates the uid and provider details for the existent user' do
+        expect {
+          described_class.from_omniauth(auth)
+        }.to change {
+          User.where(email: 'bob@example.com').last.attributes.slice('uid', 'provider')
+        }.from({ 'uid' => nil, 'provider' => nil })
+          .to({ 'uid' => '4', 'provider' => 'mojsso' })
+      end
+    end
+
+    context 'when the user with provided uid and provider already exists in the local database' do
       before do
         FactoryGirl.create(:user, uid: uid, provider: provider, first_name: 'Local First Name')
       end
