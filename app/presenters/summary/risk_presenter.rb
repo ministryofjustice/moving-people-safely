@@ -25,11 +25,7 @@ module Summary
     private
 
     def section
-      @section ||= section_klass.new
-    end
-
-    def section_klass
-      "RiskAssessment::#{section_name.to_s.camelcase}Section".constantize
+      @section ||= RiskAssessment.section_for(section_name)
     end
   end
 end

@@ -10,6 +10,10 @@ module RiskAssessment
          gang_member other_violence_to_other_detainees violence_to_general_public]
     end
 
+    def mandatory_questions
+      %w[violence_due_to_discrimination violence_to_staff violence_to_other_detainees violence_to_general_public]
+    end
+
     def question_is_conditional?(question)
       !question_condition(question).nil?
     end

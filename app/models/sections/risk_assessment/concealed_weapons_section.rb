@@ -7,5 +7,6 @@ module RiskAssessment
     def questions
       %w[conceals_weapons]
     end
+    alias mandatory_questions questions
   end
 end

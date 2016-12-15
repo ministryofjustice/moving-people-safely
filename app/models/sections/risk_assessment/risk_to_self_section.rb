@@ -7,5 +7,6 @@ module RiskAssessment
     def questions
       %w[acct_status]
     end
+    alias mandatory_questions questions
   end
 end

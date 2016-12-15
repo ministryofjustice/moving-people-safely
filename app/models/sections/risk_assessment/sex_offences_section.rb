@@ -7,5 +7,6 @@ module RiskAssessment
     def questions
       %w[sex_offence]
     end
+    alias mandatory_questions questions
   end
 end

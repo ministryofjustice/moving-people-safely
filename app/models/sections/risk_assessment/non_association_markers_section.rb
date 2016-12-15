@@ -7,5 +7,6 @@ module RiskAssessment
     def questions
       %w[non_association_markers]
     end
+    alias mandatory_questions questions
   end
 end

@@ -7,5 +7,6 @@ module RiskAssessment
     def questions
       %w[substance_supply substance_use]
     end
+    alias mandatory_questions questions
   end
 end

@@ -7,5 +7,6 @@ module RiskAssessment
     def questions
       %w[arson damage_to_property]
     end
+    alias mandatory_questions questions
   end
 end
