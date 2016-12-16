@@ -289,30 +289,32 @@ en:
         violence_to_general_public_details: Give names
         violence_due_to_discrimination: For example, risk to females, homosexuals, other races
   healthcare:
-    show:
-      physical: Physical healthcare
-      mental: Mental healthcare
-      social: Social healthcare
-      allergies: Allergies
-      needs: Medical health needs
-      transport: Transport
-      contact: Medical contact
-      carrier:
-        escort: Escort
-        detainee: Detainee
+    form:
+      title:
+        physical: Physical healthcare
+        mental: Mental healthcare
+        social: Social healthcare
+        allergies: Allergies
+        needs: Medical health needs
+        transport: Transport
+        contact: Medical contact
+        carrier:
+          escort: Escort
+          detainee: Detainee
   risks:
-    show:
-      arson: Arson and damage to property
-      communication: Communication / language difficulties
-      concealed_weapons: Concealed weapons or other items
-      harassments: Risk to others
-      non_association_markers: Risk to others
-      risk_to_self: Risk to self
-      risk_from_others: Risk from others
-      security: Security
-      sex_offences: Risk to others
-      substance_misuse: Substance risk
-      violence: Risk to others
+    form:
+      title:
+        arson: Arson and damage to property
+        communication: Communication / language difficulties
+        concealed_weapons: Concealed weapons or other items
+        harassments: Risk to others
+        non_association_markers: Risk to others
+        risk_to_self: Risk to self
+        risk_from_others: Risk from others
+        security: Security
+        sex_offences: Risk to others
+        substance_misuse: Substance risk
+        violence: Risk to others - discrimination
 
   summary:
     section:
@@ -378,7 +380,7 @@ en:
         sex_offences: "Risk to others: Sex offender"
         social: Social healthcare
         substance_misuse: Substance misuse
-        violence: "Risk to others: Violent"
+        violence: "Risk to others: discrimination"
   activemodel:
     errors:
       models:
