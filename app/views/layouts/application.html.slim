@@ -28,7 +28,7 @@
   main id="wrapper" role="main"
     .container
       section class="content inner cf" id="content" role="main"
-        - %i[notice success warning error].each do |severity|
+        - %i[notice success alert warning error].each do |severity|
             - if flash[severity].present?
               div class="alert alert--#{severity}" = flash[severity]
         = yield

@@ -11,7 +11,7 @@
 * Ruby & Bundler
 
   Using rbenv:
-  
+
   ```bash
   rbenv install $(cat .ruby-version)
   gem install bundler
@@ -24,7 +24,7 @@
   ```bash
   brew install postgresql
   ```
-  
+
 ## Setup
 
 * Install dependencies and setup database
@@ -39,25 +39,27 @@
    bundle exec rake dev:prime
    bundle exec rake dev:moves
    ```
-   
+
+For local integration with SSO refer to [SSO Integration](docs/sso_integration.md)
+
 # Running the application
 
   ```bash
   bundle exec rails s
   ```
-  
+
 # Running tests
 
   ```bash
   bundle exec rspec
   ```
-  
+
 # Running cops
 
   ```bash
   bundle exec rubocop
   ```
-  
+
 # Deployment
 
 ## Staging
