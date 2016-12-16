@@ -56,7 +56,7 @@ en:
         mpv: Requires MPV?
       violence:
         violence_due_to_discrimination: Risk of violence due to discrimination
-        violence_to_general_public: Violent to general public
+        violence_to_general_public: Violent to the general public
         violence_to_other_detainees: Violent to other detainees
         violence_to_staff: Violent to staff
     label:
@@ -191,7 +191,7 @@ en:
           unknown: Clear selection
         violence_to_general_public:
           unknown: Clear selection
-        violence_to_general_public_details: Violent to general public details
+        violence_to_general_public_details: Violent to the general public details
         violence_to_staff:
           unknown: Clear selection
         violence_to_staff_custody: Staff custody
