@@ -92,3 +92,23 @@ html
             div To find out more about the Person Escort Record go to exmaple.com
             div If you have feedback or suggestions please email feedback@example.com
 
+    main.page-two
+      table.indicators
+        tr.header-row
+          th colspan=4
+            span.strong-text = "#{detainee.prison_number}: #{detainee.surname} "
+            = detainee.forenames
+        tr
+          td
+            div = image_tag "not_for_release_#{offences.not_for_release}.png"
+            = offences.not_for_release_details
+          td
+          td
+          td
+      table.summary
+        = risk.risk_to_self_section
+        = risk.risk_from_others_section
+        = risk.violent_section
+        = risk.harassments_section
+        = risk.sex_offender_section
+
