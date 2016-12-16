@@ -1,5 +1,5 @@
 module RiskAssessment
-  class ArsonSection
+  class ArsonSection < BaseSection
     def name
       'arson'
     end

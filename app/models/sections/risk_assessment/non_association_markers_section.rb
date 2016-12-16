@@ -1,5 +1,5 @@
 module RiskAssessment
-  class NonAssociationMarkersSection
+  class NonAssociationMarkersSection < BaseSection
     def name
       'non_association_markers'
     end

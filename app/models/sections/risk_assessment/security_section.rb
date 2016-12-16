@@ -1,5 +1,5 @@
 module RiskAssessment
-  class SecuritySection
+  class SecuritySection < BaseSection
     def name
       'security'
     end

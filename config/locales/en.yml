@@ -14,7 +14,8 @@ en:
       concealed_weapons:
         conceals_weapons: Concealed weapons, mobile phones or other items
       harassments:
-        stalker_harasser_bully: Hostage taker / stalker / harasser / intimidator / bully?
+        harassment: Harasser
+        intimidation: Intimidator / bully
       information:
         has_destinations: Are there establishments the detainee must or must not be sent?
         reason: Reason for move
@@ -91,8 +92,14 @@ en:
         gender: Gender
         aliases: Aliases
       harassments:
-        stalker_harasser_bully:
+        harassment:
           unknown: Clear selection
+        intimidation:
+          unknown: Clear selection
+        intimidation_to_staff: Staff
+        intimidation_to_public: Public
+        intimidation_to_other_detainees: Prisoners
+        intimidation_to_witnesses: Witnesses
       information:
         from: From
         to: To
@@ -216,11 +223,11 @@ en:
       detainee_details:
         date_of_birth: DD/MM/YYYY
       harassments:
-        hostage_taker_details: Give details about the type of abuse and when it happened
-        stalker_details: Give details about the type of abuse and when it happened. Include any court imposed restrictions such as restraining orders.
-        harasser_details: Give details about the type of abuse and when it happened. Include any court imposed restrictions such as restraining orders.
-        intimidator_details: Give details about the type of abuse and when it happened. Include any court imposed restrictions such as restraining orders.
-        bully_details: Give details about the type of abuse and when it happened
+        harassment_details: Give details about restraining order
+        intimidation_to_staff_details: Give details
+        intimidation_to_public_details: Give details
+        intimidation_to_other_detainees_details: Give details
+        intimidation_to_witnesses_details: Give details
       information:
         reason_details: Give details
         date : DD/MM/YYYY
@@ -307,7 +314,7 @@ en:
         arson: Arson and damage to property
         communication: Communication / language difficulties
         concealed_weapons: Concealed weapons or other items
-        harassments: Risk to others
+        harassments: Risk to others - harasser and/or bully
         non_association_markers: Risk to others
         risk_to_self: Risk to self
         risk_from_others: Risk from others
@@ -329,7 +336,8 @@ en:
         concealed_weapons:
           conceals_weapons: Concealed weapons or other items
         harassments:
-          stalker_harasser_bully: Hostage taker / stalker / harasser / intimidator / bully
+          harassment: Harasser
+          intimidation: Intimidator / bully
         needs:
           has_medications: Medication
         non_association_markers:
@@ -369,7 +377,7 @@ en:
         arson: Arson and damage to property
         communication: Communication / language difficulties
         concealed_weapons: Concealed weapons or other items
-        harassments: "Risk to others: Hostage taker / stalker / harasser / intimidator / bully"
+        harassments: "Risk to others: Harasser / intimidator / bully"
         mental: Mental healthcare
         needs: Medical health needs
         non_association_markers: Risk to others

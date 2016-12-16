@@ -1,5 +1,5 @@
 module RiskAssessment
-  class CommunicationSection
+  class CommunicationSection < BaseSection
     def name
       'communication'
     end
