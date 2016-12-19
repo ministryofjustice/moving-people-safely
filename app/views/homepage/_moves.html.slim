@@ -20,7 +20,7 @@
           span
             |  #{move.detainee.forenames}
         td = move.to
-        - if move.workflow.issued?
+        - if move.move_workflow.issued?
           td.issued colspan=3
             | Issued
           td.print

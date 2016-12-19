@@ -1,5 +1,5 @@
 header
-  h1 = t(".#{template_name}")
+  h1 = t("#{scope}.form.title.#{template_name}")
 
 = GovukElementsErrorsHelper.error_summary form,
   'There were problems saving this form', ''

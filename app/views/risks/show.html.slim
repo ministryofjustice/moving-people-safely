@@ -1,4 +1,4 @@
 = render partial: 'shared/wizard_header'
 
 .risk
-  = render partial: 'shared/wizard_step_form', locals: { form: form, template_name: template_name }
+  = render partial: 'shared/wizard_step_form', locals: { scope: 'risks', form: form, template_name: template_name }

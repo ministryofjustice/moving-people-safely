@@ -6,7 +6,7 @@ table
     th Destination
     th Move date
   tr
-    - if move && move.workflow.active?
+    - if move && move.active?
       td = link_to(detainee.prison_number, profile_path(move))
     - else
       td = detainee.prison_number
@@ -22,7 +22,7 @@ table
     - else
       td colspan=2
 
-- if move && move.workflow.active?
+- if move && move.active?
   = link_to('View profile', profile_path(move), class: 'button')
 - elsif move
   = link_to('Add new move', copy_move_path(detainee), class: 'button')

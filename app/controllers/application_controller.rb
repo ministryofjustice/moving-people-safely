@@ -138,7 +138,7 @@ class ApplicationController < ActionController::Base
     detainee.active_move.risk_workflow.confirmed!
     detainee.active_move.healthcare_workflow.confirmed!
     detainee.active_move.offences_workflow.confirmed!
-    detainee.active_move.workflow.issued!
+    detainee.active_move.move_workflow.issued!
     detainee
   end
 end

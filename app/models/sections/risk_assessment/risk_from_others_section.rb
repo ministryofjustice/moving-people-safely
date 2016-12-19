@@ -7,5 +7,6 @@ module RiskAssessment
     def questions
       %w[rule_45 csra victim_of_abuse high_profile]
     end
+    alias mandatory_questions questions
   end
 end

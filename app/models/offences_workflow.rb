@@ -1,0 +1,2 @@
+class OffencesWorkflow < Workflow
+end

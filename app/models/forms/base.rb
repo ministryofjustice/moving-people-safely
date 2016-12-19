@@ -82,7 +82,12 @@ module Forms
           enabled_value: option_with_details
       end
 
-      def optional_checkbox(field_name, toggle = nil)
+      def optional_checkbox(field_name)
+        _define_attribute_is_on(field_name, true)
+        property field_name, type: Axiom::Types::Boolean, default: false
+      end
+
+      def optional_checkbox_with_details(field_name, toggle = nil)
         _define_attribute_is_on(field_name, true)
         property field_name, type: Axiom::Types::Boolean, default: false
         property "#{field_name}_details", type: StrictString

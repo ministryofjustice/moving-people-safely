@@ -9,11 +9,7 @@ module Page
     def confirm_risk_details(risk)
       check_section(risk, 'risk_to_self', %w[acct_status])
       check_section(risk, 'risk_from_others', %w[ rule_45 csra victim_of_abuse high_profile ])
-      if risk.violent == 'yes'
-        check_section(risk, 'violence', %w[ prison_staff risk_to_females escort_or_court_staff healthcare_staff other_detainees homophobic racist public_offence_related police ])
-      else
-        check_section_is_all_no(risk, 'violence', %w[ prison_staff risk_to_females escort_or_court_staff healthcare_staff other_detainees homophobic racist public_offence_related police ])
-      end
+      check_violence_section(risk)
       if risk.stalker_harasser_bully == 'yes'
         check_section(risk, 'harassments', %w[ hostage_taker stalker harasser intimidator bully ])
       else
@@ -81,6 +77,46 @@ module Page
               "Expected more details from #{section}/#{question}: didn't get 'em."
           end
         end
+      end
+    end
+
+    private
+
+    def check_violence_section(risk)
+      check_violence_due_to_discrimination(risk)
+      check_violence_to_staff(risk)
+      check_violence_to_other_detainees(risk)
+      check_violence_to_general_public(risk)
+    end
+
+    def check_violence_due_to_discrimination(risk)
+      if risk.violence_due_to_discrimination == 'yes'
+        check_section(risk, 'violence', %w[risk_to_females homophobic racist other_violence_due_to_discrimination])
+      else
+        check_section_is_all_no(risk, 'violence', %w[risk_to_females homophobic racist other_violence_due_to_discrimination])
+      end
+    end
+
+    def check_violence_to_staff(risk)
+      if risk.violence_to_staff == 'yes'
+        check_section(risk, 'violence', %w[violence_to_staff_custody violence_to_staff_community])
+      else
+        check_section_is_all_no(risk, 'violence', %w[violence_to_staff_custody violence_to_staff_community])
+      end
+    end
+
+    def check_violence_to_other_detainees(risk)
+      if risk.violence_to_other_detainees == 'yes'
+        check_section(risk, 'violence', %w[co_defendant gang_member other_violence_to_other_detainees])
+      else
+        check_section_is_all_no(risk, 'violence', %w[co_defendant gang_member other_violence_to_other_detainees])
+      end
+    end
+
+    def check_violence_to_general_public(risk)
+      if risk.violence_to_general_public == 'yes'
+        check_question(risk, 'violence', 'violence_to_general_public')
+      else
       end
     end
   end
