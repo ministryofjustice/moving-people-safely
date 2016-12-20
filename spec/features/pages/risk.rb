@@ -11,6 +11,7 @@ module Page
       fill_in_risk_to_self
       fill_in_risk_from_others
       fill_in_violence
+      fill_in_hostage_taker
       fill_in_harassments
       fill_in_sex_offences
       fill_in_non_association_markers
@@ -81,6 +82,39 @@ module Page
         fill_in 'violence_violence_to_general_public_details', with: @risk.violence_to_general_public_details
       else
         choose 'violence_violence_to_general_public_no'
+      end
+    end
+
+    def fill_in_hostage_taker
+      if @risk.hostage_taker == 'yes'
+        choose 'hostage_taker_hostage_taker_yes'
+        fill_in_staff_hostage_taker
+        fill_in_prisoners_hostage_taker
+        fill_in_public_hostage_taker
+      else
+        choose 'hostage_taker_hostage_taker_no'
+      end
+      save_and_continue
+    end
+
+    def fill_in_staff_hostage_taker
+      if @risk.staff_hostage_taker
+        check 'hostage_taker_staff_hostage_taker'
+        fill_in 'hostage_taker_date_most_recent_staff_hostage_taker_incident', with: @risk.date_most_recent_staff_hostage_taker_incident
+      end
+    end
+
+    def fill_in_prisoners_hostage_taker
+      if @risk.prisoners_hostage_taker
+        check 'hostage_taker_prisoners_hostage_taker'
+        fill_in 'hostage_taker_date_most_recent_prisoners_hostage_taker_incident', with: @risk.date_most_recent_prisoners_hostage_taker_incident
+      end
+    end
+
+    def fill_in_public_hostage_taker
+      if @risk.public_hostage_taker
+        check 'hostage_taker_public_hostage_taker'
+        fill_in 'hostage_taker_date_most_recent_public_hostage_taker_incident', with: @risk.date_most_recent_public_hostage_taker_incident
       end
     end
 

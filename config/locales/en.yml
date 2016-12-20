@@ -16,6 +16,8 @@ en:
       harassments:
         harassment: Harasser
         intimidation: Intimidator / bully
+      hostage_taker:
+        hostage_taker: History of taking hostages
       information:
         has_destinations: Are there establishments the detainee must or must not be sent?
         reason: Reason for move
@@ -100,6 +102,15 @@ en:
         intimidation_to_public: Public
         intimidation_to_other_detainees: Prisoners
         intimidation_to_witnesses: Witnesses
+      hostage_taker:
+        hostage_taker:
+          unknown: Clear selection
+        staff_hostage_taker: Staff
+        public_hostage_taker: Public
+        prisoners_hostage_taker: Prisoners
+        date_most_recent_staff_hostage_taker_incident: Date of most recent incident
+        date_most_recent_prisoners_hostage_taker_incident: Date of most recent incident
+        date_most_recent_public_hostage_taker_incident: Date of most recent incident
       information:
         from: From
         to: To
@@ -228,6 +239,10 @@ en:
         intimidation_to_public_details: Give details
         intimidation_to_other_detainees_details: Give details
         intimidation_to_witnesses_details: Give details
+      hostage_taker:
+        date_most_recent_staff_hostage_taker_incident: DD/MM/YYYY
+        date_most_recent_prisoners_hostage_taker_incident: DD/MM/YYYY
+        date_most_recent_public_hostage_taker_incident: DD/MM/YYYY
       information:
         reason_details: Give details
         date : DD/MM/YYYY
@@ -315,6 +330,7 @@ en:
         communication: Communication / language difficulties
         concealed_weapons: Concealed weapons or other items
         harassments: Risk to others - harasser and/or bully
+        hostage_taker: Risk to others - hostage taker
         non_association_markers: Risk to others
         risk_to_self: Risk to self
         risk_from_others: Risk from others
@@ -378,6 +394,7 @@ en:
         communication: Communication / language difficulties
         concealed_weapons: Concealed weapons or other items
         harassments: "Risk to others: Harasser / intimidator / bully"
+        hostage_taker: "Risk to others: Hostage taker"
         mental: Mental healthcare
         needs: Medical health needs
         non_association_markers: Risk to others
