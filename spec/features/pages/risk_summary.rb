@@ -10,6 +10,7 @@ module Page
       check_section(risk, 'risk_to_self', %w[acct_status])
       check_section(risk, 'risk_from_others', %w[ rule_45 csra victim_of_abuse high_profile ])
       check_violence_section(risk)
+      check_hostage_taker_section(risk)
       check_harassment_section(risk)
       check_section(risk, 'sex_offences', %w[ sex_offence ])
       check_section(risk, 'non_association_markers', %w[ non_association_markers ])
@@ -112,6 +113,15 @@ module Page
     def check_violence_to_general_public(risk)
       if risk.violence_to_general_public == 'yes'
         check_question(risk, 'violence', 'violence_to_general_public')
+      end
+    end
+
+    def check_hostage_taker_section(risk)
+      fields = %w[staff_hostage_taker prisoners_hostage_taker public_hostage_taker]
+      if risk.hostage_taker == 'yes'
+        check_section(risk, 'hostage_taker', fields)
+      else
+        check_section_is_all_no(risk, 'hostage_taker', fields)
       end
     end
 
