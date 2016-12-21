@@ -17,8 +17,7 @@ module Forms
       property :sex_offence_details, type: StrictString
 
       validates :sex_offence_victim,
-        inclusion: { in: VICTIM_VALUES },
-        allow_blank: true
+        inclusion: { in: VICTIM_VALUES }, if: proc { |f| f.sex_offence == 'yes' }
 
       validates :sex_offence_details,
         presence: true,

@@ -47,7 +47,7 @@ en:
         restricted_status: Restricted status?
         documents: "Ensure the following documents accompany the detainee:"
       sex_offences:
-        sex_offence: Sex offender?
+        sex_offence: Sex offender
         sex_offence_victim: ''
       social:
         personal_hygiene: Personal hygiene issues?
@@ -335,7 +335,7 @@ en:
         risk_to_self: Risk to self
         risk_from_others: Risk from others
         security: Security
-        sex_offences: Risk to others
+        sex_offences: Sex offender
         substance_misuse: Substance risk
         violence: Risk to others - discrimination
 
