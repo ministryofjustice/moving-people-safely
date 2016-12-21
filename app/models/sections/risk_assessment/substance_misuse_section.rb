@@ -1,5 +1,5 @@
 module RiskAssessment
-  class SubstanceMisuseSection
+  class SubstanceMisuseSection < BaseSection
     def name
       'substance_misuse'
     end

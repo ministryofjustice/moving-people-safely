@@ -1,5 +1,5 @@
 module RiskAssessment
-  class ConcealedWeaponsSection
+  class ConcealedWeaponsSection < BaseSection
     def name
       'concealed_weapons'
     end

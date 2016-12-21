@@ -10,11 +10,7 @@ module Page
       check_section(risk, 'risk_to_self', %w[acct_status])
       check_section(risk, 'risk_from_others', %w[ rule_45 csra victim_of_abuse high_profile ])
       check_violence_section(risk)
-      if risk.stalker_harasser_bully == 'yes'
-        check_section(risk, 'harassments', %w[ hostage_taker stalker harasser intimidator bully ])
-      else
-        check_section_is_all_no(risk, 'harassments', %w[ hostage_taker stalker harasser intimidator bully ])
-      end
+      check_harassment_section(risk)
       check_section(risk, 'sex_offences', %w[ sex_offence ])
       check_section(risk, 'non_association_markers', %w[ non_association_markers ])
       check_section(risk, 'security', %w[ current_e_risk category_a restricted_status escape_pack escape_risk_assessment cuffing_protocol ])
@@ -116,7 +112,26 @@ module Page
     def check_violence_to_general_public(risk)
       if risk.violence_to_general_public == 'yes'
         check_question(risk, 'violence', 'violence_to_general_public')
+      end
+    end
+
+    def check_harassment_section(risk)
+      check_harassment(risk)
+      check_intimidation(risk)
+    end
+
+    def check_intimidation(risk)
+      fields = %w[intimidation_to_staff intimidation_to_public intimidation_to_other_detainees intimidation_to_witnesses]
+      if risk.intimidation == 'yes'
+        check_section(risk, 'harassments', fields)
       else
+        check_section_is_all_no(risk, 'harassments', fields)
+      end
+    end
+
+    def check_harassment(risk)
+      if risk.harassment == 'yes'
+        check_question(risk, 'harassments', 'harassment_details')
       end
     end
   end

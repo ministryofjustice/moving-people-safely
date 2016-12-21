@@ -85,17 +85,30 @@ module Page
     end
 
     def fill_in_harassments
-      if @risk.stalker_harasser_bully == 'yes'
-        choose 'harassments_stalker_harasser_bully_yes'
-        fill_in_checkbox_with_details('Hostage taker', @risk, :hostage_taker)
-        fill_in_checkbox_with_details('Stalker', @risk, :stalker)
-        fill_in_checkbox_with_details('Harasser', @risk, :harasser)
-        fill_in_checkbox_with_details('Intimidator', @risk, :intimidator)
-        fill_in_checkbox_with_details('Bully', @risk, :bully)
-      else
-        choose 'harassments_stalker_harasser_bully_no'
-      end
+      fill_in_harassment
+      fill_in_intimidation
       save_and_continue
+    end
+
+    def fill_in_harassment
+      if @risk.harassment == 'yes'
+        choose 'harassments_harassment_yes'
+        fill_in 'harassments_harassment_details', with: @risk.harassment_details
+      else
+        choose 'harassments_harassment_no'
+      end
+    end
+
+    def fill_in_intimidation
+      if @risk.intimidation == 'yes'
+        choose 'harassments_intimidation_yes'
+        fill_in_checkbox_with_details('Staff', @risk, :intimidation_to_staff)
+        fill_in_checkbox_with_details('Public', @risk, :intimidation_to_public)
+        fill_in_checkbox_with_details('Prisoners', @risk, :intimidation_to_other_detainees)
+        fill_in_checkbox_with_details('Witnesses', @risk, :intimidation_to_witnesses)
+      else
+        choose 'harassments_intimidation_no'
+      end
     end
 
     def fill_in_sex_offences

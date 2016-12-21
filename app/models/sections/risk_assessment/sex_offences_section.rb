@@ -1,5 +1,5 @@
 module RiskAssessment
-  class SexOffencesSection
+  class SexOffencesSection < BaseSection
     def name
       'sex_offences'
     end

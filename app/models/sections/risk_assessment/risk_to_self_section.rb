@@ -1,5 +1,5 @@
 module RiskAssessment
-  class RiskToSelfSection
+  class RiskToSelfSection < BaseSection
     def name
       'risk_to_self'
     end
