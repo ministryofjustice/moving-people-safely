@@ -15,6 +15,21 @@ RSpec.describe Forms::Risk::Harassments, type: :form do
       context 'when intimidation is set to yes' do
         before { form.intimidation = 'yes' }
 
+        context 'but none of the checkboxes is selected' do
+          before do
+            form.intimidation_to_staff = false
+            form.intimidation_to_public = false
+            form.intimidation_to_other_detainees = false
+            form.intimidation_to_witnesses = false
+          end
+
+          it 'an invalid date error is added to the error list' do
+            expect(form).not_to be_valid
+            expect(form.errors.keys).to match_array([:base])
+            expect(form.errors[:base]).to match_array(['At least one option (Staff, Public, Prisoners, Witnesses) needs to be provided'])
+          end
+        end
+
         context 'and intimidation to staff is set to true' do
           before { subject.intimidation_to_staff = true }
           it { is_expected.to validate_presence_of(:intimidation_to_staff_details) }

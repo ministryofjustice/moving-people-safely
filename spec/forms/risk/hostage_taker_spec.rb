@@ -9,6 +9,20 @@ RSpec.describe Forms::Risk::HostageTaker, type: :form do
       context 'when hostage taker is set to yes' do
         before { form.hostage_taker = 'yes' }
 
+        context 'but none of the checkboxes is selected' do
+          before do
+            form.staff_hostage_taker = false
+            form.prisoners_hostage_taker = false
+            form.public_hostage_taker = false
+          end
+
+          it 'an invalid date error is added to the error list' do
+            expect(form).not_to be_valid
+            expect(form.errors.keys).to match_array([:base])
+            expect(form.errors[:base]).to match_array(['At least one option (Staff, Prisoners, Public) needs to be provided'])
+          end
+        end
+
         context 'and staff hostage taker is set to true' do
           before { form.staff_hostage_taker = true }
 

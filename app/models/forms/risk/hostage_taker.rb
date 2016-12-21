@@ -2,6 +2,15 @@ module Forms
   module Risk
     class HostageTaker < Forms::Base
       optional_field :hostage_taker, default: 'unknown'
+
+      validate :valid_hostage_taker_options, if: proc { |f| f.hostage_taker == 'yes' }
+
+      def valid_hostage_taker_options
+        unless selected_hostage_taker_options.any?
+          errors.add(:base, :minimum_one_option, options: hostage_taker_options.join(', '))
+        end
+      end
+
       optional_checkbox :staff_hostage_taker
       optional_checkbox :prisoners_hostage_taker
       optional_checkbox :public_hostage_taker
@@ -38,6 +47,18 @@ module Forms
       validates :date_most_recent_public_hostage_taker_incident,
         date: { not_in_the_future: true },
         if: -> { public_hostage_taker == true }
+
+      private
+
+      def selected_hostage_taker_options
+        [staff_hostage_taker, prisoners_hostage_taker, public_hostage_taker]
+      end
+
+      def hostage_taker_options
+        %i[staff_hostage_taker prisoners_hostage_taker public_hostage_taker].map do |attr|
+          I18n.t(attr, scope: [:helpers, :label, :hostage_taker])
+        end
+      end
     end
   end
 end
