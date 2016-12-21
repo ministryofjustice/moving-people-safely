@@ -37,7 +37,7 @@ en:
         victim_of_abuse: Is the detainee a victim or possible victim of abuse within prison?
         high_profile: Is the detainee of high public interest?
       risk_to_self:
-        acct_status: What is the most recent ACCT status of the detainee?
+        acct_status: Detainee's most recent ACCT status
       security:
         category_a: Category A?
         current_e_risk: Current E-risk?
@@ -151,7 +151,7 @@ en:
           post_closure: ACCT Post Closure
           closed_in_last_6_months: ACCT Closed, in the last 6 months
           not_available: None of the above
-        acct_status_details: Give details
+        acct_status_details: Give details of known methods and triggers
         date_of_most_recently_closed_acct: Date of most recently closed ACCT
       security:
         category_a:
