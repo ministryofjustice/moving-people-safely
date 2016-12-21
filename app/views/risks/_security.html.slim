@@ -1,6 +1,6 @@
 = f.radio_toggle :current_e_risk do
   .form-group
-    = f.radio_button_fieldset :current_e_risk_details, choices: f.object.e_risk_values
+    = f.radio_button_fieldset :current_e_risk_details, choices: f.object.e_risk_values, legend: false
 = f.radio_toggle_with_textarea :category_a
 = f.radio_toggle_with_textarea :restricted_status
 

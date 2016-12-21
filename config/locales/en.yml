@@ -42,8 +42,7 @@ en:
         acct_status: Detainee's most recent ACCT status
       security:
         category_a: Category A?
-        current_e_risk: Current E-risk?
-        current_e_risk_details: ''
+        current_e_risk: Currently on E list?
         restricted_status: Restricted status?
         documents: "Ensure the following documents accompany the detainee:"
       sex_offences:
@@ -63,26 +62,26 @@ en:
         violence_to_staff: Violent to staff
     label:
       allergies:
-        allergies:
+        allergies_choices:
           unknown: Clear selection
       arson:
-        arson_value:
+        arson_value_choices:
           index_offence: Arson is the index offence
           behavioural_issue: Arson is a behavioural issue
           small_risk: Small risk of arson during move
-        arson:
+        arson_choices:
           unknown: Clear selection
-        damage_to_property:
+        damage_to_property_choices:
           unknown: Clear selection
       communication:
-        can_read_and_write:
+        can_read_and_write_choices:
           unknown: Clear selection
-        hearing_speach_sight:
+        hearing_speach_sight_choices:
           unknown: Clear selection
-        interpreter_required:
+        interpreter_required_choices:
           unknown: Clear selection
       concealed_weapons:
-        conceals_weapons:
+        conceals_weapons_choices:
           unknown: Clear selection
       detainee_details:
         surname: Surname
@@ -93,16 +92,16 @@ en:
         gender: Gender
         aliases: Aliases
       harassments:
-        harassment:
+        harassment_choices:
           unknown: Clear selection
-        intimidation:
+        intimidation_choices:
           unknown: Clear selection
         intimidation_to_staff: Staff
         intimidation_to_public: Public
         intimidation_to_other_detainees: Prisoners
         intimidation_to_witnesses: Witnesses
       hostage_taker:
-        hostage_taker:
+        hostage_taker_choices:
           unknown: Clear selection
         staff_hostage_taker: Staff
         public_hostage_taker: Public
@@ -115,48 +114,48 @@ en:
         to: To
         date: Date of move
         reason_details: Reason details
-        has_destinations:
+        has_destinations_choices:
           unknown: Clear selection
         destinations:
           establishment: Establishment
           reasons: List the reasons, eg medical treatment, medical hold, treatment programmes or offender behaviour.
       mental:
-        mental_illness:
+        mental_illness_choices:
           unknown: Clear selection
-        phobias:
+        phobias_choices:
           unknown: Clear selection
       needs:
-        dependencies:
+        dependencies_choices:
           unknown: Clear selection
-        has_medications:
+        has_medications_choices:
           unknown: Clear selection
         medications:
           description: What is it?
           administration: How is it given?
           carrier: Who carries it?
       non_association_markers:
-        non_association_markers:
+        non_association_markers_choices:
           unknown: Clear selection
         non_association_markers_details: Non-association markers details
       offences:
         release_date: The detainee's confirmed release date
         not_for_release: The detainee is 'not for release'
-        has_past_offences:
+        has_past_offences_choices:
           unknown: Clear selection
       physical:
-        physical_issues:
+        physical_issues_choices:
           unknown: Clear selection
       risk_from_others:
-        rule_45:
+        rule_45_choices:
           unknown: Clear selection
-        csra:
+        csra_choices:
           unknown: Clear selection
-        victim_of_abuse:
+        victim_of_abuse_choices:
           unknown: Clear selection
-        high_profile:
+        high_profile_choices:
           unknown: Clear selection
       risk_to_self:
-        acct_status:
+        acct_status_choices:
           open: ACCT Open
           post_closure: ACCT Post Closure
           closed_in_last_6_months: ACCT Closed, in the last 6 months
@@ -164,36 +163,37 @@ en:
         acct_status_details: Give details of known methods and triggers
         date_of_most_recently_closed_acct: Date of most recently closed ACCT
       security:
-        category_a:
+        category_a_choices:
           unknown: Clear selection
         category_a_details: Give details
-        current_e_risk:
+        current_e_risk_choices:
           unknown: Clear selection
-        current_e_risk_details:
+        current_e_risk_details: E list type
+        current_e_risk_details_choices:
           e_list_standard: E-List-Standard
           e_list_escort: E-List-Escort
           e_list_heightened: E-List-Heightened
-        restricted_status:
+        restricted_status_choices:
           unknown: Clear selection
       sex_offences:
-        sex_offence:
+        sex_offence_choices:
           unknown: Clear selection
         sex_offence_adult_male_victim: Adult male
         sex_offence_adult_female_victim: Adult female
         sex_offence_under18_victim: Under 18
         sex_offence_under18_victim_details: Under 18 victim details
       social:
-        personal_hygiene:
+        personal_hygiene_choices:
           unknown: Clear selection
-        personal_care:
+        personal_care_choices:
           unknown: Clear selection
       substance_misuse:
-        alcohol:
+        substance_supply_choices:
           unknown: Clear selection
-        drugs:
+        substance_use_choices:
           unknown: Clear selection
       transport:
-        mpv:
+        mpv_choices:
           unknown: Clear selection
         mpv_details: MPV details
       violence:
@@ -208,16 +208,16 @@ en:
         racist: Racist
         racist_details: Details for risk of violence due to racist discrimination
         risk_to_females: Risk to females
-        violence_due_to_discrimination:
+        violence_due_to_discrimination_choices:
           unknown: Clear selection
-        violence_to_general_public:
+        violence_to_general_public_choices:
           unknown: Clear selection
         violence_to_general_public_details: Violent to the general public details
-        violence_to_staff:
+        violence_to_staff_choices:
           unknown: Clear selection
         violence_to_staff_custody: Staff custody
         violence_to_staff_community: Staff community
-        violence_to_other_detainees:
+        violence_to_other_detainees_choices:
           unknown: Clear selection
     hint:
       allergies:
@@ -281,7 +281,7 @@ en:
         date_of_most_recently_closed_acct: DD/MM/YYYY
       security:
         category_a_details: Give details
-        current_e_risk: Please see PSI 2011/56 Management and Security of Escape List (E List prisoners)
+        current_e_risk: Check PSI 2011/56 Management and Security of Escape List (E List prisoners)
         restricted_status: Please see PSI 08/2013 The Review of Security Category - CAT A Restricted Status
         restricted_status_details: Give details
       sex_offences:
@@ -337,7 +337,7 @@ en:
         non_association_markers: Risk to others
         risk_to_self: Risk to self
         risk_from_others: Risk from others
-        security: Security
+        security: Escape status/history
         sex_offences: Sex offender
         substance_misuse: Substance risk
         violence: Risk to others - discrimination

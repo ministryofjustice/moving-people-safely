@@ -37,8 +37,15 @@ Metrics/AbcSize:
   Exclude:
     - 'spec/**/*'
 
+Metrics/ClassLength:
+  Exclude:
+    - 'app/form_builders/mps_form_builder.rb'
+
 Metrics/MethodLength:
   Max: 15
+  Exclude:
+    - 'app/form_builders/mps_form_builder.rb'
+
 
 # Allow ===. It's useful.
 Style/CaseEquality:
