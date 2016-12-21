@@ -48,7 +48,6 @@ en:
         documents: "Ensure the following documents accompany the detainee:"
       sex_offences:
         sex_offence: Sex offender
-        sex_offence_victim: ''
       social:
         personal_hygiene: Personal hygiene issues?
         personal_care: Personal care issues?
@@ -179,6 +178,10 @@ en:
       sex_offences:
         sex_offence:
           unknown: Clear selection
+        sex_offence_adult_male_victim: Adult male
+        sex_offence_adult_female_victim: Adult female
+        sex_offence_under18_victim: Under 18
+        sex_offence_under18_victim_details: Under 18 victim details
       social:
         personal_hygiene:
           unknown: Clear selection
@@ -282,7 +285,7 @@ en:
         restricted_status: Please see PSI 08/2013 The Review of Security Category - CAT A Restricted Status
         restricted_status_details: Give details
       sex_offences:
-        sex_offence_details: Give details - state gender and age when under 18, if known
+        sex_offence_under18_victim_details: Give details - state gender and age when under 18, if known
       social:
         personal_hygiene: Eg OCD, needs toilet support. For more information refer to the Social Care Act
         personal_hygiene_details: Give details and explain the significance
@@ -360,7 +363,9 @@ en:
           non_association_markers: Non-association markers
         sex_offences:
           sex_offence: Sex offender
-          sex_offence_victim: ''
+          sex_offence_adult_male_victim: Adult male victim
+          sex_offence_adult_female_victim: Adult female victim
+          sex_offence_under18_victim: Under 18 victim
         risk_from_others:
           rule_45: Rule 45
           csra: Cell Share Risk Assessment

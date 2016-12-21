@@ -12,7 +12,7 @@ module Page
       check_violence_section(risk)
       check_hostage_taker_section(risk)
       check_harassment_section(risk)
-      check_section(risk, 'sex_offences', %w[ sex_offence ])
+      check_sex_offences_section(risk)
       check_section(risk, 'non_association_markers', %w[ non_association_markers ])
       check_section(risk, 'security', %w[ current_e_risk category_a restricted_status escape_pack escape_risk_assessment cuffing_protocol ])
       check_section(risk, 'substance_misuse', %w[ substance_supply substance_use ])
@@ -142,6 +142,16 @@ module Page
     def check_harassment(risk)
       if risk.harassment == 'yes'
         check_question(risk, 'harassments', 'harassment_details')
+      end
+    end
+
+    def check_sex_offences_section(risk)
+      fields = %w[sex_offence_adult_male_victim sex_offence_adult_female_victim
+                  sex_offence_under18_victim]
+      if risk.sex_offence == 'yes'
+        check_section(risk, 'sex_offences', fields)
+      else
+        check_section_is_all_no(risk, 'sex_offences', fields)
       end
     end
   end
