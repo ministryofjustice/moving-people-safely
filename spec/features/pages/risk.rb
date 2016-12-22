@@ -148,10 +148,9 @@ module Page
     def fill_in_sex_offences
       if @risk.sex_offence == 'yes'
         choose 'sex_offences_sex_offence_yes'
-        choose @risk.sex_offence_victim.humanize
-        if @risk.sex_offence_details
-          fill_in 'sex_offences_sex_offence_details', with: @risk.sex_offence_details
-        end
+        fill_in_checkbox('Adult male', @risk, :sex_offence_adult_male_victim)
+        fill_in_checkbox('Adult female', @risk, :sex_offence_adult_female_victim)
+        fill_in_checkbox_with_details('Under 18', @risk, :sex_offence_under18_victim)
       else
         choose 'sex_offences_sex_offence_no'
       end

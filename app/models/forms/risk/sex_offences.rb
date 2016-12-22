@@ -4,28 +4,37 @@ module Forms
       UNDER_18 = 'under_18'.freeze
       VICTIM_VALUES = ['adult_male', 'adult_female', UNDER_18].freeze
 
-      optional_field :sex_offence
+      optional_field :sex_offence, default: 'unknown'
 
-      reset attributes: %i[sex_offence_victim sex_offence_details],
+      validate :valid_sex_offence_options, if: proc { |f| f.sex_offence == 'yes' }
+
+      def valid_sex_offence_options
+        unless selected_sex_offence_options.any?
+          errors.add(:base, :minimum_one_option, options: sex_offence_options.join(', '))
+        end
+      end
+
+      optional_checkbox :sex_offence_adult_male_victim
+      optional_checkbox :sex_offence_adult_female_victim
+      optional_checkbox_with_details :sex_offence_under18_victim
+
+      reset attributes: %i[sex_offence_adult_male_victim sex_offence_adult_female_victim
+                           sex_offence_under18_victim sex_offence_under18_victim_details],
             if_falsey: :sex_offence
 
-      property :sex_offence_victim, type: StrictString
+      private
 
-      reset attributes: %i[sex_offence_details],
-            if_falsey: :sex_offence_victim, enabled_value: UNDER_18
+      def selected_sex_offence_options
+        [sex_offence_adult_male_victim,
+         sex_offence_adult_female_victim,
+         sex_offence_under18_victim]
+      end
 
-      property :sex_offence_details, type: StrictString
-
-      validates :sex_offence_victim,
-        inclusion: { in: VICTIM_VALUES },
-        allow_blank: true
-
-      validates :sex_offence_details,
-        presence: true,
-        if: -> { sex_offence == 'yes' && sex_offence_victim == UNDER_18 }
-
-      def victim_values
-        VICTIM_VALUES
+      def sex_offence_options
+        %i[sex_offence_adult_male_victim sex_offence_adult_female_victim
+           sex_offence_under18_victim].map do |attr|
+          I18n.t(attr, scope: [:helpers, :label, :sex_offences])
+        end
       end
     end
   end

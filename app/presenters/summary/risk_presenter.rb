@@ -5,13 +5,7 @@ module Summary
     delegate :question_is_conditional?, :question_condition, to: :section
 
     def self.for(section, risk)
-      klass = case section.to_s
-              when 'sex_offences'
-                Summary::Risks::SexOffencesSectionPresenter
-              else
-                self
-              end
-      klass.new(risk, section: section)
+      new(risk, section: section)
     end
 
     def initialize(object, options = {})
