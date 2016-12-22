@@ -158,18 +158,59 @@ module Page
     end
 
     def fill_in_security
+      fill_in_current_e_risk
+      fill_in_previous_escape_attempts
+      fill_in_category_a
+      fill_in_escort_risk_assessment
+      fill_in_escape_pack
+      save_and_continue
+    end
+
+    def fill_in_current_e_risk
       if @risk.current_e_risk == 'yes'
         choose 'security_current_e_risk_yes'
         choose "security_current_e_risk_details_#{@risk.current_e_risk_details}"
       else
         choose 'security_current_e_risk_no'
       end
-      fill_in_optional_details('Category A?', @risk, :category_a)
-      fill_in_optional_details('Restricted status?', @risk, :restricted_status)
-      check 'Escape pack' if @risk.escape_pack
-      check 'Escape risk assessment' if @risk.escape_risk_assessment
-      check 'Cuffing protocol'  if @risk.cuffing_protocol
-      save_and_continue
+    end
+
+    def fill_in_previous_escape_attempts
+      if @risk.previous_escape_attempts == 'yes'
+        choose 'security_previous_escape_attempts_yes'
+        fill_in_checkbox_with_details('Prison', @risk, :prison_escape_attempt)
+        fill_in_checkbox_with_details('Court', @risk, :court_escape_attempt)
+        fill_in_checkbox_with_details('Police', @risk, :police_escape_attempt)
+        fill_in_checkbox_with_details('Other', @risk, :other_type_escape_attempt)
+      else
+        choose 'security_previous_escape_attempts_no'
+      end
+    end
+
+    def fill_in_category_a
+      if @risk.category_a == 'yes'
+        choose 'security_category_a_yes'
+      else
+        choose 'security_category_a_no'
+      end
+    end
+
+    def fill_in_escort_risk_assessment
+      if @risk.escort_risk_assessment == 'yes'
+        choose 'security_escort_risk_assessment_yes'
+        fill_in 'security_escort_risk_assessment_completion_date', with: @risk.escort_risk_assessment_completion_date
+      else
+        choose 'security_escort_risk_assessment_no'
+      end
+    end
+
+    def fill_in_escape_pack
+      if @risk.escape_pack == 'yes'
+        choose 'security_escape_pack_yes'
+        fill_in 'security_escape_pack_completion_date', with: @risk.escape_pack_completion_date
+      else
+        choose 'security_escape_pack_no'
+      end
     end
 
     def fill_in_non_association_markers

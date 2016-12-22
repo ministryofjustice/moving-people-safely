@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221175619) do
+ActiveRecord::Schema.define(version: 20161222102920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,11 +155,6 @@ ActiveRecord::Schema.define(version: 20161221175619) do
     t.text     "current_e_risk_details"
     t.string   "category_a",                                        default: "unknown"
     t.text     "category_a_details"
-    t.string   "restricted_status",                                 default: "unknown"
-    t.text     "restricted_status_details"
-    t.boolean  "escape_pack"
-    t.boolean  "escape_risk_assessment"
-    t.boolean  "cuffing_protocol"
     t.string   "substance_supply",                                  default: "unknown"
     t.text     "substance_supply_details"
     t.string   "substance_use",                                     default: "unknown"
@@ -224,6 +219,19 @@ ActiveRecord::Schema.define(version: 20161221175619) do
     t.boolean  "sex_offence_adult_female_victim"
     t.boolean  "sex_offence_under18_victim"
     t.text     "sex_offence_under18_victim_details"
+    t.string   "previous_escape_attempts"
+    t.boolean  "prison_escape_attempt"
+    t.text     "prison_escape_attempt_details"
+    t.boolean  "court_escape_attempt"
+    t.text     "court_escape_attempt_details"
+    t.boolean  "police_escape_attempt"
+    t.text     "police_escape_attempt_details"
+    t.boolean  "other_type_escape_attempt"
+    t.text     "other_type_escape_attempt_details"
+    t.string   "escort_risk_assessment"
+    t.date     "escort_risk_assessment_completion_date"
+    t.string   "escape_pack"
+    t.date     "escape_pack_completion_date"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
   end
 

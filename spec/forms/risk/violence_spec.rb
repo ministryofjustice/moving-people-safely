@@ -30,10 +30,10 @@ RSpec.describe Forms::Risk::Violence, type: :form do
       end
 
       describe 'details fields associated with checkboxes' do
-        it { is_expected.not_to be_configured_to_reset(['risk_to_females_details']).when(:risk_to_females).not_set_to(true) }
-        it { is_expected.not_to be_configured_to_reset(['homophobic_details']).when(:homophobic).not_set_to(true) }
-        it { is_expected.to be_configured_to_reset(['racist_details']).when(:racist).not_set_to(true) }
-        it { is_expected.to be_configured_to_reset(['other_violence_due_to_discrimination_details']).when(:other_violence_due_to_discrimination).not_set_to(true) }
+        it { is_expected.not_to be_configured_to_reset([:risk_to_females_details]).when(:risk_to_females).not_set_to(true) }
+        it { is_expected.not_to be_configured_to_reset([:homophobic_details]).when(:homophobic).not_set_to(true) }
+        it { is_expected.to be_configured_to_reset([:racist_details]).when(:racist).not_set_to(true) }
+        it { is_expected.to be_configured_to_reset([:other_violence_due_to_discrimination_details]).when(:other_violence_due_to_discrimination).not_set_to(true) }
       end
     end
 
@@ -76,10 +76,10 @@ RSpec.describe Forms::Risk::Violence, type: :form do
       end
 
       describe 'details fields associated with checkboxes' do
-        it { is_expected.not_to be_configured_to_reset(['risk_to_females_details']).when(:risk_to_females).not_set_to(true) }
-        it { is_expected.not_to be_configured_to_reset(['homophobic_details']).when(:homophobic).not_set_to(true) }
-        it { is_expected.to be_configured_to_reset(['racist_details']).when(:racist).not_set_to(true) }
-        it { is_expected.to be_configured_to_reset(['other_violence_due_to_discrimination_details']).when(:other_violence_due_to_discrimination).not_set_to(true) }
+        it { is_expected.not_to be_configured_to_reset([:risk_to_females_details]).when(:risk_to_females).not_set_to(true) }
+        it { is_expected.not_to be_configured_to_reset([:homophobic_details]).when(:homophobic).not_set_to(true) }
+        it { is_expected.to be_configured_to_reset([:racist_details]).when(:racist).not_set_to(true) }
+        it { is_expected.to be_configured_to_reset([:other_violence_due_to_discrimination_details]).when(:other_violence_due_to_discrimination).not_set_to(true) }
       end
     end
 

@@ -61,10 +61,10 @@ RSpec.describe Forms::Risk::Harassments, type: :form do
       end
 
       describe 'details fields associated with checkboxes' do
-        it { is_expected.to be_configured_to_reset(['intimidation_to_staff_details']).when(:intimidation_to_staff).not_set_to(true) }
-        it { is_expected.to be_configured_to_reset(['intimidation_to_public_details']).when(:intimidation_to_public).not_set_to(true) }
-        it { is_expected.to be_configured_to_reset(['intimidation_to_other_detainees_details']).when(:intimidation_to_other_detainees).not_set_to(true) }
-        it { is_expected.to be_configured_to_reset(['intimidation_to_witnesses_details']).when(:intimidation_to_witnesses).not_set_to(true) }
+        it { is_expected.to be_configured_to_reset([:intimidation_to_staff_details]).when(:intimidation_to_staff).not_set_to(true) }
+        it { is_expected.to be_configured_to_reset([:intimidation_to_public_details]).when(:intimidation_to_public).not_set_to(true) }
+        it { is_expected.to be_configured_to_reset([:intimidation_to_other_detainees_details]).when(:intimidation_to_other_detainees).not_set_to(true) }
+        it { is_expected.to be_configured_to_reset([:intimidation_to_witnesses_details]).when(:intimidation_to_witnesses).not_set_to(true) }
       end
     end
   end

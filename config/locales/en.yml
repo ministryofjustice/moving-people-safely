@@ -41,10 +41,11 @@ en:
       risk_to_self:
         acct_status: Detainee's most recent ACCT status
       security:
-        category_a: Category A?
-        current_e_risk: Currently on E list?
-        restricted_status: Restricted status?
-        documents: "Ensure the following documents accompany the detainee:"
+        category_a: Category A or Restricted status
+        current_e_risk: Currently on E list
+        escape_pack: Escape Pack completed for this journey
+        escort_risk_assessment: Escort Risk Assessment completed for this journey
+        previous_escape_attempts: Made previous escape attempts
       sex_offences:
         sex_offence: Sex offender
       social:
@@ -165,7 +166,6 @@ en:
       security:
         category_a_choices:
           unknown: Clear selection
-        category_a_details: Give details
         current_e_risk_choices:
           unknown: Clear selection
         current_e_risk_details: E list type
@@ -173,8 +173,22 @@ en:
           e_list_standard: E-List-Standard
           e_list_escort: E-List-Escort
           e_list_heightened: E-List-Heightened
-        restricted_status_choices:
+        escape_pack_choices:
           unknown: Clear selection
+        escort_risk_assessment_choices:
+          unknown: Clear selection
+        escape_pack_completion_date: 'Escape Pack completed on:'
+        escort_risk_assessment_completion_date: 'Escort Risk Assessment completed on:'
+        previous_escape_attempts_choices:
+          unknown: Clear selection
+        prison_escape_attempt: Prison
+        prison_escape_attempt_details: Last prison escape attempt details
+        court_escape_attempt: Court
+        court_escape_attempt_details: Last court escape attempt details
+        police_escape_attempt: Police
+        police_escape_attempt_details: Last police escape attempt details
+        other_type_escape_attempt: Other
+        other_type_escape_attempt_details: Last other type of escape attempt details
       sex_offences:
         sex_offence_choices:
           unknown: Clear selection
@@ -280,10 +294,14 @@ en:
         suicide_details: Give details
         date_of_most_recently_closed_acct: DD/MM/YYYY
       security:
-        category_a_details: Give details
+        category_a: Check PSI 08/2013 The Review of Security Category - CAT A Restricted Status
         current_e_risk: Check PSI 2011/56 Management and Security of Escape List (E List prisoners)
-        restricted_status: Please see PSI 08/2013 The Review of Security Category - CAT A Restricted Status
-        restricted_status_details: Give details
+        escape_pack_completion_date: DD/MM/YYYY
+        escort_risk_assessment_completion_date: DD/MM/YYYY
+        prison_escape_attempt_details: Give details of last escape attempt
+        court_escape_attempt_details: Give details of last escape attempt
+        police_escape_attempt_details: Give details of last escape attempt
+        other_type_escape_attempt_details: Give details of last escape attempt
       sex_offences:
         sex_offence_under18_victim_details: Give details - state gender and age when under 18, if known
       social:
@@ -373,11 +391,10 @@ en:
           acct_status: ACCT status
           suicide: Risk of suicide or self-harm
         security:
-          category_a: Category A
+          category_a: Category A or Restricted status
           current_e_risk: Current E risk
           escape_list: Escape list
           other_escape_risk_info: Other escape risk information
-          restricted_status: Restricted status
         substance_misuse:
           substance_supply: Substance supply
           substance_use: Substance use
