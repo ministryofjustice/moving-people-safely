@@ -20,7 +20,6 @@ FactoryGirl.define do
     escape_pack 'no'
     escort_risk_assessment 'no'
     substance_supply 'no'
-    substance_use 'no'
     conceals_weapons 'no'
     conceals_drugs 'no'
     conceals_mobile_phone_or_other_items 'no'

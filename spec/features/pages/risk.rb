@@ -219,8 +219,12 @@ module Page
     end
 
     def fill_in_substance_misuse
-      fill_in_optional_details('Is there a risk of them SUPPLYING drugs or alcohol?', @risk, :substance_supply)
-      fill_in_optional_details('Is there a risk of them USING drugs or alcohol?', @risk, :substance_use)
+      if @risk.substance_supply == 'yes'
+        choose 'substance_misuse_substance_supply_yes'
+        fill_in 'substance_misuse_substance_supply_details', with: @risk.substance_supply_details
+      else
+        choose 'substance_misuse_substance_supply_no'
+      end
       save_and_continue
     end
 

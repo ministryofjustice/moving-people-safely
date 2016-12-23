@@ -21,8 +21,8 @@ RSpec.describe RiskWorkflow do
              violence_to_staff violence_to_other_detainees violence_to_general_public
              hostage_taker harassment intimidation sex_offence non_association_markers
              current_e_risk previous_escape_attempts category_a escort_risk_assessment
-             escape_pack substance_supply substance_use conceals_weapons conceals_drugs
-             conceals_mobile_phone_or_other_items  arson damage_to_property
+             escape_pack substance_supply conceals_weapons conceals_drugs
+             conceals_mobile_phone_or_other_items arson damage_to_property
              interpreter_required hearing_speach_sight can_read_and_write])
     end
   end

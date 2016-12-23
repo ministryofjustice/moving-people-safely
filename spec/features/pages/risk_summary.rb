@@ -15,7 +15,7 @@ module Page
       check_sex_offences_section(risk)
       check_section(risk, 'non_association_markers', %w[ non_association_markers ])
       check_security_section(risk)
-      check_section(risk, 'substance_misuse', %w[ substance_supply substance_use ])
+      check_substance_misuse_section(risk)
       check_concealed_weapons_section(risk)
       check_section(risk, 'arson', %w[ arson damage_to_property ])
       check_section(risk, 'communication', %w[ interpreter_required hearing_speach_sight can_read_and_write ])
@@ -193,6 +193,10 @@ module Page
       else
         check_section_is_all_no(risk, 'concealed_weapons', fields)
       end
+    end
+
+    def check_substance_misuse_section(risk)
+      check_section(risk, 'substance_misuse', %w[substance_supply])
     end
   end
 end
