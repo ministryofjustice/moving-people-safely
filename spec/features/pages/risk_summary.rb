@@ -16,7 +16,7 @@ module Page
       check_section(risk, 'non_association_markers', %w[ non_association_markers ])
       check_security_section(risk)
       check_section(risk, 'substance_misuse', %w[ substance_supply substance_use ])
-      check_section(risk, 'concealed_weapons', %w[ conceals_weapons ])
+      check_concealed_weapons_section(risk)
       check_section(risk, 'arson', %w[ arson damage_to_property ])
       check_section(risk, 'communication', %w[ interpreter_required hearing_speach_sight can_read_and_write ])
     end
@@ -176,6 +176,22 @@ module Page
         check_section(risk, 'security', fields)
       else
         check_section_is_all_no(risk, 'security', fields)
+      end
+    end
+
+    def check_concealed_weapons_section(risk)
+      check_section(risk, 'concealed_weapons', %w[conceals_weapons])
+      check_section(risk, 'concealed_weapons', %w[conceals_drugs])
+      check_conceals_mobile_phone_or_other_items(risk)
+    end
+
+    def check_conceals_mobile_phone_or_other_items(risk)
+      fields = %w[conceals_mobile_phones conceals_sim_cards
+                  conceals_other_items]
+      if risk.conceals_mobile_phone_or_other_items == 'yes'
+        check_section(risk, 'concealed_weapons', fields)
+      else
+        check_section_is_all_no(risk, 'concealed_weapons', fields)
       end
     end
   end

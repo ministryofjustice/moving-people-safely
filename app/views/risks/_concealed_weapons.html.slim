@@ -1,1 +1,10 @@
 = f.radio_toggle_with_textarea :conceals_weapons
+= f.radio_toggle_with_textarea :conceals_drugs
+= f.radio_toggle :conceals_mobile_phone_or_other_items do
+  fieldset
+    span.form-hint
+      | Select all that apply
+
+    = f.checkbox :conceals_mobile_phones
+    = f.checkbox :conceals_sim_cards
+    = f.checkbox_with_textarea :conceals_other_items

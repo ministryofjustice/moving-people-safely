@@ -12,7 +12,8 @@ en:
         hearing_speach_sight: Does the detainee have hearing / speech / sight impairments?
         interpreter_required: Interpreter required?
       concealed_weapons:
-        conceals_weapons: Concealed weapons, mobile phones or other items
+        conceals_weapons: Conceals weapons
+        conceals_mobile_phone_or_other_items: Conceals mobile phones, SIMs or other items
       harassments:
         harassment: Harasser
         intimidation: Intimidator / bully
@@ -84,6 +85,13 @@ en:
       concealed_weapons:
         conceals_weapons_choices:
           unknown: Clear selection
+        conceals_drugs_choices:
+          unknown: Clear selection
+        conceals_mobile_phones: Mobile phones
+        conceals_mobile_phone_or_other_items_choices:
+          unknown: Clear selection
+        conceals_other_items: Other
+        conceals_sim_cards: SIM cards
       detainee_details:
         surname: Surname
         forenames: Forename(s)
@@ -246,8 +254,9 @@ en:
         hearing_speach_sight_details: Record any barriers (including language barriers) to verbal communication
         language: For which language?
       concealed_weapons:
-        conceals_weapons: Eg drugs, blade, mobile phone, cash, lighter, sim card
-        conceals_weapons_details: Give details
+        conceals_weapons_details: List the types of weapons and how they were hidden
+        conceals_drugs_details: Give details of previous incidents and methods used
+        conceals_other_items_details: Give details
       detainee_details:
         date_of_birth: DD/MM/YYYY
       harassments:
@@ -349,7 +358,7 @@ en:
       title:
         arson: Arson and damage to property
         communication: Communication / language difficulties
-        concealed_weapons: Concealed weapons or other items
+        concealed_weapons: Concealed weapons, drugs or other items
         harassments: Risk to others - harasser and/or bully
         hostage_taker: Risk to others - hostage taker
         non_association_markers: Risk to others
@@ -370,8 +379,6 @@ en:
           can_read_and_write: Reading / writing issues
           hearing_speach_sight: Hearing / speech / sight issues
           interpreter_required: Interpreter required
-        concealed_weapons:
-          conceals_weapons: Concealed weapons or other items
         harassments:
           harassment: Harasser
           intimidation: Intimidator / bully
@@ -414,7 +421,7 @@ en:
       titles:
         arson: Arson and damage to property
         communication: Communication / language difficulties
-        concealed_weapons: Concealed weapons or other items
+        concealed_weapons: Concealed weapons, drugs or other items
         harassments: "Risk to others: Harasser / intimidator / bully"
         hostage_taker: "Risk to others: Hostage taker"
         mental: Mental healthcare

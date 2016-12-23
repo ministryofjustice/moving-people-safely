@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222102920) do
+ActiveRecord::Schema.define(version: 20161223101818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -232,6 +232,13 @@ ActiveRecord::Schema.define(version: 20161222102920) do
     t.date     "escort_risk_assessment_completion_date"
     t.string   "escape_pack"
     t.date     "escape_pack_completion_date"
+    t.string   "conceals_drugs"
+    t.text     "conceals_drugs_details"
+    t.text     "conceals_mobile_phone_or_other_items"
+    t.boolean  "conceals_mobile_phones"
+    t.boolean  "conceals_sim_cards"
+    t.boolean  "conceals_other_items"
+    t.text     "conceals_other_items_details"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
   end
 
