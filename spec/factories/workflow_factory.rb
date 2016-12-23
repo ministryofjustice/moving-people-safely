@@ -1,17 +1,17 @@
 FactoryGirl.define do
   factory :workflow do
-    status 0
+    status :not_started
 
     trait :incomplete do
-      status 2
+      status :incomplete
     end
 
     trait :confirmed do
-      status 4
+      status :confirmed
     end
 
     trait :issued do
-      status 5
+      status :issued
     end
   end
 
