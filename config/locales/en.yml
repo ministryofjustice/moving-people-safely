@@ -417,5 +417,6 @@ en:
   alerts:
     detainee_already_exists: "Detainee already exists. You've been redirected to the next relevant form"
     detainee:
-      pre_filling_unavailable: "Pre-filling unavailable. Please fill in the details manually"
+      pre_filling_unavailable: "Look-Up function is not currently available. Please enter person details manually or try again later"
+      details_not_found: "No record for that prison reference exists. Please check the reference used or enter the details manually"
     unable_to_confirm_incomplete_risk_assessment: Risk assessment cannot be confirmed until all mandatory answered are filled
