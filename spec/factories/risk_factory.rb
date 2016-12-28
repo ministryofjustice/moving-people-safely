@@ -24,9 +24,6 @@ FactoryGirl.define do
     conceals_mobile_phone_or_other_items 'no'
     arson 'no'
     damage_to_property 'no'
-    interpreter_required 'no'
-    hearing_speach_sight 'no'
-    can_read_and_write 'no'
 
     trait :with_high_csra do
       csra 'high'
