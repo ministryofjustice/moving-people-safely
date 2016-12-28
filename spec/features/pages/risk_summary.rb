@@ -13,7 +13,6 @@ module Page
       check_hostage_taker_section(risk)
       check_harassment_section(risk)
       check_sex_offences_section(risk)
-      check_section(risk, 'non_association_markers', %w[ non_association_markers ])
       check_security_section(risk)
       check_substance_misuse_section(risk)
       check_concealed_weapons_section(risk)

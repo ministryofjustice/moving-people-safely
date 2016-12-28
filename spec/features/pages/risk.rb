@@ -14,7 +14,6 @@ module Page
       fill_in_hostage_taker
       fill_in_harassments
       fill_in_sex_offences
-      fill_in_non_association_markers
       fill_in_security
       fill_in_substance_misuse
       fill_in_concealed_weapons
@@ -211,11 +210,6 @@ module Page
       else
         choose 'security_escape_pack_no'
       end
-    end
-
-    def fill_in_non_association_markers
-      fill_in_optional_details('Non-association markers?', @risk, :non_association_markers)
-      save_and_continue
     end
 
     def fill_in_substance_misuse
