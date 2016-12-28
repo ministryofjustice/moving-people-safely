@@ -268,12 +268,15 @@ module Page
     def fill_in_arson
       if @risk.arson == 'yes'
         choose 'arson_arson_yes'
-        choose "arson_arson_value_#{@risk.arson_value}"
-        fill_in 'arson_arson_details', with: @risk.arson_details
       else
         choose 'arson_arson_no'
       end
-      fill_in_optional_details('Damage to property?', @risk, :damage_to_property)
+
+      if @risk.damage_to_property == 'yes'
+        choose 'arson_damage_to_property_yes'
+      else
+        choose 'arson_damage_to_property_no'
+      end
       save_and_continue
     end
 
