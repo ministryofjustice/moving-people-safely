@@ -34,10 +34,10 @@ en:
       physical:
         physical_issues: Physical health needs?
       risk_from_others:
-        rule_45: Rule 45 (Detainee separated for their own protection)?
-        csra: CSRA (Cell Share Risk Assessment)?
-        victim_of_abuse: Is the detainee a victim or possible victim of abuse within prison?
-        high_profile: Is the detainee of high public interest?
+        rule_45: Rule 45
+        csra: CSRA
+        victim_of_abuse: Detainee a victim or possible victim of abuse in prison
+        high_profile: Detainee of high public interest
       risk_to_self:
         acct_status: Detainee's most recent ACCT status
       security:
@@ -268,7 +268,9 @@ en:
         physical_issues: Eg disabilities, prosthetic limbs, crutches.
         physical_issues_details: Give details and explain the significance
       risk_from_others:
-        victim_of_abuse_details: Give details
+        csra: Cell Sharing Risk Assessment
+        rule_45: Detainee separated for own protection
+        victim_of_abuse_details: Give details of the abuser (or potential abuser) if known
         high_profile_details: Give details
       risk_to_self:
         open_acct: |
