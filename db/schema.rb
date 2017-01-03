@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161223101818) do
+ActiveRecord::Schema.define(version: 20161223155924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,8 +157,6 @@ ActiveRecord::Schema.define(version: 20161223101818) do
     t.text     "category_a_details"
     t.string   "substance_supply",                                  default: "unknown"
     t.text     "substance_supply_details"
-    t.string   "substance_use",                                     default: "unknown"
-    t.text     "substance_use_details"
     t.string   "conceals_weapons",                                  default: "unknown"
     t.text     "conceals_weapons_details"
     t.string   "arson",                                             default: "unknown"

@@ -53,8 +53,7 @@ en:
         personal_hygiene: Personal hygiene issues?
         personal_care: Personal care issues?
       substance_misuse:
-        substance_supply: Is there a risk of them SUPPLYING drugs or alcohol?
-        substance_use: Is there a risk of them USING drugs or alcohol?
+        substance_supply: Risk of detainee trafficking drugs or alcohol
       transport:
         mpv: Requires MPV?
       violence:
@@ -212,8 +211,9 @@ en:
       substance_misuse:
         substance_supply_choices:
           unknown: Clear selection
-        substance_use_choices:
-          unknown: Clear selection
+        substance_supply_details: Details for risk of detainee trafficking drugs or alcohol
+        substance_supply_details_choices:
+          both: Both drugs and alcohol
       transport:
         mpv_choices:
           unknown: Clear selection
@@ -318,9 +318,6 @@ en:
         personal_hygiene_details: Give details and explain the significance
         personal_care: Eg needs help with dressing, eating or drinking
         personal_care_details: Give details and explain the significance
-      substance_misuse:
-        substance_use_details: Give details, if relevant to the move
-        substance_supply_details: Give details, if relevant to the move
       transport:
         mpv: Eg disability, claustrophobia, pregnancy.
         mpv_details: Give details and explain the significance
@@ -366,7 +363,7 @@ en:
         risk_from_others: Risk from others
         security: Escape status/history
         sex_offences: Sex offender
-        substance_misuse: Substance risk
+        substance_misuse: Risk of trafficking drugs and alcohol
         violence: Risk to others - discrimination
 
   summary:
@@ -403,8 +400,7 @@ en:
           escape_list: Escape list
           other_escape_risk_info: Other escape risk information
         substance_misuse:
-          substance_supply: Substance supply
-          substance_use: Substance use
+          substance_supply: Risk of detainee trafficking drugs or alcohol
         transport:
           mpv: MPV
         violence:
@@ -433,7 +429,7 @@ en:
         security: Security
         sex_offences: "Risk to others: Sex offender"
         social: Social healthcare
-        substance_misuse: Substance misuse
+        substance_misuse: Risk of trafficking drugs and alcohol
         violence: "Risk to others: discrimination"
   activemodel:
     errors:
