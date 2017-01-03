@@ -18,7 +18,6 @@ module Page
       fill_in_substance_misuse
       fill_in_concealed_weapons
       fill_in_arson
-      fill_in_communication
     end
 
     def fill_in_risk_to_self
@@ -271,18 +270,6 @@ module Page
       else
         choose 'arson_damage_to_property_no'
       end
-      save_and_continue
-    end
-
-    def fill_in_communication
-      if @risk.interpreter_required == 'yes'
-        choose 'communication_interpreter_required_yes'
-        fill_in 'communication[language]', with: @risk.language
-      else
-        choose 'communication_interpreter_required_no'
-      end
-      fill_in_optional_details('Does the detainee have hearing / speech / sight impairments?', @risk, :hearing_speach_sight)
-      fill_in_optional_details('Does the detainee have reading / writing issues?', @risk, :can_read_and_write)
       save_and_continue
     end
   end
