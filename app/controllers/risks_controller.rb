@@ -25,11 +25,14 @@ class RisksController < DetaineeController
     render 'summary/risk'
   end
 
-  # what does error state look like?
   def confirm
-    raise unless risk.all_questions_answered?
-    risk_workflow.confirm_with_user!(user: current_user)
-    redirect_to profile_path(active_move)
+    if risk.all_questions_answered?
+      risk_workflow.confirm_with_user!(user: current_user)
+      redirect_to profile_path(active_move)
+    else
+      flash.now[:error] = t('alerts.unable_to_confirm_incomplete_risk_assessment')
+      render 'summary/risk'
+    end
   end
 
   private

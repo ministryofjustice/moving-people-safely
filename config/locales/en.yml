@@ -451,3 +451,4 @@ en:
     detainee_already_exists: "Detainee already exists. You've been redirected to the next relevant form"
     detainee:
       pre_filling_unavailable: "Pre-filling unavailable. Please fill in the details manually"
+    unable_to_confirm_incomplete_risk_assessment: Risk assessment cannot be confirmed until all mandatory answered are filled

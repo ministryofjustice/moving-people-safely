@@ -33,5 +33,11 @@ FactoryGirl.define do
     trait :with_high_csra do
       csra 'high'
     end
+
+    trait :incomplete do
+      rule_45 'unknown'
+      harassment 'unknown'
+      conceals_weapons 'unknown'
+    end
   end
 end
