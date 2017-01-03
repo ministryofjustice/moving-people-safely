@@ -2,8 +2,12 @@ module Forms
   module Risk
     class RiskFromOthers < Forms::Base
       optional_field :rule_45
-      optional_details_field :victim_of_abuse, default: 'unknown'
-      optional_details_field :high_profile, default: 'unknown'
+      optional_field :victim_of_abuse, default: 'unknown'
+      property :victim_of_abuse_details, type: StrictString
+      reset attributes: [:victim_of_abuse_details], if_falsey: :victim_of_abuse
+      optional_field :high_profile, default: 'unknown'
+      property :high_profile_details, type: StrictString
+      reset attributes: [:high_profile_details], if_falsey: :high_profile
 
       concerning :CsraSection do
         included do
