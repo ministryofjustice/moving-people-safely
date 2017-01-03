@@ -74,7 +74,7 @@ RSpec.describe Forms::Offences, type: :form do
     end
 
     describe 'details fields associated with checkboxes' do
-      it { is_expected.to be_configured_to_reset(['not_for_release_details']).when(:not_for_release).not_set_to(true) }
+      it { is_expected.to be_configured_to_reset([:not_for_release_details]).when(:not_for_release).not_set_to(true) }
     end
   end
 

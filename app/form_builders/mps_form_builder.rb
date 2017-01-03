@@ -4,6 +4,56 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     ' panel panel-border-narrow'
   end
 
+  def radio_button_fieldset(attribute, options = {})
+    content_tag :div,
+      class: form_group_classes(attribute),
+      id: form_group_id(attribute) do
+      content_tag :fieldset, fieldset_options(attribute, options) do
+        safe_join([
+                    fieldset_legend(attribute, options),
+                    radio_inputs(attribute, options)
+                  ], "\n")
+      end
+    end
+  end
+
+  def fieldset_legend(attribute, options = {})
+    tags = []
+    legend = content_tag(:legend) do
+      if options.fetch(:legend, true)
+        tags << content_tag(
+          :span,
+          fieldset_text(attribute),
+          class: 'form-label-bold'
+        )
+      end
+
+      if error_for? attribute
+        tags << content_tag(
+          :span,
+          error_full_message_for(attribute),
+          class: 'error-message'
+        )
+      end
+
+      hint = hint_text attribute
+      tags << content_tag(:span, hint, class: 'form-hint') if hint
+
+      safe_join tags
+    end
+    legend.html_safe
+  end
+
+  def radio_inputs(attribute, options)
+    choices = options[:choices] || [:yes, :no]
+    choices.map do |choice|
+      label(attribute, class: 'block-label', value: choice) do |_tag|
+        input = radio_button(attribute, choice)
+        input + localized_label("#{attribute}_choices.#{choice}")
+      end
+    end
+  end
+
   def radio_toggle(attribute, options = {}, &_blk)
     style = 'optional-section-wrapper'
     style << ' mps-hide' unless object.public_send("#{attribute}_on?")
@@ -75,12 +125,15 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     style = 'optional-checkbox-section-wrapper'
     style << ' mps-hide' unless object.public_send("#{attribute}_on?")
     content_tag(:div, class: 'js-checkbox-show-hide form-group') do
-      label(attribute, class: 'block-label') do
-        content_tag(:div, class: 'controls-optional-checkbox-section') do
-          check_box attribute
-        end +
-          localized_label(attribute)
-      end
+      safe_join([
+        label(attribute, class: 'block-label') do
+          content_tag(:div, class: 'controls-optional-checkbox-section') do
+            check_box attribute
+          end +
+            localized_label(attribute)
+        end,
+        (content_tag(:div, class: style) { yield } if block_given?)
+      ])
     end
   end
 

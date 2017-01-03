@@ -10,18 +10,13 @@ module Page
       check_section(risk, 'risk_to_self', %w[acct_status])
       check_section(risk, 'risk_from_others', %w[ rule_45 csra victim_of_abuse high_profile ])
       check_violence_section(risk)
-      if risk.stalker_harasser_bully == 'yes'
-        check_section(risk, 'harassments', %w[ hostage_taker stalker harasser intimidator bully ])
-      else
-        check_section_is_all_no(risk, 'harassments', %w[ hostage_taker stalker harasser intimidator bully ])
-      end
-      check_section(risk, 'sex_offences', %w[ sex_offence ])
-      check_section(risk, 'non_association_markers', %w[ non_association_markers ])
-      check_section(risk, 'security', %w[ current_e_risk category_a restricted_status escape_pack escape_risk_assessment cuffing_protocol ])
-      check_section(risk, 'substance_misuse', %w[ substance_supply substance_use ])
-      check_section(risk, 'concealed_weapons', %w[ conceals_weapons ])
+      check_hostage_taker_section(risk)
+      check_harassment_section(risk)
+      check_sex_offences_section(risk)
+      check_security_section(risk)
+      check_substance_misuse_section(risk)
+      check_concealed_weapons_section(risk)
       check_section(risk, 'arson', %w[ arson damage_to_property ])
-      check_section(risk, 'communication', %w[ interpreter_required hearing_speach_sight can_read_and_write ])
     end
 
     def check_section_is_all_no(doc, section, questions)
@@ -116,8 +111,90 @@ module Page
     def check_violence_to_general_public(risk)
       if risk.violence_to_general_public == 'yes'
         check_question(risk, 'violence', 'violence_to_general_public')
-      else
       end
+    end
+
+    def check_hostage_taker_section(risk)
+      fields = %w[staff_hostage_taker prisoners_hostage_taker public_hostage_taker]
+      if risk.hostage_taker == 'yes'
+        check_section(risk, 'hostage_taker', fields)
+      else
+        check_section_is_all_no(risk, 'hostage_taker', fields)
+      end
+    end
+
+    def check_harassment_section(risk)
+      check_harassment(risk)
+      check_intimidation(risk)
+    end
+
+    def check_intimidation(risk)
+      fields = %w[intimidation_to_staff intimidation_to_public intimidation_to_other_detainees intimidation_to_witnesses]
+      if risk.intimidation == 'yes'
+        check_section(risk, 'harassments', fields)
+      else
+        check_section_is_all_no(risk, 'harassments', fields)
+      end
+    end
+
+    def check_harassment(risk)
+      if risk.harassment == 'yes'
+        check_question(risk, 'harassments', 'harassment_details')
+      end
+    end
+
+    def check_sex_offences_section(risk)
+      fields = %w[sex_offence_adult_male_victim sex_offence_adult_female_victim
+                  sex_offence_under18_victim]
+      if risk.sex_offence == 'yes'
+        check_section(risk, 'sex_offences', fields)
+      else
+        check_section_is_all_no(risk, 'sex_offences', fields)
+      end
+    end
+
+    def check_security_section(risk)
+      check_current_e_risk(risk)
+      check_previous_escape_attempts(risk)
+      check_question(risk, 'security', 'category_a')
+      check_question(risk, 'security', 'escort_risk_assessment')
+      check_question(risk, 'security', 'escape_pack')
+    end
+
+    def check_current_e_risk(risk)
+      if risk.current_e_risk == 'yes'
+        check_question(risk, 'security', 'current_e_risk_details')
+      end
+    end
+
+    def check_previous_escape_attempts(risk)
+      fields = %w[prison_escape_attempt court_escape_attempt
+                  police_escape_attempt other_type_escape_attempt]
+      if risk.previous_escape_attempts == 'yes'
+        check_section(risk, 'security', fields)
+      else
+        check_section_is_all_no(risk, 'security', fields)
+      end
+    end
+
+    def check_concealed_weapons_section(risk)
+      check_section(risk, 'concealed_weapons', %w[conceals_weapons])
+      check_section(risk, 'concealed_weapons', %w[conceals_drugs])
+      check_conceals_mobile_phone_or_other_items(risk)
+    end
+
+    def check_conceals_mobile_phone_or_other_items(risk)
+      fields = %w[conceals_mobile_phones conceals_sim_cards
+                  conceals_other_items]
+      if risk.conceals_mobile_phone_or_other_items == 'yes'
+        check_section(risk, 'concealed_weapons', fields)
+      else
+        check_section_is_all_no(risk, 'concealed_weapons', fields)
+      end
+    end
+
+    def check_substance_misuse_section(risk)
+      check_section(risk, 'substance_misuse', %w[substance_supply])
     end
   end
 end

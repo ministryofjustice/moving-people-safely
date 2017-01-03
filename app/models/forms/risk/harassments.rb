@@ -1,18 +1,45 @@
 module Forms
   module Risk
     class Harassments < Forms::Base
-      optional_field :stalker_harasser_bully
+      optional_details_field :harassment, default: 'unknown'
+
+      optional_field :intimidation, default: 'unknown'
+
+      validate :valid_intimidation_options, if: proc { |f| f.intimidation == 'yes' }
+
+      def valid_intimidation_options
+        unless selected_intimidation_options.any?
+          errors.add(:base, :minimum_one_option, options: intimidation_options.join(', '))
+        end
+      end
+
+      optional_checkbox_with_details :intimidation_to_staff, :intimidation
+      optional_checkbox_with_details :intimidation_to_public, :intimidation
+      optional_checkbox_with_details :intimidation_to_other_detainees, :intimidation
+      optional_checkbox_with_details :intimidation_to_witnesses, :intimidation
 
       reset attributes: %i[
-        hostage_taker hostage_taker_details stalker stalker_details harasser
-        harasser_details intimidator intimidator_details bully bully_details
-      ], if_falsey: :stalker_harasser_bully
+        intimidation_to_staff intimidation_to_staff_details
+        intimidation_to_public intimidation_to_public_details
+        intimidation_to_other_detainees intimidation_to_other_detainees_details
+        intimidation_to_witnesses intimidation_to_witnesses_details
+      ], if_falsey: :intimidation
 
-      optional_checkbox_with_details :hostage_taker, :stalker_harasser_bully
-      optional_checkbox_with_details :stalker, :stalker_harasser_bully
-      optional_checkbox_with_details :harasser, :stalker_harasser_bully
-      optional_checkbox_with_details :intimidator, :stalker_harasser_bully
-      optional_checkbox_with_details :bully, :stalker_harasser_bully
+      private
+
+      def selected_intimidation_options
+        [intimidation_to_staff,
+         intimidation_to_public,
+         intimidation_to_other_detainees,
+         intimidation_to_witnesses]
+      end
+
+      def intimidation_options
+        %i[intimidation_to_staff intimidation_to_public
+           intimidation_to_other_detainees intimidation_to_witnesses].map do |attr|
+          I18n.t(attr, scope: [:helpers, :label, :harassments])
+        end
+      end
     end
   end
 end

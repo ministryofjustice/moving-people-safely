@@ -37,5 +37,9 @@ FactoryGirl.define do
     trait :with_no_current_offences do
       association :offences, :with_no_current_offences, factory: :offences, strategy: :build
     end
+
+    trait :with_incomplete_risk_assessment do
+      association :risk, :incomplete, strategy: :build
+    end
   end
 end

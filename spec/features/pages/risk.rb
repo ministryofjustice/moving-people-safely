@@ -11,26 +11,25 @@ module Page
       fill_in_risk_to_self
       fill_in_risk_from_others
       fill_in_violence
+      fill_in_hostage_taker
       fill_in_harassments
       fill_in_sex_offences
-      fill_in_non_association_markers
       fill_in_security
       fill_in_substance_misuse
       fill_in_concealed_weapons
       fill_in_arson
-      fill_in_communication
     end
 
     def fill_in_risk_to_self
-      fill_in_optional_details('What is the most recent ACCT status of the detainee?', @risk, :acct_status)
+      fill_in_optional_details("Detainee's most recent ACCT status", @risk, :acct_status)
       save_and_continue
     end
 
     def fill_in_risk_from_others
-      fill_in_optional_details('Rule 45 (Detainee separated for their own protection)?', @risk, :rule_45)
-      fill_in_optional_details('CSRA (Cell Share Risk Assessment)?', @risk, :csra)
-      fill_in_optional_details('Is the detainee a victim or possible victim of abuse within prison?', @risk, :victim_of_abuse)
-      fill_in_optional_details('Is the detainee of high public interest?', @risk, :high_profile)
+      fill_in_optional_details('Rule 45', @risk, :rule_45)
+      fill_in_optional_details('CSRA', @risk, :csra)
+      fill_in_optional_details('Detainee a victim or possible victim of abuse in prison', @risk, :victim_of_abuse)
+      fill_in_optional_details('Detainee of high public interest', @risk, :high_profile)
       save_and_continue
     end
 
@@ -84,27 +83,72 @@ module Page
       end
     end
 
-    def fill_in_harassments
-      if @risk.stalker_harasser_bully == 'yes'
-        choose 'harassments_stalker_harasser_bully_yes'
-        fill_in_checkbox_with_details('Hostage taker', @risk, :hostage_taker)
-        fill_in_checkbox_with_details('Stalker', @risk, :stalker)
-        fill_in_checkbox_with_details('Harasser', @risk, :harasser)
-        fill_in_checkbox_with_details('Intimidator', @risk, :intimidator)
-        fill_in_checkbox_with_details('Bully', @risk, :bully)
+    def fill_in_hostage_taker
+      if @risk.hostage_taker == 'yes'
+        choose 'hostage_taker_hostage_taker_yes'
+        fill_in_staff_hostage_taker
+        fill_in_prisoners_hostage_taker
+        fill_in_public_hostage_taker
       else
-        choose 'harassments_stalker_harasser_bully_no'
+        choose 'hostage_taker_hostage_taker_no'
       end
       save_and_continue
+    end
+
+    def fill_in_staff_hostage_taker
+      if @risk.staff_hostage_taker
+        check 'hostage_taker_staff_hostage_taker'
+        fill_in 'hostage_taker_date_most_recent_staff_hostage_taker_incident', with: @risk.date_most_recent_staff_hostage_taker_incident
+      end
+    end
+
+    def fill_in_prisoners_hostage_taker
+      if @risk.prisoners_hostage_taker
+        check 'hostage_taker_prisoners_hostage_taker'
+        fill_in 'hostage_taker_date_most_recent_prisoners_hostage_taker_incident', with: @risk.date_most_recent_prisoners_hostage_taker_incident
+      end
+    end
+
+    def fill_in_public_hostage_taker
+      if @risk.public_hostage_taker
+        check 'hostage_taker_public_hostage_taker'
+        fill_in 'hostage_taker_date_most_recent_public_hostage_taker_incident', with: @risk.date_most_recent_public_hostage_taker_incident
+      end
+    end
+
+    def fill_in_harassments
+      fill_in_harassment
+      fill_in_intimidation
+      save_and_continue
+    end
+
+    def fill_in_harassment
+      if @risk.harassment == 'yes'
+        choose 'harassments_harassment_yes'
+        fill_in 'harassments_harassment_details', with: @risk.harassment_details
+      else
+        choose 'harassments_harassment_no'
+      end
+    end
+
+    def fill_in_intimidation
+      if @risk.intimidation == 'yes'
+        choose 'harassments_intimidation_yes'
+        fill_in_checkbox_with_details('Staff', @risk, :intimidation_to_staff)
+        fill_in_checkbox_with_details('Public', @risk, :intimidation_to_public)
+        fill_in_checkbox_with_details('Prisoners', @risk, :intimidation_to_other_detainees)
+        fill_in_checkbox_with_details('Witnesses', @risk, :intimidation_to_witnesses)
+      else
+        choose 'harassments_intimidation_no'
+      end
     end
 
     def fill_in_sex_offences
       if @risk.sex_offence == 'yes'
         choose 'sex_offences_sex_offence_yes'
-        choose @risk.sex_offence_victim.humanize
-        if @risk.sex_offence_details
-          fill_in 'sex_offences_sex_offence_details', with: @risk.sex_offence_details
-        end
+        fill_in_checkbox('Adult male', @risk, :sex_offence_adult_male_victim)
+        fill_in_checkbox('Adult female', @risk, :sex_offence_adult_female_victim)
+        fill_in_checkbox_with_details('Under 18', @risk, :sex_offence_under18_victim)
       else
         choose 'sex_offences_sex_offence_no'
       end
@@ -112,57 +156,120 @@ module Page
     end
 
     def fill_in_security
+      fill_in_current_e_risk
+      fill_in_previous_escape_attempts
+      fill_in_category_a
+      fill_in_escort_risk_assessment
+      fill_in_escape_pack
+      save_and_continue
+    end
+
+    def fill_in_current_e_risk
       if @risk.current_e_risk == 'yes'
         choose 'security_current_e_risk_yes'
         choose "security_current_e_risk_details_#{@risk.current_e_risk_details}"
       else
         choose 'security_current_e_risk_no'
       end
-      fill_in_optional_details('Category A?', @risk, :category_a)
-      fill_in_optional_details('Restricted status?', @risk, :restricted_status)
-      check 'Escape pack' if @risk.escape_pack
-      check 'Escape risk assessment' if @risk.escape_risk_assessment
-      check 'Cuffing protocol'  if @risk.cuffing_protocol
-      save_and_continue
     end
 
-    def fill_in_non_association_markers
-      fill_in_optional_details('Non-association markers?', @risk, :non_association_markers)
-      save_and_continue
+    def fill_in_previous_escape_attempts
+      if @risk.previous_escape_attempts == 'yes'
+        choose 'security_previous_escape_attempts_yes'
+        fill_in_checkbox_with_details('Prison', @risk, :prison_escape_attempt)
+        fill_in_checkbox_with_details('Court', @risk, :court_escape_attempt)
+        fill_in_checkbox_with_details('Police', @risk, :police_escape_attempt)
+        fill_in_checkbox_with_details('Other', @risk, :other_type_escape_attempt)
+      else
+        choose 'security_previous_escape_attempts_no'
+      end
+    end
+
+    def fill_in_category_a
+      if @risk.category_a == 'yes'
+        choose 'security_category_a_yes'
+      else
+        choose 'security_category_a_no'
+      end
+    end
+
+    def fill_in_escort_risk_assessment
+      if @risk.escort_risk_assessment == 'yes'
+        choose 'security_escort_risk_assessment_yes'
+        fill_in 'security_escort_risk_assessment_completion_date', with: @risk.escort_risk_assessment_completion_date
+      else
+        choose 'security_escort_risk_assessment_no'
+      end
+    end
+
+    def fill_in_escape_pack
+      if @risk.escape_pack == 'yes'
+        choose 'security_escape_pack_yes'
+        fill_in 'security_escape_pack_completion_date', with: @risk.escape_pack_completion_date
+      else
+        choose 'security_escape_pack_no'
+      end
     end
 
     def fill_in_substance_misuse
-      fill_in_optional_details('Is there a risk of them SUPPLYING drugs or alcohol?', @risk, :substance_supply)
-      fill_in_optional_details('Is there a risk of them USING drugs or alcohol?', @risk, :substance_use)
+      if @risk.substance_supply == 'yes'
+        choose 'substance_misuse_substance_supply_yes'
+        fill_in 'substance_misuse_substance_supply_details', with: @risk.substance_supply_details
+      else
+        choose 'substance_misuse_substance_supply_no'
+      end
       save_and_continue
     end
 
     def fill_in_concealed_weapons
-      fill_in_optional_details('Concealed weapons, mobile phones or other items', @risk, :conceals_weapons)
+      fill_in_optional_details('Conceals weapons', @risk, :conceals_weapons)
+      fill_in_optional_details('Conceals drugs', @risk, :conceals_drugs)
+      fill_in_concealed_mobile_phone_or_other_items
       save_and_continue
+    end
+
+    def fill_in_concealed_mobile_phone_or_other_items
+      if @risk.conceals_mobile_phone_or_other_items == 'yes'
+        choose 'concealed_weapons_conceals_mobile_phone_or_other_items_yes'
+        fill_in_concealed_mobile_phones
+        fill_in_concealed_sim_cards
+        fill_in_concealed_other_items
+      else
+        choose 'concealed_weapons_conceals_mobile_phone_or_other_items_no'
+      end
+    end
+
+    def fill_in_concealed_mobile_phones
+      if @risk.conceals_mobile_phones
+        check 'concealed_weapons_conceals_mobile_phones'
+      end
+    end
+
+    def fill_in_concealed_sim_cards
+      if @risk.conceals_other_items
+        check 'concealed_weapons_conceals_sim_cards'
+      end
+    end
+
+    def fill_in_concealed_other_items
+      if @risk.conceals_other_items
+        check 'concealed_weapons_conceals_other_items'
+        fill_in 'concealed_weapons_conceals_other_items_details', with: @risk.conceals_other_items_details
+      end
     end
 
     def fill_in_arson
       if @risk.arson == 'yes'
         choose 'arson_arson_yes'
-        choose "arson_arson_value_#{@risk.arson_value}"
-        fill_in 'arson_arson_details', with: @risk.arson_details
       else
         choose 'arson_arson_no'
       end
-      fill_in_optional_details('Damage to property?', @risk, :damage_to_property)
-      save_and_continue
-    end
 
-    def fill_in_communication
-      if @risk.interpreter_required == 'yes'
-        choose 'communication_interpreter_required_yes'
-        fill_in 'communication[language]', with: @risk.language
+      if @risk.damage_to_property == 'yes'
+        choose 'arson_damage_to_property_yes'
       else
-        choose 'communication_interpreter_required_no'
+        choose 'arson_damage_to_property_no'
       end
-      fill_in_optional_details('Does the detainee have hearing / speech / sight impairments?', @risk, :hearing_speach_sight)
-      fill_in_optional_details('Does the detainee have reading / writing issues?', @risk, :can_read_and_write)
       save_and_continue
     end
   end

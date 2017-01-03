@@ -1,12 +1,25 @@
 module RiskAssessment
-  class SexOffencesSection
+  class SexOffencesSection < BaseSection
     def name
       'sex_offences'
     end
 
     def questions
+      %w[sex_offence_adult_male_victim sex_offence_adult_female_victim
+         sex_offence_under18_victim]
+    end
+
+    def mandatory_questions
       %w[sex_offence]
     end
-    alias mandatory_questions questions
+
+    private
+
+    def question_dependencies
+      {
+        sex_offence: %i[sex_offence_adult_male_victim sex_offence_adult_female_victim
+                        sex_offence_under18_victim]
+      }
+    end
   end
 end

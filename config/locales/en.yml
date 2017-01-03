@@ -4,17 +4,17 @@ en:
       allergies:
         allergies: Allergies?
       arson:
-        arson: Arson?
+        arson: Arson is a behavioural issue
         arson_value: ''
-        damage_to_property: Damage to property?
-      communication:
-        can_read_and_write: Does the detainee have reading / writing issues?
-        hearing_speach_sight: Does the detainee have hearing / speech / sight impairments?
-        interpreter_required: Interpreter required?
+        damage_to_property: Damage to property
       concealed_weapons:
-        conceals_weapons: Concealed weapons, mobile phones or other items
+        conceals_weapons: Conceals weapons
+        conceals_mobile_phone_or_other_items: Conceals mobile phones, SIMs or other items
       harassments:
-        stalker_harasser_bully: Hostage taker / stalker / harasser / intimidator / bully?
+        harassment: Harasser
+        intimidation: Intimidator / bully
+      hostage_taker:
+        hostage_taker: History of taking hostages
       information:
         has_destinations: Are there establishments the detainee must or must not be sent?
         reason: Reason for move
@@ -24,34 +24,30 @@ en:
       needs:
         dependencies: Any dependencies or history of misuse?
         has_medications: Regular medication?
-      non_association_markers:
-        non_association_markers: Non-association markers?
       offences:
         has_past_offences: Does the detainee have significant past offences?
       physical:
         physical_issues: Physical health needs?
       risk_from_others:
-        rule_45: Rule 45 (Detainee separated for their own protection)?
-        csra: CSRA (Cell Share Risk Assessment)?
-        victim_of_abuse: Is the detainee a victim or possible victim of abuse within prison?
-        high_profile: Is the detainee of high public interest?
+        rule_45: Rule 45
+        csra: CSRA
+        victim_of_abuse: Detainee a victim or possible victim of abuse in prison
+        high_profile: Detainee of high public interest
       risk_to_self:
-        acct_status: What is the most recent ACCT status of the detainee?
+        acct_status: Detainee's most recent ACCT status
       security:
-        category_a: Category A?
-        current_e_risk: Current E-risk?
-        current_e_risk_details: ''
-        restricted_status: Restricted status?
-        documents: "Ensure the following documents accompany the detainee:"
+        category_a: Category A or Restricted status
+        current_e_risk: Currently on E list
+        escape_pack: Escape Pack completed for this journey
+        escort_risk_assessment: Escort Risk Assessment completed for this journey
+        previous_escape_attempts: Made previous escape attempts
       sex_offences:
-        sex_offence: Sex offender?
-        sex_offence_victim: ''
+        sex_offence: Sex offender
       social:
         personal_hygiene: Personal hygiene issues?
         personal_care: Personal care issues?
       substance_misuse:
-        substance_supply: Is there a risk of them SUPPLYING drugs or alcohol?
-        substance_use: Is there a risk of them USING drugs or alcohol?
+        substance_supply: Risk of detainee trafficking drugs or alcohol
       transport:
         mpv: Requires MPV?
       violence:
@@ -61,27 +57,27 @@ en:
         violence_to_staff: Violent to staff
     label:
       allergies:
-        allergies:
+        allergies_choices:
           unknown: Clear selection
       arson:
-        arson_value:
+        arson_value_choices:
           index_offence: Arson is the index offence
           behavioural_issue: Arson is a behavioural issue
           small_risk: Small risk of arson during move
-        arson:
+        arson_choices:
           unknown: Clear selection
-        damage_to_property:
-          unknown: Clear selection
-      communication:
-        can_read_and_write:
-          unknown: Clear selection
-        hearing_speach_sight:
-          unknown: Clear selection
-        interpreter_required:
+        damage_to_property_choices:
           unknown: Clear selection
       concealed_weapons:
-        conceals_weapons:
+        conceals_weapons_choices:
           unknown: Clear selection
+        conceals_drugs_choices:
+          unknown: Clear selection
+        conceals_mobile_phones: Mobile phones
+        conceals_mobile_phone_or_other_items_choices:
+          unknown: Clear selection
+        conceals_other_items: Other
+        conceals_sim_cards: SIM cards
       detainee_details:
         surname: Surname
         forenames: Forename(s)
@@ -91,88 +87,118 @@ en:
         gender: Gender
         aliases: Aliases
       harassments:
-        stalker_harasser_bully:
+        harassment_choices:
           unknown: Clear selection
+        intimidation_choices:
+          unknown: Clear selection
+        intimidation_to_staff: Staff
+        intimidation_to_public: Public
+        intimidation_to_other_detainees: Prisoners
+        intimidation_to_witnesses: Witnesses
+      hostage_taker:
+        hostage_taker_choices:
+          unknown: Clear selection
+        staff_hostage_taker: Staff
+        public_hostage_taker: Public
+        prisoners_hostage_taker: Prisoners
+        date_most_recent_staff_hostage_taker_incident: Date of most recent incident
+        date_most_recent_prisoners_hostage_taker_incident: Date of most recent incident
+        date_most_recent_public_hostage_taker_incident: Date of most recent incident
       information:
         from: From
         to: To
         date: Date of move
         reason_details: Reason details
-        has_destinations:
+        has_destinations_choices:
           unknown: Clear selection
         destinations:
           establishment: Establishment
           reasons: List the reasons, eg medical treatment, medical hold, treatment programmes or offender behaviour.
       mental:
-        mental_illness:
+        mental_illness_choices:
           unknown: Clear selection
-        phobias:
+        phobias_choices:
           unknown: Clear selection
       needs:
-        dependencies:
+        dependencies_choices:
           unknown: Clear selection
-        has_medications:
+        has_medications_choices:
           unknown: Clear selection
         medications:
           description: What is it?
           administration: How is it given?
           carrier: Who carries it?
-      non_association_markers:
-        non_association_markers:
-          unknown: Clear selection
-        non_association_markers_details: Non-association markers details
       offences:
         release_date: The detainee's confirmed release date
         not_for_release: The detainee is 'not for release'
-        has_past_offences:
+        has_past_offences_choices:
           unknown: Clear selection
       physical:
-        physical_issues:
+        physical_issues_choices:
           unknown: Clear selection
       risk_from_others:
-        rule_45:
+        rule_45_choices:
           unknown: Clear selection
-        csra:
+        csra_choices:
           unknown: Clear selection
-        victim_of_abuse:
+        victim_of_abuse_choices:
           unknown: Clear selection
-        high_profile:
+        high_profile_choices:
           unknown: Clear selection
       risk_to_self:
-        acct_status:
+        acct_status_choices:
           open: ACCT Open
           post_closure: ACCT Post Closure
           closed_in_last_6_months: ACCT Closed, in the last 6 months
           not_available: None of the above
-        acct_status_details: Give details
+        acct_status_details: Give details of known methods and triggers
         date_of_most_recently_closed_acct: Date of most recently closed ACCT
       security:
-        category_a:
+        category_a_choices:
           unknown: Clear selection
-        category_a_details: Give details
-        current_e_risk:
+        current_e_risk_choices:
           unknown: Clear selection
-        current_e_risk_details:
+        current_e_risk_details: E list type
+        current_e_risk_details_choices:
           e_list_standard: E-List-Standard
           e_list_escort: E-List-Escort
           e_list_heightened: E-List-Heightened
-        restricted_status:
+        escape_pack_choices:
           unknown: Clear selection
+        escort_risk_assessment_choices:
+          unknown: Clear selection
+        escape_pack_completion_date: 'Escape Pack completed on:'
+        escort_risk_assessment_completion_date: 'Escort Risk Assessment completed on:'
+        previous_escape_attempts_choices:
+          unknown: Clear selection
+        prison_escape_attempt: Prison
+        prison_escape_attempt_details: Last prison escape attempt details
+        court_escape_attempt: Court
+        court_escape_attempt_details: Last court escape attempt details
+        police_escape_attempt: Police
+        police_escape_attempt_details: Last police escape attempt details
+        other_type_escape_attempt: Other
+        other_type_escape_attempt_details: Last other type of escape attempt details
       sex_offences:
-        sex_offence:
+        sex_offence_choices:
           unknown: Clear selection
+        sex_offence_adult_male_victim: Adult male
+        sex_offence_adult_female_victim: Adult female
+        sex_offence_under18_victim: Under 18
+        sex_offence_under18_victim_details: Under 18 victim details
       social:
-        personal_hygiene:
+        personal_hygiene_choices:
           unknown: Clear selection
-        personal_care:
+        personal_care_choices:
           unknown: Clear selection
       substance_misuse:
-        alcohol:
+        substance_supply_choices:
           unknown: Clear selection
-        drugs:
-          unknown: Clear selection
+        substance_supply_details: Details for risk of detainee trafficking drugs or alcohol
+        substance_supply_details_choices:
+          both: Both drugs and alcohol
       transport:
-        mpv:
+        mpv_choices:
           unknown: Clear selection
         mpv_details: MPV details
       violence:
@@ -187,16 +213,16 @@ en:
         racist: Racist
         racist_details: Details for risk of violence due to racist discrimination
         risk_to_females: Risk to females
-        violence_due_to_discrimination:
+        violence_due_to_discrimination_choices:
           unknown: Clear selection
-        violence_to_general_public:
+        violence_to_general_public_choices:
           unknown: Clear selection
         violence_to_general_public_details: Violent to the general public details
-        violence_to_staff:
+        violence_to_staff_choices:
           unknown: Clear selection
         violence_to_staff_custody: Staff custody
         violence_to_staff_community: Staff community
-        violence_to_other_detainees:
+        violence_to_other_detainees_choices:
           unknown: Clear selection
     hint:
       allergies:
@@ -204,23 +230,27 @@ en:
         allergies_details: Give details and explain the significance
       arson:
         arson_details: Give details of last arson attack, including date
-        damage_to_property: Eg damage to own cell, to others' property, check adjudications
+        damage_to_property_html: |
+          Such as damage to own cell or other people's things
+          </br>
+          Check adjudications for more information
         damage_to_property_details: Give details
-      communication:
-        can_read_and_write_details: Record any barriers (including language barriers) to reading or written communication
-        hearing_speach_sight_details: Record any barriers (including language barriers) to verbal communication
-        language: For which language?
       concealed_weapons:
-        conceals_weapons: Eg drugs, blade, mobile phone, cash, lighter, sim card
-        conceals_weapons_details: Give details
+        conceals_weapons_details: List the types of weapons and how they were hidden
+        conceals_drugs_details: Give details of previous incidents and methods used
+        conceals_other_items_details: Give details
       detainee_details:
         date_of_birth: DD/MM/YYYY
       harassments:
-        hostage_taker_details: Give details about the type of abuse and when it happened
-        stalker_details: Give details about the type of abuse and when it happened. Include any court imposed restrictions such as restraining orders.
-        harasser_details: Give details about the type of abuse and when it happened. Include any court imposed restrictions such as restraining orders.
-        intimidator_details: Give details about the type of abuse and when it happened. Include any court imposed restrictions such as restraining orders.
-        bully_details: Give details about the type of abuse and when it happened
+        harassment_details: Give details about restraining order
+        intimidation_to_staff_details: Give details
+        intimidation_to_public_details: Give details
+        intimidation_to_other_detainees_details: Give details
+        intimidation_to_witnesses_details: Give details
+      hostage_taker:
+        date_most_recent_staff_hostage_taker_incident: DD/MM/YYYY
+        date_most_recent_prisoners_hostage_taker_incident: DD/MM/YYYY
+        date_most_recent_public_hostage_taker_incident: DD/MM/YYYY
       information:
         reason_details: Give details
         date : DD/MM/YYYY
@@ -233,9 +263,6 @@ en:
         dependencies: Eg early stages of detox, alcohol withdrawal
         dependencies_details: Give details and explain the significance
         has_medications: Eg methadone, anti-inflammatories, anti-depressants, beta-blockers, insulin, migraine tablets, asthma or epilepsy drugs
-      non_association_markers:
-        non_association_markers: Are there any prisoners or staff this prisoner should NOT associate with?
-        non_association_markers_details: Give details, include prisoner numbers, names or establishments
       offences:
         release_date: DD/MM/YYYY
         not_for_release_details: State the reason the detainee is 'not for release'
@@ -243,7 +270,9 @@ en:
         physical_issues: Eg disabilities, prosthetic limbs, crutches.
         physical_issues_details: Give details and explain the significance
       risk_from_others:
-        victim_of_abuse_details: Give details
+        csra: Cell Sharing Risk Assessment
+        rule_45: Detainee separated for own protection
+        victim_of_abuse_details: Give details of the abuser (or potential abuser) if known
         high_profile_details: Give details
       risk_to_self:
         open_acct: |
@@ -255,20 +284,21 @@ en:
         suicide_details: Give details
         date_of_most_recently_closed_acct: DD/MM/YYYY
       security:
-        category_a_details: Give details
-        current_e_risk: Please see PSI 2011/56 Management and Security of Escape List (E List prisoners)
-        restricted_status: Please see PSI 08/2013 The Review of Security Category - CAT A Restricted Status
-        restricted_status_details: Give details
+        category_a: Check PSI 08/2013 The Review of Security Category - CAT A Restricted Status
+        current_e_risk: Check PSI 2011/56 Management and Security of Escape List (E List prisoners)
+        escape_pack_completion_date: DD/MM/YYYY
+        escort_risk_assessment_completion_date: DD/MM/YYYY
+        prison_escape_attempt_details: Give details of last escape attempt
+        court_escape_attempt_details: Give details of last escape attempt
+        police_escape_attempt_details: Give details of last escape attempt
+        other_type_escape_attempt_details: Give details of last escape attempt
       sex_offences:
-        sex_offence_details: Give details - state gender and age when under 18, if known
+        sex_offence_under18_victim_details: Give details - state gender and age when under 18, if known
       social:
         personal_hygiene: Eg OCD, needs toilet support. For more information refer to the Social Care Act
         personal_hygiene_details: Give details and explain the significance
         personal_care: Eg needs help with dressing, eating or drinking
         personal_care_details: Give details and explain the significance
-      substance_misuse:
-        substance_use_details: Give details, if relevant to the move
-        substance_supply_details: Give details, if relevant to the move
       transport:
         mpv: Eg disability, claustrophobia, pregnancy.
         mpv_details: Give details and explain the significance
@@ -305,15 +335,14 @@ en:
     form:
       title:
         arson: Arson and damage to property
-        communication: Communication / language difficulties
-        concealed_weapons: Concealed weapons or other items
-        harassments: Risk to others
-        non_association_markers: Risk to others
+        concealed_weapons: Concealed weapons, drugs or other items
+        harassments: Risk to others - harasser and/or bully
+        hostage_taker: Risk to others - hostage taker
         risk_to_self: Risk to self
         risk_from_others: Risk from others
-        security: Security
-        sex_offences: Risk to others
-        substance_misuse: Substance risk
+        security: Escape status/history
+        sex_offences: Sex offender
+        substance_misuse: Risk of trafficking drugs and alcohol
         violence: Risk to others - discrimination
 
   summary:
@@ -322,21 +351,16 @@ en:
         arson:
           arson: Arson
           damage_to_property: Damage to property
-        communication:
-          can_read_and_write: Reading / writing issues
-          hearing_speach_sight: Hearing / speech / sight issues
-          interpreter_required: Interpreter required
-        concealed_weapons:
-          conceals_weapons: Concealed weapons or other items
         harassments:
-          stalker_harasser_bully: Hostage taker / stalker / harasser / intimidator / bully
+          harassment: Harasser
+          intimidation: Intimidator / bully
         needs:
           has_medications: Medication
-        non_association_markers:
-          non_association_markers: Non-association markers
         sex_offences:
           sex_offence: Sex offender
-          sex_offence_victim: ''
+          sex_offence_adult_male_victim: Adult male victim
+          sex_offence_adult_female_victim: Adult female victim
+          sex_offence_under18_victim: Under 18 victim
         risk_from_others:
           rule_45: Rule 45
           csra: Cell Share Risk Assessment
@@ -344,14 +368,12 @@ en:
           acct_status: ACCT status
           suicide: Risk of suicide or self-harm
         security:
-          category_a: Category A
+          category_a: Category A or Restricted status
           current_e_risk: Current E risk
           escape_list: Escape list
           other_escape_risk_info: Other escape risk information
-          restricted_status: Restricted status
         substance_misuse:
-          substance_supply: Substance supply
-          substance_use: Substance use
+          substance_supply: Risk of detainee trafficking drugs or alcohol
         transport:
           mpv: MPV
         violence:
@@ -367,19 +389,18 @@ en:
           risk_to_females: Females
       titles:
         arson: Arson and damage to property
-        communication: Communication / language difficulties
-        concealed_weapons: Concealed weapons or other items
-        harassments: "Risk to others: Hostage taker / stalker / harasser / intimidator / bully"
+        concealed_weapons: Concealed weapons, drugs or other items
+        harassments: "Risk to others: Harasser / intimidator / bully"
+        hostage_taker: "Risk to others: Hostage taker"
         mental: Mental healthcare
         needs: Medical health needs
-        non_association_markers: Risk to others
         physical: Physical healthcare
         risk_to_self: Risk to self
         risk_from_others: Risk from others
         security: Security
         sex_offences: "Risk to others: Sex offender"
         social: Social healthcare
-        substance_misuse: Substance misuse
+        substance_misuse: Risk of trafficking drugs and alcohol
         violence: "Risk to others: discrimination"
   activemodel:
     errors:
@@ -392,7 +413,10 @@ en:
     attributes:
       base:
         minimum_current_offence: 'At least one current offence needs to be provided'
+        minimum_one_option: 'At least one option (%{options}) needs to be provided'
   alerts:
     detainee_already_exists: "Detainee already exists. You've been redirected to the next relevant form"
     detainee:
-      pre_filling_unavailable: "Pre-filling unavailable. Please fill in the details manually"
+      pre_filling_unavailable: "Look-Up function is not currently available. Please enter person details manually or try again later"
+      details_not_found: "No record for that prison reference exists. Please check the reference used or enter the details manually"
+    unable_to_confirm_incomplete_risk_assessment: Risk assessment cannot be confirmed until all mandatory answered are filled

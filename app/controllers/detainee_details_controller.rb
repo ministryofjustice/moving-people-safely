@@ -57,15 +57,32 @@ class DetaineeDetailsController < DetaineeController
 
   def detainee_default_attrs
     return {} unless params[:prison_number].present?
-    unless api_detainee_attrs.present?
-      flash.now[:warning] = t('alerts.detainee.pre_filling_unavailable')
+    if detainee_api_error.present?
+      flash.now[:warning] = pre_filling_error_message
       return { prison_number: params[:prison_number] }
     end
-    permitted_params(api_detainee_attrs)
+    permitted_params(detainee_api_attrs)
   end
 
-  def api_detainee_attrs
-    @_api_detainee_attrs ||= DetaineeDetailsFetcher.new(params[:prison_number]).call
+  def pre_filling_error_message
+    case detainee_api_error
+    when 'api_error', 'internal_error'
+      t('alerts.detainee.pre_filling_unavailable')
+    when 'details_not_found'
+      t('alerts.detainee.details_not_found')
+    end
+  end
+
+  def detainee_api_response
+    @_api_detainee_response ||= DetaineeDetailsFetcher.new(params[:prison_number]).call
+  end
+
+  def detainee_api_attrs
+    detainee_api_response && detainee_api_response.details
+  end
+
+  def detainee_api_error
+    detainee_api_response && detainee_api_response.error
   end
 
   def permitted_params(params)
