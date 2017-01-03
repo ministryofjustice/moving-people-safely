@@ -13,7 +13,6 @@ FactoryGirl.define do
     hostage_taker 'no'
     intimidation 'no'
     sex_offence 'no'
-    non_association_markers 'no'
     current_e_risk 'no'
     previous_escape_attempts 'no'
     category_a 'no'

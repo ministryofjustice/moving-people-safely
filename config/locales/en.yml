@@ -28,8 +28,6 @@ en:
       needs:
         dependencies: Any dependencies or history of misuse?
         has_medications: Regular medication?
-      non_association_markers:
-        non_association_markers: Non-association markers?
       offences:
         has_past_offences: Does the detainee have significant past offences?
       physical:
@@ -141,10 +139,6 @@ en:
           description: What is it?
           administration: How is it given?
           carrier: Who carries it?
-      non_association_markers:
-        non_association_markers_choices:
-          unknown: Clear selection
-        non_association_markers_details: Non-association markers details
       offences:
         release_date: The detainee's confirmed release date
         not_for_release: The detainee is 'not for release'
@@ -284,9 +278,6 @@ en:
         dependencies: Eg early stages of detox, alcohol withdrawal
         dependencies_details: Give details and explain the significance
         has_medications: Eg methadone, anti-inflammatories, anti-depressants, beta-blockers, insulin, migraine tablets, asthma or epilepsy drugs
-      non_association_markers:
-        non_association_markers: Are there any prisoners or staff this prisoner should NOT associate with?
-        non_association_markers_details: Give details, include prisoner numbers, names or establishments
       offences:
         release_date: DD/MM/YYYY
         not_for_release_details: State the reason the detainee is 'not for release'
@@ -361,7 +352,6 @@ en:
         concealed_weapons: Concealed weapons, drugs or other items
         harassments: Risk to others - harasser and/or bully
         hostage_taker: Risk to others - hostage taker
-        non_association_markers: Risk to others
         risk_to_self: Risk to self
         risk_from_others: Risk from others
         security: Escape status/history
@@ -384,8 +374,6 @@ en:
           intimidation: Intimidator / bully
         needs:
           has_medications: Medication
-        non_association_markers:
-          non_association_markers: Non-association markers
         sex_offences:
           sex_offence: Sex offender
           sex_offence_adult_male_victim: Adult male victim
@@ -425,7 +413,6 @@ en:
         hostage_taker: "Risk to others: Hostage taker"
         mental: Mental healthcare
         needs: Medical health needs
-        non_association_markers: Risk to others
         physical: Physical healthcare
         risk_to_self: Risk to self
         risk_from_others: Risk from others

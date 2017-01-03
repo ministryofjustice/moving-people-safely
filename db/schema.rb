@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161228115106) do
+ActiveRecord::Schema.define(version: 20161228144304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,8 +149,6 @@ ActiveRecord::Schema.define(version: 20161228115106) do
     t.boolean  "bully"
     t.text     "bully_details"
     t.string   "sex_offence",                                       default: "unknown"
-    t.string   "non_association_markers",                           default: "unknown"
-    t.text     "non_association_markers_details"
     t.string   "current_e_risk",                                    default: "unknown"
     t.text     "current_e_risk_details"
     t.string   "category_a",                                        default: "unknown"
