@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161228151325) do
+ActiveRecord::Schema.define(version: 20170103171218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,28 +52,32 @@ ActiveRecord::Schema.define(version: 20161228151325) do
   end
 
   create_table "healthcare", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "physical_issues",          default: "unknown"
+    t.string   "physical_issues",                     default: "unknown"
     t.text     "physical_issues_details"
-    t.string   "mental_illness",           default: "unknown"
+    t.string   "mental_illness",                      default: "unknown"
     t.text     "mental_illness_details"
-    t.string   "phobias",                  default: "unknown"
+    t.string   "phobias",                             default: "unknown"
     t.text     "phobias_details"
-    t.string   "personal_hygiene",         default: "unknown"
+    t.string   "personal_hygiene",                    default: "unknown"
     t.text     "personal_hygiene_details"
-    t.string   "personal_care",            default: "unknown"
+    t.string   "personal_care",                       default: "unknown"
     t.text     "personal_care_details"
-    t.string   "allergies",                default: "unknown"
+    t.string   "allergies",                           default: "unknown"
     t.text     "allergies_details"
-    t.string   "dependencies",             default: "unknown"
+    t.string   "dependencies",                        default: "unknown"
     t.text     "dependencies_details"
-    t.string   "has_medications",          default: "unknown"
-    t.string   "mpv",                      default: "unknown"
+    t.string   "has_medications",                     default: "unknown"
+    t.string   "mpv",                                 default: "unknown"
     t.text     "mpv_details"
     t.string   "healthcare_professional"
     t.string   "contact_number"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
     t.uuid     "detainee_id"
+    t.string   "hearing_speech_sight_issues"
+    t.text     "hearing_speech_sight_issues_details"
+    t.string   "reading_writing_issues"
+    t.text     "reading_writing_issues_details"
     t.index ["detainee_id"], name: "index_healthcare_on_detainee_id", using: :btree
   end
 

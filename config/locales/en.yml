@@ -7,6 +7,9 @@ en:
         arson: Arson is a behavioural issue
         arson_value: ''
         damage_to_property: Damage to property
+      communication:
+        hearing_speech_sight_issues: Does the detainee have hearing / speech / sight issues?
+        reading_writing_issues: Does the detainee have reading / writing issues?
       concealed_weapons:
         conceals_weapons: Conceals weapons
         conceals_mobile_phone_or_other_items: Conceals mobile phones, SIMs or other items
@@ -68,6 +71,13 @@ en:
           unknown: Clear selection
         damage_to_property_choices:
           unknown: Clear selection
+      communication:
+        hearing_speech_sight_issues_choices:
+          unknown: Clear selection
+        hearing_speech_sight_issues_details: Detainee's hearing / speech / sight issues details
+        reading_writing_issues_choices:
+          unknown: Clear selection
+        reading_writing_issues_details: Detainee's reading / writing issues details
       concealed_weapons:
         conceals_weapons_choices:
           unknown: Clear selection
@@ -235,6 +245,9 @@ en:
           </br>
           Check adjudications for more information
         damage_to_property_details: Give details
+      communication:
+        hearing_speech_sight_issues_details: Give details
+        reading_writing_issues_details: Give details
       concealed_weapons:
         conceals_weapons_details: List the types of weapons and how they were hidden
         conceals_drugs_details: Give details of previous incidents and methods used
@@ -321,6 +334,7 @@ en:
   healthcare:
     form:
       title:
+        communication: Communication / language difficulties
         physical: Physical healthcare
         mental: Mental healthcare
         social: Social healthcare
@@ -351,6 +365,9 @@ en:
         arson:
           arson: Arson
           damage_to_property: Damage to property
+        communication:
+          hearing_speech_sight_issues: Hearing / Speech / Sight issues
+          reading_writing_issues: Reading / Writing issues
         harassments:
           harassment: Harasser
           intimidation: Intimidator / bully
@@ -389,6 +406,7 @@ en:
           risk_to_females: Females
       titles:
         arson: Arson and damage to property
+        communication: Communication / language difficulties
         concealed_weapons: Concealed weapons, drugs or other items
         harassments: "Risk to others: Harasser / intimidator / bully"
         hostage_taker: "Risk to others: Hostage taker"
