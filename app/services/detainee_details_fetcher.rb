@@ -1,60 +1,65 @@
 require 'countries'
 
 class DetaineeDetailsFetcher
+  class ApiError < StandardError; end
+
   def initialize(prison_number)
     @prison_number = prison_number
     @offenders_search_path = '/offenders/search'
   end
 
   def call
-    return {} unless prison_number.present?
-    Rails.logger.info "[OffendersApi] Requesting to #{offenders_search_path} for offender with noms id #{prison_number}"
-    response = Rails.offenders_api_client.get(offenders_search_path, params: { noms_id: prison_number })
-    return {} unless response.status == 200
-    detainee_attrs_from(response)
+    return Response.new({}) unless prison_number.present?
+    fetch_details
+    return error_response('api_error') unless response.status == 200
+    return error_response('details_not_found') unless parsed_response
+    successful_response(detainee_attrs)
+  rescue ApiError
+    error_response('api_error')
   rescue => e
     Rails.logger.error "[OffendersApi] #{e.inspect}"
-    {}
+    error_response('internal_error')
+  end
+
+  class Response
+    attr_reader :details, :error
+    delegate :[], to: :details
+
+    def initialize(details, options = {})
+      @details = details
+      @error = options[:error]
+    end
   end
 
   private
 
-  attr_reader :prison_number, :offenders_search_path
+  attr_reader :prison_number, :offenders_search_path, :response
 
-  def detainee_attrs_from(response)
-    hash = JSON.parse(response.body).first.with_indifferent_access
-    {
-      prison_number: prison_number,
-      forenames: map_forenames(hash[:given_name], hash[:middle_names]),
-      surname: hash[:surname],
-      date_of_birth: map_dob(hash[:date_of_birth]),
-      gender: map_gender(hash[:gender]),
-      nationalities: map_nationality(hash[:nationality_code]),
-      pnc_number: hash[:pnc_number],
-      cro_number: hash[:cro_number]
-    }.with_indifferent_access
+  def fetch_details
+    Rails.logger.info "[OffendersApi] Requesting to #{offenders_search_path} for offender with noms id #{prison_number}"
+    @response = Rails.offenders_api_client.get(offenders_search_path, params: { noms_id: prison_number })
+  rescue => e
+    Rails.logger.error "[OffendersApi] #{e.inspect}"
+    raise ApiError
   end
 
-  def map_dob(dob)
-    return unless dob.present?
-    Date.parse(dob).strftime('%d/%m/%Y')
-  rescue
-    nil
+  def successful_response(details)
+    Response.new(details)
   end
 
-  def map_forenames(*names)
-    present_names = names.select(&:present?)
-    return if present_names.empty?
-    present_names.join(' ')
+  def error_response(error_code)
+    Response.new({}, error: error_code)
   end
 
-  def map_gender(gender)
-    { 'm' => 'male', 'f' => 'female' }[gender.downcase] if gender.present?
+  def parsed_response
+    return unless response
+    @parsed_response ||= JSON.parse(response.body).first
+  rescue => e
+    Rails.logger.error e.inspect
+    raise ApiError
   end
 
-  def map_nationality(nationality_code)
-    return unless nationality_code.present?
-    country = ISO3166::Country.new(nationality_code)
-    (country && country.nationality) || nationality_code
+  def detainee_attrs
+    ApiDetaineeDetailsMapper.new(prison_number, parsed_response).call
   end
 end
