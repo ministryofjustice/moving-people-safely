@@ -22,6 +22,8 @@ FactoryGirl.define do
     substance_supply 'no'
     substance_use 'no'
     conceals_weapons 'no'
+    conceals_drugs 'no'
+    conceals_mobile_phone_or_other_items 'no'
     arson 'no'
     damage_to_property 'no'
     interpreter_required 'no'

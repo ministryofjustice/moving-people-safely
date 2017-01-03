@@ -225,8 +225,40 @@ module Page
     end
 
     def fill_in_concealed_weapons
-      fill_in_optional_details('Concealed weapons, mobile phones or other items', @risk, :conceals_weapons)
+      fill_in_optional_details('Conceals weapons', @risk, :conceals_weapons)
+      fill_in_optional_details('Conceals drugs', @risk, :conceals_drugs)
+      fill_in_concealed_mobile_phone_or_other_items
       save_and_continue
+    end
+
+    def fill_in_concealed_mobile_phone_or_other_items
+      if @risk.conceals_mobile_phone_or_other_items == 'yes'
+        choose 'concealed_weapons_conceals_mobile_phone_or_other_items_yes'
+        fill_in_concealed_mobile_phones
+        fill_in_concealed_sim_cards
+        fill_in_concealed_other_items
+      else
+        choose 'concealed_weapons_conceals_mobile_phone_or_other_items_no'
+      end
+    end
+
+    def fill_in_concealed_mobile_phones
+      if @risk.conceals_mobile_phones
+        check 'concealed_weapons_conceals_mobile_phones'
+      end
+    end
+
+    def fill_in_concealed_sim_cards
+      if @risk.conceals_other_items
+        check 'concealed_weapons_conceals_sim_cards'
+      end
+    end
+
+    def fill_in_concealed_other_items
+      if @risk.conceals_other_items
+        check 'concealed_weapons_conceals_other_items'
+        fill_in 'concealed_weapons_conceals_other_items_details', with: @risk.conceals_other_items_details
+      end
     end
 
     def fill_in_arson
