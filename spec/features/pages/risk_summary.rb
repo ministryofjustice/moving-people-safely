@@ -14,7 +14,7 @@ module Page
       check_harassment_section(risk)
       check_sex_offences_section(risk)
       check_section(risk, 'non_association_markers', %w[ non_association_markers ])
-      check_section(risk, 'security', %w[ current_e_risk category_a restricted_status escape_pack escape_risk_assessment cuffing_protocol ])
+      check_security_section(risk)
       check_section(risk, 'substance_misuse', %w[ substance_supply substance_use ])
       check_section(risk, 'concealed_weapons', %w[ conceals_weapons ])
       check_section(risk, 'arson', %w[ arson damage_to_property ])
@@ -152,6 +152,30 @@ module Page
         check_section(risk, 'sex_offences', fields)
       else
         check_section_is_all_no(risk, 'sex_offences', fields)
+      end
+    end
+
+    def check_security_section(risk)
+      check_current_e_risk(risk)
+      check_previous_escape_attempts(risk)
+      check_question(risk, 'security', 'category_a')
+      check_question(risk, 'security', 'escort_risk_assessment')
+      check_question(risk, 'security', 'escape_pack')
+    end
+
+    def check_current_e_risk(risk)
+      if risk.current_e_risk == 'yes'
+        check_question(risk, 'security', 'current_e_risk_details')
+      end
+    end
+
+    def check_previous_escape_attempts(risk)
+      fields = %w[prison_escape_attempt court_escape_attempt
+                  police_escape_attempt other_type_escape_attempt]
+      if risk.previous_escape_attempts == 'yes'
+        check_section(risk, 'security', fields)
+      else
+        check_section_is_all_no(risk, 'security', fields)
       end
     end
   end
