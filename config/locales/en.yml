@@ -4,9 +4,9 @@ en:
       allergies:
         allergies: Allergies?
       arson:
-        arson: Arson?
+        arson: Arson is a behavioural issue
         arson_value: ''
-        damage_to_property: Damage to property?
+        damage_to_property: Damage to property
       communication:
         can_read_and_write: Does the detainee have reading / writing issues?
         hearing_speach_sight: Does the detainee have hearing / speech / sight impairments?
@@ -247,7 +247,10 @@ en:
         allergies_details: Give details and explain the significance
       arson:
         arson_details: Give details of last arson attack, including date
-        damage_to_property: Eg damage to own cell, to others' property, check adjudications
+        damage_to_property_html: |
+          Such as damage to own cell or other people's things
+          </br>
+          Check adjudications for more information
         damage_to_property_details: Give details
       communication:
         can_read_and_write_details: Record any barriers (including language barriers) to reading or written communication
