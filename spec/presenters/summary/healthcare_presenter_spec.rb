@@ -6,7 +6,7 @@ RSpec.describe Summary::HealthcarePresenter, type: :presenter do
   let(:model) { double(Healthcare) }
   let(:section_name) { 'test_section' }
   let(:section_class) {
-    Class.new(HealthcareAssessment::BaseSection) do
+    Class.new(BaseSection) do
     end
   }
   let(:section) { section_class.new }

@@ -6,7 +6,7 @@ RSpec.describe Summary::RiskPresenter, type: :presenter do
   let(:model) { double(Risk) }
   let(:section_name) { 'test_section' }
   let(:section_class) {
-    Class.new(RiskAssessment::BaseSection) do
+    Class.new(BaseSection) do
     end
   }
   let(:section) { section_class.new }
