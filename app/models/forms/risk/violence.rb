@@ -10,10 +10,28 @@ module Forms
                            other_violence_due_to_discrimination other_violence_due_to_discrimination_details],
             if_falsey: :violence_due_to_discrimination
 
+      validate :valid_violence_due_to_discrimination_options,
+        if: -> { violence_due_to_discrimination == 'yes' }
+
+      def valid_violence_due_to_discrimination_options
+        if selected_violence_due_to_discrimination_options.none?
+          errors.add(:base, :minimum_one_option, options: violence_due_to_discrimination_options.join(', '))
+        end
+      end
+
       optional_field :violence_to_staff, default: 'unknown'
       optional_checkbox :violence_to_staff_custody
       optional_checkbox :violence_to_staff_community
       reset attributes: %i[violence_to_staff_custody violence_to_staff_community], if_falsey: :violence_to_staff
+
+      validate :valid_violence_to_staff_options,
+        if: -> { violence_to_staff == 'yes' }
+
+      def valid_violence_to_staff_options
+        if selected_violence_to_staff_options.none?
+          errors.add(:base, :minimum_one_option, options: violence_to_staff_options.join(', '))
+        end
+      end
 
       optional_field :violence_to_other_detainees, default: 'unknown'
       optional_checkbox_with_details :co_defendant, :violence_to_other_detainees
@@ -24,7 +42,53 @@ module Forms
                            other_violence_to_other_detainees_details],
             if_falsey: :violence_to_other_detainees
 
+      validate :valid_violence_to_other_detainees_options,
+        if: -> { violence_to_other_detainees == 'yes' }
+
+      def valid_violence_to_other_detainees_options
+        if selected_violence_to_other_detainees_options.none?
+          errors.add(:base, :minimum_one_option, options: violence_to_other_detainees_options.join(', '))
+        end
+      end
+
       optional_details_field :violence_to_general_public, default: 'unknown'
+
+      private
+
+      def selected_violence_due_to_discrimination_options
+        [risk_to_females,
+         homophobic,
+         racist,
+         other_violence_due_to_discrimination]
+      end
+
+      def violence_due_to_discrimination_options
+        %i[risk_to_females homophobic racist
+           other_violence_due_to_discrimination].map do |attr|
+          I18n.t(attr, scope: [:helpers, :label, :violence])
+        end
+      end
+
+      def selected_violence_to_staff_options
+        [violence_to_staff_custody,
+         violence_to_staff_community]
+      end
+
+      def violence_to_staff_options
+        %i[violence_to_staff_custody violence_to_staff_community].map do |attr|
+          I18n.t(attr, scope: [:helpers, :label, :violence])
+        end
+      end
+
+      def selected_violence_to_other_detainees_options
+        [co_defendant, gang_member, other_violence_to_other_detainees]
+      end
+
+      def violence_to_other_detainees_options
+        %i[co_defendant gang_member other_violence_to_other_detainees].map do |attr|
+          I18n.t(attr, scope: [:helpers, :label, :violence])
+        end
+      end
     end
   end
 end
