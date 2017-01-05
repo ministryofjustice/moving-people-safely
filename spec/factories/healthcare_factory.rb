@@ -9,6 +9,8 @@ FactoryGirl.define do
     dependencies 'no'
     mpv 'no'
     has_medications 'no'
+    hearing_speech_sight_issues 'no'
+    reading_writing_issues 'no'
 
     healthcare_professional { Faker::Name.name }
     contact_number { Faker::PhoneNumber.cell_phone }

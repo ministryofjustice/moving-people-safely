@@ -66,14 +66,10 @@ class HealthcareController < DetaineeController
   end
 
   def form
-    @_form ||= {
-      physical: Forms::Healthcare::Physical,
-      mental: Forms::Healthcare::Mental,
-      social: Forms::Healthcare::Social,
-      allergies: Forms::Healthcare::Allergies,
-      needs: Forms::Healthcare::Needs,
-      transport: Forms::Healthcare::Transport,
-      contact: Forms::Healthcare::Contact
-    }[step].new(healthcare)
+    @_form ||= form_for_section(step).new(healthcare)
+  end
+
+  def form_for_section(section)
+    "Forms::Healthcare::#{section.to_s.camelcase}".constantize
   end
 end

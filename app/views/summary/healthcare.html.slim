@@ -1,22 +1,8 @@
 .summary
   = render partial: 'summary/status', locals: { workflow: healthcare_workflow, title: 'Healthcare' }
 
-  = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(healthcare), section: 'physical', questions: %w[ physical_issues ], path: healthcare_path(detainee, 'physical') }
-
-  = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(healthcare), section: 'mental', questions: %w[ mental_illness phobias ], path: healthcare_path(detainee, 'mental') }
-
-  = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(healthcare), section: 'social', questions: %w[ personal_hygiene personal_care ], path: healthcare_path(detainee, 'social') }
-
-  = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(healthcare), section: 'allergies', questions: %w[ allergies ], path: healthcare_path(detainee, 'allergies') }
-
-  = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(healthcare), section: 'needs', questions: %w[ dependencies has_medications ], path: healthcare_path(detainee, 'needs') }
-
-  = render partial: 'summary/section',
-    locals: { presenter: SummaryPresenter.new(healthcare), section: 'transport', questions: %w[ mpv ], path: healthcare_path(detainee, 'transport') }
+  - HealthcareWorkflow.sections_for_summary.each do |section|
+    = render partial: 'summary/newsection',
+      locals: { section: Summary::HealthcarePresenter.for(section, healthcare), path: healthcare_path(detainee, section) }
 
   = render partial: 'summary/call_to_action', locals: { workflow: healthcare_workflow, confirm_path: confirm_healthcare_index_path }

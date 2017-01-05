@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe Summary::RiskPresenter, type: :presenter do
+RSpec.describe Summary::HealthcarePresenter, type: :presenter do
   let(:answer) { true }
   let(:conditional_answer) { 'yes' }
-  let(:model) { double(Risk) }
+  let(:model) { double(Healthcare) }
   let(:section_name) { 'test_section' }
   let(:section_class) {
     Class.new(BaseSection) do
