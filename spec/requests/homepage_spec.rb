@@ -49,14 +49,12 @@ RSpec.describe 'Homepage', type: :request do
       post "/date",
         params: {
           search: search,
-          date_picker: date,
-          commit: commit
+          date_picker: date
         }
     end
 
     let(:search) { 'A1234AB' }
     let(:date) { '01/02/2003' }
-    let(:commit) { 'Go' }
 
     context "with a valid date" do
       it "redirects to /" do
@@ -65,29 +63,6 @@ RSpec.describe 'Homepage', type: :request do
 
       it "leaves the user submitted value in the session" do
         expect(session[:date_in_view]).to eql date
-      end
-    end
-
-    context "submit with 'today'" do
-      let(:commit) { 'today' }
-
-      it "sets todays date in the session" do
-        expect(session[:date_in_view]).to eql Date.today.strftime('%d/%m/%Y')
-      end
-    end
-
-    context "with a previously viewed date in the session" do
-      describe ">" do
-        it "increments the date in the session" do
-          post "/date",
-            params: {
-              search: search,
-              date_picker: date,
-              commit: '>'
-            }
-
-            expect(session[:date_in_view]).to eql '02/02/2003'
-        end
       end
     end
   end

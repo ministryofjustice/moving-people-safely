@@ -1,5 +1,8 @@
 class DatePicker
-  FORMAT = '%d/%m/%Y'.freeze
+  DEFAULT_FORMAT = '%d/%m/%Y'.freeze
+  SUPPORTED_FORMATS = ['%d/%m/%Y', '%d-%m-%Y', '%d %m %Y'].freeze
+
+  include Comparable
 
   def initialize(date_from_session)
     if date_from_session.present?
@@ -13,17 +16,23 @@ class DatePicker
     @date || today
   end
 
+  def date=(string_date)
+    @string_date = string_date
+    set_date_if_valid
+  end
+
   def to_s
     if @date.present?
-      @date.strftime(FORMAT)
+      @date.strftime(DEFAULT_FORMAT)
     else
       @string_date.to_s
     end
   end
 
-  def date=(string_date)
-    @string_date = string_date
-    set_date_if_valid
+  def ==(other)
+    Date.parse(to_s) == Date.parse(other.to_s)
+  rescue
+    false
   end
 
   def forward
@@ -48,13 +57,19 @@ class DatePicker
 
   def valid?(string_date)
     cast(string_date)
-    true
-  rescue
-    false
   end
 
-  # this will explode if the string doesn't match
-  def cast(string_date)
-    Date.strptime(string_date, FORMAT)
+  def cast(date_str)
+    SUPPORTED_FORMATS.each do |format|
+      cast_value = cast_with_format(date_str, format)
+      return cast_value if cast_value
+    end
+    nil
+  end
+
+  def cast_with_format(date_str, format)
+    Date.strptime(date_str, format)
+  rescue
+    nil
   end
 end
