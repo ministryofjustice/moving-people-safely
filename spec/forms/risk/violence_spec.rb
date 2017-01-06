@@ -11,6 +11,24 @@ RSpec.describe Forms::Risk::Violence, type: :form do
       context 'when violent due to discrimination is set to yes' do
         before { form.violence_due_to_discrimination = 'yes' }
 
+        context 'and no type of discrimination is selected' do
+          before do
+            form.risk_to_females = false
+            form.homophobic = false
+            form.racist = false
+            form.other_violence_due_to_discrimination = false
+          end
+
+          let(:attr_with_error) { :base }
+          let(:error_message) { 'At least one option (Risk to females, Homosexuals, Racist, Other) needs to be provided' }
+
+          it 'inclusion error is added to the error list' do
+            expect(form).not_to be_valid
+            expect(form.errors.keys).to match_array([attr_with_error])
+            expect(form.errors[attr_with_error]).to match_array([error_message])
+          end
+        end
+
         context 'when racist is set to true' do
           before { subject.racist = true }
           it { is_expected.to validate_presence_of(:racist_details) }
@@ -45,10 +63,51 @@ RSpec.describe Forms::Risk::Violence, type: :form do
           violence_to_staff_custody violence_to_staff_community
         ]).when(:violence_to_staff).not_set_to('yes')
       end
+
+      context 'when violence to staff is set to yes' do
+        before { form.violence_to_staff = 'yes' }
+
+        context 'and no type of violence is selected' do
+          before do
+            form.violence_to_staff_custody = false
+            form.violence_to_staff_community = false
+          end
+
+          let(:attr_with_error) { :base }
+          let(:error_message) { 'At least one option (Staff custody, Staff community) needs to be provided' }
+
+          it 'inclusion error is added to the error list' do
+            expect(form).not_to be_valid
+            expect(form.errors.keys).to match_array([attr_with_error])
+            expect(form.errors[attr_with_error]).to match_array([error_message])
+          end
+        end
+      end
     end
 
     context "for violence to other detainees" do
       it { is_expected.to validate_optional_field(:violence_to_other_detainees) }
+
+      context 'when violent to other detainees is set to yes' do
+        before { form.violence_to_other_detainees = 'yes' }
+
+        context 'and no type of violence is selected' do
+          before do
+            form.co_defendant = false
+            form.gang_member = false
+            form.other_violence_to_other_detainees = false
+          end
+
+          let(:attr_with_error) { :base }
+          let(:error_message) { 'At least one option (Co-defendant, Gang member, Other known conflicts) needs to be provided' }
+
+          it 'inclusion error is added to the error list' do
+            expect(form).not_to be_valid
+            expect(form.errors.keys).to match_array([attr_with_error])
+            expect(form.errors[attr_with_error]).to match_array([error_message])
+          end
+        end
+      end
 
       context 'when violent to other detainees is set to yes' do
         before { form.violence_to_other_detainees = 'yes' }

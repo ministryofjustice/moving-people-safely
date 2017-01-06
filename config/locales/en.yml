@@ -214,6 +214,7 @@ en:
       violence:
         co_defendant: Co-defendant
         co_defendant_details: Co-defendant violence details
+        gang_member: Gang member
         gang_member_details: Gang member violence details
         homophobic: Homosexuals
         other_violence_due_to_discrimination: Other
