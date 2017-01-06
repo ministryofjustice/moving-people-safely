@@ -24,6 +24,7 @@ module MovingPeopleSafely
     config.phase = 'beta'
     config.product_type = 'service'
     config.feedback_url = ''
+    config.assets.paths << Rails.root.join('vendor', 'bower')
     config.autoload_paths << "#{Rails.root}/app/models/sections"
 
     require "#{config.root}/app/form_builders/govuk_elements_errors_helper"

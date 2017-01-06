@@ -1,10 +1,17 @@
 machine:
+  node:
+    version: 7.4.0
   pre:
     # Install PhantomJS - required for JS testing
     - sudo curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1
   ruby:
     version:
       2.3.0
+
+dependencies:
+  pre:
+    - npm install -g bower
+    - bower install
 
 test:
   override:
