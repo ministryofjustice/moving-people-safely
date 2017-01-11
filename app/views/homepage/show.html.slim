@@ -2,10 +2,10 @@
   .search_block
     h2 Find a detainee
 
-    = form_for search_form, url: search_path, method: :post do |f|
+    = form_for search_form, url: detainees_search_path, method: :post do |f|
       label Search by prison number. E.g. A1234AB
       .search_input_wrapper
-        = f.search_text_field :prison_number
+        = f.search_text_field :prison_number, name: 'prison_number'
         = f.submit class: 'search_button', value: 'Search'
 
     - if search_form.detainee
@@ -20,24 +20,24 @@
 
 .search-header
   .date-picker
-    = form_tag(date_picker_path) do
-      input type="hidden" name="search" value="#{prison_number}"
+    = form_tag(moves_search_path) do
+      = hidden_field_tag "prison_number", prison_number
 
       span.label Scheduled moves
       .date-picker-wrapper
         span.date-picker-field.input-group.date data-provide='datepicker'
-          = text_field_tag 'date_picker', date_picker, class: 'no-script form-control date-field', id: 'moves_date_picker', :'data-provide' => 'datepicker'
+          = text_field_tag 'moves_due_on', date_picker, class: 'no-script form-control date-field'
           span.no-script.calendar-icon.input-group-addon
         button.go type='submit' name='commit' Go
 
       .no-script
         .form-group.search-date-radios
           fieldset.inline
-            = label_tag "date_picker_#{Date.today}", 'Today', class: 'block-label' do
-              = radio_button_tag 'date_picker', Date.today.strftime('%d/%m/%Y'), (date_picker == Date.today), class: 'radio-date-selector', disabled: true
+            = label_tag "moves_due_on_#{Date.today}", 'Today', class: 'block-label' do
+              = radio_button_tag 'moves_due_on', Date.today.strftime('%d/%m/%Y'), (date_picker == Date.today), class: 'radio-date-selector', disabled: true
               == 'Today'
-            = label_tag "date_picker_#{Date.tomorrow}", 'Tomorrow', class: 'block-label' do
-              = radio_button_tag 'date_picker', Date.tomorrow.strftime('%d/%m/%Y'), (date_picker == Date.tomorrow), class: 'radio-date-selector', disabled: true
+            = label_tag "moves_due_on_#{Date.tomorrow}", 'Tomorrow', class: 'block-label' do
+              = radio_button_tag 'moves_due_on', Date.tomorrow.strftime('%d/%m/%Y'), (date_picker == Date.tomorrow), class: 'radio-date-selector', disabled: true
               == 'Tomorrow'
 
   - unless dashboard.moves.empty?

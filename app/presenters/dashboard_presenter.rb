@@ -1,8 +1,8 @@
 class DashboardPresenter
   attr_reader :moves
 
-  def initialize(date)
-    @moves = Move.for_date(date)
+  def initialize(moves)
+    @moves = moves
     @moves_count = moves.count
   end
 
