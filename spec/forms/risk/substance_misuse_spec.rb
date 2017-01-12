@@ -7,39 +7,35 @@ RSpec.describe Forms::Risk::SubstanceMisuse, type: :form do
   let(:params) {
     {
       'substance_supply' => 'yes',
-      'substance_supply_details' => 'drugs',
+      'trafficking_drugs' => '1',
+      'trafficking_alcohol' => '1'
     }
   }
 
   describe '#validate' do
     it { is_expected.to validate_optional_field(:substance_supply) }
-    it do
-      is_expected.to be_configured_to_reset(%i[substance_supply_details])
-        .when(:substance_supply).not_set_to('yes')
-    end
-
-    context 'when substance_supply is set to unknown' do
-      before { form.substance_supply = 'unknown' }
-      it {
-        is_expected.not_to validate_inclusion_of(:substance_supply_details)
-          .in_array(%w[drugs alcohol both])
-      }
-    end
-
-    context 'when substance_supply is set to no' do
-      before { form.substance_supply = 'no' }
-      it {
-        is_expected.not_to validate_inclusion_of(:substance_supply_details)
-          .in_array(%w[drugs alcohol both])
-      }
-    end
 
     context 'when substance_supply is set to yes' do
       before { form.substance_supply = 'yes' }
-      it {
-        is_expected.to validate_inclusion_of(:substance_supply_details)
-          .in_array(%w[drugs alcohol both])
-      }
+
+      context 'but none of the checkboxes is selected' do
+        before do
+          form.trafficking_drugs = false
+          form.trafficking_alcohol = false
+        end
+
+        it 'an invalid date error is added to the error list' do
+          expect(form).not_to be_valid
+          expect(form.errors.keys).to match_array([:base])
+          expect(form.errors[:base]).to match_array(['At least one option (Drugs, Alcohol) needs to be provided'])
+        end
+      end
+    end
+
+    it do
+      is_expected.to be_configured_to_reset(%i[
+        trafficking_drugs trafficking_alcohol
+      ]).when(:substance_supply).not_set_to('yes')
     end
   end
 

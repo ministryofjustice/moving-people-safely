@@ -1,19 +1,31 @@
 module Forms
   module Risk
     class SubstanceMisuse < Forms::Base
-      SUBSTANCE_SUPPLY_VALUES = %w[drugs alcohol both].freeze
-
       optional_field :substance_supply, default: 'unknown'
-      property :substance_supply_details, type: StrictString
 
-      reset attributes: %i[substance_supply_details], if_falsey: :substance_supply
+      validate :valid_trafficking_options, if: proc { |f| f.substance_supply == 'yes' }
 
-      validates :substance_supply_details,
-        inclusion: { in: SUBSTANCE_SUPPLY_VALUES },
-        if: -> { substance_supply == 'yes' }
+      def valid_trafficking_options
+        unless selected_trafficking_options.any?
+          errors.add(:base, :minimum_one_option, options: trafficking_options.join(', '))
+        end
+      end
 
-      def substance_supply_values
-        SUBSTANCE_SUPPLY_VALUES
+      optional_checkbox :trafficking_drugs
+      optional_checkbox :trafficking_alcohol
+
+      reset attributes: %i[trafficking_drugs trafficking_alcohol], if_falsey: :substance_supply
+
+      private
+
+      def selected_trafficking_options
+        [trafficking_drugs, trafficking_alcohol]
+      end
+
+      def trafficking_options
+        %i[trafficking_drugs trafficking_alcohol].map do |attr|
+          I18n.t(attr, scope: [:helpers, :label, :substance_misuse])
+        end
       end
     end
   end

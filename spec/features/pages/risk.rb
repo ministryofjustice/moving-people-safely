@@ -214,11 +214,24 @@ module Page
     def fill_in_substance_misuse
       if @risk.substance_supply == 'yes'
         choose 'substance_misuse_substance_supply_yes'
-        fill_in 'substance_misuse_substance_supply_details', with: @risk.substance_supply_details
+        fill_in_trafficking_drugs
+        fill_in_trafficking_alcohol
       else
         choose 'substance_misuse_substance_supply_no'
       end
       save_and_continue
+    end
+
+    def fill_in_trafficking_drugs
+      if @risk.trafficking_drugs
+        check 'substance_misuse_trafficking_drugs'
+      end
+    end
+
+    def fill_in_trafficking_alcohol
+      if @risk.trafficking_alcohol
+        check 'substance_misuse_trafficking_alcohol'
+      end
     end
 
     def fill_in_concealed_weapons
