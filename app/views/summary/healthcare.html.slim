@@ -2,7 +2,7 @@
   = render partial: 'summary/status', locals: { workflow: healthcare_workflow, title: 'Healthcare' }
 
   - HealthcareWorkflow.sections_for_summary.each do |section|
-    = render partial: 'summary/newsection',
+    = render partial: 'summary/section',
       locals: { section: Summary::HealthcarePresenter.for(section, healthcare), path: healthcare_path(detainee, section) }
 
   = render partial: 'summary/call_to_action', locals: { workflow: healthcare_workflow, confirm_path: confirm_healthcare_index_path }

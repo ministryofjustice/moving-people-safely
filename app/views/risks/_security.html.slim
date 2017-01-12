@@ -1,21 +1,33 @@
-= f.radio_toggle :current_e_risk do
-  .form-group
-    = f.radio_button_fieldset :current_e_risk_details, choices: f.object.e_risk_values, legend: false
+section
+  a#escape_status_subsection
 
-= f.radio_toggle :previous_escape_attempts do
-  fieldset
-    span.form-hint
-      | Select all that apply
+  = f.radio_toggle :current_e_risk do
+    .form-group
+      = f.radio_button_fieldset :current_e_risk_details, choices: f.object.e_risk_values, legend: false
 
-    = f.checkbox_with_textarea :prison_escape_attempt
-    = f.checkbox_with_textarea :court_escape_attempt
-    = f.checkbox_with_textarea :police_escape_attempt
-    = f.checkbox_with_textarea :other_type_escape_attempt
+section
+  a#previous_escape_attempts_subsection
 
-= f.radio_toggle :category_a
+  = f.radio_toggle :previous_escape_attempts do
+    fieldset
+      span.form-hint
+        | Select all that apply
 
-= f.radio_toggle :escort_risk_assessment do
-  = f.text_field :escort_risk_assessment_completion_date
+      = f.checkbox_with_textarea :prison_escape_attempt
+      = f.checkbox_with_textarea :court_escape_attempt
+      = f.checkbox_with_textarea :police_escape_attempt
+      = f.checkbox_with_textarea :other_type_escape_attempt
 
-= f.radio_toggle :escape_pack do
-  = f.text_field :escape_pack_completion_date
+section
+  a#category_a_subsection
+
+  = f.radio_toggle :category_a
+
+section
+  a#escort_details_subsection
+
+  = f.radio_toggle :escort_risk_assessment do
+    = f.text_field :escort_risk_assessment_completion_date
+
+  = f.radio_toggle :escape_pack do
+    = f.text_field :escape_pack_completion_date

@@ -1,26 +1,38 @@
-= f.radio_toggle :violence_due_to_discrimination do
-  fieldset
-    span.form-hint
-      | Select all that apply
+section
+  a#discrimination_subsection
 
-    = f.checkbox :risk_to_females
-    = f.checkbox :homophobic
-    = f.checkbox_with_textarea :racist
-    = f.checkbox_with_textarea :other_violence_due_to_discrimination
+  = f.radio_toggle :violence_due_to_discrimination do
+    fieldset
+      span.form-hint
+        | Select all that apply
 
-= f.radio_toggle :violence_to_staff do
-  fieldset
-    span.form-hint
-      | Select all that apply
-    = f.checkbox :violence_to_staff_custody
-    = f.checkbox :violence_to_staff_community
+      = f.checkbox :risk_to_females
+      = f.checkbox :homophobic
+      = f.checkbox_with_textarea :racist
+      = f.checkbox_with_textarea :other_violence_due_to_discrimination
 
-= f.radio_toggle :violence_to_other_detainees do
-  fieldset
-    span.form-hint
-      | Select all that apply
-    = f.checkbox_with_textarea :co_defendant
-    = f.checkbox_with_textarea :gang_member
-    = f.checkbox_with_textarea :other_violence_to_other_detainees
+section
+  a#violence_to_staff_subsection
 
-= f.radio_toggle_with_textarea :violence_to_general_public
+  = f.radio_toggle :violence_to_staff do
+    fieldset
+      span.form-hint
+        | Select all that apply
+      = f.checkbox :violence_to_staff_custody
+      = f.checkbox :violence_to_staff_community
+
+section
+  a#violence_to_other_detainees_subsection
+
+  = f.radio_toggle :violence_to_other_detainees do
+    fieldset
+      span.form-hint
+        | Select all that apply
+      = f.checkbox_with_textarea :co_defendant
+      = f.checkbox_with_textarea :gang_member
+      = f.checkbox_with_textarea :other_violence_to_other_detainees
+
+section
+  a#violence_to_general_public_subsection
+
+  = f.radio_toggle_with_textarea :violence_to_general_public

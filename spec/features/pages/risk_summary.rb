@@ -86,31 +86,31 @@ module Page
 
     def check_violence_due_to_discrimination(risk)
       if risk.violence_due_to_discrimination == 'yes'
-        check_section(risk, 'violence', %w[risk_to_females homophobic racist other_violence_due_to_discrimination])
+        check_section(risk, 'discrimination', %w[risk_to_females homophobic racist other_violence_due_to_discrimination])
       else
-        check_section_is_all_no(risk, 'violence', %w[risk_to_females homophobic racist other_violence_due_to_discrimination])
+        check_section_is_all_no(risk, 'discrimination', %w[risk_to_females homophobic racist other_violence_due_to_discrimination])
       end
     end
 
     def check_violence_to_staff(risk)
       if risk.violence_to_staff == 'yes'
-        check_section(risk, 'violence', %w[violence_to_staff_custody violence_to_staff_community])
+        check_section(risk, 'violence_to_staff', %w[violence_to_staff_custody violence_to_staff_community])
       else
-        check_section_is_all_no(risk, 'violence', %w[violence_to_staff_custody violence_to_staff_community])
+        check_section_is_all_no(risk, 'violence_to_staff', %w[violence_to_staff_custody violence_to_staff_community])
       end
     end
 
     def check_violence_to_other_detainees(risk)
       if risk.violence_to_other_detainees == 'yes'
-        check_section(risk, 'violence', %w[co_defendant gang_member other_violence_to_other_detainees])
+        check_section(risk, 'violence_to_other_detainees', %w[co_defendant gang_member other_violence_to_other_detainees])
       else
-        check_section_is_all_no(risk, 'violence', %w[co_defendant gang_member other_violence_to_other_detainees])
+        check_section_is_all_no(risk, 'violence_to_other_detainees', %w[co_defendant gang_member other_violence_to_other_detainees])
       end
     end
 
     def check_violence_to_general_public(risk)
       if risk.violence_to_general_public == 'yes'
-        check_question(risk, 'violence', 'violence_to_general_public')
+        check_question(risk, 'violence_to_general_public', 'violence_to_general_public')
       end
     end
 
@@ -131,15 +131,15 @@ module Page
     def check_intimidation(risk)
       fields = %w[intimidation_to_staff intimidation_to_public intimidation_to_other_detainees intimidation_to_witnesses]
       if risk.intimidation == 'yes'
-        check_section(risk, 'harassments', fields)
+        check_section(risk, 'intimidation', fields)
       else
-        check_section_is_all_no(risk, 'harassments', fields)
+        check_section_is_all_no(risk, 'intimidation', fields)
       end
     end
 
     def check_harassment(risk)
       if risk.harassment == 'yes'
-        check_question(risk, 'harassments', 'harassment_details')
+        check_question(risk, 'harassment', 'harassment_details')
       end
     end
 
@@ -156,14 +156,14 @@ module Page
     def check_security_section(risk)
       check_current_e_risk(risk)
       check_previous_escape_attempts(risk)
-      check_question(risk, 'security', 'category_a')
-      check_question(risk, 'security', 'escort_risk_assessment')
-      check_question(risk, 'security', 'escape_pack')
+      check_question(risk, 'category_a', 'category_a')
+      check_question(risk, 'escort_details', 'escort_risk_assessment')
+      check_question(risk, 'escort_details', 'escape_pack')
     end
 
     def check_current_e_risk(risk)
       if risk.current_e_risk == 'yes'
-        check_question(risk, 'security', 'current_e_risk_details')
+        check_question(risk, 'escape_status', 'current_e_risk_details')
       end
     end
 
@@ -171,9 +171,9 @@ module Page
       fields = %w[prison_escape_attempt court_escape_attempt
                   police_escape_attempt other_type_escape_attempt]
       if risk.previous_escape_attempts == 'yes'
-        check_section(risk, 'security', fields)
+        check_section(risk, 'previous_escape_attempts', fields)
       else
-        check_section_is_all_no(risk, 'security', fields)
+        check_section_is_all_no(risk, 'previous_escape_attempts', fields)
       end
     end
 

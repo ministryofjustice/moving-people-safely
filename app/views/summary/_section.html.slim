@@ -1,16 +1,24 @@
-table class="#{section}"
-  thead
-    tr
-     th.title colspan="2"
-       = t(".titles.#{section}")
-     th.edit
-       = link_to 'Change', path
-  tbody
-    - questions.each_with_index do |question, i|
-      tr class=(%w[even odd][i%2] + ' ' + question.underscore)
-       td.first-column
-         = t(".questions.#{section}.#{question}")
-       td.second-column
-         == presenter.answer_for(question)
-       td.third-column
-         == presenter.details_for(question)
+- if section.has_subsections?
+  - section.subsections.each do |subsection|
+    = render partial: 'summary/subsection',
+      locals: { subsection: Summary::RiskSubsectionPresenter.for(subsection, section.name, assessment),
+                section: section,
+                assessment: assessment,
+                path: path }
+- else
+  table class="#{section.name}"
+    thead
+      tr
+       th.title colspan="2"
+         = t("summary.section.titles.#{section.name}")
+       th.edit
+         = link_to 'Change', path
+    tbody
+      - section.questions.each_with_index do |question, i|
+        tr class=(%w[even odd][i%2] + ' ' + question.underscore)
+         td.first-column
+           = t("summary.section.questions.#{section.name}.#{question}")
+         td.second-column
+           == section.answer_for(question)
+         td.third-column
+           == section.details_for(question)

@@ -8,5 +8,11 @@ module RiskAssessment
       %w[acct_status]
     end
     alias mandatory_questions questions
+
+    def questions_details
+      {
+        acct_status: %i[date_of_most_recently_closed_acct acct_status_details]
+      }
+    end
   end
 end

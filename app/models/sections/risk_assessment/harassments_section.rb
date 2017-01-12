@@ -21,5 +21,13 @@ module RiskAssessment
                          intimidation_to_other_detainees intimidation_to_witnesses]
       }
     end
+
+    def subsections_questions
+      {
+        harassment: %w[harassment],
+        intimidation: %w[intimidation_to_staff intimidation_to_public
+                         intimidation_to_other_detainees intimidation_to_witnesses]
+      }
+    end
   end
 end

@@ -56,6 +56,38 @@ RSpec.shared_examples_for 'assessment section presenter' do
           expect(presenter.answer_for(:question)).to eq '<b>Yes</b>'
         end
       end
+
+      context 'and the question is answered with some other value' do
+        let(:answer) { 'some_other_value' }
+
+        context 'and the answer has a locale for the summary page' do
+          let(:answer) { 'some_localised_value' }
+
+          before do
+            I18n.backend.store_translations(:en, {
+              summary: {
+                section: {
+                  answers: {
+                    section_name => {
+                      'some_localised_value' => 'Localised some other value'
+                    }
+                  }
+                }
+              }
+            })
+          end
+
+          it 'returns the localised version of the answer' do
+            expect(presenter.answer_for(:question)).to eq('<b>Localised some other value</b>')
+          end
+        end
+
+        context 'and the answer has no locale for the summary page' do
+          it 'returns the humanized version of it' do
+            expect(presenter.answer_for(:question)).to eq '<b>Some other value</b>'
+          end
+        end
+      end
     end
 
     context 'when the question is conditional' do
@@ -89,6 +121,85 @@ RSpec.shared_examples_for 'assessment section presenter' do
           it 'returns no text' do
             expect(presenter.answer_for(:question)).to eq 'No'
           end
+        end
+      end
+    end
+  end
+
+  describe '#details_for' do
+    let(:answer_detail_1) { 'foo' }
+    let(:answer_detail_2) { 'bar' }
+
+    before do
+      allow(model).to receive(:question_detail_1).and_return(answer_detail_1)
+      allow(model).to receive(:question_detail_2).and_return(answer_detail_2)
+    end
+
+    context 'when the question has no defined details' do
+      before do
+        allow(section).to receive(:question_has_details?).and_return(false)
+      end
+    end
+
+    context 'when the question has defined details' do
+      before do
+        allow(section).to receive(:question_has_details?).and_return(true)
+        allow(section).to receive(:question_details).and_return(%i[question_detail_1 question_detail_2])
+      end
+
+      it 'returns a string with the combined details for the question' do
+        expect(presenter.details_for(:question)).to eq('Foo. Bar')
+      end
+
+      context 'when one of the details is empty' do
+        let(:answer_detail_1) { nil }
+
+        it 'returns a string only with the details that are present' do
+          expect(presenter.details_for(:question)).to eq('Bar')
+        end
+      end
+
+      context 'when one of the details has a locale for its label in the summary page' do
+        before do
+          allow(section).to receive(:question_details).and_return(%i[localised_question_detail_1 question_detail_2])
+          allow(model).to receive(:localised_question_detail_1).and_return(answer_detail_1)
+          I18n.backend.store_translations(:en, {
+            summary: {
+              section: {
+                questions: {
+                  section_name => {
+                    'localised_question_detail_1' => 'Localised question detail 1: '
+                  }
+                }
+              }
+            }
+          })
+        end
+
+        it 'prepends the localised label for the specified detail in the returned string' do
+          expect(presenter.details_for(:question)).to eq('Localised question detail 1: Foo. Bar')
+        end
+      end
+
+      context 'when one of the details has a localised version for the summary page' do
+        let(:answer_detail_2) { 'localised_answer_detail_2' }
+
+        before do
+          I18n.backend.store_translations(:en, {
+            summary: {
+              section: {
+                answers: {
+                  section_name => {
+                    'localised_answer_detail_2' => 'Localised answer detail 2'
+                  }
+                }
+              }
+            }
+          })
+        end
+
+        it 'prepends the localised label for the specified detail in the returned string' do
+          expect(presenter.details_for(:question)).to eq('Foo. Localised answer detail 2')
         end
       end
     end
