@@ -194,7 +194,12 @@ module Page
     end
 
     def check_substance_misuse_section(risk)
-      check_section(risk, 'substance_misuse', %w[substance_supply])
+      fields = %w[trafficking_drugs trafficking_alcohol]
+      if risk.substance_supply == 'yes'
+        check_section(risk, 'substance_misuse', fields)
+      else
+        check_section_is_all_no(risk, 'substance_misuse', fields)
+      end
     end
   end
 end

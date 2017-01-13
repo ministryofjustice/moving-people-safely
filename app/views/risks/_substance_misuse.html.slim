@@ -1,5 +1,7 @@
 = f.radio_toggle :substance_supply do
-  .form-group
-    = f.radio_button_fieldset :substance_supply_details,
-      choices: f.object.substance_supply_values,
-      legend: false
+  fieldset
+    span.form-hint
+      | Select all that apply
+
+    = f.checkbox :trafficking_drugs
+    = f.checkbox :trafficking_alcohol

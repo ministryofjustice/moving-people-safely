@@ -51,6 +51,8 @@ en:
         personal_care: Personal care issues?
       substance_misuse:
         substance_supply: Risk of detainee trafficking drugs or alcohol
+        trafficking_drugs: Drugs
+        trafficking_alcohol: Alcohol
       transport:
         mpv: Requires MPV?
       violence:
@@ -204,9 +206,8 @@ en:
       substance_misuse:
         substance_supply_choices:
           unknown: Clear selection
-        substance_supply_details: Details for risk of detainee trafficking drugs or alcohol
-        substance_supply_details_choices:
-          both: Both drugs and alcohol
+        trafficking_drugs: Drugs
+        trafficking_alcohol: Alcohol
       transport:
         mpv_choices:
           unknown: Clear selection
@@ -392,6 +393,8 @@ en:
           other_escape_risk_info: Other escape risk information
         substance_misuse:
           substance_supply: Risk of detainee trafficking drugs or alcohol
+          trafficking_drugs: Drugs
+          trafficking_alcohol: Alcohol
         transport:
           mpv: MPV
         violence:
