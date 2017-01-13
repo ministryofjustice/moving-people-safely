@@ -41,6 +41,30 @@ RSpec.describe DatePicker do
         end
       end
 
+      context "with a valid date string in the format dd-mm-yyyy" do
+        let(:new_date) { '01-01-2001' }
+
+        it "sets the date" do
+          expect(subject.date).to eq(Date.new(2001, 1, 1))
+        end
+
+        it "sets the date string" do
+          expect(subject.to_s).to eq('01/01/2001')
+        end
+      end
+
+      context "with a valid date string in the format 'dd mm yyyy'" do
+        let(:new_date) { '1 1 2001' }
+
+        it "sets the date" do
+          expect(subject.date).to eq(Date.new(2001, 1, 1))
+        end
+
+        it "sets the date string" do
+          expect(subject.to_s).to eq('01/01/2001')
+        end
+      end
+
       context "with an invalid date string" do
         let(:new_date) { 'elephant' }
 
@@ -50,6 +74,44 @@ RSpec.describe DatePicker do
 
         it "doesn't change the date returned by #to_s" do
           expect(subject.to_s).to eql date
+        end
+      end
+    end
+
+    describe '#==' do
+      context 'when an invalid date is provided for comparison' do
+        specify { expect(subject == 'not-a-date').to be_falsey }
+      end
+
+      context 'when a date is provided for comparison' do
+        let(:other_date) { Date.parse('12/11/2016') }
+
+        context 'and the date is the same' do
+          let(:date) { '12/11/2016' }
+
+          specify { expect(subject == other_date).to be_truthy }
+        end
+
+        context 'and the date is different' do
+          let(:date) { '24/07/2013' }
+
+          specify { expect(subject == other_date).to be_falsey }
+        end
+      end
+
+      context 'when a date string is provided for comparison' do
+        let(:other_date) { '12/11/2016' }
+
+        context 'and the date is the same' do
+          let(:date) { '12/11/2016' }
+
+          specify { expect(subject == other_date).to be_truthy }
+        end
+
+        context 'and the date is different' do
+          let(:date) { '24/07/2013' }
+
+          specify { expect(subject == other_date).to be_falsey }
         end
       end
     end

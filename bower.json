@@ -1,0 +1,21 @@
+{
+  "name": "moving-people-safely",
+  "homepage": "https://github.com/ministryofjustice/moving-people-safely",
+  "authors": [
+    "Sergio Marques <sergio.marques@digital.justice.gov.uk>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/javascripts",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-datepicker": "^1.6.4"
+  }
+}

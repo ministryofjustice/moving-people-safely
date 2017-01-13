@@ -92,10 +92,10 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     end
   end
 
-  def search_text_field(attribute)
+  def search_text_field(attribute, options = {})
     ActionView::Helpers::Tags::TextField.new(
       object.class.name, attribute, self,
-      value: object.public_send(attribute), class: 'form-control'
+      { value: object.public_send(attribute), class: 'form-control' }.merge(options)
     ).render
   end
 

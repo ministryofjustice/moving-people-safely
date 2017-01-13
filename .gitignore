@@ -22,3 +22,6 @@
 
 # Ignore test artifacts
 /spec/examples.txt
+
+# Ignore bower local installs
+vendor/bower/*

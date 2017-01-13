@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   resource :detainee, only: [ :new, :create ], controller: :detainee_details
 
-  post '/search', to: 'homepage#search', as: 'search'
-  post '/date', to: 'homepage#date', as: 'date_picker'
+  post '/detainees/search', to: 'homepage#detainees'
+  post '/moves/search', to: 'homepage#moves'
   root to: 'homepage#show'
 end

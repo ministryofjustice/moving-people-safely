@@ -1,13 +1,13 @@
 class DashboardPresenter
   attr_reader :moves
 
-  def initialize(date)
-    @moves = Move.for_date(date)
+  def initialize(moves)
+    @moves = moves
     @moves_count = moves.count
   end
 
   def render_detainees_indicator
-    render_indicator('detainees', 'Detainees', @moves_count)
+    render_indicator('detainees', 'Detainees due to move', @moves_count)
   end
 
   def render_risk_indicator
@@ -16,7 +16,7 @@ class DashboardPresenter
       title = 'Risk completed'
     else
       cl = 'risk incomplete'
-      title = 'Incomplete risk'
+      title = 'Risk incomplete'
     end
 
     render_indicator(cl, title, count_of_incomplete_risk)
@@ -28,7 +28,7 @@ class DashboardPresenter
       title = 'Health completed'
     else
       cl = 'healthcare incomplete'
-      title = 'Incomplete health'
+      title = 'Health incomplete'
     end
 
     render_indicator(cl, title, count_of_incomplete_healthcare)
@@ -40,7 +40,7 @@ class DashboardPresenter
       title = 'Offences completed'
     else
       cl = 'offences incomplete'
-      title = 'Incomplete offences'
+      title = 'Offences incomplete'
     end
 
     render_indicator(cl, title, count_of_incomplete_offences)
@@ -50,8 +50,8 @@ class DashboardPresenter
 
   def render_indicator(cl, title, value)
     "<div class='gauge_wrapper #{cl}'>
-      <span class='title'>#{title}</span>
-      <span class='gauge'><span>#{value}</span></span>
+      <div class='value'>#{value}</div>
+      <div class='title'>#{title}</div>
     </div>"
   end
 

@@ -17,6 +17,15 @@
   gem install bundler
   ```
 
+* Bower
+
+  Using brew:
+
+  ```bash
+  brew install node
+  npm install -g bower
+  ```
+
 * Postgres
 
   Using brew:

@@ -2,10 +2,10 @@
   .search_block
     h2 Find a detainee
 
-    = form_for search_form, url: search_path, method: :post do |f|
+    = form_for search_form, url: detainees_search_path, method: :post do |f|
       label Search by prison number. E.g. A1234AB
       .search_input_wrapper
-        = f.search_text_field :prison_number
+        = f.search_text_field :prison_number, name: 'prison_number'
         = f.submit class: 'search_button', value: 'Search'
 
     - if search_form.detainee
@@ -18,28 +18,39 @@
       = render partial: 'error',
         locals: { prison_number: search_form.prison_number }
 
-.date-picker
-  = form_tag(date_picker_path) do
-    input type="hidden" name="search" value="#{prison_number}"
+.search-header
+  .date-picker
+    = form_tag(moves_search_path) do
+      = hidden_field_tag "prison_number", prison_number
 
-    label
-      span.label Detainees due to move on
-      span.date-field
-        input.form-control type='text' value="#{date_picker}" name='date_picker'
-    input.go type='submit' value='Go' name='commit'
-    span.nav-group
-      input type='submit' value='<' name='commit'
-      input type='submit' value='today' name='commit'
-      input type='submit' value='>' name='commit'
+      span.label Scheduled moves
+      .date-picker-wrapper
+        span.date-picker-field.input-group.date data-provide='datepicker'
+          = text_field_tag 'moves_due_on', date_picker, class: 'no-script form-control date-field'
+          span.no-script.calendar-icon.input-group-addon
+        button.go type='submit' name='commit' Go
 
-- unless dashboard.moves.empty?
-  dl.status_gauges
-    == dashboard.render_detainees_indicator
-    == dashboard.render_risk_indicator
-    == dashboard.render_health_indicator
-    == dashboard.render_offences_indicator
+      .no-script
+        .form-group.search-date-radios
+          fieldset.inline
+            = label_tag "moves_due_on_#{Date.today}", 'Today', class: 'block-label' do
+              = radio_button_tag 'moves_due_on', Date.today.strftime('%d/%m/%Y'), (date_picker == Date.today), class: 'radio-date-selector', disabled: true
+              == 'Today'
+            = label_tag "moves_due_on_#{Date.tomorrow}", 'Tomorrow', class: 'block-label' do
+              = radio_button_tag 'moves_due_on', Date.tomorrow.strftime('%d/%m/%Y'), (date_picker == Date.tomorrow), class: 'radio-date-selector', disabled: true
+              == 'Tomorrow'
 
-  = render partial: 'moves', locals: { moves: dashboard.moves }
-- else
-  p = "There are no detainees due to move on #{date_picker}."
-  p To initiate a PER for a detainee enter the prisoner number and search to view any existing records. If there are no records, you will be given the opportunity to start a new one.
+  - unless dashboard.moves.empty?
+    .moves-gauges
+      dl.status_gauges
+        == dashboard.render_detainees_indicator
+        == dashboard.render_risk_indicator
+        == dashboard.render_health_indicator
+        == dashboard.render_offences_indicator
+
+.search-results
+  - unless dashboard.moves.empty?
+    = render partial: 'moves', locals: { moves: dashboard.moves }
+  - else
+    p = "There are no detainees due to move on #{date_picker}."
+    p To initiate a PER for a detainee enter the prisoner number and search to view any existing records. If there are no records, you will be given the opportunity to start a new one.
