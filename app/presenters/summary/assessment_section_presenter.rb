@@ -29,7 +29,11 @@ module Summary
     def details_for(attribute)
       return super(attribute) unless question_has_details?(attribute)
       question_details(attribute).each_with_object([]) do |detail_attr, details|
-        details << detail_content(detail_attr) if public_send(detail_attr).present?
+        if detail_attr.is_a?(Hash)
+          details << complex_detail_context(detail_attr)
+        elsif public_send(detail_attr).present?
+          details << detail_content(detail_attr)
+        end
       end.join('. ')
     end
 
@@ -65,6 +69,17 @@ module Summary
 
     def detail_content(attribute)
       [detail_label(attribute), answer_value(public_send(attribute))].join('')
+    end
+
+    def complex_detail_context(hash)
+      public_send(hash[:collection]).each_with_object([]) do |item, details|
+        details << hash[:fields].map do |field|
+          [
+            detail_label("#{hash[:collection]}_collection.#{field}"),
+            answer_value(item.send(field))
+          ].join(' ')
+        end.join(' | ')
+      end.join('</br>')
     end
 
     def detail_label(attribute)

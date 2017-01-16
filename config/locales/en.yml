@@ -375,14 +375,17 @@ en:
           arson: Arson is a behavioural issue
           damage_to_property: Damage to property
         communication:
-          hearing_speech_sight_issues: Hearing / Speech / Sight issues
-          reading_writing_issues: Reading / Writing issues
+          hearing_speech_sight_issues: Hearing / speech / sight issues
+          reading_writing_issues: Reading / writing issues
         concealed_weapons:
           conceals_weapons: Conceals weapons
           conceals_drugs: Conceals drugs
           conceals_mobile_phones: Conceals mobile phones
           conceals_sim_cards: Conceals SIM cards
           conceals_other_items: Conceals other items
+        contact:
+          contact_number: Contact number
+          healthcare_professional: Healthcare professional
         harassments:
           harassment: Harasser
           intimidation_to_staff: Staff
@@ -393,8 +396,13 @@ en:
           staff_hostage_taker: Staff
           prisoners_hostage_taker: Prisoners
           public_hostage_taker: Public
+        mental:
+          mental_illness: Mental health issues
         needs:
-          has_medications: Medication
+          dependencies: Dependencies / misuse
+          has_medications: Regular Medication
+          medications_collection:
+            carrier: 'Carried by '
         sex_offences:
           sex_offence: Sex offender
           sex_offence_adult_male_victim: Adult male
@@ -419,12 +427,15 @@ en:
           court_escape_attempt: Court
           police_escape_attempt: Police
           other_type_escape_attempt: Other
+        social:
+          personal_care: Personal care issues
+          personal_hygiene: Personal hygiene issues
         substance_misuse:
           substance_supply: Risk of detainee trafficking drugs or alcohol
           trafficking_drugs: Drugs
           trafficking_alcohol: Alcohol
         transport:
-          mpv: MPV
+          mpv: MPV required
         violence:
           co_defendant: Co-defendant
           escort_or_court_staff: Escort or court staff
@@ -447,6 +458,7 @@ en:
         category_a: Category A or Restricted status
         communication: Communication / language difficulties
         concealed_weapons: Conceals weapons, drugs or other items
+        contact: Medical contact
         discrimination: "Risk to others - discrimination"
         escape_status: Escape status/history
         escort_details: Escort Risk Assessment/Escort Pack
