@@ -1,3 +1,8 @@
+= content_for :breadcrumbs do
+  - breadcrumbs_for_page root: true do
+    - breadcrumb detainee_breadcrumb(detainee), profile_path(active_move)
+    - breadcrumb 'Offences', '#'
+
 .offences
   - if offences_workflow.needs_review?
     header

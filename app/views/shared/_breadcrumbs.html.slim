@@ -1,0 +1,7 @@
+.breadcrumbs
+  ol
+    - breadcrumbs.each do |breadcrumb|
+      - unless breadcrumb == breadcrumbs.last
+        li = link_to breadcrumb.title, breadcrumb.url
+      - else
+        li = breadcrumb.title

@@ -1,3 +1,7 @@
+= content_for :breadcrumbs do
+  - breadcrumbs_for_page root: true do
+    - breadcrumb detainee_breadcrumb(detainee), '#'
+
 .profile
   = render partial: 'header'
   = render partial: 'move', locals: { move: MovePresenter.new(active_move) }

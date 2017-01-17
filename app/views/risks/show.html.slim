@@ -1,3 +1,9 @@
+= content_for :breadcrumbs do
+  - breadcrumbs_for_page root: true do
+    - breadcrumb detainee_breadcrumb(detainee), profile_path(active_move)
+    - breadcrumb 'Risk summary', summary_risks_path(detainee)
+    - breadcrumb t("risks.form.title.#{template_name}"), '#'
+
 = render partial: 'shared/wizard_header'
 
 .risk
