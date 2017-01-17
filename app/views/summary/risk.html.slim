@@ -2,7 +2,9 @@
   = render partial: 'summary/status', locals: { workflow: risk_workflow, title: 'Risk' }
 
   - RiskWorkflow.sections.each do |section|
-    = render partial: 'summary/newsection',
-      locals: { section: Summary::RiskPresenter.for(section, risk), path: risk_path(detainee, section) }
+    = render partial: 'summary/section',
+      locals: { section: Summary::RiskPresenter.for(section, risk),
+                assessment: risk,
+                path: risk_path(detainee, section) }
 
   = render partial: 'summary/call_to_action', locals: { workflow: risk_workflow, confirm_path: confirm_risks_path }

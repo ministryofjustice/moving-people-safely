@@ -19,5 +19,13 @@ module RiskAssessment
         hostage_taker: %i[staff_hostage_taker prisoners_hostage_taker public_hostage_taker]
       }
     end
+
+    def questions_details
+      {
+        staff_hostage_taker: %i[date_most_recent_staff_hostage_taker_incident],
+        prisoners_hostage_taker: %i[date_most_recent_prisoners_hostage_taker_incident],
+        public_hostage_taker: %i[date_most_recent_public_hostage_taker_incident]
+      }
+    end
   end
 end

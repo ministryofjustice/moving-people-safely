@@ -162,7 +162,7 @@ en:
           open: ACCT Open
           post_closure: ACCT Post Closure
           closed_in_last_6_months: ACCT Closed, in the last 6 months
-          not_available: None of the above
+          none: None of the above
         acct_status_details: Give details of known methods and triggers
         date_of_most_recently_closed_acct: Date of most recently closed ACCT
       security:
@@ -363,34 +363,62 @@ en:
 
   summary:
     section:
+      answers:
+        risk_to_self:
+          closed_in_last_6_months: Closed
+        security:
+          e_list_escort: E-List-Escort
+          e_list_heightened: E-List-Heightened
+          e_list_standard: E-List-Standard
       questions:
         arson:
-          arson: Arson
+          arson: Arson is a behavioural issue
           damage_to_property: Damage to property
         communication:
           hearing_speech_sight_issues: Hearing / Speech / Sight issues
           reading_writing_issues: Reading / Writing issues
+        concealed_weapons:
+          conceals_weapons: Conceals weapons
+          conceals_drugs: Conceals drugs
+          conceals_mobile_phones: Conceals mobile phones
+          conceals_sim_cards: Conceals SIM cards
+          conceals_other_items: Conceals other items
         harassments:
           harassment: Harasser
-          intimidation: Intimidator / bully
+          intimidation_to_staff: Staff
+          intimidation_to_public: Public
+          intimidation_to_other_detainees: Prisoners
+          intimidation_to_witnesses: Witnesses
+        hostage_taker:
+          staff_hostage_taker: Staff
+          prisoners_hostage_taker: Prisoners
+          public_hostage_taker: Public
         needs:
           has_medications: Medication
         sex_offences:
           sex_offence: Sex offender
-          sex_offence_adult_male_victim: Adult male victim
-          sex_offence_adult_female_victim: Adult female victim
-          sex_offence_under18_victim: Under 18 victim
+          sex_offence_adult_male_victim: Adult male
+          sex_offence_adult_female_victim: Adult female
+          sex_offence_under18_victim: Under 18
         risk_from_others:
+          csra: CSRA
+          high_profile: High public interest
           rule_45: Rule 45
-          csra: Cell Share Risk Assessment
+          victim_of_abuse: Victim of abuse in prison
         risk_to_self:
           acct_status: ACCT status
           suicide: Risk of suicide or self-harm
         security:
           category_a: Category A or Restricted status
-          current_e_risk: Current E risk
+          current_e_risk: Currently on E list
           escape_list: Escape list
+          escape_pack_completion_date: 'Completed on: '
+          escort_risk_assessment_completion_date: 'Completed on: '
           other_escape_risk_info: Other escape risk information
+          prison_escape_attempt: Prison
+          court_escape_attempt: Court
+          police_escape_attempt: Police
+          other_type_escape_attempt: Other
         substance_misuse:
           substance_supply: Risk of detainee trafficking drugs or alcohol
           trafficking_drugs: Drugs
@@ -398,32 +426,45 @@ en:
         transport:
           mpv: MPV
         violence:
-          co_defendant: Co-Defendant
+          co_defendant: Co-defendant
           escort_or_court_staff: Escort or court staff
+          gang_member: Gang member
           healthcare_staff: Healthcare staff
           homophobic: Homosexuals
           other_detainees: Other detainees
-          racist: Other races
+          other_violence_due_to_discrimination: Other
+          other_violence_to_other_detainees: Other known conflicts
+          racist: Racist
           police: Police
           prison_staff: Prison staff
           public_offence_related: Public/offence related
-          risk_to_females: Females
+          risk_to_females: Risk to females
+          violence_to_general_public: General public
+          violence_to_staff_community: Staff community
+          violence_to_staff_custody: Staff custody
       titles:
         arson: Arson and damage to property
+        category_a: Category A or Restricted status
         communication: Communication / language difficulties
-        concealed_weapons: Concealed weapons, drugs or other items
-        harassments: "Risk to others: Harasser / intimidator / bully"
-        hostage_taker: "Risk to others: Hostage taker"
+        concealed_weapons: Conceals weapons, drugs or other items
+        discrimination: "Risk to others - discrimination"
+        escape_status: Escape status/history
+        escort_details: Escort Risk Assessment/Escort Pack
+        harassment: "Risk to others: harasser and/or bully"
+        hostage_taker: "Risk to others - hostage taker"
+        intimidation: "Intimidator/bully"
         mental: Mental healthcare
         needs: Medical health needs
         physical: Physical healthcare
+        previous_escape_attempts: Made previous escape attempts
         risk_to_self: Risk to self
         risk_from_others: Risk from others
-        security: Security
-        sex_offences: "Risk to others: Sex offender"
+        sex_offences: Sex offender
         social: Social healthcare
-        substance_misuse: Risk of trafficking drugs and alcohol
-        violence: "Risk to others: discrimination"
+        substance_misuse: Risk of trafficking drugs or alcohol
+        violence_to_general_public: Violent to general public
+        violence_to_other_detainees: Violent to other detainees
+        violence_to_staff: Violent to staff
   activemodel:
     errors:
       models:

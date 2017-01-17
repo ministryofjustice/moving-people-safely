@@ -1,11 +1,17 @@
-= f.radio_toggle_with_textarea :harassment
+section
+  a#harassment_subsection
 
-= f.radio_toggle :intimidation do
-  fieldset
-    span.form-hint
-      | Targets for intimidation or bullying
+  = f.radio_toggle_with_textarea :harassment
 
-    = f.checkbox_with_textarea :intimidation_to_staff
-    = f.checkbox_with_textarea :intimidation_to_public
-    = f.checkbox_with_textarea :intimidation_to_other_detainees
-    = f.checkbox_with_textarea :intimidation_to_witnesses
+section
+  a#intimidation_subsection
+
+  = f.radio_toggle :intimidation do
+    fieldset
+      span.form-hint
+        | Targets for intimidation or bullying
+
+      = f.checkbox_with_textarea :intimidation_to_staff
+      = f.checkbox_with_textarea :intimidation_to_public
+      = f.checkbox_with_textarea :intimidation_to_other_detainees
+      = f.checkbox_with_textarea :intimidation_to_witnesses

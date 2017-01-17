@@ -2,7 +2,7 @@ module Forms
   module Risk
     class RiskToSelf < Forms::Base
       ACCT_STATUS_WITH_DETAILS = 'closed_in_last_6_months'.freeze
-      ACCT_STATUSES = %w[open post_closure closed_in_last_6_months not_available].freeze
+      ACCT_STATUSES = %w[open post_closure closed_in_last_6_months none].freeze
 
       property_with_details :acct_status,
         type: StrictString,
