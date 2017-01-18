@@ -1,0 +1,5 @@
+= content_for :breadcrumbs do
+  - breadcrumbs_for_page root: true do
+    - breadcrumb 'Detainee information', '#'
+
+= render partial: 'form', locals: { form: form, submit_path: detainees_path, method: :post }

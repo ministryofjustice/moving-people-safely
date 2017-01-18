@@ -14,7 +14,7 @@ RSpec.feature 'searching for a prisoner', type: :feature do
 
       login
       search_with_valid_prison_number(detainee.prison_number)
-      expect(page).to have_link('View profile', href: profile_detainee_path(detainee))
+      expect(page).to have_link('View profile', href: detainee_path(detainee))
       expect_result_with_move(move)
     end
 

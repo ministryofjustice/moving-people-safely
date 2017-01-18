@@ -39,7 +39,7 @@ RSpec.describe 'New Move requests', type: :request do
     context "when the submitted move validates" do
       let(:move_attrs) { attributes_for(:move) }
       it "redirects to the detainee's profile" do
-        expect(response).to redirect_to profile_detainee_path(detainee)
+        expect(response).to redirect_to detainee_path(detainee)
       end
     end
 

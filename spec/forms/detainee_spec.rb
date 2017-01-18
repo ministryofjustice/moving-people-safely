@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Forms::DetaineeDetails, type: :form do
+RSpec.describe Forms::Detainee, type: :form do
   let(:model) { Detainee.new }
   subject { described_class.new(model) }
 

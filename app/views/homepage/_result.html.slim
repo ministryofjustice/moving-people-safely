@@ -7,7 +7,7 @@ table
     th Move date
   tr
     - if move && move.active?
-      td = link_to(detainee.prison_number, profile_detainee_path(detainee))
+      td = link_to(detainee.prison_number, detainee_path(detainee))
     - else
       td = detainee.prison_number
     td
@@ -23,7 +23,7 @@ table
       td colspan=2
 
 - if move && move.active?
-  = link_to('View profile', profile_detainee_path(detainee), class: 'button')
+  = link_to('View profile', detainee_path(detainee), class: 'button')
 - elsif move
   = link_to('Add new move', copy_move_path(detainee), class: 'button')
 - else

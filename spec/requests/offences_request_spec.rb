@@ -39,7 +39,7 @@ RSpec.describe 'Offences', type: :request do
       context "with validating data" do
         it "redirects to the detainee's profile" do
           expect(response.status).to eql 302
-          expect(response).to redirect_to "/detainees/#{detainee.id}/profile"
+          expect(response).to redirect_to "/detainees/#{detainee.id}"
         end
       end
 
