@@ -1,7 +1,7 @@
 .summary
   = render partial: 'summary/status', locals: { workflow: healthcare_workflow, title: 'Healthcare' }
 
-  - HealthcareWorkflow.sections_for_summary.each do |section|
+  - HealthcareWorkflow.sections.each do |section|
     = render partial: 'summary/section',
       locals: { section: Summary::HealthcarePresenter.for(section, healthcare), path: healthcare_path(detainee, section) }
 

@@ -78,12 +78,22 @@ RSpec.shared_examples_for 'assessment section presenter' do
           end
 
           it 'returns the localised version of the answer' do
-            expect(presenter.answer_for(:question)).to eq('<b>Localised some other value</b>')
+            expect(presenter.answer_for(:question)).to eq('Localised some other value')
           end
         end
 
         context 'and the answer has no locale for the summary page' do
           it 'returns the humanized version of it' do
+            expect(presenter.answer_for(:question)).to eq 'Some other value'
+          end
+        end
+
+        context 'and the answer is considered relevant' do
+          before do
+            allow(section).to receive(:relevant_answer?).with(:question, answer).and_return(true)
+          end
+
+          it 'returns the answer highlighted' do
             expect(presenter.answer_for(:question)).to eq '<b>Some other value</b>'
           end
         end

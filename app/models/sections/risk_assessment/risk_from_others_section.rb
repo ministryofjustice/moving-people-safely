@@ -8,5 +8,13 @@ module RiskAssessment
       %w[rule_45 csra victim_of_abuse high_profile]
     end
     alias mandatory_questions questions
+
+    private
+
+    def relevant_answers
+      {
+        csra: %w[high]
+      }
+    end
   end
 end

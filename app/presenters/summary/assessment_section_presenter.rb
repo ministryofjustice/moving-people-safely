@@ -5,6 +5,7 @@ module Summary
     delegate :question_is_conditional?, :question_condition, to: :section
     delegate :question_has_details?, :question_details, to: :section
     delegate :subsections, :has_subsections?, :questions_for_subsection, to: :section
+    delegate :relevant_answer?, to: :section
 
     def self.for(section, assessment)
       new(assessment, section: section)
@@ -29,7 +30,11 @@ module Summary
     def details_for(attribute)
       return super(attribute) unless question_has_details?(attribute)
       question_details(attribute).each_with_object([]) do |detail_attr, details|
-        details << detail_content(detail_attr) if public_send(detail_attr).present?
+        if detail_attr.is_a?(Hash)
+          details << complex_detail_context(detail_attr)
+        elsif public_send(detail_attr).present?
+          details << detail_content(detail_attr)
+        end
       end.join('. ')
     end
 
@@ -42,12 +47,11 @@ module Summary
         "<span class='text-error'>Missing</span>"
       when 'no', false
         'No'
-      when true
-        '<b>Yes</b>'
-      when 'standard'
-        'Standard'
+      when 'yes', true
+        highlight('Yes')
       else
-        "<b>#{answer_value(value)}</b>"
+        answer = answer_value(value)
+        relevant_answer?(attribute, value) ? highlight(answer) : answer
       end
     end
 
@@ -67,6 +71,17 @@ module Summary
       [detail_label(attribute), answer_value(public_send(attribute))].join('')
     end
 
+    def complex_detail_context(hash)
+      public_send(hash[:collection]).each_with_object([]) do |item, details|
+        details << hash[:fields].map do |field|
+          [
+            detail_label("#{hash[:collection]}_collection.#{field}"),
+            answer_value(item.send(field))
+          ].join(' ')
+        end.join(' | ')
+      end.join('</br>')
+    end
+
     def detail_label(attribute)
       I18n.t!(attribute, scope: [:summary, :section, :questions, section_name])
     rescue
@@ -76,6 +91,10 @@ module Summary
     def answer_value(value)
       default_value = value.respond_to?(:humanize) ? value.humanize : value
       I18n.t(value, scope: [:summary, :section, :answers, section_name], default: default_value)
+    end
+
+    def highlight(text)
+      "<b>#{text}</b>"
     end
   end
 end
