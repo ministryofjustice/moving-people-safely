@@ -27,6 +27,14 @@ class BaseSection
     subsections_questions.fetch(subsection.to_sym, [])
   end
 
+  def relevant_answer?(question, answer)
+    answers = relevant_answers[question.to_sym]
+    if answers && answer.present?
+      return true if answers == :all
+      answers.include?(answer.downcase)
+    end
+  end
+
   private
 
   def question_dependencies
@@ -34,6 +42,10 @@ class BaseSection
   end
 
   def questions_details
+    {}
+  end
+
+  def relevant_answers
     {}
   end
 

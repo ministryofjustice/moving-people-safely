@@ -14,5 +14,11 @@ module RiskAssessment
         acct_status: %i[date_of_most_recently_closed_acct acct_status_details]
       }
     end
+
+    def relevant_answers
+      {
+        acct_status: :all
+      }
+    end
   end
 end

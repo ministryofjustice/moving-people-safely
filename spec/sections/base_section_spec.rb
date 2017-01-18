@@ -6,6 +6,7 @@ RSpec.describe BaseSection do
       @question_dependencies = options[:question_dependencies]
       @questions_details = options[:questions_details]
       @subsections_questions = options[:subsections_questions]
+      @relevant_answers = options[:relevant_answers]
     end
 
     def question_dependencies
@@ -18,6 +19,10 @@ RSpec.describe BaseSection do
 
     def subsections_questions
       @subsections_questions || super
+    end
+
+    def relevant_answers
+      @relevant_answers || super
     end
   end
 
@@ -126,6 +131,57 @@ RSpec.describe BaseSection do
         }
       }
       specify { expect(section.questions_for_subsection(:sub_section_1)).to match_array(%i[question_1 question_2]) }
+    end
+  end
+
+  describe '#relevant_answer?' do
+    context 'when there is no relevant answers' do
+      let(:options) { {} }
+      specify { expect(section.relevant_answer?(:question, 'answer')).to be_falsey }
+    end
+
+    context 'when the answer is blank' do
+      let(:options) {
+        {
+          relevant_answers: {
+            question: %w(answer)
+          }
+        }
+      }
+      specify { expect(section.relevant_answer?(:question, '')).to be_falsey }
+    end
+
+    context 'when the answer is not relevant' do
+      let(:options) {
+        {
+          relevant_answers: {
+            question: %w(answer)
+          }
+        }
+      }
+      specify { expect(section.relevant_answer?(:question, 'other_answer')).to be_falsey }
+    end
+
+    context 'when the answer is relevant' do
+      let(:options) {
+        {
+          relevant_answers: {
+            question: %w(answer)
+          }
+        }
+      }
+      specify { expect(section.relevant_answer?(:question, 'answer')).to be_truthy }
+    end
+
+    context 'when all the answers are relevant' do
+      let(:options) {
+        {
+          relevant_answers: {
+            question: :all
+          }
+        }
+      }
+      specify { expect(section.relevant_answer?(:question, 'random answer')).to be_truthy }
     end
   end
 end

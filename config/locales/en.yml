@@ -400,9 +400,11 @@ en:
           mental_illness: Mental health issues
         needs:
           dependencies: Dependencies / misuse
-          has_medications: Regular Medication
+          has_medications: Regular medication
           medications_collection:
             carrier: 'Carried by '
+        physical:
+          physical_issues: Physical health needs
         sex_offences:
           sex_offence: Sex offender
           sex_offence_adult_male_victim: Adult male

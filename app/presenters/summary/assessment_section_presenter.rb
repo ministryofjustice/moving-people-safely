@@ -5,6 +5,7 @@ module Summary
     delegate :question_is_conditional?, :question_condition, to: :section
     delegate :question_has_details?, :question_details, to: :section
     delegate :subsections, :has_subsections?, :questions_for_subsection, to: :section
+    delegate :relevant_answer?, to: :section
 
     def self.for(section, assessment)
       new(assessment, section: section)
@@ -46,12 +47,11 @@ module Summary
         "<span class='text-error'>Missing</span>"
       when 'no', false
         'No'
-      when true
-        '<b>Yes</b>'
-      when 'standard'
-        'Standard'
+      when 'yes', true
+        highlight('Yes')
       else
-        "<b>#{answer_value(value)}</b>"
+        answer = answer_value(value)
+        relevant_answer?(attribute, value) ? highlight(answer) : answer
       end
     end
 
@@ -91,6 +91,10 @@ module Summary
     def answer_value(value)
       default_value = value.respond_to?(:humanize) ? value.humanize : value
       I18n.t(value, scope: [:summary, :section, :answers, section_name], default: default_value)
+    end
+
+    def highlight(text)
+      "<b>#{text}</b>"
     end
   end
 end
