@@ -39,7 +39,7 @@ RSpec.describe 'Copy Move requests', type: :request do
     context "when the submitted move validates" do
       let(:move_attrs) { attributes_for(:move) }
       it "redirects to the new move's profile" do
-        expect(response).to redirect_to profile_path(Move.last)
+        expect(response).to redirect_to profile_detainee_path(detainee)
       end
     end
 

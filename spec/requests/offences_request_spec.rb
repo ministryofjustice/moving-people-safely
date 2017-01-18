@@ -37,9 +37,9 @@ RSpec.describe 'Offences', type: :request do
       before { put "/#{detainee.id}/offences", params: form_data }
 
       context "with validating data" do
-        it "redirects to the move overview" do
+        it "redirects to the detainee's profile" do
           expect(response.status).to eql 302
-          expect(response).to redirect_to "/#{detainee.active_move.id}/profile"
+          expect(response).to redirect_to "/detainees/#{detainee.id}/profile"
         end
       end
 

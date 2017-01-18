@@ -56,7 +56,7 @@ RSpec.describe 'Confirm risk assessment requests', type: :request do
       it 'redirects to the profile page' do
         put "/#{detainee.id}/risk/confirm"
         expect(response.status).to eq(302)
-        expect(response).to redirect_to(profile_path(move))
+        expect(response).to redirect_to(profile_detainee_path(detainee))
       end
 
       it 'marks risk workflow as confirmed' do

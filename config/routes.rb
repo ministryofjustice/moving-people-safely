@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   devise_for :users, skip: %i[ registrations ],
 		controllers: { omniauth_callbacks: 'callbacks' }
 
+  resources :detainees, only: [] do
+    # TODO: this should not redirect to the profile controller.
+    get :profile, on: :member, to: 'profiles#show'
+  end
+
   scope ':detainee_id' do
     resource :detainee_details, only: %i[ show update ], path: 'detainee-details'
     resources :healthcare, only: %i[ show update ] do

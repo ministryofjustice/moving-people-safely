@@ -28,7 +28,7 @@ class RisksController < DetaineeController
   def confirm
     if risk.all_questions_answered?
       risk_workflow.confirm_with_user!(user: current_user)
-      redirect_to profile_path(active_move)
+      redirect_to profile_detainee_path(detainee)
     else
       flash.now[:error] = t('alerts.unable_to_confirm_incomplete_risk_assessment')
       render 'summary/risk'

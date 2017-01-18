@@ -32,7 +32,7 @@ RSpec.feature 'detainee profile page', type: :feature do
   before do
     login
 
-    visit profile_path(active_move)
+    visit profile_detainee_path(detainee)
     profile.click_edit_offences
     offences.complete_form(offences_data)
   end

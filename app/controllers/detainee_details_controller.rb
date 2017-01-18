@@ -43,7 +43,7 @@ class DetaineeDetailsController < DetaineeController
 
   def redirect_to_move_or_profile(options = {})
     if active_move.present?
-      redirect_to profile_path(active_move), options
+      redirect_to profile_detainee_path(detainee), options
     elsif detainee.moves.any?
       redirect_to copy_move_path(detainee), options
     else
