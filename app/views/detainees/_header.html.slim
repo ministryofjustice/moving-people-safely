@@ -1,28 +1,54 @@
 header#header
   h1
     ' #{detainee.prison_number}: #{detainee.surname}, #{detainee.forenames}
-table.detainee
-  tr
+
+.image-and-alerts
+  .profile-image-wrapper
     - if detainee.image_filename.present?
-      td rowspan=2 class='image'
+      .image
         = image_tag detainee.image_filename, size: '128x180'
+    - else
+      .no-image
+        span = 'Photo unavailable'
 
-    td
-      span#not_for_release_header = image_tag "not_for_release_#{offences.not_for_release}.png"
-      span.text = offences.not_for_release_details
+  .profile-alerts
+    .alerts-table
+      .info-tiles
+        #acct_status_alert.tile-2
+          div.alert-wrapper
+            div.image#acct_status_header class=(alerts.acct_status_alert_class)
+              span.alert-title = 'ACCT'
+              span.red-tick
+            span.alert-text = alerts.acct_status_text
 
-    td
-      span#csra_header = image_tag "csra_#{risk.csra}.png"
+        #rule_45_alert.tile-2
+          div.alert-wrapper
+            div.image#rule_45_header class=(alerts.rule_45_alert_class)
+              span.alert-title = 'Rule 45'
+              span.red-tick
+      .info-tiles
+        #e_list_alert.tile-4
+          div.alert-wrapper
+            div.image#e_list_header class=(alerts.current_e_risk_alert_class)
+              span.alert-title = 'E list'
+              span.red-tick
+            span.alert-text = alerts.current_e_risk_text
 
-    td
-      span#acct_status_header = image_tag "#{acct_status_image(risk.acct_status)}.png"
+        #csra_alert.tile-4
+          div.alert-wrapper
+            div.image#csra_header class=(alerts.csra_alert_class)
+              span.alert-title = 'CSRA'
+              span.alert-toggle-text = alerts.csra_text
 
-  tr
-    td
-      span#rule_45_header = image_tag "rule_45_#{risk.rule_45}.png"
+        #category_a_alert.tile-4
+          div.alert-wrapper
+            div.image#category_a_header class=(alerts.category_a_alert_class)
+              span.alert-title = 'Cat A'
+              span.red-tick
 
-    td
-      span#category_a_header = image_tag "category_a_#{risk.category_a}.png"
-      span.text = risk.category_a_details
-
-    td
+        #mpv_alert.tile-4
+          div.alert-wrapper
+            div.image#mpv_header class=(alerts.mpv_alert_class)
+              span.alert-title = 'MPV'
+              span.red-tick
+  .clearer

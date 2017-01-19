@@ -14,38 +14,128 @@
     }
   }
 
-  table.detainee {
-    width: 100%;
-    margin-bottom: 1px;
+  .image-and-alerts {
+    clear: both;
+    height: 180px;
 
-    td {
-      background-color: $grey-3;
-      border-left: 1px solid white;
-      border-color: white;
-      height: 90px;
-      padding:0;
+    .profile-image-wrapper {
       position: relative;
+      display: table;
+      float: left;
+      width: auto;
 
-      img {
-        position: absolute;
-        top: 10px;
-        left: 10px;
+      .image {
+        width: 128px;
+        height: 180px;
+
+        img {
+          top: 0;
+          left: 0;
+        }
       }
 
-      span.text {
-        display: none; // temporary hack 22/09/2016
+      .no-image {
+        width: 128px;
+        height: 180px;
+        line-height: 180px;
+        padding: 1px;
+        background-image: image-url('photo_unavailable.png');
+        background-position: center center;
+        background-repeat: no-repeat;
+        text-align: center;
+        font-size: 12px;
       }
     }
 
-    td.image {
-      width: 128px;
-      height: 180px;
+    .profile-alerts {
+      position: relative;
+      display: table;
+      float: left;
+      width: 86%;
+    }
 
-      img {
-        top: 0;
-        left: 0;
+    .alerts-table {
+      width: 100%;
+      clear: both;
+
+      .info-tiles {
+        height: 90px;
+        min-height: 90px;
+
+        .alert-wrapper {
+          display: inline;
+          position: absolute;
+        }
+
+        .alert-off {
+          display: inline-block;
+          border: 2px solid $secondary-text-colour;
+          background-color: white;
+          text-transform: uppercase;
+          padding: 0.2em 0.5em;
+          color: $secondary-text-colour;
+          font: 19px "Arial Narrow";
+          font-weight: bold;
+
+          .alert-toggle-text {
+            padding-left: 5px;
+            text-transform: uppercase;
+            font: 19px "Arial Narrow";
+            font-weight: bold;
+          }
+        }
+
+        .alert-on {
+          border: 2px solid $mellow-red;
+          background-color: $mellow-red;
+          position: relative;
+          display: inline-block;
+
+          .alert-title {
+            text-transform: uppercase;
+            padding: 0.2em 0.5em;
+            color: white;
+            font: 19px "Arial Narrow";
+            font-weight: bold;
+            position: relative;
+            float: left;
+          }
+
+          .red-tick {
+            width: 30px;
+            height: 30px;
+            background-image: image-url('ic_red_tick.png');
+            background-position: center center;
+            background-repeat: no-repeat;
+            display: inline-block;
+            position: relative;
+            float: left;
+          }
+
+          .alert-toggle-text {
+            padding: 0 5px;
+            margin-top: 3px;
+            margin-right: 3px;
+            background-color: white;
+            color: $mellow-red;
+            text-transform: uppercase;
+            font: 19px "Arial Narrow";
+            font-weight: bold;
+            position: relative;
+            float: left;
+          }
+        }
+
+        .alert-text {
+          display: block;
+          padding-top: 5px;
+        }
       }
     }
+  }
+
+  .move-information {
+    clear: both;
   }
 
   .info-tiles {
@@ -64,6 +154,16 @@
     @extend .padded;
     background-color: $grey-3;
     border-left: 1px solid white;
+  }
+
+  .tile-2 {
+    @extend .tile;
+    width: (100% / 2);
+  }
+
+  .tile-4 {
+    @extend .tile;
+    width: (100% / 4);
   }
 
   .float-right {
