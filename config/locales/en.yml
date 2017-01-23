@@ -98,6 +98,8 @@ en:
         cro_number: CRO number
         gender: Gender
         aliases: Aliases
+      detainee_search:
+        prison_number: Enter a prison number. Eg. A1234AB
       harassments:
         harassment_choices:
           unknown: Clear selection
@@ -360,7 +362,9 @@ en:
         sex_offences: Sex offender
         substance_misuse: Risk of trafficking drugs and alcohol
         violence: Risk to others - discrimination
-
+  homepage:
+    titles:
+      detainee_search: Start a Person Escort Record
   summary:
     section:
       answers:
