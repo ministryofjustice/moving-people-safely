@@ -11,6 +11,10 @@
   }
 }
 
+.alert--notice {
+  @include alert-variant(#F4D188, #FAF2C5)
+}
+
 .alert--warning {
   @include alert-variant(#F4D188, #FAF1C5)
 }
