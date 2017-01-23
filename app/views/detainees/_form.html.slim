@@ -8,8 +8,7 @@
   - if form.image_filename
     = image_tag form.image_filename
 
-
-  = form_for form, url: submit_path do |f|
+  = form_for form, url: submit_path, method: method do |f|
     - if form.prison_number
       label.form-label Prison number
       p.prison_number = form.prison_number

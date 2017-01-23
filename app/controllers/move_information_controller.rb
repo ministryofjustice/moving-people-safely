@@ -13,7 +13,7 @@ class MoveInformationController < MoveController
   def update
     if form.validate(params[:information])
       form.save
-      redirect_to profile_path(move)
+      redirect_to detainee_path(detainee)
     else
       flash[:form_data] = params[:information]
       redirect_to move_information_path(move)

@@ -90,7 +90,7 @@ en:
           unknown: Clear selection
         conceals_other_items: Other
         conceals_sim_cards: SIM cards
-      detainee_details:
+      detainee:
         surname: Surname
         forenames: Forename(s)
         nationalities: Nationalities
@@ -254,7 +254,7 @@ en:
         conceals_weapons_details: List the types of weapons and how they were hidden
         conceals_drugs_details: Give details of previous incidents and methods used
         conceals_other_items_details: Give details
-      detainee_details:
+      detainee:
         date_of_birth: DD/MM/YYYY
       harassments:
         harassment_details: Give details about restraining order

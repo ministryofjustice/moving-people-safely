@@ -8,11 +8,11 @@ module ApplicationPageHelpers
   end
 
   def detainee_details
-    @_detainee_details ||= Page::DetaineeDetails.new
+    @_detainee_details ||= Page::Detainee.new
   end
 
   def new_detainee_page
-    @_new_detainee_page ||= Page::DetaineeDetails.new
+    @_new_detainee_page ||= Page::Detainee.new
   end
 
   def move_details

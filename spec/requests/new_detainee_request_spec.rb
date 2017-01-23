@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'New detainee requests', type: :request do
   context 'when user is not authorized' do
     it 'redirects user to login page' do
-      get '/detainee/new'
+      get '/detainees/new'
       expect(response.status).to eq(302)
       expect(response).to redirect_to new_user_session_path
     end
@@ -23,26 +23,26 @@ RSpec.describe 'New detainee requests', type: :request do
       end
 
       it 'redirects user to the detainee move page' do
-        get "/detainee/new?prison_number=#{prison_number}"
+        get "/detainees/new?prison_number=#{prison_number}"
         expect(response).to redirect_to new_move_path(detainee)
       end
     end
 
     context 'when there is not a editable move' do
       it 'skips redirection to the home page' do
-        get '/detainee/new'
+        get '/detainees/new'
         expect(response).not_to redirect_to root_path
       end
     end
 
     it 'does not set a flash error message if no prison number is provided' do
-      get '/detainee/new'
+      get '/detainees/new'
       expect(flash[:warning]).to eq(nil)
     end
 
     context 'when a prison number is provided' do
       let(:prison_number) { 'ABC123' }
-      let(:request_path) { "/detainee/new?prison_number=#{prison_number}" }
+      let(:request_path) { "/detainees/new?prison_number=#{prison_number}" }
 
       context 'when detainee details cannot be prefetched' do
         before do

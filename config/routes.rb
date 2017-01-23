@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   devise_for :users, skip: %i[ registrations ],
 		controllers: { omniauth_callbacks: 'callbacks' }
 
+  resources :detainees, only: %i[new create edit update show]
+
   scope ':detainee_id' do
-    resource :detainee_details, only: %i[ show update ], path: 'detainee-details'
     resources :healthcare, only: %i[ show update ] do
       get :summary, on: :collection
       put :confirm, on: :collection
@@ -20,12 +21,9 @@ Rails.application.routes.draw do
   end
 
   scope ':move_id' do
-    get :profile, to: 'profiles#show'
     resource :move_information, only: %i[ show update ], path: 'move-info'
     get :print, to: 'print#show'
   end
-
-  resource :detainee, only: [ :new, :create ], controller: :detainee_details
 
   post '/detainees/search', to: 'homepage#detainees'
   post '/moves/search', to: 'homepage#moves'

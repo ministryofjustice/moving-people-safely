@@ -1,3 +1,9 @@
+= content_for :breadcrumbs do
+  - breadcrumbs_for_page root: true do
+    - breadcrumb detainee_breadcrumb(detainee), detainee_path(detainee)
+    - breadcrumb 'Healthcare summary', summary_risks_path(detainee)
+    - breadcrumb t("healthcare.form.title.#{template_name}"), '#'
+
 = render partial: 'shared/wizard_header'
 
 .healthcare

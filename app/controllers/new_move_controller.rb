@@ -17,7 +17,7 @@ class NewMoveController < DetaineeController
     form = Forms::Moves::Information.new(detainee.moves.build)
     if form.validate(params[:information])
       form.save
-      redirect_to profile_path(active_move)
+      redirect_to detainee_path(detainee)
     else
       flash[:form_data] = params[:information]
       redirect_to new_move_path(detainee)

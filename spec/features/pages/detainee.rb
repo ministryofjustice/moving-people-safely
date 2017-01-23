@@ -1,5 +1,5 @@
 module Page
-  class DetaineeDetails < Base
+  class Detainee < Base
     def complete_form(detainee)
       expect(find('p.prison_number').text).to eql detainee.prison_number
 
@@ -46,41 +46,41 @@ module Page
     private
 
     def prison_number_input
-      find('#detainee_details_prison_number')
+      find('#detainee_prison_number')
     rescue Capybara::ElementNotFound
       nil
     end
 
     def surname_input
-      find('#detainee_details_surname')
+      find('#detainee_surname')
     end
 
     def forenames_input
-      find('#detainee_details_forenames')
+      find('#detainee_forenames')
     end
 
     def dob_input
-      find('#detainee_details_date_of_birth')
+      find('#detainee_date_of_birth')
     end
 
     def nationalities_input
-      find('#detainee_details_nationalities')
+      find('#detainee_nationalities')
     end
 
     def pnc_number_input
-      find('#detainee_details_pnc_number')
+      find('#detainee_pnc_number')
     end
 
     def cro_number_input
-      find('#detainee_details_cro_number')
+      find('#detainee_cro_number')
     end
 
     def aliases_input
-      find('#detainee_details_aliases')
+      find('#detainee_aliases')
     end
 
     def gender_input
-      find(:radio_button, 'detainee_details[gender]', checked: true)
+      find(:radio_button, 'detainee[gender]', checked: true)
     rescue Capybara::ElementNotFound
       nil
     end

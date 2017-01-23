@@ -11,7 +11,7 @@
     - moves.each do |move|
       tr id="prison_number_#{move.detainee.prison_number}"
         - if AccessPolicy.edit?(move: move)
-          td = link_to move.detainee.prison_number, profile_path(move)
+          td = link_to move.detainee.prison_number, detainee_path(move.detainee)
         - else
           td = move.detainee.prison_number
         td
