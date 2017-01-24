@@ -7,7 +7,7 @@ RSpec.describe 'managing move destinations', type: :feature do
     login
 
     visit move_information_path(move)
-    fill_in_move_information
+    fill_in_move_information(move)
 
     fill_in_destination position: :first
     add_destination
@@ -51,13 +51,26 @@ RSpec.describe 'managing move destinations', type: :feature do
     end
   end
 
-  def fill_in_move_information
-    fill_in 'Date', with: '2/3/2036'
-    choose 'Yes'
+  def fill_in_move_information(move)
+    fill_in 'Date', with: move.date
+    fill_in_not_for_release(move)
+    choose 'information_has_destinations_yes'
+  end
+
+  def fill_in_not_for_release(move)
+    if move.not_for_release == 'yes'
+      choose 'information_not_for_release_yes'
+      choose "information_not_for_release_reason_#{move.not_for_release_reason}"
+      if move.not_for_release_reason == 'other'
+        fill_in 'information_not_for_release_reason_details', with: move.not_for_release_reason_details
+      end
+    else
+      choose 'information_not_for_release_no'
+    end
   end
 
   def select_no_destinations
-    choose 'No'
+    choose 'information_has_destinations_no'
   end
 
   def add_destination

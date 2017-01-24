@@ -3,14 +3,6 @@ class MovePresenter < SimpleDelegator
     date && date.to_s(:humanized)
   end
 
-  def humanized_reason
-    if reason == 'other'
-      reason_details
-    else
-      reason.humanize
-    end
-  end
-
   def must_return_to
     destinations.must_return_to.map(&:establishment).join(', ')
   end

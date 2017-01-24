@@ -44,7 +44,7 @@ RSpec.describe 'Copy Move requests', type: :request do
     end
 
     context "when the submitted move fails to validate" do
-      let(:move_attrs) { attributes_for(:move).replace(reason: 'no good reason') }
+      let(:move_attrs) { FactoryGirl.attributes_for(:move).except(:date) }
 
       it "redirects to the copy move path" do
         expect(response).to redirect_to "/#{detainee.id}/move/copy"

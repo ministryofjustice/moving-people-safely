@@ -9,18 +9,6 @@ RSpec.describe MovePresenter, type: :presenter do
     its(:humanized_date) { is_expected.to eq '14 Jun 2017' }
   end
 
-  describe '#humanized_reason' do
-    context 'when not other' do
-      let(:move) { build :move, reason: 'discharge_to_court' }
-      its(:humanized_reason) { is_expected.to eq 'Discharge to court' }
-    end
-
-    context 'when other' do
-      let(:move) { build :move, reason: 'other', reason_details: 'other reasons' }
-      its(:humanized_reason) { is_expected.to eq 'other reasons' }
-    end
-  end
-
   describe '#must_return_to' do
     before do
       move.destinations.create(establishment: 'hospital', must_return: 'must_return')

@@ -282,9 +282,6 @@ RSpec.feature 'detainee profile page', type: :feature do
     }
     let(:offences_data) {
       {
-        release_date: '05/07/2016',
-        not_for_release: true,
-        not_for_release_details: 'Serving Sentence',
         current_offences: current_offences,
         past_offences: past_offences
       }
@@ -306,21 +303,6 @@ RSpec.feature 'detainee profile page', type: :feature do
     end
 
     include_examples 'offences information display'
-
-    context 'when release date is not filled' do
-      let(:offences_record) { build(:offences, :empty_record, release_date: nil) }
-      let(:detainee) { create(:detainee, :with_active_move, offences: offences_record) }
-      let(:offences_data) {
-        {
-          not_for_release: true,
-          not_for_release_details: 'Serving Sentence',
-          current_offences: current_offences,
-          past_offences: past_offences
-        }
-      }
-
-      include_examples 'offences information display'
-    end
 
     context 'when there no past offences were filled' do
       let(:offences_data) {

@@ -12,9 +12,6 @@ RSpec.feature 'filling in a PER', type: :feature do
   }
   let(:offences_data) {
     {
-      release_date: '05/07/2016',
-      not_for_release: true,
-      not_for_release_details: 'Serving Sentence',
       current_offences: current_offences,
       past_offences: past_offences
     }

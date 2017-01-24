@@ -2,20 +2,26 @@ module Forms
   module Moves
     class Information < Forms::Base
       REASON_WITH_DETAILS = 'other'.freeze
-      REASONS = (%w[
-        discharge_to_court
-        production_to_court
-        police_production
-      ] + [REASON_WITH_DETAILS]).freeze
+      NOT_FOR_RELEASE_REASONS = %w[serving_sentence further_charges license_revoke
+                                   held_for_immigration other].freeze
 
-      property :from,             type: StrictString, default: 'HMP Bedford'
-      property :to,               type: StrictString
-      property :date,             type: TextDate
+      property :from, type: StrictString, default: 'HMP Bedford'
+      property :to,   type: StrictString
+      property :date, type: TextDate
 
-      property_with_details :reason,
+      optional_field :not_for_release, default: 'unknown'
+      reset attributes: %i[not_for_release_reason not_for_release_reason_details],
+            if_falsey: :not_for_release
+
+      property_with_details :not_for_release_reason,
         type: StrictString,
-        options: REASONS,
-        option_with_details: REASON_WITH_DETAILS
+        options: NOT_FOR_RELEASE_REASONS,
+        option_with_details: REASON_WITH_DETAILS,
+        default: 'unknown' do
+        validates :not_for_release_reason,
+          inclusion: { in: NOT_FOR_RELEASE_REASONS },
+          if: -> { not_for_release == 'yes' }
+      end
 
       optional_field :has_destinations
       prepopulated_collection :destinations
@@ -33,17 +39,17 @@ module Forms
         end
       end
 
-      def reasons
-        REASONS
-      end
-
-      def reason_with_details
-        REASON_WITH_DETAILS
-      end
-
       def save_copy
         sync
         model.save_copy
+      end
+
+      def not_for_release_reasons
+        NOT_FOR_RELEASE_REASONS
+      end
+
+      def not_for_release_reason_with_details
+        REASON_WITH_DETAILS
       end
     end
   end

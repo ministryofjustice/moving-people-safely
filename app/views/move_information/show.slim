@@ -14,10 +14,12 @@
     = f.text_field :from
     = f.text_field :to
     = f.text_field :date
-    = f.radio_toggle_with_textarea :reason,
-      choices: form.reasons,
-      inline_choices: false,
-      data: { 'toggle-field' => f.object.reason_with_details }
+    = f.radio_toggle :not_for_release do
+      = f.radio_toggle_with_textarea :not_for_release_reason,
+        legend: false,
+        choices: f.object.not_for_release_reasons,
+        inline_choices: false,
+        data: { 'toggle-field' => f.object.not_for_release_reason_with_details }
 
     .multiple
       = f.radio_toggle :has_destinations do

@@ -2,15 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Forms::Moves::Information, type: :form do
   let(:model) { Move.new }
-  subject { described_class.new(model) }
+  subject(:form) { described_class.new(model) }
 
   let(:params) {
     {
       from: 'Bedford',
       to: 'Albany',
       date: '1/2/2017',
-      reason: 'other',
-      reason_details: 'Has to move',
+      not_for_release: 'yes',
+      not_for_release_reason: 'held_for_immigration',
       has_destinations: 'yes',
       destinations: [
         {
@@ -39,7 +39,7 @@ RSpec.describe Forms::Moves::Information, type: :form do
     it { is_expected.to validate_optional_field(:has_destinations) }
 
     describe 'nilifies empty strings' do
-      %w[ from to reason ].each do |attribute|
+      %w[from to].each do |attribute|
         it { is_expected.to validate_strict_string(attribute) }
       end
     end
@@ -63,52 +63,134 @@ RSpec.describe Forms::Moves::Information, type: :form do
         ]
       )
 
-      subject.validate(params)
-      expect(subject.to_nested_hash).to eq coerced_params
+      form.validate(params)
+      expect(form.to_nested_hash).to eq coerced_params
     end
 
-    it do
-      is_expected.
-        to validate_inclusion_of(:reason).
-        in_array(subject.reasons)
+    context "for not for release" do
+      it { is_expected.to validate_optional_field(:not_for_release) }
+
+      shared_examples_for 'no validation on not for release reason' do
+        it 'does not validate the reason (and details) for release' do
+          form.valid?
+          expect(form.errors.keys).not_to include(:not_for_release_reason)
+          expect(form.errors.keys).not_to include(:not_for_release_reason_details)
+        end
+      end
+
+      context 'when not for release is set to unknown' do
+        before do
+          form.not_for_release = 'unknown'
+          form.not_for_release_reason = nil
+          form.not_for_release_reason_details = nil
+        end
+
+        include_examples 'no validation on not for release reason'
+      end
+
+      context 'when not for release is set to no' do
+        before do
+          form.not_for_release = 'no'
+          form.not_for_release_reason = nil
+          form.not_for_release_reason_details = nil
+        end
+
+        include_examples 'no validation on not for release reason'
+      end
+
+      context 'when not for release is set to yes' do
+        before { form.not_for_release = 'yes' }
+
+        shared_examples_for 'invalid not for release reason' do
+          it 'an inclusion error is added to the error list' do
+            expect(form).not_to be_valid
+            expect(form.errors.keys).to include(:not_for_release_reason)
+            expect(form.errors[:not_for_release_reason]).to match_array([I18n.t(:inclusion, scope: 'errors.messages')])
+          end
+        end
+
+        context 'but not reason is supplied' do
+          before { form.not_for_release_reason = nil }
+          include_examples 'invalid not for release reason'
+        end
+
+        context 'but an invalid reason is supplied' do
+          before { form.not_for_release_reason = 'not-a-valid-one' }
+          include_examples 'invalid not for release reason'
+        end
+
+        context 'reason supplied is valid' do
+          before { form.not_for_release_reason = 'held_for_immigration' }
+
+          specify {
+            form.valid?
+            expect(form.errors.keys).not_to include(:not_for_release_reason)
+          }
+        end
+
+        context 'reason supplied requires extra details' do
+          before do
+            form.not_for_release_reason = 'other'
+            form.not_for_release_reason_details = 'some details'
+          end
+
+          context 'and no details are provided' do
+            before { form.not_for_release_reason_details = nil }
+
+            it 'a presence error is added to the error list' do
+              expect(form).not_to be_valid
+              expect(form.errors.keys).to include(:not_for_release_reason_details)
+              expect(form.errors[:not_for_release_reason_details]).to match_array([I18n.t(:blank, scope: 'errors.messages')])
+            end
+          end
+
+          specify {
+            form.valid?
+            expect(form.errors.keys).not_to include(:not_for_release_reason_details)
+          }
+        end
+      end
     end
 
-    context 'when reason is other' do
-      before { subject.reason = 'other' }
-      it { is_expected.to validate_presence_of(:reason_details) }
+    describe 'reset not for release associated information' do
+      it { is_expected.to be_configured_to_reset(%i[not_for_release_reason not_for_release_reason_details]).when(:not_for_release).not_set_to('yes') }
+    end
+
+    describe 'reset not for release reason associated details' do
+      it { is_expected.to be_configured_to_reset(%w[not_for_release_reason_details]).when(:not_for_release_reason).not_set_to('other') }
     end
 
     context 'date' do
       context 'with a valid date' do
         it 'returns true' do
           params[:date] = '12/01/2030'
-          expect(subject.validate(params)).to be true
+          expect(form.validate(params)).to be true
         end
       end
 
       context 'with an invalid date' do
         it 'returns false' do
           params[:date] = 'invalid'
-          expect(subject.validate(params)).to be false
+          expect(form.validate(params)).to be false
         end
 
         it 'sets an error on date' do
           params[:date] = 'invalid'
-          subject.validate(params)
-          expect(subject.errors).to include :date
+          form.validate(params)
+          expect(form.errors).to include :date
         end
       end
 
       context "with a date in the past" do
         it 'returns false' do
           params[:date] = '01/01/2015'
-          expect(subject.validate(params)).to be false
+          expect(form.validate(params)).to be false
         end
 
         it 'sets a descriptive error on date' do
           params[:date] = '01/01/2015'
-          subject.validate(params)
-          expect(subject.errors[:date]).to include 'must not be in the past.'
+          form.validate(params)
+          expect(form.errors[:date]).to include 'must not be in the past.'
         end
       end
     end
@@ -116,21 +198,21 @@ RSpec.describe Forms::Moves::Information, type: :form do
 
   describe '#save' do
     it 'sets the data on the model' do
-      subject.validate(params)
-      subject.save
+      form.validate(params)
+      form.save
 
-      form_attributes_without_nested_forms = subject.to_nested_hash.except(:destinations)
+      form_attributes_without_nested_forms = form.to_nested_hash.except(:destinations)
       model_attributes = model.attributes
 
       expect(model_attributes).to include form_attributes_without_nested_forms
     end
 
     it 'sets the data on nested models' do
-      subject.validate(params)
-      subject.save
+      form.validate(params)
+      form.save
 
       model_destinations = model.destinations.map(&:attributes)
-      form_destinations = destinations_without_virtual_attributes(subject)
+      form_destinations = destinations_without_virtual_attributes(form)
 
       model_destinations.each_with_index do |md, index|
         expect(md).to include form_destinations[index]
@@ -147,7 +229,6 @@ RSpec.describe Forms::Moves::Information, type: :form do
           from: 'Bedford',
           to: 'Albany',
           date: '1/2/2017',
-          reason: 'sentencing',
           has_destinations: 'yes',
           destinations: [
             establishment: 'Hospital',
@@ -159,8 +240,8 @@ RSpec.describe Forms::Moves::Information, type: :form do
       }
 
       it 'doesnt pass the destination object to the model for saving' do
-        subject.validate(params_with_destination_marked_for_delete)
-        subject.save
+        form.validate(params_with_destination_marked_for_delete)
+        form.save
 
         expect(model.destinations).to be_empty
       end
@@ -169,8 +250,8 @@ RSpec.describe Forms::Moves::Information, type: :form do
         it 'doesnt save the destination objects' do
           %w[ no unknown ].each do |destination_value|
             params[:has_destinations] = destination_value
-            subject.validate(params)
-            subject.save
+            form.validate(params)
+            form.save
 
             expect(model.destinations).to be_empty
           end
@@ -181,8 +262,8 @@ RSpec.describe Forms::Moves::Information, type: :form do
 
   describe '#add_destination' do
     it 'adds a new destination to the collection' do
-      expect { subject.add_destination }.
-        to change { subject.destinations.size }.by(1)
+      expect { form.add_destination }.
+        to change { form.destinations.size }.by(1)
     end
   end
 end

@@ -33,7 +33,6 @@ module Page
       within('.move-information') do
         expect(page).to have_content move.to
         expect(page).to have_content move.date.strftime('%d %b %Y')
-        expect(page).to have_content move.reason_details
         expect(page).to have_content('Hospital, Court')
         expect(page).to have_content('Dentist, Tribunal')
       end
