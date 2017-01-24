@@ -57,7 +57,5 @@ RSpec.feature 'filling in a PER', type: :feature do
 
     offences.complete_form(offences_data)
     profile.confirm_offences_details(offences_data)
-
-    profile.confirm_header_details(detainee)
   end
 end

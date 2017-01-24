@@ -9,6 +9,26 @@ module Page
       confirm_risk_flags(detainee.risk)
     end
 
+    def confirm_all_alerts_as_inactive
+      within('.profile-alerts') do
+        %i[acct_status rule_45 e_list csra category_a mpv].each do |alert|
+          expect(page).to have_css("##{alert}_header.alert-off")
+        end
+      end
+    end
+
+    def confirm_alert_as_inactive(attr)
+      within('.profile-alerts') do
+        expect(page).to have_css("##{attr}_header.alert-off")
+      end
+    end
+
+    def confirm_alert_as_active(attr)
+      within('.profile-alerts') do
+        expect(page).to have_css("##{attr}_header.alert-on")
+      end
+    end
+
     def confirm_move_info(move)
       within('.move-information') do
         expect(page).to have_content move.to
@@ -133,32 +153,6 @@ module Page
     def age(dob)
       now = Time.now.utc.to_date
       now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
-    end
-
-    def confirm_risk_flags(risk)
-      within('.detainee') do
-        within('#csra_header') do
-          expect(page).to have_image(alt: img_alt(risk, :csra))
-        end
-        within('#acct_status_header') do
-          expect(page).to have_image(alt: acct_status_img_alt(risk.acct_status))
-        end
-        within('#rule_45_header') do
-          expect(page).to have_image(alt: img_alt(risk, :rule_45))
-        end
-        within('#category_a_header') do
-          expect(page).to have_image(alt: img_alt(risk, :category_a))
-        end
-      end
-    end
-
-    def img_alt(object, attr)
-      "#{attr} #{object.send(attr)}".humanize
-    end
-
-    def acct_status_img_alt(acct_status)
-      return 'Open acct' if acct_status == 'open'
-      'Not open acct'
     end
   end
 end

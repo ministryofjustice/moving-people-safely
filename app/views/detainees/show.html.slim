@@ -3,7 +3,8 @@
     - breadcrumb detainee_breadcrumb(detainee), '#'
 
 .profile
-  = render partial: 'header'
+  = render partial: 'header', locals: { alerts: DetaineeProfileAlertsPresenter.new(detainee) }
+
   - if active_move
     = render partial: 'move', locals: { move: MovePresenter.new(active_move) }
   - else

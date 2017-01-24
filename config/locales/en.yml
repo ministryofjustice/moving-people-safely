@@ -479,6 +479,19 @@ en:
         violence_to_general_public: Violent to general public
         violence_to_other_detainees: Violent to other detainees
         violence_to_staff: Violent to staff
+  profile:
+    alerts:
+      acct_status:
+        closed_in_last_6_months: 'Closed:'
+        none: ''
+        open: Open
+        post_closure: Post closure
+        unknown: ''
+      current_e_risk_details:
+        e_list_escort: E-List-Escort
+        e_list_heightened: E-List-Heightened
+        e_list_standard: E-List-Standard
+        unknown: ''
   activemodel:
     errors:
       models:
