@@ -13,7 +13,7 @@ class DetaineesController < ApplicationController
     form = Forms::Detainee.new(Detainee.new)
     if form.validate(params[:detainee])
       form.save
-      redirect_to new_move_path(form.model.id)
+      redirect_to new_detainee_move_path(form.model)
     else
       render :new, locals: { form: form }
     end
@@ -86,7 +86,7 @@ class DetaineesController < ApplicationController
     elsif detainee.moves.any?
       redirect_to copy_move_path(detainee), options
     else
-      redirect_to new_move_path(detainee), options
+      redirect_to new_detainee_move_path(detainee), options
     end
   end
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Forms::Moves::Information, type: :form do
+RSpec.describe Forms::Move, type: :form do
   let(:model) { Move.new }
   subject(:form) { described_class.new(model) }
 
@@ -35,7 +35,7 @@ RSpec.describe Forms::Moves::Information, type: :form do
   end
 
   describe '#validate' do
-    it { is_expected.to validate_prepopulated_collection :destinations }
+    it { is_expected.to validate_prepopulated_collection(:destinations, subform_class: Forms::Moves::Destination) }
     it { is_expected.to validate_optional_field(:has_destinations) }
 
     describe 'nilifies empty strings' do

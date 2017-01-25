@@ -18,29 +18,29 @@ module Page
 
     def fill_in_not_for_release_details(move)
       if move.not_for_release == 'yes'
-        choose 'information_not_for_release_yes'
-        choose "information_not_for_release_reason_#{move.not_for_release_reason}"
+        choose 'move_not_for_release_yes'
+        choose "move_not_for_release_reason_#{move.not_for_release_reason}"
         if move.not_for_release_reason == 'other'
-          fill_in 'information_not_for_release_reason_details', with: move.not_for_release_reason_details
+          fill_in 'move_not_for_release_reason_details', with: move.not_for_release_reason_details
         end
       else
-        choose 'information_not_for_release_no'
+        choose 'move_not_for_release_no'
       end
     end
 
     def fill_in_destinations
-      choose 'information_has_destinations_yes'
-      fill_in 'information_destinations_attributes_0_establishment', with: 'Hospital'
-      choose 'information_destinations_attributes_0_must_return_must_return'
+      choose 'move_has_destinations_yes'
+      fill_in 'move_destinations_attributes_0_establishment', with: 'Hospital'
+      choose 'move_destinations_attributes_0_must_return_must_return'
       click_button 'Add establishment'
-      fill_in 'information_destinations_attributes_1_establishment', with: 'Court'
-      choose 'information_destinations_attributes_1_must_return_must_return'
+      fill_in 'move_destinations_attributes_1_establishment', with: 'Court'
+      choose 'move_destinations_attributes_1_must_return_must_return'
       click_button 'Add establishment'
-      fill_in 'information_destinations_attributes_2_establishment', with: 'Dentist'
-      choose 'information_destinations_attributes_2_must_return_must_not_return'
+      fill_in 'move_destinations_attributes_2_establishment', with: 'Dentist'
+      choose 'move_destinations_attributes_2_must_return_must_not_return'
       click_button 'Add establishment'
-      fill_in 'information_destinations_attributes_3_establishment', with: 'Tribunal'
-      choose 'information_destinations_attributes_3_must_return_must_not_return'
+      fill_in 'move_destinations_attributes_3_establishment', with: 'Tribunal'
+      choose 'move_destinations_attributes_3_must_return_must_not_return'
     end
   end
 end

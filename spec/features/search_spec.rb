@@ -70,7 +70,7 @@ RSpec.feature 'searching for a prisoner', type: :feature do
   end
 
   def expect_result_with_no_move(detainee)
-    expect(page).to have_link('Add new move', href: new_move_path(detainee))
+    expect(page).to have_link('Add new move', href: new_detainee_move_path(detainee))
     expect(page).to have_content(detainee.prison_number).
       and have_content(detainee.surname)
   end

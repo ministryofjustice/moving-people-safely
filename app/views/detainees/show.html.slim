@@ -12,7 +12,7 @@
     .alert.alert--warning
       p
         strong == 'No active move'
-      = link_to 'Create new move', new_move_path(detainee_id: detainee.id), class: 'button'
+      = link_to 'Create new move', new_detainee_move_path(detainee_id: detainee.id), class: 'button'
 
   = render partial: 'detainee', locals: { detainee: DetaineePresenter.new(detainee) }
 

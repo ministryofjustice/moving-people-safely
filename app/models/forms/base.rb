@@ -165,12 +165,12 @@ module Forms
         end
       end
 
-      def prepopulated_collection(field_name)
+      def prepopulated_collection(field_name, options = {})
         namespace = self.to_s.deconstantize
         const_name = [namespace, field_name.to_s.classify].join('::')
 
         collection field_name,
-          form: const_name.constantize,
+          form: options.fetch(:collection_form_class) { const_name.constantize },
           prepopulator: "populate_#{field_name}".to_sym,
           populator: "handle_nested_params_for_#{field_name}".to_sym
 

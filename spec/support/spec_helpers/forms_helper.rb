@@ -1,6 +1,6 @@
 module FormsHelper
-  def validate_prepopulated_collection(field_name)
-    ValidatePrepopulatedCollection.new(field_name)
+  def validate_prepopulated_collection(field_name, options = {})
+    ValidatePrepopulatedCollection.new(field_name, options)
   end
 
   def validate_optional_field(field_name, options = {})

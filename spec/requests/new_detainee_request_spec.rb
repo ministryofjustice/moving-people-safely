@@ -24,7 +24,7 @@ RSpec.describe 'New detainee requests', type: :request do
 
       it 'redirects user to the detainee move page' do
         get "/detainees/new?prison_number=#{prison_number}"
-        expect(response).to redirect_to new_move_path(detainee)
+        expect(response).to redirect_to new_detainee_move_path(detainee)
       end
     end
 
