@@ -15,6 +15,69 @@ RSpec.feature 'detainee profile page', type: :feature do
       end
     end
 
+    context 'Not for release alert' do
+      context 'when detainee has no active moves' do
+        let(:detainee) { FactoryGirl.create(:detainee, :with_no_moves) }
+
+        scenario 'associated alert is displayed as inactive' do
+          profile.confirm_alert_as_inactive(:not_for_release)
+          expect(page.find('#not_for_release_alert .alert-text').text).to be_empty
+        end
+      end
+
+      context 'when the detainee has an active move' do
+        let(:options) { {} }
+        let(:active_move) { FactoryGirl.create(:move, :active, options) }
+        let(:detainee) { FactoryGirl.create(:detainee, moves: [active_move]) }
+
+        context 'when active move has not for release set to unknown' do
+          let(:options) { { not_for_release: 'unknown' } }
+
+          scenario 'associated alert is displayed as inactive' do
+            profile.confirm_alert_as_inactive(:not_for_release)
+            expect(page.find('#not_for_release_alert .alert-text').text).to be_empty
+          end
+        end
+
+        context 'when active move has not for release set to no' do
+          let(:options) { { not_for_release: 'no' } }
+
+          scenario 'associated alert is displayed as inactive' do
+            profile.confirm_alert_as_inactive(:not_for_release)
+            expect(page.find('#not_for_release_alert .alert-text').text).to be_empty
+          end
+        end
+
+        context 'when active move has not for release set to yes' do
+          let(:options) { { not_for_release: 'yes', not_for_release_reason: 'held_for_immigration' } }
+
+          scenario 'associated alert is displayed as active with associated reason displayed' do
+            profile.confirm_alert_as_active(:not_for_release)
+            within('#not_for_release_alert .alert-text') do
+              expect(page).to have_content('Held for immigration')
+            end
+          end
+
+          context 'and there is some details for the reason not for release' do
+            let(:options) {
+              {
+                not_for_release: 'yes',
+                not_for_release_reason: 'other',
+                not_for_release_reason_details: 'some details'
+              }
+            }
+
+            scenario 'associated alert is displayed as active with associated reason details displayed' do
+              profile.confirm_alert_as_active(:not_for_release)
+              within('#not_for_release_alert .alert-text') do
+                expect(page).to have_content('Other (some details)')
+              end
+            end
+          end
+        end
+      end
+    end
+
     context 'ACCT alert' do
       context 'when detainee has ACCT status as open' do
         let(:risk) { Risk.new(acct_status: 'open') }

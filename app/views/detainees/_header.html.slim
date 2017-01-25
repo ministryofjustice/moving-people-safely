@@ -14,14 +14,20 @@ header#header
   .profile-alerts
     .alerts-table
       .info-tiles
-        #acct_status_alert.tile-2
+        #not_for_release_alert.tile-3
+          div.alert-wrapper
+            div.image#not_for_release_header class=(alerts.not_for_release_alert_class)
+              span.alert-title = 'Not for release'
+              span.red-tick
+            span.alert-text = alerts.not_for_release_text
+        #acct_status_alert.tile-3
           div.alert-wrapper
             div.image#acct_status_header class=(alerts.acct_status_alert_class)
               span.alert-title = 'ACCT'
               span.red-tick
             span.alert-text = alerts.acct_status_text
 
-        #rule_45_alert.tile-2
+        #rule_45_alert.tile-3
           div.alert-wrapper
             div.image#rule_45_header class=(alerts.rule_45_alert_class)
               span.alert-title = 'Rule 45'

@@ -161,6 +161,11 @@
     width: (100% / 2);
   }
 
+  .tile-3 {
+    @extend .tile;
+    width: (100% / 3);
+  }
+
   .tile-4 {
     @extend .tile;
     width: (100% / 4);

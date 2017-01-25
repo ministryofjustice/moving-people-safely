@@ -1,10 +1,26 @@
 class DetaineeProfileAlertsPresenter < SimpleDelegator
+  MOVE_ATTRIBUTES = %i[
+    not_for_release not_for_release_reason
+    not_for_release_reason_details
+  ].freeze
   RISK_ATTRIBUTES = %i[
     acct_status date_of_most_recently_closed_acct rule_45
     current_e_risk current_e_risk_details csra category_a
   ].freeze
-  delegate(*RISK_ATTRIBUTES, to: :risk)
-  delegate(:mpv, to: :healthcare)
+  delegate(*MOVE_ATTRIBUTES, to: :active_move, allow_nil: true)
+  delegate(*RISK_ATTRIBUTES, to: :risk, allow_nil: true)
+  delegate(:mpv, to: :healthcare, allow_nil: true)
+
+  def not_for_release_alert_class
+    not_for_release == 'yes' ? 'alert-on' : 'alert-off'
+  end
+
+  def not_for_release_text
+    return unless not_for_release == 'yes'
+    text = localised_attr_value(:not_for_release_reason)
+    text << " (#{not_for_release_reason_details})" if not_for_release_reason == 'other'
+    text
+  end
 
   def acct_status_alert_class
     case acct_status
