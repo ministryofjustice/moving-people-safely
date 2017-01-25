@@ -1,20 +1,23 @@
 .search_module
   .search_block
-    h2 Find a detainee
+    h2 = t('homepage.titles.detainee_search')
 
     = form_for search_form, url: detainees_search_path, method: :post do |f|
-      label Search by prison number. E.g. A1234AB
+      = label_tag :search_prison_number, t('detainee_search.prison_number', scope: %i[helpers label])
       .search_input_wrapper
-        = f.search_text_field :prison_number, name: 'prison_number'
+        = f.search_text_field :prison_number, name: 'prison_number', class: (search_form.errors.empty? ? 'form-control' : 'form-control control-error')
         = f.submit class: 'search_button', value: 'Search'
 
-    - if search_form.detainee
+  - if search_form.detainee
+    .search-results
       = render partial: 'result',
         locals: { detainee: search_form.detainee, move: search_form.detainee.most_recent_move }
-    - elsif search_form.valid?
+  - elsif search_form.valid?
+    .search-results
       = render partial: 'no_result',
         locals: { prison_number: search_form.prison_number }
-    - elsif search_form.prison_number
+  - elsif search_form.prison_number
+    .search-error
       = render partial: 'error',
         locals: { prison_number: search_form.prison_number }
 
