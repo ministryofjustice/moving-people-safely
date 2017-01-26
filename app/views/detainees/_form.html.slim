@@ -5,8 +5,8 @@
   = GovukElementsErrorsHelper.error_summary form,
     'There were problems saving this form', ''
 
-  - if form.image_filename
-    = image_tag form.image_filename
+  - if form.image_filename.present?
+    = image_tag form.image_filename, size: '128x180'
 
   = form_for form, url: submit_path, method: method do |f|
     - if form.prison_number

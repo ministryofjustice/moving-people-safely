@@ -142,7 +142,7 @@ RSpec.feature 'detainee profile page', type: :feature do
 
         scenario 'associated alert is displayed as inactive' do
           profile.confirm_alert_as_inactive(:acct_status)
-          expect(page.find('#acct_status_alert .alert-text').text).to eq('Some-other-value')
+          expect(page.find('#acct_status_alert .alert-text').text).to match(/^some-other-value$/i)
         end
       end
     end
@@ -239,7 +239,7 @@ RSpec.feature 'detainee profile page', type: :feature do
         scenario 'associated alert is displayed as active' do
           profile.confirm_alert_as_active(:csra)
           expect(page).not_to have_selector('#csra_alert .alert-text')
-          expect(page.find('#csra_alert .alert-toggle-text').text).to eq('High')
+          expect(page.find('#csra_alert .alert-toggle-text').text).to match(/^high$/i)
         end
       end
 
@@ -250,7 +250,7 @@ RSpec.feature 'detainee profile page', type: :feature do
         scenario 'associated alert is displayed as inactive' do
           profile.confirm_alert_as_inactive(:csra)
           expect(page).not_to have_selector('#csra_alert .alert-text')
-          expect(page.find('#csra_alert .alert-toggle-text').text).to eq('Standard')
+          expect(page.find('#csra_alert .alert-toggle-text').text).to match(/^Standard$/i)
         end
       end
 
@@ -261,7 +261,7 @@ RSpec.feature 'detainee profile page', type: :feature do
         scenario 'associated alert is displayed as inactive' do
           profile.confirm_alert_as_inactive(:csra)
           expect(page).not_to have_selector('#csra_alert .alert-text')
-          expect(page.find('#csra_alert .alert-toggle-text').text).to eq('Standard')
+          expect(page.find('#csra_alert .alert-toggle-text').text).to match(/^Standard$/i)
         end
       end
     end
