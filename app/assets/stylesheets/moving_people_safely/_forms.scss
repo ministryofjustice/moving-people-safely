@@ -63,8 +63,9 @@ form {
         @extend .styled-as-link;
       }
 
-      @include js-only {
-        input { display: none; }
+      input[type='checkbox'] {
+        position: absolute;
+        left: -1000px;
       }
     }
 
