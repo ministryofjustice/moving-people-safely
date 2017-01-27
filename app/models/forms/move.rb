@@ -12,7 +12,7 @@ module Forms
     reset attributes: %i[not_for_release_reason not_for_release_reason_details],
           if_falsey: :not_for_release
 
-    property_with_details :not_for_release_reason,
+    optional_field :not_for_release_reason,
       type: StrictString,
       options: NOT_FOR_RELEASE_REASONS,
       option_with_details: REASON_WITH_DETAILS,
@@ -21,6 +21,14 @@ module Forms
         inclusion: { in: NOT_FOR_RELEASE_REASONS },
         if: -> { not_for_release == 'yes' }
     end
+
+    property :not_for_release_reason_details, type: StrictString
+    validates :not_for_release_reason_details,
+      presence: true,
+      if: -> { not_for_release == 'yes' && not_for_release_reason == REASON_WITH_DETAILS }
+    reset attributes: [:not_for_release_reason_details],
+          if_falsey: :not_for_release_reason,
+          enabled_value: REASON_WITH_DETAILS
 
     optional_field :has_destinations
     prepopulated_collection :destinations,

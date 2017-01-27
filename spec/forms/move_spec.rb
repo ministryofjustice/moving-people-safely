@@ -86,6 +86,14 @@ RSpec.describe Forms::Move, type: :form do
         end
 
         include_examples 'no validation on not for release reason'
+
+        context 'and not for release reason is set to other' do
+          before do
+            form.not_for_release_reason = 'other'
+          end
+
+          include_examples 'no validation on not for release reason'
+        end
       end
 
       context 'when not for release is set to no' do
@@ -96,6 +104,14 @@ RSpec.describe Forms::Move, type: :form do
         end
 
         include_examples 'no validation on not for release reason'
+
+        context 'and not for release reason is set to other' do
+          before do
+            form.not_for_release_reason = 'other'
+          end
+
+          include_examples 'no validation on not for release reason'
+        end
       end
 
       context 'when not for release is set to yes' do
@@ -157,7 +173,7 @@ RSpec.describe Forms::Move, type: :form do
     end
 
     describe 'reset not for release reason associated details' do
-      it { is_expected.to be_configured_to_reset(%w[not_for_release_reason_details]).when(:not_for_release_reason).not_set_to('other') }
+      it { is_expected.to be_configured_to_reset(%i[not_for_release_reason_details]).when(:not_for_release_reason).not_set_to('other') }
     end
 
     context 'date' do
