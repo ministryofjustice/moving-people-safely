@@ -1,7 +1,7 @@
 module Forms
   class Move < Forms::Base
     REASON_WITH_DETAILS = 'other'.freeze
-    NOT_FOR_RELEASE_REASONS = %w[serving_sentence further_charges license_revoke
+    NOT_FOR_RELEASE_REASONS = %w[serving_sentence further_charges licence_revoke
                                  held_for_immigration other].freeze
 
     property :from, type: StrictString, default: 'HMP Bedford'
