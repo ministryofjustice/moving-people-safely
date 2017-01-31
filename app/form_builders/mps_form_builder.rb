@@ -1,9 +1,4 @@
 class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
-  def error_style_for_attr(attribute)
-    return ' toggle_with_error' if attribute && error_for?(attribute)
-    ' panel panel-border-narrow'
-  end
-
   def radio_button_fieldset(attribute, options = {})
     content_tag :div,
       class: form_group_classes(attribute),
@@ -55,16 +50,14 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
   end
 
   def radio_toggle(attribute, options = {}, &_blk)
-    style = 'optional-section-wrapper'
-    style << ' mps-hide' unless object.public_send("#{attribute}_on?")
-    style << error_style_for_attr(options[:details_attr])
-    choices = options.fetch(:choices) { object.toggle_choices }
+    style = style_for_radio_block(attribute, options)
     data = options[:data] || { 'toggle-field' => object.toggle_field }
+    choices = options.fetch(:choices) { object.toggle_choices }
     content_tag(:div, class: 'form-group js-show-hide') do
       safe_join([
         content_tag(:div, class: 'controls-optional-section', data: data) do
           radio_button_fieldset attribute,
-            choices: choices, inline: options.fetch(:inline_choices, true)
+            options.merge(choices: choices, inline: options.fetch(:inline_choices, true))
         end,
         (content_tag(:div, class: style) { yield } if block_given?)
       ])
@@ -151,5 +144,18 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
           text_area_without_label "#{attribute}_details"
         end
     end
+  end
+
+  private
+
+  def style_for_radio_block(attribute, options = {})
+    style = 'optional-section-wrapper'
+    style << ' mps-hide' unless object.public_send("#{attribute}_on?")
+    style << error_style_for_attr(options[:details_attr])
+  end
+
+  def error_style_for_attr(attribute)
+    return ' toggle_with_error' if attribute && error_for?(attribute)
+    ' panel panel-border-narrow'
   end
 end

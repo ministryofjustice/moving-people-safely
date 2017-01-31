@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe 'New Move requests', type: :request do
   before { sign_in FactoryGirl.create(:user) }
 
-  describe "#copy" do
-    before { get "/#{detainee.id}/move/new" }
+  describe "#new" do
+    before { get "/detainees/#{detainee.id}/moves/new" }
 
     context "when the detainee has a previously issued move" do
       let(:detainee) { create(:detainee, :with_completed_move) }
@@ -18,7 +18,7 @@ RSpec.describe 'New Move requests', type: :request do
       let(:detainee) { create(:detainee, :with_active_move) }
 
       it "redirects to the dashboard" do
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to root_path(prison_number: detainee.prison_number)
       end
     end
 
@@ -34,20 +34,20 @@ RSpec.describe 'New Move requests', type: :request do
   describe "#create" do
     let(:detainee) { create(:detainee) }
 
-    before { post "/#{detainee.id}/move", params: { information: move_attrs } }
+    before { post "/detainees/#{detainee.id}/moves", params: { move: move_attrs } }
 
-    context "when the submitted move validates" do
+    context "when the submitted move details are valid" do
       let(:move_attrs) { attributes_for(:move) }
       it "redirects to the detainee's profile" do
         expect(response).to redirect_to detainee_path(detainee)
       end
     end
 
-    context "when the submitted move fails to validate" do
-      let(:move_attrs) { attributes_for(:move).replace(reason: 'no good reason') }
+    context "when the submitted move details are not valid" do
+      let(:move_attrs) { FactoryGirl.attributes_for(:move).except(:date) }
 
-      it "redirects to the copy move path" do
-        expect(response).to redirect_to "/#{detainee.id}/move/new"
+      it "does not redirect to the detainee's profile" do
+        expect(response).not_to redirect_to detainee_path(detainee)
       end
     end
   end

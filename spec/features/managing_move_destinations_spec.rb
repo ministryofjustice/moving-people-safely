@@ -6,8 +6,8 @@ RSpec.describe 'managing move destinations', type: :feature do
     move = detainee.active_move
     login
 
-    visit move_information_path(move)
-    fill_in_move_information
+    visit edit_move_path(move)
+    fill_in_move_information(move)
 
     fill_in_destination position: :first
     add_destination
@@ -16,19 +16,19 @@ RSpec.describe 'managing move destinations', type: :feature do
     fill_in_destination position: :third
     save
 
-    visit move_information_path(move)
+    visit edit_move_path(move)
     expect_to_have_destinations_for positions: %i[ first second third ]
 
     delete_destination position: :third
     save
 
-    visit move_information_path(move)
+    visit edit_move_path(move)
     expect_to_have_destinations_for positions: %i[ first second ]
 
     select_no_destinations
     save
 
-    visit move_information_path(move)
+    visit edit_move_path(move)
     expect_all_destinations_to_be_deleted
   end
 
@@ -51,13 +51,26 @@ RSpec.describe 'managing move destinations', type: :feature do
     end
   end
 
-  def fill_in_move_information
-    fill_in 'Date', with: '2/3/2036'
-    choose 'Yes'
+  def fill_in_move_information(move)
+    fill_in 'Date', with: move.date
+    fill_in_not_for_release(move)
+    choose 'move_has_destinations_yes'
+  end
+
+  def fill_in_not_for_release(move)
+    if move.not_for_release == 'yes'
+      choose 'move_not_for_release_yes'
+      choose "move_not_for_release_reason_#{move.not_for_release_reason}"
+      if move.not_for_release_reason == 'other'
+        fill_in 'move_not_for_release_reason_details', with: move.not_for_release_reason_details
+      end
+    else
+      choose 'move_not_for_release_no'
+    end
   end
 
   def select_no_destinations
-    choose 'No'
+    choose 'move_has_destinations_no'
   end
 
   def add_destination

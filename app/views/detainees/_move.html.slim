@@ -1,6 +1,6 @@
 .move-information
   .float-right
-    = link_to 'Edit', move_information_path(active_move)
+    = link_to 'Edit', edit_move_path(active_move)
   h2
     ' Move information
   .info-tiles
@@ -12,10 +12,6 @@
       | To
       br
       b = move.to
-    .tile
-      | Reason
-      br
-      b = move.humanized_reason
   .info-tiles
     .tile
       | Must return to

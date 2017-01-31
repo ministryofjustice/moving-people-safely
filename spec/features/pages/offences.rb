@@ -1,15 +1,6 @@
 module Page
   class Offences < Base
     def complete_form(options)
-      if options[:release_date]
-        fill_in 'offences[release_date]', with: options[:release_date]
-      end
-
-      if options[:not_for_release]
-        check 'offences[not_for_release]'
-        fill_in 'offences_not_for_release_details', with: options.fetch(:not_for_release_details)
-      end
-
       fill_current_offences(options[:current_offences])
       fill_past_offences(options[:past_offences])
 

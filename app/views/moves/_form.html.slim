@@ -1,8 +1,3 @@
-= content_for :breadcrumbs do
-  - breadcrumbs_for_page root: true do
-    - breadcrumb detainee_breadcrumb(detainee), detainee_path(detainee)
-    - breadcrumb 'Move information', '#'
-
 .move
   header
     h1 Move information
@@ -10,14 +5,16 @@
   = GovukElementsErrorsHelper.error_summary form,
     'There were problems saving this form', ''
 
-  = form_for form, url: submit_path do |f|
+  = form_for form, url: submit_path, method: method do |f|
     = f.text_field :from
     = f.text_field :to
     = f.text_field :date
-    = f.radio_toggle_with_textarea :reason,
-      choices: form.reasons,
-      inline_choices: false,
-      data: { 'toggle-field' => f.object.reason_with_details }
+    = f.radio_toggle :not_for_release do
+      = f.radio_toggle_with_textarea :not_for_release_reason,
+        legend: false,
+        choices: f.object.not_for_release_reasons,
+        inline_choices: false,
+        data: { 'toggle-field' => f.object.not_for_release_reason_with_details }
 
     .multiple
       = f.radio_toggle :has_destinations do

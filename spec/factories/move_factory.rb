@@ -5,8 +5,6 @@ FactoryGirl.define do
     from { FixtureData.prison }
     to { FixtureData.county_court }
     date { Date.today }
-    reason 'other'
-    reason_details 'Has to move'
     has_destinations 'no'
 
     association :move_workflow, :incomplete, strategy: :build

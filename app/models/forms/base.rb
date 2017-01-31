@@ -56,6 +56,8 @@ module Forms
         _define_attribute_is_on(field_name, options.fetch(:option_with_details, TOGGLE_YES))
         property_options = { type: options.fetch(:type, String), default: options[:default] }
         property(field_name, property_options)
+        yield and return if block_given?
+
         validates field_name,
           inclusion: { in: options.fetch(:options, TOGGLE_CHOICES) },
           allow_blank: options.fetch(:allow_blank, true)
@@ -70,8 +72,8 @@ module Forms
         reset attributes: ["#{field_name}_details"], if_falsey: field_name
       end
 
-      def property_with_details(field_name, options = {})
-        optional_field(field_name, options)
+      def property_with_details(field_name, options = {}, &block)
+        optional_field(field_name, options, &block)
         property("#{field_name}_details", type: StrictString)
         option_with_details = options.fetch(:option_with_details, TOGGLE_YES)
         validates "#{field_name}_details",
@@ -163,12 +165,12 @@ module Forms
         end
       end
 
-      def prepopulated_collection(field_name)
+      def prepopulated_collection(field_name, options = {})
         namespace = self.to_s.deconstantize
         const_name = [namespace, field_name.to_s.classify].join('::')
 
         collection field_name,
-          form: const_name.constantize,
+          form: options.fetch(:collection_form_class) { const_name.constantize },
           prepopulator: "populate_#{field_name}".to_sym,
           populator: "handle_nested_params_for_#{field_name}".to_sym
 

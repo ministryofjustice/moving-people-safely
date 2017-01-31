@@ -18,9 +18,9 @@ en:
         intimidation: Intimidator / bully
       hostage_taker:
         hostage_taker: History of taking hostages
-      information:
+      move:
         has_destinations: Are there establishments the detainee must or must not be sent?
-        reason: Reason for move
+        not_for_release: Not for release?
       mental:
         mental_illness: Mental health issues?
         phobias: Phobias?
@@ -118,16 +118,17 @@ en:
         date_most_recent_staff_hostage_taker_incident: Date of most recent incident
         date_most_recent_prisoners_hostage_taker_incident: Date of most recent incident
         date_most_recent_public_hostage_taker_incident: Date of most recent incident
-      information:
+      move:
         from: From
         to: To
-        date: Date of move
-        reason_details: Reason details
+        date: Date of travel
         has_destinations_choices:
           unknown: Clear selection
         destinations:
           establishment: Establishment
           reasons: List the reasons, eg medical treatment, medical hold, treatment programmes or offender behaviour.
+        not_for_release_choices:
+          unknown: Clear selection
       mental:
         mental_illness_choices:
           unknown: Clear selection
@@ -143,8 +144,6 @@ en:
           administration: How is it given?
           carrier: Who carries it?
       offences:
-        release_date: The detainee's confirmed release date
-        not_for_release: The detainee is 'not for release'
         has_past_offences_choices:
           unknown: Clear selection
       physical:
@@ -268,9 +267,10 @@ en:
         date_most_recent_staff_hostage_taker_incident: DD/MM/YYYY
         date_most_recent_prisoners_hostage_taker_incident: DD/MM/YYYY
         date_most_recent_public_hostage_taker_incident: DD/MM/YYYY
-      information:
-        reason_details: Give details
+      move:
         date : DD/MM/YYYY
+        not_for_release: Is there a known reason that the detainee is not for release?
+        not_for_release_reason_details: Give details of why the detainee is not for release
       mental:
         mental_illness: Eg depression, paranoia, anxiety, personality disorder
         mental_illness_details: Give details and explain the significance
@@ -280,9 +280,6 @@ en:
         dependencies: Eg early stages of detox, alcohol withdrawal
         dependencies_details: Give details and explain the significance
         has_medications: Eg methadone, anti-inflammatories, anti-depressants, beta-blockers, insulin, migraine tablets, asthma or epilepsy drugs
-      offences:
-        release_date: DD/MM/YYYY
-        not_for_release_details: State the reason the detainee is 'not for release'
       physical:
         physical_issues: Eg disabilities, prosthetic limbs, crutches.
         physical_issues_details: Give details and explain the significance

@@ -11,7 +11,7 @@ module Page
 
     def confirm_all_alerts_as_inactive
       within('.profile-alerts') do
-        %i[acct_status rule_45 e_list csra category_a mpv].each do |alert|
+        %i[not_for_release acct_status rule_45 e_list csra category_a mpv].each do |alert|
           expect(page).to have_css("##{alert}_header.alert-off")
         end
       end
@@ -33,7 +33,6 @@ module Page
       within('.move-information') do
         expect(page).to have_content move.to
         expect(page).to have_content move.date.strftime('%d %b %Y')
-        expect(page).to have_content move.reason_details
         expect(page).to have_content('Hospital, Court')
         expect(page).to have_content('Dentist, Tribunal')
       end

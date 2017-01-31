@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   devise_for :users, skip: %i[ registrations ],
 		controllers: { omniauth_callbacks: 'callbacks' }
 
-  resources :detainees, only: %i[new create edit update show]
+  resources :detainees, only: %i[new create edit update show] do
+    resources :moves, only: %i[new create]
+  end
+  resources :moves, only: %i[edit update]
 
   scope ':detainee_id' do
     resources :healthcare, only: %i[ show update ] do
@@ -14,14 +17,11 @@ Rails.application.routes.draw do
       put :confirm, on: :collection
     end
     resource :offences, only: %i[ show update ]
-    get  '/move/new', to: 'new_move#new', as: 'new_move'
-    post '/move', to: 'new_move#create', as: 'create_move'
     get  '/move/copy', to: 'copy_move#copy', as: 'copy_move'
     post '/move/copy', to: 'copy_move#create', as: 'copy_move_create'
   end
 
   scope ':move_id' do
-    resource :move_information, only: %i[ show update ], path: 'move-info'
     get :print, to: 'print#show'
   end
 

@@ -1,8 +1,9 @@
 class ValidatePrepopulatedCollection
   attr_reader :subject, :field_name
 
-  def initialize(field_name)
+  def initialize(field_name, options = {})
     @field_name = field_name
+    @subform_class = options[:subform_class]
   end
 
   def matches?(subject)
@@ -107,9 +108,10 @@ class ValidatePrepopulatedCollection
   end
 
   def subform_class
+    return @subform_class if @subform_class.present?
     namespace = subject.class.to_s.deconstantize
     const_name = [namespace, field_name.to_s.classify].join('::')
-    const_name.constantize
+    @subform_class = const_name.constantize
   end
 
   def subform_model_class

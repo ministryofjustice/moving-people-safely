@@ -6,9 +6,6 @@ RSpec.describe Forms::Offences, type: :form do
 
   let(:form_data) do
     {
-      'release_date' => '15/09/2027',
-      'not_for_release' => 'yes',
-      'not_for_release_details' => 'remember what happened last time?',
       'current_offences' => [
         {
           'offence' => 'Burglary',
@@ -29,9 +26,6 @@ RSpec.describe Forms::Offences, type: :form do
   describe "#validate" do
     let(:coerced_params) do
       {
-        'release_date' => Date.new(2027, 9, 15),
-        'not_for_release' => true,
-        'not_for_release_details' => 'remember what happened last time?',
         'current_offences' => [
           'offence' => 'Burglary',
           'case_reference' => 'AX123456',
@@ -55,27 +49,6 @@ RSpec.describe Forms::Offences, type: :form do
     it { is_expected.to validate_optional_field(:has_past_offences, inclusion: { in: %w(yes no) } ) }
 
     specify { expect(subject.validate(form_data)).to eq(true) }
-
-    context 'when release date is not provided' do
-      specify { expect(subject.validate(form_data.except('release_date'))).to eq(true) }
-    end
-
-    context 'when release date is blank' do
-      specify { expect(subject.validate(form_data.merge('release_date' => ''))).to eq(true) }
-    end
-
-    context 'when release date is not a valid date' do
-      before do
-        subject.validate(form_data.merge('release_date' => 'not-a-date'))
-      end
-
-      specify { expect(subject.valid?).to eq(false) }
-      specify { expect(subject.errors[:release_date]).to eq([I18n.t(:invalid, scope: 'errors.messages')]) }
-    end
-
-    describe 'details fields associated with checkboxes' do
-      it { is_expected.to be_configured_to_reset([:not_for_release_details]).when(:not_for_release).not_set_to(true) }
-    end
   end
 
   describe '#save' do

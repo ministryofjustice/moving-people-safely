@@ -12,16 +12,24 @@ $(function () {
     return this.each(function () {
       var $this = $(this);
 
+      var input = $this.find('.remove-link input:checkbox')
+
       // Hide multiple from when 'delete' radio state changes
-      $this.on('change', function (e) {
-        var changed_element_id = $(e.target).attr('id');
-        if (/_attributes_\d+__delete/.test(changed_element_id)) {
-          $this.hide();
-        }
+      input.on('change', function () {
+        $this.closest('.multiple-wrapper').addClass('mps-hide');
       })
     })
   };
 
-  $('.multiple-wrapper').multiples();
+  $(document).ready(function() {
+    $('.multiple-wrapper .remove-link input:checkbox').click(function () {
+      // Cause the change() event
+      // to be fired in IE8 et. al.
+      // http://www.ridgesolutions.ie/index.php/2011/03/02/ie8-chage-jquery-event-not-firing/
+      this.blur();
+      this.focus();
+    });
+  });
 
+  $('.multiple-wrapper').multiples();
 });
