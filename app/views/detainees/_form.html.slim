@@ -5,28 +5,37 @@
   = GovukElementsErrorsHelper.error_summary form,
     'There were problems saving this form', ''
 
-  - if form.image_filename.present?
-    = image_tag form.image_filename, size: '128x180'
-
-  = form_for form, url: submit_path, method: method do |f|
+  - if form.image.present?
+    .detainee-image
+      = image_tag "data:image/jpeg;base64,#{form.image}", size: '128x180'
+  - else
+    .no-image
+      span = 'Photo unavailable'
     - if form.prison_number
-      label.form-label Prison number
-      p.prison_number = form.prison_number
-      = f.hidden_field :prison_number
-    - else
-      = f.text_field :prison_number
-    = f.hidden_field :image_filename
-    = f.text_field :surname
-    = f.text_field :forenames
-    = f.text_field :date_of_birth
-    = f.text_area  :nationalities
-    .form-group
-      = f.radio_button_fieldset :gender,
-        choices: form.genders,
-        inline: true
-    = f.text_field :pnc_number
-    = f.text_field :cro_number
-    = f.text_area  :aliases
+      - pull_options = method == :post ? { prison_number: form.prison_number, pull: :image } : { pull: :image }
+      = link_to 'Pull image', pull_options
 
-    .form-actions
-      = f.submit 'Save and continue', class: 'button'
+  .form-wrapper
+    = form_for form, url: submit_path, method: method do |f|
+      - if form.prison_number
+        label.form-label Prison number
+        p.prison_number = form.prison_number
+        = f.hidden_field :prison_number
+      - else
+        = f.text_field :prison_number
+      = f.hidden_field :image_filename
+      = f.hidden_field :image
+      = f.text_field :surname
+      = f.text_field :forenames
+      = f.text_field :date_of_birth
+      = f.text_area  :nationalities
+      .form-group
+        = f.radio_button_fieldset :gender,
+          choices: form.genders,
+          inline: true
+      = f.text_field :pnc_number
+      = f.text_field :cro_number
+      = f.text_area  :aliases
+
+      .form-actions
+        = f.submit 'Save and continue', class: 'button'

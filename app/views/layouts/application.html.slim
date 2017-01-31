@@ -31,7 +31,7 @@
         = render_breadcrumbs
         - %i[notice success alert warning error].each do |severity|
             - if flash[severity].present?
-              div class="alert alert--#{severity}" = flash[severity]
+              div class="alert alert--#{severity}" = flash_message_for(flash[severity])
         = yield
 
 = render template: "layouts/govuk_template"

@@ -508,7 +508,12 @@ en:
   alerts:
     detainee_already_exists: "Detainee already exists. You've been redirected to the next relevant form"
     detainee:
-      pre_filling_unavailable: "Look-Up function is not currently available. Please enter person details manually or try again later"
-      details_not_found: "No record for that prison reference exists. Please check the reference used or enter the details manually"
-      invalid_input: The provided prison number is not valid, please try again with a valid prison number
+      details:
+        unavailable: "Look-Up function is not currently available. Please enter person details manually or try again later"
+        not_found: "No record for that prison reference exists. Please check the reference used or enter the details manually"
+        invalid_input: The provided prison number is not valid, please try again with a valid prison number
+      image:
+        unavailable: "Image Look-Up function is not currently available. Please try again later"
+        not_found: "Look-Up function for photograph returned no image. Either try again later or attach photograph manually to print out"
+        invalid_input: The provided prison number is not valid, please try again with a valid prison number
     unable_to_confirm_incomplete_risk_assessment: Risk assessment cannot be confirmed until all mandatory answered are filled

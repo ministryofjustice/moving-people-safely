@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ApiDetaineeDetailsMapper do
+RSpec.describe Detainees::DetailsMapper do
   let(:prison_number) { 'ABC123' }
   let(:given_name) { 'John' }
   let(:middle_names) { 'C.' }

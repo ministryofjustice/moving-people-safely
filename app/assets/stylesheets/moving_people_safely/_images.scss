@@ -1,0 +1,11 @@
+.no-image {
+  width: 128px;
+  height: 180px;
+  line-height: 180px;
+  padding: 1px;
+  background-image: image-url('photo_unavailable.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-align: center;
+  font-size: 12px;
+}

@@ -43,6 +43,15 @@ module Page
       expect(aliases_input.value).to eq('')
     end
 
+    def assert_form_with_image_placeholder
+      expect(page).not_to have_css('.detainee-image')
+      expect(page).to have_css('.no-image')
+    end
+
+    def assert_form_with_detainee_image
+      expect(page).to have_css('.detainee-image')
+    end
+
     private
 
     def prison_number_input

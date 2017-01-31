@@ -26,6 +26,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     move_data = build(:move)
 
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}", status: 404)
+    stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/image", status: 404)
 
     dashboard.search(detainee.prison_number)
     dashboard.create_new_profile.click

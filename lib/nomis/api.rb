@@ -1,7 +1,6 @@
 module Nomis
   Error = Class.new(StandardError)
   DisabledError = Class.new(Error)
-  NotFound = Class.new(Error)
 
   class Api
     include Singleton

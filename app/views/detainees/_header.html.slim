@@ -4,9 +4,9 @@ header#header
 
 .image-and-alerts
   .profile-image-wrapper
-    - if detainee.image_filename.present?
+    - if detainee.image.present?
       .image
-        = image_tag detainee.image_filename, size: '128x180'
+        = image_tag "data:image/jpeg;base64,#{detainee.image}", size: '128x180'
     - else
       .no-image
         span = 'Photo unavailable'
