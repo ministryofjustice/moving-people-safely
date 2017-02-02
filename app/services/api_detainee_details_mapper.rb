@@ -15,9 +15,10 @@ class ApiDetaineeDetailsMapper
       surname: details[:surname],
       date_of_birth: mapped_dob,
       gender: mapped_gender,
-      nationalities: mapped_nationality,
+      nationalities: details[:nationalities],
       pnc_number: details[:pnc_number],
-      cro_number: details[:cro_number]
+      cro_number: details[:cro_number],
+      aliases: mapped_aliases
     }.with_indifferent_access
   end
 
@@ -42,11 +43,15 @@ class ApiDetaineeDetailsMapper
     details[:middle_names]
   end
 
-  def names
+  def forenames
     [given_name, middle_names]
   end
 
   def mapped_forenames
+    mapped_names(forenames)
+  end
+
+  def mapped_names(names)
     present_names = names.select(&:present?)
     return if present_names.empty?
     present_names.join(' ')
@@ -57,16 +62,18 @@ class ApiDetaineeDetailsMapper
   end
 
   def mapped_gender
-    { 'm' => 'male', 'f' => 'female' }[gender.downcase] if gender.present?
+    gender.downcase if gender.present?
   end
 
-  def nationality_code
-    details[:nationality_code]
+  def aliases
+    details[:aliases] || []
   end
 
-  def mapped_nationality
-    return unless nationality_code.present?
-    country = ISO3166::Country.new(nationality_code)
-    (country && country.nationality) || nationality_code
+  def mapped_aliases
+    return if aliases.empty?
+    aliases.map do |a|
+      names = [a['given_name'], a['middle_names'], a['surname']]
+      mapped_names(names)
+    end.join(', ')
   end
 end

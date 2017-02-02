@@ -14,9 +14,7 @@ RSpec.feature 'Detainee creation', type: :feature do
 
   context 'when detainee pre-filled information cannot be retrieved' do
     before do
-      stub_offenders_api_request(:get, '/offenders/search',
-                                 with: { params: { noms_id: prison_number } },
-                                 return: { body: {}, status: 201 })
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}", status: 500)
     end
 
     scenario 'filling detainee details manually' do
@@ -29,19 +27,16 @@ RSpec.feature 'Detainee creation', type: :feature do
 
   context 'when detainee pre-filled information is retrieved' do
     let(:successful_body) {
-      [
-        {
-          noms_id: prison_number,
-          given_name: 'John',
-          middle_names: 'C.',
-          surname: 'Doe',
-          date_of_birth: '11-09-1975',
-          gender: 'M',
-          nationality_code: 'GB',
-          pnc_number: '12345',
-          cro_number: '112233'
-        }
-      ].to_json
+      {
+        given_name: 'John',
+        middle_names: 'C.',
+        surname: 'Doe',
+        date_of_birth: '11-09-1975',
+        gender: 'Male',
+        nationalities: 'British',
+        pnc_number: '12345',
+        cro_number: '112233'
+      }.to_json
     }
     let(:expected_field_values) {
       {
@@ -56,9 +51,7 @@ RSpec.feature 'Detainee creation', type: :feature do
     }
 
     before do
-      stub_offenders_api_request(:get, '/offenders/search',
-                                 with: { params: { noms_id: prison_number } },
-                                 return: { body: successful_body, status: 200 })
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}", body: successful_body)
     end
 
     scenario 'filling detainee details manually' do

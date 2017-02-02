@@ -55,6 +55,7 @@ RSpec.configure do |config|
   config.include(FactoryGirl::Syntax::Methods)
   config.include(FormsHelper, type: :form)
   config.include(OffendersApiHelpers)
+  config.include(NomisApiHelpers)
 end
 
 Shoulda::Matchers.configure do |config|

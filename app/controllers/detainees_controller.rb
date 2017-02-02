@@ -61,6 +61,8 @@ class DetaineesController < ApplicationController
       t('alerts.detainee.pre_filling_unavailable')
     when 'details_not_found'
       t('alerts.detainee.details_not_found')
+    when 'invalid_input'
+      t('alerts.detainee.invalid_input')
     end
   end
 

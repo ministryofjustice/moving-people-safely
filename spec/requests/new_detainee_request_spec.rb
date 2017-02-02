@@ -46,9 +46,7 @@ RSpec.describe 'New detainee requests', type: :request do
 
       context 'when detainee details cannot be prefetched' do
         before do
-          stub_offenders_api_request(:get, '/offenders/search',
-                                     with: { params: { noms_id: prison_number } },
-                                     return: { body: {}, status: 201 })
+          stub_nomis_api_request(:get, "/offenders/#{prison_number}", status: 500)
         end
 
         it 'sets a flash error message indicating the details could not be prefetched' do
@@ -57,13 +55,22 @@ RSpec.describe 'New detainee requests', type: :request do
         end
       end
 
+      context 'when the provided prison number is invalid' do
+        before do
+          stub_nomis_api_request(:get, "/offenders/#{prison_number}", status: 400)
+        end
+
+        it 'sets a flash error message indicating the provided prison number is invalid' do
+          get request_path
+          expect(flash[:warning]).to eq('The provided prison number is not valid, please try again with a valid prison number')
+        end
+      end
+
       context 'when there are no records for the provided prison number' do
         let(:body) { [].to_json }
 
         before do
-          stub_offenders_api_request(:get, '/offenders/search',
-                                     with: { params: { noms_id: prison_number } },
-                                     return: { body: body, status: 200 })
+          stub_nomis_api_request(:get, "/offenders/#{prison_number}", status: 404)
         end
 
         it 'sets a flash error message indicating there no records in the API for the provided prison number' do
@@ -76,9 +83,7 @@ RSpec.describe 'New detainee requests', type: :request do
         let(:body) { 'not-valid-json' }
 
         before do
-          stub_offenders_api_request(:get, '/offenders/search',
-                                     with: { params: { noms_id: prison_number } },
-                                     return: { body: body, status: 200 })
+          stub_nomis_api_request(:get, "/offenders/#{prison_number}", body: body)
         end
 
         it 'sets a flash error message indicating the details could not be prefetched' do

@@ -6,10 +6,16 @@ RSpec.describe ApiDetaineeDetailsMapper do
   let(:middle_names) { 'C.' }
   let(:surname) { 'Doe' }
   let(:date_of_birth) { '1969-01-23' }
-  let(:gender) { 'm' }
-  let(:nationality_code) { 'FR' }
+  let(:gender) { 'Male' }
+  let(:nationalities) { 'French' }
   let(:pnc_number) { '12344' }
   let(:cro_number) { '54321' }
+  let(:aliases) {
+    [
+      { 'given_name' => 'James', 'surname' => 'Bond', 'date_of_birth' => '1969-01-24' },
+      { 'given_name' => 'Tom', 'surname' => 'Ford', 'date_of_birth' => '1969-01-25' },
+    ]
+  }
   let(:hash) {
     {
       'noms_id' => prison_number,
@@ -18,9 +24,10 @@ RSpec.describe ApiDetaineeDetailsMapper do
       'surname' => surname,
       'date_of_birth' => date_of_birth,
       'gender' => gender,
-      'nationality_code' => nationality_code,
+      'nationalities' => nationalities,
       'pnc_number' => pnc_number,
-      'cro_number' => cro_number
+      'cro_number' => cro_number,
+      'aliases' => aliases
     }
   }
   let(:expected_result) {
@@ -32,7 +39,8 @@ RSpec.describe ApiDetaineeDetailsMapper do
       gender: 'male',
       nationalities: 'French',
       pnc_number: '12344',
-      cro_number: '54321'
+      cro_number: '54321',
+      aliases: 'James Bond, Tom Ford'
     }.with_indifferent_access
   }
 
@@ -48,7 +56,8 @@ RSpec.describe ApiDetaineeDetailsMapper do
       gender: 'male',
       nationalities: 'French',
       pnc_number: '12344',
-      cro_number: '54321'
+      cro_number: '54321',
+      aliases: 'James Bond, Tom Ford'
     }.with_indifferent_access
     expect(result).to eq(expected_result)
   end
@@ -111,15 +120,15 @@ RSpec.describe ApiDetaineeDetailsMapper do
   end
 
   context 'when retrieved gender is neither male or female' do
-    let(:gender) { 'o' }
+    let(:gender) { 'Other' }
 
-    it 'returns the gender as nil' do
-      expect(mapper.call).to eq(expected_result.merge('gender' => nil))
+    it 'returns the downcase version of the gender' do
+      expect(mapper.call).to eq(expected_result.merge('gender' => 'other'))
     end
   end
 
   context 'when retrieved gender is male' do
-    let(:gender) { 'm' }
+    let(:gender) { 'Male' }
 
     it 'returns the gender as male' do
       expect(mapper.call).to eq(expected_result.merge('gender' => 'male'))
@@ -127,26 +136,18 @@ RSpec.describe ApiDetaineeDetailsMapper do
   end
 
   context 'when retrieved gender is female' do
-    let(:gender) { 'f' }
+    let(:gender) { 'Female' }
 
     it 'returns the gender as female' do
       expect(mapper.call).to eq(expected_result.merge('gender' => 'female'))
     end
   end
 
-  context 'when retrieved nationality code is empty' do
-    let(:nationality_code) { '' }
+  context 'when retrieved nationalities is empty' do
+    let(:nationalities) { '' }
 
-    it 'returns the nationalities as nil' do
-      expect(mapper.call).to eq(expected_result.merge('nationalities' => nil))
-    end
-  end
-
-  context 'when retrieved nationality code is not recognizable' do
-    let(:nationality_code) { 'RANDOM-NC' }
-
-    it 'returns the nationality code' do
-      expect(mapper.call).to eq(expected_result.merge('nationalities' => 'RANDOM-NC'))
+    it 'returns the nationalities as empty' do
+      expect(mapper.call).to eq(expected_result.merge('nationalities' => ''))
     end
   end
 
@@ -163,6 +164,38 @@ RSpec.describe ApiDetaineeDetailsMapper do
 
     it 'returns the CRO number as nil' do
       expect(mapper.call).to eq(expected_result.merge('cro_number' => nil))
+    end
+  end
+
+  context 'when detainee has no aliases' do
+    let(:aliases) { [] }
+
+    it 'returns aliases as nil' do
+      expect(mapper.call).to eq(expected_result.merge('aliases' => nil))
+    end
+  end
+
+  context 'when detainee has an aliases without a surname' do
+    let(:aliases) { [{ 'given_name' => 'James', 'middle_names' => 'C. Reilly', 'date_of_birth' => '1969-01-24' }] }
+
+    it 'returns the remain names for that aliases' do
+      expect(mapper.call).to eq(expected_result.merge('aliases' => 'James C. Reilly'))
+    end
+  end
+
+  context 'when detainee has an aliases without middle names' do
+    let(:aliases) { [{ 'given_name' => 'James', 'surname' => 'Lovett', 'date_of_birth' => '1969-01-24' }] }
+
+    it 'returns the remain names for that aliases' do
+      expect(mapper.call).to eq(expected_result.merge('aliases' => 'James Lovett'))
+    end
+  end
+
+  context 'when detainee has an aliases without given name' do
+    let(:aliases) { [{ 'middle_names' => 'C. Reilly', 'surname' => 'Lovett', 'date_of_birth' => '1969-01-24' }] }
+
+    it 'returns the remain names for that aliases' do
+      expect(mapper.call).to eq(expected_result.merge('aliases' => 'C. Reilly Lovett'))
     end
   end
 end
