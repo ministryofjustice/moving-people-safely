@@ -29,12 +29,18 @@ module Page
       end
     end
 
-    def confirm_move_info(move)
+    def confirm_move_info(move, options = {})
       within('.move-information') do
+        expect(page).to have_content move.from
         expect(page).to have_content move.to
         expect(page).to have_content move.date.strftime('%d %b %Y')
-        expect(page).to have_content('Hospital, Court')
-        expect(page).to have_content('Dentist, Tribunal')
+        destinations = options[:destinations]
+        if destinations.present?
+          must_returns = destinations.select { |d| d[:must] == :return }.pluck(:establishment)
+          must_not_returns = destinations.select { |d| d[:must] == :not_return }.pluck(:establishment)
+          expect(page).to have_content(must_returns.join(', '))
+          expect(page).to have_content(must_not_returns.join(', '))
+        end
       end
     end
 
