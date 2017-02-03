@@ -6,6 +6,46 @@ RSpec.describe Forms::Risk::HostageTaker, type: :form do
 
   describe '#validate' do
     context "for hostage taker" do
+      context 'when hostage taker is set to no' do
+        before { form.hostage_taker = 'no' }
+
+        context 'and staff hostage taker is set to true' do
+          before { form.staff_hostage_taker = true }
+
+          context 'but date of most recent incident is not present' do
+            before { form.date_most_recent_staff_hostage_taker_incident = nil }
+
+            it 'form is still valid' do
+              expect(form).to be_valid
+            end
+          end
+        end
+
+        context 'and prisoners hostage taker is set to true' do
+          before { form.prisoners_hostage_taker = true }
+
+          context 'but date of most recent incident is not present' do
+            before { form.date_most_recent_prisoners_hostage_taker_incident = nil }
+
+            it 'form is still valid' do
+              expect(form).to be_valid
+            end
+          end
+        end
+
+        context 'and public hostage taker is set to true' do
+          before { form.public_hostage_taker = true }
+
+          context 'but date of most recent incident is not present' do
+            before { form.date_most_recent_public_hostage_taker_incident = nil }
+
+            it 'form is still valid' do
+              expect(form).to be_valid
+            end
+          end
+        end
+      end
+
       context 'when hostage taker is set to yes' do
         before { form.hostage_taker = 'yes' }
 

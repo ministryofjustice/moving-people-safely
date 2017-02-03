@@ -28,7 +28,7 @@ module Forms
 
       validates :date_most_recent_staff_hostage_taker_incident,
         date: { not_in_the_future: true },
-        if: -> { staff_hostage_taker == true }
+        if: -> { hostage_taker == 'yes' && staff_hostage_taker == true }
 
       property :date_most_recent_prisoners_hostage_taker_incident, type: TextDate
       reset attributes: %i[date_most_recent_prisoners_hostage_taker_incident],
@@ -37,7 +37,7 @@ module Forms
 
       validates :date_most_recent_prisoners_hostage_taker_incident,
         date: { not_in_the_future: true },
-        if: -> { prisoners_hostage_taker == true }
+        if: -> { hostage_taker == 'yes' && prisoners_hostage_taker == true }
 
       property :date_most_recent_public_hostage_taker_incident, type: TextDate
       reset attributes: %i[date_most_recent_public_hostage_taker_incident],
@@ -46,7 +46,7 @@ module Forms
 
       validates :date_most_recent_public_hostage_taker_incident,
         date: { not_in_the_future: true },
-        if: -> { public_hostage_taker == true }
+        if: -> { hostage_taker == 'yes' && public_hostage_taker == true }
 
       private
 
