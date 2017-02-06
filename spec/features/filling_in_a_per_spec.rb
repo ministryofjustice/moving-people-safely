@@ -32,9 +32,15 @@ RSpec.feature 'filling in a PER', type: :feature do
     dashboard.create_new_profile.click
 
     detainee_details.complete_form(detainee)
-    move_details.complete_form(move_data)
+    destinations = [
+      { establishment: 'Hospital', must: :return },
+      { establishment: 'Court', must: :return },
+      { establishment: 'Dentist', must: :not_return },
+      { establishment: 'Tribunal', must: :not_return }
+    ]
+    move_details.complete_form(move_data, destinations: destinations)
 
-    profile.confirm_move_info(move_data)
+    profile.confirm_move_info(move_data, destinations: destinations)
     profile.confirm_detainee_details(detainee)
     profile.click_edit_healthcare
 

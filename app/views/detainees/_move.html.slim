@@ -4,11 +4,15 @@
   h2
     ' Move information
   .info-tiles
-    .tile
+    .tile-3
       | Date of travel
       br
       b = move.humanized_date
-    .tile
+    .tile-3
+      | From
+      br
+      b = move.from
+    .tile-3
       | To
       br
       b = move.to

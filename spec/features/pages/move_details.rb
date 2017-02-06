@@ -1,11 +1,12 @@
 module Page
   class MoveDetails < Base
-    def complete_form(move)
+    def complete_form(move, options = {})
       fill_in 'From', with: move.from
       fill_in 'To', with: move.to
       fill_in 'Date', with: move.date
       fill_in_not_for_release_details(move)
-      fill_in_destinations
+      destinations = options[:destinations]
+      fill_in_destinations(destinations) if destinations.present?
       save_and_continue
     end
 
@@ -28,19 +29,13 @@ module Page
       end
     end
 
-    def fill_in_destinations
+    def fill_in_destinations(destinations)
       choose 'move_has_destinations_yes'
-      fill_in 'move_destinations_attributes_0_establishment', with: 'Hospital'
-      choose 'move_destinations_attributes_0_must_return_must_return'
-      click_button 'Add establishment'
-      fill_in 'move_destinations_attributes_1_establishment', with: 'Court'
-      choose 'move_destinations_attributes_1_must_return_must_return'
-      click_button 'Add establishment'
-      fill_in 'move_destinations_attributes_2_establishment', with: 'Dentist'
-      choose 'move_destinations_attributes_2_must_return_must_not_return'
-      click_button 'Add establishment'
-      fill_in 'move_destinations_attributes_3_establishment', with: 'Tribunal'
-      choose 'move_destinations_attributes_3_must_return_must_not_return'
+      destinations.each_with_index do |destination, index|
+        fill_in "move_destinations_attributes_#{index}_establishment", with: destination[:establishment]
+        choose "move_destinations_attributes_#{index}_must_return_must_#{destination[:must]}"
+        click_button 'Add establishment' unless index == destinations.size - 1
+      end
     end
   end
 end

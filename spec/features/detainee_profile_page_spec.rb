@@ -331,6 +331,30 @@ RSpec.feature 'detainee profile page', type: :feature do
     end
   end
 
+  context 'move information' do
+    context 'detainee with no active move' do
+      let(:detainee) { create(:detainee, :with_completed_move) }
+
+      scenario 'does not display any move information' do
+        login
+
+        visit detainee_path(detainee)
+        expect(page).not_to have_css('.move-information')
+      end
+    end
+
+    context 'detainee with an active move' do
+      let(:detainee) { create(:detainee, :with_active_move) }
+
+      scenario 'displays all the mandatory move information' do
+        login
+
+        visit detainee_path(detainee)
+        profile.confirm_move_info(detainee.active_move)
+      end
+    end
+  end
+
   context 'offences section' do
     let(:detainee) { create(:detainee, :with_active_move, :with_no_offences) }
     let(:active_move) { detainee.active_move }
