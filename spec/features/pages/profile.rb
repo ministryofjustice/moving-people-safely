@@ -53,6 +53,18 @@ module Page
       end
     end
 
+    def assert_link_to_new_move(detainee)
+      within '#no-active-move' do
+        expect(page).to have_selector(:css, "a[href='#{new_detainee_move_path(detainee.id)}']")
+      end
+    end
+
+    def assert_link_to_new_move_from_copy(detainee)
+      within '#no-active-move' do
+        expect(page).to have_selector(:css, "a[href='#{copy_move_path(detainee)}']")
+      end
+    end
+
     def confirm_detainee_details(detainee)
       within('#personal-details') do
         expect(page).to have_content detainee.prison_number
