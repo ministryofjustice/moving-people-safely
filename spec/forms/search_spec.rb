@@ -33,6 +33,14 @@ RSpec.describe Forms::Search, type: :form do
           expect(subject.detainee).to be_nil
         end
       end
+
+      context 'when the provided prison name is in a different format than the one recorded for the detainee' do
+        it 'still returns the correct detainee by being case insensitive' do
+          detainee = FactoryGirl.create(:detainee, prison_number: 'A1234BC')
+          subject.validate(prison_number: 'a1234bC')
+          expect(subject.detainee).to eq(detainee)
+        end
+      end
     end
 
     context 'when the form is invalid' do
