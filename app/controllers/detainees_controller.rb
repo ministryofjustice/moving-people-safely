@@ -5,7 +5,7 @@ class DetaineesController < ApplicationController
   before_action :find_detainee_data, only: %i[edit update]
 
   def new
-    form = Forms::Detainee.new(Detainee.new(detainee_default_attrs))
+    form = Forms::Detainee.new(Detainee.new(default_attrs))
     render locals: { form: form }
   end
 
@@ -20,6 +20,7 @@ class DetaineesController < ApplicationController
   end
 
   def edit
+    detainee.assign_attributes(extra_attrs)
     form = Forms::Detainee.new(detainee)
     render locals: { form: form }
   end
@@ -46,36 +47,41 @@ class DetaineesController < ApplicationController
     @move = detainee.active_move
   end
 
-  def detainee_default_attrs
+  def set_default_attrs
     return {} unless params[:prison_number].present?
-    if detainee_api_error.present?
-      flash.now[:warning] = pre_filling_error_message
-      return { prison_number: params[:prison_number] }
+    status, remote_attrs = fetch_response_for(params[:prison_number])
+    flash_fetcher_errors(status.errors) if status.error?
+    permitted_params(remote_attrs)
+  end
+
+  def default_attrs
+    @default_attrs ||= set_default_attrs
+  end
+
+  def set_extra_attrs
+    options = { pull: :none }
+    options = params.slice(:pull) if params[:pull]
+    status, remote_attrs = fetch_response_for(detainee.prison_number, options)
+    flash_fetcher_errors(status.errors) if status.error?
+    permitted_params(remote_attrs)
+  end
+
+  def extra_attrs
+    @extra_attrs ||= set_extra_attrs
+  end
+
+  def flash_fetcher_errors(errors)
+    errors.each do |error|
+      message = t("alerts.detainee.#{error}")
+      flash.now[:warning] ||= []
+      flash.now[:warning] << message
     end
-    permitted_params(detainee_api_attrs)
   end
 
-  def pre_filling_error_message
-    case detainee_api_error
-    when 'api_error', 'internal_error'
-      t('alerts.detainee.pre_filling_unavailable')
-    when 'details_not_found'
-      t('alerts.detainee.details_not_found')
-    when 'invalid_input'
-      t('alerts.detainee.invalid_input')
-    end
-  end
-
-  def detainee_api_response
-    @_api_detainee_response ||= DetaineeDetailsFetcher.new(params[:prison_number]).call
-  end
-
-  def detainee_api_attrs
-    detainee_api_response && detainee_api_response.details
-  end
-
-  def detainee_api_error
-    detainee_api_response && detainee_api_response.error
+  def fetch_response_for(prison_number, options = {})
+    fetcher_response = Detainees::Fetcher.new(prison_number, options).call
+    remote_attrs = fetcher_response.to_h.merge(prison_number: prison_number).with_indifferent_access
+    [fetcher_response, remote_attrs]
   end
 
   def permitted_params(params)

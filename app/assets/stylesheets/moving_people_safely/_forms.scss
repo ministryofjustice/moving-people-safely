@@ -1,3 +1,7 @@
+.form-wrapper {
+  margin-top: 10px;
+}
+
 form {
   @include media(desktop) {
     .form-hint {

@@ -9,12 +9,14 @@ RSpec.feature 'Detainee creation', type: :feature do
 
       visit new_detainee_path
       new_detainee_page.assert_unprefilled_form
+      new_detainee_page.assert_form_with_image_placeholder
     end
   end
 
   context 'when detainee pre-filled information cannot be retrieved' do
     before do
       stub_nomis_api_request(:get, "/offenders/#{prison_number}", status: 500)
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/image")
     end
 
     scenario 'filling detainee details manually' do
@@ -52,13 +54,56 @@ RSpec.feature 'Detainee creation', type: :feature do
 
     before do
       stub_nomis_api_request(:get, "/offenders/#{prison_number}", body: successful_body)
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/image")
     end
 
-    scenario 'filling detainee details manually' do
+    scenario 'detainee details are prefilled in the form' do
       login
 
       visit new_detainee_path(prison_number: prison_number)
       new_detainee_page.assert_prefilled_form(expected_field_values)
+    end
+  end
+
+  context 'when detainee image cannot be retrieved' do
+    before do
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}")
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/image", status: 500)
+    end
+
+    scenario 'display an image placeholder' do
+      login
+
+      visit new_detainee_path(prison_number: prison_number)
+      new_detainee_page.assert_form_with_image_placeholder
+    end
+  end
+
+  context 'when detainee image is retrieved but is empty' do
+    before do
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}")
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/image", body: { image: nil }.to_json)
+    end
+
+    scenario 'display an image placeholder' do
+      login
+
+      visit new_detainee_path(prison_number: prison_number)
+      new_detainee_page.assert_form_with_image_placeholder
+    end
+  end
+
+  context 'when detainee image is retrieved and has content' do
+    before do
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}")
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/image", body: { image: 'base64-enconded-image' }.to_json)
+    end
+
+    scenario 'display the retrieved detainee image' do
+      login
+
+      visit new_detainee_path(prison_number: prison_number)
+      new_detainee_page.assert_form_with_detainee_image
     end
   end
 end

@@ -12,6 +12,7 @@ module Forms
     property :cro_number,    type: StrictString
     property :aliases,       type: StrictString
     property :image_filename
+    property :image
 
     validates :surname, :forenames, presence: true
 
