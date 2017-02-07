@@ -16,7 +16,7 @@ module Forms
 
       optional_checkbox :sex_offence_adult_male_victim
       optional_checkbox :sex_offence_adult_female_victim
-      optional_checkbox_with_details :sex_offence_under18_victim
+      optional_checkbox_with_details :sex_offence_under18_victim, :sex_offence
 
       reset attributes: %i[sex_offence_adult_male_victim sex_offence_adult_female_victim
                            sex_offence_under18_victim sex_offence_under18_victim_details],
