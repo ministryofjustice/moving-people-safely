@@ -85,6 +85,26 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     end
   end
 
+  def date_picker_text_field(attribute, options = {})
+    content_tag :div,
+      class: form_group_classes(attribute.to_sym) + ' date-picker-wrapper',
+      id: form_group_id(attribute) do
+        set_field_classes! options
+
+        label_tag = label(attribute, class: 'form-label')
+        add_hint :label, label_tag, attribute
+
+        date_picker_tag = content_tag :span,
+          class: 'date-picker-field input-group date',
+          data: { provide: 'datepicker' } do
+            date_text_field_tag = custom_text_field(attribute, class: 'no-script form-control date-field')
+            calendar_icon_tag = content_tag :span, nil, class: 'no-script calendar-icon input-group-addon'
+            (date_text_field_tag + calendar_icon_tag).html_safe
+          end
+        (label_tag + date_picker_tag).html_safe
+      end
+  end
+
   def search_text_field(attribute, options = {})
     ActionView::Helpers::Tags::TextField.new(
       object.class.name, attribute, self,
@@ -147,6 +167,13 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
   end
 
   private
+
+  def custom_text_field(attribute, options = {})
+    ActionView::Helpers::Tags::TextField.new(
+      object.class.name, attribute, self,
+      { value: object.public_send(attribute), class: 'form-control' }.merge(options)
+    ).render
+  end
 
   def style_for_radio_block(attribute, options = {})
     style = 'optional-section-wrapper'
