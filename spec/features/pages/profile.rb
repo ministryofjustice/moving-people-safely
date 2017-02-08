@@ -38,8 +38,17 @@ module Page
         if destinations.present?
           must_returns = destinations.select { |d| d[:must] == :return }.pluck(:establishment)
           must_not_returns = destinations.select { |d| d[:must] == :not_return }.pluck(:establishment)
-          expect(page).to have_content(must_returns.join(', '))
-          expect(page).to have_content(must_not_returns.join(', '))
+          within('.must-return-to') do
+            must_returns.each do |must_return|
+              expect(page).to have_content(must_return)
+            end
+          end
+
+          within('.must-not-return-to') do
+            must_not_returns.each do |must_not_return|
+              expect(page).to have_content(must_not_return)
+            end
+          end
         end
       end
     end
