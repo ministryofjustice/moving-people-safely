@@ -43,8 +43,12 @@
               = radio_button_tag 'moves_due_on', Date.tomorrow.strftime('%d/%m/%Y'), (date_picker == Date.tomorrow), class: 'radio-date-selector', disabled: true
               == 'Tomorrow'
 
-  - unless dashboard.moves.empty?
-    .moves-gauges
+  - if dashboard.moves.empty?
+    #moves_gauges.moves-gauges
+      dl.status_gauges
+        == dashboard.render_no_moves_indicator
+  - else
+    #moves_gauges.moves-gauges
       dl.status_gauges
         == dashboard.render_detainees_indicator
         == dashboard.render_risk_indicator
@@ -52,8 +56,6 @@
         == dashboard.render_offences_indicator
 
 .search-results
+  hr
   - unless dashboard.moves.empty?
     = render partial: 'moves', locals: { moves: dashboard.moves }
-  - else
-    p = "There are no detainees due to move on #{date_picker}."
-    p To initiate a PER for a detainee enter the prisoner number and search to view any existing records. If there are no records, you will be given the opportunity to start a new one.

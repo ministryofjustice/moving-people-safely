@@ -315,11 +315,8 @@
     .gauge_wrapper.complete {
       .title { color: green; }
       .value {
-        background-color: green;
-        color: white;
-
-        span { display: none; }
-        &:after { content: '\2714'; }
+        background-color: white;
+        color: green;
       }
     }
   }
