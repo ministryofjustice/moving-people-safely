@@ -3,6 +3,7 @@ module Page
     include FactoryGirl::Syntax::Methods
     include RSpec::Matchers
     include Capybara::DSL
+    include Rails.application.routes.url_helpers
 
     delegate :within, to: :Capybara
 

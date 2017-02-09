@@ -9,10 +9,11 @@
     = render partial: 'move', locals: { move: MovePresenter.new(active_move) }
   - else
     h2 Move information
-    .alert.alert--warning
+    #no-active-move.alert.alert--warning
       p
         strong == 'No active move'
-      = link_to 'Create new move', new_detainee_move_path(detainee_id: detainee.id), class: 'button'
+      - create_new_move_path = detainee.moves.empty? ? new_detainee_move_path(detainee_id: detainee.id) : copy_move_path(detainee)
+      = link_to 'Create new move', create_new_move_path, class: 'button'
 
   = render partial: 'detainee', locals: { detainee: DetaineePresenter.new(detainee) }
 

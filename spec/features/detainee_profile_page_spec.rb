@@ -332,6 +332,18 @@ RSpec.feature 'detainee profile page', type: :feature do
   end
 
   context 'move information' do
+    context 'detainee with no moves' do
+      let(:detainee) { create(:detainee, :with_no_moves) }
+
+      scenario 'does not display any move information' do
+        login
+
+        visit detainee_path(detainee)
+        expect(page).not_to have_css('.move-information')
+        profile.assert_link_to_new_move(detainee)
+      end
+    end
+
     context 'detainee with no active move' do
       let(:detainee) { create(:detainee, :with_completed_move) }
 
@@ -340,6 +352,7 @@ RSpec.feature 'detainee profile page', type: :feature do
 
         visit detainee_path(detainee)
         expect(page).not_to have_css('.move-information')
+        profile.assert_link_to_new_move_from_copy(detainee)
       end
     end
 

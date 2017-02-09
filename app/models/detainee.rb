@@ -24,6 +24,7 @@ class Detainee < ApplicationRecord
   end
 
   def each_alias
+    return [] unless aliases.present?
     aliases.split(',').each { |a| yield a }
   end
 end
