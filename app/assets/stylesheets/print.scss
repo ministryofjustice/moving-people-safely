@@ -13,6 +13,41 @@ $is-print: true;
 @import "elements/elements-typography";
 @import "elements/layout";
 
+@media print {
+  html, body {
+    width: 210mm;
+    height: 297mm;
+  }
+
+  .grid-row {
+    display: block;
+  }
+
+  .grid-column {
+    float: left;
+  }
+
+  .header-row {
+    border-bottom: 1px dotted black;
+  }
+
+  .column-one-half {
+    width: 50%;
+  }
+
+  .column-one-quarter {
+    width: (100% / 4);
+  }
+
+  .column-one-third {
+    width: (100% / 3);
+  }
+
+  .column-one-sixth {
+    width: (100% / 6);
+  }
+}
+
 body {
   background-color: white;
 }
@@ -20,8 +55,6 @@ body {
 main {
   text-align: left;
   margin: 0;
-  height: 29.7cm;
-  width: 21cm;
   position: relative;
   @extend .font-xsmall;
 }
@@ -44,6 +77,10 @@ table {
   &.padded {
     padding-top: 10px;
     vertical-align: top;
+  }
+
+  &.padded-bottom {
+    padding-bottom: 10px;
   }
 }
 
@@ -86,6 +123,18 @@ table {
     font-weight: bold;
     @extend .font-small;
   }
+}
+
+.top-dotted {
+  border-top: 1px dotted black;
+}
+
+.min-heighted {
+  min-height: 100px;
+}
+
+.footer {
+  page-break-after: always;
 }
 
 .indicators {
@@ -248,3 +297,4 @@ table.about {
     }
   }
 }
+

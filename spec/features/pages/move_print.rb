@@ -16,6 +16,14 @@ module Page
       end
     end
 
+    def assert_move_details(move)
+      within('.move') do
+        assert_content(move.from)
+        assert_content(move.to)
+        assert_content(move.date.strftime('%d %b %Y'))
+      end
+    end
+
     private
 
     def assert_content(content, options = {})
