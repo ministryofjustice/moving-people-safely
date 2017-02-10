@@ -1,11 +1,17 @@
 $is-print: true;
 
 @import "elements/reset";
+
+@import "grid_layout";
+@import "colours";
+@import "elements/helpers";
+
 @import "colours";
 @import "typography";
 @import "measurements";
 @import "shims";
 @import "elements/elements-typography";
+@import "elements/layout";
 
 body {
   background-color: white;
@@ -24,7 +30,67 @@ table {
   width: 100%;
 }
 
-span.strong-text {
+.strong-text {
+  font-weight: bold;
+}
+
+.grid {
+  margin-left: 5px;
+}
+
+.grid-row {
+  margin: 0;
+
+  &.padded {
+    padding-top: 10px;
+    vertical-align: top;
+  }
+}
+
+.grid-column {
+  padding: 0;
+
+  .title {
+    font-weight: lighter;
+  }
+
+  .image {
+    text-align: right;
+
+    .image-unavailable-text {
+      position: absolute;
+      font-weight: lighter;
+      text-align: center;
+      margin-top: 70px;
+      margin-bottom: 70px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+}
+
+.column-one-sixth {
+  @extend .column-one-third;
+  width: (100% / 6);
+}
+
+.header-row {
+  border-top: 2px solid black;
+  border-bottom: 1px dotted black;
+  font-weight: normal;
+  @extend .font-medium;
+  padding: 5px 0;
+  height: auto;
+
+  &.small {
+    font-weight: bold;
+    @extend .font-small;
+  }
+}
+
+.indicators {
+  padding: 10px 0;
+  border-bottom: 1px dotted black;
   font-weight: bold;
 }
 
@@ -102,10 +168,38 @@ table.detainee {
 
   td.image {
     text-align: right;
+
+    .image {
+      position: relative;
+      float: right;
+      clear: both;
+      width: 128px;
+      height: 180px;
+
+      .image-unavailable-text {
+        position: absolute;
+        font-weight: lighter;
+        text-align: center;
+        margin-top: 70px;
+        margin-bottom: 70px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      img {
+        top: 0;
+        left: 0;
+        height: 180px;
+        width: 128px;
+      }
+    }
   }
 }
 
 table.move {
+  clear: both;
+  min-height: 200px;
+
   tr.header-row {
     height: 30px;
     th {
@@ -132,8 +226,6 @@ table.move {
 }
 
 table.about {
-  position: absolute;
-  bottom: 0;
   border-top: 1px solid black;
 
   th {

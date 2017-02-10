@@ -524,4 +524,7 @@ en:
         unavailable: "Image Look-Up function is not currently available. Please try again later"
         not_found: "Look-Up function for photograph returned no image. Either try again later or attach photograph manually to print out"
         invalid_input: The provided prison number is not valid, please try again with a valid prison number
+    move:
+      print:
+        unauthorized: "Move is not in a status that can be printed"
     unable_to_confirm_incomplete_risk_assessment: Risk assessment cannot be confirmed until all mandatory answered are filled

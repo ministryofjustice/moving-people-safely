@@ -24,7 +24,7 @@ class Move < ApplicationRecord
 
   scope :order_by_recentness, -> { order(created_at: :desc) }
 
-  delegate :active?, to: :move_workflow
+  delegate :active?, :issued?, to: :move_workflow
 
   def initialize(*)
     super
