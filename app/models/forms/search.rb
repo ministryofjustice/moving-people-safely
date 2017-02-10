@@ -17,7 +17,13 @@ module Forms
       format: { with: PRISON_NUMBER_REGEX }
 
     def detainee
-      @_detainee ||= ::Detainee.find_by(prison_number: prison_number) if valid?
+      @_detainee ||= ::Detainee.find_by(_at[:prison_number].matches(prison_number)) if valid?
+    end
+
+    private
+
+    def _at
+      ::Detainee.arel_table
     end
   end
 end
