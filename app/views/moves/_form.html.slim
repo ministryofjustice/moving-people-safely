@@ -8,7 +8,17 @@
   = form_for form, url: submit_path, method: method do |f|
     = f.text_field :from
     = f.text_field :to
-    = f.text_field :date
+    = f.date_picker_text_field :date
+    .no-script
+      .form-group.date-radios
+        fieldset.inline
+          = label_tag "move_date_#{Date.today}", 'Today', class: 'block-label' do
+            = radio_button_tag 'move[date]', Date.today.strftime('%d/%m/%Y'), (form.date == Date.today), class: 'radio-date-selector', disabled: true
+            == 'Today'
+          = label_tag "move_date_#{Date.tomorrow}", 'Tomorrow', class: 'block-label' do
+            = radio_button_tag 'move[date]', Date.tomorrow.strftime('%d/%m/%Y'), (form.date == Date.tomorrow), class: 'radio-date-selector', disabled: true
+            == 'Tomorrow'
+
     = f.radio_toggle :not_for_release do
       = f.radio_toggle_with_textarea :not_for_release_reason,
         legend: false,
