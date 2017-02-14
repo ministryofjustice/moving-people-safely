@@ -1,62 +1,61 @@
 class DashboardPresenter
+  include ActionView::Helpers::TranslationHelper
+
   attr_reader :moves
 
   def initialize(moves)
     @moves = moves
-    @moves_count = moves.count
+  end
+
+  def render_no_moves_indicator
+    render_indicator(:detainees, :detainees_due_to_move, 0)
   end
 
   def render_detainees_indicator
-    render_indicator('detainees', 'Detainees due to move', @moves_count)
+    render_indicator(:detainees, :detainees_due_to_move, moves.count)
   end
 
   def render_risk_indicator
     if count_of_incomplete_risk.zero?
-      cl = 'risk complete'
-      title = 'Risk completed'
+      render_complete_indicator(:risk, :risk_complete)
     else
-      cl = 'risk incomplete'
-      title = 'Risk incomplete'
+      render_incomplete_indicator(:risk, :risk_incomplete, count_of_incomplete_risk)
     end
-
-    render_indicator(cl, title, count_of_incomplete_risk)
   end
 
   def render_health_indicator
     if count_of_incomplete_healthcare.zero?
-      cl = 'healthcare complete'
-      title = 'Health completed'
+      render_complete_indicator(:healthcare, :healthcare_complete)
     else
-      cl = 'healthcare incomplete'
-      title = 'Health incomplete'
+      render_incomplete_indicator(:healthcare, :healthcare_incomplete, count_of_incomplete_healthcare)
     end
-
-    render_indicator(cl, title, count_of_incomplete_healthcare)
   end
 
   def render_offences_indicator
     if count_of_incomplete_offences.zero?
-      cl = 'offences complete'
-      title = 'Offences completed'
+      render_complete_indicator(:offences, :offences_complete)
     else
-      cl = 'offences incomplete'
-      title = 'Offences incomplete'
+      render_incomplete_indicator(:offences, :offences_incomplete, count_of_incomplete_offences)
     end
-
-    render_indicator(cl, title, count_of_incomplete_offences)
   end
 
   private
 
-  def render_indicator(cl, title, value)
-    "<div class='gauge_wrapper #{cl}'>
-      <div class='value'>#{value}</div>
-      <div class='title'>#{title}</div>
-    </div>"
+  def render_complete_indicator(gauge, title)
+    render_indicator(gauge, title, '&#10004;', classes: %i[complete])
   end
 
-  def count_of_detainees
-    @moves_count
+  def render_incomplete_indicator(gauge, title, value)
+    render_indicator(gauge, title, value, classes: %i[incomplete])
+  end
+
+  def render_indicator(gauge, title, value, options = {})
+    localised_title = t("homepage.gauges.#{title}")
+    classes = options.fetch(:classes, [])
+    "<div id='#{gauge}_gauge' class='gauge_wrapper #{classes.join(' ')}'>
+      <div class='value'>#{value}</div>
+      <div class='title'>#{localised_title}</div>
+    </div>"
   end
 
   def count_of_incomplete_risk

@@ -1,15 +1,16 @@
 .moves
   table
-    tr
-      th.prison_number Prison No.
-      th.name Name
-      th.destination Destination
-      th Risk
-      th Health
-      th Offences
-      th
+    thead
+      tr
+        th.prison_number Prison No.
+        th.name Name
+        th.destination Destination
+        th Risk
+        th Health
+        th Offences
+        th
     - moves.each do |move|
-      tr id="prison_number_#{move.detainee.prison_number}"
+      tr.move-row id="prison_number_#{move.detainee.prison_number}"
         - if AccessPolicy.edit?(move: move)
           td = link_to move.detainee.prison_number, detainee_path(move.detainee)
         - else

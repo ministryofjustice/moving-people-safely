@@ -27,6 +27,18 @@ FactoryGirl.define do
       association :offences_workflow, :confirmed, strategy: :build
     end
 
+    trait :with_complete_risk_workflow do
+      association :risk_workflow, :confirmed, strategy: :build
+    end
+
+    trait :with_complete_healthcare_workflow do
+      association :healthcare_workflow, :confirmed, strategy: :build
+    end
+
+    trait :with_complete_offences_workflow do
+      association :offences_workflow, :confirmed, strategy: :build
+    end
+
     trait :with_destinations do
       has_destinations 'yes'
       destinations { build_list :destination, rand(1..5) }

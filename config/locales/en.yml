@@ -362,6 +362,14 @@ en:
   homepage:
     titles:
       detainee_search: Start a Person Escort Record
+    gauges:
+      detainees_due_to_move: Detainees due to move
+      healthcare_complete: Healthcare complete
+      healthcare_incomplete: Healthcare incomplete
+      offences_complete: Offences complete
+      offences_incomplete: Offences incomplete
+      risk_complete: Risk complete
+      risk_incomplete: Risk incomplete
   summary:
     section:
       answers:
