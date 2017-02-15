@@ -158,6 +158,8 @@ en:
           unknown: Clear selection
         high_profile_choices:
           unknown: Clear selection
+        high_profile_details: Details of high public interest
+        victim_of_abuse_details: Details of a victim or possible victim of abuse in prison
       risk_to_self:
         acct_status_choices:
           open: ACCT Open
