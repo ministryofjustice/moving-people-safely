@@ -49,6 +49,15 @@
    bundle exec rake dev:moves
    ```
 
+* Configure the projects ENV vars
+
+  ```bash
+  cp .env.example .env
+  ```
+
+We recommend using a shell environment switcher like [direnv](https://github.com/direnv/direnv) to manage the projects
+environment variables.
+
 For local integration with SSO refer to [SSO Integration](docs/sso_integration.md)
 
 # Running the application
