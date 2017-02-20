@@ -1,25 +1,19 @@
-# TODO: FIX THIS WHEN ITS EASIER
+require 'feature_helper'
 
-# require 'feature_helper'
+RSpec.feature 'printing a PER', type: :feature do
+  scenario 'user prints a completed PER' do
+    detainee = FactoryGirl.create(:detainee)
+    move = FactoryGirl.create(:move, :confirmed, detainee: detainee)
 
-# RSpec.feature 'printing a PER', type: :feature do
-#   scenario 'user prints a completed PER' do
-#     escort = create :escort
-#     prison_number = escort.detainee.prison_number
+    login
+    visit detainee_path(detainee)
+    print_per
+    move_print_page.assert_detainee_details(detainee)
+  end
 
-#     login
-#     print_PER(prison_number)
-
-#     within("tr#prison_number_#{prison_number}") do
-#       assert has_no_link? "#{prison_number}"
-#       assert has_content? 'Issued'
-#       assert has_link? 'Reprint'
-#     end
-#   end
-
-#   def print_PER(prison_number)
-#     within("tr#prison_number_#{prison_number}") do
-#       click_link 'Print'
-#     end
-#   end
-# end
+  def print_per
+    within(".actions") do
+      click_link 'Print'
+    end
+  end
+end

@@ -1,6 +1,6 @@
 ul.actions
   - if active_move.complete?
     li
-      = link_to 'Print', print_path(active_move), class: 'button button-print'
+      = link_to 'Print', move_print_path(active_move), class: 'button button-print'
   li.link-return-home
     = link_to "Return to home", root_path

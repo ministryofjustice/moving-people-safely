@@ -19,6 +19,10 @@ module ApplicationPageHelpers
     @_move_details ||= Page::MoveDetails.new
   end
 
+  def move_print_page
+    @_move_print_page ||= Page::MovePrint.new
+  end
+
   def profile
     @_profile ||= Page::Profile.new
   end
