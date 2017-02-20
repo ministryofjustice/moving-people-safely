@@ -122,6 +122,7 @@ en:
         from: From
         to: To
         date: Date of travel
+        has_destinations: Are there establishments the detainee must or must not be sent
         has_destinations_choices:
           unknown: Clear selection
         destinations:
@@ -511,6 +512,8 @@ en:
             has_past_offences:
               inclusion: 'Past offences: You must select an option'
   errors:
+    messages:
+      minimum_collection_size: At least one item needs to be provided
     attributes:
       base:
         minimum_current_offence: 'At least one current offence needs to be provided'

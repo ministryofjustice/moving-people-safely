@@ -5,6 +5,7 @@ FactoryGirl.define do
     from { FixtureData.prison }
     to { FixtureData.county_court }
     date { Date.today }
+    not_for_release 'no'
     has_destinations 'no'
 
     association :move_workflow, :incomplete, strategy: :build
