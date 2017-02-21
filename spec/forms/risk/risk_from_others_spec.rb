@@ -21,10 +21,10 @@ RSpec.describe Forms::Risk::RiskFromOthers, type: :form do
 
   describe '#validate' do
     it { is_expected.to validate_optional_field(:rule_45) }
-    it { is_expected.to validate_optional_field(:victim_of_abuse) }
-    it { is_expected.to be_configured_to_reset([:victim_of_abuse_details]).when(:victim_of_abuse).not_set_to('yes') }
-    it { is_expected.to validate_optional_field(:high_profile) }
-    it { is_expected.to be_configured_to_reset([:high_profile_details]).when(:high_profile).not_set_to('yes') }
+    it { is_expected.to validate_optional_details_field(:victim_of_abuse) }
+    it { is_expected.to be_configured_to_reset(['victim_of_abuse_details']).when(:victim_of_abuse).not_set_to('yes') }
+    it { is_expected.to validate_optional_details_field(:high_profile) }
+    it { is_expected.to be_configured_to_reset(['high_profile_details']).when(:high_profile).not_set_to('yes') }
 
     describe 'csra attribute' do
       it do
