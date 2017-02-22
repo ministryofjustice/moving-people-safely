@@ -77,17 +77,18 @@ html
                 = image_tag "photo_unavailable.png", size: '128x180'
       div.grid.move
         div.grid-row.header-row.small = 'Move details'
-        div.grid-row.padded
+        div.grid-row.padded.padded-bottom
           div.grid-column.column-one-third
             div.title Date of travel
-            div.strong-text = move.date
+            div.strong-text = move.date.to_s(:humanized)
           div.grid-column.column-one-third
             div.title From
             div.strong-text = move.from
           div.grid-column.column-one-third
             div.title To
             div.strong-text = move.to
-      table.about
+        div.grid-row.top-dotted.min-heighted
+      table.about.footer
         tr
           th About this Person Escort Record
         tr

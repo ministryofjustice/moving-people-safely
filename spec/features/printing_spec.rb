@@ -9,6 +9,7 @@ RSpec.feature 'printing a PER', type: :feature do
     visit detainee_path(detainee)
     print_per
     move_print_page.assert_detainee_details(detainee)
+    move_print_page.assert_move_details(move)
   end
 
   def print_per
