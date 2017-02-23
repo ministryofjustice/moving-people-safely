@@ -5,7 +5,7 @@ module Moves
     def show
       error_redirect && return unless printable_move?
       move.move_workflow.issued! unless move.issued?
-      render :show, locals: { detainee: Print::DetaineePresenter.new(detainee), move: move }
+      render :show, locals: { detainee: detainee_presenter, move: move_presenter }
     end
 
     private
@@ -24,6 +24,14 @@ module Moves
 
     def error_redirect
       redirect_back(fallback_location: root_path, alert: t('alerts.move.print.unauthorized'))
+    end
+
+    def detainee_presenter
+      @detainee_presenter ||= Print::DetaineePresenter.new(detainee)
+    end
+
+    def move_presenter
+      @move_presenter ||= Print::MovePresenter.new(move)
     end
   end
 end

@@ -491,6 +491,11 @@ en:
         violence_to_general_public: Violent to general public
         violence_to_other_detainees: Violent to other detainees
         violence_to_staff: Violent to staff
+  print:
+    label:
+      move:
+        must_return_to: Must return to
+        must_not_return_to: Must NOT return to
   profile:
     alerts:
       acct_status:

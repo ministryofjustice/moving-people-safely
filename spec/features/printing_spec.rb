@@ -3,7 +3,7 @@ require 'feature_helper'
 RSpec.feature 'printing a PER', type: :feature do
   scenario 'user prints a completed PER' do
     detainee = FactoryGirl.create(:detainee)
-    move = FactoryGirl.create(:move, :confirmed, detainee: detainee)
+    move = FactoryGirl.create(:move, :confirmed, :with_destinations, detainee: detainee)
 
     login
     visit detainee_path(detainee)
