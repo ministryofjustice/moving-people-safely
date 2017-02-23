@@ -8,7 +8,9 @@ module Forms
     property :to,   type: StrictString
     property :date, type: TextDate
 
-    optional_field :not_for_release, default: 'unknown'
+    optional_field :not_for_release,
+      options: TOGGLE_STRICT_CHOICES,
+      allow_blank: false
     reset attributes: %i[not_for_release_reason not_for_release_reason_details],
           if_falsey: :not_for_release
 
@@ -30,21 +32,20 @@ module Forms
           if_falsey: :not_for_release_reason,
           enabled_value: REASON_WITH_DETAILS
 
-    optional_field :has_destinations
+    optional_field :has_destinations,
+      options: TOGGLE_STRICT_CHOICES,
+      allow_blank: false
     prepopulated_collection :destinations,
       collection_form_class: Forms::Moves::Destination
+    validate :has_minimum_destinations
 
     delegate :persisted?, to: :model
 
-    validate :validate_date
+    validates :date, date: { not_in_the_past: { message: 'must not be in the past' } }
 
-    def validate_date
-      # TODO: extract a common date validator
-      if date.is_a? Date
-        errors[:date] << 'must not be in the past.' if date < Date.today
-      else
-        errors.add(:date)
-      end
+    def has_minimum_destinations
+      return unless has_destinations == 'yes'
+      errors.add(:destinations, :minimum_collection_size) if destinations.empty?
     end
 
     def save_copy

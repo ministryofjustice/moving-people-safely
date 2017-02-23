@@ -31,13 +31,9 @@ RSpec.describe Forms::Move, type: :form do
 
   describe 'defaults' do
     its(:from) { is_expected.to eq 'HMP Bedford' }
-    its(:has_destinations) { is_expected.to eq 'unknown' }
   end
 
   describe '#validate' do
-    it { is_expected.to validate_prepopulated_collection(:destinations, subform_class: Forms::Moves::Destination) }
-    it { is_expected.to validate_optional_field(:has_destinations) }
-
     describe 'nilifies empty strings' do
       %w[from to].each do |attribute|
         it { is_expected.to validate_strict_string(attribute) }
@@ -68,7 +64,15 @@ RSpec.describe Forms::Move, type: :form do
     end
 
     context "for not for release" do
-      it { is_expected.to validate_optional_field(:not_for_release) }
+      it { is_expected.to validate_optional_field(:not_for_release, inclusion: { in: %w(yes no) }) }
+
+      shared_examples_for 'validation error on not for release value' do
+        it 'returns an inclusion validation error' do
+          expect(form).not_to be_valid
+          expect(form.errors.keys).to include(:not_for_release)
+          expect(form.errors[:not_for_release]).to match_array(['question must be answered'])
+        end
+      end
 
       shared_examples_for 'no validation on not for release reason' do
         it 'does not validate the reason (and details) for release' do
@@ -85,6 +89,7 @@ RSpec.describe Forms::Move, type: :form do
           form.not_for_release_reason_details = nil
         end
 
+        include_examples 'validation error on not for release value'
         include_examples 'no validation on not for release reason'
 
         context 'and not for release reason is set to other' do
@@ -92,6 +97,7 @@ RSpec.describe Forms::Move, type: :form do
             form.not_for_release_reason = 'other'
           end
 
+          include_examples 'validation error on not for release value'
           include_examples 'no validation on not for release reason'
         end
       end
@@ -206,7 +212,59 @@ RSpec.describe Forms::Move, type: :form do
         it 'sets a descriptive error on date' do
           params[:date] = '01/01/2015'
           form.validate(params)
-          expect(form.errors[:date]).to include 'must not be in the past.'
+          expect(form.errors[:date]).to include 'must not be in the past'
+        end
+      end
+    end
+
+    context 'has destinations' do
+      it { is_expected.to validate_prepopulated_collection(:destinations, subform_class: Forms::Moves::Destination) }
+      it { is_expected.to validate_optional_field(:has_destinations, inclusion: { in: %w(yes no) }) }
+
+      context 'when has destinations is blank' do
+        before do
+          form.has_destinations = ''
+        end
+
+        specify {
+          expect(form).not_to be_valid
+          expect(form.errors.keys).to include(:has_destinations)
+          expect(form.errors[:has_destinations]).to match_array(['question must be answered'])
+        }
+
+      end
+
+      shared_examples_for 'no inclusion validation error' do
+        specify {
+          form.valid?
+          expect(form.errors.keys).not_to include(:has_destinations)
+        }
+      end
+
+      context 'when has destinations is set to "no"' do
+        before { form.has_destinations = 'no' }
+        include_examples 'no inclusion validation error'
+
+        context 'and no destinations are provided' do
+          before { form.destinations = [] }
+
+          it 'does not require to validate destinations' do
+            expect(form.errors.keys).not_to include(:destinations)
+          end
+        end
+      end
+
+      context 'when has destinations is set to "yes"' do
+        before { form.has_destinations = 'yes' }
+        include_examples 'no inclusion validation error'
+
+        context 'and no destinations are provided' do
+          before { form.destinations = [] }
+          specify {
+            expect(form).not_to be_valid
+            expect(form.errors.keys).to include(:destinations)
+            expect(form.errors[:destinations]).to match_array([I18n.t(:minimum_collection_size, scope: 'errors.messages')])
+          }
         end
       end
     end
