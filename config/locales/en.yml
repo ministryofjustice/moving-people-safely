@@ -507,6 +507,12 @@ en:
   activemodel:
     errors:
       models:
+        move:
+          attributes:
+            has_destinations:
+              inclusion: question must be answered
+            not_for_release:
+              inclusion: question must be answered
         offences:
           attributes:
             has_past_offences:

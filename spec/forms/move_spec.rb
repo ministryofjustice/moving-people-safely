@@ -66,6 +66,14 @@ RSpec.describe Forms::Move, type: :form do
     context "for not for release" do
       it { is_expected.to validate_optional_field(:not_for_release, inclusion: { in: %w(yes no) }) }
 
+      shared_examples_for 'validation error on not for release value' do
+        it 'returns an inclusion validation error' do
+          expect(form).not_to be_valid
+          expect(form.errors.keys).to include(:not_for_release)
+          expect(form.errors[:not_for_release]).to match_array(['question must be answered'])
+        end
+      end
+
       shared_examples_for 'no validation on not for release reason' do
         it 'does not validate the reason (and details) for release' do
           form.valid?
@@ -81,6 +89,7 @@ RSpec.describe Forms::Move, type: :form do
           form.not_for_release_reason_details = nil
         end
 
+        include_examples 'validation error on not for release value'
         include_examples 'no validation on not for release reason'
 
         context 'and not for release reason is set to other' do
@@ -88,6 +97,7 @@ RSpec.describe Forms::Move, type: :form do
             form.not_for_release_reason = 'other'
           end
 
+          include_examples 'validation error on not for release value'
           include_examples 'no validation on not for release reason'
         end
       end
@@ -219,7 +229,7 @@ RSpec.describe Forms::Move, type: :form do
         specify {
           expect(form).not_to be_valid
           expect(form.errors.keys).to include(:has_destinations)
-          expect(form.errors[:has_destinations]).to match_array([I18n.t(:inclusion, scope: 'errors.messages')])
+          expect(form.errors[:has_destinations]).to match_array(['question must be answered'])
         }
 
       end
