@@ -1,4 +1,10 @@
 class BaseSection
+  MethodNotImplementedError = Class.new(StandardError)
+
+  def name
+    raise MethodNotImplementedError
+  end
+
   def question_is_conditional?(question)
     !question_condition(question).nil?
   end

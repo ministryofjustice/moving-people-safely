@@ -1,7 +1,6 @@
 module Print
   class MovePresenter < SimpleDelegator
-    include ActionView::Helpers::TagHelper
-    include ActionView::Helpers::TranslationHelper
+    include Print::Helpers
 
     def date
       model.date.to_s(:humanized)
@@ -29,14 +28,6 @@ module Print
       label = t(attr, scope: [:print, :label, :move])
       return title_label(label) if destinations.empty?
       strong_title_label(label)
-    end
-
-    def strong_title_label(label)
-      content_tag(:div, label, class: 'strong-text')
-    end
-
-    def title_label(label)
-      content_tag(:div, label, class: 'title')
     end
 
     def format_destinations(destinations)

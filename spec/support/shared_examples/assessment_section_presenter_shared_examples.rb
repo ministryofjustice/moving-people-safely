@@ -64,17 +64,7 @@ RSpec.shared_examples_for 'assessment section presenter' do
           let(:answer) { 'some_localised_value' }
 
           before do
-            I18n.backend.store_translations(:en, {
-              summary: {
-                section: {
-                  answers: {
-                    section_name => {
-                      'some_localised_value' => 'Localised some other value'
-                    }
-                  }
-                }
-              }
-            })
+            localize_key("summary.section.answers.#{section_name}.some_localised_value", 'Localised some other value')
           end
 
           it 'returns the localised version of the answer' do
@@ -173,17 +163,7 @@ RSpec.shared_examples_for 'assessment section presenter' do
         before do
           allow(section).to receive(:question_details).and_return(%i[localised_question_detail_1 question_detail_2])
           allow(model).to receive(:localised_question_detail_1).and_return(answer_detail_1)
-          I18n.backend.store_translations(:en, {
-            summary: {
-              section: {
-                questions: {
-                  section_name => {
-                    'localised_question_detail_1' => 'Localised question detail 1: '
-                  }
-                }
-              }
-            }
-          })
+          localize_key("summary.section.questions.#{section_name}.localised_question_detail_1", 'Localised question detail 1: ')
         end
 
         it 'prepends the localised label for the specified detail in the returned string' do
@@ -195,17 +175,7 @@ RSpec.shared_examples_for 'assessment section presenter' do
         let(:answer_detail_2) { 'localised_answer_detail_2' }
 
         before do
-          I18n.backend.store_translations(:en, {
-            summary: {
-              section: {
-                answers: {
-                  section_name => {
-                    'localised_answer_detail_2' => 'Localised answer detail 2'
-                  }
-                }
-              }
-            }
-          })
+          localize_key("summary.section.answers.#{section_name}.localised_answer_detail_2", 'Localised answer detail 2')
         end
 
         it 'prepends the localised label for the specified detail in the returned string' do
