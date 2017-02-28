@@ -6,3 +6,8 @@ $ie-version: 8;
 th {
   text-align: left !important;
 }
+
+.watermark {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  font-size: 48px;
+}

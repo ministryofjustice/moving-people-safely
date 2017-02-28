@@ -22,9 +22,38 @@ module Page
         assert_content(move.to)
         assert_content(move.date.strftime('%d %b %Y'))
       end
+
+      within('#move-returns-section') do
+        assert_must_return_to_destinations(move)
+        assert_must_not_return_to_destinations(move)
+      end
     end
 
     private
+
+    def assert_must_return_to_destinations(move)
+      destinations = move.destinations.must_return_to
+      within('#move-must-return-to-destinations') do
+        assert_destinations(destinations)
+      end
+    end
+
+    def assert_must_not_return_to_destinations(move)
+      destinations = move.destinations.must_not_return_to
+      within('#move-must-not-return-to-destinations') do
+        assert_destinations(destinations)
+      end
+    end
+
+    def assert_destinations(destinations)
+      if destinations.empty?
+        assert_content('None')
+      else
+        destinations.each do |destination|
+          assert_content(destination.establishment)
+        end
+      end
+    end
 
     def assert_content(content, options = {})
       within_container = options[:within]

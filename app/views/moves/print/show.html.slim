@@ -80,7 +80,7 @@ html
         div.grid-row.padded.padded-bottom
           div.grid-column.column-one-third
             div.title Date of travel
-            div.strong-text = move.date.to_s(:humanized)
+            div.strong-text = move.date
           div.grid-column.column-one-third
             div.title From
             div.strong-text = move.from
@@ -96,4 +96,48 @@ html
             div.first This person escort record was printed from the Moving People Safely web site.
             div To find out more about the Person Escort Record go to exmaple.com
             div If you have feedback or suggestions please email feedback@example.com
-
+    br
+    main.inner-page
+      table
+        thead.inner-page-header
+          tr
+            td
+              span#detainee-identifier.strong-text => detainee.identifier
+              = detainee.forenames
+        tbody
+          tr
+            td
+              div#risk-section.section
+                span.watermark = 'Risk'
+                table#risk-table.section-table
+                  tr
+                    td
+          tr
+            td
+              div#healthcare-section.section
+                span.watermark = 'Healthcare'
+                table#healthcare-table.section-table
+                  tr
+                    td
+          tr
+            td
+              div#offences-section.section
+                span.watermark = 'Offences'
+                table#offences-table.section-table
+                  tr
+                    td
+          tr
+            td
+              div#move-returns-section.section
+                span.watermark = 'Move'
+                table#move-returns-table.section-table
+                  tr#move-must-return-to-destinations
+                    td.column-30-percent
+                      = move.must_return_to_label
+                    td.column-70-percent
+                      = move.must_return_to
+                  tr#move-must-not-return-to-destinations.top-dotted.bottom-dotted
+                    td.column-30-percent
+                      = move.must_not_return_to_label
+                    td.column-70-percent
+                      = move.must_not_return_to
