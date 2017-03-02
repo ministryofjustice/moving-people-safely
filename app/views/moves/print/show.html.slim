@@ -119,8 +119,10 @@ html
               div#healthcare-section.section
                 span.watermark = 'Healthcare'
                 table#healthcare-table.section-table
-                  tr
-                    td
+                  - HealthcareWorkflow.sections.each do |section|
+                    = render partial: 'moves/print/section',
+                      locals: { section: Print::HealthcarePresenter.for(section, healthcare),
+                                assessment: healthcare }
           tr
             td
               div#offences-section.section

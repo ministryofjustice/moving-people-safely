@@ -28,7 +28,22 @@ RSpec.feature 'printing a PER', type: :feature do
       arson: 'no',
       damage_to_property: 'no'
     })
-    detainee = FactoryGirl.create(:detainee, risk: risk)
+    healthcare = create(:healthcare, {
+      physical_issues: 'no',
+      mental_illness: 'no',
+      phobias: 'no',
+      personal_hygiene: 'no',
+      personal_care: 'no',
+      allergies: 'no',
+      dependencies: 'no',
+      has_medications: 'no',
+      mpv: 'no',
+      hearing_speech_sight_issues: 'no',
+      reading_writing_issues: 'no',
+      healthcare_professional: 'John Doctor Doe',
+      contact_number: '1-131-999-0232'
+    })
+    detainee = FactoryGirl.create(:detainee, risk: risk, healthcare: healthcare)
     move = FactoryGirl.create(:move, :confirmed, :with_destinations, detainee: detainee)
 
     login
@@ -60,6 +75,24 @@ RSpec.feature 'printing a PER', type: :feature do
       # with full detailed answers you get more rows than when
       # all answers are no
       expect(page.all('tr').size).to eq(17)
+    end
+
+    within('#healthcare-table') do
+      expect(page).to have_text('Physical healthcareNo').
+        and have_text('Mental healthcareNo').
+        and have_text('Social healthcareNo').
+        and have_text('AllergiesNo').
+        and have_text('Medical health needsNo').
+        and have_text('TransportNo').
+        and have_text('Communication / language difficultiesNo').
+        and have_text('Medical contactYes').
+        and have_text('Healthcare professionalJohn doctor doe').
+        and have_text('Contact number1-131-999-0232')
+
+      # asserting the number of rows containing the healtcare answers
+      # with full detailed answers you get more rows than when
+      # all answers are no
+      expect(page.all('tr').size).to eq(10)
     end
   end
 
@@ -145,7 +178,32 @@ RSpec.feature 'printing a PER', type: :feature do
       arson: 'yes',
       damage_to_property: 'yes'
     })
-    detainee = create(:detainee, risk: risk)
+    healthcare = create(:healthcare, {
+      physical_issues: 'yes',
+      physical_issues_details: 'physical issues details',
+      mental_illness: 'yes',
+      mental_illness_details: 'mental illness details',
+      phobias: 'yes',
+      phobias_details: 'phobias details',
+      personal_hygiene: 'yes',
+      personal_hygiene_details: 'personal hygiene details',
+      personal_care: 'yes',
+      personal_care_details: 'personal care details',
+      allergies: 'yes',
+      allergies_details: 'allergies details',
+      dependencies: 'yes',
+      dependencies_details: 'dependencies details',
+      has_medications: 'yes',
+      mpv: 'yes',
+      mpv_details: 'MPV details',
+      hearing_speech_sight_issues: 'yes',
+      hearing_speech_sight_issues_details: 'hearing/speech/sight issues details',
+      reading_writing_issues: 'yes',
+      reading_writing_issues_details: 'reading/writing issues details',
+      healthcare_professional: 'John Doctor Doe',
+      contact_number: '1-131-999-0232'
+    })
+    detainee = FactoryGirl.create(:detainee, risk: risk, healthcare: healthcare)
     move = create(:move, :confirmed, :with_destinations, detainee: detainee)
 
     login
@@ -219,6 +277,35 @@ RSpec.feature 'printing a PER', type: :feature do
       # with full detailed answers you get more rows than when
       # all answers are no
       expect(page.all('tr').size).to eq(60)
+    end
+
+    within('#healthcare-table') do
+      expect(page).to have_text('Physical healthcareYes').
+        and have_text('Physical health needsYesphysical issues details').
+        and have_text('Mental healthcareYes').
+        and have_text('Mental health issuesYesmental illness details').
+        and have_text('PhobiasYesphobias details').
+        and have_text('Social healthcareYes').
+        and have_text('Personal hygiene issuesYespersonal hygiene details').
+        and have_text('Personal care issuesYespersonal care details').
+        and have_text('AllergiesYes').
+        and have_text('AllergiesYesallergies details').
+        and have_text('Medical health needsYes').
+        and have_text('Dependencies / misuseYesdependencies details').
+        and have_text('Regular medicationYes').
+        and have_text('TransportYes').
+        and have_text('MPV requiredYesMPV details').
+        and have_text('Communication / language difficultiesYes').
+        and have_text('Hearing / speech / sight issuesYeshearing/speech/sight issues details').
+        and have_text('Reading / writing issuesYesreading/writing issues details').
+        and have_text('Medical contactYes').
+        and have_text('Healthcare professionalJohn doctor doe').
+        and have_text('Contact number1-131-999-0232')
+
+      # asserting the number of rows containing the healtcare answers
+      # with full detailed answers you get more rows than when
+      # all answers are no
+      expect(page.all('tr').size).to eq(21)
     end
   end
 
