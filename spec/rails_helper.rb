@@ -57,6 +57,7 @@ RSpec.configure do |config|
   config.include(OffendersApiHelpers)
   config.include(NomisApiHelpers)
   config.include(ActionView::TestCase::Behavior, type: :presenter)
+  config.include(LocalizerHelpers)
 end
 
 Shoulda::Matchers.configure do |config|

@@ -110,8 +110,10 @@ html
               div#risk-section.section
                 span.watermark = 'Risk'
                 table#risk-table.section-table
-                  tr
-                    td
+                  - RiskWorkflow.sections.each do |section|
+                    = render partial: 'moves/print/section',
+                      locals: { section: Print::RiskPresenter.for(section, risk),
+                                assessment: risk }
           tr
             td
               div#healthcare-section.section

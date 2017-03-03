@@ -17,7 +17,7 @@ module RiskAssessment
 
     def relevant_answers
       {
-        acct_status: :all
+        acct_status: %w[open post_closure closed_in_last_6_months]
       }
     end
   end

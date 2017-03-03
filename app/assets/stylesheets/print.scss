@@ -51,7 +51,7 @@ $is-print: true;
     width: (100% / 6);
   }
 
-  .section-table {
+  .section-sub-table {
     page-break-inside: avoid;
   }
 }
@@ -119,8 +119,16 @@ table {
   width: (100% / 6);
 }
 
+.column-20-percent {
+  width: 20%;
+}
+
 .column-30-percent {
   width: 30%;
+}
+
+.column-50-percent {
+  width: 50%;
 }
 
 .column-70-percent {
@@ -139,7 +147,17 @@ table {
   td {
     font-weight: lighter;
     padding: 0.3em 0;
+    vertical-align: top;
+    text-align: left;
   }
+
+  td.indented {
+    padding-left: 5px;
+  }
+}
+
+.section-sub-table {
+  border-collapse: collapse;
 }
 
 .header-row {
@@ -160,7 +178,7 @@ table {
   border-top: 1px dotted black;
 }
 
-.top-dotted {
+.bottom-dotted {
   border-bottom: 1px dotted black;
 }
 
