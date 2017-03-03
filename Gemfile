@@ -24,12 +24,15 @@ gem 'reform', '2.1.0'
 gem 'reform-rails'
 gem 'virtus'
 gem 'wicked'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'jasmine'
   gem 'jasmine-jquery-rails'
+  gem 'pdf-reader'
   gem 'pry-byebug'
   gem 'pry-rails'
 end

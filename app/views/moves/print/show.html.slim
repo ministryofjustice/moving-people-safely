@@ -2,11 +2,8 @@ doctype html
 html
   head
     title Print view
-    | <!--[if (gte IE 9)|!(IE)]<!-->
-    = stylesheet_link_tag "print.css", media: 'all'
-    | <!--<![endif]-->
-    /[if IE 8]
-      = stylesheet_link_tag "print-ie8.css", media: 'all'
+    = wicked_pdf_stylesheet_link_tag "print.css", media: 'all'
+    = wicked_pdf_stylesheet_link_tag "print-ie8.css", media: 'all'
 
   body
     main.page-one
@@ -70,11 +67,11 @@ html
           div.grid-column.column-one-quarter
             - if detainee.image.present?
               .image
-                = image_tag detainee_image_path(detainee, format: :jpg), size: '128x180'
+                = wicked_pdf_image_tag detainee_image_path(detainee, format: :jpg), size: '128x180'
             - else
               .image
                 span.image-unavailable-text = 'Photo unavailable'
-                = image_tag "photo_unavailable.png", size: '128x180'
+                = wicked_pdf_image_tag "photo_unavailable.png", size: '128x180'
       div.grid.move
         div.grid-row.header-row.small = 'Move details'
         div.grid-row.padded.padded-bottom
