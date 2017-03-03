@@ -66,7 +66,7 @@ RSpec.feature 'printing a PER', type: :feature do
         and have_text("Escape status/historyNo").
         and have_text("Made previous escape attemptsNo").
         and have_text("Category A or Restricted statusNo").
-        and have_text("Escort Risk Assessment/Escort PackNo").
+        and have_text("Escort Risk Assessment/Escape PackNo").
         and have_text("Risk of trafficking drugs or alcoholNo").
         and have_text("Conceals weapons, drugs or other itemsNo").
         and have_text("Arson and damage to propertyNo")
@@ -217,7 +217,7 @@ RSpec.feature 'printing a PER', type: :feature do
         and have_text("ACCT statusOpen").
         and have_text("Risk from othersYes").
         and have_text("Rule 45Yes").
-        and have_text("CSRAHigh").
+        and have_text("CSRA (Cell Sharing Risk Assessment)High").
         and have_text("Victim of abuse in prisonYesabuse details").
         and have_text("High public interestYeshigh profile details").
         and have_text("Risk to others - discriminationYes").
@@ -257,7 +257,7 @@ RSpec.feature 'printing a PER', type: :feature do
         and have_text("PoliceYespolice escape attempt details").
         and have_text("OtherYesother type of escape attempt details").
         and have_text("Category A or Restricted statusYes").
-        and have_text("Escort Risk Assessment/Escort PackYes").
+        and have_text("Escort Risk Assessment/Escape PackYes").
         and have_text("Escort Risk AssessmentYesCompleted on: 26/11/2016").
         and have_text("Escape PackYesCompleted on: 13/12/2016").
         and have_text("Risk of trafficking drugs or alcoholYes").

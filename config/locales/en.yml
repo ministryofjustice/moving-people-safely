@@ -427,7 +427,7 @@ en:
           sex_offence_adult_female_victim: Adult female
           sex_offence_under18_victim: Under 18
         risk_from_others:
-          csra: CSRA
+          csra: CSRA (Cell Sharing Risk Assessment)
           high_profile: High public interest
           rule_45: Rule 45
           victim_of_abuse: Victim of abuse in prison
@@ -487,7 +487,7 @@ en:
         contact: Medical contact
         discrimination: "Risk to others - discrimination"
         escape_status: Escape status/history
-        escort_details: Escort Risk Assessment/Escort Pack
+        escort_details: Escort Risk Assessment/Escape Pack
         harassment: "Risk to others: harasser and/or bully"
         hostage_taker: "Risk to others - hostage taker"
         intimidation: "Intimidator/bully"
