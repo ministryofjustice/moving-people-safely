@@ -2,22 +2,16 @@ module Print
   class AssessmentSectionPresenter < SimpleDelegator
     include Print::Helpers
 
-    attr_reader :section_name
-    delegate :name, to: :section
-    delegate :subsections, :has_subsections?, :questions_for_subsection, to: :section
+    attr_reader :assessment
 
-    def self.for(section, assessment)
-      new(assessment, section: section)
-    end
-
-    def initialize(object, options = {})
+    def initialize(object, assessment)
       super(object)
-      @section_name = options.fetch(:section)
+      @assessment =  assessment
     end
 
     def questions
-      @questions ||= section.questions.map do |question|
-        Print::AssessmentQuestionPresenter.new(question, assessment, section)
+      @questions ||= questions_without_dependencies.map do |question|
+        Print::AssessmentQuestionPresenter.new(question, assessment)
       end
     end
 
@@ -26,7 +20,7 @@ module Print
     end
 
     def label
-      content = t("summary.section.titles.#{name}")
+      content = t("print.section.titles.#{name}")
       relevant? ? highlighted_content(content) : content
     end
 
@@ -36,8 +30,12 @@ module Print
       questions.any?(&:answer_is_relevant?)
     end
 
-    def assessment
+    def model
       __getobj__
+    end
+
+    def questions_without_dependencies
+      model.questions.select { |question| !question.has_dependencies? }
     end
   end
 end

@@ -1,8 +1,7 @@
 - if section.has_subsections?
   - section.subsections.each do |subsection|
-    = render partial: 'moves/print/subsection',
-      locals: { subsection: Print::RiskSubsectionPresenter.for(subsection, section.name, assessment),
-                section: section,
+    = render partial: 'moves/print/section',
+      locals: { section: Print::AssessmentSectionPresenter.new(subsection, assessment),
                 assessment: assessment }
 - else
   tr.top-dotted

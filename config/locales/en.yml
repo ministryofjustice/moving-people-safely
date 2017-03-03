@@ -373,15 +373,17 @@ en:
       offences_incomplete: Offences incomplete
       risk_complete: Risk complete
       risk_incomplete: Risk incomplete
-  summary:
+  summary: &summary
     section:
       answers:
         risk_to_self:
           closed_in_last_6_months: Closed
-        security:
+        security: &summary_security_answers
           e_list_escort: E-List-Escort
           e_list_heightened: E-List-Heightened
           e_list_standard: E-List-Standard
+        current_e_risk: *summary_security_answers
+        escape_status: *summary_security_answers
       questions:
         arson:
           arson: Arson is a behavioural issue
@@ -398,12 +400,14 @@ en:
         contact:
           contact_number: Contact number
           healthcare_professional: Healthcare professional
-        harassments:
+        harassments: &summary_intimidation
           harassment: Harasser
           intimidation_to_staff: Staff
           intimidation_to_public: Public
           intimidation_to_other_detainees: Prisoners
           intimidation_to_witnesses: Witnesses
+        harassment: *summary_intimidation
+        intimidation: *summary_intimidation
         hostage_taker:
           staff_hostage_taker: Staff
           prisoners_hostage_taker: Prisoners
@@ -430,7 +434,7 @@ en:
         risk_to_self:
           acct_status: ACCT status
           suicide: Risk of suicide or self-harm
-        security:
+        security: &summary_security
           category_a: Category A or Restricted status
           current_e_risk: Currently on E list
           escape_list: Escape list
@@ -441,6 +445,10 @@ en:
           court_escape_attempt: Court
           police_escape_attempt: Police
           other_type_escape_attempt: Other
+        current_e_risk: *summary_security
+        previous_escape_attempts: *summary_security
+        escape_status: *summary_security
+        escort_details: *summary_security
         social:
           personal_care: Personal care issues
           personal_hygiene: Personal hygiene issues
@@ -450,7 +458,7 @@ en:
           trafficking_alcohol: Alcohol
         transport:
           mpv: MPV required
-        violence:
+        violence: &summary_violence
           co_defendant: Co-defendant
           escort_or_court_staff: Escort or court staff
           gang_member: Gang member
@@ -467,6 +475,10 @@ en:
           violence_to_general_public: General public
           violence_to_staff_community: Staff community
           violence_to_staff_custody: Staff custody
+        discrimination: *summary_violence
+        violence_to_staff: *summary_violence
+        violence_to_other_detainees: *summary_violence
+        violence_to_general_public: *summary_violence
       titles:
         arson: Arson and damage to property
         category_a: Category A or Restricted status
@@ -492,6 +504,7 @@ en:
         violence_to_other_detainees: Violent to other detainees
         violence_to_staff: Violent to staff
   print:
+    <<: *summary
     label:
       move:
         must_return_to: Must return to

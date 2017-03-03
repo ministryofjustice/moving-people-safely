@@ -110,18 +110,18 @@ html
               div#risk-section.section
                 span.watermark = 'Risk'
                 table#risk-table.section-table
-                  - RiskWorkflow.sections.each do |section|
+                  - RiskAssessment.sections.each do |section|
                     = render partial: 'moves/print/section',
-                      locals: { section: Print::RiskPresenter.for(section, risk),
+                      locals: { section: Print::AssessmentSectionPresenter.new(section, risk),
                                 assessment: risk }
           tr
             td
               div#healthcare-section.section
                 span.watermark = 'Healthcare'
                 table#healthcare-table.section-table
-                  - HealthcareWorkflow.sections.each do |section|
+                  - HealthcareAssessment.sections.each do |section|
                     = render partial: 'moves/print/section',
-                      locals: { section: Print::HealthcarePresenter.for(section, healthcare),
+                      locals: { section: Print::AssessmentSectionPresenter.new(section, healthcare),
                                 assessment: healthcare }
           tr
             td
