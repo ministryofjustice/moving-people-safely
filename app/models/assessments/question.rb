@@ -13,17 +13,17 @@ module Assessments
     end
 
     def has_dependencies?
-      !dependencies.empty?
+      dependencies.present?
     end
 
     def relevant_answer?(answer)
-      return false if relevant_answers.empty? || !answer.present?
+      return false if relevant_answers.empty? || answer.blank?
       return true if relevant_answers == :all
       relevant_answers.include?(answer.downcase)
     end
 
     def has_details?
-      !details.empty?
+      details.present?
     end
   end
 end

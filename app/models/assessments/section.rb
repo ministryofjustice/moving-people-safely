@@ -10,7 +10,7 @@ module Assessments
     end
 
     def has_subsections?
-      !subsections.empty?
+      subsections.present?
     end
 
     private
