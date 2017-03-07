@@ -60,6 +60,8 @@ environment variables.
 
 For local integration with SSO refer to [SSO Integration](docs/sso_integration.md)
 
+[Assessment schema](docs/assessments_schema.md) has information that describes the configuration for the existent assessments that relate to a given PER.
+
 # Running the application
 
   ```bash
