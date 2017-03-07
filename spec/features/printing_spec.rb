@@ -2,7 +2,8 @@ require 'feature_helper'
 
 RSpec.feature 'printing a PER', type: :feature do
   let!(:move) { create(:move, :confirmed, destinations: destinations, detainee: detainee) }
-  let(:detainee) { create(:detainee, forenames: 'Testy', surname: 'McTest', risk: risk, healthcare: healthcare) }
+  let(:offences) { create(:offences, :with_no_current_offences, :with_no_past_offences) }
+  let(:detainee) { create(:detainee, forenames: 'Testy', surname: 'McTest', risk: risk, healthcare: healthcare, offences: offences) }
 
   let(:outbound_vehicle_details) {
     [
@@ -60,6 +61,7 @@ RSpec.feature 'printing a PER', type: :feature do
       person_escort_record_info_panel,
       risk_details,
       healthcare_details,
+      offences_details,
       must_return_must_not_return_move_details
     ].flatten
   }
@@ -158,6 +160,13 @@ RSpec.feature 'printing a PER', type: :feature do
       ]
     }
 
+    let(:offences_details) {
+      [
+        "Current offences None",
+        "Significant past offences None"
+      ]
+    }
+
     let(:must_return_must_not_return_move_details) {
       [
         "Must return to None",
@@ -176,6 +185,19 @@ RSpec.feature 'printing a PER', type: :feature do
   end
 
   context 'when a PER has detailed answers' do
+    let(:current_offences) {
+      [
+      create(:current_offence, offence: 'Burglary', case_reference: 'LXAHTGNJQF'),
+      create(:current_offence, offence: 'Sex offence', case_reference: 'QDPREIBMSF')
+      ]
+    }
+    let(:past_offences) {
+      [
+      create(:past_offence, offence: 'Past Offence 1'),
+      create(:past_offence, offence: 'Past Offence 2')
+      ]
+    }
+    let(:offences) { create(:offences, current_offences: current_offences, past_offences: past_offences) }
     let(:must_return_destination) { create(:destination, :must_return, establishment: 'HMP Brixton', reasons: 'Its a lovely place.') }
     let(:must_not_return_destination) { create(:destination, :must_not_return, establishment: 'HMP Clive House', reasons: 'Its too cold.') }
     let(:destinations) { [must_return_destination, must_not_return_destination] }
@@ -391,6 +413,14 @@ RSpec.feature 'printing a PER', type: :feature do
         "Medical contact Yes",
         "Healthcare professional John doctor doe",
         "Contact number 1-131-999-0232",
+      ]
+    }
+
+    let(:offences_details) {
+      [
+        "Current offences Yes Burglary (LXAHTGNJQF) | Sex offence",
+        "(QDPREIBMSF)",
+        "Significant past offences Yes Past Offence 1 | Past Offence 2"
       ]
     }
 

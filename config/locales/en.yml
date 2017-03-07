@@ -509,6 +509,9 @@ en:
       move:
         must_return_to: Must return to
         must_not_return_to: Must NOT return to
+      offences:
+        current_offences: Current offences
+        past_offences: Significant past offences
   profile:
     alerts:
       acct_status:

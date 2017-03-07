@@ -126,7 +126,20 @@ html
                 span.watermark = 'Offences'
                 table#offences-table.section-table
                   tr
-                    td
+                    td.column-30-percent
+                      = offences.current_offences_label
+                    td.column-20-percent.indented
+                      = offences.current_offences_relevant
+                    td.column-50-percent
+                      = offences.current_offences
+                  tr.top-dotted
+                    td.column-30-percent
+                      = offences.past_offences_label
+                    td.column-20-percent.indented
+                      = offences.past_offences_relevant
+                    td.column-50-percent
+                      = offences.past_offences
+
           tr
             td
               div#move-returns-section.section
