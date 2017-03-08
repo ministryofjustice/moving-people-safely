@@ -54,6 +54,16 @@ $is-print: true;
   .section-sub-table {
     page-break-inside: avoid;
   }
+
+  .alert-on {
+    border: 2px solid $mellow-red;
+    position: relative;
+    display: inline-block;
+
+    .alert-title {
+      color: $mellow-red !important;
+    }
+  }
 }
 
 body {
@@ -174,6 +184,11 @@ table {
   }
 }
 
+.top-border {
+  border-top: 2px solid black;
+  padding-top: 5px;
+}
+
 .top-dotted {
   border-top: 1px dotted black;
 }
@@ -203,8 +218,59 @@ table {
 
 .indicators {
   padding: 10px 0;
-  border-bottom: 1px dotted black;
+}
+
+.alert-off {
+  display: inline-block;
+  border: 2px solid $secondary-text-colour;
+  background-color: white;
+  text-transform: uppercase;
+  padding: 0.2em 0.5em;
+  color: $secondary-text-colour;
+  font: 19px "Arial Narrow";
   font-weight: bold;
+
+  .alert-toggle-text {
+    padding-left: 5px;
+    text-transform: uppercase;
+    font: 19px "Arial Narrow";
+    font-weight: bold;
+  }
+}
+
+.alert-on {
+  border: 2px solid $mellow-red;
+  background-color: $mellow-red !important;
+  position: relative;
+  display: inline-block;
+
+  .alert-title {
+    text-transform: uppercase;
+    padding: 0.2em 0.5em;
+    color: white;
+    font: 19px "Arial Narrow";
+    font-weight: bold;
+    position: relative;
+    float: left;
+  }
+
+  .alert-toggle-text {
+    padding: 0 5px;
+    margin-top: 3px;
+    margin-right: 3px;
+    background-color: white;
+    color: $mellow-red;
+    text-transform: uppercase;
+    font: 19px "Arial Narrow";
+    font-weight: bold;
+    position: relative;
+    float: left;
+  }
+}
+
+.alert-text {
+  display: block;
+  padding-top: 5px;
 }
 
 table.vehicles {

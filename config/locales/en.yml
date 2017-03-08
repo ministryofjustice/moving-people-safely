@@ -503,16 +503,7 @@ en:
         violence_to_general_public: Violent to general public
         violence_to_other_detainees: Violent to other detainees
         violence_to_staff: Violent to staff
-  print:
-    <<: *summary
-    label:
-      move:
-        must_return_to: Must return to
-        must_not_return_to: Must NOT return to
-      offences:
-        current_offences: Current offences
-        past_offences: Significant past offences
-  profile:
+  profile: &profile
     alerts:
       acct_status:
         closed_in_last_6_months: 'Closed:'
@@ -525,6 +516,24 @@ en:
         e_list_heightened: E-List-Heightened
         e_list_standard: E-List-Standard
         unknown: ''
+      title:
+        acct_status: ACCT
+        category_a: Cat A
+        csra: CSRA
+        current_e_risk: E list
+        mpv: MPV
+        not_for_release: Not for release
+        rule_45: Rule 45
+  print:
+    <<: *summary
+    <<: *profile
+    label:
+      move:
+        must_return_to: Must return to
+        must_not_return_to: Must NOT return to
+      offences:
+        current_offences: Current offences
+        past_offences: Significant past offences
   activemodel:
     errors:
       models:

@@ -12,7 +12,8 @@ class PdfGenerator
         move: move_presenter,
         risk: risk,
         healthcare: healthcare,
-        offences: offences_presenter
+        offences: offences_presenter,
+        alerts: alerts_presenter
       }
     )
   end
@@ -33,6 +34,10 @@ class PdfGenerator
 
   def offences_presenter
     @offences_presenter ||= Print::OffencesPresenter.new(offences)
+  end
+
+  def alerts_presenter
+    @alerts_presenter ||= Print::MoveAlertsPresenter.new(move, view_context)
   end
 
   attr_reader :move
