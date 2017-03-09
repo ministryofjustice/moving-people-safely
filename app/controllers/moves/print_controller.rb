@@ -1,11 +1,10 @@
 module Moves
   class PrintController < ApplicationController
-    layout false
-
     def show
       error_redirect && return unless printable_move?
-      move.move_workflow.issued! unless move.issued?
-      render :show, locals: { detainee: detainee_presenter, move: move_presenter }
+      issue_move_unless_issued!
+      pdf = PdfGenerator.new(move).call
+      send_data pdf, type: 'application/pdf', disposition: 'inline'
     end
 
     private
@@ -14,8 +13,8 @@ module Moves
       @_move ||= Move.find(params[:move_id])
     end
 
-    def detainee
-      move.detainee
+    def issue_move_unless_issued!
+      move.move_workflow.issued! unless move.issued?
     end
 
     def printable_move?
@@ -24,14 +23,6 @@ module Moves
 
     def error_redirect
       redirect_back(fallback_location: root_path, alert: t('alerts.move.print.unauthorized'))
-    end
-
-    def detainee_presenter
-      @detainee_presenter ||= Print::DetaineePresenter.new(detainee)
-    end
-
-    def move_presenter
-      @move_presenter ||= Print::MovePresenter.new(move)
     end
   end
 end
