@@ -96,6 +96,16 @@ RSpec.shared_examples_for 'assessment section presenter' do
         allow(section).to receive(:question_condition).and_return(:conditional_question)
       end
 
+      context 'when the conditional is yet to be answered' do
+        let(:answer) { nil }
+        let(:conditional_answer) { nil }
+
+        it 'returns missing text as html' do
+          expect(presenter.answer_for(:question)).
+            to eq "<span class='text-error'>Missing</span>"
+        end
+      end
+
       context 'and the conditional question is answered no' do
         let(:conditional_answer) { 'no' }
 

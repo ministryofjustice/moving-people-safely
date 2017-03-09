@@ -56,7 +56,8 @@ module Summary
     end
 
     def question_condition_unanswered?(attribute)
-      public_send(question_condition(attribute)) == 'unknown'
+      answer_state = public_send(question_condition(attribute))
+      answer_state.nil? || answer_state == 'unknown'
     end
 
     def question_condition_answered_yes?(attribute)
