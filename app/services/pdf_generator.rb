@@ -7,7 +7,13 @@ class PdfGenerator
     ActionController::Base.new.render_to_string(
       pdf: filename,
       template: 'moves/print/show',
-      locals: { detainee: detainee_presenter, move: move_presenter, risk: risk, healthcare: healthcare }
+      locals: {
+        detainee: detainee_presenter,
+        move: move_presenter,
+        risk: risk,
+        healthcare: healthcare,
+        offences: offences_presenter
+      }
     )
   end
 
@@ -25,11 +31,15 @@ class PdfGenerator
     @detainee_presenter ||= Print::DetaineePresenter.new(detainee)
   end
 
+  def offences_presenter
+    @offences_presenter ||= Print::OffencesPresenter.new(offences)
+  end
+
   attr_reader :move
 
   def detainee
     move.detainee
   end
 
-  private(*delegate(:risk, :healthcare, to: :detainee))
+  private(*delegate(:risk, :healthcare, :offences, to: :detainee))
 end
