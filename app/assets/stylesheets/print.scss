@@ -54,16 +54,6 @@ $is-print: true;
   .section-sub-table {
     page-break-inside: avoid;
   }
-
-  .alert-on {
-    border: 2px solid $mellow-red;
-    position: relative;
-    display: inline-block;
-
-    .alert-title {
-      color: $mellow-red !important;
-    }
-  }
 }
 
 body {
@@ -227,32 +217,34 @@ table {
   text-transform: uppercase;
   padding: 0.2em 0.5em;
   color: $secondary-text-colour;
-  font: 19px "Arial Narrow";
+  font: 15px "Arial Narrow";
   font-weight: bold;
 
   .alert-toggle-text {
     padding-left: 5px;
     text-transform: uppercase;
-    font: 19px "Arial Narrow";
+    font: 15px "Arial Narrow";
     font-weight: bold;
   }
 }
 
 .alert-on {
-  border: 2px solid $mellow-red;
+  //border: 2px solid $mellow-red;
   background-color: $mellow-red !important;
   position: relative;
   display: inline-block;
 
   .alert-title {
     text-transform: uppercase;
-    padding: 0.2em 0.5em;
+    padding: 0.5em 0.5em;
     color: white;
-    font: 19px "Arial Narrow";
+    font: 15px "Arial Narrow";
     font-weight: bold;
     position: relative;
     float: left;
   }
+
+  img {  }
 
   .alert-toggle-text {
     padding: 0 5px;
@@ -261,7 +253,7 @@ table {
     background-color: white;
     color: $mellow-red;
     text-transform: uppercase;
-    font: 19px "Arial Narrow";
+    font: 15px "Arial Narrow";
     font-weight: bold;
     position: relative;
     float: left;
