@@ -106,6 +106,9 @@ html
               div.grid-row.top-border
                 span#detainee-identifier.strong-text => detainee.identifier
                 = detainee.forenames
+        tbody
+          tr
+            td
               div.grid-row.indicators.top-dotted
                 #not_for_release_alert.grid-column.column-one-third
                   = alerts.not_for_release_alert
@@ -122,7 +125,6 @@ html
                   = alerts.category_a_alert
                 #mpv_alert.grid-column.column-one-quarter
                   = alerts.mpv_alert
-        tbody
           tr
             td
               div#risk-section.section

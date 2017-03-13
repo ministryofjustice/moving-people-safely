@@ -211,6 +211,7 @@ table {
 }
 
 .alert-off {
+  border-radius: 5px;
   display: inline-block;
   border: 2px solid $secondary-text-colour;
   background-color: white;
@@ -229,14 +230,15 @@ table {
 }
 
 .alert-on {
-  //border: 2px solid $mellow-red;
+  border-radius: 5px;
+  border: 2px solid $mellow-red;
   background-color: $mellow-red !important;
   position: relative;
   display: inline-block;
 
   .alert-title {
     text-transform: uppercase;
-    padding: 0.5em 0.5em;
+    padding: 0.2em 0.5em;
     color: white;
     font: 15px "Arial Narrow";
     font-weight: bold;
@@ -244,7 +246,10 @@ table {
     float: left;
   }
 
-  img {  }
+  img {
+    width: 25px;
+    float: left;
+  }
 
   .alert-toggle-text {
     padding: 0 5px;
