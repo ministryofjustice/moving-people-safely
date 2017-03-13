@@ -25,8 +25,6 @@ RSpec.feature 'printing a PER', type: :feature do
 
   let(:detainee_details) {
     [
-      detainee_info_line,
-      "E-list MPV",
       "Prison number CRO number PNC number Aliases",
       "#{detainee.prison_number} #{detainee.cro_number} #{detainee.pnc_number} #{detainee.aliases}",
       "Date of birth Age GenderNationality",
@@ -56,9 +54,12 @@ RSpec.feature 'printing a PER', type: :feature do
     [
       outbound_vehicle_details,
       return_vehicle_details,
+      detainee_info_line,
+      front_cover_alerts,
       detainee_details,
       move_details,
       person_escort_record_info_panel,
+      alerts,
       risk_details,
       healthcare_details,
       offences_details,
@@ -114,6 +115,20 @@ RSpec.feature 'printing a PER', type: :feature do
       })
     }
 
+    let(:front_cover_alerts){
+      [
+        "NOT FOR RELEASE E LIST MPV"
+      ]
+    }
+
+    let(:alerts) {
+      [
+        "NOT FOR RELEASE ACCT RULE 45",
+        "E LIST CSRA CAT A MPV",
+        "Standard"
+      ]
+    }
+
     let(:risk_details) {
       [
         "Risk to self No",
@@ -152,11 +167,11 @@ RSpec.feature 'printing a PER', type: :feature do
         "Social healthcare No",
         "Allergies No",
         "Medical health needs No",
-        "Transport No",
-        "Communication / language No",
+        "Transport NoCommunication / language No",
         "difficulties",
         "Medical contact Yes",
-        "Healthcare professional John doctor doe#{detainee_info_line} 1-131-999-0232",
+        "Healthcare professional John doctor doe",
+        "Contact number 1-131-999-0232",
       ]
     }
 
@@ -313,6 +328,22 @@ RSpec.feature 'printing a PER', type: :feature do
       })
     }
 
+    let(:front_cover_alerts){
+      [
+        "NOT FOR RELEASE E LIST MPV",
+        "E-List-Escort"
+      ]
+    }
+
+    let(:alerts) {
+      [
+        "NOT FOR RELEASE ACCT RULE 45",
+        "Open",
+        "E LIST CSRA CAT A MPV",
+        "E-List-Escort High"
+      ]
+    }
+
     let(:risk_details) {
       [
         "Risk to self Yes",
@@ -342,14 +373,13 @@ RSpec.feature 'printing a PER', type: :feature do
         "taker",
         "Staff Yes 12/03/2010",
         "Prisoners Yes 24/05/2012",
-        "Public Yes 02/09/2007",
-        "Risk to others: harasser Yes",
+        "Public Yes 02/09/2007Risk to others: harasser Yes",
         "and/or bully",
         "Harasser Yes harassment details",
         "Intimidator/bully Yes",
         "Staff Yes intimidation to staff details",
         "Public Yes intimidation to public details",
-        "Prisoners Yes intimidation to other detainees details#{detainee_info_line}",
+        "Prisoners Yes intimidation to other detainees details",
         "Witnesses Yes intimidation to witnesses details",
         "Sex offender Yes",
         "Adult male Yes",
@@ -379,8 +409,7 @@ RSpec.feature 'printing a PER', type: :feature do
         "Conceals weapons Yes conceals weapons details",
         "Conceals drugs Yes conceals drugs details",
         "Conceals mobile phones Yes",
-        "Conceals SIM cards Yes",
-        "Conceals other items Yes conceals other items details",
+        "Conceals SIM cards Yes Conceals other items Yes conceals other items details",
         "Arson and damage to Yes",
         "property",
         "Arson is a behavioural Yes",
@@ -391,7 +420,8 @@ RSpec.feature 'printing a PER', type: :feature do
 
     let(:healthcare_details) {
       [
-        "Physical healthcare Yes#{detainee_info_line}s Yes physical issues details",
+        "Physical healthcare Yes",
+        "Physical health needs Yes physical issues details",
         "Mental healthcare Yes",
         "Mental health issues Yes mental illness details",
         "Phobias Yes phobias details",

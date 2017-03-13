@@ -19,10 +19,6 @@ $is-print: true;
     height: 297mm;
   }
 
-  .inner-page-header {
-    display: table-header-group;
-  }
-
   .grid-row {
     display: block;
   }
@@ -143,6 +139,14 @@ table {
 .section-table {
   border-top: 2px solid black;
   border-collapse: collapse;
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr {
+    page-break-inside: avoid;
+  }
 
   td {
     font-weight: lighter;
