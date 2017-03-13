@@ -32,7 +32,7 @@ module Print
     def build_status_content
       h.content_tag(:div, class: "image #{alert_class}") do
         alert_contents = [h.content_tag(:span, title, class: 'alert-title')]
-        alert_contents << h.image_tag('ic_red_tick.png') if status == :on
+        alert_contents << h.wicked_pdf_image_tag('ic_red_tick.png') if status == :on
         h.safe_join(alert_contents)
       end
     end
