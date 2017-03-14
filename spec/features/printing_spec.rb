@@ -194,8 +194,10 @@ RSpec.feature 'printing a PER', type: :feature do
       visit detainee_path(detainee)
       profile.click_print
 
-      expect(transform_pdf_to_lines_of_text(page.body)).
-        to match_array expected_lines
+      pdf_text = transform_pdf_to_lines_of_text(page.body).join
+      expected_text = expected_lines.join
+
+      expect(pdf_text).to eql expected_text
     end
   end
 
@@ -456,8 +458,8 @@ RSpec.feature 'printing a PER', type: :feature do
 
     let(:must_return_must_not_return_move_details) {
       [
-        "Must NOT return to HMP Clive House: Its too cold.",
-        "Must return to HMP Brixton: Its a lovely place."
+        "Must return to HMP Brixton: Its a lovely place.",
+        "Must NOT return to HMP Clive House: Its too cold."
       ]
     }
 
@@ -466,8 +468,10 @@ RSpec.feature 'printing a PER', type: :feature do
       visit detainee_path(detainee)
       profile.click_print
 
-      expect(transform_pdf_to_lines_of_text(page.body)).
-        to match_array expected_lines
+      pdf_text = transform_pdf_to_lines_of_text(page.body).join
+      expected_text = expected_lines.join
+
+      expect(pdf_text).to eql expected_text
     end
   end
 
