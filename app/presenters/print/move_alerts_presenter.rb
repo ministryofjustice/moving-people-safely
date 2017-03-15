@@ -15,8 +15,7 @@ module Print
     delegate(:mpv, to: :healthcare, allow_nil: true)
 
     def not_for_release_alert
-      status = not_for_release == 'yes' ? :on : :off
-      alert_for(:not_for_release, status: status, text: not_for_release_text)
+      alert_for(:not_for_release, status: status_for(not_for_release), text: not_for_release_text)
     end
 
     def not_for_release_text
@@ -49,8 +48,7 @@ module Print
     end
 
     def rule_45_alert
-      status = rule_45 == 'yes' ? :on : :off
-      alert_for(:rule_45, status: status)
+      alert_for(:rule_45, status: status_for(rule_45))
     end
 
     def current_e_risk_alert
@@ -64,34 +62,32 @@ module Print
     end
 
     def current_e_risk_text
-      return unless current_e_risk == 'yes'
-      return unless current_e_risk_details.present?
+      return unless current_e_risk == 'yes' || current_e_risk_details.present?
       localised_attr_value(:current_e_risk_details)
     end
 
     def csra_alert
       status = csra == 'high' ? :on : :off
+      csra_text = csra == 'high' ? 'High' : 'Standard'
       alert_for(:csra, status: status, text: csra_text)
     end
 
-    def csra_text
-      csra == 'high' ? 'High' : 'Standard'
-    end
-
     def category_a_alert
-      status = category_a == 'yes' ? :on : :off
-      alert_for(:category_a, status: status)
+      alert_for(:category_a, status: status_for(category_a))
     end
 
     def mpv_alert
-      status = mpv == 'yes' ? :on : :off
-      alert_for(:mpv, status: status)
+      alert_for(:mpv, status: status_for(mpv))
     end
 
     private
 
     attr_reader :view_context
     alias h view_context
+
+    def status_for(attribute)
+      attribute == 'yes' ? :on : :off
+    end
 
     def alert_for(attr, options)
       Print::AlertPresenter.new(attr, options.merge(view_context: view_context)).to_s
