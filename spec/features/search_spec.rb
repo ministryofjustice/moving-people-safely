@@ -58,7 +58,7 @@ RSpec.feature 'searching for a prisoner', type: :feature do
   end
 
   def expect_error_message
-    expect(page).to have_content("The prison number 'invalid-prison-number' is not valid")
+    expect(page).to have_content("The prison number 'INVALID-PRISON-NUMBER' is not valid")
   end
 
   def expect_result_with_move(move)

@@ -16,6 +16,10 @@ module Forms
       presence: true,
       format: { with: PRISON_NUMBER_REGEX }
 
+    def prison_number=(value)
+      value && super(value.upcase)
+    end
+
     def detainee
       @_detainee ||= ::Detainee.find_by(_at[:prison_number].matches(prison_number)) if valid?
     end
