@@ -4,7 +4,7 @@ class PdfGenerator
   end
 
   def call
-    ActionController::Base.new.render_to_string(
+    controller.render_to_string(
       pdf: filename,
       template: 'moves/print/show',
       locals: {
@@ -12,7 +12,8 @@ class PdfGenerator
         move: move_presenter,
         risk: risk,
         healthcare: healthcare,
-        offences: offences_presenter
+        offences: offences_presenter,
+        alerts: alerts_presenter
       }
     )
   end
@@ -33,6 +34,14 @@ class PdfGenerator
 
   def offences_presenter
     @offences_presenter ||= Print::OffencesPresenter.new(offences)
+  end
+
+  def alerts_presenter
+    @alerts_presenter ||= Print::MoveAlertsPresenter.new(move, controller.view_context)
+  end
+
+  def controller
+    @controller ||= ActionController::Base.new
   end
 
   attr_reader :move
