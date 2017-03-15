@@ -9,6 +9,7 @@ module Print
       acct_status date_of_most_recently_closed_acct rule_45
       current_e_risk current_e_risk_details csra category_a
     ].freeze
+
     delegate(:detainee, to: :model)
     delegate(:risk, :healthcare, to: :detainee)
     delegate(*RISK_ATTRIBUTES, to: :risk, allow_nil: true)
@@ -18,33 +19,8 @@ module Print
       alert_for(:not_for_release, status: status_for(not_for_release), text: not_for_release_text)
     end
 
-    def not_for_release_text
-      return unless not_for_release == 'yes'
-      text = localised_attr_value(:not_for_release_reason)
-      text << " (#{not_for_release_reason_details})" if not_for_release_reason == 'other'
-      text
-    end
-
     def acct_status_alert
       alert_for(:acct_status, status: acct_status_status, text: acct_status_text)
-    end
-
-    def acct_status_status
-      return :on if %w[open post_closure].include?(acct_status)
-      :off
-    end
-
-    def acct_status_text
-      return unless acct_status.present?
-      case acct_status
-      when 'closed_in_last_6_months'
-        [
-          localised_attr_value(:acct_status),
-          date_of_most_recently_closed_acct
-        ].join(' ')
-      else
-        localised_attr_value(:acct_status)
-      end
     end
 
     def rule_45_alert
@@ -53,17 +29,6 @@ module Print
 
     def current_e_risk_alert
       alert_for(:current_e_risk, status: current_e_risk_status, text: current_e_risk_text)
-    end
-
-    def current_e_risk_status
-      return :off if current_e_risk != 'yes'
-      return :on if %w[e_list_standard e_list_escort e_list_heightened].include?(current_e_risk_details)
-      :off
-    end
-
-    def current_e_risk_text
-      return unless current_e_risk == 'yes' || current_e_risk_details.present?
-      localised_attr_value(:current_e_risk_details)
     end
 
     def csra_alert
@@ -84,6 +49,42 @@ module Print
 
     attr_reader :view_context
     alias h view_context
+
+    def not_for_release_text
+      return unless not_for_release == 'yes'
+      text = localised_attr_value(:not_for_release_reason)
+      text << " (#{not_for_release_reason_details})" if not_for_release_reason == 'other'
+      text
+    end
+
+    def acct_status_status
+      return :on if %w[open post_closure].include?(acct_status)
+      :off
+    end
+
+    def acct_status_text
+      return unless acct_status.present?
+      case acct_status
+      when 'closed_in_last_6_months'
+        [
+          localised_attr_value(:acct_status),
+          date_of_most_recently_closed_acct
+        ].join(' ')
+      else
+        localised_attr_value(:acct_status)
+      end
+    end
+
+    def current_e_risk_status
+      return :off if current_e_risk != 'yes'
+      return :on if %w[e_list_standard e_list_escort e_list_heightened].include?(current_e_risk_details)
+      :off
+    end
+
+    def current_e_risk_text
+      return unless current_e_risk == 'yes' || current_e_risk_details.present?
+      localised_attr_value(:current_e_risk_details)
+    end
 
     def status_for(attribute)
       attribute == 'yes' ? :on : :off
