@@ -69,13 +69,8 @@ html
             - detainee.aliases.each do |a|
               div.alias.strong-text = a
           div.grid-column.column-one-quarter
-            - if detainee.image.present?
               .image
-                = wicked_pdf_image_tag detainee_image_path(detainee, format: :jpg), size: '128x180'
-            - else
-              .image
-                span.image-unavailable-text = 'Photo unavailable'
-                = wicked_pdf_image_tag "photo_unavailable.png", size: '128x180'
+                = detainee.image
       div.grid.move
         div.grid-row.header-row.small = 'Move details'
         div.grid-row.padded.padded-bottom

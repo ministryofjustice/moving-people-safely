@@ -85,4 +85,28 @@ RSpec.describe Print::DetaineePresenter, type: :presenter do
       specify { expect(presenter.gender_code).to eq('F') }
     end
   end
+
+  describe '#image' do
+    context 'when an image is present' do
+      it 'returns a base64 image as html' do
+        detainee.image = "i+am+a+base64+image"
+
+        expect(subject.image).
+          to eq '<img src="data:image;base64,i+am+a+base64+image" />'
+      end
+    end
+
+    context 'when an image is not present' do
+      it 'returns the photo unavailable image as html' do
+        detainee.image = nil
+        image_location = Rails.application.assets.find_asset("photo_unavailable.png").filename
+
+        expect(subject.image).
+          to eq [
+            "<span class=\"image-unavailable-text\">Photo unavailable</span>",
+            "<img src=\"file:///#{image_location}\" alt=\"Photo unavailable\" />"
+          ].join
+      end
+    end
+  end
 end
