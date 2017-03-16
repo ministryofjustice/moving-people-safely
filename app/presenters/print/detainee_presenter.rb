@@ -1,5 +1,8 @@
 module Print
   class DetaineePresenter < SimpleDelegator
+    include WickedPdf::WickedPdfHelper::Assets
+    include ActionView::Helpers::AssetTagHelper
+
     def identifier
       "#{prison_number}: #{surname}"
     end
@@ -28,6 +31,17 @@ module Print
     def nationalities
       return %w[None] unless model.nationalities.present?
       model.nationalities.split(',').map(&:strip)
+    end
+
+    def image
+      if model.image.present?
+        image_tag("data:image;base64,#{model.image}")
+      else
+        [
+          content_tag(:span, 'Photo unavailable', class: 'image-unavailable-text'),
+          wicked_pdf_image_tag('photo_unavailable.png')
+        ].join.html_safe
+      end
     end
 
     private
