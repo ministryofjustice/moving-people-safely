@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, skip: %i[ registrations ],
 		controllers: { omniauth_callbacks: 'callbacks' }
+  resource :session, only: %i[ new destroy ]
 
   resources :detainees, only: %i[new create edit update show] do
     resources :moves, only: %i[new create]
