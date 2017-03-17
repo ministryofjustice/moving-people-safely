@@ -54,7 +54,6 @@ RSpec.configure do |config|
   config.include(Devise::Test::IntegrationHelpers, type: :request)
   config.include(FactoryGirl::Syntax::Methods)
   config.include(FormsHelper, type: :form)
-  config.include(OffendersApiHelpers)
   config.include(NomisApiHelpers)
   config.include(ActionView::TestCase::Behavior, type: :presenter)
   config.include(LocalizerHelpers)
