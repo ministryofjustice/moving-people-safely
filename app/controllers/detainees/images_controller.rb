@@ -1,6 +1,5 @@
 module Detainees
   class ImagesController < ApplicationController
-    respond_to :jpg
     layout :none
 
     def show
