@@ -1,0 +1,11 @@
+require 'mojsso'
+
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider(
+    :mojsso,
+    ENV.fetch('MOJSSO_ID'),
+    ENV.fetch('MOJSSO_SECRET'),
+    client_options: { site: ENV.fetch('MOJSSO_URL', 'http://localhost:5000') }
+  )
+end
+OmniAuth.config.on_failure = SessionsController.action(:new)
