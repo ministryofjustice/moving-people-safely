@@ -51,7 +51,6 @@ RSpec.configure do |config|
   config.include(ApplicationPageHelpers, type: :feature)
   config.include(Shoulda::Matchers::ActiveModel, type: :form)
   config.include(ActiveSupport::Testing::TimeHelpers)
-  config.include(Devise::Test::IntegrationHelpers, type: :request)
   config.include(FactoryGirl::Syntax::Methods)
   config.include(FormsHelper, type: :form)
   config.include(NomisApiHelpers)

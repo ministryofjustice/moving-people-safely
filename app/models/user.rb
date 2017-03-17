@@ -1,8 +1,4 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :recoverable,
-    :trackable, :validatable, :timeoutable,
-    :omniauthable, omniauth_providers: [:mojsso]
-
   class << self
     def from_omniauth(auth)
       user = where(email: auth.info.email).first
@@ -23,7 +19,6 @@ class User < ApplicationRecord
         u.email = auth.info.email
         u.first_name = auth.info.first_name
         u.last_name = auth.info.last_name
-        u.password = Devise.friendly_token[0, 20]
       end
     end
   end

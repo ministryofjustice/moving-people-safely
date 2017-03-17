@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users, skip: %i[ registrations ],
-		controllers: { omniauth_callbacks: 'callbacks' }
   get '/auth/:provider/callback', to: 'sessions#create'
   resource :session, only: %i[ new destroy ]
 
