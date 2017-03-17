@@ -8,7 +8,7 @@ RSpec.describe 'New detainee requests', type: :request do
     it 'redirects user to login page' do
       get "/detainees/#{detainee.id}/edit"
       expect(response.status).to eq(302)
-      expect(response).to redirect_to new_user_session_path
+      expect(response).to redirect_to new_session_path
     end
   end
 

@@ -1,6 +1,8 @@
 module ApplicationPageHelpers
   def login(user=nil)
-    @_login ||= Page::Login.new.login(user)
+    OauthHelper.configure_mock
+    visit new_session_path
+    click_on "Sign in with Mojsso"
   end
 
   def dashboard

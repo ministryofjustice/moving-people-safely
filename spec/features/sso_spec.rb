@@ -38,7 +38,7 @@ RSpec.feature 'SSO integration', type: :feature do
     scenario 'user is redirected to the login page' do
       visit root_path
       click_on 'Sign in with Mojsso'
-      expect(page).to have_button('Log in')
+      expect(page).to have_link('Sign in with Mojsso')
       expect(page).not_to have_button('Sign out')
     end
   end

@@ -7,7 +7,7 @@ RSpec.describe 'Confirm risk assessment requests', type: :request do
     it 'redirects the user to the login page' do
       put "/#{detainee.id}/risk/confirm"
       expect(response.status).to eq(302)
-      expect(response).to redirect_to(new_user_session_path)
+      expect(response).to redirect_to(new_session_path)
     end
   end
 
