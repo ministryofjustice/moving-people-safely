@@ -45,7 +45,6 @@
 * Seeding data for **development** environment **only**
 
    ```bash
-   bundle exec rake dev:prime
    bundle exec rake dev:moves
    ```
 
