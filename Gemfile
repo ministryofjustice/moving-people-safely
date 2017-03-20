@@ -18,7 +18,6 @@ gem 'govuk_elements_form_builder', git: 'https://github.com/ministryofjustice/go
 gem 'govuk_frontend_toolkit'
 gem 'govuk_template', '0.18.0'
 gem 'logstasher', git: 'https://github.com/shadabahmed/logstasher.git', ref: '4b19d78d6d043c042fa6c17d3980702015e8645f'
-gem 'offenders-api', git: 'https://github.com/ministryofjustice/offenders-api-toolkit.git'
 gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'reform', '2.1.0'
 gem 'reform-rails'

@@ -6,13 +6,6 @@ GIT
       rails (>= 4.2)
 
 GIT
-  remote: https://github.com/ministryofjustice/offenders-api-toolkit.git
-  revision: c2bffae6cbc270e1b6c41495a1e48706b958c607
-  specs:
-    offenders-api (0.1.0)
-      http (~> 2.0)
-
-GIT
   remote: https://github.com/shadabahmed/logstasher.git
   revision: 4b19d78d6d043c042fa6c17d3980702015e8645f
   ref: 4b19d78d6d043c042fa6c17d3980702015e8645f
@@ -129,8 +122,6 @@ GEM
       representable (>= 2.4.0, <= 3.1.0)
       uber
     docile (1.1.5)
-    domain_name (0.5.20161129)
-      unf (>= 0.0.5, < 1.0.0)
     equalizer (0.0.11)
     erubis (2.7.0)
     excon (0.54.0)
@@ -159,15 +150,6 @@ GEM
     hashdiff (0.3.0)
     hashery (2.1.2)
     hashie (3.4.6)
-    http (2.1.0)
-      addressable (~> 2.3)
-      http-cookie (~> 1.0)
-      http-form_data (~> 1.0.1)
-      http_parser.rb (~> 0.6.0)
-    http-cookie (1.0.3)
-      domain_name (~> 0.5)
-    http-form_data (1.0.1)
-    http_parser.rb (0.6.0)
     i18n (0.7.0)
     i18n_data (0.7.0)
     ice_nine (0.11.2)
@@ -373,9 +355,6 @@ GEM
     uber (0.0.15)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.7.2)
     unicode-display_width (1.1.1)
     unicode_utils (1.4.0)
     virtus (1.0.5)
@@ -428,7 +407,6 @@ DEPENDENCIES
   listen (~> 3.0.5)
   logstasher!
   meta_request
-  offenders-api!
   omniauth-oauth2 (~> 1.3.1)
   pdf-reader
   pg (~> 0.18)
