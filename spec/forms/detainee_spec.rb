@@ -4,6 +4,7 @@ RSpec.describe Forms::Detainee, type: :form do
   let(:model) { Detainee.new }
   subject { described_class.new(model) }
 
+  let(:prison_number) { 'A1234Ab' }
   let(:params) {
     {
       forenames: 'Jimmy',
@@ -14,7 +15,7 @@ RSpec.describe Forms::Detainee, type: :form do
       cro_number: 'SOMECRO',
       pnc_number: 'SOMEPNC',
       aliases: 'The Nailfile, Crocodile Shoes',
-      prison_number: 'A1234AB',
+      prison_number: prison_number,
       image_filename: ''
     }.with_indifferent_access
   }
@@ -29,7 +30,7 @@ RSpec.describe Forms::Detainee, type: :form do
 
     it 'coerces params' do
       subject.validate(params)
-      coerced_params = params.merge(date_of_birth: Date.civil(1946, 12, 30))
+      coerced_params = params.merge(prison_number: prison_number.upcase, date_of_birth: Date.civil(1946, 12, 30))
       expect(subject.to_nested_hash).to eq coerced_params
     end
 

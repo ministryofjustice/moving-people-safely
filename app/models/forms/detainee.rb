@@ -26,6 +26,10 @@ module Forms
       errors.add(:date_of_birth) unless date_of_birth.is_a? Date
     end
 
+    def prison_number=(value)
+      value && super(value.upcase)
+    end
+
     def genders
       GENDERS
     end
