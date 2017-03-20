@@ -80,4 +80,31 @@ RSpec.describe User, type: :model do
       expect(user.last_name).to eq('Barnes')
     end
   end
+
+  describe '#full_name' do
+    context 'when only the first name is present' do
+      it 'return just the first name' do
+        user = User.new(first_name: 'Bob')
+        expect(user.full_name).to eq('Bob')
+        user = User.new(first_name: 'Bob', last_name: '')
+        expect(user.full_name).to eq('Bob')
+      end
+    end
+
+    context 'when only the last name is present' do
+      it 'return just the last name' do
+        user = User.new(last_name: 'Barnes')
+        expect(user.full_name).to eq('Barnes')
+        user = User.new(first_name: '', last_name: 'Barnes')
+        expect(user.full_name).to eq('Barnes')
+      end
+    end
+
+    context 'when both first name and last name are present' do
+      it 'return both first name and last name' do
+        user = User.new(first_name: 'Bob', last_name: 'Barnes')
+        expect(user.full_name).to eq('Bob Barnes')
+      end
+    end
+  end
 end

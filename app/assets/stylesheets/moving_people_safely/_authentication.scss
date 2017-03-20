@@ -1,9 +1,12 @@
-.sign-out {
+#signed-in-box {
   display: inline-block;
   position: absolute;
   right: 15px;
-  input {
-    @extend .font-small;
-    color: $white;
+  @extend .font-small;
+  color: $white;
+
+  li {
+    display: inline-block;
+    padding: 5px;
   }
 }

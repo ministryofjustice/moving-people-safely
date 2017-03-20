@@ -22,4 +22,8 @@ class User < ApplicationRecord
       end
     end
   end
+
+  def full_name
+    [first_name, last_name].select(&:present?).join(' ')
+  end
 end
