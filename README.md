@@ -66,6 +66,11 @@ For local integration with SSO refer to [SSO Integration](docs/sso_integration.m
   ```bash
   bundle exec rails s
   ```
+  If you don't have a local MoJ SSO running & instead wish to mock SSO you can do so with the following:
+
+  ```bash
+  MOCK_SSO=true bundle exec rails s
+  ```
 
 # Running tests
 
