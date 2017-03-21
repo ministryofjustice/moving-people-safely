@@ -26,18 +26,28 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-    if session[:user_id].blank?
-      redirect_to new_session_path
-    end
+    redirect_to new_session_path unless sso_identity
   end
 
   def current_user
-    @current_user ||= User.find(session[:user_id])
+    @current_user ||= sso_identity&.user
   end
   helper_method :current_user
 
   def user_signed_in?
-    session[:user_id].present?
+    sso_identity.present?
   end
   helper_method :user_signed_in?
+
+  def sso_identity
+    @sso_identity ||= set_sso_identity
+  end
+
+  def set_sso_identity
+    session[:sso_data] && SSO::Identity.from_session(session[:sso_data])
+  rescue SSO::Identity::InvalidData
+    Rails.logger.error "Deleting invalid SSO session data: #{session[:sso_data]}"
+    session.delete(:sso_data)
+    nil
+  end
 end
