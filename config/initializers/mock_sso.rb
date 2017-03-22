@@ -1,5 +1,13 @@
 if Rails.env.development? && ENV['MOCK_SSO']
   OmniAuth.config.test_mode = true
+
+  begin
+    server_options = Rails::Server.new.options
+    base_url = "#{server_options[:Host]}:#{server_options[:Port]}"
+  rescue
+    base_url = 'localhost:3000'
+  end
+
   OmniAuth.config.add_mock(
     :mojsso,
     {
@@ -12,8 +20,8 @@ if Rails.env.development? && ENV['MOCK_SSO']
         "last_name": "Bloggs",
         "permissions": [],
         "links": {
-          "profile": "https://some-sso.biz/profile",
-          "logout": "https://some-sso.biz/users/sign_out"
+          "profile": "http://#{base_url}/profile",
+          "logout": "http://#{base_url}/session/new"
         }
       },
       'credentials': {

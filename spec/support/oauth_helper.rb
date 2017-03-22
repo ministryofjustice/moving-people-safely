@@ -21,7 +21,7 @@ module OauthHelper
       "permissions": [],
       "links": {
         "profile": "https://some-sso.biz/profile",
-        "logout": "https://some-sso.biz/users/sign_out"
+        "logout": "http://some-sso.biz/users/sign_out"
       }
     },
     'credentials': {

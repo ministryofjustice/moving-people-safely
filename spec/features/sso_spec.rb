@@ -16,7 +16,7 @@ RSpec.feature 'SSO integration', type: :feature do
     click_on 'Sign in with Mojsso'
 
     click_on 'Sign out'
-    expect(current_path).to eq new_session_path
+    expect(current_path).to eq '/users/sign_out'
     visit root_path
     expect(current_path).to eq new_session_path
   end
