@@ -124,8 +124,7 @@ RSpec.feature 'printing a PER', type: :feature do
     let(:alerts) {
       [
         "NOT FOR RELEASE ACCT RULE 45",
-        "E LIST CSRA CAT A MPV",
-        "Standard"
+        "E LIST CSRA STANDARD CAT A MPV"
       ]
     }
 
@@ -341,8 +340,8 @@ RSpec.feature 'printing a PER', type: :feature do
       [
         "NOT FOR RELEASE ACCT RULE 45",
         "Open",
-        "E LIST CSRA CAT A MPV",
-        "E-List-Escort High"
+        "E LIST CSRA HIGH CAT A MPV",
+        "E-List-Escort"
       ]
     }
 

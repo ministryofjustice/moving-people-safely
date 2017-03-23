@@ -34,7 +34,7 @@ module Print
     def csra_alert
       status = csra == 'high' ? :on : :off
       csra_text = csra == 'high' ? 'High' : 'Standard'
-      alert_for(:csra, status: status, text: csra_text)
+      alert_for(:csra, status: status, toggle: csra_text)
     end
 
     def category_a_alert

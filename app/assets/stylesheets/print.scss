@@ -232,7 +232,7 @@ table {
   font: 15px "Arial Narrow";
   font-weight: bold;
 
-  .alert-toggle-text {
+  .alert-toggle {
     padding-left: 5px;
     text-transform: uppercase;
     font: 15px "Arial Narrow";
@@ -262,7 +262,8 @@ table {
     float: left;
   }
 
-  .alert-toggle-text {
+  .alert-toggle {
+    border-radius: 5px;
     padding: 0 5px;
     margin-top: 3px;
     margin-right: 3px;

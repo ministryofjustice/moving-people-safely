@@ -36,12 +36,33 @@ RSpec.describe Print::AlertPresenter, type: :presenter do
     end
   end
 
+  describe '#on?' do
+    context 'when alert is off' do
+      let(:status) { :off }
+      specify { expect(presenter.on?).to be_falsey }
+    end
+
+    context 'when alert is on' do
+      let(:status) { :on }
+      specify { expect(presenter.on?).to be_truthy }
+    end
+  end
+
   describe '#to_s' do
     context 'when the alert is off' do
       let(:status) { :off }
 
       it 'returns the appropriate content for when the alert is off' do
         expect(presenter.to_s).to eq('<div class="alert-wrapper"><div class="image alert-off"><span class="alert-title">Some alert</span></div></div>')
+      end
+
+      context 'and toggle content is provided' do
+        let(:toggle) { 'some toggle content' }
+        let(:options) { { status: status, toggle: toggle }.merge(default_options) }
+
+        it 'returns the appropriate content including the toggle content' do
+          expect(presenter.to_s).to eq('<div class="alert-wrapper"><div class="image alert-off"><span class="alert-title">Some alert</span><span class="alert-toggle">some toggle content</span></div></div>')
+        end
       end
     end
 
@@ -51,6 +72,15 @@ RSpec.describe Print::AlertPresenter, type: :presenter do
       it 'returns the appropriate content for when the alert is on' do
         expect(presenter.to_s).to match('<div class="image alert-on"><span class="alert-title">Some alert</span>')
         expect(presenter.to_s).to match('<img src=.* alt="Ic red tick"')
+      end
+
+      context 'and toggle content is provided' do
+        let(:toggle) { 'some toggle content' }
+        let(:options) { { status: status, toggle: toggle }.merge(default_options) }
+
+        it 'returns the appropriate content including the toggle content' do
+          expect(presenter.to_s).to eq('<div class="alert-wrapper"><div class="image alert-on"><span class="alert-title">Some alert</span><span class="alert-toggle">some toggle content</span></div></div>')
+        end
       end
     end
 
