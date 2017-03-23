@@ -1,7 +1,7 @@
 module Detainees
   class Fetcher
     def initialize(prison_number, options = {})
-      @prison_number = prison_number
+      @prison_number = prison_number.upcase
       @options = options
       @errors = []
     end

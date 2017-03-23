@@ -17,6 +17,13 @@ RSpec.describe Forms::Search, type: :form do
     end
   end
 
+  describe "#prison_number" do
+    it "returns an upcased string" do
+      subject.prison_number = "a1234bc"
+      expect(subject.prison_number).to eq "A1234BC"
+    end
+  end
+
   describe '#detainee' do
     context 'when the form is valid' do
       context 'when an detainee exists for a given prison number' do

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Detainees::Fetcher do
   let(:options) { {} }
-  let(:prison_number) { 'A1234AB' }
+  let(:prison_number) { 'A1234Ab' }
   let(:nomis_details) { { surname: 'Doe' }.to_json }
   let(:nomis_image) { { image: 'base-64-encoded' }.to_json }
   let(:mock_details_fetcher) { instance_double(Detainees::DetailsFetcher) }
@@ -27,7 +27,24 @@ RSpec.describe Detainees::Fetcher do
     allow(mock_image_fetcher).to receive(:call).and_return(mock_image_response)
   end
 
+  shared_examples_for 'detainee details service called' do
+    it 'fetches the detainee details using an upcased prison number' do
+      expect(Detainees::DetailsFetcher).to receive(:new).with(prison_number.upcase)
+      fetcher.call
+    end
+  end
+
+  shared_examples_for 'detainee image service called' do
+    it 'fetches the image details using an upcased prison number' do
+      expect(Detainees::ImageFetcher).to receive(:new).with(prison_number.upcase)
+      fetcher.call
+    end
+  end
+
   shared_examples_for 'all services retrieved' do
+    include_examples 'detainee details service called'
+    include_examples 'detainee image service called'
+
     it 'retrieves both details and image for the detainee' do
       response = fetcher.call
       expect(response.to_h).to eq({ details: 'mocked-details', image: 'mocked-image' })
@@ -119,6 +136,8 @@ RSpec.describe Detainees::Fetcher do
   context 'when pull option is :details' do
     let(:options) { { pull: :details } }
 
+    include_examples 'detainee details service called'
+
     it 'retrieves only the details for the detainee' do
       response = fetcher.call
       expect(response.to_h).to eq({ details: 'mocked-details' })
@@ -141,6 +160,8 @@ RSpec.describe Detainees::Fetcher do
 
   context 'when pull option is :image' do
     let(:options) { { pull: :image } }
+
+    include_examples 'detainee image service called'
 
     it 'retrieves only the image for the detainee' do
       response = fetcher.call
