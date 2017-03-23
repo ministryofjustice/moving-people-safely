@@ -50,6 +50,7 @@ group :test do
   gem 'capybara'
   gem 'codeclimate-test-reporter', require: nil
   gem 'database_cleaner'
+  gem 'diffy'
   gem 'launchy'
   gem 'rspec-its'
   gem 'rspec-rails'

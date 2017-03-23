@@ -117,6 +117,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    diffy (3.2.0)
     disposable (0.2.6)
       declarative (~> 0.0.6)
       representable (>= 2.4.0, <= 3.1.0)
@@ -392,6 +393,7 @@ DEPENDENCIES
   countries
   database_cleaner
   devise
+  diffy
   excon
   factory_girl_rails
   faker
