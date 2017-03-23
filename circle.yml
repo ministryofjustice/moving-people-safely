@@ -10,6 +10,8 @@ machine:
 
 dependencies:
   pre:
+    - sudo cp -r ./app/assets/fonts/liberation_sans /usr/share/fonts/truetype/
+    - sudo fc-cache -f -v
     - npm install -g bower
     - bower install
 

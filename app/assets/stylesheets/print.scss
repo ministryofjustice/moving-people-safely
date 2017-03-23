@@ -13,6 +13,10 @@ $is-print: true;
 @import "elements/elements-typography";
 @import "elements/layout";
 
+* {
+  font-family: "Liberation Sans";
+}
+
 @media print {
   html, body {
     width: 210mm;
@@ -229,13 +233,13 @@ table {
   text-transform: uppercase;
   padding: 0.2em 0.5em;
   color: $secondary-text-colour;
-  font: 15px "Arial Narrow";
+  font: 15px;
   font-weight: bold;
 
   .alert-toggle {
     padding-left: 5px;
     text-transform: uppercase;
-    font: 15px "Arial Narrow";
+    font: 15px;
     font-weight: bold;
   }
 }
@@ -251,7 +255,7 @@ table {
     text-transform: uppercase;
     padding: 0.2em 0.5em;
     color: white;
-    font: 15px "Arial Narrow";
+    font: 15px;
     font-weight: bold;
     position: relative;
     float: left;
@@ -270,7 +274,7 @@ table {
     background-color: white;
     color: $mellow-red;
     text-transform: uppercase;
-    font: 15px "Arial Narrow";
+    font: 15px;
     font-weight: bold;
     position: relative;
     float: left;
