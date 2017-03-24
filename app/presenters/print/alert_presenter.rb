@@ -7,6 +7,7 @@ module Print
       @view_context = options.fetch(:view_context)
       @status = options.fetch(:status, :off)
       @title = options[:title]
+      @toggle = options[:toggle]
       @text = options[:text]
     end
 
@@ -26,13 +27,17 @@ module Print
 
     private
 
-    attr_reader :view_context
+    attr_reader :view_context, :toggle
     alias h view_context
+
+    def on?
+      status == :on
+    end
 
     def build_status_content
       h.content_tag(:div, class: "image #{alert_class}") do
         alert_contents = [h.content_tag(:span, title, class: 'alert-title')]
-        alert_contents << h.wicked_pdf_image_tag('ic_red_tick.png') if status == :on
+        alert_contents << toggle_content
         h.safe_join(alert_contents)
       end
     end
@@ -41,8 +46,20 @@ module Print
       h.content_tag(:span, text, class: 'alert-text')
     end
 
+    def toggle_content
+      @toggle_content ||= build_toggle_content
+    end
+
+    def build_toggle_content
+      if toggle.present?
+        h.content_tag(:span, toggle, class: 'alert-toggle')
+      elsif on?
+        h.wicked_pdf_image_tag('ic_red_tick.png')
+      end
+    end
+
     def alert_class
-      status == :on ? 'alert-on' : 'alert-off'
+      on? ? 'alert-on' : 'alert-off'
     end
   end
 end

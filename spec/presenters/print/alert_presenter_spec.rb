@@ -43,6 +43,15 @@ RSpec.describe Print::AlertPresenter, type: :presenter do
       it 'returns the appropriate content for when the alert is off' do
         expect(presenter.to_s).to eq('<div class="alert-wrapper"><div class="image alert-off"><span class="alert-title">Some alert</span></div></div>')
       end
+
+      context 'and toggle content is provided' do
+        let(:toggle) { 'some toggle content' }
+        let(:options) { { status: status, toggle: toggle }.merge(default_options) }
+
+        it 'returns the appropriate content including the toggle content' do
+          expect(presenter.to_s).to eq('<div class="alert-wrapper"><div class="image alert-off"><span class="alert-title">Some alert</span><span class="alert-toggle">some toggle content</span></div></div>')
+        end
+      end
     end
 
     context 'when the alert is on' do
@@ -51,6 +60,15 @@ RSpec.describe Print::AlertPresenter, type: :presenter do
       it 'returns the appropriate content for when the alert is on' do
         expect(presenter.to_s).to match('<div class="image alert-on"><span class="alert-title">Some alert</span>')
         expect(presenter.to_s).to match('<img src=.* alt="Ic red tick"')
+      end
+
+      context 'and toggle content is provided' do
+        let(:toggle) { 'some toggle content' }
+        let(:options) { { status: status, toggle: toggle }.merge(default_options) }
+
+        it 'returns the appropriate content including the toggle content' do
+          expect(presenter.to_s).to eq('<div class="alert-wrapper"><div class="image alert-on"><span class="alert-title">Some alert</span><span class="alert-toggle">some toggle content</span></div></div>')
+        end
       end
     end
 
