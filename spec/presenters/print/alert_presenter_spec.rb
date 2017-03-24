@@ -36,18 +36,6 @@ RSpec.describe Print::AlertPresenter, type: :presenter do
     end
   end
 
-  describe '#on?' do
-    context 'when alert is off' do
-      let(:status) { :off }
-      specify { expect(presenter.on?).to be_falsey }
-    end
-
-    context 'when alert is on' do
-      let(:status) { :on }
-      specify { expect(presenter.on?).to be_truthy }
-    end
-  end
-
   describe '#to_s' do
     context 'when the alert is off' do
       let(:status) { :off }

@@ -16,10 +16,6 @@ module Print
       h.t("print.alerts.title.#{name}", default: name.to_s.humanize)
     end
 
-    def on?
-      status == :on
-    end
-
     def to_s
       h.content_tag(:div, class: 'alert-wrapper') do
         contents = []
@@ -34,10 +30,14 @@ module Print
     attr_reader :view_context, :toggle
     alias h view_context
 
+    def on?
+      status == :on
+    end
+
     def build_status_content
       h.content_tag(:div, class: "image #{alert_class}") do
         alert_contents = [h.content_tag(:span, title, class: 'alert-title')]
-        alert_contents << toggle_content if toggle_content
+        alert_contents << toggle_content
         h.safe_join(alert_contents)
       end
     end
@@ -59,7 +59,7 @@ module Print
     end
 
     def alert_class
-      status == :on ? 'alert-on' : 'alert-off'
+      on? ? 'alert-on' : 'alert-off'
     end
   end
 end
