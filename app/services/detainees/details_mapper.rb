@@ -70,10 +70,17 @@ module Detainees
 
     def mapped_aliases
       return if aliases.empty?
-      aliases.map do |a|
+      mapped = aliases.map do |a|
         names = [a['given_name'], a['middle_names'], a['surname']]
         mapped_names(names)
-      end.join(', ')
+      end
+      unique_aliases(mapped).join(', ')
+    end
+
+    def unique_aliases(list)
+      list.each_with_object([]) do |item, mem|
+        mem << item.titleize unless mem.include?(item.titleize)
+      end
     end
   end
 end

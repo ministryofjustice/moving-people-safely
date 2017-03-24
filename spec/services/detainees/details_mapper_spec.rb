@@ -198,4 +198,18 @@ RSpec.describe Detainees::DetailsMapper do
       expect(mapper.call).to eq(expected_result.merge('aliases' => 'C. Reilly Lovett'))
     end
   end
+
+  context 'when detainee has duplicate aliases' do
+    let(:aliases) {
+      [
+        { 'given_name' => 'John', 'surname' => 'Unique' },
+        { 'given_name' => 'Tom', 'surname' => 'Duplicate' },
+        { 'given_name' => 'TOM', 'surname' => 'DUPLICATE' }
+      ]
+    }
+
+    it 'returns a list of the unique aliases' do
+      expect(mapper.call).to eq(expected_result.merge('aliases' => 'John Unique, Tom Duplicate'))
+    end
+  end
 end
