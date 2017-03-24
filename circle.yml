@@ -10,9 +10,11 @@ machine:
 
 dependencies:
   pre:
+    - sudo cp -r ./app/assets/fonts/liberation_sans /usr/share/fonts/truetype/
+    - sudo fc-cache -f -v
     - npm install -g bower
     - bower install
 
 test:
   override:
-    - bundle exec rake SPEC_OPTS="--format documentation"
+    - bundle exec rake SPEC_OPTS="--format documentation --exclude-pattern spec/features/printing_spec.rb"
