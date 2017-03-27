@@ -9,6 +9,6 @@ RUN fc-cache -f -v
 
 RUN RAILS_ENV=production npm install -g bower
 RUN RAILS_ENV=production bower install --allow-root
-RUN RAILS_ENV=production SECRET_KEY_BASE=foo exec rake assets:precompile --trace
+RUN RAILS_ENV=production SKIP_OPTIONAL_INITIALIZERS=true SECRET_KEY_BASE=foo exec rake assets:precompile --trace
 
 ENTRYPOINT ["./docker/bin/run.sh"]
