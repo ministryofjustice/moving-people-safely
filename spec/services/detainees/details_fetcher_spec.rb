@@ -130,8 +130,8 @@ RSpec.describe Detainees::DetailsFetcher do
     it 'returns a mapped hash for the detainee data retrieved' do
       expected_response = {
         prison_number: prison_number,
-        forenames: 'John C.',
-        surname: 'Doe',
+        forenames: 'JOHN C.',
+        surname: 'DOE',
         date_of_birth: '23/01/1969',
         gender: 'male',
         nationalities: 'American',

@@ -33,14 +33,14 @@ RSpec.describe Detainees::DetailsMapper do
   let(:expected_result) {
     {
       prison_number: prison_number,
-      forenames: 'John C.',
-      surname: 'Doe',
+      forenames: 'JOHN C.',
+      surname: 'DOE',
       date_of_birth: '23/01/1969',
       gender: 'male',
       nationalities: 'French',
       pnc_number: '12344',
       cro_number: '54321',
-      aliases: 'James Bond, Tom Ford'
+      aliases: 'JAMES BOND, TOM FORD'
     }.with_indifferent_access
   }
 
@@ -50,14 +50,14 @@ RSpec.describe Detainees::DetailsMapper do
     result = mapper.call
     expected_result = {
       prison_number: prison_number,
-      forenames: 'John C.',
-      surname: 'Doe',
+      forenames: 'JOHN C.',
+      surname: 'DOE',
       date_of_birth: '23/01/1969',
       gender: 'male',
       nationalities: 'French',
       pnc_number: '12344',
       cro_number: '54321',
-      aliases: 'James Bond, Tom Ford'
+      aliases: 'JAMES BOND, TOM FORD'
     }.with_indifferent_access
     expect(result).to eq(expected_result)
   end
@@ -74,7 +74,7 @@ RSpec.describe Detainees::DetailsMapper do
     let(:middle_names) { '' }
 
     it 'returns the forenames containing only the given name' do
-      expect(mapper.call).to eq(expected_result.merge('forenames' => 'John'))
+      expect(mapper.call).to eq(expected_result.merge('forenames' => 'JOHN'))
     end
   end
 
@@ -84,6 +84,15 @@ RSpec.describe Detainees::DetailsMapper do
 
     it 'returns the forenames as nil' do
       expect(mapper.call).to eq(expected_result.merge('forenames' => nil))
+    end
+  end
+
+  context 'when retrieved given name or middle names are not normalised' do
+    let(:given_name) { 'McDonald' }
+    let(:middle_names) { 'C.' }
+
+    it 'returns the normalised forenames' do
+      expect(mapper.call).to eq(expected_result.merge('forenames' => 'MCDONALD C.'))
     end
   end
 
@@ -179,7 +188,7 @@ RSpec.describe Detainees::DetailsMapper do
     let(:aliases) { [{ 'given_name' => 'James', 'middle_names' => 'C. Reilly', 'date_of_birth' => '1969-01-24' }] }
 
     it 'returns the remain names for that aliases' do
-      expect(mapper.call).to eq(expected_result.merge('aliases' => 'James C. Reilly'))
+      expect(mapper.call).to eq(expected_result.merge('aliases' => 'JAMES C. REILLY'))
     end
   end
 
@@ -187,7 +196,7 @@ RSpec.describe Detainees::DetailsMapper do
     let(:aliases) { [{ 'given_name' => 'James', 'surname' => 'Lovett', 'date_of_birth' => '1969-01-24' }] }
 
     it 'returns the remain names for that aliases' do
-      expect(mapper.call).to eq(expected_result.merge('aliases' => 'James Lovett'))
+      expect(mapper.call).to eq(expected_result.merge('aliases' => 'JAMES LOVETT'))
     end
   end
 
@@ -195,7 +204,7 @@ RSpec.describe Detainees::DetailsMapper do
     let(:aliases) { [{ 'middle_names' => 'C. Reilly', 'surname' => 'Lovett', 'date_of_birth' => '1969-01-24' }] }
 
     it 'returns the remain names for that aliases' do
-      expect(mapper.call).to eq(expected_result.merge('aliases' => 'C. Reilly Lovett'))
+      expect(mapper.call).to eq(expected_result.merge('aliases' => 'C. REILLY LOVETT'))
     end
   end
 
@@ -209,7 +218,7 @@ RSpec.describe Detainees::DetailsMapper do
     }
 
     it 'returns a list of the unique aliases' do
-      expect(mapper.call).to eq(expected_result.merge('aliases' => 'John Unique, Tom Duplicate'))
+      expect(mapper.call).to eq(expected_result.merge('aliases' => 'JOHN UNIQUE, TOM DUPLICATE'))
     end
   end
 end
