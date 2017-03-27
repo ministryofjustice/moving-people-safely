@@ -31,7 +31,7 @@ group :development, :test do
   gem 'faker'
   gem 'jasmine'
   gem 'jasmine-jquery-rails'
-  gem 'pdf-reader'
+  gem 'pdftotext'
   gem 'pry-byebug'
   gem 'pry-rails'
 end

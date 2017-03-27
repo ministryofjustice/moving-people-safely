@@ -14,7 +14,7 @@ $is-print: true;
 @import "elements/layout";
 
 * {
-  font-family: "Liberation Sans";
+  font-family: "Liberation Sans" !important;
 }
 
 @media print {

@@ -28,7 +28,7 @@ RSpec::Matchers.define :validate_as_pdf_that_contains_text do |file_name|
       f << pdf_content
     end
 
-    PDF::Reader.new(file).pages.flat_map(&:text).join
+    Pdftotext.text(file.path)
   end
 
   def expected_text_file_path(file_name)
