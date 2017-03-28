@@ -361,7 +361,7 @@ en:
         security: Escape status/history
         sex_offences: Sex offender
         substance_misuse: Risk of trafficking drugs and alcohol
-        violence: Risk to others - discrimination
+        violence: Risk to others - violent
   homepage:
     titles:
       detainee_search: Start a Person Escort Record
@@ -485,7 +485,7 @@ en:
         communication: Communication / language difficulties
         concealed_weapons: Conceals weapons, drugs or other items
         contact: Medical contact
-        discrimination: "Risk to others - discrimination"
+        discrimination: "Risk to others - violent"
         escape_status: Escape status/history
         escort_details: Escort Risk Assessment/Escape Pack
         harassment: "Risk to others: harasser and/or bully"
