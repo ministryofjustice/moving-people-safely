@@ -1,3 +1,4 @@
+require 'simplecov'
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 
@@ -15,6 +16,12 @@ end
 require 'pry-byebug'
 
 RSpec.configure do |config|
+  unless config.files_to_run.one?
+    SimpleCov.start 'rails' do
+      add_group 'Services', 'app/services'
+      add_group 'Presenters', 'app/presenters'
+    end
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
