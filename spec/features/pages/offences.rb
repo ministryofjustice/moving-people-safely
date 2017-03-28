@@ -2,7 +2,6 @@ module Page
   class Offences < Base
     def complete_form(options)
       fill_current_offences(options[:current_offences])
-      fill_past_offences(options[:past_offences])
 
       save_and_continue
     end
@@ -24,21 +23,6 @@ module Page
           fill_in "#{field_prefix}_#{index}_case_reference", with: offence[:case_reference]
         end
         click_button 'Add offence' unless index >= offences.size - 1
-      end
-    end
-
-    def fill_past_offences(offences)
-      unless offences && !offences.empty?
-        choose 'No'
-        return
-      end
-
-      choose 'Yes'
-      offences.each_with_index do |offence, index|
-        field_prefix = 'offences_past_offences_attributes'
-        field_name = "#{field_prefix}_#{index}_offence"
-        click_button 'Add past offence' unless first("##{field_name}")
-        fill_in field_name, with: offence.fetch(:name)
       end
     end
   end

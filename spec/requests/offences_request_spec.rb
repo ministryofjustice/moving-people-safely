@@ -44,8 +44,8 @@ RSpec.describe 'Offences', type: :request do
       end
 
       context "posted data fails validation" do
-        let(:invalid_past_offence) { {"id"=>"", "offence"=>"" } }
-        let(:form_data) { { offences: { has_past_offences: 'yes', past_offences_attributes: { '0' => invalid_past_offence } } } }
+        let(:invalid_current_offence) { { "id"=>"", "offence"=>"" } }
+        let(:form_data) { { offences: { current_offences_attributes: { '0' => invalid_current_offence } } } }
 
         it "redirects to #show" do
           expect(response).to redirect_to "/#{detainee.id}/offences"

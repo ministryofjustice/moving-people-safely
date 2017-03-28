@@ -25,10 +25,6 @@ class OffencesController < DetaineeController
       form.deserialize form_data
       form.add_current_offence
       render :show, locals: { form: form }
-    elsif params.key? 'offences_add_past_offence'
-      form.deserialize form_data
-      form.add_past_offence
-      render :show, locals: { form: form }
     end
   end
 

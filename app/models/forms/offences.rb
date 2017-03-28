@@ -4,9 +4,6 @@ module Forms
   class Offences < Forms::Base
     prepopulated_collection :current_offences
 
-    optional_field :has_past_offences, options: %w[yes no]
-    prepopulated_collection :past_offences
-
     validate do
       validate_current_offences
     end
