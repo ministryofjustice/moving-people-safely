@@ -42,8 +42,8 @@ RSpec.feature 'Detainee creation', type: :feature do
     }
     let(:expected_field_values) {
       {
-        surname: 'Doe',
-        forenames: 'John C.',
+        surname: 'DOE',
+        forenames: 'JOHN C.',
         date_of_birth: '11/09/1975',
         nationalities: 'British',
         gender: 'male',

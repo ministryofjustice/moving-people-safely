@@ -11,7 +11,7 @@ module Detainees
       {
         prison_number: prison_number,
         forenames: mapped_forenames,
-        surname: details[:surname],
+        surname: surname,
         date_of_birth: mapped_dob,
         gender: mapped_gender,
         nationalities: details[:nationalities],
@@ -46,6 +46,10 @@ module Detainees
       [given_name, middle_names]
     end
 
+    def surname
+      mapped_names([details[:surname]])
+    end
+
     def mapped_forenames
       mapped_names(forenames)
     end
@@ -53,7 +57,7 @@ module Detainees
     def mapped_names(names)
       present_names = names.select(&:present?)
       return if present_names.empty?
-      present_names.join(' ')
+      present_names.join(' ').upcase
     end
 
     def gender
@@ -73,7 +77,7 @@ module Detainees
       aliases.map do |a|
         names = [a['given_name'], a['middle_names'], a['surname']]
         mapped_names(names)
-      end.join(', ')
+      end.uniq.join(', ')
     end
   end
 end
