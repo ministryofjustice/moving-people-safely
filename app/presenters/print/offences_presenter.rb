@@ -15,19 +15,6 @@ module Print
       format_list(model.current_offences)
     end
 
-    def past_offences_label
-      content = t('print.label.offences.past_offences')
-      label_for(model.past_offences, content)
-    end
-
-    def past_offences_relevant
-      relevance_for(model.past_offences)
-    end
-
-    def past_offences
-      format_list(model.past_offences)
-    end
-
     private
 
     def label_for(list, content)
