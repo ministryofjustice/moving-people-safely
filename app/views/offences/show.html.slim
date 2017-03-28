@@ -25,8 +25,8 @@
         = f.fields_for :current_offences do |cf|
           .multiple-wrapper class=(cf.index == 0 ? 'multiple-first' : 'multiple-not-first')
             = cf.hidden_field :id
-            .multiple-field.inline
-              = cf.text_field :offence
+            .multiple-field.inline.wide
+              = cf.text_area :offence, rows: 1
             .multiple-field.inline
               = cf.text_field :case_reference
             .multiple-field.inline.remove-link

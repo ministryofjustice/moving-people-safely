@@ -126,6 +126,12 @@ form {
         }
       }
 
+      &.wide {
+        @include media(desktop) {
+          width: 30em;
+        }
+      }
+
       &.clear {
         @include media(tablet) {
           clear: both;
