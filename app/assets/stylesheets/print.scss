@@ -14,7 +14,7 @@ $is-print: true;
 @import "elements/layout";
 
 * {
-  font-family: "Liberation Sans";
+  font-family: "Liberation Sans" !important;
 }
 
 @media print {
@@ -108,7 +108,7 @@ table {
       text-align: center;
       margin-top: 70px;
       margin-bottom: 70px;
-      margin-left: 45px;
+      margin-left: 80px;
       margin-right: 10px;
     }
 
@@ -167,7 +167,7 @@ table {
   }
 
   td.indented {
-    padding-left: 5px;
+    padding-left: 15px;
   }
 }
 
@@ -321,99 +321,6 @@ table.vehicles {
     margin-right: 10px;
     margin-bottom: 20px;
     border-bottom: 1px dotted black;
-  }
-}
-
-table.detainee {
-  margin-top: 0;
-  padding-bottom: 20px;
-
-  th {
-    border-top: 2px solid black;
-    border-bottom: 1px dotted black;
-    font-weight: normal;
-    @extend .font-medium;
-    padding: 5px 0;
-    height: auto;
-  }
-
-  tr.indicators {
-    td {
-      padding: 10px 0;
-      border-bottom: 1px dotted black;
-      font-weight: bold;
-    }
-  }
-
-  td {
-    padding-top: 10px;
-    vertical-align: top;
-
-    div.title {
-      font-weight: lighter;
-    }
-
-    div {
-      font-weight: bold;
-    }
-  }
-
-  td.image {
-    text-align: right;
-
-    .image {
-      position: relative;
-      float: right;
-      clear: both;
-      width: 128px;
-      height: 180px;
-
-      .image-unavailable-text {
-        position: absolute;
-        font-weight: lighter;
-        text-align: center;
-        margin-top: 70px;
-        margin-bottom: 70px;
-        margin-left: 10px;
-        margin-right: 10px;
-      }
-
-      img {
-        top: 0;
-        left: 0;
-        height: 180px;
-        width: 128px;
-      }
-    }
-  }
-}
-
-table.move {
-  clear: both;
-  min-height: 200px;
-
-  tr.header-row {
-    height: 30px;
-    th {
-      border-top: 2px solid black;
-      border-bottom: 1px dotted black;
-      font-weight: bold;
-      @extend .font-small;
-      padding: 5px 0;
-    }
-  }
-
-  td {
-    padding-top: 10px;
-    vertical-align: top;
-
-    div.title {
-      font-weight: lighter;
-    }
-
-    div {
-      font-weight: bold;
-    }
   }
 }
 

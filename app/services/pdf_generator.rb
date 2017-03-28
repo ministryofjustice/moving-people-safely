@@ -14,7 +14,8 @@ class PdfGenerator
         healthcare: healthcare,
         offences: offences_presenter,
         alerts: alerts_presenter
-      }
+      },
+      print_media_type: true
     )
   end
 

@@ -31,7 +31,7 @@ group :development, :test do
   gem 'faker'
   gem 'jasmine'
   gem 'jasmine-jquery-rails'
-  gem 'pdf-reader'
+  gem 'pdftotext'
   gem 'pry-byebug'
   gem 'pry-rails'
 end
@@ -50,6 +50,7 @@ group :test do
   gem 'capybara'
   gem 'codeclimate-test-reporter', require: nil
   gem 'database_cleaner'
+  gem 'diffy'
   gem 'launchy'
   gem 'rspec-its'
   gem 'rspec-rails'

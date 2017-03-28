@@ -10,6 +10,7 @@ machine:
 
 dependencies:
   pre:
+    - sudo apt-get update; sudo apt-get install poppler-utils
     - sudo cp -r ./app/assets/fonts/liberation_sans /usr/share/fonts/truetype/
     - sudo fc-cache -f -v
     - npm install -g bower
@@ -17,4 +18,4 @@ dependencies:
 
 test:
   override:
-    - bundle exec rake SPEC_OPTS="--format documentation --exclude-pattern spec/features/printing_spec.rb"
+    - bundle exec rake SPEC_OPTS="--format documentation"
