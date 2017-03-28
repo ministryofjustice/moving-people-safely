@@ -1,7 +1,5 @@
 module SSO
   class Identity
-    InvalidData = Class.new(StandardError)
-
     class << self
       def from_omniauth(auth_hash)
         info = auth_hash.fetch('info')
@@ -20,8 +18,6 @@ module SSO
           permissions: hash.fetch('permissions')
         }
         new(user, options)
-      rescue KeyError
-        raise InvalidData
       end
 
       private

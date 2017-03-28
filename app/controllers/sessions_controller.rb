@@ -13,12 +13,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    if sso_identity
-      logout_url = build_url(sso_identity.logout_url, root_url)
-      redirect_to logout_url
-    else
-      redirect_to root_url
-    end
+    redirect_to logout_url
   ensure
     reset_session
   end
@@ -34,9 +29,10 @@ class SessionsController < ApplicationController
   end
   helper_method :sso_path
 
-  def build_url(url, redirect_url = nil)
+  def logout_url
+    return root_url unless sso_identity
     url = URI.parse(sso_identity.logout_url)
-    url.query = { redirect_to: redirect_url }.to_query if redirect_url
+    url.query = { redirect_to: root_url }.to_query
     url.to_s
   end
 end

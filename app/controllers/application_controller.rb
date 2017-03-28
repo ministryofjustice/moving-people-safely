@@ -45,9 +45,5 @@ class ApplicationController < ActionController::Base
 
   def set_sso_identity
     session[:sso_data] && SSO::Identity.from_session(session[:sso_data])
-  rescue SSO::Identity::InvalidData
-    Rails.logger.error "Deleting invalid SSO session data: #{session[:sso_data]}"
-    session.delete(:sso_data)
-    nil
   end
 end
