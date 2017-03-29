@@ -25,7 +25,7 @@
           td.issued colspan=3
             | Issued
           td.print
-            = link_to 'Reprint', move_print_path(move)
+            = link_to_print_in_new_window(move, text: 'Reprint')
         - else
           td.completion-status
             span class="#{move.risk_complete?}"
@@ -35,4 +35,4 @@
             span class="#{move.offences_complete?}"
           td.print
             - if AccessPolicy.print?(move: move)
-             = link_to 'Print', move_print_path(move)
+             = link_to_print_in_new_window(move)
