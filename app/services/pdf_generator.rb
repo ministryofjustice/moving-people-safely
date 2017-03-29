@@ -7,19 +7,33 @@ class PdfGenerator
     controller.render_to_string(
       pdf: filename,
       template: 'moves/print/show',
-      locals: {
-        detainee: detainee_presenter,
-        move: move_presenter,
-        risk: risk,
-        healthcare: healthcare,
-        offences: offences_presenter,
-        alerts: alerts_presenter
-      },
+      locals: pdf_locals,
+      cover: cover_page,
+      header: { content: header_content, spacing: 5 },
+      footer: { content: footer_content, spacing: 10 },
       print_media_type: true
     )
   end
 
   private
+
+  def cover_page
+    controller.render_to_string(
+      template: 'moves/print/cover',
+      locals: pdf_locals
+    )
+  end
+
+  def pdf_locals
+    {
+      detainee: detainee_presenter,
+      move: move_presenter,
+      risk: risk,
+      healthcare: healthcare,
+      offences: offences_presenter,
+      alerts: alerts_presenter
+    }
+  end
 
   def filename
     "#{detainee.prison_number}_#{Time.current.strftime('%Y%m%d%H%M')}"
@@ -43,6 +57,14 @@ class PdfGenerator
 
   def controller
     @controller ||= ActionController::Base.new
+  end
+
+  def header_content
+    controller.render_to_string(template: 'moves/print/header', locals: { detainee: detainee_presenter })
+  end
+
+  def footer_content
+    controller.render_to_string(template: 'moves/print/footer')
   end
 
   attr_reader :move

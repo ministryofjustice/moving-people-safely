@@ -36,7 +36,7 @@ About this Person Escort Record
    This person escort record was printed from the Moving People Safely web site.
    To find out more about the Person Escort Record go to exmaple.com
    If you have feedback or suggestions please email feedback@example.com
-W1234BY: McTest Testy
+W1234BY: McTest Testy                                                        Page 1 of 1
 
  NOT FOR RELEASE                     ACCT                    RULE 45
 
@@ -76,9 +76,8 @@ Medical contact                    Yes
   Healthcare professional          John doctor doe
   Contact number                   1-131-999-0232
 
-
 Current offences                   None
 Significant past offences          None
 Must return to                    None
-Must NOT return to   None
+Must NOT return to                None
 
