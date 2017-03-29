@@ -21,8 +21,11 @@
       nav#proposition-menu
         = link_to 'Moving people safely', root_path, id: 'proposition-name'
         - if user_signed_in?
-          .sign-out
-            = button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'styled-as-link'
+          ul#signed-in-box
+            li == "Signed in as #{current_user.full_name}"
+            li
+              .sign-out
+                = button_to 'Sign out', session_path, method: :delete, class: 'styled-as-link'
 
 = content_for :content do
   main id="wrapper" role="main"

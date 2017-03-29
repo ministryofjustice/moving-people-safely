@@ -7,17 +7,17 @@ RSpec.describe 'Offences', type: :request do
   describe "when not logged in" do
     it "get #show redirects to /sign_in" do
       get "/#{detainee.id}/offences"
-      expect(response).to redirect_to new_user_session_path
+      expect(response).to redirect_to new_session_path
     end
 
     it "patch #update redirects to /sign_in" do
       patch "/#{detainee.id}/offences", params: form_data
-      expect(response).to redirect_to new_user_session_path
+      expect(response).to redirect_to new_session_path
     end
 
     it "put #update redirects to /sign_in" do
       put "/#{detainee.id}/offences", params: form_data
-      expect(response).to redirect_to new_user_session_path
+      expect(response).to redirect_to new_session_path
     end
   end
 
