@@ -403,6 +403,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   selenium-webdriver
   shoulda-matchers
+  simplecov
   site_prism
   slim-rails
   spring

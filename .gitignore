@@ -25,3 +25,6 @@
 
 # Ignore bower local installs
 vendor/bower/*
+
+# Ignore coverage directory
+coverage
