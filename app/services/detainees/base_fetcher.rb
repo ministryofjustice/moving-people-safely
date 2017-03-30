@@ -29,6 +29,20 @@ module Detainees
       }[http_status] || 'api_error'
     end
 
+    def with_error_handling(&_blk)
+      yield
+    rescue Nomis::HttpError => e
+      log_api_error(e.inspect)
+      error_code = error_code_for_http_status(e.response.status)
+      error_response(error_code)
+    rescue Nomis::ApiError => e
+      log_api_error(e.inspect)
+      error_response('api_error')
+    rescue => e
+      log_error("Internal error: #{e.inspect}")
+      error_response('internal_error')
+    end
+
     def log(message, options = {})
       severity = options.fetch(:severity, :info)
       prefix = options[:prefix]
