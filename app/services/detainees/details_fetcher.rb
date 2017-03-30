@@ -2,7 +2,7 @@ module Detainees
   class DetailsFetcher < BaseFetcher
     def call
       with_error_handling do
-        return FetcherResponse.new({}) unless prison_number.present?
+        return empty_response unless prison_number.present?
         fetch_details
         successful_response(detainee_attrs)
       end

@@ -22,6 +22,10 @@ module Detainees
       FetcherResponse.new({}, error: error_code)
     end
 
+    def empty_response
+      FetcherResponse.new({})
+    end
+
     def error_code_for_http_status(http_status)
       {
         404 => 'not_found',
