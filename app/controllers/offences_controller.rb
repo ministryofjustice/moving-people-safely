@@ -44,6 +44,13 @@ class OffencesController < DetaineeController
   end
 
   def fetch_offences
-    Detainees::OffencesFetcher.new(detainee.prison_number).call.data.map(&:attributes)
+    result = Detainees::OffencesFetcher.new(detainee.prison_number).call
+    flash_fetcher_error(result.error) if result.error.present?
+    result.data.map(&:attributes)
+  end
+
+  def flash_fetcher_error(error)
+    flash.now[:warning] ||= []
+    flash.now[:warning] << t("alerts.offences.#{error}")
   end
 end
