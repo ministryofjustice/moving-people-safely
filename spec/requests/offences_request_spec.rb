@@ -23,32 +23,52 @@ RSpec.describe 'Offences', type: :request do
 
   context "while logged in" do
     before { sign_in FactoryGirl.create(:user) }
-    let(:detainee) { create(:detainee, :with_active_move) }
 
-    describe "#show" do
-      before { get "/#{detainee.id}/offences" }
+    context "when offences don't exist" do
+      let(:detainee) { create(:detainee, :with_active_move, :with_no_offences) }
+      
+      describe "#show" do
+        it "calls the NOMIS API" do
+          expect(Nomis::Api.instance).
+            to receive(:get).with("/offenders/#{detainee.prison_number}/charges")
 
-      it "returns a 200 code" do
-        expect(response.status).to eql 200
+          get "/#{detainee.id}/offences"
+        end
       end
     end
 
-    describe "#update" do
-      before { put "/#{detainee.id}/offences", params: form_data }
+    context "when offences already exist" do
+      let(:detainee) { create(:detainee, :with_active_move) }
 
-      context "with validating data" do
-        it "redirects to the detainee's profile" do
-          expect(response.status).to eql 302
-          expect(response).to redirect_to "/detainees/#{detainee.id}"
+      describe "#show" do
+        it "returns a 200 code" do
+          get "/#{detainee.id}/offences"
+          expect(response.status).to eql 200
+        end
+
+        it "does not call the NOMIS API" do
+          expect(Nomis::Api.instance).not_to receive(:get)
+          get "/#{detainee.id}/offences"
         end
       end
 
-      context "posted data fails validation" do
-        let(:invalid_current_offence) { { "id"=>"", "offence"=>"" } }
-        let(:form_data) { { offences: { current_offences_attributes: { '0' => invalid_current_offence } } } }
+      describe "#update" do
+        before { put "/#{detainee.id}/offences", params: form_data }
 
-        it "redirects to #show" do
-          expect(response).to redirect_to "/#{detainee.id}/offences"
+        context "with validating data" do
+          it "redirects to the detainee's profile" do
+            expect(response.status).to eql 302
+            expect(response).to redirect_to "/detainees/#{detainee.id}"
+          end
+        end
+
+        context "posted data fails validation" do
+          let(:invalid_current_offence) { { "id"=>"", "offence"=>"" } }
+          let(:form_data) { { offences: { current_offences_attributes: { '0' => invalid_current_offence } } } }
+
+          it "redirects to #show" do
+            expect(response).to redirect_to "/#{detainee.id}/offences"
+          end
         end
       end
     end

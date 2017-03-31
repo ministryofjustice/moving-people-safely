@@ -369,6 +369,10 @@ RSpec.feature 'detainee profile page', type: :feature do
   end
 
   context 'offences section' do
+    before do
+      stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/charges", status: 404)
+    end
+
     let(:detainee) { create(:detainee, :with_active_move, :with_no_offences) }
     let(:active_move) { detainee.active_move }
     let(:current_offences) {
