@@ -3,10 +3,13 @@ class Escort < ApplicationRecord
   has_one :detainee
   has_one :move
 
+  default_scope { where(deleted_at: nil) }
+
   scope :for_date, ->(date) { eager_load(move: [:move_workflow]).where(moves: { date: date }) }
   scope :with_incomplete_risk, -> { joins(move: [:risk_workflow]).merge(Workflow.not_confirmed) }
   scope :with_incomplete_healthcare, -> { joins(move: [:healthcare_workflow]).merge(Workflow.not_confirmed) }
   scope :with_incomplete_offences, -> { joins(move: [:offences_workflow]).merge(Workflow.not_confirmed) }
+  scope :active, -> { joins(:move).merge(Move.active) }
 
   delegate :risk_complete?, :healthcare_complete?, :offences_complete?, to: :move, allow_nil: true
 
