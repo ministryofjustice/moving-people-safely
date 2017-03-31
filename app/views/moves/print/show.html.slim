@@ -7,76 +7,64 @@ html
 
   body
     main.inner-page
-      table
-        tbody
+      div.grid-row.indicators.top-dotted
+        #not_for_release_alert.grid-column.column-one-third
+          = alerts.not_for_release_alert
+        #acct_status_alert.grid-column.column-one-third
+          = alerts.acct_status_alert
+        #rule_45_alert.grid-column.column-one-third
+          = alerts.rule_45_alert
+      div.grid-row.indicators
+        #e_list_alert.grid-column.column-one-quarter
+          = alerts.current_e_risk_alert
+        #csra_alert.grid-column.column-one-quarter
+          = alerts.csra_alert
+        #category_a_alert.grid-column.column-one-quarter
+          = alerts.category_a_alert
+        #mpv_alert.grid-column.column-one-quarter
+          = alerts.mpv_alert
+      div#risk-section.section
+        span.watermark = 'Risk'
+        table#risk-table.section-table
+          - RiskAssessment.sections.each do |section|
+            = render partial: 'moves/print/section',
+              locals: { section: Print::AssessmentSectionPresenter.new(section, risk),
+                        assessment: risk }
+      div#healthcare-section.section
+        span.watermark = 'Healthcare'
+        table#healthcare-table.section-table
+          - HealthcareAssessment.sections.each do |section|
+            = render partial: 'moves/print/section',
+              locals: { section: Print::AssessmentSectionPresenter.new(section, healthcare),
+                        assessment: healthcare }
+      div#offences-section.section
+        span.watermark = 'Offences'
+        table#offences-table.section-table
           tr
-            td
-              div.grid-row.indicators.top-dotted
-                #not_for_release_alert.grid-column.column-one-third
-                  = alerts.not_for_release_alert
-                #acct_status_alert.grid-column.column-one-third
-                  = alerts.acct_status_alert
-                #rule_45_alert.grid-column.column-one-third
-                  = alerts.rule_45_alert
-              div.grid-row.indicators
-                #e_list_alert.grid-column.column-one-quarter
-                  = alerts.current_e_risk_alert
-                #csra_alert.grid-column.column-one-quarter
-                  = alerts.csra_alert
-                #category_a_alert.grid-column.column-one-quarter
-                  = alerts.category_a_alert
-                #mpv_alert.grid-column.column-one-quarter
-                  = alerts.mpv_alert
-          tr
-            td
-              div#risk-section.section
-                span.watermark = 'Risk'
-                table#risk-table.section-table
-                  - RiskAssessment.sections.each do |section|
-                    = render partial: 'moves/print/section',
-                      locals: { section: Print::AssessmentSectionPresenter.new(section, risk),
-                                assessment: risk }
-          tr
-            td
-              div#healthcare-section.section
-                span.watermark = 'Healthcare'
-                table#healthcare-table.section-table
-                  - HealthcareAssessment.sections.each do |section|
-                    = render partial: 'moves/print/section',
-                      locals: { section: Print::AssessmentSectionPresenter.new(section, healthcare),
-                                assessment: healthcare }
-          tr
-            td
-              div#offences-section.section
-                span.watermark = 'Offences'
-                table#offences-table.section-table
-                  tr
-                    td.column-30-percent
-                      = offences.current_offences_label
-                    td.column-20-percent.indented
-                      = offences.current_offences_relevant
-                    td.column-50-percent
-                      = offences.current_offences
-                  tr.top-dotted
-                    td.column-30-percent
-                      = offences.past_offences_label
-                    td.column-20-percent.indented
-                      = offences.past_offences_relevant
-                    td.column-50-percent
-                      = offences.past_offences
+            td.column-30-percent
+              = offences.current_offences_label
+            td.column-20-percent.indented
+              = offences.current_offences_relevant
+            td.column-50-percent
+              = offences.current_offences
+          tr.top-dotted
+            td.column-30-percent
+              = offences.past_offences_label
+            td.column-20-percent.indented
+              = offences.past_offences_relevant
+            td.column-50-percent
+              = offences.past_offences
 
-          tr
-            td
-              div#move-returns-section.section
-                span.watermark = 'Move'
-                table#move-returns-table.section-table
-                  tr#move-must-return-to-destinations
-                    td.column-30-percent
-                      = move.must_return_to_label
-                    td.column-70-percent
-                      = move.must_return_to
-                  tr#move-must-not-return-to-destinations.top-dotted.bottom-dotted
-                    td.column-30-percent
-                      = move.must_not_return_to_label
-                    td.column-70-percent
-                      = move.must_not_return_to
+      div#move-returns-section.section
+        span.watermark = 'Move'
+        table#move-returns-table.section-table
+          tr#move-must-return-to-destinations
+            td.column-30-percent
+              = move.must_return_to_label
+            td.column-70-percent
+              = move.must_return_to
+          tr#move-must-not-return-to-destinations.top-dotted.bottom-dotted
+            td.column-30-percent
+              = move.must_not_return_to_label
+            td.column-70-percent
+              = move.must_not_return_to

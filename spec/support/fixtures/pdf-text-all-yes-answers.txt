@@ -74,10 +74,9 @@ Risk to others - hostage taker    Yes
   Staff                           Yes      12/03/2010
   Prisoners                       Yes      24/05/2012
   Public                          Yes      02/09/2007
-Risk to others: harasser and/or Yes
+Risk to others: harasser and/or   Yes
 bully
   Harasser                        Yes      harassment details
-
 Intimidator/bully                 Yes
 
   Staff                           Yes      intimidation to staff details
@@ -85,7 +84,7 @@ Intimidator/bully                 Yes
   Prisoners                       Yes      intimidation to other detainees details
   Witnesses                       Yes      intimidation to witnesses details
 W1234BY: McTest Testy                                                         Page 2 of 3
-  Witnesses                      Yes   intimidation to witnesses details
+
 Sex offender                     Yes
   Adult male                     Yes
   Adult female                   Yes

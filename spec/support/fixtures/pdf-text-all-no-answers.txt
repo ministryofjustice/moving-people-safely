@@ -38,7 +38,7 @@ About this Person Escort Record
    If you have feedback or suggestions please email feedback@example.com
 W1234BY: McTest Testy                                                        Page 1 of 1
 
- NOT FOR RELEASE                     ACCT                    RULE 45
+ NOT FOR RELEASE                        ACCT                 RULE 45
 
 
  E LIST                        CSRA STANDARD         CAT A             MPV
@@ -75,7 +75,6 @@ difficulties
 Medical contact                    Yes
   Healthcare professional          John doctor doe
   Contact number                   1-131-999-0232
-
 Current offences                   None
 Significant past offences          None
 Must return to                    None
