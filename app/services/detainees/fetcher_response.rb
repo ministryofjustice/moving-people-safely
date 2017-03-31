@@ -10,6 +10,7 @@ module Detainees
     def to_h
       hash
     end
+    alias data to_h
 
     private
 
