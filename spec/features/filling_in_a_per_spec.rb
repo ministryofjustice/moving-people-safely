@@ -1,19 +1,12 @@
 require 'feature_helper'
 
 RSpec.feature 'filling in a PER', type: :feature do
-  let(:current_offences) {
-    [
-      { name: 'Burglary', case_reference: 'Ref 3064' },
-      { name: 'Attempted murder', case_reference: 'Ref 7291' }
-    ]
-  }
-  let(:past_offences) {
-    [ { name: 'Arson' }, { name: 'Armed robbery' } ]
-  }
   let(:offences_data) {
     {
-      current_offences: current_offences,
-      past_offences: past_offences
+      current_offences: [
+        { name: 'Burglary', case_reference: 'Ref 3064' },
+        { name: 'Attempted murder', case_reference: 'Ref 7291' }
+      ]
     }
   }
 

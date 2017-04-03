@@ -27,8 +27,6 @@ en:
       needs:
         dependencies: Any dependencies or history of misuse?
         has_medications: Regular medication?
-      offences:
-        has_past_offences: Does the detainee have significant past offences?
       physical:
         physical_issues: Physical health needs?
       risk_from_others:
@@ -144,9 +142,6 @@ en:
           description: What is it?
           administration: How is it given?
           carrier: Who carries it?
-      offences:
-        has_past_offences_choices:
-          unknown: Clear selection
       physical:
         physical_issues_choices:
           unknown: Clear selection
@@ -533,7 +528,6 @@ en:
         must_not_return_to: Must NOT return to
       offences:
         current_offences: Current offences
-        past_offences: Significant past offences
   activemodel:
     errors:
       models:
@@ -543,10 +537,6 @@ en:
               inclusion: question must be answered
             not_for_release:
               inclusion: question must be answered
-        offences:
-          attributes:
-            has_past_offences:
-              inclusion: 'Past offences: You must select an option'
   errors:
     messages:
       minimum_collection_size: At least one item needs to be provided

@@ -13,7 +13,7 @@ RSpec.feature 'printing a PER', type: :feature do
     )
   }
 
-  let(:offences) { create(:offences, :with_no_current_offences, :with_no_past_offences) }
+  let(:offences) { create(:offences, :with_no_current_offences) }
 
   let(:detainee) {
     create(
@@ -98,13 +98,7 @@ RSpec.feature 'printing a PER', type: :feature do
       create(:current_offence, offence: 'Sex offence', case_reference: 'QDPREIBMSF')
       ]
     }
-    let(:past_offences) {
-      [
-      create(:past_offence, offence: 'Past Offence 1'),
-      create(:past_offence, offence: 'Past Offence 2')
-      ]
-    }
-    let(:offences) { create(:offences, current_offences: current_offences, past_offences: past_offences) }
+    let(:offences) { create(:offences, current_offences: current_offences) }
     let(:must_return_destination) { create(:destination, :must_return, establishment: 'HMP Brixton', reasons: 'Its a lovely place.') }
     let(:must_not_return_destination) { create(:destination, :must_not_return, establishment: 'HMP Clive House', reasons: 'Its too cold.') }
     let(:destinations) { [must_return_destination, must_not_return_destination] }

@@ -76,7 +76,8 @@ Medical contact                    Yes
   Healthcare professional          John doctor doe
   Contact number                   1-131-999-0232
 Current offences                   None
-Significant past offences          None
+
+
 Must return to                    None
 Must NOT return to                None
 

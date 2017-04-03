@@ -15,13 +15,5 @@
             ul.info-list
               - offences.current_offences.each do |offence|
                 li == offence.full_details
-        #past-offences-summary.column-one-half
-          small Significant past offences
-          - if offences.past_offences.empty?
-            p = 'None'
-          - else
-            ul.info-list
-              - offences.past_offences.each do |offence|
-                li == offence.offence
   - else
     hr

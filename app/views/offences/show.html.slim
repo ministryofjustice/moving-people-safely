@@ -25,8 +25,8 @@
         = f.fields_for :current_offences do |cf|
           .multiple-wrapper class=(cf.index == 0 ? 'multiple-first' : 'multiple-not-first')
             = cf.hidden_field :id
-            .multiple-field.inline
-              = cf.text_field :offence
+            .multiple-field.inline.wide
+              = cf.text_area :offence, rows: 1
             .multiple-field.inline
               = cf.text_field :case_reference
             .multiple-field.inline.remove-link
@@ -37,25 +37,6 @@
           =f.submit 'Add offence',
             class: 'js-anchor-focus',
             name: "offences_add_offence"
-
-
-    .multiple
-      = f.radio_toggle :has_past_offences do
-        - if f.object.has_past_offences_on?
-          #error_offences_past_offences
-        = f.fields_for :past_offences do |pf|
-          .multiple-wrapper class=(pf.index == 0 ? 'multiple-first' : 'multiple-not-first')
-            = pf.hidden_field :id
-            .multiple-field.inline
-              = pf.text_field :offence
-            .multiple-field.inline.remove-link
-              = pf.label :_delete, 'Remove'
-              = pf.check_box :_delete
-
-        .multiple-field.multiple-add
-          =f.submit 'Add past offence',
-            class: 'js-anchor-focus',
-            name: "offences_add_past_offence"
 
     .form-actions
       = f.submit 'Save and continue', class: 'button'

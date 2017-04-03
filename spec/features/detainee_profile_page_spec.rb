@@ -377,20 +377,15 @@ RSpec.feature 'detainee profile page', type: :feature do
         { name: 'Attempted murder', case_reference: 'Ref 7291' }
       ]
     }
-    let(:past_offences) {
-      [ { name: 'Arson' }, { name: 'Armed robbery' } ]
-    }
     let(:offences_data) {
       {
-        current_offences: current_offences,
-        past_offences: past_offences
+        current_offences: current_offences
       }
     }
 
     shared_examples_for 'offences information display' do
-      scenario 'current and past offences are displayed' do
+      scenario 'current offences are displayed' do
         profile.confirm_current_offences(current_offences)
-        profile.confirm_past_offences(past_offences)
       end
     end
 
@@ -415,7 +410,6 @@ RSpec.feature 'detainee profile page', type: :feature do
 
       scenario 'current offences are displayed and none past offences' do
         profile.confirm_current_offences(current_offences)
-        profile.confirm_no_past_offences
       end
     end
   end

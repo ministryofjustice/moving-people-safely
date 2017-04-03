@@ -120,8 +120,11 @@ module Page
     end
 
     def confirm_offences_details(offences_data)
-      confirm_current_offences(offences_data[:current_offences])
-      confirm_past_offences(offences_data[:past_offences])
+      within('#current-offences-summary') do
+        offences_data[:current_offences].each do |offence|
+          expect(page).to have_content(offence.fetch(:name))
+        end
+      end
     end
 
     def confirm_no_current_offences
@@ -132,20 +135,6 @@ module Page
 
     def confirm_current_offences(expected_offences)
       within('#current-offences-summary') do
-        expected_offences.each do |offence|
-          expect(page).to have_content(offence.fetch(:name))
-        end
-      end
-    end
-
-    def confirm_no_past_offences
-      within('#past-offences-summary') do
-        expect(page).to have_content('None')
-      end
-    end
-
-    def confirm_past_offences(expected_offences)
-      within('#past-offences-summary') do
         expected_offences.each do |offence|
           expect(page).to have_content(offence.fetch(:name))
         end

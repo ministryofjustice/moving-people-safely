@@ -145,7 +145,6 @@ Medical contact                Yes
   Contact number               1-131-999-0232
 Current offences               Yes                Burglary (LXAHTGNJQF) | Sex offence
                                                   (QDPREIBMSF)
-Significant past offences      Yes                Past Offence 1 | Past Offence 2
 Must return to               HMP Brixton: Its a lovely place.
 Must NOT return to           HMP Clive House: Its too cold.
 
