@@ -1,0 +1,94 @@
+doctype html
+html
+  head
+    title Print view
+    = wicked_pdf_stylesheet_link_tag "print.css", media: 'all'
+    = wicked_pdf_stylesheet_link_tag "print-ie8.css", media: 'all'
+
+  body
+    main.page-one
+      table.vehicles
+        tr.header-row
+          th colspan=3 Outbound vehicle
+        tr
+          td.first-column
+            div.title Registration
+          td.second-column
+            div.title Cell number
+          td.third-column
+            div.title PECS Barcode
+        tr.header-row
+          th colspan=2 Return vehicle
+          tth.empty
+        tr
+          td
+            div.title Registration
+          td
+            div.title Cell number
+          td.empty
+      div.grid.detainee
+        div.grid-row.header-row
+          hi
+            span#detainee-identifier.strong-text => detainee.identifier
+            = detainee.forenames
+        div.grid-row.indicators
+          #not_for_release_alert.grid-column.column-one-third
+            = alerts.not_for_release_alert
+          #e_list_alert.grid-column.column-one-third
+            = alerts.current_e_risk_alert
+          #mpv_alert.grid-column.column-one-third
+            = alerts.mpv_alert
+        div.grid-row.padded.top-dotted
+          div.grid-column.column-one-half
+            div.grid-row
+              div.grid-column.column-one-third
+                div.title Prison number
+                div#prison-number.strong-text = detainee.prison_number
+              div.grid-column.column-one-third
+                div.title CRO number
+                div#cro-number.strong-text = detainee.cro_number
+              div.grid-column.column-one-third
+                div.title PNC number
+                div#pnc-number.strong-text = detainee.pnc_number
+            div.grid-row.padded
+              div.grid-column.column-one-third
+                div.title Date of birth
+                div#date-of-birth.strong-text = detainee.date_of_birth
+              div.grid-column.column-one-sixth
+                div.title Age
+                div#age.strong-text = detainee.age
+              div.grid-column.column-one-sixth
+                div.title Gender
+                div#gender.strong-text = detainee.gender_code
+              div.grid-column.column-one-third
+                div.title Nationality
+                - detainee.nationalities.each do |nationality|
+                  div.strong-text.nationality = nationality
+          div.grid-column.column-one-quarter
+            div.title Aliases
+            - detainee.aliases.each do |a|
+              div.alias.strong-text = a
+          div.grid-column.column-one-quarter
+              .image
+                = detainee.image
+      div.grid.move
+        div.grid-row.header-row.small = 'Move details'
+        div.grid-row.padded.padded-bottom
+          div.grid-column.column-one-third
+            div.title Date of travel
+            div.strong-text = move.date
+          div.grid-column.column-one-third
+            div.title From
+            div.strong-text = move.from
+          div.grid-column.column-one-third
+            div.title To
+            div.strong-text = move.to
+        div.grid-row.top-dotted.min-heighted
+      table.about.footer
+        tr
+          th About this Person Escort Record
+        tr
+          td.panel
+            div.first This person escort record was printed from the Moving People Safely web site.
+            div To find out more about the Person Escort Record go to exmaple.com
+            div If you have feedback or suggestions please email feedback@example.com

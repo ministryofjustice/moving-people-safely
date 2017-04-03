@@ -6,168 +6,65 @@ html
     = wicked_pdf_stylesheet_link_tag "print-ie8.css", media: 'all'
 
   body
-    main.page-one
-      table.vehicles
-        tr.header-row
-          th colspan=3 Outbound vehicle
-        tr
-          td.first-column
-            div.title Registration
-          td.second-column
-            div.title Cell number
-          td.third-column
-            div.title PECS Barcode
-        tr.header-row
-          th colspan=2 Return vehicle
-          tth.empty
-        tr
-          td
-            div.title Registration
-          td
-            div.title Cell number
-          td.empty
-      div.grid.detainee
-        div.grid-row.header-row
-          hi
-            span#detainee-identifier.strong-text => detainee.identifier
-            = detainee.forenames
-        div.grid-row.indicators
-          #not_for_release_alert.grid-column.column-one-third
-            = alerts.not_for_release_alert
-          #e_list_alert.grid-column.column-one-third
-            = alerts.current_e_risk_alert
-          #mpv_alert.grid-column.column-one-third
-            = alerts.mpv_alert
-        div.grid-row.padded.top-dotted
-          div.grid-column.column-one-half
-            div.grid-row
-              div.grid-column.column-one-third
-                div.title Prison number
-                div#prison-number.strong-text = detainee.prison_number
-              div.grid-column.column-one-third
-                div.title CRO number
-                div#cro-number.strong-text = detainee.cro_number
-              div.grid-column.column-one-third
-                div.title PNC number
-                div#pnc-number.strong-text = detainee.pnc_number
-            div.grid-row.padded
-              div.grid-column.column-one-third
-                div.title Date of birth
-                div#date-of-birth.strong-text = detainee.date_of_birth
-              div.grid-column.column-one-sixth
-                div.title Age
-                div#age.strong-text = detainee.age
-              div.grid-column.column-one-sixth
-                div.title Gender
-                div#gender.strong-text = detainee.gender_code
-              div.grid-column.column-one-third
-                div.title Nationality
-                - detainee.nationalities.each do |nationality|
-                  div.strong-text.nationality = nationality
-          div.grid-column.column-one-quarter
-            div.title Aliases
-            - detainee.aliases.each do |a|
-              div.alias.strong-text = a
-          div.grid-column.column-one-quarter
-              .image
-                = detainee.image
-      div.grid.move
-        div.grid-row.header-row.small = 'Move details'
-        div.grid-row.padded.padded-bottom
-          div.grid-column.column-one-third
-            div.title Date of travel
-            div.strong-text = move.date
-          div.grid-column.column-one-third
-            div.title From
-            div.strong-text = move.from
-          div.grid-column.column-one-third
-            div.title To
-            div.strong-text = move.to
-        div.grid-row.top-dotted.min-heighted
-      table.about.footer
-        tr
-          th About this Person Escort Record
-        tr
-          td.panel
-            div.first This person escort record was printed from the Moving People Safely web site.
-            div To find out more about the Person Escort Record go to exmaple.com
-            div If you have feedback or suggestions please email feedback@example.com
-    br
     main.inner-page
-      table
-        thead
-          div.grid-row.top-border
-            span#detainee-identifier.strong-text => detainee.identifier
-            = detainee.forenames
-        tbody
+      div.grid-row.indicators.top-dotted
+        #not_for_release_alert.grid-column.column-one-third
+          = alerts.not_for_release_alert
+        #acct_status_alert.grid-column.column-one-third
+          = alerts.acct_status_alert
+        #rule_45_alert.grid-column.column-one-third
+          = alerts.rule_45_alert
+      div.grid-row.indicators
+        #e_list_alert.grid-column.column-one-quarter
+          = alerts.current_e_risk_alert
+        #csra_alert.grid-column.column-one-quarter
+          = alerts.csra_alert
+        #category_a_alert.grid-column.column-one-quarter
+          = alerts.category_a_alert
+        #mpv_alert.grid-column.column-one-quarter
+          = alerts.mpv_alert
+      div#risk-section.section
+        span.watermark = 'Risk'
+        table#risk-table.section-table
+          - RiskAssessment.sections.each do |section|
+            = render partial: 'moves/print/section',
+              locals: { section: Print::AssessmentSectionPresenter.new(section, risk),
+                        assessment: risk }
+      div#healthcare-section.section
+        span.watermark = 'Healthcare'
+        table#healthcare-table.section-table
+          - HealthcareAssessment.sections.each do |section|
+            = render partial: 'moves/print/section',
+              locals: { section: Print::AssessmentSectionPresenter.new(section, healthcare),
+                        assessment: healthcare }
+      div#offences-section.section
+        span.watermark = 'Offences'
+        table#offences-table.section-table
           tr
-            td
-              div.grid-row.indicators.top-dotted
-                #not_for_release_alert.grid-column.column-one-third
-                  = alerts.not_for_release_alert
-                #acct_status_alert.grid-column.column-one-third
-                  = alerts.acct_status_alert
-                #rule_45_alert.grid-column.column-one-third
-                  = alerts.rule_45_alert
-              div.grid-row.indicators
-                #e_list_alert.grid-column.column-one-quarter
-                  = alerts.current_e_risk_alert
-                #csra_alert.grid-column.column-one-quarter
-                  = alerts.csra_alert
-                #category_a_alert.grid-column.column-one-quarter
-                  = alerts.category_a_alert
-                #mpv_alert.grid-column.column-one-quarter
-                  = alerts.mpv_alert
-          tr
-            td
-              div#risk-section.section
-                span.watermark = 'Risk'
-                table#risk-table.section-table
-                  - RiskAssessment.sections.each do |section|
-                    = render partial: 'moves/print/section',
-                      locals: { section: Print::AssessmentSectionPresenter.new(section, risk),
-                                assessment: risk }
-          tr
-            td
-              div#healthcare-section.section
-                span.watermark = 'Healthcare'
-                table#healthcare-table.section-table
-                  - HealthcareAssessment.sections.each do |section|
-                    = render partial: 'moves/print/section',
-                      locals: { section: Print::AssessmentSectionPresenter.new(section, healthcare),
-                                assessment: healthcare }
-          tr
-            td
-              div#offences-section.section
-                span.watermark = 'Offences'
-                table#offences-table.section-table
-                  tr
-                    td.column-30-percent
-                      = offences.current_offences_label
-                    td.column-20-percent.indented
-                      = offences.current_offences_relevant
-                    td.column-50-percent
-                      = offences.current_offences
-                  tr.top-dotted
-                    td.column-30-percent
-                      = offences.past_offences_label
-                    td.column-20-percent.indented
-                      = offences.past_offences_relevant
-                    td.column-50-percent
-                      = offences.past_offences
+            td.column-30-percent
+              = offences.current_offences_label
+            td.column-20-percent.indented
+              = offences.current_offences_relevant
+            td.column-50-percent
+              = offences.current_offences
+          tr.top-dotted
+            td.column-30-percent
+              = offences.past_offences_label
+            td.column-20-percent.indented
+              = offences.past_offences_relevant
+            td.column-50-percent
+              = offences.past_offences
 
-          tr
-            td
-              div#move-returns-section.section
-                span.watermark = 'Move'
-                table#move-returns-table.section-table
-                  tr#move-must-return-to-destinations
-                    td.column-30-percent
-                      = move.must_return_to_label
-                    td.column-70-percent
-                      = move.must_return_to
-                  tr#move-must-not-return-to-destinations.top-dotted.bottom-dotted
-                    td.column-30-percent
-                      = move.must_not_return_to_label
-                    td.column-70-percent
-                      = move.must_not_return_to
+      div#move-returns-section.section
+        span.watermark = 'Move'
+        table#move-returns-table.section-table
+          tr#move-must-return-to-destinations
+            td.column-30-percent
+              = move.must_return_to_label
+            td.column-70-percent
+              = move.must_return_to
+          tr#move-must-not-return-to-destinations.top-dotted.bottom-dotted
+            td.column-30-percent
+              = move.must_not_return_to_label
+            td.column-70-percent
+              = move.must_not_return_to

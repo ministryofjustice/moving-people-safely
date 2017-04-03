@@ -38,7 +38,7 @@ About this Person Escort Record
    This person escort record was printed from the Moving People Safely web site.
    To find out more about the Person Escort Record go to exmaple.com
    If you have feedback or suggestions please email feedback@example.com
-W1234BY: McTest Testy
+W1234BY: McTest Testy                                                                  Page 1 of 3
 
  NOT FOR RELEASE                    ACCT                          RULE 45
 
@@ -74,14 +74,17 @@ Risk to others - hostage taker    Yes
   Staff                           Yes      12/03/2010
   Prisoners                       Yes      24/05/2012
   Public                          Yes      02/09/2007
-Risk to others: harasser and/or Yes
+Risk to others: harasser and/or   Yes
 bully
   Harasser                        Yes      harassment details
 Intimidator/bully                 Yes
+
   Staff                           Yes      intimidation to staff details
   Public                          Yes      intimidation to public details
   Prisoners                       Yes      intimidation to other detainees details
-  Witnesses                      Yes   intimidation to witnesses details
+  Witnesses                       Yes      intimidation to witnesses details
+W1234BY: McTest Testy                                                         Page 2 of 3
+
 Sex offender                     Yes
   Adult male                     Yes
   Adult female                   Yes
@@ -115,8 +118,6 @@ other items
 Arson and damage to property     Yes
   Arson is a behavioural issue   Yes
   Damage to property             Yes
-
-
 Physical healthcare              Yes
   Physical health needs          Yes   physical issues details
 Mental healthcare                Yes
@@ -124,7 +125,9 @@ Mental healthcare                Yes
   Phobias                        Yes   phobias details
 Social healthcare                Yes
   Personal hygiene issues        Yes   personal hygiene details
-  Personal care issues         Yes                personal care details
+  Personal care issues           Yes   personal care details
+W1234BY: McTest Testy                                                                   Page 3 of 3
+
 Allergies                      Yes
   Allergies                    Yes                allergies details
 Medical health needs           Yes

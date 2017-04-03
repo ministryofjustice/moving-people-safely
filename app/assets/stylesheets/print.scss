@@ -50,10 +50,6 @@ $is-print: true;
   .column-one-sixth {
     width: (100% / 6);
   }
-
-  .section-sub-table {
-    page-break-inside: avoid;
-  }
 }
 
 body {
@@ -169,10 +165,6 @@ table {
   td.indented {
     padding-left: 15px;
   }
-}
-
-.section-sub-table {
-  border-collapse: collapse;
 }
 
 .header-row {
