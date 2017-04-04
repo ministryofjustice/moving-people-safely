@@ -1,19 +1,11 @@
 module Detainees
   class ImageFetcher < BaseFetcher
     def call
-      return FetcherResponse.new({}) unless prison_number.present?
-      fetch_image
-      image_response
-    rescue Nomis::HttpError => e
-      log_api_error(e.inspect)
-      error_code = error_code_for_http_status(e.response.status)
-      error_response(error_code)
-    rescue Nomis::ApiError => e
-      log_api_error(e.inspect)
-      error_response('api_error')
-    rescue => e
-      log_error("Internal error: #{e.inspect}")
-      error_response('internal_error')
+      with_error_handling do
+        return empty_response unless prison_number.present?
+        fetch_image
+        image_response
+      end
     end
 
     private

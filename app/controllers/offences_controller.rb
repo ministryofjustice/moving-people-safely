@@ -2,6 +2,7 @@ class OffencesController < DetaineeController
   before_action :add_offence, only: [:update]
 
   def show
+    prepopulate_current_offences
     form.validate(flash[:form_data]) if flash[:form_data]
     form.prepopulate!
     render locals: { form: form }
@@ -34,5 +35,22 @@ class OffencesController < DetaineeController
 
   def form
     @_form ||= Forms::Offences.new(offences)
+  end
+
+  private(*delegate(:current_offences, to: :offences))
+
+  def prepopulate_current_offences
+    current_offences.blank? && current_offences.build(fetch_offences)
+  end
+
+  def fetch_offences
+    result = Detainees::OffencesFetcher.new(detainee.prison_number).call
+    flash_fetcher_error(result.error) if result.error.present?
+    result.data.map(&:attributes)
+  end
+
+  def flash_fetcher_error(error)
+    flash.now[:warning] ||= []
+    flash.now[:warning] << t("alerts.offences.#{error}")
   end
 end

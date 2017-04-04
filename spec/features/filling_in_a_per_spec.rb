@@ -48,6 +48,9 @@ RSpec.feature 'filling in a PER', type: :feature do
     risk_summary.confirm_and_save
 
     profile.confirm_risk_details(risk_data)
+
+    stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/charges", status: 404)
+
     profile.click_edit_offences
 
     offences.complete_form(offences_data)

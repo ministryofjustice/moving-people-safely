@@ -12,7 +12,30 @@ module Page
       end
     end
 
+    def update(index:, description:, case_reference:)
+      offence_row = all(".multiple-wrapper")[index]
+      insert_into_row(offence_row, description, case_reference)
+    end
+
+    def add(description:, case_reference:)
+      click_button 'Add offence'
+      offence_row = all(".multiple-wrapper").last
+      insert_into_row(offence_row, description, case_reference)
+    end
+
+    def confirm_api_unavailable_warning
+      expect(page).
+        to have_content("Offences aren't available right now, please try again or fill in the offences below")
+    end
+
     private
+
+    def insert_into_row(row, description, case_reference)
+      within row do
+        page.fill_in "Offence", with: description
+        page.fill_in "Case reference", with: case_reference
+      end
+    end
 
     def fill_current_offences(offences)
       return unless offences && !offences.empty?

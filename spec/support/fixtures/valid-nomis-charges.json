@@ -1,0 +1,88 @@
+{
+  "bookings": [
+    {
+      "booking_no": "A00001",
+      "booking_active": false,
+      "booking_started": "2011-12-19",
+      "booking_ended": "2012-02-17",
+      "legal_cases": [
+
+      ]
+    },
+    {
+      "booking_no": "A00002",
+      "booking_active": true,
+      "booking_started": "2011-11-07",
+      "release_date": "2016-01-01",
+      "legal_cases": [
+        {
+          "case_info_number": "T20117495",
+          "case_active": true,
+          "case_started": "2010-03-01",
+          "court": {
+            "code": "LEEDCC",
+            "desc": "Leeds Crown Court"
+          },
+          "legal_case_type": {
+            "code": "A",
+            "desc": "Adult"
+          },
+          "charges": [
+            {
+              "statute": {
+                "code": "TH68",
+                "desc": "Theft Act 1968"
+              },
+              "offence": {
+                "code": "TH68028A",
+                "desc": "Attempt burglary dwelling with intent to inflict grievous bodily harm"
+              },
+              "most_serious": true,
+              "charge_active": true,
+              "severity_ranking": "66",
+              "result": {
+                "code": "1007",
+                "desc": "Detention"
+              },
+              "disposition": {
+                "code": "F",
+                "desc": "Final"
+              },
+              "convicted": true,
+              "imprisonment_status": {
+              },
+              "band": {
+              }
+            },
+            {
+              "statute": {
+                "code": "TH68",
+                "desc": "Theft Act 1968"
+              },
+              "offence": {
+                "code": "TH68058",
+                "desc": "Abstract / use without authority electricity"
+              },
+              "most_serious": false,
+              "charge_active": true,
+              "severity_ranking": "86",
+              "result": {
+                "code": "1007",
+                "desc": "Detention"
+              },
+              "disposition": {
+                "code": "F",
+                "desc": "Final"
+              },
+              "convicted": true,
+              "imprisonment_status": {
+              },
+              "band": {
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
