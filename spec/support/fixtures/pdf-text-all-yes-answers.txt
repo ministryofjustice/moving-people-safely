@@ -78,7 +78,6 @@ Risk to others: harasser and/or   Yes
 bully
   Harasser                        Yes      harassment details
 Intimidator/bully                 Yes
-
   Staff                           Yes      intimidation to staff details
   Public                          Yes      intimidation to public details
   Prisoners                       Yes      intimidation to other detainees details

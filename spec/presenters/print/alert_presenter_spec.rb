@@ -59,7 +59,7 @@ RSpec.describe Print::AlertPresenter, type: :presenter do
 
       it 'returns the appropriate content for when the alert is on' do
         expect(presenter.to_s).to match('<div class="image alert-on"><span class="alert-title">Some alert</span>')
-        expect(presenter.to_s).to match('<img src=.* alt="Ic red tick"')
+        expect(presenter.to_s).to match('<img style="max-width: 25px; max-height: 25px;" src=.* alt="Ic red tick"')
       end
 
       context 'and toggle content is provided' do

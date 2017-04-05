@@ -54,7 +54,7 @@ module Print
       if toggle.present?
         h.content_tag(:span, toggle, class: 'alert-toggle')
       elsif on?
-        h.wicked_pdf_image_tag('ic_red_tick.png')
+        h.wicked_pdf_image_tag('ic_red_tick.png', style: 'max-width: 25px; max-height: 25px;')
       end
     end
 
