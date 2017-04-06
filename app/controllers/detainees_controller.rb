@@ -1,19 +1,18 @@
 class DetaineesController < ApplicationController
-  attr_reader :detainee, :move
-  alias active_move move
-  before_action :redirect_if_detainee_exists, only: %i[new create]
-  before_action :find_detainee_data, only: %i[edit update]
+  before_action :redirect_unless_document_editable
+  before_action :redirect_if_detainee_already_exists, only: %i[new create]
+  helper_method :escort
 
   def new
-    form = Forms::Detainee.new(Detainee.new(default_attrs))
+    form = Forms::Detainee.new(escort.build_detainee(default_attrs))
     render locals: { form: form }
   end
 
   def create
-    form = Forms::Detainee.new(Detainee.new)
+    form = Forms::Detainee.new(escort.build_detainee)
     if form.validate(params[:detainee])
       form.save
-      redirect_to new_detainee_move_path(form.model)
+      redirect_to new_escort_move_path(escort)
     else
       render :new, locals: { form: form }
     end
@@ -29,22 +28,20 @@ class DetaineesController < ApplicationController
     form = Forms::Detainee.new(detainee)
     if form.validate(params[:detainee])
       form.save
-      redirect_to_move_or_profile
+      redirect_to_move_or_escort
     else
       render :edit, locals: { form: form }
     end
   end
 
-  def show
-    @detainee = Detainee.find(params[:id])
-    @move = detainee.active_move
-  end
-
   private
 
-  def find_detainee_data
-    @detainee = Detainee.find(params[:id])
-    @move = detainee.active_move
+  def escort
+    @escort ||= Escort.find(params[:escort_id])
+  end
+
+  def detainee
+    escort.detainee || raise(ActiveRecord::RecordNotFound)
   end
 
   def set_default_attrs
@@ -88,20 +85,15 @@ class DetaineesController < ApplicationController
     params.slice(*Forms::Detainee.properties)
   end
 
-  def redirect_to_move_or_profile(options = {})
-    if active_move.present?
-      redirect_to detainee_path(detainee), options
-    elsif detainee.moves.any?
-      redirect_to copy_move_path(detainee), options
-    else
-      redirect_to new_detainee_move_path(detainee), options
-    end
+  def redirect_if_detainee_already_exists
+    redirect_to new_escort_move_path(escort), alert: t('alerts.escort.detainee.exists') if escort.detainee
   end
 
-  def redirect_if_detainee_exists
-    return unless params[:prison_number].present?
-    @detainee = Detainee.find_by_prison_number(params[:prison_number])
-    return unless @detainee
-    redirect_to_move_or_profile(flash: { warning: t('alerts.detainee_already_exists') })
+  def redirect_to_move_or_escort(options = {})
+    if escort.move
+      redirect_to escort_path(escort), options
+    else
+      redirect_to new_escort_move_path(escort), options
+    end
   end
 end

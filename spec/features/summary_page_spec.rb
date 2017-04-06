@@ -4,9 +4,11 @@ RSpec.feature 'Summary pages', type: :feature do
   scenario 'Risk summary page' do
     login
 
-    detainee = create(:detainee, :with_active_move)
-    visit "/#{detainee.id}/risk/summary"
+    detainee = create(:detainee)
+    move = create(:move, :active)
+    escort = create(:escort, detainee: detainee, move: move)
+    visit "escorts/#{escort.id}/risk/summary"
 
-    risk_summary.confirm_risk_details(detainee.risk)
+    risk_summary.confirm_risk_details(escort.risk)
   end
 end

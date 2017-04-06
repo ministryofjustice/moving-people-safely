@@ -1,53 +1,121 @@
 require 'rails_helper'
 
 RSpec.describe 'New Move requests', type: :request do
-  before { sign_in FactoryGirl.create(:user) }
+  let(:prison_number) { 'A1234BC' }
+  let(:detainee) { create(:detainee, prison_number: prison_number) }
+  let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee) }
 
   describe "#new" do
-    before { get "/detainees/#{detainee.id}/moves/new" }
-
-    context "when the detainee has a previously issued move" do
-      let(:detainee) { create(:detainee, :with_completed_move) }
-
-      it "responds with 200 OK" do
-        expect(response.status).to eql 200
+    context "when the user is not authorized" do
+      it "user is redirected to the login page" do
+        get "/escorts/#{escort.id}/move/new"
+        expect(response).to redirect_to new_session_path
       end
     end
 
-    context "when the detainee has an active move" do
-      let(:detainee) { create(:detainee, :with_active_move) }
+    context 'when the user is authorized' do
+      before { sign_in create(:user) }
 
-      it "redirects to the dashboard" do
-        expect(response).to redirect_to root_path(prison_number: detainee.prison_number)
+      context 'but the escort with provided id does not exist' do
+        it 'raises a record not found error' do
+          expect {
+            get "/escorts/#{SecureRandom.uuid}/move/new"
+          }.to raise_error(ActiveRecord::RecordNotFound)
+        end
       end
-    end
 
-    context "when the detainee has no previous moves" do
-      let(:detainee) { create(:detainee) }
+      context 'but the escort is no longer editable' do
+        let(:move) { create(:move, :issued) }
+        let(:escort) { create(:escort, detainee: detainee, move: move) }
 
-      it "redirects to the dashboard" do
-        expect(response.status).to eql 200
+        it 'redirects to the homepage displaying an appropriate error' do
+          get "/escorts/#{escort.id}/move/new"
+          expect(flash[:alert]).to eq('The PER can no longer be changed.')
+          expect(response).to have_http_status(302)
+        end
+      end
+
+      context "when the PER already has a move" do
+        let(:move) { create(:move, :active) }
+        let(:escort) { create(:escort, detainee: detainee, move: move) }
+
+        it "redirects to the PER page" do
+          get "/escorts/#{escort.id}/move/new"
+          expect(response).to redirect_to escort_path(escort)
+        end
+      end
+
+      it "the request is successful" do
+        get "/escorts/#{escort.id}/move/new"
+        expect(response).to have_http_status(200)
       end
     end
   end
 
   describe "#create" do
-    let(:detainee) { create(:detainee) }
+    let(:move_params) { { move: attributes_for(:move) } }
 
-    before { post "/detainees/#{detainee.id}/moves", params: { move: move_attrs } }
-
-    context "when the submitted move details are valid" do
-      let(:move_attrs) { attributes_for(:move) }
-      it "redirects to the detainee's profile" do
-        expect(response).to redirect_to detainee_path(detainee)
+    context "when the user is not authorized" do
+      it "user is redirected to the login page" do
+        post "/escorts/#{escort.id}/move", params: move_params
+        expect(response).to redirect_to new_session_path
       end
     end
 
-    context "when the submitted move details are not valid" do
-      let(:move_attrs) { FactoryGirl.attributes_for(:move).except(:date) }
+    context 'when the user is authorized' do
+      before { sign_in create(:user) }
 
-      it "does not redirect to the detainee's profile" do
-        expect(response).not_to redirect_to detainee_path(detainee)
+      context 'but the escort with provided id does not exist' do
+        it 'raises a record not found error' do
+          expect {
+            post "/escorts/#{SecureRandom.uuid}/move", params: move_params
+          }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
+
+      context 'but the escort is no longer editable' do
+        let(:move) { create(:move, :issued) }
+        let(:escort) { create(:escort, detainee: detainee, move: move) }
+
+        it 'redirects to the homepage displaying an appropriate error' do
+          post "/escorts/#{escort.id}/move", params: move_params
+          expect(flash[:alert]).to eq('The PER can no longer be changed.')
+          expect(response).to have_http_status(302)
+        end
+      end
+
+      context "when the PER already has a move" do
+        let(:move) { create(:move, :active) }
+        let(:escort) { create(:escort, detainee: detainee, move: move) }
+
+        it "redirects to the PER page displaying the appropriate error" do
+          expect {
+            post "/escorts/#{escort.id}/move", params: move_params
+          }.not_to change { escort.reload.move }.from(move)
+          expect(flash[:alert]).to eq('Move details for the PER already exist.')
+          expect(response).to redirect_to escort_path(escort)
+        end
+      end
+
+      context "when the submitted move details are valid" do
+        it "redirects successfully to the PER page" do
+          expect {
+            post "/escorts/#{escort.id}/move", params: move_params
+          }.to change { escort.reload.move }.from(nil).to(an_instance_of(Move))
+          expect(flash[:alert]).to be_nil
+          expect(response).to redirect_to escort_path(escort)
+        end
+      end
+
+      context "when the submitted move details are not valid" do
+        let(:move_params) { { move: attributes_for(:move).except(:date) } }
+
+        it "does not redirect to the detainee's profile" do
+          expect {
+            post "/escorts/#{escort.id}/move", params: move_params
+          }.not_to change { escort.reload.move }.from(nil)
+          expect(response).not_to redirect_to escort_path(escort)
+        end
       end
     end
   end

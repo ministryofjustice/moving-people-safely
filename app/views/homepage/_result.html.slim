@@ -7,7 +7,7 @@ table
     th Move date
   tr
     - if move && move.active?
-      td = link_to(detainee.prison_number, detainee_path(detainee))
+      td = link_to(detainee.prison_number, escort_path(move.escort))
     - else
       td = detainee.prison_number
     td
@@ -23,8 +23,9 @@ table
       td colspan=2
 
 - if move && move.active?
-  = link_to('View profile', detainee_path(detainee), class: 'button')
-- elsif move
-  = link_to('Add new move', copy_move_path(detainee), class: 'button')
+  = link_to('View profile', escort_path(move.escort), class: 'button')
 - else
-  = link_to('Add new move', new_detainee_move_path(detainee), class: 'button')
+  = form_for Escort.new(prison_number: detainee.prison_number), url: escorts_path, method: :post do |f|
+    = f.hidden_field :prison_number
+    .form-actions
+      = f.submit 'Add new move', class: 'button'

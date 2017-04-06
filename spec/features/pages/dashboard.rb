@@ -57,7 +57,7 @@ module Page
     end
 
     def click_add_new_move
-      click_link 'Add new move'
+      click_button 'Add new move'
     end
 
     def assert_no_moves_due_gauges

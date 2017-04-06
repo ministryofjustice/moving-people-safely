@@ -1,25 +1,22 @@
 class MovesController < ApplicationController
-  attr_reader :detainee, :move
-  helper_method :detainee, :move
-  before_action :find_detainee_data, only: %i[new create]
-  before_action :find_move_data, only: %i[edit update]
-  before_action :redirect_if_detainee_has_active_move, only: [:new, :create]
-  before_action :redirect_unless_move_editable, only: [:edit, :update]
+  before_action :redirect_unless_document_editable
+  before_action :redirect_if_move_already_exists, only: %i[new create]
+  helper_method :escort, :move
 
   def new
-    form = Forms::Move.new(detainee.moves.build)
+    form = Forms::Move.new(escort.build_move)
     form.prepopulate!
     render locals: { form: form }
   end
 
   def create
-    form = Forms::Move.new(detainee.moves.build)
+    form = Forms::Move.new(escort.build_move)
     add_destination(form, template: :new)
     return if performed?
 
     if form.validate(params[:move])
       form.save
-      redirect_to detainee_path(detainee)
+      redirect_to escort_path(escort)
     else
       render :new, locals: { form: form }
     end
@@ -38,7 +35,7 @@ class MovesController < ApplicationController
 
     if form.validate(params[:move])
       form.save
-      redirect_to detainee_path(detainee)
+      redirect_to escort_path(escort)
     else
       render :edit, locals: { form: form }
     end
@@ -46,13 +43,12 @@ class MovesController < ApplicationController
 
   private
 
-  def find_detainee_data
-    @detainee = Detainee.find(params[:detainee_id])
+  def escort
+    @escort ||= Escort.find(params[:escort_id])
   end
 
-  def find_move_data
-    @move = Move.find(params[:id])
-    @detainee = move.detainee
+  def move
+    escort.move || raise(ActiveRecord::RecordNotFound)
   end
 
   def add_destination(form, options)
@@ -63,15 +59,7 @@ class MovesController < ApplicationController
     end
   end
 
-  def redirect_if_detainee_has_active_move
-    if detainee.active_move.present?
-      redirect_back(fallback_location: root_path(prison_number: detainee.prison_number)) && return
-    end
-  end
-
-  def redirect_unless_move_editable
-    unless AccessPolicy.edit?(move: move)
-      redirect_back(fallback_location: root_path)
-    end
+  def redirect_if_move_already_exists
+    redirect_to escort_path(escort), alert: t('alerts.escort.move.exists') if escort.move
   end
 end

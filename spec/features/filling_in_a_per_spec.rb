@@ -33,27 +33,25 @@ RSpec.feature 'filling in a PER', type: :feature do
     ]
     move_details.complete_form(move_data, destinations: destinations)
 
-    profile.confirm_move_info(move_data, destinations: destinations)
-    profile.confirm_detainee_details(detainee)
-    profile.click_edit_healthcare
+    escort_page.confirm_move_info(move_data, destinations: destinations)
+    escort_page.confirm_detainee_details(detainee)
+    escort_page.click_edit_healthcare
 
     healthcare.complete_forms(healthcare_data)
     healthcare_summary.confirm_and_save
 
-    profile.confirm_healthcare_details(healthcare_data)
-    profile.click_edit_risk
+    escort_page.confirm_healthcare_details(healthcare_data)
+    escort_page.click_edit_risk
 
     risk.complete_forms(risk_data)
     risk_summary.confirm_risk_details(risk_data)
     risk_summary.confirm_and_save
 
-    profile.confirm_risk_details(risk_data)
-
+    escort_page.confirm_risk_details(risk_data)
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/charges", status: 404)
-
-    profile.click_edit_offences
+    escort_page.click_edit_offences
 
     offences.complete_form(offences_data)
-    profile.confirm_offences_details(offences_data)
+    escort_page.confirm_offences_details(offences_data)
   end
 end

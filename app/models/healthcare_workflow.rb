@@ -1,6 +1,6 @@
 class HealthcareWorkflow < Workflow
   def self.sections
-    %i[physical mental social allergies needs transport communication contact]
+    %w[physical mental social allergies needs transport communication contact]
   end
 
   def self.mandatory_questions

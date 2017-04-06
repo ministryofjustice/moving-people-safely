@@ -10,22 +10,19 @@
         th Offences
         th
     - moves.each do |move|
-      tr.move-row id="prison_number_#{move.detainee.prison_number}"
-        - if AccessPolicy.edit?(move: move)
-          td = link_to move.detainee.prison_number, detainee_path(move.detainee)
-        - else
-          td = move.detainee.prison_number
+      tr.move-row id="prison_number_#{move.escort.detainee.prison_number}"
+        td = link_to move.escort.detainee.prison_number, escort_path(move.escort)
         td
           span.strong-text
-            | #{move.detainee.surname}
+            | #{move.escort.detainee.surname}
           span
-            |  #{move.detainee.forenames}
+            |  #{move.escort.detainee.forenames}
         td = move.to
         - if move.move_workflow.issued?
           td.issued colspan=3
             | Issued
           td.print
-            = link_to_print_in_new_window(move, text: 'Reprint')
+            = link_to_print_in_new_window(move.escort, text: 'Reprint')
         - else
           td.completion-status
             span class="#{move.risk_complete?}"
@@ -34,5 +31,5 @@
           td.completion-status
             span class="#{move.offences_complete?}"
           td.print
-            - if AccessPolicy.print?(move: move)
-             = link_to_print_in_new_window(move)
+            - if AccessPolicy.print?(escort: move.escort)
+             = link_to_print_in_new_window(move.escort)

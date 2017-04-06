@@ -2,26 +2,36 @@ require 'rails_helper'
 
 RSpec.describe 'Detainee image requests', type: :request do
   let(:prison_number) { 'ABC123' }
-  let(:detainee) { FactoryGirl.create(:detainee, prison_number: prison_number) }
+  let(:detainee) { create(:detainee, prison_number: prison_number) }
+  let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee) }
 
   context 'when user is not authorized' do
     it 'redirects user to login page' do
-      get "/detainees/#{detainee.id}/image"
+      get "/escorts/#{escort.id}/detainee/image"
       expect(response.status).to eq(302)
       expect(response).to redirect_to new_session_path
     end
   end
 
   context 'when user is authorized' do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { create(:user) }
 
     before { sign_in(user) }
 
-    context 'when the detainee does not exist' do
+    context 'when the escort with the provided id does not exist' do
       it 'raises a record not found error' do
         expect {
-          get "/detainees/#{SecureRandom.uuid}/image"
+          get "/escorts/#{SecureRandom.uuid}/detainee/image"
         }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context 'when the detainee does not exist' do
+      let(:escort) { create(:escort, prison_number: prison_number) }
+
+      it 'render a 404' do
+        get "/escorts/#{escort.id}/detainee/image"
+        expect(response.status).to eq(404)
       end
     end
 
@@ -33,7 +43,7 @@ RSpec.describe 'Detainee image requests', type: :request do
         end
 
         it 'render a 404' do
-          get "/detainees/#{detainee.id}/image"
+          get "/escorts/#{escort.id}/detainee/image"
           expect(response.status).to eq(404)
         end
       end
@@ -41,7 +51,7 @@ RSpec.describe 'Detainee image requests', type: :request do
       context 'when the format provided is not valid' do
         it 'render a 404' do
           expect {
-            get "/detainees/#{detainee.id}/image.gif"
+            get "/escorts/#{escort.id}/detainee/image.gif"
           }.to raise_error(ActionController::RoutingError)
         end
       end
@@ -53,8 +63,15 @@ RSpec.describe 'Detainee image requests', type: :request do
         end
 
         it 'render a 200' do
-          get "/detainees/#{detainee.id}/image"
+          get "/escorts/#{escort.id}/detainee/image"
           expect(response.status).to eq(200)
+        end
+
+        context 'when the format provided is valid' do
+          it 'render a 200' do
+            get "/escorts/#{escort.id}/detainee/image.jpg"
+            expect(response.status).to eq(200)
+          end
         end
       end
     end

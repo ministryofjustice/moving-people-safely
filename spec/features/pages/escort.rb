@@ -1,5 +1,5 @@
 module Page
-  class Profile < Base
+  class Escort < Base
     def confirm_header_details(detainee)
       within('#header') do
         detainee_detail = "#{detainee.prison_number}: #{detainee.surname}, #{detainee.forenames}"
@@ -10,7 +10,7 @@ module Page
     end
 
     def confirm_all_alerts_as_inactive
-      within('.profile-alerts') do
+      within('.escort-alerts') do
         %i[not_for_release acct_status rule_45 e_list csra category_a mpv].each do |alert|
           expect(page).to have_css("##{alert}_header.alert-off")
         end
@@ -18,13 +18,13 @@ module Page
     end
 
     def confirm_alert_as_inactive(attr)
-      within('.profile-alerts') do
+      within('.escort-alerts') do
         expect(page).to have_css("##{attr}_header.alert-off")
       end
     end
 
     def confirm_alert_as_active(attr)
-      within('.profile-alerts') do
+      within('.escort-alerts') do
         expect(page).to have_css("##{attr}_header.alert-on")
       end
     end
@@ -53,15 +53,9 @@ module Page
       end
     end
 
-    def assert_link_to_new_move(detainee)
+    def assert_link_to_new_move(escort)
       within '#no-active-move' do
-        expect(page).to have_selector(:css, "a[href='#{new_detainee_move_path(detainee.id)}']")
-      end
-    end
-
-    def assert_link_to_new_move_from_copy(detainee)
-      within '#no-active-move' do
-        expect(page).to have_selector(:css, "a[href='#{copy_move_path(detainee)}']")
+        expect(page).to have_selector(:css, "a[href='#{new_escort_move_path(escort.id)}']")
       end
     end
 

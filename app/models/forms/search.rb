@@ -21,13 +21,21 @@ module Forms
     end
 
     def detainee
-      @_detainee ||= ::Detainee.find_by(_at[:prison_number].matches(prison_number)) if valid?
+      escort&.detainee
+    end
+
+    def move
+      escort&.move
     end
 
     private
 
+    def escort
+      @escort ||= ::Escort.find_by(_at[:prison_number].matches(prison_number)) if valid?
+    end
+
     def _at
-      ::Detainee.arel_table
+      ::Escort.arel_table
     end
   end
 end

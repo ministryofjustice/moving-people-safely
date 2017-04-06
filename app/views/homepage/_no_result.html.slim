@@ -1,6 +1,9 @@
 p
-  | There is no previously created profile on
+  | There is no previously PER record on
   |  Moving People Safely for prison number
   |  #{prison_number}
 
-= button_to('Create new profile', new_detainee_path, params: { prison_number: prison_number }, class: 'button', method: :get)
+= form_for Escort.new(prison_number: prison_number), url: escorts_path, method: :post do |f|
+  = f.hidden_field :prison_number
+  .form-actions
+    = f.submit 'Create new profile', class: 'button'

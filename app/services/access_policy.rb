@@ -1,11 +1,11 @@
 module AccessPolicy
   module_function
 
-  def edit?(move:)
-    move && move.active?
+  def edit?(escort:)
+    escort && !escort.issued?
   end
 
-  def print?(move:)
-    move.complete?
+  def print?(escort:)
+    escort&.completed?
   end
 end

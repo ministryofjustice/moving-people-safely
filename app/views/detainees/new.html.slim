@@ -2,4 +2,4 @@
   - breadcrumbs_for_page root: true do
     - breadcrumb 'Detainee information', '#'
 
-= render partial: 'form', locals: { form: form, submit_path: detainees_path, method: :post }
+= render partial: 'form', locals: { form: form, submit_path: escort_detainee_path(escort), method: :post }

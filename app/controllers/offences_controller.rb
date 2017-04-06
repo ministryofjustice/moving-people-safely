@@ -1,5 +1,8 @@
-class OffencesController < DetaineeController
+class OffencesController < ApplicationController
+  before_action :redirect_unless_document_editable, except: :show
   before_action :add_offence, only: [:update]
+
+  helper_method :escort, :offences
 
   def show
     prepopulate_current_offences
@@ -11,15 +14,23 @@ class OffencesController < DetaineeController
   def update
     if form.validate form_data
       form.save
-      active_move.offences_workflow.confirm_with_user!(user: current_user)
-      redirect_to detainee_path(detainee)
+      offences.confirm!(user: current_user)
+      redirect_to escort_path(escort)
     else
       flash[:form_data] = form_data
-      redirect_to offences_path(detainee)
+      redirect_to escort_offences_path(escort)
     end
   end
 
   private
+
+  def escort
+    @escort ||= Escort.find(params[:escort_id])
+  end
+
+  def offences
+    escort.offences || raise(ActiveRecord::RecordNotFound)
+  end
 
   def add_offence
     if params.key? 'offences_add_offence'
@@ -44,7 +55,7 @@ class OffencesController < DetaineeController
   end
 
   def fetch_offences
-    result = Detainees::OffencesFetcher.new(detainee.prison_number).call
+    result = Detainees::OffencesFetcher.new(escort.prison_number).call
     flash_fetcher_error(result.error) if result.error.present?
     result.data.map(&:attributes)
   end

@@ -3,7 +3,7 @@ header#header
     ' #{detainee.prison_number}: #{detainee.surname}, #{detainee.forenames}
 
 .image-and-alerts
-  .profile-image-wrapper
+  .escort-image-wrapper
     - if detainee.image.present?
       .image
         = image_tag detainee_image_path(detainee, format: :jpg), size: '128x180'
@@ -11,7 +11,7 @@ header#header
       .no-image
         span = 'Photo unavailable'
 
-  .profile-alerts
+  .escort-alerts
     .alerts-table
       .info-tiles
         #not_for_release_alert.tile-3

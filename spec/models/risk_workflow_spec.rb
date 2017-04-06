@@ -8,7 +8,7 @@ RSpec.describe RiskWorkflow do
   describe '.sections' do
     specify {
       expect(described_class.sections)
-        .to match_array(%i[risk_to_self risk_from_others violence hostage_taker
+        .to match_array(%w[risk_to_self risk_from_others violence hostage_taker
                            harassments sex_offences security
                            substance_misuse concealed_weapons arson])
     }

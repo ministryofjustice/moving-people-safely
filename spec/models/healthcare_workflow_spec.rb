@@ -8,7 +8,7 @@ RSpec.describe HealthcareWorkflow do
   describe '.sections' do
     specify {
       expect(described_class.sections)
-        .to match_array(%i[physical mental social allergies needs transport communication contact])
+        .to match_array(%w[physical mental social allergies needs transport communication contact])
     }
   end
 

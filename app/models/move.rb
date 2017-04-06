@@ -1,7 +1,6 @@
 class Move < ApplicationRecord
-  belongs_to :detainee
+  belongs_to :escort
   has_many :destinations, dependent: :destroy
-
   has_one :healthcare_workflow
   has_one :risk_workflow
   has_one :offences_workflow
@@ -10,10 +9,7 @@ class Move < ApplicationRecord
   scope :for_date, (lambda do |search_date|
     where(date: search_date).
       order(created_at: :desc).
-      eager_load(
-        :detainee,
-        :move_workflow
-      )
+      eager_load(:move_workflow)
   end)
 
   scope :active, -> { joins(:move_workflow).merge(Workflow.not_issued) }
@@ -24,7 +20,7 @@ class Move < ApplicationRecord
 
   scope :order_by_recentness, -> { order(created_at: :desc) }
 
-  delegate :active?, :issued?, to: :move_workflow
+  delegate :status, :active?, :issued?, :issued!, to: :move_workflow
 
   def initialize(*)
     super
@@ -32,12 +28,6 @@ class Move < ApplicationRecord
     build_risk_workflow
     build_healthcare_workflow
     build_offences_workflow
-  end
-
-  def copy_without_saving
-    dup.tap do |move|
-      move.date = nil
-    end
   end
 
   def save_copy

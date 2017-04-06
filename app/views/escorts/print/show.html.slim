@@ -25,14 +25,14 @@ html
         span.watermark = 'Risk'
         table#risk-table.section-table
           - RiskAssessment.sections.each do |section|
-            = render partial: 'moves/print/section',
+            = render partial: 'escorts/print/section',
               locals: { section: Print::AssessmentSectionPresenter.new(section, risk),
                         assessment: risk }
       div#healthcare-section.section
         span.watermark = 'Healthcare'
         table#healthcare-table.section-table
           - HealthcareAssessment.sections.each do |section|
-            = render partial: 'moves/print/section',
+            = render partial: 'escorts/print/section',
               locals: { section: Print::AssessmentSectionPresenter.new(section, healthcare),
                         assessment: healthcare }
       div#offences-section.section

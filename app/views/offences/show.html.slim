@@ -1,10 +1,10 @@
 = content_for :breadcrumbs do
   - breadcrumbs_for_page root: true do
-    - breadcrumb detainee_breadcrumb(detainee), detainee_path(detainee)
+    - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
     - breadcrumb 'Offences', '#'
 
 .offences
-  - if offences_workflow.needs_review?
+  - if offences.needs_review?
     header
       h1 Review before you save and continue
       h3
@@ -17,7 +17,7 @@
   = GovukElementsErrorsHelper.error_summary form,
     'There were problems saving this form', ''
 
-  = form_for form, url: offences_path(detainee), method: :put do |f|
+  = form_for form, url: escort_offences_path(escort), method: :put do |f|
     fieldset.form-group
       legend.heading-medium Current offences
 

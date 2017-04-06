@@ -1,6 +1,7 @@
 .move-information
   .float-right
-    = link_to 'Edit', edit_move_path(active_move)
+    - unless escort.issued?
+      = link_to 'Edit', edit_escort_move_path(escort)
   h2
     ' Move information
   .info-tiles

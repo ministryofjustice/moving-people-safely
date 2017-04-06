@@ -1,12 +1,12 @@
 class PdfGenerator
-  def initialize(move)
-    @move = move
+  def initialize(escort)
+    @escort = escort
   end
 
   def call
     controller.render_to_string(
       pdf: filename,
-      template: 'moves/print/show',
+      template: 'escorts/print/show',
       locals: pdf_locals,
       cover: cover_page,
       header: { content: header_content, spacing: 5 },
@@ -19,7 +19,7 @@ class PdfGenerator
 
   def cover_page
     controller.render_to_string(
-      template: 'moves/print/cover',
+      template: 'escorts/print/cover',
       locals: pdf_locals
     )
   end
@@ -52,7 +52,7 @@ class PdfGenerator
   end
 
   def alerts_presenter
-    @alerts_presenter ||= Print::MoveAlertsPresenter.new(move, controller.view_context)
+    @alerts_presenter ||= Print::EscortAlertsPresenter.new(escort, controller.view_context)
   end
 
   def controller
@@ -60,18 +60,14 @@ class PdfGenerator
   end
 
   def header_content
-    controller.render_to_string(template: 'moves/print/header', locals: { detainee: detainee_presenter })
+    controller.render_to_string(template: 'escorts/print/header', locals: { detainee: detainee_presenter })
   end
 
   def footer_content
-    controller.render_to_string(template: 'moves/print/footer')
+    controller.render_to_string(template: 'escorts/print/footer')
   end
 
-  attr_reader :move
+  attr_reader :escort
 
-  def detainee
-    move.detainee
-  end
-
-  private(*delegate(:risk, :healthcare, :offences, to: :detainee))
+  private(*delegate(:detainee, :move, :risk, :healthcare, :offences, to: :escort))
 end

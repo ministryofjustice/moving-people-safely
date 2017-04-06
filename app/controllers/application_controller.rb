@@ -5,23 +5,11 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
-  helper_method :offences,
-    :risk,
-    :healthcare,
-    :detainee,
-    :active_move,
-    :healthcare_workflow,
-    :risk_workflow,
-    :offences_workflow
-
-  delegate :risk, :healthcare, :offences, :active_move, to: :detainee
-  delegate :healthcare_workflow, :risk_workflow, :offences_workflow, to: :active_move
-
   private
 
   def redirect_unless_document_editable
-    unless AccessPolicy.edit?(move: active_move)
-      redirect_back(fallback_location: root_path)
+    unless AccessPolicy.edit?(escort: escort)
+      redirect_back(fallback_location: root_path, alert: t('alerts.escort.edit.unauthorized'))
     end
   end
 

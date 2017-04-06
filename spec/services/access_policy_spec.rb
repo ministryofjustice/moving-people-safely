@@ -1,46 +1,40 @@
 require 'rails_helper'
 
 RSpec.describe AccessPolicy do
-  subject { described_class }
-  let(:move) { FactoryGirl.build(:move, move_workflow: workflow) }
-  let(:workflow) { FactoryGirl.build(:move_workflow) }
+  let(:escort) { build(:escort) }
 
-  describe "#print?" do
-    let(:result) { subject.print?(move: move) }
+  describe "#edit?" do
+    context "with a PER that has not been issued yet" do
+      before { allow(escort).to receive(:issued?).and_return(false) }
 
-    context "with a completed PER" do
-      before { allow(move).to receive(:complete?).and_return(true) }
-
-      it "is true" do
-        expect(result).to be true
+      it "returns true" do
+        expect(described_class.edit?(escort: escort)).to be_truthy
       end
     end
 
-    context "PER is incomplete" do
-      before { allow(move).to receive(:complete?).and_return(false) }
+    context "with a PER that has been issued" do
+      before { allow(escort).to receive(:issued?).and_return(true) }
 
-      it "is false" do
-        expect(result).to be false
+      it "returns false" do
+        expect(described_class.edit?(escort: escort)).to be_falsey
       end
     end
   end
 
-  describe "#edit?" do
-    let(:result) { subject.edit?(move: move) }
+  describe "#print?" do
+    context "with a completed PER" do
+      before { allow(escort).to receive(:completed?).and_return(true) }
 
-    context "PER has not been printed" do
-      before { allow(workflow).to receive(:active?).and_return(true) }
-
-      it "is true" do
-        expect(result).to be true
+      it "returns true" do
+        expect(described_class.print?(escort: escort)).to be_truthy
       end
     end
 
-    context "with a previously printed PER" do
-      before { allow(workflow).to receive(:active?).and_return(false) }
+    context "PER is incomplete" do
+      before { allow(escort).to receive(:completed?).and_return(false) }
 
-      it "is false" do
-        expect(result).to be false
+      it "returns false" do
+        expect(described_class.print?(escort: escort)).to be_falsey
       end
     end
   end

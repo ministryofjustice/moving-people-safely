@@ -2,6 +2,18 @@ module Wizardable
   extend ActiveSupport::Concern
 
   included do
+    def setup_wizard
+      check_steps!
+
+      @step = setup_step_from(params[:step])
+      set_previous_next(@step)
+    end
+
+    def wizard_path(goto_step = nil, options = {})
+      options = options.merge(step: goto_step || params[:step])
+      super(goto_step, options)
+    end
+
     def current_question
       current_step_index + 1
     end
