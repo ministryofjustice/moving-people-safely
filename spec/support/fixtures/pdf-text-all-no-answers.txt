@@ -1,41 +1,39 @@
 Outbound vehicle
-Registration                    Cell number                      PECS Barcode
+Registration                   Cell number                      PECS Barcode
 
 
 
 
 Return vehicle
-Registration                    Cell number
+Registration                   Cell number
 
 
 
 
 W1234BY: McTest Testy
+ NOT FOR RELEASE                     E LIST                             MPV
 
- NOT FOR RELEASE                     E LIST                              MPV
-
-Prison number     CRO number        PNC number        Aliases
-W1234BY           56TYY/UU          YI896668TT        Terry Tibbs
-                                                      Mr T
-Date of birth     Age      Gender Nationality
-10 Dec 1970       46       M      British                                                     Photo
-                                                                                            unavailable
+Prison number    CRO number        PNC number        Aliases
+W1234BY          56TYY/UU          YI896668TT        Terry Tibbs
+                                                     Mr T
+Date of birth    Age      Gender Nationality
+10 Dec 1970      46       M      British
 
 
 
 
 Move details
-Date of travel                      From                                To
-22 Apr 2017                         HMP Bedford                         Luton Crown Court
+Date of travel                     From                                To
+22 Apr 2017                        HMP Bedford                         Luton Crown Court
 
 
 
 
 About this Person Escort Record
 
-   This person escort record was printed from the Moving People Safely web site.
-   To find out more about the Person Escort Record go to exmaple.com
-   If you have feedback or suggestions please email feedback@example.com
+   This PER was produced by the the Moving People Safely digital PER service, currently being piloted at
+   HMP Bedford. If you have feedback or questions about the service, contact the Moving People Safely team
+   at: moving-people-safely@digital.justice.gov.uk
 W1234BY: McTest Testy                                                        Page 1 of 1
 
  NOT FOR RELEASE                        ACCT                 RULE 45

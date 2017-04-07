@@ -37,10 +37,7 @@ module Print
       if model.image.present?
         image_tag("data:image;base64,#{model.image}")
       else
-        [
-          content_tag(:span, 'Photo unavailable', class: 'image-unavailable-text'),
-          wicked_pdf_image_tag('photo_unavailable.png')
-        ].join.html_safe
+        wicked_pdf_image_tag('photo_unavailable.png')
       end
     end
 

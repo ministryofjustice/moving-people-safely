@@ -1,43 +1,41 @@
 Outbound vehicle
-Registration                    Cell number                      PECS Barcode
+Registration                   Cell number                      PECS Barcode
 
 
 
 
 Return vehicle
-Registration                    Cell number
+Registration                   Cell number
 
 
 
 
 W1234BY: McTest Testy
+ NOT FOR RELEASE                     E LIST                             MPV
 
- NOT FOR RELEASE                     E LIST                              MPV
+                                   E-List-Escort
 
-                                    E-List-Escort
-
-Prison number     CRO number        PNC number        Aliases
-W1234BY           56TYY/UU          YI896668TT        Terry Tibbs
-                                                      Mr T
-Date of birth     Age      Gender Nationality
-10 Dec 1970       46       M      British                                                     Photo
-                                                                                            unavailable
+Prison number    CRO number        PNC number        Aliases
+W1234BY          56TYY/UU          YI896668TT        Terry Tibbs
+                                                     Mr T
+Date of birth    Age      Gender Nationality
+10 Dec 1970      46       M      British
 
 
 
 
 Move details
-Date of travel                      From                                To
-22 Apr 2017                         HMP Bedford                         Luton Crown Court
+Date of travel                     From                                To
+22 Apr 2017                        HMP Bedford                         Luton Crown Court
 
 
 
 
 About this Person Escort Record
 
-   This person escort record was printed from the Moving People Safely web site.
-   To find out more about the Person Escort Record go to exmaple.com
-   If you have feedback or suggestions please email feedback@example.com
+   This PER was produced by the the Moving People Safely digital PER service, currently being piloted at
+   HMP Bedford. If you have feedback or questions about the service, contact the Moving People Safely team
+   at: moving-people-safely@digital.justice.gov.uk
 W1234BY: McTest Testy                                                                  Page 1 of 3
 
  NOT FOR RELEASE                    ACCT                          RULE 45
@@ -78,16 +76,14 @@ Risk to others: harasser and/or   Yes
 bully
   Harasser                        Yes      harassment details
 Intimidator/bully                 Yes
-
   Staff                           Yes      intimidation to staff details
   Public                          Yes      intimidation to public details
   Prisoners                       Yes      intimidation to other detainees details
   Witnesses                       Yes      intimidation to witnesses details
+Sex offender                      Yes
+  Adult male                      Yes
+  Adult female                    Yes
 W1234BY: McTest Testy                                                         Page 2 of 3
-
-Sex offender                     Yes
-  Adult male                     Yes
-  Adult female                   Yes
   Under 18                       Yes   under 18 sex offence victim details
 Escape status/history            Yes
   Currently on E list            Yes   E-List-Escort
@@ -126,25 +122,24 @@ Mental healthcare                Yes
 Social healthcare                Yes
   Personal hygiene issues        Yes   personal hygiene details
   Personal care issues           Yes   personal care details
-W1234BY: McTest Testy                                                                   Page 3 of 3
-
-Allergies                      Yes
-  Allergies                    Yes                allergies details
-Medical health needs           Yes
-  Dependencies / misuse        Yes                dependencies details
-  Regular medication           Yes
-Transport                      Yes
-  MPV required                 Yes                MPV details
-Communication / language       Yes
+Allergies                        Yes
+  Allergies                      Yes   allergies details
+Medical health needs             Yes
+  Dependencies / misuse          Yes   dependencies details
+  Regular medication             Yes
+Transport                        Yes
+W1234BY: McTest Testy                                                                  Page 3 of 3
+ MPV required                 Yes                MPV details
+Communication / language      Yes
 difficulties
-  Hearing / speech / sight     Yes                hearing/speech/sight issues details
-  issues
-  Reading / writing issues     Yes                reading/writing issues details
-Medical contact                Yes
-  Healthcare professional      John doctor doe
-  Contact number               1-131-999-0232
-Current offences               Yes                Burglary (LXAHTGNJQF) | Sex offence
-                                                  (QDPREIBMSF)
-Must return to               HMP Brixton: Its a lovely place.
-Must NOT return to           HMP Clive House: Its too cold.
+ Hearing / speech / sight     Yes                hearing/speech/sight issues details
+ issues
+ Reading / writing issues     Yes                reading/writing issues details
+Medical contact               Yes
+ Healthcare professional      John doctor doe
+ Contact number               1-131-999-0232
+Current offences              Yes                Burglary (LXAHTGNJQF) | Sex offence
+                                                 (QDPREIBMSF)
+Must return to              HMP Brixton: Its a lovely place.
+Must NOT return to          HMP Clive House: Its too cold.
 
