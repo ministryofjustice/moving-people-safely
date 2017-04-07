@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328143104) do
+ActiveRecord::Schema.define(version: 20170407140028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
   create_table "current_offences", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "offences_id"
     t.string   "offence"
     t.string   "case_reference"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["offences_id"], name: "index_current_offences_on_offences_id", using: :btree
+    t.uuid     "detainee_id"
+    t.index ["detainee_id"], name: "index_current_offences_on_detainee_id", using: :btree
   end
 
   create_table "destinations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -104,13 +104,6 @@ ActiveRecord::Schema.define(version: 20170328143104) do
     t.string   "not_for_release_reason"
     t.text     "not_for_release_reason_details"
     t.index ["detainee_id"], name: "index_moves_on_detainee_id", using: :btree
-  end
-
-  create_table "offences", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.uuid     "detainee_id"
-    t.index ["detainee_id"], name: "index_offences_on_detainee_id", using: :btree
   end
 
   create_table "risks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

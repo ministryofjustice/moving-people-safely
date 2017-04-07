@@ -34,10 +34,10 @@ class OffencesController < DetaineeController
   end
 
   def form
-    @_form ||= Forms::Offences.new(offences)
+    @_form ||= Forms::Offences.new(detainee)
   end
 
-  private(*delegate(:current_offences, to: :offences))
+  private(*delegate(:current_offences, to: :detainee))
 
   def prepopulate_current_offences
     current_offences.blank? && current_offences.build(fetch_offences)

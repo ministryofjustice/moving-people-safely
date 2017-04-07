@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Forms::Offences, type: :form do
-  let(:model) { Offences.new }
+  let(:model) { Detainee.new(current_offences: []) }
   subject { described_class.new(model) }
 
   let(:form_data) do

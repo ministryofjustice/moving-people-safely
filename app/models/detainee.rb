@@ -1,14 +1,13 @@
 class Detainee < ApplicationRecord
   has_one :risk, dependent: :destroy
   has_one :healthcare, dependent: :destroy
-  has_one :offences, dependent: :destroy
+  has_many :current_offences, dependent: :destroy
   has_many :moves, dependent: :destroy
 
   def initialize(*)
     super
     build_healthcare
     build_risk
-    build_offences
   end
 
   def active_move

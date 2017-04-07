@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
-  helper_method :offences,
+  helper_method :current_offences,
     :risk,
     :healthcare,
     :detainee,
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     :risk_workflow,
     :offences_workflow
 
-  delegate :risk, :healthcare, :offences, :active_move, to: :detainee
+  delegate :risk, :healthcare, :current_offences, :active_move, to: :detainee
   delegate :healthcare_workflow, :risk_workflow, :offences_workflow, to: :active_move
 
   private

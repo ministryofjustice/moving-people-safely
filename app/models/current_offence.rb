@@ -1,3 +1,3 @@
 class CurrentOffence < ApplicationRecord
-  belongs_to :offences
+  belongs_to :detainee
 end
