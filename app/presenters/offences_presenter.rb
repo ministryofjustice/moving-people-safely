@@ -1,8 +1,18 @@
 class OffencesPresenter < SimpleDelegator
-  attr_reader :current_offences
-
   def initialize(offences)
-    @current_offences = offences.current_offences.map { |offence| CurrentOffencePresenter.new(offence) }
+    @offences = offences.map { |offence| CurrentOffencePresenter.new(offence) }
     super
+  end
+
+  delegate :empty?, :any?, :each, to: :@offences
+
+  alias all_questions_answered? any?
+
+  class CurrentOffencePresenter < SimpleDelegator
+    def full_details
+      info = offence
+      info << " (CR: #{case_reference})" if case_reference.present?
+      info
+    end
   end
 end

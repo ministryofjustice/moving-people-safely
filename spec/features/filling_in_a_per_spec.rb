@@ -3,7 +3,7 @@ require 'feature_helper'
 RSpec.feature 'filling in a PER', type: :feature do
   let(:offences_data) {
     {
-      current_offences: [
+      offences: [
         { name: 'Burglary', case_reference: 'Ref 3064' },
         { name: 'Attempted murder', case_reference: 'Ref 7291' }
       ]
@@ -52,6 +52,6 @@ RSpec.feature 'filling in a PER', type: :feature do
     escort_page.click_edit_offences
 
     offences.complete_form(offences_data)
-    escort_page.confirm_offences_details(offences_data)
+    escort_page.confirm_offence_details(offences_data)
   end
 end

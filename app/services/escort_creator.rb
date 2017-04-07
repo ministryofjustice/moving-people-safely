@@ -23,7 +23,7 @@ class EscortCreator
     { detainee: [
       :risk,
       { healthcare: [:medications] },
-      { offences: [:current_offences] }
+      :offences
     ] },
     { move: [:destinations] }
   ].freeze

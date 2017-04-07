@@ -48,7 +48,7 @@ class PdfGenerator
   end
 
   def offences_presenter
-    @offences_presenter ||= Print::OffencesPresenter.new(offences)
+    @offences_presenter ||= Print::OffencesPresenter.new(detainee)
   end
 
   def alerts_presenter
@@ -69,5 +69,5 @@ class PdfGenerator
 
   attr_reader :escort
 
-  private(*delegate(:detainee, :move, :risk, :healthcare, :offences, to: :escort))
+  private(*delegate(:detainee, :move, :risk, :healthcare, to: :escort))
 end

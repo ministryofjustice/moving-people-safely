@@ -25,7 +25,7 @@ RSpec.feature 'Adding offences to a move', type: :feature do
 
     escort_page.click_edit_offences
     offences.save_and_continue
-    escort_page.confirm_current_offences(expected_offences)
+    escort_page.confirm_offences(expected_offences)
   end
 
   let(:expected_offences_after_ammendment) {
@@ -43,7 +43,7 @@ RSpec.feature 'Adding offences to a move', type: :feature do
     offences.update(index: 0, description: "Updated text", case_reference: "NEW_REFERENCE")
     offences.add(description: "Some other description", case_reference: "ANOTHER_REFERENCE")
     offences.save_and_continue
-    escort_page.confirm_current_offences(expected_offences_after_ammendment)
+    escort_page.confirm_offences(expected_offences_after_ammendment)
   end
 
   let(:expected_offences_after_failure) {
@@ -59,6 +59,6 @@ RSpec.feature 'Adding offences to a move', type: :feature do
     offences.confirm_api_unavailable_warning
     offences.update(index: 0, description: "Manually adding an offence", case_reference: "YET_ANOTHER_REFERENCE")
     offences.save_and_continue
-    escort_page.confirm_current_offences(expected_offences_after_failure)
+    escort_page.confirm_offences(expected_offences_after_failure)
   end
 end
