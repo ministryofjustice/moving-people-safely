@@ -13,7 +13,7 @@ RSpec.feature 'printing a PER', type: :feature do
     )
   }
 
-  let(:current_offences) { [] }
+  let(:offences) { [] }
 
   let(:detainee) {
     create(
@@ -29,7 +29,7 @@ RSpec.feature 'printing a PER', type: :feature do
       pnc_number: 'YI896668TT',
       risk: risk,
       healthcare: healthcare,
-      current_offences: current_offences
+      offences: offences
     )
   }
 
@@ -92,10 +92,10 @@ RSpec.feature 'printing a PER', type: :feature do
   end
 
   context 'when a PER has detailed answers' do
-    let(:current_offences) {
+    let(:offences) {
       [
-      create(:current_offence, offence: 'Burglary', case_reference: 'LXAHTGNJQF'),
-      create(:current_offence, offence: 'Sex offence', case_reference: 'QDPREIBMSF')
+      create(:offence, offence: 'Burglary', case_reference: 'LXAHTGNJQF'),
+      create(:offence, offence: 'Sex offence', case_reference: 'QDPREIBMSF')
       ]
     }
     let(:must_return_destination) { create(:destination, :must_return, establishment: 'HMP Brixton', reasons: 'Its a lovely place.') }

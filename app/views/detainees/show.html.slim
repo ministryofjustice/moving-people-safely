@@ -20,5 +20,5 @@
   - if active_move
     = render partial: 'risk'
     = render partial: 'healthcare'
-    = render partial: 'offences', locals: { offences: OffencesPresenter.new(current_offences) }
+    = render partial: 'offences', locals: { offences: OffencesPresenter.new(offences) }
     = render partial: 'actions'

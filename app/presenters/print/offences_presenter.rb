@@ -2,17 +2,17 @@ module Print
   class OffencesPresenter < SimpleDelegator
     include Print::Helpers
 
-    def current_offences_label
+    def offences_label
       content = t('print.label.offences.current_offences')
-      label_for(model.current_offences, content)
+      label_for(model.offences, content)
     end
 
-    def current_offences_relevant
-      relevance_for(model.current_offences)
+    def offences_relevant
+      relevance_for(model.offences)
     end
 
-    def current_offences
-      format_list(model.current_offences)
+    def offences
+      format_list(model.offences)
     end
 
     private

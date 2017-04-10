@@ -5,15 +5,15 @@
   h2
     ' Offences
   - if offences.all_questions_answered?
-    #offences-summary.info-table
+    .info-table
       .grid-row
-        #current-offences-summary.column-one-half
+        #offences-summary.column-one-half
           small Current offences
-          - if offences.current_offences.empty?
+          - if offences.offences.empty?
             p = 'None'
           - else
             ul.info-list
-              - offences.current_offences.each do |offence|
+              - offences.offences.each do |offence|
                 li == offence.full_details
   - else
     hr
