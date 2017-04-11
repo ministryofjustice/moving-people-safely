@@ -375,46 +375,25 @@ RSpec.feature 'detainee profile page', type: :feature do
 
     let(:detainee) { create(:detainee, :with_active_move, :with_no_offences) }
     let(:active_move) { detainee.active_move }
-    let(:current_offences) {
+    let(:offences_data) {
       [
         { name: 'Burglary', case_reference: 'Ref 3064' },
         { name: 'Attempted murder', case_reference: 'Ref 7291' }
       ]
     }
-    let(:offences_data) {
+    let(:offences_params) {
       {
-        current_offences: current_offences
+        offences: offences_data
       }
     }
 
-    shared_examples_for 'offences information display' do
-      scenario 'current offences are displayed' do
-        profile.confirm_current_offences(current_offences)
-      end
-    end
-
-    before do
+    scenario 'current offences are displayed' do
       login
 
       visit detainee_path(detainee)
       profile.click_edit_offences
-      offences.complete_form(offences_data)
-    end
-
-    include_examples 'offences information display'
-
-    context 'when there no past offences were filled' do
-      let(:offences_data) {
-        {
-          not_for_release: true,
-          not_for_release_details: 'Serving Sentence',
-          current_offences: current_offences
-        }
-      }
-
-      scenario 'current offences are displayed and none past offences' do
-        profile.confirm_current_offences(current_offences)
-      end
+      offences.complete_form(offences_params)
+      profile.confirm_offences(offences_data)
     end
   end
 end

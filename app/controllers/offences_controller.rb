@@ -2,7 +2,7 @@ class OffencesController < DetaineeController
   before_action :add_offence, only: [:update]
 
   def show
-    prepopulate_current_offences
+    prepopulate_offences
     form.validate(flash[:form_data]) if flash[:form_data]
     form.prepopulate!
     render locals: { form: form }
@@ -24,7 +24,7 @@ class OffencesController < DetaineeController
   def add_offence
     if params.key? 'offences_add_offence'
       form.deserialize form_data
-      form.add_current_offence
+      form.add_offence
       render :show, locals: { form: form }
     end
   end
@@ -34,13 +34,13 @@ class OffencesController < DetaineeController
   end
 
   def form
-    @_form ||= Forms::Offences.new(offences)
+    @_form ||= Forms::Offences.new(detainee)
   end
 
-  private(*delegate(:current_offences, to: :offences))
+  private(*delegate(:offences, to: :detainee))
 
-  def prepopulate_current_offences
-    current_offences.blank? && current_offences.build(fetch_offences)
+  def prepopulate_offences
+    offences.blank? && offences.build(fetch_offences)
   end
 
   def fetch_offences

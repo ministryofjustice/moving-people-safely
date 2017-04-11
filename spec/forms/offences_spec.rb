@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Forms::Offences, type: :form do
-  let(:model) { Offences.new }
+  let(:model) { Detainee.new(offences: []) }
   subject { described_class.new(model) }
 
   let(:form_data) do
     {
-      'current_offences' => [
+      'offences' => [
         {
           'offence' => 'Burglary',
           'case_reference' => 'AX123456',
@@ -19,7 +19,7 @@ RSpec.describe Forms::Offences, type: :form do
   describe "#validate" do
     let(:coerced_params) do
       {
-        'current_offences' => [
+        'offences' => [
           'offence' => 'Burglary',
           'case_reference' => 'AX123456',
           '_delete' => false
@@ -32,7 +32,7 @@ RSpec.describe Forms::Offences, type: :form do
       expect(subject.to_nested_hash).to eq coerced_params
     end
 
-    it { is_expected.to validate_prepopulated_collection :current_offences }
+    it { is_expected.to validate_prepopulated_collection :offences }
   
     specify { expect(subject.validate(form_data)).to eq(true) }
   end
@@ -43,7 +43,7 @@ RSpec.describe Forms::Offences, type: :form do
       subject.save
 
       form_attributes_without_nested_forms =
-        subject.to_nested_hash.except(:current_offences)
+        subject.to_nested_hash.except(:offences)
       model_attributes = subject.model.attributes
 
       expect(model_attributes).to include form_attributes_without_nested_forms
@@ -53,17 +53,16 @@ RSpec.describe Forms::Offences, type: :form do
       subject.validate(form_data)
       subject.save
 
-      model_current_offences = subject.model.current_offences.map(&:attributes)
-      form_current_offences =
-        current_offences_without_virtual_attributes(subject)
+      model_offences = subject.model.offences.map(&:attributes)
+      form_offences = offences_without_virtual_attributes(subject)
 
-      model_current_offences.each_with_index do |md, index|
-        expect(md).to include form_current_offences[index]
+      model_offences.each_with_index do |md, index|
+        expect(md).to include form_offences[index]
       end
     end
 
-    def current_offences_without_virtual_attributes(form)
-      form.to_nested_hash[:current_offences].each { |d| d.delete(:_delete) }
+    def offences_without_virtual_attributes(form)
+      form.to_nested_hash[:offences].each { |d| d.delete(:_delete) }
     end
   end
 end

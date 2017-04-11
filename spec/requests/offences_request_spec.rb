@@ -2,7 +2,20 @@ require 'rails_helper'
 
 RSpec.describe 'Offences', type: :request do
   let(:detainee) { create(:detainee) }
-  let(:form_data) { { offences: detainee.offences.attributes } }
+  let(:form_data) { 
+    { 
+      offences: {
+        offences_attributes: {
+          "0" => { 
+            id: "some-uuid",
+            offence: "some offence",
+            case_reference: "1234LOL",
+            _delete: "0"
+          }
+        }
+      }
+    }
+  }
 
   describe "when not logged in" do
     it "get #show redirects to /sign_in" do
@@ -68,7 +81,7 @@ RSpec.describe 'Offences', type: :request do
       describe "#update" do
         before { put "/#{detainee.id}/offences", params: form_data }
 
-        context "with validating data" do
+        context "with valid data" do
           it "redirects to the detainee's profile" do
             expect(response.status).to eql 302
             expect(response).to redirect_to "/detainees/#{detainee.id}"
@@ -76,8 +89,8 @@ RSpec.describe 'Offences', type: :request do
         end
 
         context "posted data fails validation" do
-          let(:invalid_current_offence) { { "id"=>"", "offence"=>"" } }
-          let(:form_data) { { offences: { current_offences_attributes: { '0' => invalid_current_offence } } } }
+          let(:invalid_offence) { { "id"=>"", "offence"=>"" } }
+          let(:form_data) { { offences: { offences_attributes: { '0' => invalid_offence } } } }
 
           it "redirects to #show" do
             expect(response).to redirect_to "/#{detainee.id}/offences"

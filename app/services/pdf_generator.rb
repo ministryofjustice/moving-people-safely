@@ -48,7 +48,7 @@ class PdfGenerator
   end
 
   def offences_presenter
-    @offences_presenter ||= Print::OffencesPresenter.new(offences)
+    @offences_presenter ||= Print::OffencesPresenter.new(detainee)
   end
 
   def alerts_presenter
@@ -73,5 +73,5 @@ class PdfGenerator
     move.detainee
   end
 
-  private(*delegate(:risk, :healthcare, :offences, to: :detainee))
+  private(*delegate(:risk, :healthcare, to: :detainee))
 end
