@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe Print::OffencesPresenter do
   subject(:presenter) { described_class.new(detainee) }
 
-  describe '#offences_label' do
+  describe '#label' do
     context 'when there are no offences' do
       let(:detainee) { FactoryGirl.build(:detainee, :with_no_offences) }
 
       it 'returns a non-highlighed label' do
-        expect(presenter.offences_label).to eq('Current offences')
+        expect(presenter.label).to eq('Current offences')
       end
     end
 
@@ -17,17 +17,17 @@ RSpec.describe Print::OffencesPresenter do
       let(:detainee) { FactoryGirl.build(:detainee, offences: offences) }
 
       it 'returns an highlighed label' do
-        expect(presenter.offences_label).to eq('<div class="strong-text">Current offences</div>')
+        expect(presenter.label).to eq('<div class="strong-text">Current offences</div>')
       end
     end
   end
 
-  describe '#offences_relevant' do
+  describe '#relevant' do
     context 'when there are no offences' do
       let(:detainee) { FactoryGirl.build(:detainee, :with_no_offences) }
 
       it 'returns a non-highlighed None' do
-        expect(presenter.offences_relevant).to eq('None')
+        expect(presenter.relevant).to eq('None')
       end
     end
 
@@ -36,17 +36,17 @@ RSpec.describe Print::OffencesPresenter do
       let(:detainee) { FactoryGirl.build(:detainee, offences: offences) }
 
       it 'returns an highlighed Yes' do
-        expect(presenter.offences_relevant).to eq('<div class="strong-text">Yes</div>')
+        expect(presenter.relevant).to eq('<div class="strong-text">Yes</div>')
       end
     end
   end
 
-  describe '#offences' do
+  describe '#formatted_list' do
     context 'when there are no offences' do
       let(:detainee) { FactoryGirl.build(:detainee, :with_no_offences) }
 
       it 'returns nil' do
-        expect(presenter.offences).to be_nil
+        expect(presenter.formatted_list).to be_nil
       end
     end
 
@@ -56,7 +56,7 @@ RSpec.describe Print::OffencesPresenter do
 
       it 'returns the list of offences' do
         offences.each do |offence|
-          expect(presenter.offences).to include(%[#{offence.offence} (#{offence.case_reference})])
+          expect(presenter.formatted_list).to include(%[#{offence.offence} (#{offence.case_reference})])
         end
       end
     end
