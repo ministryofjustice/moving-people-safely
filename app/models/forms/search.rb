@@ -20,6 +20,10 @@ module Forms
       value && super(value.upcase)
     end
 
+    def escort
+      @escort ||= ::Escort.find_by(_at[:prison_number].matches(prison_number)) if valid?
+    end
+
     def detainee
       escort&.detainee
     end
@@ -29,10 +33,6 @@ module Forms
     end
 
     private
-
-    def escort
-      @escort ||= ::Escort.find_by(_at[:prison_number].matches(prison_number)) if valid?
-    end
 
     def _at
       ::Escort.arel_table

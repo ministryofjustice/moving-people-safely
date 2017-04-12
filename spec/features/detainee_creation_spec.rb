@@ -4,16 +4,6 @@ RSpec.feature 'Detainee creation', type: :feature do
   let(:prison_number) { 'AB123' }
   let(:escort) { create(:escort, prison_number: prison_number) }
 
-  context 'when detainee prison number is not provided' do
-    scenario 'filling detainee details manually' do
-      login
-
-      visit new_escort_detainee_path(escort)
-      new_detainee_page.assert_unprefilled_form
-      new_detainee_page.assert_form_with_image_placeholder
-    end
-  end
-
   context 'when detainee pre-filled information cannot be retrieved' do
     before do
       stub_nomis_api_request(:get, "/offenders/#{prison_number}", status: 500)

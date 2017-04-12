@@ -44,9 +44,13 @@ class DetaineesController < ApplicationController
     escort.detainee || raise(ActiveRecord::RecordNotFound)
   end
 
+  def default_prison_number
+    escort.prison_number
+  end
+
   def set_default_attrs
-    return {} unless params[:prison_number].present?
-    status, remote_attrs = fetch_response_for(params[:prison_number])
+    return {} unless default_prison_number.present?
+    status, remote_attrs = fetch_response_for(default_prison_number)
     flash_fetcher_errors(status.errors) if status.error?
     permitted_params(remote_attrs)
   end

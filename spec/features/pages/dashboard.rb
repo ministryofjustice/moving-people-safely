@@ -30,7 +30,7 @@ module Page
     element :search_field, '.search_module input#search_prison_number'
     element :search_button, '.search_module input.search_button'
     element :search_escorts_due_button, '.search-header button.go'
-    element :create_new_profile, 'input[type="submit"][value="Create new profile"]'
+    element :create_new_escort, 'input[type="submit"][value="Start new PER"]'
 
     def search(prison_number)
       fill_in 'search_prison_number', with: prison_number
@@ -52,12 +52,12 @@ module Page
       end
     end
 
-    def click_view_profile
-      click_link 'View profile'
+    def click_view_escort
+      click_link 'Continue PER'
     end
 
-    def click_add_new_move
-      click_button 'Add new move'
+    def click_add_new_escort
+      click_button 'Start new PER'
     end
 
     def assert_no_escorts_due_gauges

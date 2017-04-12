@@ -22,7 +22,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/image", status: 404)
 
     dashboard.search(detainee.prison_number)
-    dashboard.create_new_profile.click
+    dashboard.create_new_escort.click
 
     detainee_details.complete_form(detainee)
     destinations = [

@@ -4,7 +4,7 @@ class Risk < ApplicationRecord
 
   StatusChangeError = Class.new(StandardError)
 
-  delegate :needs_review?, :incomplete?, :unconfirmed?, :confirmed?, to: :risk_workflow
+  delegate :not_started?, :needs_review?, :incomplete?, :unconfirmed?, :confirmed?, to: :risk_workflow
 
   def question_fields
     RiskWorkflow.mandatory_questions

@@ -8,10 +8,10 @@
         = f.search_text_field :prison_number, name: 'prison_number', class: (search_form.errors.empty? ? 'form-control' : 'form-control control-error')
         = f.submit class: 'search_button', value: 'Search'
 
-  - if search_form.detainee
+  - if search_form.escort
     .search-results
       = render partial: 'result',
-        locals: { detainee: search_form.detainee, move: search_form.move }
+        locals: { escort: search_form.escort, detainee: search_form.detainee, move: search_form.move }
   - elsif search_form.valid?
     .search-results
       = render partial: 'no_result',

@@ -1,37 +1,21 @@
 require 'feature_helper'
 
 RSpec.feature 'PER show page', type: :feature do
-  context 'alerts section' do
-    let(:detainee) { create(:detainee) }
-    let(:escort) { create(:escort, detainee: detainee) }
+  let(:prison_number) { 'A4534DF' }
+  let(:detainee) { create(:detainee, prison_number: prison_number) }
+  let(:move) { create(:move) }
+  let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee, move: move) }
 
+  context 'alerts section' do
     before do
       login
       visit escort_path(escort)
     end
 
-    context 'when PER has no moves and no assessments' do
-      let(:detainee) { create(:detainee, :without_assessments) }
-
-      scenario 'all alerts are displayed an inactive' do
-        escort_page.confirm_all_alerts_as_inactive
-      end
-    end
-
     context 'Not for release alert' do
-      context 'when PER has no move details' do
-        let(:escort) { create(:escort, detainee: detainee) }
-
-        scenario 'associated alert is displayed as inactive' do
-          escort_page.confirm_alert_as_inactive(:not_for_release)
-          expect(page.find('#not_for_release_alert .alert-text').text).to be_empty
-        end
-      end
-
       context 'when the unissued PER has move details' do
         let(:options) { {} }
         let(:move) { create(:move, :active, options) }
-        let(:escort) { create(:escort, detainee: detainee, move: move) }
 
         context 'when move has not for release set to unknown' do
           let(:options) { { not_for_release: 'unknown' } }
@@ -338,18 +322,6 @@ RSpec.feature 'PER show page', type: :feature do
     let(:detainee) { create(:detainee) }
     let(:move) { create(:move) }
     let(:escort) { create(:escort, detainee: detainee, move: move) }
-
-    context 'PER has no associated move details' do
-      let(:escort) { create(:escort, detainee: detainee) }
-
-      scenario 'does not display any move information' do
-        login
-
-        visit escort_path(escort)
-        expect(page).not_to have_css('.move-information')
-        escort_page.assert_link_to_new_move(escort)
-      end
-    end
 
     context 'issued PER' do
       let(:move) { create(:move, :issued) }

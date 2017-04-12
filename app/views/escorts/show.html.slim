@@ -15,7 +15,7 @@
   = render partial: 'detainee', locals: { detainee: DetaineePresenter.new(escort.detainee) }
 
   - if escort.move
-    = render partial: 'risk', locals: { risk: escort.risk, risk_workflow: escort.move&.risk_workflow, detainee: escort.detainee }
-    = render partial: 'healthcare', locals: { healthcare: escort.healthcare, healthcare_workflow: escort.move&.healthcare_workflow, detainee: escort.detainee }
-    = render partial: 'offences', locals: { offences: OffencesPresenter.new(escort.offences), offences_workflow: escort.move&.offences_workflow, detainee: escort.detainee }
-    = render partial: 'actions', locals: { move: escort.move }
+    = render partial: 'risk', locals: { risk: escort.risk, detainee: escort.detainee }
+    = render partial: 'healthcare', locals: { healthcare: escort.healthcare, detainee: escort.detainee }
+    = render partial: 'offences', locals: { offences: OffencesPresenter.new(escort.offences), detainee: escort.detainee }
+    = render partial: 'actions'

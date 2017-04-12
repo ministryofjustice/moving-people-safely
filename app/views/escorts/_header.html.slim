@@ -6,7 +6,7 @@ header#header
   .escort-image-wrapper
     - if detainee.image.present?
       .image
-        = image_tag detainee_image_path(detainee, format: :jpg), size: '128x180'
+        = image_tag escort_detainee_image_path(escort, format: :jpg), size: '128x180'
     - else
       .no-image
         span = 'Photo unavailable'

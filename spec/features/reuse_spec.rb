@@ -10,7 +10,7 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     create(:escort, prison_number: prison_number, detainee: detainee, move: move)
 
     dashboard.search(detainee.prison_number)
-    dashboard.click_add_new_move
+    dashboard.click_add_new_escort
     move_details.complete_date_field Date.tomorrow.strftime('%d/%m/%Y')
 
     escort_page.confirm_healthcare_status('Review')
@@ -42,7 +42,7 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     create(:escort, prison_number: prison_number, detainee: detainee, move: move)
 
     dashboard.search(detainee.prison_number)
-    dashboard.click_view_profile
+    dashboard.click_view_escort
     escort_page.confirm_healthcare_status('Complete')
     escort_page.click_edit_healthcare
 

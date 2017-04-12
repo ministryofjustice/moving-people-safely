@@ -2,7 +2,7 @@ class Offences < ApplicationRecord
   belongs_to :detainee
   has_many :current_offences, dependent: :destroy
 
-  delegate :needs_review?, :incomplete?, :unconfirmed?, :confirmed?, to: :offences_workflow
+  delegate :not_started?, :needs_review?, :incomplete?, :unconfirmed?, :confirmed?, to: :offences_workflow
 
   StatusChangeError = Class.new(StandardError)
 

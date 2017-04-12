@@ -8,7 +8,7 @@ RSpec.feature 'searching for a prisoner', type: :feature do
       expect_no_results
     end
 
-    scenario 'prisoner present with an active move' do
+    scenario 'prisoner present with an active escort' do
       prison_number = 'A1324BC'
       detainee = create(:detainee, prison_number: prison_number)
       move = create(:move, :active)
@@ -16,11 +16,11 @@ RSpec.feature 'searching for a prisoner', type: :feature do
 
       login
       search_with_valid_prison_number(prison_number)
-      expect(page).to have_link('View profile', href: escort_path(escort))
+      expect(page).to have_link('Continue PER', href: escort_path(escort))
       expect_result_with_move(detainee, move)
     end
 
-    scenario 'prisoner present with a previously issued move' do
+    scenario 'prisoner present with a previously issued escort' do
       prison_number = 'A1324BC'
       detainee = create(:detainee, prison_number: prison_number)
       move = create(:move, :issued)
@@ -28,7 +28,7 @@ RSpec.feature 'searching for a prisoner', type: :feature do
 
       login
       search_with_valid_prison_number(prison_number)
-      expect(page).to have_button('Add new move')
+      expect(page).to have_button('Start new PER')
       expect_result_with_move(detainee, move)
     end
 
@@ -60,7 +60,7 @@ RSpec.feature 'searching for a prisoner', type: :feature do
   end
 
   def expect_no_results
-    expect(page).to have_button('Create new profile')
+    expect(page).to have_button('Start new PER')
   end
 
   def expect_error_message
@@ -76,8 +76,7 @@ RSpec.feature 'searching for a prisoner', type: :feature do
   end
 
   def expect_result_with_no_move(detainee)
-    # expect(page).to have_button('Add new move', href: new_escort_move_path(detainee.escort))
-    expect(page).to have_button('Add new move')
+    expect(page).to have_link('Continue PER')
     expect(page).to have_content(detainee.prison_number).
       and have_content(detainee.surname)
   end
