@@ -24,7 +24,7 @@ class EscortCreator
       :risk,
       { healthcare: [:medications] },
       { offences: [:current_offences] }
-] },
+    ] },
     { move: [:destinations] }
   ].freeze
 

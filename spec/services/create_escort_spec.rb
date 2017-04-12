@@ -54,9 +54,7 @@ RSpec.describe EscortCreator, type: :service do
 
     expected_medications_attributes = existent_escort.healthcare.medications.map { |m| m.attributes.except(*except_medication_attributes) }
     medications_attributes = new_escort.healthcare.medications.map { |m| m.attributes.except(*except_medication_attributes) }
-    expected_medications_attributes.each do |expected_attributes|
-      expect(medications_attributes).to include(expected_attributes)
-    end
+    expect(medications_attributes).to match_array(expected_medications_attributes)
   end
 
   def expect_offences_to_be_cloned(existent_escort, new_escort)
@@ -67,9 +65,7 @@ RSpec.describe EscortCreator, type: :service do
 
     expected_current_offences_attributes = existent_escort.offences.current_offences.map { |co| co.attributes.except(*except_current_offences_attributes) }
     current_offences_attributes = new_escort.offences.current_offences.map { |co| co.attributes.except(*except_current_offences_attributes) }
-    expected_current_offences_attributes.each do |expected_attributes|
-      expect(current_offences_attributes).to include(expected_attributes)
-    end
+    expect(current_offences_attributes).to match_array(expected_current_offences_attributes)
   end
 
   def expect_moves_to_be_cloned(existent_escort, new_escort)
@@ -81,9 +77,7 @@ RSpec.describe EscortCreator, type: :service do
 
     expected_destinations_attributes = existent_escort.move.destinations.map { |d| d.attributes.except(*except_destinations_attributes) }
     destinations_attributes = new_escort.move.destinations.map { |d| d.attributes.except(*except_destinations_attributes) }
-    expected_destinations_attributes.each do |expected_attributes|
-      expect(destinations_attributes).to include(expected_attributes)
-    end
+    expect(destinations_attributes).to match_array(expected_destinations_attributes)
   end
 
   def except_attributes
