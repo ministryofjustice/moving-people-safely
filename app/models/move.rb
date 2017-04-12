@@ -6,19 +6,7 @@ class Move < ApplicationRecord
   has_one :offences_workflow
   has_one :move_workflow
 
-  scope :for_date, (lambda do |search_date|
-    where(date: search_date).
-      order(created_at: :desc).
-      eager_load(:move_workflow)
-  end)
-
   scope :active, -> { joins(:move_workflow).merge(Workflow.not_issued) }
-
-  scope :with_incomplete_risk, -> { joins(:risk_workflow).merge(Workflow.not_confirmed) }
-  scope :with_incomplete_healthcare, -> { joins(:healthcare_workflow).merge(Workflow.not_confirmed) }
-  scope :with_incomplete_offences, -> { joins(:offences_workflow).merge(Workflow.not_confirmed) }
-
-  scope :order_by_recentness, -> { order(created_at: :desc) }
 
   delegate :status, :active?, :issued?, :issued!, to: :move_workflow
 

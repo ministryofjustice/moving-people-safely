@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   end
 
   post '/detainees/search', to: 'homepage#detainees'
-  post '/moves/search', to: 'homepage#moves'
+  post '/escorts/search', to: 'homepage#escorts'
   root to: 'homepage#show'
 end

@@ -1,7 +1,14 @@
 class Escort < ApplicationRecord
-  default_scope { order('created_at desc') }
+  default_scope { order('escorts.created_at desc') }
   has_one :detainee
   has_one :move
+
+  scope :for_date, ->(date) { eager_load(move: [:move_workflow]).where(moves: { date: date }) }
+  scope :with_incomplete_risk, -> { joins(move: [:risk_workflow]).merge(Workflow.not_confirmed) }
+  scope :with_incomplete_healthcare, -> { joins(move: [:healthcare_workflow]).merge(Workflow.not_confirmed) }
+  scope :with_incomplete_offences, -> { joins(move: [:offences_workflow]).merge(Workflow.not_confirmed) }
+
+  delegate :risk_complete?, :healthcare_complete?, :offences_complete?, to: :move, allow_nil: true
 
   def risk
     detainee&.risk

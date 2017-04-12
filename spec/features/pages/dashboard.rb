@@ -29,7 +29,7 @@ module Page
 
     element :search_field, '.search_module input#search_prison_number'
     element :search_button, '.search_module input.search_button'
-    element :search_moves_due_button, '.search-header button.go'
+    element :search_escorts_due_button, '.search-header button.go'
     element :create_new_profile, 'input[type="submit"][value="Create new profile"]'
 
     def search(prison_number)
@@ -37,11 +37,11 @@ module Page
       click_button 'Search'
     end
 
-    def search_moves_due_on(date)
+    def search_escorts_due_on(date)
       begin
-        page.execute_script("$('#moves_due_on').datepicker('setDate', '#{date}')")
+        page.execute_script("$('#escorts_due_on').datepicker('setDate', '#{date}')")
       rescue Capybara::NotSupportedByDriverError
-        fill_in 'moves_due_on', with: date
+        fill_in 'escorts_due_on', with: date
       end
       click_button 'Go'
     end
@@ -60,8 +60,8 @@ module Page
       click_button 'Add new move'
     end
 
-    def assert_no_moves_due_gauges
-      within '#moves_gauges' do
+    def assert_no_escorts_due_gauges
+      within '#escorts_gauges' do
         expect(page).to have_css('#detainees_gauge')
         expect(page).not_to have_css('#risk_gauge')
         expect(page).not_to have_css('#healthcare_gauge')
@@ -69,15 +69,15 @@ module Page
       end
     end
 
-    def assert_no_moves_due
+    def assert_no_escorts_due
       within '.search-results' do
-        expect(page).not_to have_css('.moves')
+        expect(page).not_to have_css('.escorts')
       end
     end
 
-    def assert_moves_due(total)
+    def assert_escorts_due(total)
       within '.search-results' do
-        within '.moves table' do
+        within '.escorts table' do
           expect(page.all('tr.move-row').size).to eq(total)
         end
       end

@@ -1,0 +1,35 @@
+.escorts
+  table
+    thead
+      tr
+        th.prison_number Prison No.
+        th.name Name
+        th.destination Destination
+        th Risk
+        th Health
+        th Offences
+        th
+    - escorts.each do |escort|
+      tr.move-row id="prison_number_#{escort.detainee.prison_number}"
+        td = link_to escort.detainee.prison_number, escort_path(escort)
+        td
+          span.strong-text
+            | #{escort.detainee.surname}
+          span
+            |  #{escort.detainee.forenames}
+        td = escort.move.to
+        - if escort.issued?
+          td.issued colspan=3
+            | Issued
+          td.print
+            = link_to_print_in_new_window(escort, text: 'Reprint')
+        - else
+          td.completion-status
+            span class="#{escort.risk_complete?}"
+          td.completion-status
+            span class="#{escort.healthcare_complete?}"
+          td.completion-status
+            span class="#{escort.offences_complete?}"
+          td.print
+            - if AccessPolicy.print?(escort: escort)
+             = link_to_print_in_new_window(escort)

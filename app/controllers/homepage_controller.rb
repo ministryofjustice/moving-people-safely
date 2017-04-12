@@ -1,7 +1,7 @@
 class HomepageController < ApplicationController
   def show
     search_form.validate(search_params) if search_params.present?
-    @moves = Move.for_date(date_picker.date)
+    @escorts = Escort.for_date(date_picker.date)
     render :show, locals: locals
   end
 
@@ -9,9 +9,9 @@ class HomepageController < ApplicationController
     redirect_to root_path(search_params)
   end
 
-  def moves
-    date_picker.date = params[:moves_due_on]
-    session[:moves_due_on] = date_picker.to_s
+  def escorts
+    date_picker.date = params[:escorts_due_on]
+    session[:escorts_due_on] = date_picker.to_s
     redirect_to root_path(search_params)
   end
 
@@ -22,12 +22,12 @@ class HomepageController < ApplicationController
       search_form: search_form,
       date_picker: date_picker,
       prison_number: params[:prison_number],
-      dashboard: DashboardPresenter.new(@moves)
+      dashboard: DashboardPresenter.new(@escorts)
     }
   end
 
   def date_picker
-    @_date_picker ||= DatePicker.new(session[:moves_due_on])
+    @_date_picker ||= DatePicker.new(session[:escorts_due_on])
   end
 
   def search_form
