@@ -3,10 +3,14 @@ require 'rails_helper'
 RSpec.describe 'Pings', type: :request do
   describe 'GET /ping' do
     context 'when the correct environment variables have been set during the deploy process' do
-      before do
-        allow(ENV).to receive(:fetch).with('APP_BUILD_DATE').and_return('2017-04-06T14:47:13+0000')
-        allow(ENV).to receive(:fetch).with('APP_BUILD_TAG').and_return('branch-name.partial-sha')
-        allow(ENV).to receive(:fetch).with('APP_GIT_COMMIT').and_return('some-sha-from-git')
+      around do |example|
+        ClimateControl.modify(
+          'APP_BUILD_DATE' => '2017-04-06T14:47:13+0000',
+          'APP_BUILD_TAG' => 'branch-name.partial-sha',
+          'APP_GIT_COMMIT' => 'some-sha-from-git'
+        ) do
+          example.run
+        end
       end
 
       it 'returns json containing the applications version information' do

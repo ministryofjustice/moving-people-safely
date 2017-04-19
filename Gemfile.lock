@@ -88,6 +88,7 @@ GEM
       xpath (~> 2.0)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
+    climate_control (0.1.0)
     cliver (0.3.2)
     codeclimate-test-reporter (0.6.0)
       simplecov (>= 0.7.1, < 1.0.0)
@@ -370,6 +371,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   capybara
+  climate_control
   codeclimate-test-reporter
   connection_pool
   countries
