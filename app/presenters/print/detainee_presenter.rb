@@ -1,8 +1,5 @@
 module Print
   class DetaineePresenter < SimpleDelegator
-    include WickedPdf::WickedPdfHelper::Assets
-    include ActionView::Helpers::AssetTagHelper
-
     def identifier
       "#{prison_number}: #{surname}"
     end
@@ -35,13 +32,17 @@ module Print
 
     def image
       if model.image.present?
-        image_tag("data:image;base64,#{model.image}")
+        h.image_tag("data:image;base64,#{model.image}")
       else
-        wicked_pdf_image_tag('photo_unavailable.png')
+        h.wicked_pdf_image_tag('photo_unavailable.png')
       end
     end
 
     private
+
+    def h
+      @h ||= ActionController::Base.new.view_context
+    end
 
     def model
       __getobj__
