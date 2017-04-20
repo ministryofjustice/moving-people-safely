@@ -498,7 +498,7 @@ en:
         violence_to_general_public: Violent to general public
         violence_to_other_detainees: Violent to other detainees
         violence_to_staff: Violent to staff
-  profile: &profile
+  escort: &escort
     alerts:
       acct_status:
         closed_in_last_6_months: 'Closed:'
@@ -521,7 +521,7 @@ en:
         rule_45: Rule 45
   print:
     <<: *summary
-    <<: *profile
+    <<: *escort
     label:
       move:
         must_return_to: Must return to
@@ -555,11 +555,19 @@ en:
         unavailable: "Image Look-Up function is not currently available. Please try again later"
         not_found: "Look-Up function for photograph returned no image. Either try again later or attach photograph manually to print out"
         invalid_input: The provided prison number is not valid, please try again with a valid prison number
+    escort:
+      edit:
+        unauthorized: "The PER can no longer be changed."
+      detainee:
+        exists: "Detainee details for the PER already exist."
+      move:
+        exists: "Move details for the PER already exist."
     offences:
       api_error: Offences aren't available right now, please try again or fill in the offences below
+      not_found: "Offences data could not be retrieved. Please fill in manually."
     move:
       print:
-        unauthorized: "Move is not in a status that can be printed"
+        unauthorized: "PER is not in a status that can be printed"
     unable_to_confirm_incomplete_risk_assessment: Risk assessment cannot be confirmed until all mandatory answered are filled
   sessions:
     create:

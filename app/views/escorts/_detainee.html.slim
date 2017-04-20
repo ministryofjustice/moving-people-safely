@@ -1,6 +1,7 @@
 #personal-details
   .float-right
-    = link_to 'Edit', edit_detainee_path(detainee)
+    - unless escort.issued?
+      = link_to 'Edit', edit_escort_detainee_path(escort)
   h2
     ' Detainee information
   .info-table

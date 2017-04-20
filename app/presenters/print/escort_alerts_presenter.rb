@@ -1,5 +1,5 @@
 module Print
-  class MoveAlertsPresenter < SimpleDelegator
+  class EscortAlertsPresenter < SimpleDelegator
     def initialize(object, view_context)
       super(object)
       @view_context = view_context
@@ -10,8 +10,8 @@ module Print
       current_e_risk current_e_risk_details csra category_a
     ].freeze
 
-    delegate(:detainee, to: :model)
-    delegate(:risk, :healthcare, to: :detainee)
+    delegate(:detainee, :move, :risk, :healthcare, to: :model)
+    delegate(:not_for_release, to: :move, allow_nil: true)
     delegate(*RISK_ATTRIBUTES, to: :risk, allow_nil: true)
     delegate(:mpv, to: :healthcare, allow_nil: true)
 

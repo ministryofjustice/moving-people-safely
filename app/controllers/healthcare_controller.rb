@@ -1,10 +1,13 @@
-class HealthcareController < DetaineeController
+class HealthcareController < ApplicationController
   include Wicked::Wizard
   include Wizardable
 
   steps(*HealthcareWorkflow.sections)
 
+  before_action :redirect_unless_document_editable, except: :summary
   before_action :add_medication, only: [:update]
+
+  helper_method :escort, :healthcare
 
   def show
     form.validate(flash[:form_data]) if flash[:form_data]
@@ -19,7 +22,7 @@ class HealthcareController < DetaineeController
       redirect_after_update
     else
       flash[:form_data] = form_params
-      redirect_to healthcare_path(detainee)
+      redirect_to escort_healthcare_path(escort, step: step)
     end
   end
 
@@ -29,25 +32,33 @@ class HealthcareController < DetaineeController
 
   def confirm
     raise unless healthcare.all_questions_answered?
-    healthcare_workflow.confirm_with_user!(user: current_user)
-    redirect_to detainee_path(detainee)
+    healthcare.confirm!(user: current_user)
+    redirect_to escort_path(escort)
   end
 
   private
 
+  def escort
+    @escort ||= Escort.find(params[:escort_id])
+  end
+
+  def healthcare
+    escort.healthcare || raise(ActiveRecord::RecordNotFound)
+  end
+
   def update_document_workflow
     if healthcare.no_questions_answered?
-      healthcare_workflow.not_started!
+      healthcare.not_started!
     elsif healthcare.all_questions_answered?
-      healthcare_workflow.unconfirmed!
+      healthcare.unconfirmed!
     else
-      healthcare_workflow.incomplete!
+      healthcare.incomplete!
     end
   end
 
   def redirect_after_update
     if params.key?('save_and_view_summary') || !can_skip?
-      redirect_to summary_healthcare_index_path(detainee)
+      redirect_to summary_escort_healthcare_path(escort)
     else
       redirect_to next_wizard_path
     end

@@ -1,10 +1,10 @@
 class DashboardPresenter
   include ActionView::Helpers::TranslationHelper
 
-  attr_reader :moves
+  attr_reader :escorts
 
-  def initialize(moves)
-    @moves = moves
+  def initialize(escorts)
+    @escorts = escorts
   end
 
   def render_no_moves_indicator
@@ -12,7 +12,7 @@ class DashboardPresenter
   end
 
   def render_detainees_indicator
-    render_indicator(:detainees, :detainees_due_to_move, moves.count)
+    render_indicator(:detainees, :detainees_due_to_move, escorts.count)
   end
 
   def render_risk_indicator
@@ -59,14 +59,14 @@ class DashboardPresenter
   end
 
   def count_of_incomplete_risk
-    moves.with_incomplete_risk.count
+    escorts.with_incomplete_risk.count
   end
 
   def count_of_incomplete_healthcare
-    moves.with_incomplete_healthcare.count
+    escorts.with_incomplete_healthcare.count
   end
 
   def count_of_incomplete_offences
-    moves.with_incomplete_offences.count
+    escorts.with_incomplete_offences.count
   end
 end

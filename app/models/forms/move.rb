@@ -48,11 +48,6 @@ module Forms
       errors.add(:destinations, :minimum_collection_size) if destinations.empty?
     end
 
-    def save_copy
-      sync
-      model.save_copy
-    end
-
     def not_for_release_reasons
       NOT_FOR_RELEASE_REASONS
     end

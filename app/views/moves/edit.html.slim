@@ -1,6 +1,6 @@
 = content_for :breadcrumbs do
   - breadcrumbs_for_page root: true do
-    - breadcrumb detainee_breadcrumb(detainee), detainee_path(detainee)
+    - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
     - breadcrumb 'Move information', '#'
 
-= render partial: 'form', locals: { form: form, submit_path: move_path(move), method: :patch }
+= render partial: 'form', locals: { form: form, submit_path: escort_move_path(escort), method: :patch }

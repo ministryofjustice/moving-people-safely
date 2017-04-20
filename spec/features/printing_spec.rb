@@ -1,15 +1,15 @@
 require 'feature_helper'
 
 RSpec.feature 'printing a PER', type: :feature do
-  let!(:move) {
+  let(:escort) { create(:escort, detainee: detainee, move: move) }
+  let(:move) {
     create(
       :move,
       :confirmed,
       from: 'HMP Bedford',
       to: 'Luton Crown Court',
       date: Date.civil(2017, 4, 22),
-      destinations: destinations,
-      detainee: detainee
+      destinations: destinations
     )
   }
 
@@ -83,8 +83,8 @@ RSpec.feature 'printing a PER', type: :feature do
 
     scenario 'user prints the PER' do
       login
-      visit detainee_path(detainee)
-      profile.click_print
+      visit escort_path(escort)
+      escort_page.click_print
 
       expect(page.body).
         to validate_as_pdf_that_contains_text('pdf-text-all-no-answers.txt')
@@ -216,8 +216,8 @@ RSpec.feature 'printing a PER', type: :feature do
 
     scenario 'user prints the PER' do
       login
-      visit detainee_path(detainee)
-      profile.click_print
+      visit escort_path(escort)
+      escort_page.click_print
 
       expect(page.body).
         to validate_as_pdf_that_contains_text('pdf-text-all-yes-answers.txt')

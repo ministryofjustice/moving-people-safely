@@ -1,0 +1,21 @@
+= content_for :breadcrumbs do
+  - breadcrumbs_for_page root: true do
+    - breadcrumb detainee_breadcrumb(escort.detainee), '#'
+
+.escort
+  = render partial: 'header', locals: { detainee: escort.detainee, alerts: EscortAlertsPresenter.new(escort) }
+
+  - if escort.move
+    = render partial: 'move', locals: { move: MovePresenter.new(escort.move) }
+  - else
+    h2 Move information
+    #no-active-move.alert.alert--warning
+      = link_to 'Create new move', new_escort_move_path(escort), class: 'button'
+
+  = render partial: 'detainee', locals: { detainee: DetaineePresenter.new(escort.detainee) }
+
+  - if escort.move
+    = render partial: 'risk', locals: { risk: escort.risk, detainee: escort.detainee }
+    = render partial: 'healthcare', locals: { healthcare: escort.healthcare, detainee: escort.detainee }
+    = render partial: 'offences', locals: { offences: OffencesPresenter.new(escort.offences), detainee: escort.detainee }
+    = render partial: 'actions'

@@ -27,9 +27,12 @@ RSpec.describe Forms::Search, type: :form do
   describe '#detainee' do
     context 'when the form is valid' do
       context 'when an detainee exists for a given prison number' do
+        let(:prison_number) { 'A1234BC' }
+        let(:detainee) { create(:detainee, prison_number: prison_number) }
+        let!(:escort) { create(:escort, prison_number: prison_number, detainee: detainee) }
+
         it 'returns the escort' do
-          detainee = create(:detainee)
-          subject.validate(prison_number: detainee.prison_number)
+          subject.validate(prison_number: prison_number)
           expect(subject.detainee).to eq detainee
         end
       end
@@ -42,8 +45,11 @@ RSpec.describe Forms::Search, type: :form do
       end
 
       context 'when the provided prison name is in a different format than the one recorded for the detainee' do
+        let(:prison_number) { 'A1234BC' }
+        let(:detainee) { create(:detainee, prison_number: prison_number) }
+        let!(:escort) { create(:escort, prison_number: prison_number, detainee: detainee) }
+
         it 'still returns the correct detainee by being case insensitive' do
-          detainee = FactoryGirl.create(:detainee, prison_number: 'A1234BC')
           subject.validate(prison_number: 'a1234bC')
           expect(subject.detainee).to eq(detainee)
         end

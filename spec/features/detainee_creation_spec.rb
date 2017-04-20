@@ -2,16 +2,7 @@ require 'feature_helper'
 
 RSpec.feature 'Detainee creation', type: :feature do
   let(:prison_number) { 'AB123' }
-
-  context 'when detainee prison number is not provided' do
-    scenario 'filling detainee details manually' do
-      login
-
-      visit new_detainee_path
-      new_detainee_page.assert_unprefilled_form
-      new_detainee_page.assert_form_with_image_placeholder
-    end
-  end
+  let(:escort) { create(:escort, prison_number: prison_number) }
 
   context 'when detainee pre-filled information cannot be retrieved' do
     before do
@@ -22,7 +13,7 @@ RSpec.feature 'Detainee creation', type: :feature do
     scenario 'filling detainee details manually' do
       login
 
-      visit new_detainee_path(prison_number: prison_number)
+      visit new_escort_detainee_path(escort, prison_number: prison_number)
       new_detainee_page.assert_unprefilled_form(prison_number)
     end
   end
@@ -60,7 +51,7 @@ RSpec.feature 'Detainee creation', type: :feature do
     scenario 'detainee details are prefilled in the form' do
       login
 
-      visit new_detainee_path(prison_number: prison_number)
+      visit new_escort_detainee_path(escort, prison_number: prison_number)
       new_detainee_page.assert_prefilled_form(expected_field_values)
     end
   end
@@ -74,7 +65,7 @@ RSpec.feature 'Detainee creation', type: :feature do
     scenario 'display an image placeholder' do
       login
 
-      visit new_detainee_path(prison_number: prison_number)
+      visit new_escort_detainee_path(escort, prison_number: prison_number)
       new_detainee_page.assert_form_with_image_placeholder
     end
   end
@@ -88,7 +79,7 @@ RSpec.feature 'Detainee creation', type: :feature do
     scenario 'display an image placeholder' do
       login
 
-      visit new_detainee_path(prison_number: prison_number)
+      visit new_escort_detainee_path(escort, prison_number: prison_number)
       new_detainee_page.assert_form_with_image_placeholder
     end
   end
@@ -102,7 +93,7 @@ RSpec.feature 'Detainee creation', type: :feature do
     scenario 'display the retrieved detainee image' do
       login
 
-      visit new_detainee_path(prison_number: prison_number)
+      visit new_escort_detainee_path(escort, prison_number: prison_number)
       new_detainee_page.assert_form_with_detainee_image
     end
   end

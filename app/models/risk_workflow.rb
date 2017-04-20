@@ -1,6 +1,6 @@
 class RiskWorkflow < Workflow
   def self.sections
-    %i[risk_to_self risk_from_others violence hostage_taker harassments
+    %w[risk_to_self risk_from_others violence hostage_taker harassments
        sex_offences security substance_misuse concealed_weapons arson]
   end
 

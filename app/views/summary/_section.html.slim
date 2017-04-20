@@ -12,7 +12,8 @@
        th.title colspan="2"
          = t("summary.section.titles.#{section.name}")
        th.edit
-         = link_to 'Change', path
+         - unless escort.issued?
+           = link_to 'Change', path
     tbody
       - section.questions.each_with_index do |question, i|
         tr class=(%w[even odd][i%2] + ' ' + question.underscore)

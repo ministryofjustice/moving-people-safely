@@ -27,18 +27,6 @@ FactoryGirl.define do
       association :healthcare, :with_medications, factory: :healthcare, strategy: :build
     end
 
-    trait :with_no_moves do
-      moves { [] }
-    end
-
-    trait :with_active_move do
-      moves { build_list :move, 1, :active }
-    end
-
-    trait :with_completed_move do
-      moves { build_list :move, 1, :issued }
-    end
-
     trait :with_no_offences do
       offences { build :offences, :empty_record }
     end

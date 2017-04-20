@@ -3,14 +3,18 @@ module Detainees
     layout :none
 
     def show
-      return head(:not_found) unless detainee.image.present?
+      return head(:not_found) unless detainee&.image.present?
       send_data image, type: 'image/jpeg', disposition: 'inline'
     end
 
     private
 
+    def escort
+      @escort ||= Escort.find(params[:escort_id])
+    end
+
     def detainee
-      @detainee ||= Detainee.find(params[:detainee_id])
+      @detainee ||= escort.detainee
     end
 
     def image

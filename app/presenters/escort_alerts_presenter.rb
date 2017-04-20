@@ -1,4 +1,4 @@
-class DetaineeProfileAlertsPresenter < SimpleDelegator
+class EscortAlertsPresenter < SimpleDelegator
   MOVE_ATTRIBUTES = %i[
     not_for_release not_for_release_reason
     not_for_release_reason_details
@@ -7,7 +7,8 @@ class DetaineeProfileAlertsPresenter < SimpleDelegator
     acct_status date_of_most_recently_closed_acct rule_45
     current_e_risk current_e_risk_details csra category_a
   ].freeze
-  delegate(*MOVE_ATTRIBUTES, to: :active_move, allow_nil: true)
+
+  delegate(*MOVE_ATTRIBUTES, to: :move, allow_nil: true)
   delegate(*RISK_ATTRIBUTES, to: :risk, allow_nil: true)
   delegate(:mpv, to: :healthcare, allow_nil: true)
 
@@ -80,6 +81,6 @@ class DetaineeProfileAlertsPresenter < SimpleDelegator
 
   def localised_attr_value(attr)
     value = public_send(attr)
-    I18n.t("profile.alerts.#{attr}.#{value}", default: value.humanize)
+    I18n.t("escort.alerts.#{attr}.#{value}", default: value.humanize)
   end
 end

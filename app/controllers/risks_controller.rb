@@ -1,8 +1,12 @@
-class RisksController < DetaineeController
+class RisksController < ApplicationController
   include Wicked::Wizard
   include Wizardable
 
   steps(*RiskWorkflow.sections)
+
+  before_action :redirect_unless_document_editable, except: :summary
+
+  helper_method :escort, :risk
 
   def show
     form.validate(flash[:form_data]) if flash[:form_data]
@@ -17,7 +21,7 @@ class RisksController < DetaineeController
       redirect_after_update
     else
       flash[:form_data] = form_params
-      redirect_to risk_path(detainee)
+      redirect_to escort_risks_path(escort, step: step)
     end
   end
 
@@ -27,8 +31,8 @@ class RisksController < DetaineeController
 
   def confirm
     if risk.all_questions_answered?
-      risk_workflow.confirm_with_user!(user: current_user)
-      redirect_to detainee_path(detainee)
+      risk.confirm!(user: current_user)
+      redirect_to escort_path(escort)
     else
       flash.now[:error] = t('alerts.unable_to_confirm_incomplete_risk_assessment')
       render 'summary/risk'
@@ -37,19 +41,27 @@ class RisksController < DetaineeController
 
   private
 
+  def escort
+    @escort ||= Escort.find(params[:escort_id])
+  end
+
+  def risk
+    escort.risk || raise(ActiveRecord::RecordNotFound)
+  end
+
   def update_document_workflow
     if risk.no_questions_answered?
-      risk_workflow.not_started!
+      risk.not_started!
     elsif risk.all_questions_answered?
-      risk_workflow.unconfirmed!
+      risk.unconfirmed!
     else
-      risk_workflow.incomplete!
+      risk.incomplete!
     end
   end
 
   def redirect_after_update
     if params.key?('save_and_view_summary') || !can_skip?
-      redirect_to summary_risks_path(detainee)
+      redirect_to summary_escort_risks_path(escort)
     else
       redirect_to next_wizard_path
     end

@@ -1,14 +1,15 @@
 require 'feature_helper'
 
 RSpec.feature 'Detainee updates', type: :feature do
-  let(:prison_number) { 'AB123' }
-  let(:detainee) { FactoryGirl.create(:detainee, prison_number: prison_number) }
+  let(:prison_number) { 'A1234BC' }
+  let(:detainee) { create(:detainee, prison_number: prison_number) }
+  let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee) }
 
   context 'when detainee does not have an image set' do
     scenario 'displays an image placeholder' do
       login
 
-      visit edit_detainee_path(detainee)
+      visit edit_escort_detainee_path(escort)
       new_detainee_page.assert_form_with_image_placeholder
     end
 
@@ -21,7 +22,7 @@ RSpec.feature 'Detainee updates', type: :feature do
         scenario 'displays the retrieved image' do
           login
 
-          visit edit_detainee_path(detainee, pull: :image)
+          visit edit_escort_detainee_path(escort, pull: :image)
           new_detainee_page.assert_form_with_detainee_image
         end
       end
@@ -34,7 +35,7 @@ RSpec.feature 'Detainee updates', type: :feature do
         scenario 'displays an image placeholder' do
           login
 
-          visit edit_detainee_path(detainee, pull: :image)
+          visit edit_escort_detainee_path(escort, pull: :image)
           new_detainee_page.assert_form_with_image_placeholder
         end
       end
@@ -47,7 +48,7 @@ RSpec.feature 'Detainee updates', type: :feature do
         scenario 'displays an image placeholder' do
           login
 
-          visit edit_detainee_path(detainee, pull: :image)
+          visit edit_escort_detainee_path(escort, pull: :image)
           new_detainee_page.assert_form_with_image_placeholder
         end
       end
@@ -55,12 +56,12 @@ RSpec.feature 'Detainee updates', type: :feature do
   end
 
   context 'when detainee has an image set' do
-    let(:detainee) { FactoryGirl.create(:detainee, prison_number: prison_number, image: 'encoded-base64-image') }
+    let(:detainee) { create(:detainee, prison_number: prison_number, image: 'encoded-base64-image') }
 
     scenario 'displays the detainee image' do
       login
 
-      visit edit_detainee_path(detainee)
+      visit edit_escort_detainee_path(escort)
       new_detainee_page.assert_form_with_detainee_image
     end
   end

@@ -1,12 +1,14 @@
 require 'feature_helper'
 
 RSpec.describe 'managing healthcare medications', type: :feature do
-  let(:detainee) { create(:detainee, :with_active_move) }
+  let(:detainee) { create(:detainee) }
+  let(:move) { create(:move, :active) }
+  let(:escort) { create(:escort, detainee: detainee, move: move) }
 
   scenario 'adding and removing move medications' do
     login
 
-    visit healthcare_path(detainee, :needs)
+    visit escort_healthcare_path(escort, step: 'needs')
     check_medication
 
     fill_in_medication position: :first
@@ -16,19 +18,19 @@ RSpec.describe 'managing healthcare medications', type: :feature do
     fill_in_medication position: :third
     save
 
-    visit healthcare_path(detainee, :needs)
+    visit escort_healthcare_path(escort, step: 'needs')
     expect_to_have_medications_for positions: %i[ first second third ]
 
     delete_medication position: :third
     save
 
-    visit healthcare_path(detainee, :needs)
+    visit escort_healthcare_path(escort, step: 'needs')
     expect_to_have_medications_for positions: %i[ first second ]
 
     select_no_medications
     save
 
-    visit healthcare_path(detainee, :needs)
+    visit escort_healthcare_path(escort, step: 'needs')
     expect_all_medications_to_be_deleted
   end
 

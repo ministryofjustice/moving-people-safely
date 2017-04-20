@@ -16,4 +16,4 @@
     - elsif workflow.confirmed?
       span.status-label.status-label--complete Complete
 
-    = link_to 'Edit', summary_path
+    = link_to "#{escort.issued? ? 'View' : 'Edit'}", summary_path

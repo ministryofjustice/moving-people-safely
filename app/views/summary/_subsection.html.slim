@@ -4,7 +4,8 @@ table class="#{subsection.name}"
      th.title colspan="2"
        = t("summary.section.titles.#{subsection.name}")
      th.edit
-       = link_to 'Change', path + "##{subsection.name}_subsection"
+       - unless escort.issued?
+         = link_to 'Change', path + "##{subsection.name}_subsection"
   tbody
     - subsection.questions.each_with_index do |question, i|
       tr class=(%w[even odd][i%2] + ' ' + question.underscore)

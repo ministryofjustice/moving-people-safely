@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328143104) do
+ActiveRecord::Schema.define(version: 20170405114354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,16 @@ ActiveRecord::Schema.define(version: 20170328143104) do
     t.datetime "updated_at",                  null: false
     t.string   "image_filename", default: ""
     t.binary   "image"
+    t.uuid     "escort_id"
+    t.index ["escort_id"], name: "index_detainees_on_escort_id", using: :btree
     t.index ["prison_number"], name: "index_detainees_on_prison_number", using: :btree
+  end
+
+  create_table "escorts", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string   "prison_number"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["prison_number"], name: "index_escorts_on_prison_number", using: :btree
   end
 
   create_table "healthcare", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -99,11 +108,11 @@ ActiveRecord::Schema.define(version: 20170328143104) do
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
     t.string   "has_destinations",               default: "unknown"
-    t.uuid     "detainee_id"
     t.string   "not_for_release"
     t.string   "not_for_release_reason"
     t.text     "not_for_release_reason_details"
-    t.index ["detainee_id"], name: "index_moves_on_detainee_id", using: :btree
+    t.uuid     "escort_id"
+    t.index ["escort_id"], name: "index_moves_on_escort_id", using: :btree
   end
 
   create_table "offences", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

@@ -13,6 +13,10 @@ FactoryGirl.define do
     trait :issued do
       status :issued
     end
+
+    trait :needs_review do
+      status :needs_review
+    end
   end
 
   factory :move_workflow, parent: :workflow, class: 'MoveWorkflow' do

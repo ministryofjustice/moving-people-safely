@@ -8,10 +8,10 @@
         = f.search_text_field :prison_number, name: 'prison_number', class: (search_form.errors.empty? ? 'form-control' : 'form-control control-error')
         = f.submit class: 'search_button', value: 'Search'
 
-  - if search_form.detainee
+  - if search_form.escort
     .search-results
       = render partial: 'result',
-        locals: { detainee: search_form.detainee, move: search_form.detainee.most_recent_move }
+        locals: { escort: search_form.escort, detainee: search_form.detainee, move: search_form.move }
   - elsif search_form.valid?
     .search-results
       = render partial: 'no_result',
@@ -23,32 +23,32 @@
 
 .search-header
   .date-picker
-    = form_tag(moves_search_path) do
+    = form_tag(escorts_search_path) do
       = hidden_field_tag "prison_number", prison_number
 
       span.label Scheduled moves
       .date-picker-wrapper
         span.date-picker-field.input-group.date data-provide='datepicker'
-          = text_field_tag 'moves_due_on', date_picker, class: 'no-script form-control date-field'
+          = text_field_tag 'escorts_due_on', date_picker, class: 'no-script form-control date-field'
           span.no-script.calendar-icon.input-group-addon
         button.go type='submit' name='commit' Go
 
       .no-script
         .form-group.search-date-radios
           fieldset.inline
-            = label_tag "moves_due_on_#{Date.today}", 'Today', class: 'block-label' do
-              = radio_button_tag 'moves_due_on', Date.today.strftime('%d/%m/%Y'), (date_picker == Date.today), class: 'radio-date-selector', disabled: true
+            = label_tag "escorts_due_on_#{Date.today}", 'Today', class: 'block-label' do
+              = radio_button_tag 'escorts_due_on', Date.today.strftime('%d/%m/%Y'), (date_picker == Date.today), class: 'radio-date-selector', disabled: true
               == 'Today'
-            = label_tag "moves_due_on_#{Date.tomorrow}", 'Tomorrow', class: 'block-label' do
-              = radio_button_tag 'moves_due_on', Date.tomorrow.strftime('%d/%m/%Y'), (date_picker == Date.tomorrow), class: 'radio-date-selector', disabled: true
+            = label_tag "escorts_due_on_#{Date.tomorrow}", 'Tomorrow', class: 'block-label' do
+              = radio_button_tag 'escorts_due_on', Date.tomorrow.strftime('%d/%m/%Y'), (date_picker == Date.tomorrow), class: 'radio-date-selector', disabled: true
               == 'Tomorrow'
 
-  - if dashboard.moves.empty?
-    #moves_gauges.moves-gauges
+  - if dashboard.escorts.empty?
+    #escorts_gauges.escorts-gauges
       dl.status_gauges
         == dashboard.render_no_moves_indicator
   - else
-    #moves_gauges.moves-gauges
+    #escorts_gauges.escorts-gauges
       dl.status_gauges
         == dashboard.render_detainees_indicator
         == dashboard.render_risk_indicator
@@ -57,5 +57,5 @@
 
 .search-results
   hr
-  - unless dashboard.moves.empty?
-    = render partial: 'moves', locals: { moves: dashboard.moves }
+  - unless dashboard.escorts.empty?
+    = render partial: 'escorts', locals: { escorts: dashboard.escorts }

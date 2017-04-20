@@ -42,12 +42,12 @@ RSpec.describe 'Homepage', type: :request do
     end
   end
 
-  describe "#moves" do
+  describe "#escorts" do
     before do
-      post "/moves/search",
+      post "/escorts/search",
         params: {
           prison_number: prison_number,
-          moves_due_on: date
+          escorts_due_on: date
         }
     end
 
@@ -59,8 +59,8 @@ RSpec.describe 'Homepage', type: :request do
         expect(response).to redirect_to "/?prison_number=#{prison_number}"
       end
 
-      it "sets the moves due on param in the session" do
-        expect(session[:moves_due_on]).to eq(date)
+      it "sets the escorts due on param in the session" do
+        expect(session[:escorts_due_on]).to eq(date)
       end
     end
   end

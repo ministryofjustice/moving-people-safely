@@ -28,6 +28,12 @@ FactoryGirl.define do
       association :offences_workflow, :confirmed, strategy: :build
     end
 
+    trait :needs_review do
+      association :risk_workflow, :needs_review, strategy: :build
+      association :healthcare_workflow, :needs_review, strategy: :build
+      association :offences_workflow, :needs_review, strategy: :build
+    end
+
     trait :with_complete_risk_workflow do
       association :risk_workflow, :confirmed, strategy: :build
     end
@@ -47,6 +53,14 @@ FactoryGirl.define do
 
     trait :with_incomplete_risk_workflow do
       association :risk_workflow, :incomplete, strategy: :build
+    end
+
+    trait :with_incomplete_healthcare_workflow do
+      association :healthcare_workflow, :incomplete, strategy: :build
+    end
+
+    trait :with_incomplete_offences_workflow do
+      association :offences_workflow, :incomplete, strategy: :build
     end
   end
 end

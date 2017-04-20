@@ -6,25 +6,27 @@ table
     th Destination
     th Move date
   tr
-    - if move && move.active?
-      td = link_to(detainee.prison_number, detainee_path(detainee))
+    td = link_to(escort.prison_number, escort_path(escort))
+    - if detainee
+      td
+        span.strong-text
+          | #{detainee.surname}
+        span
+          |  #{detainee.forenames}
+      td = detainee.date_of_birth&.to_s(:humanized)
     - else
-      td = detainee.prison_number
-    td
-      span.strong-text
-        | #{detainee.surname}
-      span
-        |  #{detainee.forenames}
-    td = detainee.date_of_birth&.to_s(:humanized)
+      td colspan=2
+
     - if move
       td = move.to
       td = move.date.to_s(:humanized)
     - else
       td colspan=2
 
-- if move && move.active?
-  = link_to('View profile', detainee_path(detainee), class: 'button')
-- elsif move
-  = link_to('Add new move', copy_move_path(detainee), class: 'button')
+- if escort.issued?
+  = form_for Escort.new(prison_number: detainee.prison_number), url: escorts_path, method: :post do |f|
+    = f.hidden_field :prison_number
+    .form-actions
+      = f.submit 'Start new PER', class: 'button'
 - else
-  = link_to('Add new move', new_detainee_move_path(detainee), class: 'button')
+  = link_to('Continue PER', escort_path(escort), class: 'button')
