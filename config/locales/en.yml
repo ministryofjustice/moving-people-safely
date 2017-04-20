@@ -564,6 +564,7 @@ en:
         exists: "Move details for the PER already exist."
     offences:
       api_error: Offences aren't available right now, please try again or fill in the offences below
+      internal_error: Offences aren't available right now, please try again or fill in the offences below
       not_found: "Offences data could not be retrieved. Please fill in manually."
     move:
       print:
