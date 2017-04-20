@@ -14,10 +14,6 @@ FactoryGirl.define do
       association :move_workflow, :issued, strategy: :build
     end
 
-    trait :past_move do
-      date { 1.week.ago }
-    end
-
     trait :active do
       date { 1.week.from_now }
     end
