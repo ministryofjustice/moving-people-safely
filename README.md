@@ -4,7 +4,7 @@
 
 # Instalation
 
-**NOTE:** These steps assume the comands are being run from the root of the project.
+**NOTE:** These steps assume the commands are being run from the root of the project.
 
 ## Requirements
 
@@ -17,24 +17,32 @@
   gem install bundler
   ```
 
+* OS Dependencies
+
+  Using brew:
+
+  ```bash
+  brew bundle
+  ```
+  **NOTE:** These will install node and postgresql. If you do not use brew you need to install them manually.
+
 * Bower
 
   Using brew:
 
   ```bash
-  brew install node
   npm install -g bower
   ```
 
-* Postgres
+## Setup
 
-  Using brew:
+* Configure the projects ENV vars
 
   ```bash
-  brew install postgresql
+  cp .env.example .env
   ```
 
-## Setup
+  **NOTE:** We recommend using a shell environment switcher like [direnv](https://github.com/direnv/direnv) to manage the projects environment variables.
 
 * Install dependencies and setup database
 
@@ -47,15 +55,6 @@
    ```bash
    bundle exec rake dev:moves
    ```
-
-* Configure the projects ENV vars
-
-  ```bash
-  cp .env.example .env
-  ```
-
-We recommend using a shell environment switcher like [direnv](https://github.com/direnv/direnv) to manage the projects
-environment variables.
 
 For local integration with SSO refer to [SSO Integration](docs/sso_integration.md)
 
