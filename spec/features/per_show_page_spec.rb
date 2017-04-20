@@ -355,32 +355,26 @@ RSpec.feature 'PER show page', type: :feature do
     let(:detainee) { create(:detainee, :with_no_offences, prison_number: prison_number) }
     let(:move) { create(:move) }
     let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee, move: move) }
-    let(:current_offences) {
+
+    let(:offences_data) {
       [
         { name: 'Burglary', case_reference: 'Ref 3064' },
         { name: 'Attempted murder', case_reference: 'Ref 7291' }
       ]
     }
-    let(:offences_data) {
+    let(:offences_params) {
       {
-        current_offences: current_offences
+        offences: offences_data
       }
     }
 
-    shared_examples_for 'offences information display' do
-      scenario 'current offences are displayed' do
-        escort_page.confirm_current_offences(current_offences)
-      end
-    end
-
-    before do
+    scenario 'current offences are displayed' do
       login
 
       visit escort_path(escort)
       escort_page.click_edit_offences
-      offences.complete_form(offences_data)
+      offences.complete_form(offences_params)
+      escort_page.confirm_offences(offences_data)
     end
-
-    include_examples 'offences information display'
   end
 end

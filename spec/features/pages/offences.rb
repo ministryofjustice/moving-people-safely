@@ -1,7 +1,7 @@
 module Page
   class Offences < Base
     def complete_form(options)
-      fill_current_offences(options[:current_offences])
+      fill_offences(options[:offences])
 
       save_and_continue
     end
@@ -37,10 +37,10 @@ module Page
       end
     end
 
-    def fill_current_offences(offences)
+    def fill_offences(offences)
       return unless offences && !offences.empty?
       offences.each_with_index do |offence, index|
-        field_prefix = 'offences_current_offences_attributes'
+        field_prefix = 'offences_offences_attributes'
         fill_in "#{field_prefix}_#{index}_offence", with: offence.fetch(:name)
         if offence[:case_reference]
           fill_in "#{field_prefix}_#{index}_case_reference", with: offence[:case_reference]

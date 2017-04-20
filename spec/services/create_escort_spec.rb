@@ -16,8 +16,7 @@ RSpec.describe EscortCreator, type: :service do
   context 'when there are existing escorts for the given prison number' do
     let(:risk) { create(:risk) }
     let(:healthcare) { create(:healthcare, :with_medications) }
-    let(:offences) { create(:offences) }
-    let(:detainee) { create(:detainee, risk: risk, healthcare: healthcare, offences: offences) }
+    let(:detainee) { create(:detainee, risk: risk, healthcare: healthcare) }
     let(:move) { create(:move, :with_destinations, :confirmed) }
     let!(:existent_escort) { create(:escort, prison_number: prison_number, detainee: detainee, move: move) }
 
@@ -58,19 +57,16 @@ RSpec.describe EscortCreator, type: :service do
   end
 
   def expect_offences_to_be_cloned(existent_escort, new_escort)
-    offences_attributes = existent_escort.offences.attributes.except(*except_offences_attributes)
-    expect(new_escort.offences.id).not_to eq(existent_escort.offences.id)
-    expect(new_escort.offences).to have_attributes(offences_attributes)
     expect(new_escort.offences.status).to eq('needs_review')
 
-    expected_current_offences_attributes = existent_escort.offences.current_offences.map { |co| co.attributes.except(*except_current_offences_attributes) }
-    current_offences_attributes = new_escort.offences.current_offences.map { |co| co.attributes.except(*except_current_offences_attributes) }
-    expect(current_offences_attributes).to match_array(expected_current_offences_attributes)
+    expected_offences_attributes = existent_escort.offences.map { |o| o.attributes.except(*except_current_offences_attributes) }
+    offences_attributes = new_escort.offences.map { |o| o.attributes.except(*except_current_offences_attributes) }
+    expect(offences_attributes).to match_array(expected_offences_attributes)
   end
 
   def expect_moves_to_be_cloned(existent_escort, new_escort)
     move_attributes = existent_escort.move.attributes.except(*except_move_attributes)
-    expect(new_escort.move.id).not_to eq(existent_escort.offences.id)
+    expect(new_escort.move.id).not_to eq(existent_escort.move.id)
     expect(new_escort.move.date).to be_nil
     expect(new_escort.move).to have_attributes(move_attributes)
     expect(new_escort.move.status).to eq('not_started')
@@ -101,7 +97,7 @@ RSpec.describe EscortCreator, type: :service do
   end
 
   def except_current_offences_attributes
-    %w(id offences_id created_at updated_at)
+    %w(id detainee_id created_at updated_at)
   end
 
   def except_destinations_attributes

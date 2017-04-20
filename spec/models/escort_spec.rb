@@ -43,8 +43,7 @@ RSpec.describe Escort do
   describe '#completed?' do
     let(:risk) { create(:risk) }
     let(:healthcare) { create(:healthcare) }
-    let(:offences) { create(:offences) }
-    let(:detainee) { create(:detainee, risk: risk, healthcare: healthcare, offences: offences) }
+    let(:detainee) { create(:detainee, risk: risk, healthcare: healthcare) }
     let(:move) { create(:move, :confirmed) }
     let(:escort) { create(:escort, detainee: detainee, move: move) }
 

@@ -5,7 +5,7 @@ class OffencesController < ApplicationController
   helper_method :escort, :offences
 
   def show
-    prepopulate_current_offences
+    prepopulate_offences
     form.validate(flash[:form_data]) if flash[:form_data]
     form.prepopulate!
     render locals: { form: form }
@@ -29,13 +29,13 @@ class OffencesController < ApplicationController
   end
 
   def offences
-    escort.offences || raise(ActiveRecord::RecordNotFound)
+    escort.offences
   end
 
   def add_offence
     if params.key? 'offences_add_offence'
       form.deserialize form_data
-      form.add_current_offence
+      form.add_offence
       render :show, locals: { form: form }
     end
   end
@@ -45,13 +45,11 @@ class OffencesController < ApplicationController
   end
 
   def form
-    @_form ||= Forms::Offences.new(offences)
+    @_form ||= Forms::Offences.new(escort)
   end
 
-  private(*delegate(:current_offences, to: :offences))
-
-  def prepopulate_current_offences
-    current_offences.blank? && current_offences.build(fetch_offences)
+  def prepopulate_offences
+    offences.blank? && offences.build(fetch_offences)
   end
 
   def fetch_offences

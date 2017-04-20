@@ -18,9 +18,7 @@ class Escort < ApplicationRecord
     detainee&.healthcare
   end
 
-  def offences
-    detainee&.offences
-  end
+  delegate :offences, :offences=, to: :detainee, allow_nil: true
 
   def completed?
     EscortCompletionValidator.call(self)

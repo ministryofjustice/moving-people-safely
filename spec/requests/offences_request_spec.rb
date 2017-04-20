@@ -6,7 +6,20 @@ RSpec.describe 'Offences', type: :request do
   let(:move) { create(:move, :active) }
   let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee, move: move) }
   let(:offences) { escort.offences }
-  let(:form_data) { { offences: offences.attributes } }
+  let(:form_data) { 
+    { 
+      offences: {
+        offences_attributes: {
+          "0" => { 
+            id: "some-uuid",
+            offence: "some offence",
+            case_reference: "1234LOL",
+            _delete: "0"
+          }
+        }
+      }
+    }
+  }
 
   describe "when not logged in" do
     it "get #show redirects to /sign_in" do
@@ -46,17 +59,7 @@ RSpec.describe 'Offences', type: :request do
           expect(response).to have_http_status(200)
         end
       end
-
-      context 'but there is no offences to show yet' do
-        let(:escort) { create(:escort) }
-
-        it 'raises a record not found error' do
-          expect {
-            get "/escorts/#{escort.id}/offences"
-          }.to raise_error(ActiveRecord::RecordNotFound)
-        end
-      end
-
+      
       context 'and there are no offences associated with the detainee' do
         let(:detainee) { create(:detainee, :with_no_offences, prison_number: prison_number) }
         let(:move) { create(:move) }
@@ -114,17 +117,6 @@ RSpec.describe 'Offences', type: :request do
         end
       end
 
-      context 'but there is no offences to show yet' do
-        let(:escort) { create(:escort) }
-        let(:form_data) { { offences: build(:offences).attributes } }
-
-        it 'raises a record not found error' do
-          expect {
-            put "/escorts/#{escort.id}/offences", params: form_data
-          }.to raise_error(ActiveRecord::RecordNotFound)
-        end
-      end
-
       context "with validating data" do
         it "redirects to the PER page" do
           put "/escorts/#{escort.id}/offences", params: form_data
@@ -134,8 +126,8 @@ RSpec.describe 'Offences', type: :request do
       end
 
       context "posted data fails validation" do
-        let(:invalid_current_offence) { { "id"=>"", "offence"=>"" } }
-        let(:form_data) { { offences: { current_offences_attributes: { '0' => invalid_current_offence } } } }
+        let(:invalid_offence) { { "id"=>"", "offence"=>"" } }
+          let(:form_data) { { offences: { offences_attributes: { '0' => invalid_offence } } } }
 
         it "redirects to #show" do
           put "/escorts/#{escort.id}/offences", params: form_data

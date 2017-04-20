@@ -16,7 +16,8 @@ FactoryGirl.define do
 
     association :healthcare, factory: :healthcare, strategy: :build
     association :risk, factory: :risk, strategy: :build
-    association :offences, factory: :offences, strategy: :build
+    
+    offences { build_list :offence, rand(1..5) }
 
     trait :without_assessments do
       risk { build_risk }
@@ -28,11 +29,7 @@ FactoryGirl.define do
     end
 
     trait :with_no_offences do
-      offences { build :offences, :empty_record }
-    end
-
-    trait :with_no_current_offences do
-      association :offences, :with_no_current_offences, factory: :offences, strategy: :build
+      offences { [] }
     end
 
     trait :with_incomplete_risk_assessment do
