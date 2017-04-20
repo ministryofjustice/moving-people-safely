@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   resource :session, only: %i[ new destroy ]
 
+  get :ping, to: 'ping#show'
+
   resources :escorts, only: %i[new create show] do
     resource :detainee do
       resource :image, only: %i[show], controller: 'detainees/images', constraints: { format: 'jpg' }
