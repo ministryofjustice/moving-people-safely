@@ -290,7 +290,6 @@
         margin-top: 5px;
 
         @include ie(8) {
-          behavior: url(asset-path("pie/PIE.htc"));
           position: relative;
         }
       }

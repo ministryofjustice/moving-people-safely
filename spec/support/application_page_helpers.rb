@@ -21,10 +21,6 @@ module ApplicationPageHelpers
     @_move_details ||= Page::MoveDetails.new
   end
 
-  def move_print_page
-    @_move_print_page ||= Page::MovePrint.new
-  end
-
   def escort_page
     @_escort_page ||= Page::Escort.new
   end
