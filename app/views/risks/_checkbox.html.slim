@@ -1,0 +1,8 @@
+.form-group.js-checkbox-show-hide
+  .controls-optional-checkbox-section
+    = f.checkbox question.name
+
+  - if question.conditional_questions.any?
+    .optional-checkbox-section-wrapper
+      - question.conditional_questions.each do |conditional_question|
+        = render partial: conditional_question.display_type, locals: { f: f, question: conditional_question }

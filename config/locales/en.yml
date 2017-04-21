@@ -272,6 +272,7 @@ en:
         victim_of_abuse_details: Give details of the abuser (or potential abuser) if known
         high_profile_details: Give details
       risk_to_self:
+        acct_status_details: Give details of known methods and triggers
         open_acct: |
           If an ACCT is open, the ACCT plan should be present and there
           should be a relevant alert on NOMIS

@@ -104,4 +104,10 @@ RSpec.describe Risk, type: :model do
       end
     end
   end
+
+  describe '#schema' do
+    it 'returns an object representation of the risk schema' do
+      expect(subject.schema).to be_an_instance_of(Schemas::Assessment)
+    end
+  end
 end

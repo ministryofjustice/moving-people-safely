@@ -1,11 +1,11 @@
 header
-  h1 = t("#{scope}.form.title.#{template_name}")
+  h1 = t("#{scope}.form.title.#{form.name}")
 
 = GovukElementsErrorsHelper.error_summary form,
   'There were problems saving this form', ''
 
 = form_for form, url: wizard_path, method: :put do |f|
-  = render partial: template_name, locals: { f: f, form: form }
+  = render partial: template_name, locals: { f: f, assessment: assessment, form: form }
 
   .form-actions
     = f.submit 'Save and continue', class: 'button'

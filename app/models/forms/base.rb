@@ -196,5 +196,9 @@ module Forms
     def toggle_field
       TOGGLE_YES
     end
+
+    def name
+      self.class.name
+    end
   end
 end

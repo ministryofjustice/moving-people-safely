@@ -1,0 +1,616 @@
+assessment:
+  risk:
+    sections:
+      risk_to_self:
+        questions:
+          -
+            name: acct_status
+            type: string
+            answers:
+              -
+                value: 'open'
+              -
+                value: 'post_closure'
+              -
+                value: 'closed_in_last_6_months'
+                questions:
+                  -
+                    name: date_of_most_recently_closed_acct
+                    type: string
+                  -
+                    name: acct_status_details
+                    type: string
+              -
+                value: 'none'
+      risk_from_others:
+        questions:
+          -
+            name: rule_45
+            type: string
+            answers:
+              -
+                value: 'yes'
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
+            name: csra
+            type: string
+            answers:
+              -
+                value: 'high'
+              -
+                value: 'standard'
+              -
+                value: 'unknown'
+          -
+            name: victim_of_abuse
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: victim_of_abuse_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
+            name: high_profile
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: high_profile_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      violence:
+        sections:
+          discrimination:
+            questions:
+              -
+                name: violence_due_to_discrimination
+                type: string
+                answers:
+                  -
+                    value: 'yes'
+                    questions:
+                      -
+                        name: violence_due_to_discrimination_type
+                        type: group
+                        questions:
+                          -
+                            name: risk_to_females
+                            type: boolean
+                          -
+                            name: homophobic
+                            type: boolean
+                          -
+                            name: racist
+                            type: boolean
+                            answers:
+                              -
+                                value: false
+                              -
+                                value: true
+                                questions:
+                                  -
+                                    name: racist_details
+                                    type: string
+                          -
+                            name: other_violence_due_to_discrimination
+                            type: boolean
+                            answers:
+                              -
+                                value: false
+                              -
+                                value: true
+                                questions:
+                                  -
+                                    name: other_violence_due_to_discrimination_details
+                                    type: string
+                  -
+                    value: 'no'
+                  -
+                    value: 'unknown'
+          violence_to_staff:
+            questions:
+              -
+                name: violence_to_staff
+                type: string
+                answers:
+                  -
+                    value: 'yes'
+                    questions:
+                      -
+                        name: violence_to_staff_type
+                        type: group
+                        questions:
+                          -
+                            name: violence_to_staff_custody
+                            type: boolean
+                          -
+                            name: violence_to_staff_community
+                            type: boolean
+                  -
+                    value: 'no'
+                  -
+                    value: 'unknown'
+          violence_to_other_detainees:
+            questions:
+              -
+                name: violence_to_other_detainees
+                type: string
+                answers:
+                  -
+                    value: 'yes'
+                    questions:
+                      -
+                        name: violence_to_other_detainees_type
+                        type: group
+                        questions:
+                          -
+                            name: co_defendant
+                            type: boolean
+                            answers:
+                              -
+                                value: false
+                              -
+                                value: true
+                                questions:
+                                  -
+                                    name: co_defendant_details
+                                    type: string
+                          -
+                            name: gang_member
+                            type: boolean
+                            answers:
+                              -
+                                value: false
+                              -
+                                value: true
+                                questions:
+                                  -
+                                    name: gang_member_details
+                                    type: string
+                          -
+                            name: other_violence_to_other_detainees
+                            type: boolean
+                            answers:
+                              -
+                                value: false
+                              -
+                                value: true
+                                questions:
+                                  -
+                                    name: other_violence_to_other_detainees_details
+                                    type: string
+                  -
+                    value: 'no'
+                  -
+                    value: 'unknown'
+          violence_to_general_public:
+            questions:
+              -
+                name: violence_to_general_public
+                type: string
+                answers:
+                  -
+                    value: 'yes'
+                    questions:
+                      -
+                        name: violence_to_general_public_details
+                        type: string
+                  -
+                    value: 'no'
+                  -
+                    value: 'unknown'
+      hostage_taker:
+        questions:
+          -
+            name: hostage_taker
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: hostage_taker_type
+                    type: group
+                    questions:
+                      -
+                        name: staff_hostage_taker
+                        type: boolean
+                        answers:
+                          -
+                            value: false
+                          -
+                            value: true
+                            questions:
+                              -
+                                name: date_most_recent_staff_hostage_taker_incident
+                                type: date
+                      -
+                        name: prisoners_hostage_taker
+                        type: boolean
+                        answers:
+                          -
+                            value: false
+                          -
+                            value: true
+                            questions:
+                              -
+                                name: date_most_recent_prisoners_hostage_taker_incident
+                                type: date
+                      -
+                        name: public_hostage_taker
+                        type: boolean
+                        answers:
+                          -
+                            value: false
+                          -
+                            value: true
+                            questions:
+                              -
+                                name: date_most_recent_public_hostage_taker_incident
+                                type: date
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      harassments:
+        sections:
+          harassment:
+            questions:
+              -
+                name: harassment
+                type: string
+                answers:
+                  -
+                    value: 'yes'
+                    questions:
+                      -
+                        name: harassment_details
+                        type: string
+                  -
+                    value: 'no'
+                  -
+                    value: 'unknown'
+          intimidation:
+            questions:
+              -
+                name: intimidation
+                type: string
+                answers:
+                  -
+                    value: 'yes'
+                    questions:
+                      -
+                        name: intimidation_type
+                        type: group
+                        questions:
+                          -
+                            name: intimidation_to_staff
+                            type: boolean
+                            answers:
+                              -
+                                value: false
+                              -
+                                value: true
+                                questions:
+                                  -
+                                    name: intimidation_to_staff_details
+                                    type: string
+                          -
+                            name: intimidation_to_public
+                            type: boolean
+                            answers:
+                              -
+                                value: false
+                              -
+                                value: true
+                                questions:
+                                  -
+                                    name: intimidation_to_public_details
+                                    type: string
+                          -
+                            name: intimidation_to_other_detainees
+                            type: boolean
+                            answers:
+                              -
+                                value: false
+                              -
+                                value: true
+                                questions:
+                                  -
+                                    name: intimidation_to_other_detainees_details
+                                    type: string
+                          -
+                            name: intimidation_to_witnesses
+                            type: boolean
+                            answers:
+                              -
+                                value: false
+                              -
+                                value: true
+                                questions:
+                                  -
+                                    name: intimidation_to_witnesses_details
+                                    type: string
+                  -
+                    value: 'no'
+                  -
+                    value: 'unknown'
+      sex_offences:
+        questions:
+          -
+            name: sex_offence
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: sex_offence_type
+                    type: group
+                    questions:
+                      -
+                        name: sex_offence_adult_male_victim
+                        type: boolean
+                      -
+                        name: sex_offence_adult_female_victim
+                        type: boolean
+                      -
+                        name: sex_offence_under18_victim
+                        type: boolean
+                        answers:
+                          -
+                            value: false
+                          -
+                            value: true
+                            questions:
+                              -
+                                name: sex_offence_under18_victim_details
+                                type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      security:
+        sections:
+          escape_status:
+            questions:
+              -
+                name: current_e_risk
+                type: string
+                answers:
+                  -
+                    value: 'yes'
+                    questions:
+                      -
+                        name: current_e_risk_details
+                        type: string
+                        answers:
+                          -
+                            value: e_list_standard
+                          -
+                            value: e_list_escort
+                          -
+                            value: e_list_heightened
+                  -
+                    value: 'no'
+                  -
+                    value: 'unknown'
+          previous_escape_attempts:
+            questions:
+              -
+                name: previous_escape_attempts
+                type: string
+                answers:
+                  -
+                    value: 'yes'
+                    questions:
+                      -
+                        name: previous_escape_attempts_type
+                        type: group
+                        questions:
+                          -
+                            name: prison_escape_attempt
+                            type: boolean
+                            answers:
+                              -
+                                value: false
+                              -
+                                value: true
+                                questions:
+                                  -
+                                    name: prison_escape_attempt_details
+                                    type: string
+                          -
+                            name: court_escape_attempt
+                            type: boolean
+                            answers:
+                              -
+                                value: false
+                              -
+                                value: true
+                                questions:
+                                  -
+                                    name: court_escape_attempt_details
+                                    type: string
+                          -
+                            name: police_escape_attempt
+                            type: boolean
+                            answers:
+                              -
+                                value: false
+                              -
+                                value: true
+                                questions:
+                                  -
+                                    name: police_escape_attempt_details
+                                    type: string
+                          -
+                            name: other_type_escape_attempt
+                            type: boolean
+                            answers:
+                              -
+                                value: false
+                              -
+                                value: true
+                                questions:
+                                  -
+                                    name: other_type_escape_attempt_details
+                                    type: string
+                  -
+                    value: 'no'
+                  -
+                    value: 'unknown'
+          category_a:
+            questions:
+              -
+                name: category_a
+                type: string
+                answers:
+                  -
+                    value: 'yes'
+                  -
+                    value: 'no'
+                  -
+                    value: 'unknown'
+          escort_details:
+            questions:
+              -
+                name: escort_risk_assessment
+                type: string
+                answers:
+                  -
+                    value: 'yes'
+                    questions:
+                      -
+                        name: escort_risk_assessment_completion_date
+                        type: date
+                  -
+                    value: 'no'
+                  -
+                    value: 'unknown'
+              -
+                name: escape_pack
+                type: string
+                answers:
+                  -
+                    value: 'yes'
+                    questions:
+                      -
+                        name: escape_pack_completion_date
+                        type: date
+                  -
+                    value: 'no'
+                  -
+                    value: 'unknown'
+      substance_misuse:
+        questions:
+          -
+            name: substance_supply
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: substance_supply_type
+                    type: group
+                    questions:
+                      -
+                        name: trafficking_drugs
+                        type: boolean
+                      -
+                        name: trafficking_alcohol
+                        type: boolean
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      concealed_weapons:
+        questions:
+          -
+            name: conceals_weapons
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: conceals_weapons_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
+            name: conceals_drugs
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: conceals_drugs_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
+            name: conceals_mobile_phone_or_other_items
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: conceals_mobile_phone_or_other_items_type
+                    type: group
+                    questions:
+                      -
+                        name: conceals_mobile_phones
+                        type: boolean
+                      -
+                        name: conceals_sim_cards
+                        type: boolean
+                      -
+                        name: conceals_other_items
+                        type: boolean
+                        answers:
+                          -
+                            value: false
+                          -
+                            value: true
+                            questions:
+                              -
+                                name: conceals_other_items_details
+                                type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      arson:
+        questions:
+          -
+            name: arson
+            type: string
+            answers:
+              -
+                value: 'yes'
+              -
+                value: 'no'
+              -
+                value: 'unknown'
