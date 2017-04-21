@@ -16,7 +16,7 @@ module Page
       check_security_section(risk)
       check_substance_misuse_section(risk)
       check_concealed_weapons_section(risk)
-      check_section(risk, 'arson', %w[ arson damage_to_property ])
+      check_section(risk, 'arson', %w[ arson ])
     end
 
     def check_section_is_all_no(doc, section, questions)

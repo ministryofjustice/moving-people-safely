@@ -4,9 +4,7 @@ en:
       allergies:
         allergies: Allergies?
       arson:
-        arson: Arson is a behavioural issue
-        arson_value: ''
-        damage_to_property: Damage to property
+        arson: Are they an arsonist?
       communication:
         hearing_speech_sight_issues: Does the detainee have hearing / speech / sight issues?
         reading_writing_issues: Does the detainee have reading / writing issues?
@@ -63,13 +61,7 @@ en:
         allergies_choices:
           unknown: Clear selection
       arson:
-        arson_value_choices:
-          index_offence: Arson is the index offence
-          behavioural_issue: Arson is a behavioural issue
-          small_risk: Small risk of arson during move
         arson_choices:
-          unknown: Clear selection
-        damage_to_property_choices:
           unknown: Clear selection
       communication:
         hearing_speech_sight_issues_choices:
@@ -239,13 +231,6 @@ en:
       allergies:
         allergies: "Eg dietary, environmental or medical, such as: nuts, pollen, penicillin"
         allergies_details: Give details and explain the significance
-      arson:
-        arson_details: Give details of last arson attack, including date
-        damage_to_property_html: |
-          Such as damage to own cell or other people's things
-          </br>
-          Check adjudications for more information
-        damage_to_property_details: Give details
       communication:
         hearing_speech_sight_issues_details: Give details
         reading_writing_issues_details: Give details
@@ -347,7 +332,7 @@ en:
   risks:
     form:
       title:
-        arson: Arson and damage to property
+        arson: Arson
         concealed_weapons: Concealed weapons, drugs or other items
         harassments: Risk to others - harasser and/or bully
         hostage_taker: Risk to others - hostage taker
@@ -381,8 +366,7 @@ en:
         escape_status: *summary_security_answers
       questions:
         arson:
-          arson: Arson is a behavioural issue
-          damage_to_property: Damage to property
+          arson: Are they an arsonist?
         communication:
           hearing_speech_sight_issues: Hearing / speech / sight issues
           reading_writing_issues: Reading / writing issues
@@ -475,7 +459,7 @@ en:
         violence_to_other_detainees: *summary_violence
         violence_to_general_public: *summary_violence
       titles:
-        arson: Arson and damage to property
+        arson: Arson
         category_a: Category A or Restricted status
         communication: Communication / language difficulties
         concealed_weapons: Conceals weapons, drugs or other items

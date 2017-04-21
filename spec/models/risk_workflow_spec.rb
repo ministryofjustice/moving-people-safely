@@ -22,7 +22,7 @@ RSpec.describe RiskWorkflow do
              hostage_taker harassment intimidation sex_offence
              current_e_risk previous_escape_attempts category_a escort_risk_assessment
              escape_pack substance_supply conceals_weapons conceals_drugs
-             conceals_mobile_phone_or_other_items arson damage_to_property])
+             conceals_mobile_phone_or_other_items arson])
     end
   end
 end

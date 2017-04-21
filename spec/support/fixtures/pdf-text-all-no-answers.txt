@@ -61,7 +61,7 @@ Risk of trafficking drugs or       No
 alcohol
 Conceals weapons, drugs or         No
 other items
-Arson and damage to property       No
+Arson                              No
 Physical healthcare                No
 Mental healthcare                  No
 Social healthcare                  No
