@@ -60,7 +60,6 @@ RSpec.feature 'printing a PER', type: :feature do
         conceals_drugs: 'no',
         conceals_mobile_phone_or_other_items: 'no',
         arson: 'no',
-        damage_to_property: 'no'
       })
     }
     let(:healthcare) {
@@ -180,8 +179,7 @@ RSpec.feature 'printing a PER', type: :feature do
           conceals_sim_cards: true,
           conceals_other_items: true,
           conceals_other_items_details: 'conceals other items details',
-          arson: 'yes',
-          damage_to_property: 'yes'
+          arson: 'yes'
         })
       }
 

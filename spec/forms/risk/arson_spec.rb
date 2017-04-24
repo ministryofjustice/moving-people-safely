@@ -6,13 +6,11 @@ RSpec.describe Forms::Risk::Arson, type: :form do
 
   let(:params) {
     {
-      'arson' => 'yes',
-      'damage_to_property' => 'yes'
+      'arson' => 'yes'
     }
   }
 
   describe '#validate' do
-    it { is_expected.to validate_optional_field(:damage_to_property) }
     it { is_expected.to validate_optional_field(:arson) }
   end
 

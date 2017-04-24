@@ -227,9 +227,6 @@ assessment:
           -
             name: arson
             mandatory: true
-          -
-            name: damage_to_property
-            mandatory: true
   healthcare:
     sections:
       physical:

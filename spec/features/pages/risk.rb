@@ -277,12 +277,6 @@ module Page
       else
         choose 'arson_arson_no'
       end
-
-      if @risk.damage_to_property == 'yes'
-        choose 'arson_damage_to_property_yes'
-      else
-        choose 'arson_damage_to_property_no'
-      end
       save_and_continue
     end
   end

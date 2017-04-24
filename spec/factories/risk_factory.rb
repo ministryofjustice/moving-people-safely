@@ -23,7 +23,6 @@ FactoryGirl.define do
     conceals_drugs 'no'
     conceals_mobile_phone_or_other_items 'no'
     arson 'no'
-    damage_to_property 'no'
 
     trait :with_high_csra do
       csra 'high'
