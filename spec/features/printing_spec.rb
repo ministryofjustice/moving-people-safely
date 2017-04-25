@@ -8,7 +8,7 @@ RSpec.feature 'printing a PER', type: :feature do
       :confirmed,
       from: 'HMP Bedford',
       to: 'Luton Crown Court',
-      date: Date.civil(2017, 4, 22),
+      date: Date.civil(2099, 4, 22),
       destinations: destinations
     )
   }
