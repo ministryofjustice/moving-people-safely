@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Escort do
+  describe 'default scope' do
+    it 'returns only the escorts that have not been deleted' do
+      create_list(:escort, 2)
+      create(:escort, deleted_at: 1.hour.ago)
+      expect(described_class.unscoped.count).to eq(3)
+      expect(described_class.count).to eq(2)
+    end
+  end
+
   describe '#risk' do
     context 'when there is no associated detainee' do
       let(:escort) { create(:escort) }
