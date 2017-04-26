@@ -30,6 +30,10 @@ class Risk < ApplicationRecord
     status_change(:incomplete!)
   end
 
+  def schema
+    @schema ||= Schemas::Assessment.new(NEW_ASSESSMENTS_SCHEMA['risk'])
+  end
+
   private
 
   def escort

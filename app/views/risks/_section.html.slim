@@ -1,0 +1,8 @@
+section
+  = link_to '', '#', id: "#{section.name}_subsection"
+
+  - section.subsections.each do |section|
+    = render partial: 'section', locals: { f: f, section: section }
+
+  - section.questions.each do |question|
+    = render partial: question.display_type, locals: { f: f, question: question }

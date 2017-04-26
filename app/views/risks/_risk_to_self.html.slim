@@ -1,6 +1,0 @@
-= f.radio_toggle :acct_status,
-  choices: f.object.acct_statuses,
-  inline_choices: false,
-  data: { 'toggle-field' => f.object.acct_status_with_details } do
-  = f.text_field :date_of_most_recently_closed_acct
-  = f.text_area :acct_status_details

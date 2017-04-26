@@ -2,9 +2,9 @@
   - breadcrumbs_for_page root: true do
     - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
     - breadcrumb 'Healthcare summary', summary_escort_healthcare_path(escort)
-    - breadcrumb t("healthcare.form.title.#{template_name}"), '#'
+    - breadcrumb t("healthcare.form.title.#{form.name}"), '#'
 
 = render partial: 'shared/wizard_header'
 
 .healthcare
-  = render partial: 'shared/wizard_step_form', locals: { scope: 'healthcare', form: form, template_name: template_name }
+  = render partial: 'shared/wizard_step_form', locals: { scope: 'healthcare', assessment: healthcare, form: form, template_name: template_name }

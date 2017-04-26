@@ -1,0 +1,15 @@
+- if question.has_dependencies?
+  .form-group.js-show-hide
+    = content_tag(:div, class: 'controls-optional-section', data: { 'toggle-field' => question.toggle_field }) do
+      = f.radio_button_fieldset question.name.to_sym,
+        choices: question.answers_options,
+        inline: question.display_inline?
+
+    .optional-section-wrapper.panel.panel-border-narrow.mps-hide
+      - question.conditional_questions.each do |conditional_question|
+        = render partial: conditional_question.display_type, locals: { f: f, question: conditional_question }
+- else
+  .form-group
+    = f.radio_button_fieldset question.name.to_sym,
+      choices: question.answers_options,
+      inline: question.display_inline?
