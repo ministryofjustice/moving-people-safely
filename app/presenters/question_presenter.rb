@@ -2,6 +2,7 @@ class QuestionPresenter < SimpleDelegator
   DISPLAY_TYPE_MAPPING = {
     'group' => 'fieldset',
     'boolean' => 'checkbox',
+    'complex' => 'fields_for',
     'date' => 'text_field'
   }.freeze
 

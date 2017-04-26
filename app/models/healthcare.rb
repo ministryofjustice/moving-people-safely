@@ -32,6 +32,10 @@ class Healthcare < ApplicationRecord
     status_change(:incomplete!)
   end
 
+  def schema
+    @schema ||= Schemas::Assessment.new(NEW_ASSESSMENTS_SCHEMA['healthcare'])
+  end
+
   private
 
   def escort

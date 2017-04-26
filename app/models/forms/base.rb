@@ -200,5 +200,9 @@ module Forms
     def name
       self.class.name
     end
+
+    def model_class_name
+      model.class.name.downcase
+    end
   end
 end

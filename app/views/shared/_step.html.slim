@@ -1,5 +1,5 @@
 - assessment.sections.each do |section|
-  = render partial: 'section', locals: { f: f, section: section }
+  = render partial: 'shared/section', locals: { f: f, section: section }
 
 - assessment.questions.each do |question|
-  = render partial: question.display_type, locals: { f: f, question: question }
+  = render partial: "shared/#{question.display_type}", locals: { f: f, question: question }

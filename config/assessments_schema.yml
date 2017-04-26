@@ -1,4 +1,197 @@
 assessment:
+  healthcare:
+    sections:
+      physical:
+        questions:
+          -
+            name: physical_issues
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: physical_issues_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      mental:
+        questions:
+          -
+            name: mental_illness
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: mental_illness_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
+            name: phobias
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: phobias_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      social:
+        questions:
+          -
+            name: personal_hygiene
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: personal_hygiene_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
+            name: personal_care
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: personal_care_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      allergies:
+        questions:
+          -
+            name: allergies
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: allergies_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      transport:
+        questions:
+          -
+            name: mpv
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: mpv_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      communication:
+        questions:
+          -
+            name: hearing_speech_sight_issues
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: hearing_speech_sight_issues_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
+            name: reading_writing_issues
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: reading_writing_issues_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      needs:
+        questions:
+          -
+            name: dependencies
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: dependencies_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
+            name: has_medications
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: medications
+                    type: complex
+                    questions:
+                      -
+                        name: description
+                        type: string
+                      -
+                        name: administration
+                        type: string
+                      -
+                        name: carrier
+                        type: string
+                        answers:
+                          -
+                            value: 'escort'
+                          -
+                            value: 'detainee'
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      contact:
+        questions:
+          -
+            name: healthcare_professional
+            type: string
+          -
+            name: contact_number
+            type: string
   risk:
     sections:
       risk_to_self:

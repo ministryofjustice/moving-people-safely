@@ -54,13 +54,13 @@ RSpec.describe 'managing healthcare medications', type: :feature do
   end
 
   def check_medication
-    within('.medication') do
+    within_fieldset('Regular medication?') do
       choose 'Yes'
     end
   end
 
   def select_no_medications
-    within('.medication') do
+    within_fieldset('Regular medication?') do
       choose 'No'
     end
   end

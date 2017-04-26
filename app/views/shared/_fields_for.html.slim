@@ -1,0 +1,26 @@
+.multiple
+  div id=question.name
+  div id="error_#{f.object.name}_#{question.name}"
+
+  = f.fields_for question.name do |mf|
+    .multiple-wrapper class=(mf.index == 0 ? 'multiple-first' : 'multiple-not-first')
+      = mf.hidden_field :id
+      - question.subquestions.each do |subquestion|
+        .multiple-field.inline
+          - if subquestion.answers_options.empty?
+            = mf.text_field subquestion.name.to_sym
+          - else
+            .form-group
+              = mf.label subquestion.name.to_sym, class: 'form-label'
+              = mf.select subquestion.name.to_sym, select_values_for("#{f.object.name}.#{question.name}.#{subquestion.name}"), include_blank: true
+
+      .multiple-field.remove-link.inline
+        .form-group
+          = mf.label :_delete, 'Remove'
+          = mf.check_box :_delete
+
+  .multiple-field.multiple-add
+    = f.submit t("#{f.object.model_class_name}.form.actions.#{question.name}.add_multiple"),
+      class: 'js-anchor-focus',
+      data: { 'anchor-focus' => question.name },
+      name: "#{f.object.name}_add_#{question.name}"

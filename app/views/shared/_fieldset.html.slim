@@ -3,4 +3,4 @@ fieldset
     | Select all that apply
 
     - question.subquestions.each do |group_question|
-      = render partial: group_question.display_type, locals: { f: f, question: group_question }
+      = render partial: "shared/#{group_question.display_type}", locals: { f: f, question: group_question }
