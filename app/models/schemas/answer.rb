@@ -5,7 +5,7 @@ module Schemas
     def initialize(hash)
       @hash = hash.with_indifferent_access
       @value = @hash.fetch('value')
-      initialize_questions_schema
+      @questions = initialize_questions_schema
     end
 
     private
@@ -13,7 +13,7 @@ module Schemas
     attr_reader :hash
 
     def initialize_questions_schema
-      @questions = (hash['questions'] || []).map do |data|
+      (hash['questions'] || []).map do |data|
         Schemas::Question.new(data)
       end
     end

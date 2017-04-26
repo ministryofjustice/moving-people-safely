@@ -1,4 +1,10 @@
 class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
+  def error_messages(options = {})
+    title = options.fetch(:title, I18n.t('.errors.summary.title'))
+    description = options.fetch(:description, '')
+    GovukElementsErrorsHelper.error_summary(object, title, description, as: object_name)
+  end
+
   def radio_button_fieldset(attribute, options = {})
     content_tag :div,
       class: form_group_classes(attribute),
@@ -23,13 +29,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
         )
       end
 
-      if error_for? attribute
-        tags << content_tag(
-          :span,
-          error_full_message_for(attribute),
-          class: 'error-message'
-        )
-      end
+      tags << error_message_tag_for_attr(attribute) if error_for?(attribute)
 
       hint = hint_text attribute
       tags << content_tag(:span, hint, class: 'form-hint') if hint
@@ -75,13 +75,14 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     content_tag :div,
       class: form_group_classes(attribute.to_sym),
       id: form_group_id(attribute) do
-      field_tag =
+      tags = [content_tag(:span, hint_text(attribute), class: 'form-hint')]
+      tags << error_message_tag_for_attr(attribute) if error_for?(attribute)
+      tags <<
         field_type.new(
-          object.class.name, attribute, self,
+          object.name, attribute, self,
           value: object.public_send(attribute), class: 'form-control'
         ).render
-      hint_tag = content_tag(:span, hint_text(attribute), class: 'form-hint')
-      (hint_tag + field_tag).html_safe
+      tags.join.html_safe
     end
   end
 
@@ -136,7 +137,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
 
   def checkbox(attribute)
     style = 'optional-checkbox-section-wrapper'
-    style << ' mps-hide' unless object.public_send("#{attribute}_on?")
+    style << ' mps-hide' unless object.public_send("#{attribute}?")
     content_tag(:div, class: 'js-checkbox-show-hide form-group') do
       safe_join([
         label(attribute, class: 'block-label') do
@@ -184,5 +185,13 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
   def error_style_for_attr(attribute)
     return ' toggle_with_error' if attribute && error_for?(attribute)
     ' panel panel-border-narrow'
+  end
+
+  def error_message_tag_for_attr(attribute)
+    content_tag(
+      :span,
+      error_full_message_for(attribute),
+      class: 'error-message'
+    )
   end
 end

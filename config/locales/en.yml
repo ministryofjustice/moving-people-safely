@@ -546,6 +546,8 @@ en:
             not_for_release:
               inclusion: question must be answered
   errors:
+    summary:
+      title: There were problems saving this form
     messages:
       minimum_collection_size: At least one item needs to be provided
     attributes:
