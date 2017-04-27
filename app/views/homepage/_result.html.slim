@@ -19,7 +19,7 @@ table
 
     - if move
       td = move.to
-      td = move.date.to_s(:humanized)
+      td = move.date&.to_s(:humanized)
     - else
       td colspan=2
 
