@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424141759) do
+ActiveRecord::Schema.define(version: 20170428180327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,6 +224,9 @@ ActiveRecord::Schema.define(version: 20170424141759) do
     t.text     "conceals_other_items_details"
     t.boolean  "trafficking_drugs"
     t.boolean  "trafficking_alcohol"
+    t.string   "controlled_unlock_required"
+    t.string   "controlled_unlock"
+    t.text     "controlled_unlock_details"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
   end
 

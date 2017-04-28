@@ -68,6 +68,8 @@ Violent to other detainees        Yes
   Other known conflicts           Yes      other violence to other detainees details
 Violent to general public         Yes
   General public                  Yes      violence to general public details
+Controlled unlock                 Yes
+  Controlled unlock               Yes      More than 4 officers. Many people to hold the prisoner
 Risk to others - hostage taker    Yes
   Staff                           Yes      12/03/2010
   Prisoners                       Yes      24/05/2012
@@ -81,9 +83,9 @@ Intimidator/bully                 Yes
   Prisoners                       Yes      intimidation to other detainees details
   Witnesses                       Yes      intimidation to witnesses details
 Sex offender                      Yes
-  Adult male                      Yes
-  Adult female                    Yes
 W1234BY: McTest Testy                                                       Page 2 of 3
+  Adult male                   Yes
+  Adult female                 Yes
   Under 18                     Yes   under 18 sex offence victim details
 Escape status/history          Yes
   Currently on E list          Yes   E-List-Escort
@@ -126,9 +128,9 @@ Allergies                      Yes
 Medical health needs           Yes
   Dependencies / misuse        Yes   dependencies details
   Regular medication           Yes
-Transport                      Yes
-  MPV required                 Yes   MPV details
 W1234BY: McTest Testy                                                                  Page 3 of 3
+Transport                     Yes
+ MPV required                 Yes                MPV details
 Communication / language      Yes
 difficulties
  Hearing / speech / sight     Yes                hearing/speech/sight issues details

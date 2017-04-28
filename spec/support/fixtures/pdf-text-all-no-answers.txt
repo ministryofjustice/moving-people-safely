@@ -47,6 +47,7 @@ Risk to others - violent           No
 Violent to staff                   No
 Violent to other detainees         No
 Violent to general public          No
+Controlled unlock                  No
 Risk to others - hostage taker     No
 Risk to others: harasser and/or    No
 bully
@@ -77,5 +78,6 @@ Current offences                   None
 
 
 Must return to                    None
+
 Must NOT return to                None
 

@@ -107,10 +107,6 @@ RSpec.describe Forms::Risk::Violence, type: :form do
             expect(form.errors[attr_with_error]).to match_array([error_message])
           end
         end
-      end
-
-      context 'when violent to other detainees is set to yes' do
-        before { form.violence_to_other_detainees = 'yes' }
 
         context 'when co-defendant is set to true' do
           before { subject.co_defendant = true }
@@ -145,6 +141,27 @@ RSpec.describe Forms::Risk::Violence, type: :form do
     context "for violence to general public" do
       it { is_expected.to validate_optional_details_field(:violence_to_general_public) }
     end
+
+    context "controlled unlock required" do
+      it { is_expected.to validate_optional_field(:controlled_unlock_required) }
+
+      context 'when controlled unlock required is set to yes' do
+        before { form.controlled_unlock_required = 'yes' }
+
+        it do
+          is_expected.
+            to validate_inclusion_of(:controlled_unlock).
+            in_array(%w[two_officer_unlock three_officer_unlock four_officer_unlock more_than_four])
+        end
+
+        it { is_expected.to validate_presence_of(:controlled_unlock_details) }
+      end
+
+      it do
+        is_expected.to be_configured_to_reset(%i[controlled_unlock controlled_unlock_details])
+          .when(:controlled_unlock_required).not_set_to('yes')
+      end
+    end
   end
 
   describe '#save' do
@@ -166,7 +183,10 @@ RSpec.describe Forms::Risk::Violence, type: :form do
         'gang_member_details' => 'Yakusa member',
         'other_violence_to_other_detainees' => '0',
         'violence_to_general_public' => 'yes',
-        'violence_to_general_public_details' => 'attacks random people in public'
+        'violence_to_general_public_details' => 'attacks random people in public',
+        'controlled_unlock_required' => 'yes',
+        'controlled_unlock' => 'more_than_four',
+        'controlled_unlock_details' => 'many people required to hold the prisoner'
       }
     }
 

@@ -38,6 +38,7 @@ module Page
       fill_in_violence_to_staff
       fill_in_violence_to_other_detainees
       fill_in_violence_to_general_public
+      fill_in_controlled_unlock_required
       save_and_continue
     end
 
@@ -80,6 +81,16 @@ module Page
         fill_in 'violence_violence_to_general_public_details', with: @risk.violence_to_general_public_details
       else
         choose 'violence_violence_to_general_public_no'
+      end
+    end
+
+    def fill_in_controlled_unlock_required
+      if @risk.controlled_unlock_required == 'yes'
+        choose 'violence_controlled_unlock_required_yes'
+        choose 'violence_controlled_unlock_more_than_four'
+        fill_in 'violence_controlled_unlock_details', with: @risk.controlled_unlock_details
+      else
+        choose 'violence_controlled_unlock_required_no'
       end
     end
 
