@@ -7,7 +7,7 @@
 
     .optional-section-wrapper.panel.panel-border-narrow.mps-hide
       - question.conditional_questions.each do |conditional_question|
-        = render partial: conditional_question.display_type, locals: { f: f, question: conditional_question }
+        = render partial: "shared/#{conditional_question.display_type}", locals: { f: f, question: conditional_question }
 - else
   .form-group
     = f.radio_button_fieldset question.name.to_sym,

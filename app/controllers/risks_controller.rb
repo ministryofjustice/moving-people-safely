@@ -11,7 +11,7 @@ class RisksController < ApplicationController
   def show
     form.validate(flash[:form_data]) if flash[:form_data]
     form.prepopulate!
-    render :show, locals: { form: form, template_name: 'shared/step' }
+    render :show, locals: { form: form }
   end
 
   def update

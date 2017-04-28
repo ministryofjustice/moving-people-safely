@@ -9,4 +9,8 @@ module ApplicationHelper
   def link_to_print_in_new_window(escort, text: 'Print', styles: nil)
     link_to(text, escort_print_path(escort), target: :_blank, class: styles)
   end
+
+  def select_values_for(field)
+    I18n.t("helpers.label.#{field}_choices").invert
+  end
 end

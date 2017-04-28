@@ -134,6 +134,9 @@ en:
           description: What is it?
           administration: How is it given?
           carrier: Who carries it?
+          carrier_choices:
+            escort: Escort
+            detainee: Detainee
       physical:
         physical_issues_choices:
           unknown: Clear selection
@@ -318,6 +321,9 @@ en:
         violence_due_to_discrimination: For example, risk to females, homosexuals, other races
   healthcare:
     form:
+      actions:
+        medications:
+          add_multiple: Add medication
       title:
         communication: Communication / language difficulties
         physical: Physical healthcare
@@ -327,9 +333,6 @@ en:
         needs: Medical health needs
         transport: Transport
         contact: Medical contact
-        carrier:
-          escort: Escort
-          detainee: Detainee
   risks:
     form:
       title:
