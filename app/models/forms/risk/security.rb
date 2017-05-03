@@ -70,10 +70,8 @@ module Forms
       end
 
       def previous_escape_attempts_options
-        %i[prison_escape_attempt court_escape_attempt
-           police_escape_attempt other_type_escape_attempt].map do |attr|
-          I18n.t(attr, scope: [:helpers, :label, :security])
-        end
+        translate_options(%i[prison_escape_attempt court_escape_attempt
+                             police_escape_attempt other_type_escape_attempt], :security)
       end
     end
   end

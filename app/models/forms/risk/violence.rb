@@ -78,10 +78,7 @@ module Forms
       end
 
       def violence_due_to_discrimination_options
-        %i[risk_to_females homophobic racist
-           other_violence_due_to_discrimination].map do |attr|
-          I18n.t(attr, scope: [:helpers, :label, :violence])
-        end
+        translate_options(%i[risk_to_females homophobic racist other_violence_due_to_discrimination], :violence)
       end
 
       def selected_violence_to_staff_options
@@ -90,9 +87,7 @@ module Forms
       end
 
       def violence_to_staff_options
-        %i[violence_to_staff_custody violence_to_staff_community].map do |attr|
-          I18n.t(attr, scope: [:helpers, :label, :violence])
-        end
+        translate_options(%i[violence_to_staff_custody violence_to_staff_community], :violence)
       end
 
       def selected_violence_to_other_detainees_options
@@ -100,15 +95,11 @@ module Forms
       end
 
       def violence_to_other_detainees_options
-        %i[co_defendant gang_member other_violence_to_other_detainees].map do |attr|
-          I18n.t(attr, scope: [:helpers, :label, :violence])
-        end
+        translate_options(%i[co_defendant gang_member other_violence_to_other_detainees], :violence)
       end
 
       def controlled_unlock_options
-        %i[two_officer_unlock three_officer_unlock four_officer_unlock more_than_four].map do |attr|
-          I18n.t(attr, scope: [:helpers, :label, :violence])
-        end
+        translate_options(%i[two_officer_unlock three_officer_unlock four_officer_unlock more_than_four], :violence)
       end
     end
   end

@@ -197,6 +197,10 @@ module Forms
       TOGGLE_YES
     end
 
+    def translate_options(options, section)
+      options.map{ |option| I18n.t(option, scope: [:helpers, :label, section]) }
+    end
+
     def name
       self.class.name
     end

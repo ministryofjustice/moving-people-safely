@@ -55,9 +55,7 @@ module Forms
       end
 
       def hostage_taker_options
-        %i[staff_hostage_taker prisoners_hostage_taker public_hostage_taker].map do |attr|
-          I18n.t(attr, scope: [:helpers, :label, :hostage_taker])
-        end
+        translate_options(%i[staff_hostage_taker prisoners_hostage_taker public_hostage_taker], :hostage_taker)
       end
     end
   end
