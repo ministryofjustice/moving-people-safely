@@ -52,6 +52,8 @@ en:
       transport:
         mpv: Requires MPV?
       violence:
+        controlled_unlock_required: Are they on a controlled unlock?
+        controlled_unlock: Number of officers required
         violence_due_to_discrimination: Risk of violence due to discrimination
         violence_to_general_public: Violent to the general public
         violence_to_other_detainees: Violent to other detainees
@@ -209,6 +211,14 @@ en:
       violence:
         co_defendant: Co-defendant
         co_defendant_details: Co-defendant violence details
+        controlled_unlock: Number of officers
+        controlled_unlock_choices:
+          two_officer_unlock: '2 officer unlock'
+          three_officer_unlock: '3 officer unlock'
+          four_officer_unlock: '4 officer unlock'
+          more_than_four: 'More than 4 officers'
+        controlled_unlock_required_choices:
+          unknown: Clear selection
         gang_member: Gang member
         gang_member_details: Gang member violence details
         homophobic: Homosexuals
@@ -304,6 +314,7 @@ en:
         mpv: Eg disability, claustrophobia, pregnancy.
         mpv_details: Give details and explain the significance
       violence:
+        controlled_unlock_details: 'Give details of personal protection equipment (PPE) required:'
         co_defendant_details: Give details
         escort_or_court_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
         gang_member_details: Give details
@@ -368,6 +379,12 @@ en:
           e_list_standard: E-List-Standard
         current_e_risk: *summary_security_answers
         escape_status: *summary_security_answers
+        violence: &summary_violence_answers
+          two_officer_unlock: '2 officer unlock'
+          three_officer_unlock: '3 officer unlock'
+          four_officer_unlock: '4 officer unlock'
+          more_than_four: 'More than 4 officers'
+        controlled_unlock_required: *summary_violence_answers
       questions:
         arson:
           arson: Are they an arsonist?
@@ -443,6 +460,7 @@ en:
           mpv: MPV required
         violence: &summary_violence
           co_defendant: Co-defendant
+          controlled_unlock_required: Controlled unlock
           escort_or_court_staff: Escort or court staff
           gang_member: Gang member
           healthcare_staff: Healthcare staff
@@ -462,11 +480,13 @@ en:
         violence_to_staff: *summary_violence
         violence_to_other_detainees: *summary_violence
         violence_to_general_public: *summary_violence
+        controlled_unlock_required: *summary_violence
       titles:
         arson: Arson
         category_a: Category A or Restricted status
         communication: Communication / language difficulties
         concealed_weapons: Conceals weapons, drugs or other items
+        controlled_unlock_required: Controlled unlock
         contact: Medical contact
         discrimination: "Risk to others - violent"
         escape_status: Escape status/history

@@ -18,7 +18,7 @@ RSpec.describe RiskWorkflow do
     it 'returns the appropriate list of mandatory questions' do
       expect(described_class.mandatory_questions).to match_array(
           %w[acct_status rule_45 csra victim_of_abuse high_profile violence_due_to_discrimination
-             violence_to_staff violence_to_other_detainees violence_to_general_public
+             violence_to_staff violence_to_other_detainees violence_to_general_public controlled_unlock_required
              hostage_taker harassment intimidation sex_offence
              current_e_risk previous_escape_attempts category_a escort_risk_assessment
              escape_pack substance_supply conceals_weapons conceals_drugs

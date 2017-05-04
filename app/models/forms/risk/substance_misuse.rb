@@ -23,9 +23,7 @@ module Forms
       end
 
       def trafficking_options
-        %i[trafficking_drugs trafficking_alcohol].map do |attr|
-          I18n.t(attr, scope: [:helpers, :label, :substance_misuse])
-        end
+        translate_options(%i[trafficking_drugs trafficking_alcohol], :substance_misuse)
       end
     end
   end

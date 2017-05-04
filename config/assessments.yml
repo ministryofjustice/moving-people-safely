@@ -52,6 +52,11 @@ assessment:
               - co_defendant
               - gang_member
               - other_violence_to_other_detainees
+          -
+            name: controlled_unlock_required
+            mandatory: true
+            dependencies:
+              - controlled_unlock
         subsections:
           discrimination:
             questions:
@@ -82,6 +87,14 @@ assessment:
               -
                 name: violence_to_general_public
                 mandatory: true
+          controlled_unlock_required:
+            questions:
+              -
+                name: controlled_unlock_required
+                mandatory: true
+                details:
+                  - controlled_unlock
+                  - controlled_unlock_details
       hostage_taker:
         questions:
           -

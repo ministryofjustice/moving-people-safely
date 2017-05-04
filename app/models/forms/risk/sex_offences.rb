@@ -31,10 +31,8 @@ module Forms
       end
 
       def sex_offence_options
-        %i[sex_offence_adult_male_victim sex_offence_adult_female_victim
-           sex_offence_under18_victim].map do |attr|
-          I18n.t(attr, scope: [:helpers, :label, :sex_offences])
-        end
+        translate_options(%i[sex_offence_adult_male_victim sex_offence_adult_female_victim
+                             sex_offence_under18_victim], :sex_offences)
       end
     end
   end

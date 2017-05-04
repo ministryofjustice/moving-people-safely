@@ -30,10 +30,7 @@ module Forms
       end
 
       def conceals_mobile_phone_or_other_items_options
-        %i[conceals_mobile_phones conceals_sim_cards
-           conceals_other_items].map do |attr|
-          I18n.t(attr, scope: [:helpers, :label, :concealed_weapons])
-        end
+        translate_options(%i[conceals_mobile_phones conceals_sim_cards conceals_other_items], :concealed_weapons)
       end
     end
   end

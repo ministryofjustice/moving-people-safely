@@ -9,6 +9,7 @@ FactoryGirl.define do
     violence_to_staff 'no'
     violence_to_other_detainees 'no'
     violence_to_general_public 'no'
+    controlled_unlock_required 'no'
     harassment 'no'
     hostage_taker 'no'
     intimidation 'no'

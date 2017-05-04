@@ -82,6 +82,7 @@ module Page
       check_violence_to_staff(risk)
       check_violence_to_other_detainees(risk)
       check_violence_to_general_public(risk)
+      check_controlled_unlock_required(risk)
     end
 
     def check_violence_due_to_discrimination(risk)
@@ -111,6 +112,12 @@ module Page
     def check_violence_to_general_public(risk)
       if risk.violence_to_general_public == 'yes'
         check_question(risk, 'violence_to_general_public', 'violence_to_general_public')
+      end
+    end
+
+    def check_controlled_unlock_required(risk)
+      if risk.controlled_unlock_required == 'yes'
+        check_section(risk, 'controlled_unlock', %w[two_officer_unlock three_officer_unlock four_officer_unlock more_than_four])
       end
     end
 

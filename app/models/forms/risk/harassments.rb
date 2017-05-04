@@ -35,10 +35,8 @@ module Forms
       end
 
       def intimidation_options
-        %i[intimidation_to_staff intimidation_to_public
-           intimidation_to_other_detainees intimidation_to_witnesses].map do |attr|
-          I18n.t(attr, scope: [:helpers, :label, :harassments])
-        end
+        translate_options(%i[intimidation_to_staff intimidation_to_public
+                             intimidation_to_other_detainees intimidation_to_witnesses], :harassments)
       end
     end
   end
