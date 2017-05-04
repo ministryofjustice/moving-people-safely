@@ -1109,3 +1109,27 @@ assessment:
                 value: 'no'
               -
                 value: 'unknown'
+      other_risk:
+        questions:
+          -
+            name: other_risk
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: other_risk_details
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+              -
+                value: 'unknown'

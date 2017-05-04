@@ -10,7 +10,7 @@ RSpec.describe RiskWorkflow do
       expect(described_class.sections)
         .to match_array(%w[risk_to_self risk_from_others violence hostage_taker
                            harassments sex_offences security
-                           substance_misuse concealed_weapons arson])
+                           substance_misuse concealed_weapons arson other_risk])
     }
   end
 
@@ -22,7 +22,7 @@ RSpec.describe RiskWorkflow do
              hostage_taker harassment intimidation sex_offence
              current_e_risk previous_escape_attempts category_a escort_risk_assessment
              escape_pack substance_supply conceals_weapons conceals_drugs
-             conceals_mobile_phone_or_other_items arson])
+             conceals_mobile_phone_or_other_items arson other_risk])
     end
   end
 end
