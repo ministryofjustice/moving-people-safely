@@ -1,11 +1,13 @@
 #risk
   = render partial: 'status',
-    locals: { workflow: risk, not_started_path: escort_risks_path(escort), summary_path: summary_escort_risks_path(escort) }
+    locals: { workflow: risk,
+              not_started_path: new_escort_risks_path(escort),
+              summary_path: escort_risks_path(escort) }
 
   h2
     ' Risk
     / small 16:44 | 04 Apr 2016
-  - unless risk.no_questions_answered?
+  - if risk
     .info-table.info-table-big
       .grid-row
         .column-one-sixth.answered_yes

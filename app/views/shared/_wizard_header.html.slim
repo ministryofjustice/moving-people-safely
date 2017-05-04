@@ -1,8 +1,8 @@
 .questions-nav
   - if can_go_back?
-    span = link_to '< Back', previous_wizard_path
+    span = link_to '< Back', previous_wizard_path(action: wizard_action)
 
   span.current-question = "#{current_question} of #{total_questions}"
 
   - if can_skip?
-    span = link_to 'Skip >', next_wizard_path
+    span = link_to 'Skip >', next_wizard_path(action: wizard_action)

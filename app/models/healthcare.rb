@@ -1,5 +1,5 @@
 class Healthcare < ApplicationRecord
-  belongs_to :detainee
+  belongs_to :escort
   include Questionable
   act_as_assessment :healthcare
 
@@ -30,10 +30,6 @@ class Healthcare < ApplicationRecord
   end
 
   private
-
-  def escort
-    detainee&.escort
-  end
 
   def move
     escort&.move

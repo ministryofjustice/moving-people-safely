@@ -4,7 +4,7 @@ class OffencesPresenter < SimpleDelegator
     super
   end
 
-  delegate :empty?, :any?, :each, to: :@offences
+  delegate :empty?, :any?, :each, :present?, to: :@offences
 
   alias all_questions_answered? any?
 

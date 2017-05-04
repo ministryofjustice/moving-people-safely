@@ -10,31 +10,8 @@ RSpec.describe Escort do
     end
   end
 
-  describe '#risk' do
-    context 'when there is no associated detainee' do
-      let(:escort) { create(:escort) }
-      specify { expect(escort.risk).to be_nil }
-    end
-
-    context 'when there is an associated detainee' do
-      let(:detainee) { create(:detainee) }
-      let(:escort) { create(:escort, detainee: detainee) }
-      specify { expect(escort.risk).to eq(detainee.risk) }
-    end
-  end
-
-  describe '#healthcare' do
-    context 'when there is no associated detainee' do
-      let(:escort) { create(:escort) }
-      specify { expect(escort.healthcare).to be_nil }
-    end
-
-    context 'when there is an associated detainee' do
-      let(:detainee) { create(:detainee) }
-      let(:escort) { create(:escort, detainee: detainee) }
-      specify { expect(escort.healthcare).to eq(detainee.healthcare) }
-    end
-  end
+  specify { is_expected.to have_one(:risk) }
+  specify { is_expected.to have_one(:healthcare) }
 
   describe '#offences' do
     context 'when there is no associated detainee' do
@@ -52,9 +29,9 @@ RSpec.describe Escort do
   describe '#completed?' do
     let(:risk) { create(:risk) }
     let(:healthcare) { create(:healthcare) }
-    let(:detainee) { create(:detainee, risk: risk, healthcare: healthcare) }
+    let(:detainee) { create(:detainee) }
     let(:move) { create(:move, :confirmed) }
-    let(:escort) { create(:escort, detainee: detainee, move: move) }
+    let(:escort) { create(:escort, detainee: detainee, move: move, risk: risk, healthcare: healthcare) }
 
     it 'returns true' do
       expect(escort.completed?).to be_truthy
@@ -182,7 +159,9 @@ RSpec.describe Escort do
     context 'when there is an associated move and it is already in review' do
       let(:detainee) { create(:detainee) }
       let(:move) { create(:move, :needs_review) }
-      let(:escort) { create(:escort, detainee: detainee, move: move) }
+      let(:risk) { create(:risk) }
+      let(:healthcare) { create(:healthcare) }
+      let(:escort) { create(:escort, detainee: detainee, move: move, risk: risk, healthcare: healthcare) }
 
       it 'leaves the escort as needing reviewing' do
         expect { escort.needs_review! }
@@ -193,7 +172,9 @@ RSpec.describe Escort do
     context 'when there is an associated move but it is not issued yet' do
       let(:detainee) { create(:detainee) }
       let(:move) { create(:move) }
-      let(:escort) { create(:escort, detainee: detainee, move: move) }
+      let(:risk) { create(:risk) }
+      let(:healthcare) { create(:healthcare) }
+      let(:escort) { create(:escort, detainee: detainee, move: move, risk: risk, healthcare: healthcare) }
 
       it 'marks the escort as needs reviewing' do
         expect { escort.needs_review! }
@@ -215,7 +196,9 @@ RSpec.describe Escort do
     }
     let(:move) { create(:move, workflows) }
     let(:detainee) { create(:detainee) }
-    let(:escort) { create(:escort, detainee: detainee, move: move) }
+    let(:risk) { create(:risk) }
+    let(:healthcare) { create(:healthcare) }
+    let(:escort) { create(:escort, detainee: detainee, move: move, risk: risk, healthcare: healthcare) }
 
     specify { expect(escort.needs_review?).to be_falsey }
 

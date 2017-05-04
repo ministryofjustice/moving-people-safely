@@ -10,7 +10,7 @@ module Escorts
     private
 
     def escort
-      @escort = Escort.find(params[:escort_id])
+      @escort ||= Escort.find(params[:escort_id])
     end
 
     def issue_escort_unless_issued!

@@ -15,7 +15,7 @@ RSpec.feature 'filling in a PER', type: :feature do
 
     healthcare_data = build(:healthcare, :with_medications)
     risk_data = build(:risk, :with_high_csra)
-    detainee = build(:detainee, risk: risk_data, healthcare: healthcare_data)
+    detainee = build(:detainee)
     move_data = build(:move)
 
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}", status: 404)

@@ -4,15 +4,31 @@ class HealthcareController < ApplicationController
 
   steps(*Healthcare.section_names)
 
-  before_action :redirect_unless_document_editable, except: :summary
-  before_action :add_medication, only: [:update]
+  before_action :redirect_unless_detainee_exists
+  before_action :redirect_if_healthcare_already_exists, only: %i[new create]
+  before_action :redirect_unless_document_editable, except: :show
+  before_action :add_medication, only: %i[create update]
 
   helper_method :escort, :healthcare
 
-  def show
-    form.validate(flash[:form_data]) if flash[:form_data]
+  def new
     form.prepopulate!
-    render :show, locals: { form: form }
+    render :new, locals: { form: form }
+  end
+
+  def create
+    if form.validate form_params
+      form.save
+      update_document_workflow
+      redirect_after_update
+    else
+      render :new, locals: { form: form }
+    end
+  end
+
+  def edit
+    form.prepopulate!
+    render :edit, locals: { form: form }
   end
 
   def update
@@ -21,19 +37,18 @@ class HealthcareController < ApplicationController
       update_document_workflow
       redirect_after_update
     else
-      flash[:form_data] = form_params
-      redirect_to escort_healthcare_path(escort, step: step)
+      render :edit, locals: { form: form }
     end
   end
 
-  def summary
-    render 'summary/healthcare'
-  end
-
   def confirm
-    raise unless healthcare.all_questions_answered?
-    healthcare.confirm!(user: current_user)
-    redirect_to escort_path(escort)
+    if healthcare.all_questions_answered?
+      healthcare.confirm!(user: current_user)
+      redirect_to escort_path(escort)
+    else
+      flash.now[:error] = t('alerts.unable_to_confirm_assessment', assessment: 'Healthcare')
+      render :show
+    end
   end
 
   private
@@ -43,7 +58,11 @@ class HealthcareController < ApplicationController
   end
 
   def healthcare
-    escort.healthcare || raise(ActiveRecord::RecordNotFound)
+    @healthcare ||= if %w[new create].include?(params[:action])
+                      escort.build_healthcare
+                    else
+                      escort.healthcare || raise(ActiveRecord::RecordNotFound)
+                    end
   end
 
   def update_document_workflow
@@ -56,11 +75,15 @@ class HealthcareController < ApplicationController
     end
   end
 
+  def redirect_if_healthcare_already_exists
+    redirect_to escort_healthcare_path(escort) if escort.healthcare
+  end
+
   def redirect_after_update
     if params.key?('save_and_view_summary') || !can_skip?
-      redirect_to summary_escort_healthcare_path(escort)
+      redirect_to escort_healthcare_path(escort)
     else
-      redirect_to next_wizard_path
+      redirect_to next_wizard_path(action: :edit)
     end
   end
 
@@ -68,7 +91,8 @@ class HealthcareController < ApplicationController
     if params.key? 'needs_add_medications'
       form.deserialize form_params
       form.add_medication
-      render :show, locals: { form: form }
+      view = params[:action] == 'create' ? :new : :edit
+      render view, locals: { form: form }
     end
   end
 

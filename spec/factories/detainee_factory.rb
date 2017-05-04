@@ -14,17 +14,10 @@ FactoryGirl.define do
       [a[0],b[0],b[1],b[2],b[3],a[1],a[2]].join
     end
 
-    association :healthcare, factory: :healthcare, strategy: :build
-    association :risk, factory: :risk, strategy: :build
-    
     offences { build_list :offence, rand(1..5) }
 
     trait :with_no_offences do
       offences { [] }
-    end
-
-    trait :with_incomplete_risk_assessment do
-      association :risk, :incomplete, strategy: :build
     end
   end
 end

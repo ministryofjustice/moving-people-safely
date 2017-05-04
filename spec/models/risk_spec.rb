@@ -1,12 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe Risk, type: :model do
-  it { is_expected.to belong_to(:detainee) }
+  it { is_expected.to belong_to(:escort) }
   it_behaves_like 'questionable'
+
+  def create_escort
+    create(:escort, detainee: detainee, move: move, risk: risk)
+  end
+
+  let(:detainee) { create(:detainee) }
+  let(:move) { create(:move) }
+
+  subject(:risk) { described_class.new }
 
   describe '#confirm!' do
     let(:user) { build(:user) }
-    subject(:risk) { described_class.new }
 
     context 'when there is no move' do
       it 'raises a StatusChangeError exception' do
@@ -16,10 +24,7 @@ RSpec.describe Risk, type: :model do
     end
 
     context 'when there is a move' do
-      let(:detainee) { create(:detainee) }
-      let(:risk) { create(:risk, detainee: detainee) }
-      let(:move) { create(:move) }
-      let!(:escort) { create(:escort, detainee: detainee, move: move) }
+      before { create_escort }
 
       it 'marks the risk assessment as confirmed' do
         expect {
@@ -31,7 +36,6 @@ RSpec.describe Risk, type: :model do
 
   describe '#not_started!' do
     let(:user) { build(:user) }
-    subject(:risk) { described_class.new }
 
     context 'when there is no move' do
       it 'raises a StatusChangeError exception' do
@@ -41,10 +45,7 @@ RSpec.describe Risk, type: :model do
     end
 
     context 'when there is a move' do
-      let(:detainee) { create(:detainee) }
-      let(:risk) { create(:risk, detainee: detainee) }
-      let(:move) { create(:move) }
-      let!(:escort) { create(:escort, detainee: detainee, move: move) }
+      before { create_escort }
 
       it 'marks the risk assessment as not started' do
         risk.unconfirmed!
@@ -57,7 +58,6 @@ RSpec.describe Risk, type: :model do
 
   describe '#unconfirmed!' do
     let(:user) { build(:user) }
-    subject(:risk) { described_class.new }
 
     context 'when there is no move' do
       it 'raises a StatusChangeError exception' do
@@ -67,10 +67,7 @@ RSpec.describe Risk, type: :model do
     end
 
     context 'when there is a move' do
-      let(:detainee) { create(:detainee) }
-      let(:risk) { create(:risk, detainee: detainee) }
-      let(:move) { create(:move) }
-      let!(:escort) { create(:escort, detainee: detainee, move: move) }
+      before { create_escort }
 
       it 'marks the risk assessment as uncorfirmed' do
         expect {
@@ -82,7 +79,6 @@ RSpec.describe Risk, type: :model do
 
   describe '#incomplete!' do
     let(:user) { build(:user) }
-    subject(:risk) { described_class.new }
 
     context 'when there is no move' do
       it 'raises a StatusChangeError exception' do
@@ -92,10 +88,7 @@ RSpec.describe Risk, type: :model do
     end
 
     context 'when there is a move' do
-      let(:detainee) { create(:detainee) }
-      let(:risk) { create(:risk, detainee: detainee) }
-      let(:move) { create(:move) }
-      let!(:escort) { create(:escort, detainee: detainee, move: move) }
+      before { create_escort }
 
       it 'marks the risk assessment as incomplete' do
         expect {

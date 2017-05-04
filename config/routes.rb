@@ -9,12 +9,10 @@ Rails.application.routes.draw do
       resource :image, only: %i[show], controller: 'detainees/images', constraints: { format: 'jpg' }
     end
     resource :move
-    resource :healthcare, only: %i[show update] do
-      get :summary, on: :collection
+    resource :healthcare, except: :destroy do
       put :confirm, on: :collection
     end
-    resource :risks, only: %i[show update], path: 'risk' do
-      get :summary, on: :collection
+    resource :risks, except: :destroy, path: 'risk' do
       put :confirm, on: :collection
     end
     resource :offences, only: %i[show update]

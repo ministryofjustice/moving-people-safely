@@ -6,8 +6,7 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
 
     prison_number = 'A4321FD'
     detainee = create(:detainee, prison_number: prison_number)
-    move = create(:move, :issued)
-    create(:escort, prison_number: prison_number, detainee: detainee, move: move)
+    create(:escort, :issued, prison_number: prison_number, detainee: detainee)
 
     dashboard.search(detainee.prison_number)
     dashboard.click_add_new_escort
@@ -38,8 +37,7 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     login
     prison_number = 'A4321FD'
     detainee = create(:detainee, prison_number: prison_number)
-    move = create(:move, :active, :confirmed)
-    create(:escort, prison_number: prison_number, detainee: detainee, move: move)
+    create(:escort, :completed, prison_number: prison_number, detainee: detainee)
 
     dashboard.search(detainee.prison_number)
     dashboard.click_view_escort

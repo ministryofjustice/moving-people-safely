@@ -26,7 +26,7 @@ RSpec.describe 'Escorts::PrintController', type: :request do
       end
 
       context "with a printable PER" do
-        let(:move) { create(:move, :confirmed) }
+        let(:escort) { create(:escort, :completed) }
 
         it "marks the PER as issued if hasn't been issued already" do
           expect {
@@ -40,7 +40,7 @@ RSpec.describe 'Escorts::PrintController', type: :request do
         }
 
         context 'when PER has been issued already' do
-          let(:move) { create(:move, :issued) }
+          let(:escort) { create(:escort, :issued) }
 
           it "does not attempt to issue the PER again" do
             expect {

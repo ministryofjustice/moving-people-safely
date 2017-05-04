@@ -608,7 +608,7 @@ en:
     move:
       print:
         unauthorized: "PER is not in a status that can be printed"
-    unable_to_confirm_incomplete_risk_assessment: Risk assessment cannot be confirmed until all mandatory answered are filled
+    unable_to_confirm_assessment: "%{assessment} assessment cannot be confirmed until all mandatory answers are filled"
   sessions:
     create:
       cannot_sign_in: You cannot be signed in

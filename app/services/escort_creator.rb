@@ -20,12 +20,10 @@ class EscortCreator
   attr_reader :prison_number
 
   INCLUDE_GRAPH = [
-    { detainee: [
-      :risk,
-      { healthcare: [:medications] },
-      :offences
-    ] },
-    { move: [:destinations] }
+    { detainee: [:offences] },
+    { move: [:destinations] },
+    :risk,
+    { healthcare: [:medications] }
   ].freeze
 
   EXCEPT_GRAPH = [{ move: [:date] }].freeze

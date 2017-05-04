@@ -1,10 +1,14 @@
 = content_for :breadcrumbs do
   - breadcrumbs_for_page root: true do
     - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
-    - breadcrumb 'Healthcare summary', summary_escort_healthcare_path(escort)
-    - breadcrumb t("healthcare.form.title.#{form.name}")
+    - breadcrumb 'Healthcare summary'
 
-= render partial: 'shared/wizard_header'
+.summary
+  = render partial: 'summary/status', locals: { workflow: healthcare, title: 'Healthcare' }
 
-.healthcare
-  = render partial: 'shared/wizard_step_form', locals: { scope: 'healthcare', assessment: AssessmentPresenter.new(healthcare, step), form: form }
+  - healthcare.sections.each do |section|
+    = render partial: 'summary/section',
+      locals: { section: Summary::AssessmentSectionPresenter.new(section),
+                path: edit_escort_healthcare_path(escort, step: section.name) }
+
+  = render partial: 'summary/call_to_action', locals: { workflow: healthcare, confirm_path: confirm_escort_healthcare_path(escort) }

@@ -1,5 +1,5 @@
 class Risk < ApplicationRecord
-  belongs_to :detainee
+  belongs_to :escort
   include Questionable
   act_as_assessment :risk
 
@@ -28,10 +28,6 @@ class Risk < ApplicationRecord
   end
 
   private
-
-  def escort
-    detainee&.escort
-  end
 
   def move
     escort&.move

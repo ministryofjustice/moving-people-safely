@@ -1,14 +1,6 @@
 class Detainee < ApplicationRecord
   belongs_to :escort
-  has_one :risk, dependent: :destroy
-  has_one :healthcare, dependent: :destroy
   has_many :offences, dependent: :destroy
-
-  def initialize(*)
-    super
-    build_healthcare
-    build_risk
-  end
 
   def offences
     OffencesCollection.new(workflow: offences_workflow, collection: super)
