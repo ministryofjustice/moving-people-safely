@@ -1,6 +1,6 @@
 = content_for :breadcrumbs do
   - breadcrumbs_for_page root: true do
-    - breadcrumb detainee_breadcrumb(escort.detainee), '#'
+    - breadcrumb detainee_breadcrumb(escort.detainee)
 
 .escort
   = render partial: 'header', locals: { detainee: escort.detainee, alerts: EscortAlertsPresenter.new(escort) }
