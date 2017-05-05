@@ -27,6 +27,13 @@ RSpec.describe BreadcrumbsHelper, type: :helper do
       last_crumb = helper.breadcrumbs.last
       expect(last_crumb.title).to eq('Other')
       expect(last_crumb.url).to eq('/other-url')
+
+      expect {
+        helper.add_breadcrumb('No Link')
+      }.to change { helper.breadcrumbs.size }.from(2).to(3)
+      last_crumb = helper.breadcrumbs.last
+      expect(last_crumb.title).to eq('No Link')
+      expect(last_crumb.url).to be_nil
     end
   end
 

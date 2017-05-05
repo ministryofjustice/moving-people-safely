@@ -9,7 +9,7 @@ module BreadcrumbsHelper
     @root_breadcrumb ||= Breadcrumb.new('Home', root_path)
   end
 
-  def add_breadcrumb(title, url)
+  def add_breadcrumb(title, url = nil)
     breadcrumbs << Breadcrumb.new(title, url)
   end
   alias breadcrumb add_breadcrumb
