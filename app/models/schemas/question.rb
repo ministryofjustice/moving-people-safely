@@ -23,6 +23,18 @@ module Schemas
       answers.map(&:value)
     end
 
+    def group?
+      type == 'group'
+    end
+
+    def complex?
+      type == 'complex'
+    end
+
+    def string?
+      type == 'string'
+    end
+
     private
 
     attr_reader :hash

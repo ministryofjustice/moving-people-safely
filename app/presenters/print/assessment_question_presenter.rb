@@ -2,13 +2,14 @@ module Print
   class AssessmentQuestionPresenter < SimpleDelegator
     include Print::Helpers
 
-    delegate :name, :depends_on, :section, to: :question
+    delegate :name, to: :question
 
-    attr_reader :question
+    attr_reader :question, :section
 
-    def initialize(question, assessment)
+    def initialize(question, assessment, section)
       super(assessment)
       @question = question
+      @section = section
     end
 
     def label
@@ -28,7 +29,19 @@ module Print
       when 'yes', true
         true
       else
-        question.relevant_answer?(value)
+        return answer_schema.relevant? if answer_schema
+        question.string? && value.present?
+      end
+    end
+
+    def answer_requires_group_questions?
+      group_questions.present?
+    end
+
+    def group_questions
+      return [] unless answer_schema
+      answer_schema.group_questions.map do |question|
+        self.class.new(question, __getobj__, section)
       end
     end
 
@@ -41,37 +54,37 @@ module Print
         highlighted_content('Yes')
       else
         answer = answer_value(value)
-        question.relevant_answer?(value) ? highlighted_content(answer) : answer
+        answer_schema&.relevant? ? highlighted_content(answer) : answer
       end
     end
 
+    def has_details?
+      answer_schema&.has_dependencies?
+    end
+
     def details
-      return default_details unless question.has_details?
-      question.details.each_with_object([]) do |detail_attr, details|
-        if detail_attr.is_a?(Hash)
-          details << complex_detail_context(detail_attr)
-        elsif public_send(detail_attr).present?
-          details << detail_content(detail_attr)
+      return unless has_details?
+      answer_schema.questions.each_with_object([]) do |subquestion, output|
+        if subquestion.complex?
+          output << complex_detail_context(subquestion)
+        elsif public_send(subquestion.name).present?
+          output << detail_content(subquestion.name)
         end
       end.join('. ')
     end
 
     private
 
-    def default_details
-      public_send("#{name}_details") if respond_to?("#{name}_details")
-    end
-
     def detail_content(attribute)
       [detail_label(attribute), answer_value(public_send(attribute))].join('')
     end
 
-    def complex_detail_context(hash)
-      public_send(hash[:collection]).each_with_object([]) do |item, details|
-        details << hash[:fields].map do |field|
+    def complex_detail_context(question)
+      public_send(question.name).each_with_object([]) do |item, output|
+        output << question.subquestions.map do |subquestion|
           [
-            detail_label("#{hash[:collection]}_collection.#{field}"),
-            answer_value(item.send(field))
+            detail_label("#{question.name}_collection.#{subquestion.name}"),
+            answer_value(item.send(subquestion.name))
           ].join(' ')
         end.join(' | ')
       end.join('</br>')
@@ -81,6 +94,11 @@ module Print
       I18n.t!(attribute, scope: [:print, :section, :questions, section_name])
     rescue
       nil
+    end
+
+    def answer_schema
+      value = public_send(name)
+      question.answer_for(value)
     end
 
     def answer_value(value)

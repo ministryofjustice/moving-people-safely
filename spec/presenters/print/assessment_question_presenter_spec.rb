@@ -2,13 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Print::AssessmentQuestionPresenter do
   let(:section_name) { 'some_section' }
-  let(:section) { Assessments::Section.new(section_name) }
+  let(:section) { instance_double(Schemas::Section, name: section_name) }
   let(:question_name) { 'some_question' }
-  let(:question) { Assessments::Question.new(name: question_name, section: section) }
+  let(:question_type) { 'string' }
+  let(:question_hash) { { name: question_name, type: question_type } }
+  let(:question) { Schemas::Question.new(question_hash) }
   let(:answer) { 'some_answer' }
   let(:assessment) { double(:assessment) }
 
-  subject(:presenter) { described_class.new(question, assessment) }
+  subject(:presenter) { described_class.new(question, assessment, section) }
 
   before do
     allow(assessment).to receive(question_name).and_return(answer)
@@ -70,6 +72,12 @@ RSpec.describe Print::AssessmentQuestionPresenter do
 
     context 'and the question is answered with some other value' do
       let(:answer) { 'some_other_value' }
+      let(:relevant_answer) { false }
+      let(:answer_schema) { instance_double(Schemas::Answer, relevant?: relevant_answer) }
+
+      before do
+        allow(question).to receive(:answer_for).with(answer).and_return(answer_schema)
+      end
 
       context 'and the answer has a locale for the print page' do
         let(:answer) { 'some_localised_value' }
@@ -90,9 +98,7 @@ RSpec.describe Print::AssessmentQuestionPresenter do
       end
 
       context 'and the answer is considered relevant' do
-        before do
-          allow(question).to receive(:relevant_answer?).with(answer).and_return(true)
-        end
+        let(:relevant_answer) { true }
 
         it 'returns the answer highlighted' do
           expect(presenter.answer).to eq '<div class="strong-text">Some other value</div>'
@@ -128,15 +134,41 @@ RSpec.describe Print::AssessmentQuestionPresenter do
 
     context 'and the question is answered with some other value' do
       let(:answer) { 'some_other_value' }
+      let(:relevant_answer) { false }
+      let(:answer_schema) { instance_double(Schemas::Answer, relevant?: relevant_answer) }
+
+      before do
+        allow(question).to receive(:answer_for).with(answer).and_return(answer_schema)
+      end
 
       specify { expect(presenter.answer_is_relevant?).to be_falsey }
 
       context 'and the answer is considered relevant' do
-        before do
-          allow(question).to receive(:relevant_answer?).with(answer).and_return(true)
+        let(:relevant_answer) { true }
+        specify { expect(presenter.answer_is_relevant?).to be_truthy }
+      end
+
+      context 'and there is no schema for the provided answer' do
+        let(:answer_schema) { nil }
+
+        context 'and question is of type other than string' do
+          let(:question_type) { 'boolean' }
+          specify { expect(presenter.answer_is_relevant?).to be_falsey }
         end
 
-        specify { expect(presenter.answer_is_relevant?).to be_truthy }
+        context 'and question is of type string' do
+          let(:question_type) { 'string' }
+
+          context 'but answer value is empty' do
+            let(:answer) { '' }
+            specify { expect(presenter.answer_is_relevant?).to be_falsey }
+          end
+
+          context 'and answer value is present' do
+            let(:answer) { 'some-value' }
+            specify { expect(presenter.answer_is_relevant?).to be_truthy }
+          end
+        end
       end
     end
   end
@@ -144,6 +176,7 @@ RSpec.describe Print::AssessmentQuestionPresenter do
   describe '#details' do
     let(:answer_detail_1) { 'foo' }
     let(:answer_detail_2) { 'bar' }
+    let(:question) { Schemas::Question.new(hash) }
 
     before do
       allow(assessment).to receive(:question_detail_1).and_return(answer_detail_1)
@@ -151,15 +184,38 @@ RSpec.describe Print::AssessmentQuestionPresenter do
     end
 
     context 'when the question has no defined details' do
-      before do
-        allow(question).to receive(:details).and_return([])
-      end
+      let(:hash) {
+        {
+          name: question_name,
+          type: 'string',
+          answers: [
+            { value: answer }
+          ]
+        }
+      }
+
+      specify { expect(presenter.details).to be_nil }
     end
 
     context 'when the question has defined details' do
-      before do
-        allow(question).to receive(:details).and_return(%w[question_detail_1 question_detail_2])
-      end
+      let(:answer_dependant_questions) {
+        [
+          { name: 'question_detail_1', type: 'string' },
+          { name: 'question_detail_2', type: 'string' }
+        ]
+      }
+      let(:hash) {
+        {
+          name: question_name,
+          type: 'string',
+          answers: [
+            {
+              value: answer,
+              questions: answer_dependant_questions
+            }
+          ]
+        }
+      }
 
       it 'returns a string with the combined details for the question' do
         expect(presenter.details).to eq('Foo. Bar')
@@ -174,8 +230,14 @@ RSpec.describe Print::AssessmentQuestionPresenter do
       end
 
       context 'when one of the details has a locale for its label in the print page' do
+        let(:answer_dependant_questions) {
+          [
+            { name: 'localised_question_detail_1', type: 'string' },
+            { name: 'question_detail_2', type: 'string' }
+          ]
+        }
+
         before do
-          allow(question).to receive(:details).and_return(%w[localised_question_detail_1 question_detail_2])
           allow(assessment).to receive(:localised_question_detail_1).and_return(answer_detail_1)
           localize_key("print.section.questions.#{section_name}.localised_question_detail_1", 'Localised question detail 1: ')
         end

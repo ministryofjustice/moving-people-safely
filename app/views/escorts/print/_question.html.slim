@@ -1,0 +1,12 @@
+- if question.answer_is_relevant?
+  - if question.answer_requires_group_questions?
+    - question.group_questions.each do |group_question|
+      = render partial: 'escorts/print/question', locals: { question: group_question }
+  - else
+    tr.top-dotted
+     td.indented.column-30-percent
+       == question.label
+     td.column-20-percent.indented
+       == question.answer
+     td.column-50-percent
+       == question.details

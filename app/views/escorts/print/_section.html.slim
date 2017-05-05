@@ -12,11 +12,4 @@
    td.column-50-percent
      == "&nbsp;".html_safe
   - section.questions.each do |question|
-    - if question.answer_is_relevant?
-      tr.top-dotted
-       td.indented.column-30-percent
-         == question.label
-       td.column-20-percent.indented
-         == question.answer
-       td.column-50-percent
-         == question.details
+    = render partial: 'escorts/print/question', locals: { question: question }
