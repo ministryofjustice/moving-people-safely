@@ -9,19 +9,18 @@ class RisksController < ApplicationController
   helper_method :escort, :risk
 
   def show
-    form.validate(flash[:form_data]) if flash[:form_data]
-    form.prepopulate!
+    form = Forms::Assessment.for_section(risk, step)
     render :show, locals: { form: form }
   end
 
   def update
-    if form.validate form_params
+    form = Forms::Assessment.for_section(risk, step, form_params)
+    if form.valid?
       form.save
       update_document_workflow
       redirect_after_update
     else
-      flash[:form_data] = form_params
-      redirect_to escort_risks_path(escort, step: step)
+      render :show, locals: { form: form }
     end
   end
 
@@ -68,14 +67,7 @@ class RisksController < ApplicationController
   end
 
   def form_params
-    params[step]
-  end
-
-  def form
-    @_form ||= form_for_risk_section(step).new(risk)
-  end
-
-  def form_for_risk_section(section)
-    "Forms::Risk::#{section.to_s.camelcase}".constantize
+    return unless params[step]
+    params[step].permit!.to_h
   end
 end
