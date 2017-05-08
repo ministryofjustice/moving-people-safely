@@ -980,22 +980,6 @@ assessment:
             answers:
               -
                 value: 'yes'
-                questions:
-                  -
-                    name: substance_supply_type
-                    type: group
-                    validators:
-                      -
-                        name: 'Assessments::GroupValidator'
-                        options:
-                          at_least: true
-                    questions:
-                      -
-                        name: trafficking_drugs
-                        type: boolean
-                      -
-                        name: trafficking_alcohol
-                        type: boolean
               -
                 value: 'no'
               -

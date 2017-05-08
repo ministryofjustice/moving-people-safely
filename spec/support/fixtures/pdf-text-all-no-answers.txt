@@ -39,7 +39,7 @@ About this Person Escort Record
  NOT FOR RELEASE                        ACCT                 RULE 45
 
 
- E LIST                        CSRA STANDARD         CAT A             MPV
+ E LIST                      CSRA STANDARD           CAT A             MPV
 
 Risk to self                       No
 Risk from others                   No
@@ -58,8 +58,7 @@ Made previous escape attempts      No
 Category A or Restricted status    No
 Escort Risk Assessment/Escape      No
 Pack
-Risk of trafficking drugs or       No
-alcohol
+Drug trafficking risk              No
 Conceals weapons, drugs or         No
 other items
 Arson                              No

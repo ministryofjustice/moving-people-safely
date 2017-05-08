@@ -14,7 +14,7 @@ module Page
       check_harassment_section(risk)
       check_sex_offences_section(risk)
       check_security_section(risk)
-      check_substance_misuse_section(risk)
+      check_section(risk, 'substance_misuse', %w[substance_supply])
       check_concealed_weapons_section(risk)
       check_section(risk, 'arson', %w[ arson ])
     end
@@ -197,15 +197,6 @@ module Page
         check_section(risk, 'concealed_weapons', fields)
       else
         check_section_is_all_no(risk, 'concealed_weapons', fields)
-      end
-    end
-
-    def check_substance_misuse_section(risk)
-      fields = %w[trafficking_drugs trafficking_alcohol]
-      if risk.substance_supply == 'yes'
-        check_section(risk, 'substance_misuse', fields)
-      else
-        check_section_is_all_no(risk, 'substance_misuse', fields)
       end
     end
   end

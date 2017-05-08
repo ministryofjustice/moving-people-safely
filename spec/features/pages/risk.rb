@@ -224,13 +224,7 @@ module Page
     end
 
     def fill_in_substance_misuse
-      if @risk.substance_supply == 'yes'
-        choose 'substance_misuse_substance_supply_yes'
-        fill_in_trafficking_drugs
-        fill_in_trafficking_alcohol
-      else
-        choose 'substance_misuse_substance_supply_no'
-      end
+      fill_in_optional_details('Is there a risk that they might traffic drugs on this journey?', @risk, :substance_supply)
       save_and_continue
     end
 

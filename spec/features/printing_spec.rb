@@ -172,8 +172,6 @@ RSpec.feature 'printing a PER', type: :feature do
           escape_pack: 'yes',
           escape_pack_completion_date: '13/12/2016',
           substance_supply: 'yes',
-          trafficking_drugs: true,
-          trafficking_alcohol: true,
           conceals_weapons: 'yes',
           conceals_weapons_details: 'conceals weapons details',
           conceals_drugs: 'yes',
