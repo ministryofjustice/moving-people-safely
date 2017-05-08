@@ -115,6 +115,8 @@ other items
   Conceals other items         Yes   Conceals other items details
 Arson                          Yes
   Are they an arsonist?        Yes
+Other risk information         Yes
+  Other risk information       Yes   Suspected terrorist
 Physical healthcare            Yes
   Physical health needs        Yes   Physical issues details
 Mental healthcare              Yes
@@ -126,9 +128,9 @@ Social healthcare              Yes
 Allergies                      Yes
   Allergies                    Yes   Allergies details
 Medical health needs           Yes
-  Dependencies / misuse        Yes   Dependencies details
-  Regular medication           Yes
 W1234BY: McTest Testy                                                                  Page 3 of 3
+ Dependencies / misuse        Yes                Dependencies details
+ Regular medication           Yes
 Transport                     Yes
  MPV required                 Yes                Mpv details
 Communication / language      Yes
@@ -141,6 +143,7 @@ Medical contact               Yes
  Contact number               1-131-999-0232
 Current offences              Yes                Burglary (LXAHTGNJQF) | Sex offence
                                                  (QDPREIBMSF)
+
 Must return to              HMP Brixton: Its a lovely place.
 Must NOT return to          HMP Clive House: Its too cold.
 

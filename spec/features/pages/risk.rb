@@ -18,6 +18,7 @@ module Page
       fill_in_substance_misuse
       fill_in_concealed_weapons
       fill_in_arson
+      fill_in_other_risk
     end
 
     def fill_in_risk_to_self
@@ -288,6 +289,11 @@ module Page
       else
         choose 'arson_arson_no'
       end
+      save_and_continue
+    end
+
+    def fill_in_other_risk
+      fill_in_optional_details('Is there any other information related to risk on this journey you would like to include?', @risk, :other_risk)
       save_and_continue
     end
   end

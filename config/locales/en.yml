@@ -25,6 +25,8 @@ en:
       needs:
         dependencies: Any dependencies or history of misuse?
         has_medications: Regular medication?
+      other_risk:
+        other_risk: Is there any other information related to risk on this journey you would like to include?
       physical:
         physical_issues: Physical health needs?
       risk_from_others:
@@ -276,6 +278,9 @@ en:
         dependencies: Eg early stages of detox, alcohol withdrawal
         dependencies_details: Give details and explain the significance
         has_medications: Eg methadone, anti-inflammatories, anti-depressants, beta-blockers, insulin, migraine tablets, asthma or epilepsy drugs
+      other_risk:
+        other_risk: Include relevant adjudications or case notes not already included
+        other_risk_details: Give details
       physical:
         physical_issues: Eg disabilities, prosthetic limbs, crutches.
         physical_issues_details: Give details and explain the significance
@@ -351,6 +356,7 @@ en:
         concealed_weapons: Concealed weapons, drugs or other items
         harassments: Risk to others - harasser and/or bully
         hostage_taker: Risk to others - hostage taker
+        other_risk: Other risk on this journey
         risk_to_self: Risk to self
         risk_from_others: Risk from others
         security: Escape status/history
@@ -419,6 +425,8 @@ en:
           has_medications: Regular medication
           medications_collection:
             carrier: 'Carried by '
+        other_risk:
+          other_risk: Other risk information
         physical:
           physical_issues: Physical health needs
         sex_offences:
@@ -496,6 +504,7 @@ en:
         intimidation: "Intimidator/bully"
         mental: Mental healthcare
         needs: Medical health needs
+        other_risk: Other risk information
         physical: Physical healthcare
         previous_escape_attempts: Made previous escape attempts
         risk_to_self: Risk to self

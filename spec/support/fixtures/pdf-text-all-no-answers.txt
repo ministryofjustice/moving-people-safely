@@ -63,6 +63,7 @@ alcohol
 Conceals weapons, drugs or         No
 other items
 Arson                              No
+Other risk information             No
 Physical healthcare                No
 Mental healthcare                  No
 Social healthcare                  No
@@ -78,6 +79,5 @@ Current offences                   None
 
 
 Must return to                    None
-
 Must NOT return to                None
 

@@ -60,6 +60,7 @@ RSpec.feature 'printing a PER', type: :feature do
         conceals_drugs: 'no',
         conceals_mobile_phone_or_other_items: 'no',
         arson: 'no',
+        other_risk: 'no'
       })
     }
     let(:healthcare) {
@@ -182,7 +183,9 @@ RSpec.feature 'printing a PER', type: :feature do
           conceals_sim_cards: true,
           conceals_other_items: true,
           conceals_other_items_details: 'conceals other items details',
-          arson: 'yes'
+          arson: 'yes',
+          other_risk: 'yes',
+          other_risk_details: 'suspected terrorist'
         })
       }
 
