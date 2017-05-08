@@ -13,4 +13,10 @@ module ApplicationHelper
   def select_values_for(field)
     I18n.t("helpers.label.#{field}_choices").invert
   end
+
+  def fieldset_title(section, field)
+    scope = %i[helpers fieldset]
+    default_title = I18n.t('default_title', scope: scope)
+    I18n.t("#{section}.#{field}", scope: scope, default: default_title)
+  end
 end

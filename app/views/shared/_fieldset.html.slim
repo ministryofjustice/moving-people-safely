@@ -1,6 +1,6 @@
 fieldset
   span.form-hint
-    | Select all that apply
+    = fieldset_title(f.object.name, question.name)
 
     - question.subquestions.each do |group_question|
       = render partial: "shared/#{group_question.display_type}", locals: { f: f, question: group_question }

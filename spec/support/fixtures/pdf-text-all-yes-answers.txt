@@ -70,7 +70,7 @@ Violent to general public         Yes
   General public                  Yes      Violence to general public details
 Controlled unlock                 Yes
   Controlled unlock               Yes      More than 4 officers. Many people to hold the prisoner
-Risk to others - hostage taker    Yes
+Hostage taker                     Yes
   Staff                           Yes      12/03/2010
   Prisoners                       Yes      24/05/2012
   Public                          Yes      02/09/2007
