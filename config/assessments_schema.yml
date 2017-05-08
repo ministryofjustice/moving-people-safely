@@ -93,6 +93,51 @@ assessment:
                 value: 'no'
               -
                 value: 'unknown'
+      needs:
+        questions:
+          -
+            name: dependencies
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: dependencies_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
+            name: has_medications
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: medications
+                    type: complex
+                    questions:
+                      -
+                        name: description
+                        type: string
+                      -
+                        name: administration
+                        type: string
+                      -
+                        name: carrier
+                        type: string
+                        answers:
+                          -
+                            value: 'escort'
+                          -
+                            value: 'detainee'
+              -
+                value: 'no'
+              -
+                value: 'unknown'
       transport:
         questions:
           -
@@ -139,51 +184,6 @@ assessment:
                 value: 'no'
               -
                 value: 'unknown'
-      needs:
-        questions:
-          -
-            name: dependencies
-            type: string
-            answers:
-              -
-                value: 'yes'
-                questions:
-                  -
-                    name: dependencies_details
-                    type: string
-              -
-                value: 'no'
-              -
-                value: 'unknown'
-          -
-            name: has_medications
-            type: string
-            answers:
-              -
-                value: 'yes'
-                questions:
-                  -
-                    name: medications
-                    type: complex
-                    questions:
-                      -
-                        name: description
-                        type: string
-                      -
-                        name: administration
-                        type: string
-                      -
-                        name: carrier
-                        type: string
-                        answers:
-                          -
-                            value: 'escort'
-                          -
-                            value: 'detainee'
-              -
-                value: 'no'
-              -
-                value: 'unknown'
       contact:
         questions:
           -
@@ -207,10 +207,13 @@ assessment:
             answers:
               -
                 value: 'open'
+                relevant: true
               -
                 value: 'post_closure'
+                relevant: true
               -
                 value: 'closed_in_last_6_months'
+                relevant: true
                 questions:
                   -
                     name: date_of_most_recently_closed_acct
@@ -256,6 +259,7 @@ assessment:
             answers:
               -
                 value: 'high'
+                relevant: true
               -
                 value: 'standard'
               -

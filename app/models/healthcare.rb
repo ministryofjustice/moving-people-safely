@@ -33,7 +33,11 @@ class Healthcare < ApplicationRecord
   end
 
   def schema
-    @schema ||= Schemas::Assessment.new(NEW_ASSESSMENTS_SCHEMA['healthcare'])
+    @schema ||= Schemas::Assessment.new(ASSESSMENTS_SCHEMA['healthcare'])
+  end
+
+  def sections
+    schema.sections
   end
 
   private

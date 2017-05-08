@@ -10,8 +10,8 @@ module Print
     end
 
     def questions
-      @questions ||= questions_without_dependencies.map do |question|
-        Print::AssessmentQuestionPresenter.new(question, assessment)
+      @questions ||= model.questions.map do |question|
+        Print::AssessmentQuestionPresenter.new(question, assessment, self)
       end
     end
 
@@ -32,10 +32,6 @@ module Print
 
     def model
       __getobj__
-    end
-
-    def questions_without_dependencies
-      model.questions.select { |question| !question.has_dependencies? }
     end
   end
 end

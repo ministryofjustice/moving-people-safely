@@ -9,6 +9,10 @@ module Schemas
       initialize_questions_schema
     end
 
+    def has_subsections?
+      subsections.present?
+    end
+
     private
 
     attr_reader :hash
