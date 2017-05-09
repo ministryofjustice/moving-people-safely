@@ -83,53 +83,52 @@ Intimidator/bully                 Yes
   Prisoners                       Yes      Intimidation to other detainees details
   Witnesses                       Yes      Intimidation to witnesses details
 Sex offender                      Yes
-W1234BY: McTest Testy                                                       Page 2 of 3
-  Adult male                   Yes
-  Adult female                 Yes
-  Under 18                     Yes   Under 18 sex offence victim details
-Escape status/history          Yes
-  Currently on E list          Yes   E-List-Escort
-Made previous escape           Yes
+W1234BY: McTest Testy                                                     Page 2 of 3
+  Adult male                 Yes
+  Adult female               Yes
+  Under 18                   Yes   Under 18 sex offence victim details
+Escape status/history        Yes
+  Currently on E list        Yes   E-List-Escort
+Made previous escape         Yes
 attempts
-  Prison                       Yes   Prison escape attempt details
-  Court                        Yes   Court escape attempt details
-  Police                       Yes   Police escape attempt details
-  Other                        Yes   Other type of escape attempt details
-Category A or Restricted       Yes
+  Prison                     Yes   Prison escape attempt details
+  Court                      Yes   Court escape attempt details
+  Police                     Yes   Police escape attempt details
+  Other                      Yes   Other type of escape attempt details
+Category A or Restricted     Yes
 status
-  Category A                   Yes
-Escort Risk                    Yes
+  Category A                 Yes
+Escort Risk                  Yes
 Assessment/Escape Pack
-  Escort Risk Assessment       Yes   Completed on: 26/11/2016
-  Escape Pack                  Yes   Completed on: 13/12/2016
-Risk of trafficking drugs or   Yes
-alcohol
-  Drugs                        Yes
-  Alcohol                      Yes
-Conceals weapons, drugs or     Yes
+  Escort Risk Assessment     Yes   Completed on: 26/11/2016
+  Escape Pack                Yes   Completed on: 13/12/2016
+Drug trafficking risk        Yes
+  Drug trafficking risk      Yes
+Conceals weapons, drugs or   Yes
 other items
-  Conceals weapons             Yes   Conceals weapons details
-  Conceals drugs               Yes   Conceals drugs details
-  Conceals mobile phones       Yes
-  Conceals SIM cards           Yes
-  Conceals other items         Yes   Conceals other items details
-Arson                          Yes
-  Are they an arsonist?        Yes
-Other risk information         Yes
-  Other risk information       Yes   Suspected terrorist
-Physical healthcare            Yes
-  Physical health needs        Yes   Physical issues details
-Mental healthcare              Yes
-  Mental health issues         Yes   Mental illness details
-  Phobias                      Yes   Phobias details
-Social healthcare              Yes
-  Personal hygiene issues      Yes   Personal hygiene details
-  Personal care issues         Yes   Personal care details
-Allergies                      Yes
-  Allergies                    Yes   Allergies details
-Medical health needs           Yes
+  Conceals weapons           Yes   Conceals weapons details
+  Conceals drugs             Yes   Conceals drugs details
+  Conceals mobile phones     Yes
+  Conceals SIM cards         Yes
+  Conceals other items       Yes   Conceals other items details
+Arson                        Yes
+  Are they an arsonist?      Yes
+Other risk information       Yes
+  Other risk information     Yes   Suspected terrorist
+Physical healthcare          Yes
+  Physical health needs      Yes   Physical issues details
+Mental healthcare            Yes
+
+  Mental health issues       Yes   Mental illness details
+  Phobias                    Yes   Phobias details
+Social healthcare            Yes
+  Personal hygiene issues    Yes   Personal hygiene details
+  Personal care issues       Yes   Personal care details
+Allergies                    Yes
+  Allergies                  Yes   Allergies details
+Medical health needs         Yes
+  Dependencies / misuse      Yes   Dependencies details
 W1234BY: McTest Testy                                                                  Page 3 of 3
- Dependencies / misuse        Yes                Dependencies details
  Regular medication           Yes
 Transport                     Yes
  MPV required                 Yes                Mpv details
@@ -143,7 +142,6 @@ Medical contact               Yes
  Contact number               1-131-999-0232
 Current offences              Yes                Burglary (LXAHTGNJQF) | Sex offence
                                                  (QDPREIBMSF)
-
 Must return to              HMP Brixton: Its a lovely place.
 Must NOT return to          HMP Clive House: Its too cold.
 

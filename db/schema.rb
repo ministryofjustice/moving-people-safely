@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504125932) do
+ActiveRecord::Schema.define(version: 20170508141735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -222,8 +222,6 @@ ActiveRecord::Schema.define(version: 20170504125932) do
     t.boolean  "conceals_sim_cards"
     t.boolean  "conceals_other_items"
     t.text     "conceals_other_items_details"
-    t.boolean  "trafficking_drugs"
-    t.boolean  "trafficking_alcohol"
     t.string   "controlled_unlock_required"
     t.string   "controlled_unlock"
     t.text     "controlled_unlock_details"
