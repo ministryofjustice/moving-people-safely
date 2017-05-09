@@ -48,7 +48,7 @@ Violent to staff                   No
 Violent to other detainees         No
 Violent to general public          No
 Controlled unlock                  No
-Risk to others - hostage taker     No
+Hostage taker                      No
 Risk to others: harasser and/or    No
 bully
 Intimidator/bully                  No

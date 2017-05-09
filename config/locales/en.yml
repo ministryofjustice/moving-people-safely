@@ -1,6 +1,7 @@
 en:
   helpers:
     fieldset:
+      default_title: 'Select all that apply:'
       allergies:
         allergies: Allergies?
       arson:
@@ -15,7 +16,8 @@ en:
         harassment: Harasser
         intimidation: Intimidator / bully
       hostage_taker:
-        hostage_taker: History of taking hostages
+        hostage_taker: Do they have a history of taking hostages?
+        hostage_taker_type: 'Group involved (select all that apply):'
       move:
         has_destinations: Are there establishments the detainee must or must not be sent?
         not_for_release: Not for release?
@@ -355,7 +357,7 @@ en:
         arson: Arson
         concealed_weapons: Concealed weapons, drugs or other items
         harassments: Risk to others - harasser and/or bully
-        hostage_taker: Risk to others - hostage taker
+        hostage_taker: Hostage taker
         other_risk: Other risk on this journey
         risk_to_self: Risk to self
         risk_from_others: Risk from others
@@ -500,7 +502,7 @@ en:
         escape_status: Escape status/history
         escort_details: Escort Risk Assessment/Escape Pack
         harassment: "Risk to others: harasser and/or bully"
-        hostage_taker: "Risk to others - hostage taker"
+        hostage_taker: "Hostage taker"
         intimidation: "Intimidator/bully"
         mental: Mental healthcare
         needs: Medical health needs
