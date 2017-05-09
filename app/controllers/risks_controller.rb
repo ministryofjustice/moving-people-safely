@@ -2,7 +2,7 @@ class RisksController < ApplicationController
   include Wicked::Wizard
   include Wizardable
 
-  steps(*RiskWorkflow.sections)
+  steps(*Risk.section_names)
 
   before_action :redirect_unless_document_editable, except: :summary
 

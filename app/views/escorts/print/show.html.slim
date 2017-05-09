@@ -26,15 +26,13 @@ html
         table#risk-table.section-table
           - risk.sections.each do |section|
             = render partial: 'escorts/print/section',
-              locals: { section: Print::AssessmentSectionPresenter.new(section, risk),
-                        assessment: risk }
+              locals: { section: Print::AssessmentSectionPresenter.new(section) }
       div#healthcare-section.section
         span.watermark = 'Healthcare'
         table#healthcare-table.section-table
           - healthcare.sections.each do |section|
             = render partial: 'escorts/print/section',
-              locals: { section: Print::AssessmentSectionPresenter.new(section, healthcare),
-                        assessment: healthcare }
+              locals: { section: Print::AssessmentSectionPresenter.new(section) }
       div#offences-section.section
         span.watermark = 'Offences'
         table#offences-table.section-table

@@ -2,12 +2,24 @@ class Risk < ApplicationRecord
   belongs_to :detainee
   include Questionable
 
+  class << self
+    def schema
+      @schema ||= Schemas::Assessment.new(ASSESSMENTS_SCHEMA['risk'])
+    end
+
+    def section_names
+      schema.sections.map(&:name)
+    end
+  end
+
   StatusChangeError = Class.new(StandardError)
 
   delegate :not_started?, :needs_review?, :incomplete?, :unconfirmed?, :confirmed?, to: :risk_workflow
 
   def question_fields
-    RiskWorkflow.mandatory_questions
+    sections.map do |section|
+      RiskAssessment.section_for(section.name).mandatory_questions
+    end.flatten
   end
 
   def status
@@ -35,7 +47,9 @@ class Risk < ApplicationRecord
   end
 
   def sections
-    schema.sections
+    @sections ||= schema.sections.map do |section_schema|
+      Assessments::Section.new(self, section_schema)
+    end
   end
 
   private

@@ -1,6 +1,6 @@
 module Print
   class OffencesPresenter < SimpleDelegator
-    include Print::Helpers
+    include PresenterHelpers
 
     def label
       content = t('print.label.offences.current_offences')

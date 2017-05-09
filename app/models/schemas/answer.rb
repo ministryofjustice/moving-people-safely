@@ -10,9 +10,16 @@ module Schemas
     end
 
     def group_questions
-      group = questions.find(&:group?)
       return [] unless group
       group.subquestions
+    end
+
+    def group
+      questions.find(&:group?)
+    end
+
+    def has_group_questions?
+      group_questions.present?
     end
 
     def has_dependencies?

@@ -2,6 +2,16 @@ class Healthcare < ApplicationRecord
   belongs_to :detainee
   include Questionable
 
+  class << self
+    def schema
+      @schema ||= Schemas::Assessment.new(ASSESSMENTS_SCHEMA['healthcare'])
+    end
+
+    def section_names
+      schema.sections.map(&:name)
+    end
+  end
+
   StatusChangeError = Class.new(StandardError)
 
   delegate :not_started?, :needs_review?, :incomplete?, :unconfirmed?, :confirmed?, to: :healthcare_workflow
@@ -9,7 +19,9 @@ class Healthcare < ApplicationRecord
   has_many :medications, dependent: :destroy
 
   def question_fields
-    HealthcareWorkflow.mandatory_questions
+    sections.map do |section|
+      HealthcareAssessment.section_for(section.name).mandatory_questions
+    end.flatten
   end
 
   def status
@@ -37,7 +49,9 @@ class Healthcare < ApplicationRecord
   end
 
   def sections
-    schema.sections
+    @sections ||= schema.sections.map do |section_schema|
+      Assessments::Section.new(self, section_schema)
+    end
   end
 
   private

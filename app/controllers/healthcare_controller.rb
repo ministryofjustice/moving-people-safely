@@ -2,7 +2,7 @@ class HealthcareController < ApplicationController
   include Wicked::Wizard
   include Wizardable
 
-  steps(*HealthcareWorkflow.sections)
+  steps(*Healthcare.section_names)
 
   before_action :redirect_unless_document_editable, except: :summary
   before_action :add_medication, only: [:update]
