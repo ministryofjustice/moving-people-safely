@@ -16,7 +16,7 @@ module Assessments
     end
 
     def relevant_answer?
-      answer_schema&.relevant?
+      answer_schema&.relevant? || value == 'yes'
     end
 
     def has_dependencies?

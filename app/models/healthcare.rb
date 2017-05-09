@@ -1,16 +1,7 @@
 class Healthcare < ApplicationRecord
   belongs_to :detainee
   include Questionable
-
-  class << self
-    def schema
-      @schema ||= Schemas::Assessment.new(ASSESSMENTS_SCHEMA['healthcare'])
-    end
-
-    def section_names
-      schema.sections.map(&:name)
-    end
-  end
+  act_as_assessment :healthcare
 
   StatusChangeError = Class.new(StandardError)
 
@@ -42,16 +33,6 @@ class Healthcare < ApplicationRecord
 
   def incomplete!
     status_change(:incomplete!)
-  end
-
-  def schema
-    @schema ||= Schemas::Assessment.new(ASSESSMENTS_SCHEMA['healthcare'])
-  end
-
-  def sections
-    @sections ||= schema.sections.map do |section_schema|
-      Assessments::Section.new(self, section_schema)
-    end
   end
 
   private

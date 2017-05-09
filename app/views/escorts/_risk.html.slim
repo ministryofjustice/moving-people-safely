@@ -10,13 +10,13 @@
       .grid-row
         .column-one-sixth.answered_yes
           small Risk
-          p = risk.questions_answered_yes
+          p = risk.total_questions_with_relevant_answer
         .column-one-sixth.answered_no
           small No risk
-          p = risk.questions_answered_no
+          p = risk.total_questions_without_relevance
         - unless risk.all_questions_answered?
           .column-one-sixth.text-error.not_answered
             small Missing
-            p = risk.questions_not_answered
+            p = risk.total_questions_not_answered
   - else
     hr

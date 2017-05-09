@@ -1,28 +1,60 @@
 module Questionable
-  def all_questions_answered?
-    questions_not_answered.zero?
+  def self.included(base)
+    base.extend(ClassMethods)
+    base.include(InstanceMethods)
   end
 
-  def no_questions_answered?
-    questions_not_answered == question_fields.size
-  end
+  module ClassMethods
+    def act_as_assessment(name)
+      @schema = Schemas::Assessment.new(ASSESSMENTS_SCHEMA[name.to_s])
+    end
 
-  def questions_answered_yes
-    question_fields.count do |question|
-      %w[yes high].include?(public_send(question))
+    def schema
+      @schema
+    end
+
+    def section_names
+      schema.sections.map(&:name)
     end
   end
 
-  def questions_answered_no
-    question_fields.count { |question| public_send(question) == 'no' }
-  end
+  module InstanceMethods
+    def schema
+      self.class.schema
+    end
 
-  def questions_not_answered
-    # THIS IS NOT RIGHT: 'unknown' shouldn't be considered to be an answer
-    # that represents not been anwered, the value either has been selected or not
-    # if it hasn't, it hasn't been answered.
-    # For now and to keep it compatible with the current version I'll leave
-    # the support for this, but this needs to be addressed, eventually
-    question_fields.count { |question| public_send(question).blank? || public_send(question) == 'unknown' }
+    def sections
+      @sections ||= schema.sections.map do |section_schema|
+        Assessments::Section.new(self, section_schema)
+      end
+    end
+
+    def mandatory_questions
+      @mandatory_questions ||= sections.flat_map(&:mandatory_questions)
+    end
+
+    def all_questions_answered?
+      mandatory_questions.all?(&:answered?)
+    end
+
+    def no_questions_answered?
+      mandatory_questions.none?(&:answered?)
+    end
+
+    def total_questions_with_relevant_answer
+      mandatory_questions.count do |question|
+        question.answered? && question.relevant_answer?
+      end
+    end
+
+    def total_questions_without_relevance
+      mandatory_questions.count do |question|
+        question.answered? && !question.relevant_answer?
+      end
+    end
+
+    def total_questions_not_answered
+      mandatory_questions.count { |question| !question.answered? }
+    end
   end
 end

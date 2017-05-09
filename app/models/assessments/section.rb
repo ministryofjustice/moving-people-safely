@@ -20,6 +20,10 @@ module Assessments
       false
     end
 
+    def mandatory_questions
+      questions + subsections.flat_map(&:questions)
+    end
+
     private
 
     def initialize_subsections

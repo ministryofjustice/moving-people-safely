@@ -1,16 +1,7 @@
 class Risk < ApplicationRecord
   belongs_to :detainee
   include Questionable
-
-  class << self
-    def schema
-      @schema ||= Schemas::Assessment.new(ASSESSMENTS_SCHEMA['risk'])
-    end
-
-    def section_names
-      schema.sections.map(&:name)
-    end
-  end
+  act_as_assessment :risk
 
   StatusChangeError = Class.new(StandardError)
 
@@ -40,16 +31,6 @@ class Risk < ApplicationRecord
 
   def incomplete!
     status_change(:incomplete!)
-  end
-
-  def schema
-    @schema ||= Schemas::Assessment.new(ASSESSMENTS_SCHEMA['risk'])
-  end
-
-  def sections
-    @sections ||= schema.sections.map do |section_schema|
-      Assessments::Section.new(self, section_schema)
-    end
   end
 
   private
