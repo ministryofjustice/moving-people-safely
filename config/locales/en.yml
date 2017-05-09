@@ -39,11 +39,13 @@ en:
       risk_to_self:
         acct_status: Detainee's most recent ACCT status
       security:
-        category_a: Category A or Restricted status
-        current_e_risk: Currently on E list
-        escape_pack: Escape Pack completed for this journey
-        escort_risk_assessment: Escort Risk Assessment completed for this journey
-        previous_escape_attempts: Made previous escape attempts
+        category_a: Are they Category A, potential Category A or Restricted Status?
+        current_e_risk: Are they on the Escape List (E-List)?
+        current_e_risk_details: 'Select the E-List category:'
+        escape_pack: Has an Escape Pack been created for this journey?
+        escort_risk_assessment: Has an Escort Risk Assessment been completed for this journey?
+        previous_escape_attempts: Have they made previous escape attempts?
+        previous_escape_attempts_type: 'Attempted to escape from (select all that apply):'
       sex_offences:
         sex_offence: Sex offender
       social:
@@ -185,7 +187,7 @@ en:
         prison_escape_attempt_details: Last prison escape attempt details
         court_escape_attempt: Court
         court_escape_attempt_details: Last court escape attempt details
-        police_escape_attempt: Police
+        police_escape_attempt: Police custody
         police_escape_attempt_details: Last police escape attempt details
         other_type_escape_attempt: Other
         other_type_escape_attempt_details: Last other type of escape attempt details
@@ -298,8 +300,6 @@ en:
         suicide_details: Give details
         date_of_most_recently_closed_acct: DD/MM/YYYY
       security:
-        category_a: Check PSI 08/2013 The Review of Security Category - CAT A Restricted Status
-        current_e_risk: Check PSI 2011/56 Management and Security of Escape List (E List prisoners)
         escape_pack_completion_date: DD/MM/YYYY
         escort_risk_assessment_completion_date: DD/MM/YYYY
         prison_escape_attempt_details: Give details of last escape attempt
@@ -443,8 +443,8 @@ en:
           acct_status: ACCT status
           suicide: Risk of suicide or self-harm
         security: &summary_security
-          category_a: Category A or Restricted status
-          current_e_risk: Currently on E list
+          category_a: Are they Category A, potential Category A or Restricted Status?
+          current_e_risk: Are they on the Escape List (E-List)?
           escape_list: Escape list
           escape_pack_completion_date: 'Completed on: '
           escort_risk_assessment_completion_date: 'Completed on: '
@@ -489,14 +489,14 @@ en:
         controlled_unlock_required: *summary_violence
       titles:
         arson: Arson
-        category_a: Category A or Restricted status
+        category_a: Are they Category A, potential Category A or Restricted Status?
         communication: Communication / language difficulties
         concealed_weapons: Conceals weapons, drugs or other items
         controlled_unlock_required: Controlled unlock
         contact: Medical contact
         discrimination: "Risk to others - violent"
         escape_status: Escape status/history
-        escort_details: Escort Risk Assessment/Escape Pack
+        escort_details: Further security information
         harassment: "Risk to others: harasser and/or bully"
         hostage_taker: "Hostage taker"
         intimidation: "Intimidator/bully"
@@ -504,7 +504,7 @@ en:
         needs: Medical health needs
         other_risk: Other risk information
         physical: Physical healthcare
-        previous_escape_attempts: Made previous escape attempts
+        previous_escape_attempts: Have they made previous escape attempts?
         risk_to_self: Risk to self
         risk_from_others: Risk from others
         sex_offences: Sex offender
