@@ -621,30 +621,6 @@ assessment:
                 value: 'unknown'
       harassments:
         sections:
-          harassment:
-            questions:
-              -
-                name: harassment
-                type: string
-                validators:
-                  -
-                    name: 'Assessments::InclusionValidator'
-                    options:
-                      allow_blank: true
-                answers:
-                  -
-                    value: 'yes'
-                    questions:
-                      -
-                        name: harassment_details
-                        type: string
-                        validators:
-                          -
-                            name: 'Assessments::PresenceValidator'
-                  -
-                    value: 'no'
-                  -
-                    value: 'unknown'
           intimidation:
             questions:
               -

@@ -74,19 +74,16 @@ Hostage taker                     Yes
   Staff                           Yes      12/03/2010
   Prisoners                       Yes      24/05/2012
   Public                          Yes      02/09/2007
-Risk to others: harasser and/or   Yes
-bully
-  Harasser                        Yes      Harassment details
-Intimidator/bully                 Yes
+Harassment and bullying           Yes
   Staff                           Yes      Intimidation to staff details
   Public                          Yes      Intimidation to public details
   Prisoners                       Yes      Intimidation to other detainees details
   Witnesses                       Yes      Intimidation to witnesses details
 Sex offender                      Yes
+  Adult male                      Yes
+  Adult female                    Yes
+  Under 18                        Yes      Under 18 sex offence victim details
 W1234BY: McTest Testy                                                         Page 2 of 3
-  Adult male                     Yes
-  Adult female                   Yes
-  Under 18                       Yes   Under 18 sex offence victim details
 Escape status/history            Yes
   Are they on the Escape List    Yes   E-List-Escort
   (E-List)?
@@ -128,10 +125,10 @@ Allergies                        Yes
   Allergies                      Yes   Allergies details
 Medical health needs             Yes
   Dependencies / misuse          Yes   Dependencies details
+  Regular medication             Yes
+Transport                        Yes
+  MPV required                   Yes   Mpv details
 W1234BY: McTest Testy                                                                  Page 3 of 3
- Regular medication           Yes
-Transport                     Yes
- MPV required                 Yes                Mpv details
 Communication / language      Yes
 difficulties
  Hearing / speech / sight     Yes                Hearing/speech/sight issues details

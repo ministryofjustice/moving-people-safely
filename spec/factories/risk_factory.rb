@@ -10,7 +10,6 @@ FactoryGirl.define do
     violence_to_other_detainees 'no'
     violence_to_general_public 'no'
     controlled_unlock_required 'no'
-    harassment 'no'
     hostage_taker 'no'
     intimidation 'no'
     sex_offence 'no'
@@ -32,7 +31,6 @@ FactoryGirl.define do
 
     trait :incomplete do
       rule_45 'unknown'
-      harassment 'unknown'
       conceals_weapons 'unknown'
     end
   end

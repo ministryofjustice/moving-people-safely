@@ -129,18 +129,8 @@ module Page
     end
 
     def fill_in_harassments
-      fill_in_harassment
       fill_in_intimidation
       save_and_continue
-    end
-
-    def fill_in_harassment
-      if @risk.harassment == 'yes'
-        choose 'harassments_harassment_yes'
-        fill_in 'harassments_harassment_details', with: @risk.harassment_details
-      else
-        choose 'harassments_harassment_no'
-      end
     end
 
     def fill_in_intimidation

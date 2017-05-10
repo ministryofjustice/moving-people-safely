@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508141735) do
+ActiveRecord::Schema.define(version: 20170510160454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,9 +139,6 @@ ActiveRecord::Schema.define(version: 20170508141735) do
     t.text     "public_offence_related_details"
     t.boolean  "police"
     t.text     "police_details"
-    t.string   "stalker_harasser_bully",                            default: "unknown"
-    t.boolean  "harasser"
-    t.text     "harasser_details"
     t.boolean  "intimidator"
     t.text     "intimidator_details"
     t.boolean  "bully"
@@ -180,8 +177,6 @@ ActiveRecord::Schema.define(version: 20170508141735) do
     t.text     "other_violence_to_other_detainees_details"
     t.string   "violence_to_general_public"
     t.text     "violence_to_general_public_details"
-    t.string   "harassment"
-    t.text     "harassment_details"
     t.text     "intimidation"
     t.boolean  "intimidation_to_staff"
     t.text     "intimidation_to_staff_details"
