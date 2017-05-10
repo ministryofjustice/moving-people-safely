@@ -1,16 +1,13 @@
 class Healthcare < ApplicationRecord
   belongs_to :detainee
   include Questionable
+  act_as_assessment :healthcare
 
   StatusChangeError = Class.new(StandardError)
 
   delegate :not_started?, :needs_review?, :incomplete?, :unconfirmed?, :confirmed?, to: :healthcare_workflow
 
   has_many :medications, dependent: :destroy
-
-  def question_fields
-    HealthcareWorkflow.mandatory_questions
-  end
 
   def status
     healthcare_workflow&.status
@@ -30,14 +27,6 @@ class Healthcare < ApplicationRecord
 
   def incomplete!
     status_change(:incomplete!)
-  end
-
-  def schema
-    @schema ||= Schemas::Assessment.new(ASSESSMENTS_SCHEMA['healthcare'])
-  end
-
-  def sections
-    schema.sections
   end
 
   private

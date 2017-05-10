@@ -2,18 +2,20 @@ require 'rails_helper'
 
 RSpec.describe Print::AssessmentQuestionPresenter do
   let(:section_name) { 'some_section' }
-  let(:section) { instance_double(Schemas::Section, name: section_name) }
+  let(:section) { instance_double(Assessments::Section, name: section_name) }
   let(:question_name) { 'some_question' }
   let(:question_type) { 'string' }
   let(:question_hash) { { name: question_name, type: question_type } }
-  let(:question) { Schemas::Question.new(question_hash) }
+  let(:question) { Assessments::Question.new(assessment, question_schema, parent: section) }
+  let(:question_schema) { Schemas::Question.new(question_hash) }
   let(:answer) { 'some_answer' }
   let(:assessment) { double(:assessment) }
 
-  subject(:presenter) { described_class.new(question, assessment, section) }
+  subject(:presenter) { described_class.new(question) }
 
   before do
     allow(assessment).to receive(question_name).and_return(answer)
+    allow(section).to receive(:is_section?).and_return(true)
   end
 
   describe '#label' do
@@ -76,7 +78,7 @@ RSpec.describe Print::AssessmentQuestionPresenter do
       let(:answer_schema) { instance_double(Schemas::Answer, relevant?: relevant_answer) }
 
       before do
-        allow(question).to receive(:answer_for).with(answer).and_return(answer_schema)
+        allow(question_schema).to receive(:answer_for).with(answer).and_return(answer_schema)
       end
 
       context 'and the answer has a locale for the print page' do
@@ -138,7 +140,7 @@ RSpec.describe Print::AssessmentQuestionPresenter do
       let(:answer_schema) { instance_double(Schemas::Answer, relevant?: relevant_answer) }
 
       before do
-        allow(question).to receive(:answer_for).with(answer).and_return(answer_schema)
+        allow(question_schema).to receive(:answer_for).with(answer).and_return(answer_schema)
       end
 
       specify { expect(presenter.answer_is_relevant?).to be_falsey }
@@ -176,7 +178,7 @@ RSpec.describe Print::AssessmentQuestionPresenter do
   describe '#details' do
     let(:answer_detail_1) { 'foo' }
     let(:answer_detail_2) { 'bar' }
-    let(:question) { Schemas::Question.new(hash) }
+    let(:question_schema) { Schemas::Question.new(hash) }
 
     before do
       allow(assessment).to receive(:question_detail_1).and_return(answer_detail_1)

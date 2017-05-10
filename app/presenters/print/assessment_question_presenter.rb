@@ -1,16 +1,6 @@
 module Print
   class AssessmentQuestionPresenter < SimpleDelegator
-    include Print::Helpers
-
-    delegate :name, to: :question
-
-    attr_reader :question, :section
-
-    def initialize(question, assessment, section)
-      super(assessment)
-      @question = question
-      @section = section
-    end
+    include PresenterHelpers
 
     def label
       content = t("print.section.questions.#{section_name}.#{name}")
@@ -29,8 +19,8 @@ module Print
       when 'yes', true
         true
       else
-        return answer_schema.relevant? if answer_schema
-        question.string? && value.present?
+        return relevant_answer? if answer_schema
+        string? && value.present?
       end
     end
 
@@ -39,9 +29,8 @@ module Print
     end
 
     def group_questions
-      return [] unless answer_schema
-      answer_schema.group_questions.map do |question|
-        self.class.new(question, __getobj__, section)
+      model.group_questions.map do |question|
+        self.class.new(question)
       end
     end
 
@@ -54,17 +43,13 @@ module Print
         highlighted_content('Yes')
       else
         answer = answer_value(value)
-        answer_schema&.relevant? ? highlighted_content(answer) : answer
+        relevant_answer? ? highlighted_content(answer) : answer
       end
     end
 
-    def has_details?
-      answer_schema&.has_dependencies?
-    end
-
     def details
-      return unless has_details?
-      answer_schema.questions.each_with_object([]) do |subquestion, output|
+      return unless has_dependencies?
+      dependency_questions.each_with_object([]) do |subquestion, output|
         if subquestion.complex?
           output << complex_detail_context(subquestion)
         elsif public_send(subquestion.name).present?
@@ -96,18 +81,13 @@ module Print
       nil
     end
 
-    def answer_schema
-      value = public_send(name)
-      question.answer_for(value)
-    end
-
     def answer_value(value)
       default_value = value.respond_to?(:humanize) ? value.humanize : value
       I18n.t(value, scope: [:print, :section, :answers, section_name], default: default_value)
     end
 
-    def section_name
-      section.name
+    def model
+      __getobj__
     end
   end
 end

@@ -2,10 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Print::AssessmentSectionPresenter do
   let(:name) { 'some_section' }
-  let(:section) { instance_double(Schemas::Section, name: name) }
-  let(:assessment) { double(:assessment) }
+  let(:section) { instance_double(Assessments::Section, name: name) }
 
-  subject(:presenter) { described_class.new(section, assessment) }
+  subject(:presenter) { described_class.new(section) }
 
   describe '#relevant' do
     let(:question) { instance_double(Print::AssessmentQuestionPresenter) }

@@ -1,17 +1,10 @@
 module Print
   class AssessmentSectionPresenter < SimpleDelegator
-    include Print::Helpers
-
-    attr_reader :assessment
-
-    def initialize(object, assessment)
-      super(object)
-      @assessment =  assessment
-    end
+    include PresenterHelpers
 
     def questions
       @questions ||= model.questions.map do |question|
-        Print::AssessmentQuestionPresenter.new(question, assessment, self)
+        Print::AssessmentQuestionPresenter.new(question)
       end
     end
 

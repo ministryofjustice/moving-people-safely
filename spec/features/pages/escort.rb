@@ -81,10 +81,10 @@ module Page
     def confirm_healthcare_details(hc)
       within('#healthcare') do
         within('.answered_yes') do
-          expect(page).to have_content(hc.questions_answered_yes.to_s)
+          expect(page).to have_content(hc.total_questions_with_relevant_answer.to_s)
         end
         within('.answered_no') do
-          expect(page).to have_content(hc.questions_answered_no.to_s)
+          expect(page).to have_content(hc.total_questions_without_relevance.to_s)
         end
       end
     end

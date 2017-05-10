@@ -1,14 +1,11 @@
 class Risk < ApplicationRecord
   belongs_to :detainee
   include Questionable
+  act_as_assessment :risk
 
   StatusChangeError = Class.new(StandardError)
 
   delegate :not_started?, :needs_review?, :incomplete?, :unconfirmed?, :confirmed?, to: :risk_workflow
-
-  def question_fields
-    RiskWorkflow.mandatory_questions
-  end
 
   def status
     risk_workflow&.status
@@ -28,14 +25,6 @@ class Risk < ApplicationRecord
 
   def incomplete!
     status_change(:incomplete!)
-  end
-
-  def schema
-    @schema ||= Schemas::Assessment.new(ASSESSMENTS_SCHEMA['risk'])
-  end
-
-  def sections
-    schema.sections
   end
 
   private

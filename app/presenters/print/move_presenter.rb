@@ -1,6 +1,6 @@
 module Print
   class MovePresenter < SimpleDelegator
-    include Print::Helpers
+    include PresenterHelpers
 
     def date
       model.date.to_s(:humanized)
