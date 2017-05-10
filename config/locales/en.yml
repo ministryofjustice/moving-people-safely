@@ -37,7 +37,7 @@ en:
         victim_of_abuse: Detainee a victim or possible victim of abuse in prison
         high_profile: Detainee of high public interest
       risk_to_self:
-        acct_status: Detainee's most recent ACCT status
+        acct_status: What is the prisoner's ACCT status?
       security:
         category_a: Are they Category A, potential Category A or Restricted Status?
         current_e_risk: Are they on the Escape List (E-List)?
@@ -159,11 +159,11 @@ en:
         victim_of_abuse_details: Details of a victim or possible victim of abuse in prison
       risk_to_self:
         acct_status_choices:
-          open: ACCT Open
-          post_closure: ACCT Post Closure
-          closed_in_last_6_months: ACCT Closed, in the last 6 months
-          none: None of the above
-        acct_status_details: Give details of known methods and triggers
+          open: Open
+          post_closure: Post Closure
+          closed_in_last_6_months: Closed
+          none: No ACCT history
+        acct_status_details: Give details of methods and triggers recorded on NOMIS if entered
         date_of_most_recently_closed_acct: Date of most recently closed ACCT
       security:
         category_a_choices:
@@ -290,7 +290,7 @@ en:
         victim_of_abuse_details: Give details of the abuser (or potential abuser) if known
         high_profile_details: Give details
       risk_to_self:
-        acct_status_details: Give details of known methods and triggers
+        acct_status_details: Give details of methods and triggers recorded on NOMIS if entered
         open_acct: |
           If an ACCT is open, the ACCT plan should be present and there
           should be a relevant alert on NOMIS
