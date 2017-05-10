@@ -1,5 +1,5 @@
 module Summary
-  class AssessmentSectionPresenter < SummaryPresenter
+  class AssessmentSectionPresenter < SimpleDelegator
     include PresenterHelpers
 
     def label

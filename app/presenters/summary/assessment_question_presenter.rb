@@ -1,5 +1,5 @@
 module Summary
-  class AssessmentQuestionPresenter < SummaryPresenter
+  class AssessmentQuestionPresenter < SimpleDelegator
     include PresenterHelpers
 
     def label
@@ -68,14 +68,14 @@ module Summary
     end
 
     def detail_label(attribute)
-      I18n.t!(attribute, scope: [:summary, :section, :questions, section_name])
+      t!(attribute, scope: [:summary, :section, :questions, section_name])
     rescue
       nil
     end
 
     def answer_value(value)
       default_value = value.respond_to?(:humanize) ? value.humanize : value
-      I18n.t(value, scope: [:summary, :section, :answers, section_name], default: default_value)
+      t(value, scope: [:summary, :section, :answers, section_name], default: default_value)
     end
 
     def highlight(text)
