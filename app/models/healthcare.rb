@@ -9,12 +9,6 @@ class Healthcare < ApplicationRecord
 
   has_many :medications, dependent: :destroy
 
-  def question_fields
-    sections.map do |section|
-      HealthcareAssessment.section_for(section.name).mandatory_questions
-    end.flatten
-  end
-
   def status
     healthcare_workflow&.status
   end

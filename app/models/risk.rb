@@ -7,12 +7,6 @@ class Risk < ApplicationRecord
 
   delegate :not_started?, :needs_review?, :incomplete?, :unconfirmed?, :confirmed?, to: :risk_workflow
 
-  def question_fields
-    sections.map do |section|
-      RiskAssessment.section_for(section.name).mandatory_questions
-    end.flatten
-  end
-
   def status
     risk_workflow&.status
   end
