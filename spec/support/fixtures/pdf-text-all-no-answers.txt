@@ -34,49 +34,50 @@ About this Person Escort Record
    This PER was produced by the the Moving People Safely digital PER service, currently being piloted at
    HMP Bedford. If you have feedback or questions about the service, contact the Moving People Safely team
    at: moving-people-safely@digital.justice.gov.uk
-W1234BY: McTest Testy                                                        Page 1 of 1
+W1234BY: McTest Testy                                                         Page 1 of 1
 
- NOT FOR RELEASE                        ACCT                 RULE 45
+ NOT FOR RELEASE                         ACCT                 RULE 45
 
 
- E LIST                      CSRA STANDARD           CAT A             MPV
+ E LIST                        CSRA STANDARD          CAT A             MPV
 
-Risk to self                       No
-Risk from others                   No
-Risk to others - violent           No
-Violent to staff                   No
-Violent to other detainees         No
-Violent to general public          No
-Controlled unlock                  No
-Hostage taker                      No
-Risk to others: harasser and/or    No
+Risk to self                        No
+Risk from others                    No
+Risk to others - violent            No
+Violent to staff                    No
+Violent to other detainees          No
+Violent to general public           No
+Controlled unlock                   No
+Hostage taker                       No
+Risk to others: harasser and/or     No
 bully
-Intimidator/bully                  No
-Sex offender                       No
-Escape status/history              No
-Made previous escape attempts      No
-Category A or Restricted status    No
-Escort Risk Assessment/Escape      No
-Pack
-Drug trafficking risk              No
-Conceals weapons, drugs or         No
+Intimidator/bully                   No
+Sex offender                        No
+Escape status/history               No
+Have they made previous escape No
+attempts?
+Are they Category A, potential      No
+Category A or Restricted Status?
+Further security information        No
+Drug trafficking risk               No
+Conceals weapons, drugs or          No
 other items
-Arson                              No
-Other risk information             No
-Physical healthcare                No
-Mental healthcare                  No
-Social healthcare                  No
-Allergies                          No
-Medical health needs               No
-Transport                          No
-Communication / language           No
+Arson                               No
+Other risk information              No
+Physical healthcare                 No
+Mental healthcare                   No
+Social healthcare                   No
+Allergies                           No
+Medical health needs                No
+Transport                           No
+Communication / language            No
 difficulties
-Medical contact                    Yes
-  Healthcare professional          John doctor doe
-  Contact number                   1-131-999-0232
-Current offences                   None
+Medical contact                     Yes
+  Healthcare professional           John doctor doe
+  Contact number                    1-131-999-0232
+Current offences                    None
 
 
-Must return to                    None
-Must NOT return to                None
+Must return to                     None
+Must NOT return to                 None
 
