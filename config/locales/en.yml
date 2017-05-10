@@ -10,8 +10,10 @@ en:
         hearing_speech_sight_issues: Does the detainee have hearing / speech / sight issues?
         reading_writing_issues: Does the detainee have reading / writing issues?
       concealed_weapons:
-        conceals_weapons: Conceals weapons
-        conceals_mobile_phone_or_other_items: Conceals mobile phones, SIMs or other items
+        conceals_drugs: Have they concealed drugs in custody?
+        conceals_mobile_phone_or_other_items: Have they concealed mobile phones, SIMs or other items in custody?
+        conceals_weapons: Have they concealed weapons in custody?
+        uses_weapons: Have they created or used weapons in custody?
       discrimination:
         discrimination_to_other_religions: 'Are they a risk to other religions?'
         homophobic: 'Are they a risk to lesbian, gay, bisexual, transgender or transexual (LGBT) people?'
@@ -91,6 +93,8 @@ en:
           unknown: Clear selection
         conceals_other_items: Other
         conceals_sim_cards: SIM cards
+        uses_weapons_choices:
+          unknown: Clear selection
       detainee:
         surname: Surname
         forenames: Forename(s)
@@ -264,8 +268,9 @@ en:
         hearing_speech_sight_issues_details: Give details
         reading_writing_issues_details: Give details
       concealed_weapons:
-        conceals_weapons_details: List the types of weapons and how they were hidden
-        conceals_drugs_details: Give details of previous incidents and methods used
+        uses_weapons_details: 'Give details of previous incidents:'
+        conceals_weapons_details: 'Give details of previous incidents:'
+        conceals_drugs_details: 'Give details of previous incidents:'
         conceals_other_items_details: Give details
       detainee:
         date_of_birth: DD/MM/YYYY
@@ -367,7 +372,7 @@ en:
     form:
       title:
         arson: Arson
-        concealed_weapons: Concealed weapons, drugs or other items
+        concealed_weapons: Weapons, drugs or other items
         discrimination: Discrimination against others
         harassments: Harassment and bullying
         hostage_taker: Hostage taker
@@ -408,7 +413,9 @@ en:
         controlled_unlock_required: *summary_violence_answers
       questions:
         arson:
-          arson: Are they an arsonist?
+          arson: Arsonist
+        category_a:
+          category_a: Category A, potential Category A or Restricted Status
         communication:
           hearing_speech_sight_issues: Hearing / speech / sight issues
           reading_writing_issues: Reading / writing issues
@@ -418,6 +425,7 @@ en:
           conceals_mobile_phones: Conceals mobile phones
           conceals_sim_cards: Conceals SIM cards
           conceals_other_items: Conceals other items
+          uses_weapons: Creates or uses weapons
         contact:
           contact_number: Contact number
           healthcare_professional: Healthcare professional
@@ -462,8 +470,8 @@ en:
           acct_status: ACCT status
           suicide: Risk of suicide or self-harm
         security: &summary_security
-          category_a: Are they Category A, potential Category A or Restricted Status?
-          current_e_risk: Are they on the Escape List (E-List)?
+          category_a: Category A, potential Category A or Restricted Status
+          current_e_risk: Currently on E list
           escape_list: Escape list
           escape_pack_completion_date: 'Completed on: '
           escort_risk_assessment_completion_date: 'Completed on: '
@@ -503,9 +511,9 @@ en:
         controlled_unlock_required: *summary_violence
       titles:
         arson: Arson
-        category_a: Are they Category A, potential Category A or Restricted Status?
+        category_a: Category A, potential Category A or Restricted Status
         communication: Communication / language difficulties
-        concealed_weapons: Conceals weapons, drugs or other items
+        concealed_weapons: Weapons, drugs or other items
         controlled_unlock_required: Controlled unlock
         contact: Medical contact
         discrimination: Discrimination against others
@@ -518,7 +526,7 @@ en:
         needs: Medical health needs
         other_risk: Other risk information
         physical: Physical healthcare
-        previous_escape_attempts: Have they made previous escape attempts?
+        previous_escape_attempts: Made previous escape attempts
         risk_to_self: Risk to self
         risk_from_others: Risk from others
         sex_offences: Sex offender

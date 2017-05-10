@@ -1012,6 +1012,28 @@ assessment:
       concealed_weapons:
         questions:
           -
+            name: uses_weapons
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: uses_weapons_details
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
             name: conceals_weapons
             type: string
             validators:

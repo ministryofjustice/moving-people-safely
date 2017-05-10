@@ -52,14 +52,12 @@ Hostage taker                       No
 Harassment and bullying             No
 Sex offender                        No
 Escape status/history               No
-Have they made previous escape No
-attempts?
-Are they Category A, potential      No
-Category A or Restricted Status?
+Made previous escape attempts       No
+Category A, potential Category A    No
+or Restricted Status
 Further security information        No
 Drug trafficking risk               No
-Conceals weapons, drugs or          No
-other items
+Weapons, drugs or other items       No
 Arson                               No
 Other risk information              No
 Physical healthcare                 No

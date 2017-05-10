@@ -62,6 +62,7 @@ RSpec.feature 'printing a PER', type: :feature do
         conceals_weapons: 'no',
         conceals_drugs: 'no',
         conceals_mobile_phone_or_other_items: 'no',
+        uses_weapons: 'no',
         arson: 'no',
         other_risk: 'no'
       })
@@ -185,6 +186,8 @@ RSpec.feature 'printing a PER', type: :feature do
           conceals_sim_cards: true,
           conceals_other_items: true,
           conceals_other_items_details: 'conceals other items details',
+          uses_weapons: 'yes',
+          uses_weapons_details: 'Created and used a 3D gun',
           arson: 'yes',
           other_risk: 'yes',
           other_risk_details: 'suspected terrorist'
