@@ -39,11 +39,11 @@ About this Person Escort Record
  NOT FOR RELEASE                         ACCT                 RULE 45
 
 
- E LIST                        CSRA STANDARD          CAT A             MPV
+ E LIST                         CSRA STANDARD         CAT A             MPV
 
 Risk to self                        No
 Risk from others                    No
-Risk to others - violent            No
+Discrimination against others       No
 Violent to staff                    No
 Violent to other detainees          No
 Violent to general public           No

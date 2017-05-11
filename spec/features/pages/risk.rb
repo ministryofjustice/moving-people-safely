@@ -10,6 +10,7 @@ module Page
       @risk = risk
       fill_in_risk_to_self
       fill_in_risk_from_others
+      fill_in_discrimination
       fill_in_violence
       fill_in_hostage_taker
       fill_in_harassments
@@ -34,25 +35,21 @@ module Page
       save_and_continue
     end
 
+    def fill_in_discrimination
+      fill_in_optional_details('Are they a risk to females?', @risk, :risk_to_females)
+      fill_in_optional_details('Are they a risk to lesbian, gay, bisexual, transgender or transexual (LGBT) people?', @risk, :homophobic)
+      fill_in_optional_details('Are they a risk to other races?', @risk, :racist)
+      fill_in_optional_details('Are they a risk to other religions?', @risk, :discrimination_to_other_religions)
+      fill_in_optional_details('Are they a risk to any other groups?', @risk, :other_violence_due_to_discrimination)
+      save_and_continue
+    end
+
     def fill_in_violence
-      fill_in_violence_due_to_discrimination
       fill_in_violence_to_staff
       fill_in_violence_to_other_detainees
       fill_in_violence_to_general_public
       fill_in_controlled_unlock_required
       save_and_continue
-    end
-
-    def fill_in_violence_due_to_discrimination
-      if @risk.violence_due_to_discrimination == 'yes'
-        choose 'violence_violence_due_to_discrimination_yes'
-        check 'Risk to females'
-        check 'Homosexuals'
-        fill_in_checkbox_with_details('Racist', @risk, :racist)
-        fill_in_checkbox_with_details('Other', @risk, :other_violence_due_to_discrimination)
-      else
-        choose 'violence_violence_due_to_discrimination_no'
-      end
     end
 
     def fill_in_violence_to_staff

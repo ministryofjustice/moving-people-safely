@@ -308,71 +308,120 @@ assessment:
                 value: 'no'
               -
                 value: 'unknown'
+      discrimination:
+        questions:
+          -
+            name: risk_to_females
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: risk_to_females_details
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
+            name: homophobic
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: homophobic_details
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
+            name: racist
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: racist_details
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
+            name: discrimination_to_other_religions
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: discrimination_to_other_religions_details
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
+            name: other_violence_due_to_discrimination
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: other_violence_due_to_discrimination_details
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+              -
+                value: 'unknown'
       violence:
         sections:
-          discrimination:
-            questions:
-              -
-                name: violence_due_to_discrimination
-                type: string
-                validators:
-                  -
-                    name: 'Assessments::InclusionValidator'
-                    options:
-                      allow_blank: true
-                answers:
-                  -
-                    value: 'yes'
-                    questions:
-                      -
-                        name: violence_due_to_discrimination_type
-                        type: group
-                        validators:
-                          -
-                            name: 'Assessments::GroupValidator'
-                            options:
-                              at_least: true
-                        questions:
-                          -
-                            name: risk_to_females
-                            type: boolean
-                          -
-                            name: homophobic
-                            type: boolean
-                          -
-                            name: racist
-                            type: boolean
-                            answers:
-                              -
-                                value: false
-                              -
-                                value: true
-                                questions:
-                                  -
-                                    name: racist_details
-                                    type: string
-                                    validators:
-                                      -
-                                        name: 'Assessments::PresenceValidator'
-                          -
-                            name: other_violence_due_to_discrimination
-                            type: boolean
-                            answers:
-                              -
-                                value: false
-                              -
-                                value: true
-                                questions:
-                                  -
-                                    name: other_violence_due_to_discrimination_details
-                                    type: string
-                                    validators:
-                                      -
-                                        name: 'Assessments::PresenceValidator'
-                  -
-                    value: 'no'
-                  -
-                    value: 'unknown'
           violence_to_staff:
             questions:
               -

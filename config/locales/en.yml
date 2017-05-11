@@ -12,6 +12,12 @@ en:
       concealed_weapons:
         conceals_weapons: Conceals weapons
         conceals_mobile_phone_or_other_items: Conceals mobile phones, SIMs or other items
+      discrimination:
+        discrimination_to_other_religions: 'Are they a risk to other religions?'
+        homophobic: 'Are they a risk to lesbian, gay, bisexual, transgender or transexual (LGBT) people?'
+        other_violence_due_to_discrimination: 'Are they a risk to any other groups?'
+        racist: 'Are they a risk to other races?'
+        risk_to_females: 'Are they a risk to females?'
       harassments:
         intimidation: Are they a known harasser, intimidator or bully?
         intimidation_type: 'Targets (select all that apply):'
@@ -58,7 +64,6 @@ en:
       violence:
         controlled_unlock_required: Are they on a controlled unlock?
         controlled_unlock: Number of officers required
-        violence_due_to_discrimination: Risk of violence due to discrimination
         violence_to_general_public: Violent to the general public
         violence_to_other_detainees: Violent to other detainees
         violence_to_staff: Violent to staff
@@ -96,6 +101,21 @@ en:
         aliases: Aliases
       detainee_search:
         prison_number: Enter a prison number. Eg. A1234AB
+      discrimination:
+        discrimination_to_other_religions_choices:
+          unknown: Clear selection
+        discrimination_to_other_religions_details: Risk to other religions details
+        homophobic_choices:
+          unknown: Clear selection
+        homophobic_details: Risk to LGBT people details
+        other_violence_due_to_discrimination_choices:
+          unknown: Clear selection
+        other_violence_due_to_discrimination_details: Risk to other groups details
+        racist_choices:
+          unknown: Clear selection
+        racist_details: Risk to other races details
+        risk_to_females_choices:
+          unknown: Clear selection
       harassments:
         intimidation_choices:
           unknown: Clear selection
@@ -225,16 +245,8 @@ en:
           unknown: Clear selection
         gang_member: Gang member
         gang_member_details: Gang member violence details
-        homophobic: Homosexuals
-        other_violence_due_to_discrimination: Other
-        other_violence_due_to_discrimination_details: Details for risk of violence due to other types of discrimination
         other_violence_to_other_detainees: Other known conflicts
         other_violence_to_other_detainees_details: Other known conflicts details
-        racist: Racist
-        racist_details: Details for risk of violence due to racist discrimination
-        risk_to_females: Risk to females
-        violence_due_to_discrimination_choices:
-          unknown: Clear selection
         violence_to_general_public_choices:
           unknown: Clear selection
         violence_to_general_public_details: Violent to the general public details
@@ -257,6 +269,12 @@ en:
         conceals_other_items_details: Give details
       detainee:
         date_of_birth: DD/MM/YYYY
+      discrimination:
+        discrimination_to_other_religions_details: Give details
+        homophobic_details: Give details
+        other_violence_due_to_discrimination_details: Give details
+        racist_details: Give details
+        risk_to_females_details: Give details
       harassments:
         intimidation_to_staff_details: Give details, including any relevant court orders
         intimidation_to_public_details: Give details, including any relevant court orders
@@ -325,17 +343,12 @@ en:
         escort_or_court_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
         gang_member_details: Give details
         healthcare_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
-        homophobic_details: Give details
         other_detainees_details: Give details eg spits, punches, kicks, shouts, uses weapons
-        other_violence_due_to_discrimination_details: Give details
         other_violence_to_other_detainees_details: Give details
         police_details: Give details eg spits, punches, kicks, shouts, uses weapons
         prison_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
         public_offence_related_details: Give details eg spits, punches, kicks, shouts, uses weapons
-        racist_details: Give details
-        risk_to_females_details: Give details
         violence_to_general_public_details: Give names
-        violence_due_to_discrimination: For example, risk to females, homosexuals, other races
   healthcare:
     form:
       actions:
@@ -355,6 +368,7 @@ en:
       title:
         arson: Arson
         concealed_weapons: Concealed weapons, drugs or other items
+        discrimination: Discrimination against others
         harassments: Harassment and bullying
         hostage_taker: Hostage taker
         other_risk: Other risk on this journey
@@ -407,6 +421,12 @@ en:
         contact:
           contact_number: Contact number
           healthcare_professional: Healthcare professional
+        discrimination:
+          discrimination_to_other_religions: Risk to other religions
+          homophobic: Risk to LGBT people
+          other_violence_due_to_discrimination: Risk to other groups
+          racist: Racist
+          risk_to_females: Risk to females
         harassments: &summary_intimidation
           intimidation_to_staff: Staff
           intimidation_to_public: Public
@@ -469,19 +489,14 @@ en:
           escort_or_court_staff: Escort or court staff
           gang_member: Gang member
           healthcare_staff: Healthcare staff
-          homophobic: Homosexuals
           other_detainees: Other detainees
-          other_violence_due_to_discrimination: Other
           other_violence_to_other_detainees: Other known conflicts
-          racist: Racist
           police: Police
           prison_staff: Prison staff
           public_offence_related: Public/offence related
-          risk_to_females: Risk to females
           violence_to_general_public: General public
           violence_to_staff_community: Staff community
           violence_to_staff_custody: Staff custody
-        discrimination: *summary_violence
         violence_to_staff: *summary_violence
         violence_to_other_detainees: *summary_violence
         violence_to_general_public: *summary_violence
@@ -493,7 +508,7 @@ en:
         concealed_weapons: Conceals weapons, drugs or other items
         controlled_unlock_required: Controlled unlock
         contact: Medical contact
-        discrimination: "Risk to others - violent"
+        discrimination: Discrimination against others
         escape_status: Escape status/history
         escort_details: Further security information
         harassment: "Risk to others: harasser and/or bully"

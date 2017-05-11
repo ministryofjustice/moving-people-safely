@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510160454) do
+ActiveRecord::Schema.define(version: 20170511103319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20170510160454) do
     t.string   "violent",                                           default: "unknown"
     t.boolean  "prison_staff"
     t.text     "prison_staff_details"
-    t.boolean  "risk_to_females"
+    t.string   "risk_to_females"
     t.text     "risk_to_females_details"
     t.boolean  "escort_or_court_staff"
     t.text     "escort_or_court_staff_details"
@@ -131,9 +131,9 @@ ActiveRecord::Schema.define(version: 20170510160454) do
     t.text     "healthcare_staff_details"
     t.boolean  "other_detainees"
     t.text     "other_detainees_details"
-    t.boolean  "homophobic"
+    t.string   "homophobic"
     t.text     "homophobic_details"
-    t.boolean  "racist"
+    t.string   "racist"
     t.text     "racist_details"
     t.boolean  "public_offence_related"
     t.text     "public_offence_related_details"
@@ -162,8 +162,7 @@ ActiveRecord::Schema.define(version: 20170510160454) do
     t.text     "victim_of_abuse_details"
     t.string   "high_profile"
     t.text     "high_profile_details"
-    t.string   "violence_due_to_discrimination"
-    t.boolean  "other_violence_due_to_discrimination"
+    t.string   "other_violence_due_to_discrimination"
     t.text     "other_violence_due_to_discrimination_details"
     t.string   "violence_to_staff"
     t.boolean  "violence_to_staff_custody"
@@ -222,6 +221,8 @@ ActiveRecord::Schema.define(version: 20170510160454) do
     t.text     "controlled_unlock_details"
     t.string   "other_risk"
     t.text     "other_risk_details"
+    t.string   "discrimination_to_other_religions"
+    t.text     "discrimination_to_other_religions_details"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
   end
 

@@ -9,6 +9,7 @@ module Page
     def confirm_risk_details(risk)
       check_section(risk, 'risk_to_self', %w[acct_status])
       check_section(risk, 'risk_from_others', %w[ rule_45 csra victim_of_abuse high_profile ])
+      check_discrimination_section(risk)
       check_violence_section(risk)
       check_hostage_taker_section(risk)
       check_harassment_section(risk)
@@ -78,19 +79,14 @@ module Page
     private
 
     def check_violence_section(risk)
-      check_violence_due_to_discrimination(risk)
       check_violence_to_staff(risk)
       check_violence_to_other_detainees(risk)
       check_violence_to_general_public(risk)
       check_controlled_unlock_required(risk)
     end
 
-    def check_violence_due_to_discrimination(risk)
-      if risk.violence_due_to_discrimination == 'yes'
-        check_section(risk, 'discrimination', %w[risk_to_females homophobic racist other_violence_due_to_discrimination])
-      else
-        check_section_is_all_no(risk, 'discrimination', %w[risk_to_females homophobic racist other_violence_due_to_discrimination])
-      end
+    def check_discrimination_section(risk)
+      check_section(risk, 'discrimination', %w[risk_to_females homophobic racist discrimination_to_other_religions other_violence_due_to_discrimination])
     end
 
     def check_violence_to_staff(risk)

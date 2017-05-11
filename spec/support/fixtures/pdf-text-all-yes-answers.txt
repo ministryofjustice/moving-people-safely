@@ -54,11 +54,12 @@ Risk from others                  Yes
   Assessment)
   Victim of abuse in prison       Yes      Abuse details
   High public interest            Yes      High profile details
-Risk to others - violent          Yes
-  Risk to females                 Yes
-  Homosexuals                     Yes
+Discrimination against others     Yes
+  Risk to females                 Yes      Risk to females details
+  Risk to LGBT people             Yes      Lgtb details
   Racist                          Yes      Violence racist details
-  Other                           Yes      Other violence due to discrimination details
+  Risk to other religions         Yes      Discrimination to other religion details
+  Risk to other groups            Yes      Other violence due to discrimination details
 Violent to staff                  Yes
   Staff custody                   Yes
   Staff community                 Yes
@@ -82,8 +83,8 @@ Harassment and bullying           Yes
 Sex offender                      Yes
   Adult male                      Yes
   Adult female                    Yes
-  Under 18                        Yes      Under 18 sex offence victim details
 W1234BY: McTest Testy                                                         Page 2 of 3
+  Under 18                       Yes   Under 18 sex offence victim details
 Escape status/history            Yes
   Are they on the Escape List    Yes   E-List-Escort
   (E-List)?
@@ -127,8 +128,8 @@ Medical health needs             Yes
   Dependencies / misuse          Yes   Dependencies details
   Regular medication             Yes
 Transport                        Yes
-  MPV required                   Yes   Mpv details
 W1234BY: McTest Testy                                                                  Page 3 of 3
+ MPV required                 Yes                Mpv details
 Communication / language      Yes
 difficulties
  Hearing / speech / sight     Yes                Hearing/speech/sight issues details
