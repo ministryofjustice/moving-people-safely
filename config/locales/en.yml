@@ -40,10 +40,8 @@ en:
       physical:
         physical_issues: Physical health needs?
       risk_from_others:
-        rule_45: Rule 45
-        csra: CSRA
-        victim_of_abuse: Detainee a victim or possible victim of abuse in prison
-        high_profile: Detainee of high public interest
+        rule_45: Are they held under Rule 45?
+        high_profile: Are they of high public interest?
       risk_to_self:
         acct_status: What is the prisoner's ACCT status?
       security:
@@ -66,6 +64,7 @@ en:
       violence:
         controlled_unlock_required: Are they on a controlled unlock?
         controlled_unlock: Number of officers required
+        csra: CSRA
         violence_to_general_public: Violent to the general public
         violence_to_other_detainees: Violent to other detainees
         violence_to_staff: Violent to staff
@@ -175,14 +174,9 @@ en:
       risk_from_others:
         rule_45_choices:
           unknown: Clear selection
-        csra_choices:
-          unknown: Clear selection
-        victim_of_abuse_choices:
-          unknown: Clear selection
         high_profile_choices:
           unknown: Clear selection
         high_profile_details: Details of high public interest
-        victim_of_abuse_details: Details of a victim or possible victim of abuse in prison
       risk_to_self:
         acct_status_choices:
           open: Open
@@ -247,6 +241,8 @@ en:
           more_than_four: 'More than 4 officers'
         controlled_unlock_required_choices:
           unknown: Clear selection
+        csra_choices:
+          unknown: Clear selection
         gang_member: Gang member
         gang_member_details: Gang member violence details
         other_violence_to_other_detainees: Other known conflicts
@@ -309,9 +305,6 @@ en:
         physical_issues: Eg disabilities, prosthetic limbs, crutches.
         physical_issues_details: Give details and explain the significance
       risk_from_others:
-        csra: Cell Sharing Risk Assessment
-        rule_45: Detainee separated for own protection
-        victim_of_abuse_details: Give details of the abuser (or potential abuser) if known
         high_profile_details: Give details
       risk_to_self:
         acct_status_details: Give details of methods and triggers recorded on NOMIS if entered
@@ -345,6 +338,7 @@ en:
       violence:
         controlled_unlock_details: 'Give details of personal protection equipment (PPE) required:'
         co_defendant_details: Give details
+        csra: Cell Sharing Risk Assessment
         escort_or_court_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
         gang_member_details: Give details
         healthcare_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
@@ -462,10 +456,8 @@ en:
           sex_offence_adult_female_victim: Adult female
           sex_offence_under18_victim: Under 18
         risk_from_others:
-          csra: CSRA (Cell Sharing Risk Assessment)
           high_profile: High public interest
           rule_45: Rule 45
-          victim_of_abuse: Victim of abuse in prison
         risk_to_self:
           acct_status: ACCT status
           suicide: Risk of suicide or self-harm
@@ -494,6 +486,7 @@ en:
         violence: &summary_violence
           co_defendant: Co-defendant
           controlled_unlock_required: Controlled unlock
+          csra: CSRA (Cell Sharing Risk Assessment)
           escort_or_court_staff: Escort or court staff
           gang_member: Gang member
           healthcare_staff: Healthcare staff
@@ -505,6 +498,7 @@ en:
           violence_to_general_public: General public
           violence_to_staff_community: Staff community
           violence_to_staff_custody: Staff custody
+        csra: *summary_violence
         violence_to_staff: *summary_violence
         violence_to_other_detainees: *summary_violence
         violence_to_general_public: *summary_violence
@@ -516,6 +510,7 @@ en:
         concealed_weapons: Weapons, drugs or other items
         controlled_unlock_required: Controlled unlock
         contact: Medical contact
+        csra: CSRA (Cell Sharing Risk Assessment)
         discrimination: Discrimination against others
         escape_status: Escape status/history
         escort_details: Further security information

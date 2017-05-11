@@ -249,44 +249,6 @@ assessment:
               -
                 value: 'unknown'
           -
-            name: csra
-            type: string
-            validators:
-              -
-                name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
-            answers:
-              -
-                value: 'high'
-                relevant: true
-              -
-                value: 'standard'
-              -
-                value: 'unknown'
-          -
-            name: victim_of_abuse
-            type: string
-            validators:
-              -
-                name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
-            answers:
-              -
-                value: 'yes'
-                questions:
-                  -
-                    name: victim_of_abuse_details
-                    type: string
-                    validators:
-                      -
-                        name: 'Assessments::PresenceValidator'
-              -
-                value: 'no'
-              -
-                value: 'unknown'
-          -
             name: high_profile
             type: string
             validators:
@@ -422,6 +384,24 @@ assessment:
                 value: 'unknown'
       violence:
         sections:
+          csra:
+            questions:
+              -
+                name: csra
+                type: string
+                validators:
+                  -
+                    name: 'Assessments::InclusionValidator'
+                    options:
+                      allow_blank: true
+                answers:
+                  -
+                    value: 'high'
+                    relevant: true
+                  -
+                    value: 'standard'
+                  -
+                    value: 'unknown'
           violence_to_staff:
             questions:
               -
