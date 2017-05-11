@@ -22,7 +22,7 @@ module Page
     end
 
     def fill_in_risk_to_self
-      fill_in_optional_details("Detainee's most recent ACCT status", @risk, :acct_status)
+      fill_in_optional_details("What is the prisoner's ACCT status?", @risk, :acct_status)
       save_and_continue
     end
 
