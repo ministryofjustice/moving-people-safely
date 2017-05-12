@@ -13,8 +13,8 @@ en:
         conceals_weapons: Conceals weapons
         conceals_mobile_phone_or_other_items: Conceals mobile phones, SIMs or other items
       harassments:
-        harassment: Harasser
-        intimidation: Intimidator / bully
+        intimidation: Are they a known harasser, intimidator or bully?
+        intimidation_type: 'Targets (select all that apply):'
       hostage_taker:
         hostage_taker: Do they have a history of taking hostages?
         hostage_taker_type: 'Group involved (select all that apply):'
@@ -97,14 +97,16 @@ en:
       detainee_search:
         prison_number: Enter a prison number. Eg. A1234AB
       harassments:
-        harassment_choices:
-          unknown: Clear selection
         intimidation_choices:
           unknown: Clear selection
         intimidation_to_staff: Staff
+        intimidation_to_staff_details: Staff details
         intimidation_to_public: Public
+        intimidation_to_public_details: Public details
         intimidation_to_other_detainees: Prisoners
+        intimidation_to_other_detainees_details: Prisoners details
         intimidation_to_witnesses: Witnesses
+        intimidation_to_witnesses_details: Witnesses details
       hostage_taker:
         hostage_taker_choices:
           unknown: Clear selection
@@ -256,11 +258,10 @@ en:
       detainee:
         date_of_birth: DD/MM/YYYY
       harassments:
-        harassment_details: Give details about restraining order
-        intimidation_to_staff_details: Give details
-        intimidation_to_public_details: Give details
-        intimidation_to_other_detainees_details: Give details
-        intimidation_to_witnesses_details: Give details
+        intimidation_to_staff_details: Give details, including any relevant court orders
+        intimidation_to_public_details: Give details, including any relevant court orders
+        intimidation_to_other_detainees_details: Give details, including any relevant court orders
+        intimidation_to_witnesses_details: Give details, including any relevant court orders
       hostage_taker:
         date_most_recent_staff_hostage_taker_incident: DD/MM/YYYY
         date_most_recent_prisoners_hostage_taker_incident: DD/MM/YYYY
@@ -354,7 +355,7 @@ en:
       title:
         arson: Arson
         concealed_weapons: Concealed weapons, drugs or other items
-        harassments: Risk to others - harasser and/or bully
+        harassments: Harassment and bullying
         hostage_taker: Hostage taker
         other_risk: Other risk on this journey
         risk_to_self: Risk to self
@@ -407,12 +408,10 @@ en:
           contact_number: Contact number
           healthcare_professional: Healthcare professional
         harassments: &summary_intimidation
-          harassment: Harasser
           intimidation_to_staff: Staff
           intimidation_to_public: Public
           intimidation_to_other_detainees: Prisoners
           intimidation_to_witnesses: Witnesses
-        harassment: *summary_intimidation
         intimidation: *summary_intimidation
         hostage_taker:
           staff_hostage_taker: Staff
@@ -499,7 +498,7 @@ en:
         escort_details: Further security information
         harassment: "Risk to others: harasser and/or bully"
         hostage_taker: "Hostage taker"
-        intimidation: "Intimidator/bully"
+        intimidation: Harassment and bullying
         mental: Mental healthcare
         needs: Medical health needs
         other_risk: Other risk information

@@ -131,7 +131,6 @@ module Page
     end
 
     def check_harassment_section(risk)
-      check_harassment(risk)
       check_intimidation(risk)
     end
 
@@ -141,12 +140,6 @@ module Page
         check_section(risk, 'intimidation', fields)
       else
         check_section_is_all_no(risk, 'intimidation', fields)
-      end
-    end
-
-    def check_harassment(risk)
-      if risk.harassment == 'yes'
-        check_question(risk, 'harassment', 'harassment_details')
       end
     end
 
