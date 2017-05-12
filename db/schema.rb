@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515140132) do
+ActiveRecord::Schema.define(version: 20170516164324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,7 +191,6 @@ ActiveRecord::Schema.define(version: 20170515140132) do
     t.boolean  "sex_offence_adult_male_victim"
     t.boolean  "sex_offence_adult_female_victim"
     t.boolean  "sex_offence_under18_victim"
-    t.text     "sex_offence_under18_victim_details"
     t.string   "previous_escape_attempts"
     t.boolean  "prison_escape_attempt"
     t.text     "prison_escape_attempt_details"
@@ -222,6 +221,7 @@ ActiveRecord::Schema.define(version: 20170515140132) do
     t.string   "discrimination_to_other_religions"
     t.text     "discrimination_to_other_religions_details"
     t.text     "violence_to_staff_details"
+    t.date     "date_most_recent_sexual_offence"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
   end
 

@@ -155,7 +155,7 @@ RSpec.feature 'printing a PER', type: :feature do
           sex_offence_adult_male_victim: true,
           sex_offence_adult_female_victim: true,
           sex_offence_under18_victim: true,
-          sex_offence_under18_victim_details: 'under 18 sex offence victim details',
+          date_most_recent_sexual_offence: '12/10/2008',
           current_e_risk: 'yes',
           current_e_risk_details: 'e_list_escort',
           previous_escape_attempts: 'yes',

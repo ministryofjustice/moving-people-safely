@@ -760,18 +760,14 @@ assessment:
                       -
                         name: sex_offence_under18_victim
                         type: boolean
-                        answers:
-                          -
-                            value: false
-                          -
-                            value: true
-                            questions:
-                              -
-                                name: sex_offence_under18_victim_details
-                                type: string
-                                validators:
-                                  -
-                                    name: 'Assessments::PresenceValidator'
+                  -
+                    name: date_most_recent_sexual_offence
+                    type: date
+                    validators:
+                      -
+                        name: 'Assessments::DateValidator'
+                        options:
+                          not_in_the_future: true
               -
                 value: 'no'
               -
