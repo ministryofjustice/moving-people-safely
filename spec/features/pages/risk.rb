@@ -228,8 +228,9 @@ module Page
     end
 
     def fill_in_concealed_weapons
-      fill_in_optional_details('Conceals weapons', @risk, :conceals_weapons)
-      fill_in_optional_details('Conceals drugs', @risk, :conceals_drugs)
+      fill_in_optional_details('Have they created or used weapons in custody?', @risk, :uses_weapons)
+      fill_in_optional_details('Have they concealed weapons in custody?', @risk, :conceals_weapons)
+      fill_in_optional_details('Have they concealed drugs in custody?', @risk, :conceals_drugs)
       fill_in_concealed_mobile_phone_or_other_items
       save_and_continue
     end

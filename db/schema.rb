@@ -221,6 +221,8 @@ ActiveRecord::Schema.define(version: 20170511103319) do
     t.text     "controlled_unlock_details"
     t.string   "other_risk"
     t.text     "other_risk_details"
+    t.string   "uses_weapons"
+    t.text     "uses_weapons_details"
     t.string   "discrimination_to_other_religions"
     t.text     "discrimination_to_other_religions_details"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
