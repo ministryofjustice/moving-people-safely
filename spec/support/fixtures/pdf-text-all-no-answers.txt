@@ -44,6 +44,8 @@ About this Person Escort Record
 Risk to self                        No
 Risk from others                    No
 Discrimination against others       No
+CSRA (Cell Sharing Risk             No
+Assessment)
 Violent to staff                    No
 Violent to other detainees          No
 Violent to general public           No

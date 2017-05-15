@@ -3,7 +3,6 @@ FactoryGirl.define do
     acct_status 'open'
     rule_45 'no'
     csra 'standard'
-    victim_of_abuse 'no'
     high_profile 'no'
     risk_to_females 'no'
     homophobic 'no'

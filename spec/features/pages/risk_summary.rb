@@ -8,7 +8,7 @@ module Page
 
     def confirm_risk_details(risk)
       check_section(risk, 'risk_to_self', %w[acct_status])
-      check_section(risk, 'risk_from_others', %w[ rule_45 csra victim_of_abuse high_profile ])
+      check_section(risk, 'risk_from_others', %w[rule_45 high_profile])
       check_discrimination_section(risk)
       check_violence_section(risk)
       check_hostage_taker_section(risk)
@@ -79,6 +79,7 @@ module Page
     private
 
     def check_violence_section(risk)
+      check_section(risk, 'csra', %w[csra])
       check_violence_to_staff(risk)
       check_violence_to_other_detainees(risk)
       check_violence_to_general_public(risk)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511103319) do
+ActiveRecord::Schema.define(version: 20170511144824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,8 +158,6 @@ ActiveRecord::Schema.define(version: 20170511103319) do
     t.string   "acct_status"
     t.text     "acct_status_details"
     t.date     "date_of_most_recently_closed_acct"
-    t.string   "victim_of_abuse"
-    t.text     "victim_of_abuse_details"
     t.string   "high_profile"
     t.text     "high_profile_details"
     t.string   "other_violence_due_to_discrimination"
