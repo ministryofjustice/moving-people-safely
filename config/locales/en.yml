@@ -64,10 +64,11 @@ en:
       violence:
         controlled_unlock_required: Are they on a controlled unlock?
         controlled_unlock: Number of officers required
-        csra: CSRA
-        violence_to_general_public: Violent to the general public
-        violence_to_other_detainees: Violent to other detainees
-        violence_to_staff: Violent to staff
+        csra: 'What is their Cell Sharing Risk Assessment (CSRA) risk level?'
+        violence_to_general_public: 'Is there anyone else who they might be a violent risk to?'
+        violence_to_other_detainees: 'Are they violent to other prisoners?'
+        violence_to_other_detainees_type: 'Victim of violence (select all that apply):'
+        violence_to_staff: 'Are they violent to staff?'
     label:
       allergies:
         allergies_choices:
@@ -252,8 +253,7 @@ en:
         violence_to_general_public_details: Violent to the general public details
         violence_to_staff_choices:
           unknown: Clear selection
-        violence_to_staff_custody: Staff custody
-        violence_to_staff_community: Staff community
+        violence_to_staff_details: Violent to staff details
         violence_to_other_detainees_choices:
           unknown: Clear selection
     hint:
@@ -338,7 +338,7 @@ en:
       violence:
         controlled_unlock_details: 'Give details of personal protection equipment (PPE) required:'
         co_defendant_details: Give details
-        csra: Cell Sharing Risk Assessment
+        csra: This information is available in NOMIS in the global personal details header at the top of the screen
         escort_or_court_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
         gang_member_details: Give details
         healthcare_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
@@ -347,7 +347,9 @@ en:
         police_details: Give details eg spits, punches, kicks, shouts, uses weapons
         prison_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
         public_offence_related_details: Give details eg spits, punches, kicks, shouts, uses weapons
-        violence_to_general_public_details: Give names
+        violence_to_general_public_details: Give details
+        violence_to_staff: 'This includes prison, escort, court or hospital staff.'
+        violence_to_staff_details: Give details
   healthcare:
     form:
       actions:
@@ -376,7 +378,7 @@ en:
         security: Escape status/history
         sex_offences: Sex offender
         substance_misuse: Drug trafficking risk
-        violence: Risk to others - violent
+        violence: Risk to others
   homepage:
     titles:
       detainee_search: Start a Person Escort Record
@@ -495,9 +497,8 @@ en:
           police: Police
           prison_staff: Prison staff
           public_offence_related: Public/offence related
-          violence_to_general_public: General public
-          violence_to_staff_community: Staff community
-          violence_to_staff_custody: Staff custody
+          violence_to_general_public: Violent to anyone else
+          violence_to_staff: Violent to staff
         csra: *summary_violence
         violence_to_staff: *summary_violence
         violence_to_other_detainees: *summary_violence
@@ -527,8 +528,8 @@ en:
         sex_offences: Sex offender
         social: Social healthcare
         substance_misuse: Drug trafficking risk
-        violence_to_general_public: Violent to general public
-        violence_to_other_detainees: Violent to other detainees
+        violence_to_general_public: Violent to anyone else
+        violence_to_other_detainees: Violent to other prisoners
         violence_to_staff: Violent to staff
   escort: &escort
     alerts:

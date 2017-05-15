@@ -80,7 +80,7 @@ module Page
 
     def check_violence_section(risk)
       check_section(risk, 'csra', %w[csra])
-      check_violence_to_staff(risk)
+      check_section(risk, 'violence_to_staff', %w[violence_to_staff])
       check_violence_to_other_detainees(risk)
       check_violence_to_general_public(risk)
       check_controlled_unlock_required(risk)
@@ -88,14 +88,6 @@ module Page
 
     def check_discrimination_section(risk)
       check_section(risk, 'discrimination', %w[risk_to_females homophobic racist discrimination_to_other_religions other_violence_due_to_discrimination])
-    end
-
-    def check_violence_to_staff(risk)
-      if risk.violence_to_staff == 'yes'
-        check_section(risk, 'violence_to_staff', %w[violence_to_staff_custody violence_to_staff_community])
-      else
-        check_section_is_all_no(risk, 'violence_to_staff', %w[violence_to_staff_custody violence_to_staff_community])
-      end
     end
 
     def check_violence_to_other_detainees(risk)
