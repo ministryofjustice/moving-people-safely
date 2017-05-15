@@ -8,7 +8,7 @@ module Summary
 
     def questions
       model.questions.flat_map do |question|
-        question.group_questions.present? ? question.group_questions : question
+        question.answer_requires_group_questions? ? question.dependency_questions : question
       end
     end
 

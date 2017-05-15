@@ -12,7 +12,6 @@ module Print
     end
 
     def answer_is_relevant?
-      value = public_send(name)
       case value
       when 'no', false
         false
@@ -24,18 +23,13 @@ module Print
       end
     end
 
-    def answer_requires_group_questions?
-      group_questions.present?
-    end
-
-    def group_questions
-      model.group_questions.map do |question|
+    def dependency_questions
+      model.dependency_questions.map do |question|
         self.class.new(question)
       end
     end
 
     def answer
-      value = public_send(name)
       case value
       when 'no', false
         'No'
