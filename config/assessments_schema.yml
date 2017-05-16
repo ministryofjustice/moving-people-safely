@@ -417,20 +417,11 @@ assessment:
                     value: 'yes'
                     questions:
                       -
-                        name: violence_to_staff_type
-                        type: group
+                        name: violence_to_staff_details
+                        type: string
                         validators:
                           -
-                            name: 'Assessments::GroupValidator'
-                            options:
-                              at_least: true
-                        questions:
-                          -
-                            name: violence_to_staff_custody
-                            type: boolean
-                          -
-                            name: violence_to_staff_community
-                            type: boolean
+                            name: 'Assessments::PresenceValidator'
                   -
                     value: 'no'
                   -

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511144824) do
+ActiveRecord::Schema.define(version: 20170515140132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,8 +163,6 @@ ActiveRecord::Schema.define(version: 20170511144824) do
     t.string   "other_violence_due_to_discrimination"
     t.text     "other_violence_due_to_discrimination_details"
     t.string   "violence_to_staff"
-    t.boolean  "violence_to_staff_custody"
-    t.boolean  "violence_to_staff_community"
     t.string   "violence_to_other_detainees"
     t.boolean  "co_defendant"
     t.text     "co_defendant_details"
@@ -223,6 +221,7 @@ ActiveRecord::Schema.define(version: 20170511144824) do
     t.text     "uses_weapons_details"
     t.string   "discrimination_to_other_religions"
     t.text     "discrimination_to_other_religions_details"
+    t.text     "violence_to_staff_details"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
   end
 
