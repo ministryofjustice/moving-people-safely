@@ -4,22 +4,10 @@ module Print
 
     def label
       content = t("print.section.questions.#{section_name}.#{name}")
-      if answer_is_relevant?
+      if relevant_answer?
         strong_title_label(content)
       else
         title_label(content)
-      end
-    end
-
-    def answer_is_relevant?
-      case value
-      when 'no', false
-        false
-      when 'yes', true
-        true
-      else
-        return relevant_answer? if answer_schema
-        string? && value.present?
       end
     end
 

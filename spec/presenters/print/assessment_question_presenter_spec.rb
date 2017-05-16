@@ -20,13 +20,13 @@ RSpec.describe Print::AssessmentQuestionPresenter do
 
   describe '#label' do
     before do
-      allow(presenter).to receive(:answer_is_relevant?).and_return(false)
+      allow(question).to receive(:relevant_answer?).and_return(false)
       localize_key("print.section.questions.#{section_name}.#{question_name}", 'Localised question')
     end
 
     context 'when the answer is relevant' do
       before do
-        allow(presenter).to receive(:answer_is_relevant?).and_return(true)
+        allow(question).to receive(:relevant_answer?).and_return(true)
       end
 
       it 'returns the highlighted label' do
@@ -74,11 +74,9 @@ RSpec.describe Print::AssessmentQuestionPresenter do
 
     context 'and the question is answered with some other value' do
       let(:answer) { 'some_other_value' }
-      let(:relevant_answer) { false }
-      let(:answer_schema) { instance_double(Schemas::Answer, relevant?: relevant_answer) }
 
       before do
-        allow(question_schema).to receive(:answer_for).with(answer).and_return(answer_schema)
+        allow(question).to receive(:relevant_answer?).and_return(false)
       end
 
       context 'and the answer has a locale for the print page' do
@@ -100,76 +98,12 @@ RSpec.describe Print::AssessmentQuestionPresenter do
       end
 
       context 'and the answer is considered relevant' do
-        let(:relevant_answer) { true }
+        before do
+          allow(question).to receive(:relevant_answer?).and_return(true)
+        end
 
         it 'returns the answer highlighted' do
           expect(presenter.answer).to eq '<div class="strong-text">Some other value</div>'
-        end
-      end
-    end
-  end
-
-  describe '#answer_is_relevant?' do
-    context 'and the question is answered no' do
-      let(:answer) { 'no' }
-
-      specify { expect(presenter.answer_is_relevant?).to be_falsey }
-    end
-
-    context 'and the question is answered false' do
-      let(:answer) { false }
-
-      specify { expect(presenter.answer_is_relevant?).to be_falsey }
-    end
-
-    context 'and the question is answered yes' do
-      let(:answer) { 'yes' }
-
-      specify { expect(presenter.answer_is_relevant?).to be_truthy }
-    end
-
-    context 'and the question is answered true' do
-      let(:answer) { true }
-
-      specify { expect(presenter.answer_is_relevant?).to be_truthy }
-    end
-
-    context 'and the question is answered with some other value' do
-      let(:answer) { 'some_other_value' }
-      let(:relevant_answer) { false }
-      let(:answer_schema) { instance_double(Schemas::Answer, relevant?: relevant_answer) }
-
-      before do
-        allow(question_schema).to receive(:answer_for).with(answer).and_return(answer_schema)
-      end
-
-      specify { expect(presenter.answer_is_relevant?).to be_falsey }
-
-      context 'and the answer is considered relevant' do
-        let(:relevant_answer) { true }
-        specify { expect(presenter.answer_is_relevant?).to be_truthy }
-      end
-
-      context 'and there is no schema for the provided answer' do
-        let(:answer_schema) { nil }
-
-        context 'and question is of type other than string' do
-          let(:question_type) { 'boolean' }
-          specify { expect(presenter.answer_is_relevant?).to be_falsey }
-        end
-
-        context 'and question is of type string' do
-          let(:question_type) { 'string' }
-
-          context 'but answer value is empty' do
-            let(:answer) { '' }
-            specify { expect(presenter.answer_is_relevant?).to be_falsey }
-          end
-
-          context 'and answer value is present' do
-            let(:answer) { 'some-value' }
-            specify { expect(presenter.answer_is_relevant?).to be_truthy }
-          end
         end
       end
     end

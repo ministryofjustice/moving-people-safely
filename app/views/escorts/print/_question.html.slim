@@ -1,4 +1,4 @@
-- if question.answer_is_relevant?
+- if question.relevant_answer?
   - if question.answer_requires_group_questions?
     - question.dependency_questions.each do |dependency_question|
       = render partial: 'escorts/print/question', locals: { question: dependency_question }
