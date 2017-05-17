@@ -370,6 +370,15 @@ en:
         needs: Medical health needs
         transport: Transport
         contact: Medical contact
+    intro:
+      breadcrumb: Health
+      content: |
+        The following questions are designed to ensure the safety of the person moving and anyone they come into contact with during their time out of prison.
+
+        In line with the Caldicott principles, you will not be asked to give details of any specific medical conditions, but rather, provide information that will help keep the prisoner and anyone around them safe on their journey.
+      note: |
+        You can include any other personal medical details in a sealed envelope to be opened by a healthcare professional in case of an emergency.
+      title: Before you start
   risks:
     form:
       title:

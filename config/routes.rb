@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
     resource :move
     resource :healthcare, except: :destroy do
+      get :intro, on: :collection
       put :confirm, on: :collection
     end
     resource :risks, except: :destroy, path: 'risk' do

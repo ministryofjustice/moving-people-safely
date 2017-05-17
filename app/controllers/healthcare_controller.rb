@@ -41,6 +41,16 @@ class HealthcareController < ApplicationController
     end
   end
 
+  def intro
+    if Healthcare.has_intro?
+      render 'shared/wizard_intro',
+        locals: { intro: AssessmentIntroPresenter.new(:healthcare),
+                  assessment: escort.healthcare }
+    else
+      redirect_to assessment_wizard_path(escort.healthcare)
+    end
+  end
+
   def confirm
     if healthcare.all_questions_answered?
       healthcare.confirm!(user: current_user)

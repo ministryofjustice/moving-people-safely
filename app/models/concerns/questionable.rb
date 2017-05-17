@@ -16,6 +16,10 @@ module Questionable
     def section_names
       schema.sections.map(&:name)
     end
+
+    def has_intro?
+      schema.has_intro?
+    end
   end
 
   module InstanceMethods
@@ -27,6 +31,10 @@ module Questionable
       @sections ||= schema.sections.map do |section_schema|
         Assessments::Section.new(self, section_schema)
       end
+    end
+
+    def has_intro?
+      self.class.has_intro?
     end
 
     def mandatory_questions

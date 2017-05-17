@@ -4,8 +4,13 @@ module Schemas
 
     def initialize(hash)
       @hash = hash.with_indifferent_access
+      @intro = @hash.fetch(:intro, false)
       initialize_sections_schema
       initialize_questions_schema
+    end
+
+    def has_intro?
+      intro
     end
 
     def for_section(section_name)
@@ -14,7 +19,7 @@ module Schemas
 
     private
 
-    attr_reader :hash
+    attr_reader :hash, :intro
 
     def initialize_sections_schema
       @sections = (hash['sections'] || []).map do |name, data|
