@@ -53,7 +53,9 @@ en:
         previous_escape_attempts: Have they made previous escape attempts?
         previous_escape_attempts_type: 'Attempted to escape from (select all that apply):'
       sex_offences:
-        sex_offence: Sex offender
+        sex_offence: Are they a current or previous sex offender?
+        sex_offence_type: 'Victim (select all that apply):'
+        date_most_recent_sexual_offence: Date of most recent sexual offence
       social:
         personal_hygiene: Personal hygiene issues?
         personal_care: Personal care issues?
@@ -218,7 +220,7 @@ en:
         sex_offence_adult_male_victim: Adult male
         sex_offence_adult_female_victim: Adult female
         sex_offence_under18_victim: Under 18
-        sex_offence_under18_victim_details: Under 18 victim details
+        date_most_recent_sexual_offence: Date of most recent sexual offence
       social:
         personal_hygiene_choices:
           unknown: Clear selection
@@ -324,7 +326,8 @@ en:
         police_escape_attempt_details: Give details of last escape attempt
         other_type_escape_attempt_details: Give details of last escape attempt
       sex_offences:
-        sex_offence_under18_victim_details: Give details - state gender and age when under 18, if known
+        sex_offence: This doesn't include prostitution offences, but does include procuring others into prostitution.
+        date_most_recent_sexual_offence: DD/MM/YYYY
       social:
         personal_hygiene: Eg OCD, needs toilet support. For more information refer to the Social Care Act
         personal_hygiene_details: Give details and explain the significance
@@ -457,6 +460,7 @@ en:
           sex_offence_adult_male_victim: Adult male
           sex_offence_adult_female_victim: Adult female
           sex_offence_under18_victim: Under 18
+          date_most_recent_sexual_offence: Most recent sex offence
         risk_from_others:
           high_profile: High public interest
           rule_45: Rule 45

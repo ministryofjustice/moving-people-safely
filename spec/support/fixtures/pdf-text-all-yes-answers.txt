@@ -83,52 +83,53 @@ Harassment and bullying          Yes
 Sex offender                     Yes
   Adult male                     Yes
   Adult female                   Yes
-W1234BY: McTest Testy                                                         Page 2 of 3
-  Under 18                       Yes   Under 18 sex offence victim details
+W1234BY: McTest Testy                                                                Page 2 of 3
+  Under 18                       Yes
+  Most recent sex offence        12/10/2008
 Escape status/history            Yes
-  Currently on E list            Yes   E-List-Escort
+  Currently on E list            Yes          E-List-Escort
 Made previous escape             Yes
 attempts
-  Prison                         Yes   Prison escape attempt details
-  Court                          Yes   Court escape attempt details
-  Police                         Yes   Police escape attempt details
-  Other                          Yes   Other type of escape attempt details
+  Prison                         Yes          Prison escape attempt details
+  Court                          Yes          Court escape attempt details
+  Police                         Yes          Police escape attempt details
+  Other                          Yes          Other type of escape attempt details
 Category A, potential Category   Yes
 A or Restricted Status
   Category A, potential          Yes
   Category A or Restricted
   Status
 Further security information     Yes
-  Escort Risk Assessment         Yes   Completed on: 26/11/2016
-  Escape Pack                    Yes   Completed on: 13/12/2016
+  Escort Risk Assessment         Yes          Completed on: 26/11/2016
+  Escape Pack                    Yes          Completed on: 13/12/2016
 Drug trafficking risk            Yes
   Drug trafficking risk          Yes
 Weapons, drugs or other items    Yes
-  Creates or uses weapons        Yes   Created and used a 3d gun
-  Conceals weapons               Yes   Conceals weapons details
-  Conceals drugs                 Yes   Conceals drugs details
+  Creates or uses weapons        Yes          Created and used a 3d gun
+  Conceals weapons               Yes          Conceals weapons details
+  Conceals drugs                 Yes          Conceals drugs details
   Conceals mobile phones         Yes
   Conceals SIM cards             Yes
-  Conceals other items           Yes   Conceals other items details
+  Conceals other items           Yes          Conceals other items details
 Arson                            Yes
   Arsonist                       Yes
 Other risk information           Yes
-  Other risk information         Yes   Suspected terrorist
+  Other risk information         Yes          Suspected terrorist
 Physical healthcare              Yes
-  Physical health needs          Yes   Physical issues details
+  Physical health needs          Yes          Physical issues details
 Mental healthcare                Yes
-  Mental health issues           Yes   Mental illness details
 
-  Phobias                        Yes   Phobias details
+  Mental health issues           Yes          Mental illness details
+  Phobias                        Yes          Phobias details
 Social healthcare                Yes
-  Personal hygiene issues        Yes   Personal hygiene details
-  Personal care issues           Yes   Personal care details
+  Personal hygiene issues        Yes          Personal hygiene details
+  Personal care issues           Yes          Personal care details
 Allergies                        Yes
-  Allergies                      Yes   Allergies details
+  Allergies                      Yes          Allergies details
 Medical health needs             Yes
-  Dependencies / misuse          Yes   Dependencies details
-  Regular medication             Yes
+  Dependencies / misuse          Yes          Dependencies details
 W1234BY: McTest Testy                                                                  Page 3 of 3
+ Regular medication           Yes
 Transport                     Yes
  MPV required                 Yes                Mpv details
 Communication / language      Yes

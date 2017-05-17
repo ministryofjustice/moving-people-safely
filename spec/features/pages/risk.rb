@@ -147,6 +147,7 @@ module Page
         fill_in_checkbox('Adult male', @risk, :sex_offence_adult_male_victim)
         fill_in_checkbox('Adult female', @risk, :sex_offence_adult_female_victim)
         fill_in_checkbox_with_details('Under 18', @risk, :sex_offence_under18_victim)
+        fill_in 'sex_offence_date_most_recent_sexual_offence', with: @risk.date_most_recent_sexual_offence
       else
         choose 'sex_offences_sex_offence_no'
       end
