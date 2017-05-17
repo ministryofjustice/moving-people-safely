@@ -1,6 +1,6 @@
 module Assessments
   class Question < SimpleDelegator
-    attr_reader :schema, :parent, :group_questions
+    attr_reader :schema, :parent, :subquestions, :dependency_questions
 
     delegate :name, :group?, :string?, :complex?, to: :schema
 
@@ -8,7 +8,8 @@ module Assessments
       @schema = schema
       @parent = options[:parent]
       super(object)
-      @group_questions = initialize_group_questions
+      @subquestions = initialize_subquestions
+      @dependency_questions = initialize_dependency_questions
     end
 
     def value
@@ -16,15 +17,12 @@ module Assessments
     end
 
     def relevant_answer?
-      answer_schema&.relevant? || value == 'yes'
+      return false unless answered?
+      schema.answers.any? ? answer_schema&.relevant? : true
     end
 
     def has_dependencies?
       answer_schema&.has_dependencies?
-    end
-
-    def dependency_questions
-      answer_schema&.questions
     end
 
     def answered?
@@ -49,6 +47,10 @@ module Assessments
       parent&.parent&.value if belongs_to_group?
     end
 
+    def answer_requires_group_questions?
+      schema.answers.find(&:has_group_questions?).present?
+    end
+
     def section_name
       return unless parent
       return parent.name if parent.is_section?
@@ -65,12 +67,22 @@ module Assessments
 
     private
 
-    def initialize_group_questions
-      group_schema = schema.answers.find(&:has_group_questions?)&.group
-      return [] unless group_schema
-      group = self.class.new(model, group_schema, parent: self)
-      group_schema.subquestions.map do |question_schema|
-        self.class.new(model, question_schema, parent: group)
+    def initialize_subquestions
+      schema.subquestions.map do |question_schema|
+        self.class.new(model, question_schema, parent: self)
+      end
+    end
+
+    def initialize_dependency_questions
+      schema.answers.flat_map(&:questions).flat_map do |question_schema|
+        if question_schema.group?
+          group = self.class.new(model, question_schema, parent: self)
+          question_schema.subquestions.map do |subquestion_schema|
+            self.class.new(model, subquestion_schema, parent: group)
+          end
+        else
+          self.class.new(model, question_schema, parent: self)
+        end
       end
     end
 

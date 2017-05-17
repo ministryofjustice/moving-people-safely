@@ -4,38 +4,20 @@ module Print
 
     def label
       content = t("print.section.questions.#{section_name}.#{name}")
-      if answer_is_relevant?
+      if relevant_answer?
         strong_title_label(content)
       else
         title_label(content)
       end
     end
 
-    def answer_is_relevant?
-      value = public_send(name)
-      case value
-      when 'no', false
-        false
-      when 'yes', true
-        true
-      else
-        return relevant_answer? if answer_schema
-        string? && value.present?
-      end
-    end
-
-    def answer_requires_group_questions?
-      group_questions.present?
-    end
-
-    def group_questions
-      model.group_questions.map do |question|
+    def dependency_questions
+      model.dependency_questions.map do |question|
         self.class.new(question)
       end
     end
 
     def answer
-      value = public_send(name)
       case value
       when 'no', false
         'No'

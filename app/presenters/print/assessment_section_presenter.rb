@@ -20,7 +20,7 @@ module Print
     private
 
     def relevant?
-      questions.any?(&:answer_is_relevant?)
+      questions.any?(&:relevant_answer?)
     end
 
     def model

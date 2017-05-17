@@ -27,7 +27,7 @@ module Schemas
     end
 
     def relevant?
-      relevant
+      relevant || value == 'yes' || value == true
     end
 
     private
