@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Risk, type: :model do
   it { is_expected.to belong_to(:escort) }
-  it_behaves_like 'questionable'
+  it { is_expected.to be_a(Questionable) }
 
   def create_escort
     create(:escort, detainee: detainee, move: move, risk: risk)
