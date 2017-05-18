@@ -120,17 +120,17 @@ Physical healthcare              Yes
 Mental health issues             Yes
 
   Mental health issues           Yes          Mental illness details
+Special vehicles                 Yes
+  Special vehicle required       Yes          Mpv details
 Social healthcare                Yes
   Personal hygiene issues        Yes          Personal hygiene details
   Personal care issues           Yes          Personal care details
 Allergies                        Yes
   Allergies                      Yes          Allergies details
 Medical health needs             Yes
-  Dependencies / misuse          Yes          Dependencies details
-  Regular medication             Yes
 W1234BY: McTest Testy                                                                  Page 3 of 3
-Transport                     Yes
- MPV required                 Yes                Mpv details
+ Dependencies / misuse        Yes                Dependencies details
+ Regular medication           Yes
 Communication / language      Yes
 difficulties
  Hearing / speech / sight     Yes                Hearing/speech/sight issues details
