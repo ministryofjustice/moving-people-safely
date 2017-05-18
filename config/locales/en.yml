@@ -174,6 +174,9 @@ en:
       physical:
         physical_issues_choices:
           unknown: Clear selection
+      other_risk:
+        other_risk_choices:
+          unknown: Clear selection
       risk_from_others:
         rule_45_choices:
           unknown: Clear selection
