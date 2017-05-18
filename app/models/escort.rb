@@ -1,7 +1,9 @@
 class Escort < ApplicationRecord
   default_scope { order('escorts.created_at desc') }
-  has_one :detainee
-  has_one :move
+  has_one :detainee, dependent: :destroy
+  has_one :move, dependent: :destroy
+  has_one :risk, dependent: :destroy
+  has_one :healthcare, dependent: :destroy
 
   default_scope { where(deleted_at: nil) }
 
@@ -12,14 +14,6 @@ class Escort < ApplicationRecord
   scope :active, -> { joins(:move).merge(Move.active) }
 
   delegate :risk_complete?, :healthcare_complete?, :offences_complete?, to: :move, allow_nil: true
-
-  def risk
-    detainee&.risk
-  end
-
-  def healthcare
-    detainee&.healthcare
-  end
 
   delegate :offences, :offences=, to: :detainee, allow_nil: true
 

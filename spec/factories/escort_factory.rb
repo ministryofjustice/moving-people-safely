@@ -13,5 +13,27 @@ FactoryGirl.define do
     trait :with_move do
       association :move
     end
+
+    trait :with_incomplete_risk_assessment do
+      association :risk, :incomplete, strategy: :build
+    end
+
+    trait :with_incomplete_healthcare_assessment do
+      association :healthcare, :incomplete, strategy: :build
+    end
+
+    trait :completed do
+      association :detainee
+      association :move, :confirmed
+      association :risk
+      association :healthcare
+    end
+
+    trait :issued do
+      association :detainee
+      association :move, :issued, :confirmed
+      association :risk
+      association :healthcare
+    end
   end
 end

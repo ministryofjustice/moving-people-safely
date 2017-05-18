@@ -81,7 +81,9 @@ ActiveRecord::Schema.define(version: 20170516164324) do
     t.text     "hearing_speech_sight_issues_details"
     t.string   "reading_writing_issues"
     t.text     "reading_writing_issues_details"
+    t.uuid     "escort_id"
     t.index ["detainee_id"], name: "index_healthcare_on_detainee_id", using: :btree
+    t.index ["escort_id"], name: "index_healthcare_on_escort_id", using: :btree
   end
 
   create_table "medications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -218,11 +220,13 @@ ActiveRecord::Schema.define(version: 20170516164324) do
     t.text     "other_risk_details"
     t.string   "uses_weapons"
     t.text     "uses_weapons_details"
+    t.uuid     "escort_id"
     t.string   "discrimination_to_other_religions"
     t.text     "discrimination_to_other_religions_details"
     t.text     "violence_to_staff_details"
     t.date     "date_most_recent_sexual_offence"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
+    t.index ["escort_id"], name: "index_risks_on_escort_id", using: :btree
   end
 
   create_table "sessions", force: :cascade do |t|

@@ -1,7 +1,15 @@
 require 'feature_helper'
 
 RSpec.feature 'printing a PER', type: :feature do
-  let(:escort) { create(:escort, detainee: detainee, move: move) }
+  let(:escort) {
+    create(
+      :escort,
+      detainee: detainee,
+      move: move,
+      risk: risk,
+      healthcare: healthcare,
+    )
+  }
   let(:move) {
     create(
       :move,
@@ -27,8 +35,6 @@ RSpec.feature 'printing a PER', type: :feature do
       nationalities: 'British',
       cro_number: '56TYY/UU',
       pnc_number: 'YI896668TT',
-      risk: risk,
-      healthcare: healthcare,
       offences: offences
     )
   }

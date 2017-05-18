@@ -1,7 +1,7 @@
 header
   h1 = t("#{scope}.form.title.#{form.name}")
 
-= form_for form, url: wizard_path, method: :put, as: form.name do |f|
+= form_for form, url: wizard_path, method: method, as: form.name do |f|
   = f.error_messages
   = render partial: "shared/step", locals: { f: f, assessment: assessment, form: form }
 

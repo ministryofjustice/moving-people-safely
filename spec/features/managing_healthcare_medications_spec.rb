@@ -8,7 +8,7 @@ RSpec.describe 'managing healthcare medications', type: :feature do
   scenario 'adding and removing move medications' do
     login
 
-    visit escort_healthcare_path(escort, step: 'needs')
+    visit new_escort_healthcare_path(escort, step: 'needs')
     check_medication
 
     fill_in_medication position: :first
@@ -18,19 +18,19 @@ RSpec.describe 'managing healthcare medications', type: :feature do
     fill_in_medication position: :third
     save
 
-    visit escort_healthcare_path(escort, step: 'needs')
+    visit edit_escort_healthcare_path(escort, step: 'needs')
     expect_to_have_medications_for positions: %i[ first second third ]
 
     delete_medication position: :third
     save
 
-    visit escort_healthcare_path(escort, step: 'needs')
+    visit edit_escort_healthcare_path(escort, step: 'needs')
     expect_to_have_medications_for positions: %i[ first second ]
 
     select_no_medications
     save
 
-    visit escort_healthcare_path(escort, step: 'needs')
+    visit edit_escort_healthcare_path(escort, step: 'needs')
     expect_all_medications_to_be_deleted
   end
 

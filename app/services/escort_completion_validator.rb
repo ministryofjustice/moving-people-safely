@@ -1,21 +1,14 @@
-class EscortCompletionValidator
+class EscortCompletionValidator < SimpleDelegator
   def self.call(escort)
     new(escort).call
   end
 
-  def initialize(escort)
-    @escort = escort
-  end
-
   def call
-    valid_detainee? && valid_move? && completed?
+    valid_detainee? && valid_move? &&
+      valid_assessments? && completed?
   end
 
   private
-
-  attr_reader :escort
-
-  delegate :detainee, :move, to: :escort
 
   def valid_detainee?
     detainee && Forms::Detainee.new(detainee).valid?
@@ -23,6 +16,10 @@ class EscortCompletionValidator
 
   def valid_move?
     move && Forms::Move.new(move).valid?
+  end
+
+  def valid_assessments?
+    risk_complete? && healthcare_complete? && offences_complete?
   end
 
   def completed?

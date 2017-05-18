@@ -1,0 +1,14 @@
+= content_for :breadcrumbs do
+  - breadcrumbs_for_page root: true do
+    - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
+    - breadcrumb 'Healthcare'
+    - breadcrumb t("healthcare.form.title.#{form.name}")
+
+= render partial: 'shared/wizard_header'
+
+.healthcare
+  = render partial: 'shared/wizard_step_form',
+    locals: { scope: 'healthcare',
+              assessment: AssessmentPresenter.new(healthcare, step),
+              form: form,
+              method: :post }
