@@ -4,11 +4,13 @@
     - breadcrumb 'Risk summary', escort_risks_path(escort)
     - breadcrumb t("risks.form.title.#{form.name}")
 
-= render partial: 'shared/wizard_header'
+.grid-row
+  .column-two-thirds
+    = render partial: 'shared/wizard_header'
 
-.risk
-  = render partial: 'shared/wizard_step_form',
-    locals: { scope: 'risks',
-              assessment: AssessmentPresenter.new(risk, step),
-              form: form,
-              method: :put }
+  .risk.column-two-thirds
+    = render partial: 'shared/wizard_step_form',
+      locals: { scope: 'risks',
+                assessment: AssessmentPresenter.new(risk, step),
+                form: form,
+                method: :put }
