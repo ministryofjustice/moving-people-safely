@@ -29,8 +29,7 @@ module Page
     end
 
     def fill_in_mental_healthcare
-      fill_in_optional_details('Mental health issues?', @hc, :mental_illness)
-      fill_in_optional_details('Phobias?', @hc, :phobias)
+      fill_in_optional_details('Are there any mental health issues that may affect this journey?', @hc, :mental_illness)
       click_button 'Save and continue'
     end
 

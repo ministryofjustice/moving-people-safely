@@ -3,7 +3,6 @@ FactoryGirl.define do
     allergies 'no'
     physical_issues 'no'
     mental_illness 'no'
-    phobias 'no'
     personal_hygiene 'no'
     personal_care 'no'
     dependencies 'no'

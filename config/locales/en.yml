@@ -30,8 +30,7 @@ en:
         has_destinations: Are there establishments the detainee must or must not be sent?
         not_for_release: Not for release?
       mental:
-        mental_illness: Mental health issues?
-        phobias: Phobias?
+        mental_illness: Are there any mental health issues that may affect this journey?
       needs:
         dependencies: Any dependencies or history of misuse?
         has_medications: Regular medication?
@@ -157,8 +156,7 @@ en:
       mental:
         mental_illness_choices:
           unknown: Clear selection
-        phobias_choices:
-          unknown: Clear selection
+        mental_illness_details: Mental health issues details
       needs:
         dependencies_choices:
           unknown: Clear selection
@@ -295,10 +293,8 @@ en:
         not_for_release: Is there a known reason that the detainee is not for release?
         not_for_release_reason_details: Give details of why the detainee is not for release
       mental:
-        mental_illness: Eg depression, paranoia, anxiety, personality disorder
-        mental_illness_details: Give details and explain the significance
-        phobias: Eg claustrophobia, agoraphobia
-        phobias_details: Give details and explain the significance
+        mental_illness: For example, if they become anxious in certain situations.
+        mental_illness_details: 'Please explain how these issues might affect the journey and how they should be managed. Do not give details of medical conditions:'
       needs:
         dependencies: Eg early stages of detox, alcohol withdrawal
         dependencies_details: Give details and explain the significance
@@ -364,7 +360,7 @@ en:
       title:
         communication: Communication / language difficulties
         physical: Physical healthcare
-        mental: Mental healthcare
+        mental: Mental health issues
         social: Social healthcare
         allergies: Allergies
         needs: Medical health needs
@@ -534,7 +530,7 @@ en:
         harassment: "Risk to others: harasser and/or bully"
         hostage_taker: "Hostage taker"
         intimidation: Harassment and bullying
-        mental: Mental healthcare
+        mental: Mental health issues
         needs: Medical health needs
         other_risk: Other risk information
         physical: Physical healthcare

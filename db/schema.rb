@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516164324) do
+ActiveRecord::Schema.define(version: 20170518140955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,8 +59,6 @@ ActiveRecord::Schema.define(version: 20170516164324) do
     t.text     "physical_issues_details"
     t.string   "mental_illness",                      default: "unknown"
     t.text     "mental_illness_details"
-    t.string   "phobias",                             default: "unknown"
-    t.text     "phobias_details"
     t.string   "personal_hygiene",                    default: "unknown"
     t.text     "personal_hygiene_details"
     t.string   "personal_care",                       default: "unknown"
@@ -220,10 +218,10 @@ ActiveRecord::Schema.define(version: 20170516164324) do
     t.text     "other_risk_details"
     t.string   "uses_weapons"
     t.text     "uses_weapons_details"
-    t.uuid     "escort_id"
     t.string   "discrimination_to_other_religions"
     t.text     "discrimination_to_other_religions_details"
     t.text     "violence_to_staff_details"
+    t.uuid     "escort_id"
     t.date     "date_most_recent_sexual_offence"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
     t.index ["escort_id"], name: "index_risks_on_escort_id", using: :btree
