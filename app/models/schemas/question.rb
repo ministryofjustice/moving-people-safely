@@ -35,6 +35,10 @@ module Schemas
       type == 'string'
     end
 
+    def boolean?
+      type == 'boolean'
+    end
+
     private
 
     attr_reader :hash
