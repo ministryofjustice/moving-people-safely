@@ -37,7 +37,7 @@ en:
       other_risk:
         other_risk: Is there any other information related to risk on this journey you would like to include?
       physical:
-        physical_issues: Physical health needs?
+        physical_issues: Are there any physical health issues that may affect this journey?
       risk_from_others:
         rule_45: Are they held under Rule 45?
         high_profile: Are they of high public interest?
@@ -303,8 +303,8 @@ en:
         other_risk: Include relevant adjudications or case notes not already included
         other_risk_details: Give details
       physical:
-        physical_issues: Eg disabilities, prosthetic limbs, crutches.
-        physical_issues_details: Give details and explain the significance
+        physical_issues_html: "<p>For example, issues that mean they can’t: <ul class='list list-bullet'><li>be handcuffed</li><li>travel in a standard van cell</li><li>sit for long periods of time</li></ul></p>"
+        physical_issues_details: 'Please explain how these issues might affect the journey and how they should be managed:'
       risk_from_others:
         high_profile_details: Give details
       risk_to_self:
@@ -359,7 +359,7 @@ en:
           add_multiple: Add medication
       title:
         communication: Communication / language difficulties
-        physical: Physical healthcare
+        physical: Physical health issues
         mental: Mental health issues
         social: Social healthcare
         allergies: Allergies
@@ -533,7 +533,7 @@ en:
         mental: Mental health issues
         needs: Medical health needs
         other_risk: Other risk information
-        physical: Physical healthcare
+        physical: Physical health issues
         previous_escape_attempts: Made previous escape attempts
         risk_to_self: Risk to self
         risk_from_others: Risk from others
