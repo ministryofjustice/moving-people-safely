@@ -1,5 +1,6 @@
 assessment:
   healthcare:
+    intro: true
     sections:
       physical:
         questions:

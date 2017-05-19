@@ -8,6 +8,7 @@ module Page
 
     def complete_forms(healthcare)
       @hc = healthcare
+      continue_from_intro
       fill_in_physical_healthcare
       fill_in_mental_healthcare
       fill_in_social_healthcare
@@ -16,6 +17,10 @@ module Page
       fill_in_transport
       fill_in_communication
       fill_in_medical_contact
+    end
+
+    def continue_from_intro
+      click_link 'Continue'
     end
 
     def fill_in_physical_healthcare
