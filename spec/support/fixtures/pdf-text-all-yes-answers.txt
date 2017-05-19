@@ -117,10 +117,9 @@ Other risk information           Yes
   Other risk information         Yes          Suspected terrorist
 Physical healthcare              Yes
   Physical health needs          Yes          Physical issues details
-Mental healthcare                Yes
+Mental health issues             Yes
 
   Mental health issues           Yes          Mental illness details
-  Phobias                        Yes          Phobias details
 Social healthcare                Yes
   Personal hygiene issues        Yes          Personal hygiene details
   Personal care issues           Yes          Personal care details
@@ -128,8 +127,8 @@ Allergies                        Yes
   Allergies                      Yes          Allergies details
 Medical health needs             Yes
   Dependencies / misuse          Yes          Dependencies details
+  Regular medication             Yes
 W1234BY: McTest Testy                                                                  Page 3 of 3
- Regular medication           Yes
 Transport                     Yes
  MPV required                 Yes                Mpv details
 Communication / language      Yes

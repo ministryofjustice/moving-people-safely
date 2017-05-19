@@ -6,15 +6,12 @@ RSpec.describe Forms::Healthcare::Mental, type: :form do
   let(:params) {
     {
       mental_illness: 'yes',
-      mental_illness_details: 'Personality problems',
-      phobias: 'yes',
-      phobias_details: 'Scared of spiders',
+      mental_illness_details: 'Personality problems'
     }.with_indifferent_access
   }
 
   describe '#validate' do
     it { is_expected.to validate_optional_details_field(:mental_illness) }
-    it { is_expected.to validate_optional_details_field(:phobias) }
   end
 
   describe '#save' do

@@ -34,20 +34,6 @@ assessment:
                 value: 'no'
               -
                 value: 'unknown'
-          -
-            name: phobias
-            type: string
-            answers:
-              -
-                value: 'yes'
-                questions:
-                  -
-                    name: phobias_details
-                    type: string
-              -
-                value: 'no'
-              -
-                value: 'unknown'
       social:
         questions:
           -
