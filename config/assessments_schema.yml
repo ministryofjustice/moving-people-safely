@@ -50,6 +50,53 @@ assessment:
                 value: 'no'
               -
                 value: 'unknown'
+      needs:
+        questions:
+          -
+            name: has_medications
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: medications
+                    type: complex
+                    questions:
+                      -
+                        name: description
+                        type: string
+                      -
+                        name: administration
+                        type: string
+                      -
+                        name: carrier
+                        type: string
+                        answers:
+                          -
+                            value: 'escort'
+                          -
+                            value: 'detainee'
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      dependencies:
+        questions:
+          -
+            name: dependencies
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: dependencies_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
       social:
         questions:
           -
@@ -92,51 +139,6 @@ assessment:
                   -
                     name: allergies_details
                     type: string
-              -
-                value: 'no'
-              -
-                value: 'unknown'
-      needs:
-        questions:
-          -
-            name: dependencies
-            type: string
-            answers:
-              -
-                value: 'yes'
-                questions:
-                  -
-                    name: dependencies_details
-                    type: string
-              -
-                value: 'no'
-              -
-                value: 'unknown'
-          -
-            name: has_medications
-            type: string
-            answers:
-              -
-                value: 'yes'
-                questions:
-                  -
-                    name: medications
-                    type: complex
-                    questions:
-                      -
-                        name: description
-                        type: string
-                      -
-                        name: administration
-                        type: string
-                      -
-                        name: carrier
-                        type: string
-                        answers:
-                          -
-                            value: 'escort'
-                          -
-                            value: 'detainee'
               -
                 value: 'no'
               -

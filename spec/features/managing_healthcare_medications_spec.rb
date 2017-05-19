@@ -38,9 +38,9 @@ RSpec.describe 'managing healthcare medications', type: :feature do
     expect(medication_els.size).to eq positions.size
     positions.each do |position|
       within_medication(position) do
-        expect(find_field('What is it?').value).to eq text_for(:description, position)
-        expect(find_field('How is it given?').value).to eq text_for(:administration, position)
-        expect(has_select?('Who carries it?', selected: 'Escort')).to be true
+        expect(find_field('Medicine').value).to eq text_for(:description, position)
+        expect(find_field('How is it given').value).to eq text_for(:administration, position)
+        expect(has_select?('Who will carry the medicine?', selected: 'Escort')).to be true
       end
     end
   end
@@ -48,32 +48,32 @@ RSpec.describe 'managing healthcare medications', type: :feature do
   def expect_all_medications_to_be_deleted
     expect(medication_els.size).to eq 1
     within_medication(:first) do
-      expect(find_field('What is it?', visible: false).value).to be_blank
-      expect(find_field('How is it given?', visible: false).value).to be_blank
+      expect(find_field('Medicine', visible: false).value).to be_blank
+      expect(find_field('How is it given', visible: false).value).to be_blank
     end
   end
 
   def check_medication
-    within_fieldset('Regular medication?') do
+    within_fieldset('Will they need to be given medication during this journey?') do
       choose 'Yes'
     end
   end
 
   def select_no_medications
-    within_fieldset('Regular medication?') do
+    within_fieldset('Will they need to be given medication during this journey?') do
       choose 'No'
     end
   end
 
   def add_medication
-    click_button 'Add medication'
+    click_button 'Add another medicine'
   end
 
   def fill_in_medication(position:)
     within_medication(position) do
-      fill_in 'What is it?', with: text_for(:description, position)
-      fill_in 'How is it given?', with: text_for(:administration, position)
-      select 'Escort', from: 'Who carries it?'
+      fill_in 'Medicine', with: text_for(:description, position)
+      fill_in 'How is it given', with: text_for(:administration, position)
+      select 'Escort', from: 'Who will carry the medicine?'
     end
   end
 

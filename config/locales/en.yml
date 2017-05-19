@@ -14,6 +14,8 @@ en:
         conceals_mobile_phone_or_other_items: Have they concealed mobile phones, SIMs or other items in custody?
         conceals_weapons: Have they concealed weapons in custody?
         uses_weapons: Have they created or used weapons in custody?
+      dependencies:
+        dependencies: Do they have any addictions or dependencies that may affect this journey?
       discrimination:
         discrimination_to_other_religions: 'Are they a risk to other religions?'
         homophobic: 'Are they a risk to lesbian, gay, bisexual, transgender or transexual (LGBT) people?'
@@ -32,8 +34,7 @@ en:
       mental:
         mental_illness: Are there any mental health issues that may affect this journey?
       needs:
-        dependencies: Any dependencies or history of misuse?
-        has_medications: Regular medication?
+        has_medications: Will they need to be given medication during this journey?
       other_risk:
         other_risk: Is there any other information related to risk on this journey you would like to include?
       physical:
@@ -96,6 +97,10 @@ en:
         conceals_sim_cards: SIM cards
         uses_weapons_choices:
           unknown: Clear selection
+      dependencies:
+        dependencies_choices:
+          unknown: Clear selection
+        dependencies_details: Addictions or dependencies details
       detainee:
         surname: Surname
         forenames: Forename(s)
@@ -158,17 +163,15 @@ en:
           unknown: Clear selection
         mental_illness_details: Mental health issues details
       needs:
-        dependencies_choices:
-          unknown: Clear selection
         has_medications_choices:
           unknown: Clear selection
         medications:
-          description: What is it?
-          administration: How is it given?
-          carrier: Who carries it?
+          description: Medicine
+          administration: How is it given
+          carrier: Who will carry the medicine?
           carrier_choices:
             escort: Escort
-            detainee: Detainee
+            detainee: Prisoner
       physical:
         physical_issues_choices:
           unknown: Clear selection
@@ -271,6 +274,8 @@ en:
         conceals_weapons_details: 'Give details of previous incidents:'
         conceals_drugs_details: 'Give details of previous incidents:'
         conceals_other_items_details: Give details
+      dependencies:
+        dependencies_details: 'Please explain how these issues might affect the journey and how they should be managed:'
       detainee:
         date_of_birth: DD/MM/YYYY
       discrimination:
@@ -296,9 +301,7 @@ en:
         mental_illness: For example, if they become anxious in certain situations.
         mental_illness_details: 'Please explain how these issues might affect the journey and how they should be managed. Do not give details of medical conditions:'
       needs:
-        dependencies: Eg early stages of detox, alcohol withdrawal
-        dependencies_details: Give details and explain the significance
-        has_medications: Eg methadone, anti-inflammatories, anti-depressants, beta-blockers, insulin, migraine tablets, asthma or epilepsy drugs
+        has_medications: This is any regular medication that will need to be administered while they are out of prison. Full medication history can be given in a sealed envelope to be opened by a healthcare professional in case of an emergency.
       other_risk:
         other_risk: Include relevant adjudications or case notes not already included
         other_risk_details: Give details
@@ -356,14 +359,15 @@ en:
     form:
       actions:
         medications:
-          add_multiple: Add medication
+          add_multiple: Add another medicine
       title:
         communication: Communication / language difficulties
+        dependencies: Dependencies
         physical: Physical health issues
         mental: Mental health issues
         social: Social healthcare
         allergies: Allergies and intolerances
-        needs: Medical health needs
+        needs: Essential medication
         transport: Special vehicles
         contact: Medical contact
     intro:
@@ -457,8 +461,7 @@ en:
         mental:
           mental_illness: Mental health issues
         needs:
-          dependencies: Dependencies / misuse
-          has_medications: Regular medication
+          has_medications: Essential medication
           medications_collection:
             carrier: 'Carried by '
         other_risk:
@@ -534,7 +537,7 @@ en:
         hostage_taker: "Hostage taker"
         intimidation: Harassment and bullying
         mental: Mental health issues
-        needs: Medical health needs
+        needs: Essential medication
         other_risk: Other risk information
         physical: Physical health issues
         previous_escape_attempts: Made previous escape attempts

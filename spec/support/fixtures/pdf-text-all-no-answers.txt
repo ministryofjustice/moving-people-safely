@@ -65,9 +65,10 @@ Other risk information              No
 Physical health issues              No
 Mental health issues                No
 Special vehicles                    No
+Essential medication                No
+Dependencies                        No
 Social healthcare                   No
 Allergies and intolerances          No
-Medical health needs                No
 Communication / language            No
 difficulties
 Medical contact                     Yes
