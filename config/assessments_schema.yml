@@ -34,6 +34,22 @@ assessment:
                 value: 'no'
               -
                 value: 'unknown'
+      transport:
+        questions:
+          -
+            name: mpv
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: mpv_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
       social:
         questions:
           -
@@ -121,22 +137,6 @@ assessment:
                             value: 'escort'
                           -
                             value: 'detainee'
-              -
-                value: 'no'
-              -
-                value: 'unknown'
-      transport:
-        questions:
-          -
-            name: mpv
-            type: string
-            answers:
-              -
-                value: 'yes'
-                questions:
-                  -
-                    name: mpv_details
-                    type: string
               -
                 value: 'no'
               -

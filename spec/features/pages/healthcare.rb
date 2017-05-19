@@ -11,10 +11,10 @@ module Page
       continue_from_intro
       fill_in_physical_healthcare
       fill_in_mental_healthcare
+      fill_in_transport
       fill_in_social_healthcare
       fill_in_allergies
       fill_in_healthcare_needs
-      fill_in_transport
       fill_in_communication
       fill_in_medical_contact
     end
@@ -72,7 +72,7 @@ module Page
     end
 
     def fill_in_transport
-      fill_in_optional_details('Requires MPV?', @hc, :mpv)
+      fill_in_optional_details('Do they need to travel in a special vehicle on this journey?', @hc, :mpv)
       click_button 'Save and continue'
     end
 

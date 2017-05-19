@@ -64,10 +64,10 @@ Arson                               No
 Other risk information              No
 Physical healthcare                 No
 Mental health issues                No
+Special vehicles                    No
 Social healthcare                   No
 Allergies                           No
 Medical health needs                No
-Transport                           No
 Communication / language            No
 difficulties
 Medical contact                     Yes

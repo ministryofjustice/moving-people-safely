@@ -61,7 +61,7 @@ en:
       substance_misuse:
         substance_supply: Is there a risk that they might traffic drugs on this journey?
       transport:
-        mpv: Requires MPV?
+        mpv: Do they need to travel in a special vehicle on this journey?
       violence:
         controlled_unlock_required: Are they on a controlled unlock?
         controlled_unlock: Number of officers required
@@ -233,7 +233,7 @@ en:
       transport:
         mpv_choices:
           unknown: Clear selection
-        mpv_details: MPV details
+        mpv_details: Details for need of a special vehicle
       violence:
         co_defendant: Co-defendant
         co_defendant_details: Co-defendant violence details
@@ -335,8 +335,8 @@ en:
       substance_misuse:
         substance_supply: Risk will be indicated by intelligence or past history of trafficking drugs.
       transport:
-        mpv: Eg disability, claustrophobia, pregnancy.
-        mpv_details: Give details and explain the significance
+        mpv: This could be a specially-adapted prison van (for example, to accommodate wheelchairs) or a taxi.
+        mpv_details: 'Please explain why you feel they need a special vehicle:'
       violence:
         controlled_unlock_details: 'Give details of personal protection equipment (PPE) required:'
         co_defendant_details: Give details
@@ -364,7 +364,7 @@ en:
         social: Social healthcare
         allergies: Allergies
         needs: Medical health needs
-        transport: Transport
+        transport: Special vehicles
         contact: Medical contact
     intro:
       breadcrumb: Health
@@ -496,7 +496,7 @@ en:
         substance_misuse:
           substance_supply: Drug trafficking risk
         transport:
-          mpv: MPV required
+          mpv: Special vehicle required
         violence: &summary_violence
           co_defendant: Co-defendant
           controlled_unlock_required: Controlled unlock
@@ -540,6 +540,7 @@ en:
         sex_offences: Sex offender
         social: Social healthcare
         substance_misuse: Drug trafficking risk
+        transport: Special vehicles
         violence_to_general_public: Violent to anyone else
         violence_to_other_detainees: Violent to other prisoners
         violence_to_staff: Violent to staff
