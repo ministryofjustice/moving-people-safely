@@ -4,11 +4,13 @@ RSpec.describe Summary::AssessmentQuestionPresenter do
   let(:section_name) { 'some_section' }
   let(:question_name) { 'some_question' }
   let(:value) { 'some_value' }
+  let(:parent) { nil }
   let(:question) {
     instance_double(Assessments::Question,
                     name: question_name,
                     section_name: section_name,
-                    value: value
+                    value: value,
+                    parent: parent
                    )
   }
   subject(:presenter) { described_class.new(question) }
@@ -111,28 +113,22 @@ RSpec.describe Summary::AssessmentQuestionPresenter do
       end
     end
 
-    context 'when question does not belong to a group of questions' do
-      before do
-        expect(question).to receive(:belongs_to_group?).and_return(false)
-      end
+    shared_examples_for 'boolean and non boolean answer' do
+      context 'and answer is boolean' do
+        before { expect(question).to receive(:boolean?).and_return(true)}
 
-      context 'when the answer for the question is "unknown"' do
-        let(:value) { 'unknown' }
-
-        it 'returns missing content' do
-          expect(presenter.answer).to eq("<span class='text-error'>Missing</span>")
+        it 'returns No' do
+          expect(presenter.answer).to eq('No')
         end
       end
 
-      context 'when the answer for the question is nil' do
-        let(:value) { nil }
+      context 'and answer is not boolean' do
+        before { expect(question).to receive(:boolean?).and_return(false)}
 
-        it 'returns missing content' do
-          expect(presenter.answer).to eq("<span class='text-error'>Missing</span>")
+        it 'returns None' do
+          expect(presenter.answer).to eq('None')
         end
       end
-
-      include_examples 'format answered value'
     end
 
     context 'when question belongs to a group of questions' do
@@ -165,9 +161,7 @@ RSpec.describe Summary::AssessmentQuestionPresenter do
           expect(question).to receive(:parent_group_answer).and_return('no')
         end
 
-        it 'returns No' do
-          expect(presenter.answer).to eq('No')
-        end
+        include_examples 'boolean and non boolean answer'
       end
 
       context 'and group parent answer is false' do
@@ -175,9 +169,7 @@ RSpec.describe Summary::AssessmentQuestionPresenter do
           expect(question).to receive(:parent_group_answer).and_return(false)
         end
 
-        it 'returns No' do
-          expect(presenter.answer).to eq('No')
-        end
+        include_examples 'boolean and non boolean answer'
       end
 
       context 'and group parent answer is present and relevant' do
@@ -187,6 +179,75 @@ RSpec.describe Summary::AssessmentQuestionPresenter do
 
         include_examples 'format answered value'
       end
+    end
+
+    context 'when question has a parent that is a question' do
+      let(:parent_value) { 'some_value' }
+      let(:parent) { instance_double(Assessments::Question, value: parent_value, is_question?: true) }
+
+      before do
+        expect(question).to receive(:belongs_to_group?).and_return(false)
+      end
+
+      context 'and parent answer is "unknown"' do
+        let(:parent_value) { 'unknown' }
+
+        it 'returns missing content' do
+          expect(presenter.answer).to eq("<span class='text-error'>Missing</span>")
+        end
+      end
+
+      context 'and parent answer is nil' do
+        let(:parent_value) { nil }
+
+        it 'returns missing content' do
+          expect(presenter.answer).to eq("<span class='text-error'>Missing</span>")
+        end
+      end
+
+      context 'and parent answer is "no"' do
+        let(:parent_value) { 'no' }
+
+        include_examples 'boolean and non boolean answer'
+      end
+
+      context 'and parent answer is false' do
+        let(:parent_value) { false }
+
+        include_examples 'boolean and non boolean answer'
+      end
+
+      context 'and parent answer is yes' do
+        let(:parent_value) { 'yes' }
+
+        include_examples 'format answered value'
+      end
+    end
+
+    context 'when question does not belong to a group of questions and parent is not a question' do
+      let(:parent) { instance_double(Assessments::Question, is_question?: false) }
+
+      before do
+        expect(question).to receive(:belongs_to_group?).and_return(false)
+      end
+
+      context 'when the answer for the question is "unknown"' do
+        let(:value) { 'unknown' }
+
+        it 'returns missing content' do
+          expect(presenter.answer).to eq("<span class='text-error'>Missing</span>")
+        end
+      end
+
+      context 'when the answer for the question is nil' do
+        let(:value) { nil }
+
+        it 'returns missing content' do
+          expect(presenter.answer).to eq("<span class='text-error'>Missing</span>")
+        end
+      end
+
+      include_examples 'format answered value'
     end
   end
 
