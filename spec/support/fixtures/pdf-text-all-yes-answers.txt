@@ -125,8 +125,8 @@ Special vehicles                 Yes
 Social healthcare                Yes
   Personal hygiene issues        Yes          Personal hygiene details
   Personal care issues           Yes          Personal care details
-Allergies                        Yes
-  Allergies                      Yes          Allergies details
+Allergies and intolerances       Yes
+  Allergies and intolerances     Yes          Allergies details
 Medical health needs             Yes
 W1234BY: McTest Testy                                                                  Page 3 of 3
  Dependencies / misuse        Yes                Dependencies details
