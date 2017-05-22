@@ -24,7 +24,7 @@ module Page
     end
 
     def fill_in_physical_healthcare
-      fill_in_optional_details('Physical health needs?', @hc, :physical_issues)
+      fill_in_optional_details('Are there any physical health issues that may affect this journey?', @hc, :physical_issues)
       click_button 'Save and continue'
     end
 

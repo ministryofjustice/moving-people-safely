@@ -115,7 +115,7 @@ Arson                            Yes
   Arsonist                       Yes
 Other risk information           Yes
   Other risk information         Yes          Suspected terrorist
-Physical healthcare              Yes
+Physical health issues           Yes
   Physical health needs          Yes          Physical issues details
 Mental health issues             Yes
 
