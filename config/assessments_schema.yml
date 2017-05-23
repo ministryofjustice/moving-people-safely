@@ -143,36 +143,6 @@ assessment:
                 value: 'no'
               -
                 value: 'unknown'
-      communication:
-        questions:
-          -
-            name: hearing_speech_sight_issues
-            type: string
-            answers:
-              -
-                value: 'yes'
-                questions:
-                  -
-                    name: hearing_speech_sight_issues_details
-                    type: string
-              -
-                value: 'no'
-              -
-                value: 'unknown'
-          -
-            name: reading_writing_issues
-            type: string
-            answers:
-              -
-                value: 'yes'
-                questions:
-                  -
-                    name: reading_writing_issues_details
-                    type: string
-              -
-                value: 'no'
-              -
-                value: 'unknown'
       contact:
         questions:
           -

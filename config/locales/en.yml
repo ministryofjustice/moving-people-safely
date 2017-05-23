@@ -6,9 +6,6 @@ en:
         allergies: Do they have any known allergies or intolerances?
       arson:
         arson: Are they an arsonist?
-      communication:
-        hearing_speech_sight_issues: Does the detainee have hearing / speech / sight issues?
-        reading_writing_issues: Does the detainee have reading / writing issues?
       concealed_weapons:
         conceals_drugs: Have they concealed drugs in custody?
         conceals_mobile_phone_or_other_items: Have they concealed mobile phones, SIMs or other items in custody?
@@ -78,13 +75,6 @@ en:
       arson:
         arson_choices:
           unknown: Clear selection
-      communication:
-        hearing_speech_sight_issues_choices:
-          unknown: Clear selection
-        hearing_speech_sight_issues_details: Detainee's hearing / speech / sight issues details
-        reading_writing_issues_choices:
-          unknown: Clear selection
-        reading_writing_issues_details: Detainee's reading / writing issues details
       concealed_weapons:
         conceals_weapons_choices:
           unknown: Clear selection
@@ -266,9 +256,6 @@ en:
       allergies:
         allergies: "For example, dietary, medical or environmental allergies"
         allergies_details: 'Please give details:'
-      communication:
-        hearing_speech_sight_issues_details: Give details
-        reading_writing_issues_details: Give details
       concealed_weapons:
         uses_weapons_details: 'Give details of previous incidents:'
         conceals_weapons_details: 'Give details of previous incidents:'
@@ -361,7 +348,6 @@ en:
         medications:
           add_multiple: Add another medicine
       title:
-        communication: Communication / language difficulties
         dependencies: Dependencies
         physical: Physical health issues
         mental: Mental health issues
@@ -429,9 +415,6 @@ en:
           arson: Arsonist
         category_a:
           category_a: Category A, potential Category A or Restricted Status
-        communication:
-          hearing_speech_sight_issues: Hearing / speech / sight issues
-          reading_writing_issues: Reading / writing issues
         concealed_weapons:
           conceals_weapons: Conceals weapons
           conceals_drugs: Conceals drugs
@@ -525,7 +508,6 @@ en:
         allergies: Allergies and intolerances
         arson: Arson
         category_a: Category A, potential Category A or Restricted Status
-        communication: Communication / language difficulties
         concealed_weapons: Weapons, drugs or other items
         controlled_unlock_required: Controlled unlock
         contact: Medical contact
