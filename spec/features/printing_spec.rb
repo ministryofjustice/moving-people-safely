@@ -82,8 +82,6 @@ RSpec.feature 'printing a PER', type: :feature do
         dependencies: 'no',
         has_medications: 'no',
         mpv: 'no',
-        hearing_speech_sight_issues: 'no',
-        reading_writing_issues: 'no',
         healthcare_professional: 'John Doctor Doe',
         contact_number: '1-131-999-0232'
       })
@@ -212,10 +210,6 @@ RSpec.feature 'printing a PER', type: :feature do
         has_medications: 'yes',
         mpv: 'yes',
         mpv_details: 'MPV details',
-        hearing_speech_sight_issues: 'yes',
-        hearing_speech_sight_issues_details: 'hearing/speech/sight issues details',
-        reading_writing_issues: 'yes',
-        reading_writing_issues_details: 'reading/writing issues details',
         healthcare_professional: 'John Doctor Doe',
         contact_number: '1-131-999-0232'
       })

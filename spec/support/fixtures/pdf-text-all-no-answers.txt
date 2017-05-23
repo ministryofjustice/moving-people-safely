@@ -69,8 +69,6 @@ Essential medication                No
 Dependencies                        No
 Social healthcare                   No
 Allergies and intolerances          No
-Communication / language            No
-difficulties
 Medical contact                     Yes
   Healthcare professional           John doctor doe
   Contact number                    1-131-999-0232

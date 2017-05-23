@@ -132,11 +132,6 @@ Social healthcare                Yes
  Personal care issues           Yes                Personal care details
 Allergies and intolerances      Yes
  Allergies and intolerances     Yes                Allergies details
-Communication / language        Yes
-difficulties
- Hearing / speech / sight       Yes                Hearing/speech/sight issues details
- issues
- Reading / writing issues       Yes                Reading/writing issues details
 Medical contact                 Yes
  Healthcare professional        John doctor doe
  Contact number                 1-131-999-0232

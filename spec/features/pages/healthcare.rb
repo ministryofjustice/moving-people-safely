@@ -16,7 +16,6 @@ module Page
       fill_in_dependencies
       fill_in_social_healthcare
       fill_in_allergies
-      fill_in_communication
       fill_in_medical_contact
     end
 
@@ -78,12 +77,6 @@ module Page
 
     def fill_in_transport
       fill_in_optional_details('Do they need to travel in a special vehicle on this journey?', @hc, :mpv)
-      click_button 'Save and continue'
-    end
-
-    def fill_in_communication
-      fill_in_optional_details('Does the detainee have hearing / speech / sight issues?', @hc, :hearing_speech_sight_issues)
-      fill_in_optional_details('Does the detainee have reading / writing issues?', @hc, :reading_writing_issues)
       click_button 'Save and continue'
     end
 
