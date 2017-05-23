@@ -72,9 +72,9 @@ Violent to anyone else           Yes
 Controlled unlock                Yes
   Controlled unlock              Yes      More than 4 officers. Many people to hold the prisoner
 Hostage taker                    Yes
-  Staff                          Yes      12/03/2010
-  Prisoners                      Yes      24/05/2012
-  Public                         Yes      02/09/2007
+  Staff                          Yes      Last incident: 12/03/2010
+  Prisoners                      Yes      Last incident: 24/05/2012
+  Public                         Yes      Last incident: 02/09/2007
 Harassment and bullying          Yes
   Staff                          Yes      Intimidation to staff details
   Public                         Yes      Intimidation to public details

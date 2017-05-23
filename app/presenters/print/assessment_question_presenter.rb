@@ -58,14 +58,14 @@ module Print
     end
 
     def detail_label(attribute)
-      I18n.t!(attribute, scope: [:print, :section, :questions, section_name])
+      t(attribute, scope: [:print, :section, :questions, section_name], raise: true)
     rescue
       nil
     end
 
     def answer_value(value)
       default_value = value.respond_to?(:humanize) ? value.humanize : value
-      I18n.t(value, scope: [:print, :section, :answers, section_name], default: default_value)
+      t(value, scope: [:print, :section, :answers, section_name], default: default_value)
     end
 
     def model
