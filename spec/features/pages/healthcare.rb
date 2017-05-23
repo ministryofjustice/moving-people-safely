@@ -12,9 +12,10 @@ module Page
       fill_in_physical_healthcare
       fill_in_mental_healthcare
       fill_in_transport
+      fill_in_healthcare_needs
+      fill_in_dependencies
       fill_in_social_healthcare
       fill_in_allergies
-      fill_in_healthcare_needs
       fill_in_communication
       fill_in_medical_contact
     end
@@ -45,7 +46,6 @@ module Page
     end
 
     def fill_in_healthcare_needs
-      fill_in_optional_details('Any dependencies or history of misuse?', @hc, :dependencies)
       if @hc.has_medications == 'yes'
         choose 'needs_has_medications_yes'
         @hc.medications.each_with_index do |med, i|
@@ -58,16 +58,21 @@ module Page
       save_and_continue
     end
 
+    def fill_in_dependencies
+      fill_in_optional_details('Do they have any addictions or dependencies that may affect this journey?', @hc, :dependencies)
+      save_and_continue
+    end
+
     def add_medication
-      click_button 'Add medication'
+      click_button 'Add another medicine'
     end
 
     def fill_in_medication(med, i)
       el = all('.multiple-wrapper').to_a[i]
       within(el) do
-        fill_in 'What is it?', with: med.description
-        fill_in 'How is it given?', with: med.administration
-        select med.carrier.titlecase, from: 'Who carries it?'
+        fill_in 'Medicine', with: med.description
+        fill_in 'How is it given', with: med.administration
+        select med.carrier.titlecase, from: 'Who will carry the medicine?'
       end
     end
 

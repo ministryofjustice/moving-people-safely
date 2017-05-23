@@ -122,25 +122,26 @@ Mental health issues             Yes
   Mental health issues           Yes          Mental illness details
 Special vehicles                 Yes
   Special vehicle required       Yes          Mpv details
+Essential medication             Yes
+  Essential medication           Yes
+Dependencies                     Yes
+  Dependencies                   Yes          Dependencies details
 Social healthcare                Yes
   Personal hygiene issues        Yes          Personal hygiene details
-  Personal care issues           Yes          Personal care details
-Allergies and intolerances       Yes
-  Allergies and intolerances     Yes          Allergies details
-Medical health needs             Yes
-W1234BY: McTest Testy                                                                  Page 3 of 3
- Dependencies / misuse        Yes                Dependencies details
- Regular medication           Yes
-Communication / language      Yes
+W1234BY: McTest Testy                                                                    Page 3 of 3
+ Personal care issues           Yes                Personal care details
+Allergies and intolerances      Yes
+ Allergies and intolerances     Yes                Allergies details
+Communication / language        Yes
 difficulties
- Hearing / speech / sight     Yes                Hearing/speech/sight issues details
+ Hearing / speech / sight       Yes                Hearing/speech/sight issues details
  issues
- Reading / writing issues     Yes                Reading/writing issues details
-Medical contact               Yes
- Healthcare professional      John doctor doe
- Contact number               1-131-999-0232
-Current offences              Yes                Burglary (LXAHTGNJQF) | Sex offence
-                                                 (QDPREIBMSF)
-Must return to              HMP Brixton: Its a lovely place.
-Must NOT return to          HMP Clive House: Its too cold.
+ Reading / writing issues       Yes                Reading/writing issues details
+Medical contact                 Yes
+ Healthcare professional        John doctor doe
+ Contact number                 1-131-999-0232
+Current offences                Yes                Burglary (LXAHTGNJQF) | Sex offence
+                                                   (QDPREIBMSF)
+Must return to                HMP Brixton: Its a lovely place.
+Must NOT return to            HMP Clive House: Its too cold.
 

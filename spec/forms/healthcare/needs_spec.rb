@@ -5,8 +5,6 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
 
   let(:params) {
     {
-      dependencies: 'yes',
-      dependencies_details: 'Drugs',
       has_medications: 'yes',
       medications: [
         {
@@ -28,7 +26,6 @@ RSpec.describe Forms::Healthcare::Needs, type: :form do
   describe '#validate' do
     it { is_expected.to validate_prepopulated_collection :medications }
     it { is_expected.to validate_optional_field(:has_medications) }
-    it { is_expected.to validate_optional_details_field(:dependencies) }
   end
 
   describe '#save' do
