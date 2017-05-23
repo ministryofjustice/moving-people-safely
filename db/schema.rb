@@ -55,25 +55,23 @@ ActiveRecord::Schema.define(version: 20170523144242) do
   end
 
   create_table "healthcare", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "physical_issues",          default: "unknown"
+    t.string   "physical_issues",         default: "unknown"
     t.text     "physical_issues_details"
-    t.string   "mental_illness",           default: "unknown"
+    t.string   "mental_illness",          default: "unknown"
     t.text     "mental_illness_details"
-    t.string   "personal_hygiene",         default: "unknown"
-    t.text     "personal_hygiene_details"
-    t.string   "personal_care",            default: "unknown"
+    t.string   "personal_care",           default: "unknown"
     t.text     "personal_care_details"
-    t.string   "allergies",                default: "unknown"
+    t.string   "allergies",               default: "unknown"
     t.text     "allergies_details"
-    t.string   "dependencies",             default: "unknown"
+    t.string   "dependencies",            default: "unknown"
     t.text     "dependencies_details"
-    t.string   "has_medications",          default: "unknown"
-    t.string   "mpv",                      default: "unknown"
+    t.string   "has_medications",         default: "unknown"
+    t.string   "mpv",                     default: "unknown"
     t.text     "mpv_details"
     t.string   "healthcare_professional"
     t.string   "contact_number"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.uuid     "detainee_id"
     t.uuid     "escort_id"
     t.index ["detainee_id"], name: "index_healthcare_on_detainee_id", using: :btree

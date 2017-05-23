@@ -54,8 +54,7 @@ en:
         sex_offence_type: 'Victim (select all that apply):'
         date_most_recent_sexual_offence: Date of most recent sexual offence
       social:
-        personal_hygiene: Personal hygiene issues?
-        personal_care: Personal care issues?
+        personal_care: Will they need help with personal tasks on this journey?
       substance_misuse:
         substance_supply: Is there a risk that they might traffic drugs on this journey?
       transport:
@@ -216,8 +215,6 @@ en:
         sex_offence_under18_victim: Under 18
         date_most_recent_sexual_offence: Date of most recent sexual offence
       social:
-        personal_hygiene_choices:
-          unknown: Clear selection
         personal_care_choices:
           unknown: Clear selection
       substance_misuse:
@@ -318,10 +315,8 @@ en:
         sex_offence: This doesn't include prostitution offences, but does include procuring others into prostitution.
         date_most_recent_sexual_offence: DD/MM/YYYY
       social:
-        personal_hygiene: Eg OCD, needs toilet support. For more information refer to the Social Care Act
-        personal_hygiene_details: Give details and explain the significance
-        personal_care: Eg needs help with dressing, eating or drinking
-        personal_care_details: Give details and explain the significance
+        personal_care: For example, going to the toilet, eating or drinking
+        personal_care_details: 'Please explain what they may need help with:'
       substance_misuse:
         substance_supply: Risk will be indicated by intelligence or past history of trafficking drugs.
       transport:
@@ -351,7 +346,7 @@ en:
         dependencies: Dependencies
         physical: Physical health issues
         mental: Mental health issues
-        social: Social healthcare
+        social: Personal care
         allergies: Allergies and intolerances
         needs: Essential medication
         transport: Special vehicles
@@ -483,7 +478,6 @@ en:
         escort_details: *summary_security
         social:
           personal_care: Personal care issues
-          personal_hygiene: Personal hygiene issues
         substance_misuse:
           substance_supply: Drug trafficking risk
         transport:
@@ -529,7 +523,7 @@ en:
         risk_to_self: Risk to self
         risk_from_others: Risk from others
         sex_offences: Sex offender
-        social: Social healthcare
+        social: Personal care
         substance_misuse: Drug trafficking risk
         transport: Special vehicles
         violence_to_general_public: Violent to anyone else

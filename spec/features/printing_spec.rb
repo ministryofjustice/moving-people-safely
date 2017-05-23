@@ -76,7 +76,6 @@ RSpec.feature 'printing a PER', type: :feature do
       create(:healthcare, {
         physical_issues: 'no',
         mental_illness: 'no',
-        personal_hygiene: 'no',
         personal_care: 'no',
         allergies: 'no',
         dependencies: 'no',
@@ -199,8 +198,6 @@ RSpec.feature 'printing a PER', type: :feature do
         physical_issues_details: 'physical issues details',
         mental_illness: 'yes',
         mental_illness_details: 'mental illness details',
-        personal_hygiene: 'yes',
-        personal_hygiene_details: 'personal hygiene details',
         personal_care: 'yes',
         personal_care_details: 'personal care details',
         allergies: 'yes',
