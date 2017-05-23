@@ -40,7 +40,7 @@ module Page
     end
 
     def fill_in_allergies
-      fill_in_optional_details('Allergies?', @hc, :allergies)
+      fill_in_optional_details('Do they have any known allergies or intolerances?', @hc, :allergies)
       click_button 'Save and continue'
     end
 

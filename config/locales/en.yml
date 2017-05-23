@@ -3,7 +3,7 @@ en:
     fieldset:
       default_title: 'Select all that apply:'
       allergies:
-        allergies: Allergies?
+        allergies: Do they have any known allergies or intolerances?
       arson:
         arson: Are they an arsonist?
       communication:
@@ -261,8 +261,8 @@ en:
           unknown: Clear selection
     hint:
       allergies:
-        allergies: "Eg dietary, environmental or medical, such as: nuts, pollen, penicillin"
-        allergies_details: Give details and explain the significance
+        allergies: "For example, dietary, medical or environmental allergies"
+        allergies_details: 'Please give details:'
       communication:
         hearing_speech_sight_issues_details: Give details
         reading_writing_issues_details: Give details
@@ -362,7 +362,7 @@ en:
         physical: Physical health issues
         mental: Mental health issues
         social: Social healthcare
-        allergies: Allergies
+        allergies: Allergies and intolerances
         needs: Medical health needs
         transport: Special vehicles
         contact: Medical contact
@@ -419,6 +419,8 @@ en:
           more_than_four: 'More than 4 officers'
         controlled_unlock_required: *summary_violence_answers
       questions:
+        allergies:
+          allergies: Allergies and intolerances
         arson:
           arson: Arsonist
         category_a:
@@ -517,6 +519,7 @@ en:
         violence_to_general_public: *summary_violence
         controlled_unlock_required: *summary_violence
       titles:
+        allergies: Allergies and intolerances
         arson: Arson
         category_a: Category A, potential Category A or Restricted Status
         communication: Communication / language difficulties

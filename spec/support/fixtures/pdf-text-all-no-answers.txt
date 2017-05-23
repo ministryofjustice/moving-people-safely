@@ -66,7 +66,7 @@ Physical health issues              No
 Mental health issues                No
 Special vehicles                    No
 Social healthcare                   No
-Allergies                           No
+Allergies and intolerances          No
 Medical health needs                No
 Communication / language            No
 difficulties
