@@ -14,8 +14,8 @@ module Page
       fill_in_transport
       fill_in_healthcare_needs
       fill_in_dependencies
-      fill_in_social_healthcare
       fill_in_allergies
+      fill_in_social_healthcare
       fill_in_medical_contact
     end
 
@@ -34,8 +34,7 @@ module Page
     end
 
     def fill_in_social_healthcare
-      fill_in_optional_details('Personal hygiene issues?', @hc, :personal_hygiene)
-      fill_in_optional_details('Personal care issues?', @hc, :personal_care)
+      fill_in_optional_details('Will they need help with personal tasks on this journey?', @hc, :personal_care)
       click_button 'Save and continue'
     end
 

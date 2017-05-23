@@ -67,8 +67,8 @@ Mental health issues                No
 Special vehicles                    No
 Essential medication                No
 Dependencies                        No
-Social healthcare                   No
 Allergies and intolerances          No
+Personal care                       No
 Medical contact                     Yes
   Healthcare professional           John doctor doe
   Contact number                    1-131-999-0232

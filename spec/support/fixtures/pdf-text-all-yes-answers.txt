@@ -126,17 +126,16 @@ Essential medication             Yes
   Essential medication           Yes
 Dependencies                     Yes
   Dependencies                   Yes          Dependencies details
-Social healthcare                Yes
-  Personal hygiene issues        Yes          Personal hygiene details
-W1234BY: McTest Testy                                                                    Page 3 of 3
- Personal care issues           Yes                Personal care details
-Allergies and intolerances      Yes
- Allergies and intolerances     Yes                Allergies details
-Medical contact                 Yes
- Healthcare professional        John doctor doe
- Contact number                 1-131-999-0232
-Current offences                Yes                Burglary (LXAHTGNJQF) | Sex offence
-                                                   (QDPREIBMSF)
-Must return to                HMP Brixton: Its a lovely place.
-Must NOT return to            HMP Clive House: Its too cold.
+Allergies and intolerances       Yes
+  Allergies and intolerances     Yes          Allergies details
+W1234BY: McTest Testy                                                                 Page 3 of 3
+Personal care                Yes
+ Personal care issues        Yes                Personal care details
+Medical contact              Yes
+ Healthcare professional     John doctor doe
+ Contact number              1-131-999-0232
+Current offences             Yes                Burglary (LXAHTGNJQF) | Sex offence
+                                                (QDPREIBMSF)
+Must return to             HMP Brixton: Its a lovely place.
+Must NOT return to         HMP Clive House: Its too cold.
 

@@ -5,15 +5,12 @@ RSpec.describe Forms::Healthcare::Social, type: :form do
 
   let(:params) {
     {
-      personal_hygiene: 'yes',
-      personal_hygiene_details: 'Dirty guy',
       personal_care: 'yes',
       personal_care_details: 'Not changing clothes',
     }.with_indifferent_access
   }
 
   describe '#validate' do
-    it { is_expected.to validate_optional_details_field(:personal_hygiene) }
     it { is_expected.to validate_optional_details_field(:personal_care) }
   end
 

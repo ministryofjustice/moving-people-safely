@@ -97,36 +97,6 @@ assessment:
                 value: 'no'
               -
                 value: 'unknown'
-      social:
-        questions:
-          -
-            name: personal_hygiene
-            type: string
-            answers:
-              -
-                value: 'yes'
-                questions:
-                  -
-                    name: personal_hygiene_details
-                    type: string
-              -
-                value: 'no'
-              -
-                value: 'unknown'
-          -
-            name: personal_care
-            type: string
-            answers:
-              -
-                value: 'yes'
-                questions:
-                  -
-                    name: personal_care_details
-                    type: string
-              -
-                value: 'no'
-              -
-                value: 'unknown'
       allergies:
         questions:
           -
@@ -138,6 +108,22 @@ assessment:
                 questions:
                   -
                     name: allergies_details
+                    type: string
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      social:
+        questions:
+          -
+            name: personal_care
+            type: string
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: personal_care_details
                     type: string
               -
                 value: 'no'
