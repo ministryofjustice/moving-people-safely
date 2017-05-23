@@ -441,6 +441,9 @@ en:
           staff_hostage_taker: Staff
           prisoners_hostage_taker: Prisoners
           public_hostage_taker: Public
+          date_most_recent_staff_hostage_taker_incident: 'Last incident: '
+          date_most_recent_prisoners_hostage_taker_incident: 'Last incident: '
+          date_most_recent_public_hostage_taker_incident: 'Last incident: '
         mental:
           mental_illness: Mental health issues
         needs:
