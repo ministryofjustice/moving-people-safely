@@ -18,112 +18,78 @@ RSpec.describe Escort do
   describe '#completed?' do
     let(:risk) { create(:risk) }
     let(:healthcare) { create(:healthcare) }
-    let(:offences_workflow) { create(:offences_workflow) }
-    let(:detainee) { create(:detainee, offences_workflow: offences_workflow) }
+    let(:detainee) { create(:detainee) }
     let(:move) { create(:move) }
     let(:escort) { create(:escort, detainee: detainee, move: move, risk: risk, healthcare: healthcare) }
 
-    it 'returns true' do
+    specify {
       escort = create(:escort, :completed)
-      expect(escort.completed?).to be_truthy
-    end
+      expect(escort).to be_completed
+    }
 
     context 'when detainee info is not complete' do
       let(:detainee) { create(:detainee, surname: nil) }
-
-      it 'returns false' do
-        expect(escort.completed?).to be_falsey
-      end
+      specify { expect(escort).not_to be_completed }
     end
 
     context 'when move info is not complete' do
       let(:move) { create(:move, date: nil) }
-
-      it 'returns false' do
-        expect(escort.completed?).to be_falsey
-      end
+      specify { expect(escort).not_to be_completed }
     end
 
     context 'when risk assessment is not complete' do
       let(:risk) { create(:risk, :incomplete) }
-
-      it 'returns false' do
-        expect(escort.completed?).to be_falsey
-      end
+      specify { expect(escort).not_to be_completed }
     end
 
     context 'when healthcare assessment is not complete' do
       let(:healthcare) { create(:healthcare, :incomplete) }
-
-      it 'returns false' do
-        expect(escort.completed?).to be_falsey
-      end
+      specify { expect(escort).not_to be_completed }
     end
 
     context 'when offences info is not complete' do
-      let(:offences_workflow) { create(:offences_workflow) }
-
-      it 'returns false' do
-        expect(escort.completed?).to be_falsey
-      end
+      let(:detainee) { create(:detainee, :with_incompleted_offences) }
+      specify { expect(escort).not_to be_completed }
     end
   end
 
   describe '#issued?' do
-    let(:escort) { create(:escort) }
-
-    context 'when there is not yet a move' do
-      it 'returns false' do
-        expect(escort.issued?).to be_falsey
-      end
+    context 'for a newly created escort' do
+      let(:escort) { create(:escort) }
+      specify { expect(escort).not_to be_issued }
     end
 
-    context 'when there is an associated move but has not been issued yet' do
-      let(:move) { create(:move) }
-      let(:escort) { create(:escort, move: move) }
-
-      it 'returns false' do
-        expect(escort.issued?).to be_falsey
-      end
-    end
-
-    context 'when there is an associated issued move' do
-      let(:move) { create(:move, :issued) }
-      let(:escort) { create(:escort, move: move) }
-
-      it 'returns true' do
-        expect(escort.issued?).to be_truthy
-      end
+    context 'when the escort has been issued' do
+      let(:escort) { create(:escort, issued_at: 1.day.ago) }
+      specify { expect(escort).to be_issued }
     end
   end
 
   describe '#issue!' do
     let(:escort) { create(:escort) }
 
-    context 'when there is not yet a move' do
-      it 'raises an exception' do
-        expect { escort.issue! }
-          .to raise_error(NoMethodError)
+    context 'when the escort is already issued' do
+      let(:issued_date) { 3.days.ago }
+      let(:escort) { create(:escort, issued_at: issued_date) }
+
+      it 'raises an AlreadyIssuedError' do
+        expect { escort.issue! }.to raise_error(Escort::AlreadyIssuedError)
+      end
+
+      it 'keeps the current issued date' do
+        expect { escort.issue! rescue nil }
+          .not_to change { escort.reload.issued_at.to_i }.from(issued_date.to_i)
       end
     end
 
-    context 'when there is an associated move and it is already issued' do
-      let(:move) { create(:move, :issued) }
-      let(:escort) { create(:escort, move: move) }
-
-      it 'leaves the escort as issued' do
-        expect { escort.issue! }
-          .not_to change { escort.reload.issued? }.from(true)
-      end
-    end
-
-    context 'when there is an associated move but it is not issued yet' do
-      let(:move) { create(:move) }
-      let(:escort) { create(:escort, move: move) }
+    context 'when the escort is not issued yet' do
+      let(:escort) { create(:escort) }
 
       it 'marks the escort as issued' do
+        time = Time.now.utc
         expect { escort.issue! }
-          .to change { escort.reload.issued? }.from(false).to(true)
+          .to change { escort.reload.issued_at }.from(nil)
+        expect(escort.issued_at).to be >= time
       end
     end
   end
@@ -149,8 +115,7 @@ RSpec.describe Escort do
   end
 
   describe '#needs_review?' do
-    let(:offences_workflow) { create(:offences_workflow) }
-    let(:detainee) { create(:detainee, offences_workflow: offences_workflow) }
+    let(:detainee) { create(:detainee) }
     let(:risk) { create(:risk) }
     let(:healthcare) { create(:healthcare) }
     let(:escort) { create(:escort, detainee: detainee, risk: risk, healthcare: healthcare) }
@@ -170,7 +135,7 @@ RSpec.describe Escort do
     end
 
     context 'when offences needs reviewing' do
-      let(:offences_workflow) { create(:offences_workflow, :needs_review) }
+      let(:detainee) { create(:detainee, :with_needs_review_offences) }
 
       specify { expect(escort.needs_review?).to be_truthy }
     end

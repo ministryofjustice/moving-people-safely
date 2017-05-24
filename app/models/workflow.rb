@@ -30,14 +30,4 @@ class Workflow < ApplicationRecord
       status: :confirmed
     )
   end
-
-  concerning :AppliesToMoveWorkflowOnly do
-    included do
-      scope :not_issued, -> { where.not(status: :issued) }
-
-      def active?
-        !issued?
-      end
-    end
-  end
 end

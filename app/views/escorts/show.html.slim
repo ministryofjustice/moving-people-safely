@@ -5,12 +5,7 @@
 .escort
   = render partial: 'header', locals: { detainee: escort.detainee, alerts: EscortAlertsPresenter.new(escort) }
 
-  - if escort.move
-    = render partial: 'move', locals: { move: MovePresenter.new(escort.move) }
-  - else
-    h2 Move information
-    #no-active-move.alert.alert--warning
-      = link_to 'Create new move', new_escort_move_path(escort), class: 'button'
+  = render partial: 'move', locals: { move: MovePresenter.new(escort.move) }
 
   = render partial: 'detainee', locals: { detainee: DetaineePresenter.new(escort.detainee) }
 

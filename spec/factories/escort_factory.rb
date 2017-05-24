@@ -52,10 +52,8 @@ FactoryGirl.define do
     end
 
     trait :issued do
-      association :detainee
-      association :move, :issued
-      association :risk
-      association :healthcare
+      completed
+      issued_at 1.day.ago
     end
   end
 end

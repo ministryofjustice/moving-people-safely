@@ -25,8 +25,7 @@ RSpec.describe 'New Move requests', type: :request do
       end
 
       context 'but the escort is no longer editable' do
-        let(:move) { create(:move, :issued) }
-        let(:escort) { create(:escort, detainee: detainee, move: move) }
+        let(:escort) { create(:escort, :issued, detainee: detainee) }
 
         it 'redirects to the homepage displaying an appropriate error' do
           get "/escorts/#{escort.id}/move/new"
@@ -36,7 +35,7 @@ RSpec.describe 'New Move requests', type: :request do
       end
 
       context "when the PER already has a move" do
-        let(:move) { create(:move, :active) }
+        let(:move) { create(:move) }
         let(:escort) { create(:escort, detainee: detainee, move: move) }
 
         it "redirects to the PER page" do
@@ -74,8 +73,7 @@ RSpec.describe 'New Move requests', type: :request do
       end
 
       context 'but the escort is no longer editable' do
-        let(:move) { create(:move, :issued) }
-        let(:escort) { create(:escort, detainee: detainee, move: move) }
+        let(:escort) { create(:escort, :issued, detainee: detainee) }
 
         it 'redirects to the homepage displaying an appropriate error' do
           post "/escorts/#{escort.id}/move", params: move_params
@@ -85,7 +83,7 @@ RSpec.describe 'New Move requests', type: :request do
       end
 
       context "when the PER already has a move" do
-        let(:move) { create(:move, :active) }
+        let(:move) { create(:move) }
         let(:escort) { create(:escort, detainee: detainee, move: move) }
 
         it "redirects to the PER page displaying the appropriate error" do

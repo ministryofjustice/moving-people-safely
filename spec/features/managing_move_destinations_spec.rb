@@ -3,7 +3,7 @@ require 'feature_helper'
 RSpec.describe 'managing move destinations', type: :feature do
   scenario 'adding and removing move destinations' do
     detainee = create(:detainee)
-    move = create(:move, :active)
+    move = create(:move)
     escort = create(:escort, detainee: detainee, move: move)
 
     login

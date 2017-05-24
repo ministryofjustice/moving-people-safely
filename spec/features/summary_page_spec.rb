@@ -5,7 +5,7 @@ RSpec.feature 'Summary pages', type: :feature do
     login
 
     detainee = create(:detainee)
-    move = create(:move, :active)
+    move = create(:move)
     risk = create(:risk)
     healthcare = create(:healthcare)
     escort = create(:escort, detainee: detainee, move: move, risk: risk, healthcare: healthcare)

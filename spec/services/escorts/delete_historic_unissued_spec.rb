@@ -7,11 +7,11 @@ RSpec.describe Escorts::DeleteHistoricUnissued do
     create(:escort, move: create(:move, date: 3.days.ago))
     create(:escort, move: create(:move, date: 1.day.ago))
 
-    create(:escort, move: create(:move, :issued, date: 3.days.ago))
-    create(:escort, move: create(:move, :issued, date: 1.day.ago))
+    create(:escort, :issued, move: create(:move, date: 3.days.ago))
+    create(:escort, :issued, move: create(:move, date: 1.day.ago))
 
     create(:escort, move: create(:move, date: 1.hour.ago))
-    create(:escort, move: create(:move, :issued, date: 1.hour.ago))
+    create(:escort, :issued, move: create(:move, date: 1.hour.ago))
 
     expect { described_class.call(options) }.to change { Escort.count }.from(6).to(4)
     expect(Escort.unscoped.count).to eq(6)

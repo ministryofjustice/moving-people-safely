@@ -3,7 +3,7 @@ require 'feature_helper'
 RSpec.feature 'Adding offences to a move', type: :feature do
   let(:prison_number) { 'A45345DQ' }
   let(:detainee) { create(:detainee, :with_no_offences, prison_number: prison_number) }
-  let(:move) { create(:move, :active) }
+  let(:move) { create(:move) }
   let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee, move: move) }
   let(:fixture_json_file_path) { Rails.root.join('spec', 'support', 'fixtures', 'valid-nomis-charges.json') }
   let(:valid_json) { File.read(fixture_json_file_path) }

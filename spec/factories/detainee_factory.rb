@@ -25,7 +25,7 @@ FactoryGirl.define do
     end
 
     trait :with_incompleted_offences do
-      association :offences_workflow, :incomplete
+      association :offences_workflow
     end
 
     trait :with_needs_review_offences do

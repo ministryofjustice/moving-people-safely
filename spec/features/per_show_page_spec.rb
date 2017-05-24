@@ -16,7 +16,7 @@ RSpec.feature 'PER show page', type: :feature do
     context 'Not for release alert' do
       context 'when the unissued PER has move details' do
         let(:options) { {} }
-        let(:move) { create(:move, :active, options) }
+        let(:move) { create(:move, options) }
 
         context 'when move has not for release set to unknown' do
           let(:options) { { not_for_release: 'unknown' } }
@@ -369,7 +369,7 @@ RSpec.feature 'PER show page', type: :feature do
     let(:escort) { create(:escort, detainee: detainee, move: move) }
 
     context 'issued PER' do
-      let(:move) { create(:move, :issued) }
+      let(:escort) { create(:escort, :issued, detainee: detainee, move: move) }
 
       scenario 'displays all the mandatory move information' do
         login
@@ -379,8 +379,8 @@ RSpec.feature 'PER show page', type: :feature do
       end
     end
 
-    context 'PER with an active move' do
-      let(:move) { create(:move, :active) }
+    context 'unissued PER' do
+      let(:move) { create(:move) }
 
       scenario 'displays all the mandatory move information' do
         login

@@ -1,19 +1,20 @@
 class Escort < ApplicationRecord
+  AlreadyIssuedError = Class.new(StandardError)
+
   default_scope { order('escorts.created_at desc') }
+  default_scope { where(deleted_at: nil) }
   has_one :detainee, dependent: :destroy
   has_one :move, dependent: :destroy
   has_one :risk, dependent: :destroy
   has_one :healthcare, dependent: :destroy
 
-  default_scope { where(deleted_at: nil) }
-
-  scope :for_date, ->(date) { eager_load(move: [:move_workflow]).where(moves: { date: date }) }
+  scope :for_date, ->(date) { eager_load(:move).where(moves: { date: date }) }
   scope :with_incomplete_risk, -> { joins(:risk).merge(Risk.not_confirmed) }
   scope :with_incomplete_healthcare, -> { joins(:healthcare).merge(Healthcare.not_confirmed) }
   scope :without_risk_assessment, -> { includes(:risk).where(risks: { escort_id: nil }) }
   scope :without_healthcare_assessment, -> { includes(:healthcare).where(healthcare: { escort_id: nil }) }
   scope :with_incomplete_offences, -> { joins(detainee: [:offences_workflow]).merge(Workflow.not_confirmed) }
-  scope :active, -> { joins(:move).merge(Move.active) }
+  scope :active, -> { where(issued_at: nil) }
 
   delegate :offences, :offences=, to: :detainee, allow_nil: true
 
@@ -26,11 +27,12 @@ class Escort < ApplicationRecord
   end
 
   def issued?
-    move&.issued?
+    issued_at.present?
   end
 
   def issue!
-    move.issued!
+    raise AlreadyIssuedError if issued?
+    update_attribute(:issued_at, Time.now.utc)
   end
 
   def needs_review!
