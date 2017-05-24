@@ -132,9 +132,6 @@ assessment:
       contact:
         questions:
           -
-            name: healthcare_professional
-            type: string
-          -
             name: contact_number
             type: string
   risk:

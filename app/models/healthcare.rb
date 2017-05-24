@@ -6,8 +6,13 @@ class Healthcare < ApplicationRecord
   StatusChangeError = Class.new(StandardError)
 
   delegate :not_started?, :needs_review?, :incomplete?, :unconfirmed?, :confirmed?, to: :healthcare_workflow
+  delegate :current_establishment, to: :escort, allow_nil: true
 
   has_many :medications, dependent: :destroy
+
+  def default_contact_number
+    current_establishment&.default_healthcare_contact_number
+  end
 
   def status
     healthcare_workflow&.status

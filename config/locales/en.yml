@@ -86,6 +86,8 @@ en:
         conceals_sim_cards: SIM cards
         uses_weapons_choices:
           unknown: Clear selection
+      contact:
+        contact_number: Medical contact
       dependencies:
         dependencies_choices:
           unknown: Clear selection
@@ -253,6 +255,8 @@ en:
       allergies:
         allergies: "For example, dietary, medical or environmental allergies"
         allergies_details: 'Please give details:'
+      contact:
+        contact_number: "This is the contact number for Healthcare. To use a different number, enter it below:"
       concealed_weapons:
         uses_weapons_details: 'Give details of previous incidents:'
         conceals_weapons_details: 'Give details of previous incidents:'
@@ -278,7 +282,7 @@ en:
         date_most_recent_prisoners_hostage_taker_incident: DD/MM/YYYY
         date_most_recent_public_hostage_taker_incident: DD/MM/YYYY
       move:
-        date : DD/MM/YYYY
+        date: DD/MM/YYYY
         not_for_release: Is there a known reason that the detainee is not for release?
         not_for_release_reason_details: Give details of why the detainee is not for release
       mental:
@@ -350,7 +354,7 @@ en:
         allergies: Allergies and intolerances
         needs: Essential medication
         transport: Special vehicles
-        contact: Medical contact
+        contact: Medical contact details
     intro:
       breadcrumb: Health
       content: |
@@ -418,8 +422,7 @@ en:
           conceals_other_items: Conceals other items
           uses_weapons: Creates or uses weapons
         contact:
-          contact_number: Contact number
-          healthcare_professional: Healthcare professional
+          contact_number: Medical contact
         discrimination:
           discrimination_to_other_religions: Risk to other religions
           homophobic: Risk to LGBT people
@@ -507,7 +510,7 @@ en:
         category_a: Category A, potential Category A or Restricted Status
         concealed_weapons: Weapons, drugs or other items
         controlled_unlock_required: Controlled unlock
-        contact: Medical contact
+        contact: Medical contact details
         csra: CSRA (Cell Sharing Risk Assessment)
         discrimination: Discrimination against others
         escape_status: Escape status/history

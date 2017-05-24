@@ -17,6 +17,10 @@ class Escort < ApplicationRecord
 
   delegate :offences, :offences=, to: :detainee, allow_nil: true
 
+  def current_establishment
+    @current_establishment ||= Establishment.current_for(prison_number)
+  end
+
   def completed?
     EscortCompletionValidator.call(self)
   end
