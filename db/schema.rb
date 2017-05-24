@@ -73,6 +73,9 @@ ActiveRecord::Schema.define(version: 20170524154953) do
     t.datetime "updated_at",                                  null: false
     t.uuid     "detainee_id"
     t.uuid     "escort_id"
+    t.integer  "status",                  default: 0
+    t.integer  "reviewer_id"
+    t.datetime "reviewed_at"
     t.index ["detainee_id"], name: "index_healthcare_on_detainee_id", using: :btree
     t.index ["escort_id"], name: "index_healthcare_on_escort_id", using: :btree
   end
@@ -216,6 +219,9 @@ ActiveRecord::Schema.define(version: 20170524154953) do
     t.text     "discrimination_to_other_religions_details"
     t.text     "violence_to_staff_details"
     t.date     "date_most_recent_sexual_offence"
+    t.integer  "status",                                            default: 0
+    t.integer  "reviewer_id"
+    t.datetime "reviewed_at"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
     t.index ["escort_id"], name: "index_risks_on_escort_id", using: :btree
   end
@@ -241,15 +247,15 @@ ActiveRecord::Schema.define(version: 20170524154953) do
   end
 
   create_table "workflows", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "move_id"
-    t.string   "type",                    null: false
-    t.integer  "status",      default: 0
+    t.uuid     "workflowable_id"
+    t.string   "type",                        null: false
+    t.integer  "status",          default: 0
     t.datetime "reviewed_at"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "reviewer_id"
-    t.index ["move_id"], name: "index_workflows_on_move_id", using: :btree
     t.index ["type"], name: "index_workflows_on_type", using: :btree
+    t.index ["workflowable_id"], name: "index_workflows_on_workflowable_id", using: :btree
   end
 
 end

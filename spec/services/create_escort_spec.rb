@@ -14,11 +14,7 @@ RSpec.describe EscortCreator, type: :service do
   end
 
   context 'when there are existing escorts for the given prison number' do
-    let(:risk) { create(:risk) }
-    let(:healthcare) { create(:healthcare, :with_medications) }
-    let(:detainee) { create(:detainee) }
-    let(:move) { create(:move, :with_destinations, :confirmed) }
-    let!(:existent_escort) { create(:escort, prison_number: prison_number, detainee: detainee, move: move, risk: risk, healthcare: healthcare) }
+    let!(:existent_escort) { create(:escort, :completed, prison_number: prison_number) }
 
     it 'creates a clone of the most recent escort' do
       expect(Escort.where(prison_number: prison_number).count).to eq(1)
@@ -69,7 +65,7 @@ RSpec.describe EscortCreator, type: :service do
     expect(new_escort.move.id).not_to eq(existent_escort.move.id)
     expect(new_escort.move.date).to be_nil
     expect(new_escort.move).to have_attributes(move_attributes)
-    expect(new_escort.move.status).to eq('not_started')
+    expect(new_escort.move.status).to eq('incomplete')
 
     expected_destinations_attributes = existent_escort.move.destinations.map { |d| d.attributes.except(*except_destinations_attributes) }
     destinations_attributes = new_escort.move.destinations.map { |d| d.attributes.except(*except_destinations_attributes) }
@@ -85,7 +81,7 @@ RSpec.describe EscortCreator, type: :service do
   end
 
   def except_assessment_attributes
-    %w(id escort_id created_at updated_at)
+    %w(id escort_id created_at updated_at status)
   end
 
   def except_medication_attributes

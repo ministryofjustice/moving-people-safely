@@ -28,6 +28,7 @@ FactoryGirl.define do
     uses_weapons 'no'
     arson 'no'
     other_risk 'no'
+    status :incomplete
 
     trait :with_high_csra do
       csra 'high'
@@ -36,6 +37,22 @@ FactoryGirl.define do
     trait :incomplete do
       rule_45 'unknown'
       conceals_weapons 'unknown'
+    end
+
+    trait :unconfirmed do
+      status :unconfirmed
+    end
+
+    trait :confirmed do
+      status :confirmed
+    end
+
+    trait :issued do
+      status :issued
+    end
+
+    trait :needs_review do
+      status :needs_review
     end
   end
 end

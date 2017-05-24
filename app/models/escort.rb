@@ -8,12 +8,12 @@ class Escort < ApplicationRecord
   default_scope { where(deleted_at: nil) }
 
   scope :for_date, ->(date) { eager_load(move: [:move_workflow]).where(moves: { date: date }) }
-  scope :with_incomplete_risk, -> { joins(move: [:risk_workflow]).merge(Workflow.not_confirmed) }
-  scope :with_incomplete_healthcare, -> { joins(move: [:healthcare_workflow]).merge(Workflow.not_confirmed) }
-  scope :with_incomplete_offences, -> { joins(move: [:offences_workflow]).merge(Workflow.not_confirmed) }
+  scope :with_incomplete_risk, -> { joins(:risk).merge(Risk.not_confirmed) }
+  scope :with_incomplete_healthcare, -> { joins(:healthcare).merge(Healthcare.not_confirmed) }
+  scope :without_risk_assessment, -> { includes(:risk).where(risks: { escort_id: nil }) }
+  scope :without_healthcare_assessment, -> { includes(:healthcare).where(healthcare: { escort_id: nil }) }
+  scope :with_incomplete_offences, -> { joins(detainee: [:offences_workflow]).merge(Workflow.not_confirmed) }
   scope :active, -> { joins(:move).merge(Move.active) }
-
-  delegate :risk_complete?, :healthcare_complete?, :offences_complete?, to: :move, allow_nil: true
 
   delegate :offences, :offences=, to: :detainee, allow_nil: true
 
@@ -34,12 +34,28 @@ class Escort < ApplicationRecord
   end
 
   def needs_review!
-    move.save_copy
+    transaction do
+      risk&.needs_review!
+      healthcare&.needs_review!
+      offences&.needs_review!
+    end
   end
 
   def needs_review?
     risk.needs_review? ||
       healthcare.needs_review? ||
       offences.needs_review?
+  end
+
+  def risk_complete?
+    risk&.confirmed?
+  end
+
+  def healthcare_complete?
+    healthcare&.confirmed?
+  end
+
+  def offences_complete?
+    offences&.confirmed?
   end
 end

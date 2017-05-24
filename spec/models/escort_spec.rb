@@ -13,30 +13,18 @@ RSpec.describe Escort do
   specify { is_expected.to have_one(:risk) }
   specify { is_expected.to have_one(:healthcare) }
 
-  describe '#offences' do
-    context 'when there is no associated detainee' do
-      let(:escort) { create(:escort) }
-      specify { expect(escort.offences).to be_nil }
-    end
-
-    context 'when there is an associated detainee' do
-      let(:detainee) { create(:detainee) }
-      let(:escort) { create(:escort, detainee: detainee) }
-
-      it 'returns the detainee offences' do
-        expect(escort.offences).to eq(detainee.offences)
-      end
-    end
-  end
+  it { is_expected.to delegate_method(:offences).to(:detainee) }
 
   describe '#completed?' do
     let(:risk) { create(:risk) }
     let(:healthcare) { create(:healthcare) }
-    let(:detainee) { create(:detainee) }
-    let(:move) { create(:move, :confirmed) }
+    let(:offences_workflow) { create(:offences_workflow) }
+    let(:detainee) { create(:detainee, offences_workflow: offences_workflow) }
+    let(:move) { create(:move) }
     let(:escort) { create(:escort, detainee: detainee, move: move, risk: risk, healthcare: healthcare) }
 
     it 'returns true' do
+      escort = create(:escort, :completed)
       expect(escort.completed?).to be_truthy
     end
 
@@ -49,7 +37,7 @@ RSpec.describe Escort do
     end
 
     context 'when move info is not complete' do
-      let(:move) { create(:move, :confirmed, date: nil) }
+      let(:move) { create(:move, date: nil) }
 
       it 'returns false' do
         expect(escort.completed?).to be_falsey
@@ -57,10 +45,7 @@ RSpec.describe Escort do
     end
 
     context 'when risk assessment is not complete' do
-      let(:move_traits) {
-        %i[with_incomplete_risk_workflow with_complete_healthcare_workflow with_complete_offences_workflow]
-      }
-      let(:move) { create(:move, *move_traits) }
+      let(:risk) { create(:risk, :incomplete) }
 
       it 'returns false' do
         expect(escort.completed?).to be_falsey
@@ -68,10 +53,7 @@ RSpec.describe Escort do
     end
 
     context 'when healthcare assessment is not complete' do
-      let(:move_traits) {
-        %i[with_complete_risk_workflow with_incomplete_healthcare_workflow with_complete_offences_workflow]
-      }
-      let(:move) { create(:move, *move_traits) }
+      let(:healthcare) { create(:healthcare, :incomplete) }
 
       it 'returns false' do
         expect(escort.completed?).to be_falsey
@@ -79,10 +61,7 @@ RSpec.describe Escort do
     end
 
     context 'when offences info is not complete' do
-      let(:move_traits) {
-        %i[with_complete_risk_workflow with_complete_healthcare_workflow with_incomplete_offences_workflow]
-      }
-      let(:move) { create(:move, *move_traits) }
+      let(:offences_workflow) { create(:offences_workflow) }
 
       it 'returns false' do
         expect(escort.completed?).to be_falsey
@@ -150,21 +129,8 @@ RSpec.describe Escort do
   end
 
   describe '#needs_review!' do
-    let(:escort) { create(:escort) }
-
-    context 'when there is not yet an associated move' do
-      it 'raises an exception' do
-        expect { escort.needs_review! }
-          .to raise_error(NoMethodError)
-      end
-    end
-
-    context 'when there is an associated move and it is already in review' do
-      let(:detainee) { create(:detainee) }
-      let(:move) { create(:move, :needs_review) }
-      let(:risk) { create(:risk) }
-      let(:healthcare) { create(:healthcare) }
-      let(:escort) { create(:escort, detainee: detainee, move: move, risk: risk, healthcare: healthcare) }
+    context 'when is already in review' do
+      let(:escort) { create(:escort, :needs_review) }
 
       it 'leaves the escort as needing reviewing' do
         expect { escort.needs_review! }
@@ -172,12 +138,8 @@ RSpec.describe Escort do
       end
     end
 
-    context 'when there is an associated move but it is not issued yet' do
-      let(:detainee) { create(:detainee) }
-      let(:move) { create(:move) }
-      let(:risk) { create(:risk) }
-      let(:healthcare) { create(:healthcare) }
-      let(:escort) { create(:escort, detainee: detainee, move: move, risk: risk, healthcare: healthcare) }
+    context 'when is not in review' do
+      let(:escort) { create(:escort, :completed) }
 
       it 'marks the escort as needs reviewing' do
         expect { escort.needs_review! }
@@ -187,32 +149,22 @@ RSpec.describe Escort do
   end
 
   describe '#needs_review?' do
-    let(:risk_workflow) { create(:risk_workflow) }
-    let(:healthcare_workflow) { create(:healthcare_workflow) }
     let(:offences_workflow) { create(:offences_workflow) }
-    let(:workflows) {
-      {
-        risk_workflow: risk_workflow,
-        healthcare_workflow: healthcare_workflow,
-        offences_workflow: offences_workflow
-      }
-    }
-    let(:move) { create(:move, workflows) }
-    let(:detainee) { create(:detainee) }
+    let(:detainee) { create(:detainee, offences_workflow: offences_workflow) }
     let(:risk) { create(:risk) }
     let(:healthcare) { create(:healthcare) }
-    let(:escort) { create(:escort, detainee: detainee, move: move, risk: risk, healthcare: healthcare) }
+    let(:escort) { create(:escort, detainee: detainee, risk: risk, healthcare: healthcare) }
 
     specify { expect(escort.needs_review?).to be_falsey }
 
     context 'when risk assessment needs reviewing' do
-      let(:risk_workflow) { create(:risk_workflow, :needs_review) }
+      let(:risk) { create(:risk, :needs_review) }
 
       specify { expect(escort.needs_review?).to be_truthy }
     end
 
     context 'when healthcare assessment needs reviewing' do
-      let(:healthcare_workflow) { create(:healthcare_workflow, :needs_review) }
+      let(:healthcare) { create(:healthcare, :needs_review) }
 
       specify { expect(escort.needs_review?).to be_truthy }
     end

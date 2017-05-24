@@ -13,25 +13,20 @@ RSpec.feature 'detainees due to move', type: :feature do
 
   context 'when there are detainees due to move for the date provided' do
     scenario 'show associated escorts and incomplete gauges for all the PER components' do
-      detainee = create(:detainee)
-      move = create(:move, :with_complete_healthcare_workflow, date: '11/08/2016')
-      create(:escort, detainee: detainee, move: move)
+      move = create(:move, date: '11/08/2016')
+      create(:escort, :with_detainee, :with_complete_healthcare_assessment, move: move)
 
-      detainee = create(:detainee)
-      move = create(:move, :with_complete_risk_workflow, :with_complete_healthcare_workflow, date: '11/08/2016')
-      create(:escort, detainee: detainee, move: move)
+      move = create(:move, date: '11/08/2016')
+      create(:escort, :with_detainee, :with_complete_risk_assessment, :with_complete_healthcare_assessment, move: move)
 
-      detainee = create(:detainee)
-      move = create(:move, :with_complete_healthcare_workflow, :with_complete_offences_workflow,  date: '11/08/2016')
-      create(:escort, detainee: detainee, move: move)
+      move = create(:move,  date: '11/08/2016')
+      create(:escort, :with_detainee, :with_complete_healthcare_assessment, :with_complete_offences, move: move)
 
-      detainee = create(:detainee)
-      move = create(:move, :with_complete_offences_workflow, :with_complete_healthcare_workflow,  date: '11/08/2016')
-      create(:escort, detainee: detainee, move: move)
+      move = create(:move, date: '11/08/2016')
+      create(:escort, :with_detainee, :with_complete_offences, :with_complete_healthcare_assessment, move: move)
 
-      detainee = create(:detainee)
-      move = create(:move, :confirmed, date: '11/08/2016')
-      create(:escort, detainee: detainee, move: move)
+      move = create(:move, date: '11/08/2016')
+      create(:escort, :with_detainee, :completed, move: move)
 
       login
       dashboard.search_escorts_due_on('11/08/2016')

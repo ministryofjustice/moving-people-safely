@@ -59,11 +59,11 @@ class DashboardPresenter
   end
 
   def count_of_incomplete_risk
-    escorts.with_incomplete_risk.count
+    escorts.with_incomplete_risk.count + escorts.without_risk_assessment.count
   end
 
   def count_of_incomplete_healthcare
-    escorts.with_incomplete_healthcare.count
+    escorts.with_incomplete_healthcare.count + escorts.without_healthcare_assessment.count
   end
 
   def count_of_incomplete_offences

@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Escorts::PrintController', type: :request do
-  let(:detainee) { create(:detainee) }
-  let(:move) { create(:move, :confirmed) }
-  let(:escort) { create(:escort, detainee: detainee, move: move) }
+  let(:escort) { create(:escort, :completed) }
 
   describe "#show" do
     context 'when user is not authorized' do
@@ -56,7 +54,7 @@ RSpec.describe 'Escorts::PrintController', type: :request do
       end
 
       context "with an incomplete PER" do
-        let(:move) { create :move }
+        let(:escort) { create(:escort) }
 
         it "redirects back to the referring page" do
           get "/escorts/#{escort.id}/print", headers: { "HTTP_REFERER" => 'prev_page' }

@@ -1,14 +1,13 @@
 class Workflow < ApplicationRecord
-  belongs_to :move
+  belongs_to :detainee, foreign_key: :workflowable_id
   belongs_to :reviewer, class_name: 'User'
 
   WORKFLOW_STATES = {
-    not_started: 0,
-    incomplete: 1,
-    needs_review: 2,
-    unconfirmed: 3,
-    confirmed: 4,
-    issued: 5
+    incomplete: 0,
+    needs_review: 1,
+    unconfirmed: 2,
+    confirmed: 3,
+    issued: 4
   }.freeze
 
   enum status: WORKFLOW_STATES

@@ -1,10 +1,6 @@
 FactoryGirl.define do
   factory :workflow do
-    status :not_started
-
-    trait :incomplete do
-      status :incomplete
-    end
+    status :incomplete
 
     trait :confirmed do
       status :confirmed
@@ -20,12 +16,6 @@ FactoryGirl.define do
   end
 
   factory :move_workflow, parent: :workflow, class: 'MoveWorkflow' do
-  end
-
-  factory :risk_workflow, parent: :workflow, class: 'RiskWorkflow' do
-  end
-
-  factory :healthcare_workflow, parent: :workflow, class: 'HealthcareWorkflow' do
   end
 
   factory :offences_workflow, parent: :workflow, class: 'OffencesWorkflow' do

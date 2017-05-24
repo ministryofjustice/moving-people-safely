@@ -1,6 +1,13 @@
 class Detainee < ApplicationRecord
   belongs_to :escort
   has_many :offences, dependent: :destroy
+  has_one :offences_workflow, foreign_key: :workflowable_id
+
+  before_create :set_defaults
+
+  def set_defaults
+    offences_workflow || build_offences_workflow
+  end
 
   def offences
     OffencesCollection.new(workflow: offences_workflow, collection: super)
@@ -15,12 +22,6 @@ class Detainee < ApplicationRecord
     aliases.split(',').each { |a| yield a }
   end
 
-  private
-
-  def offences_workflow
-    escort&.move&.offences_workflow
-  end
-
   class OffencesCollection < SimpleDelegator
     def initialize(workflow:, collection:)
       @workflow = workflow
@@ -33,7 +34,7 @@ class Detainee < ApplicationRecord
 
     attr_reader :workflow
 
-    delegate :not_started?, :needs_review?, :incomplete?, :unconfirmed?, :confirmed?, to: :workflow
+    delegate :needs_review?, :needs_review!, :incomplete?, :unconfirmed?, :confirmed?, to: :workflow
 
     StatusChangeError = Class.new(StandardError)
 
