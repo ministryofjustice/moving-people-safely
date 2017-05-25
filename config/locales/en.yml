@@ -156,7 +156,7 @@ en:
           unknown: Clear selection
         medications:
           description: Medicine
-          administration: How is it given
+          administration: How is it given?
           carrier: Who will carry the medicine?
           carrier_choices:
             escort: Escort
@@ -444,7 +444,7 @@ en:
         needs:
           has_medications: Essential medication
           medications_collection:
-            carrier: 'Carried by '
+            carrier: 'Carried by: '
         other_risk:
           other_risk: Other risk information
         physical:

@@ -106,6 +106,12 @@ RSpec.feature 'printing a PER', type: :feature do
     let(:must_return_destination) { create(:destination, :must_return, establishment: 'HMP Brixton', reasons: 'Its a lovely place.') }
     let(:must_not_return_destination) { create(:destination, :must_not_return, establishment: 'HMP Clive House', reasons: 'Its too cold.') }
     let(:destinations) { [must_return_destination, must_not_return_destination] }
+    let(:medications) {
+      [
+      create(:medication, description: 'Xanax', administration: 'every 4 hours', carrier: 'escort'),
+      create(:medication, description: 'Paracetamol', administration: '2 days a week', carrier: 'prisoner')
+      ]
+    }
     let(:risk) {
       create(:risk, {
           acct_status: 'open',
@@ -205,6 +211,7 @@ RSpec.feature 'printing a PER', type: :feature do
         dependencies: 'yes',
         dependencies_details: 'dependencies details',
         has_medications: 'yes',
+        medications: medications,
         mpv: 'yes',
         mpv_details: 'MPV details',
         healthcare_professional: 'John Doctor Doe',
