@@ -256,7 +256,7 @@ en:
         allergies: "For example, dietary, medical or environmental allergies"
         allergies_details: 'Please give details:'
       contact:
-        contact_number: "This is the contact number for Healthcare. To use a different number, enter it below:"
+        contact_number: "This is the contact number for HMP Bedford Healthcare. To use a different number, enter it below:"
       concealed_weapons:
         uses_weapons_details: 'Give details of previous incidents:'
         conceals_weapons_details: 'Give details of previous incidents:'
