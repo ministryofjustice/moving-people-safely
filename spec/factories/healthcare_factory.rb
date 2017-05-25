@@ -8,7 +8,6 @@ FactoryGirl.define do
     mpv 'no'
     has_medications 'no'
 
-    healthcare_professional { Faker::Name.name }
     contact_number { Faker::PhoneNumber.cell_phone }
 
     trait :with_medications do
@@ -17,7 +16,6 @@ FactoryGirl.define do
     end
 
     trait :incomplete do
-      healthcare_professional nil
       contact_number nil
     end
   end

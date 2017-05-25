@@ -80,8 +80,7 @@ module Page
     end
 
     def fill_in_medical_contact
-      fill_in 'Healthcare professional', with: @hc.healthcare_professional
-      fill_in 'Contact number', with: @hc.contact_number
+      fill_in 'Medical contact', with: @hc.contact_number
       click_button 'Save and continue'
     end
   end

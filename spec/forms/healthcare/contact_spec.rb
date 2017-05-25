@@ -4,10 +4,7 @@ RSpec.describe Forms::Healthcare::Contact, type: :form do
   subject { described_class.new(Healthcare.new) }
 
   let(:params) {
-    {
-      healthcare_professional: 'Doctor Robert',
-      contact_number: '079876543',
-    }.with_indifferent_access
+    { contact_number: '079876543' }.with_indifferent_access
   }
 
   describe '#save' do
