@@ -9,6 +9,7 @@ FactoryGirl.define do
     has_medications 'no'
 
     contact_number { Faker::PhoneNumber.cell_phone }
+    status :incomplete
 
     trait :with_medications do
       has_medications 'yes'
@@ -17,6 +18,22 @@ FactoryGirl.define do
 
     trait :incomplete do
       contact_number nil
+    end
+
+    trait :unconfirmed do
+      status :unconfirmed
+    end
+
+    trait :confirmed do
+      status :confirmed
+    end
+
+    trait :issued do
+      status :issued
+    end
+
+    trait :needs_review do
+      status :needs_review
     end
   end
 end

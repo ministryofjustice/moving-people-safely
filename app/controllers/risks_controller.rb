@@ -63,9 +63,7 @@ class RisksController < ApplicationController
   end
 
   def update_document_workflow
-    if risk.no_questions_answered?
-      risk.not_started!
-    elsif risk.all_questions_answered?
+    if risk.all_questions_answered?
       risk.unconfirmed!
     else
       risk.incomplete!

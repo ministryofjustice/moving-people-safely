@@ -20,9 +20,7 @@ RSpec.describe 'Create escort request', type: :request do
   end
 
   context 'when there is a previous escort for given prison number' do
-    let(:detainee) { create(:detainee) }
-    let(:move) { create(:move) }
-    let!(:existent_escort) { create(:escort, prison_number: prison_number, detainee: detainee, move: move) }
+    let!(:existent_escort) { create(:escort, :completed, prison_number: prison_number) }
 
     it 'creates a new escort record with the data from the existent escort and redirects to the new move form' do
       expect {

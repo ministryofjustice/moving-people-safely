@@ -13,7 +13,6 @@ RSpec.feature 'printing a PER', type: :feature do
   let(:move) {
     create(
       :move,
-      :confirmed,
       from: 'HMP Bedford',
       to: 'Luton Crown Court',
       date: Date.civil(2099, 4, 22),
@@ -26,6 +25,7 @@ RSpec.feature 'printing a PER', type: :feature do
   let(:detainee) {
     create(
       :detainee,
+      :with_completed_offences,
       prison_number: 'W1234BY',
       forenames: 'Testy',
       surname: 'McTest',
@@ -42,7 +42,8 @@ RSpec.feature 'printing a PER', type: :feature do
   context 'when a PER is completed with all answers as no' do
     let(:destinations) { [] }
     let(:risk) {
-      create(:risk, {
+      create(:risk,
+        :confirmed,
         acct_status: 'none',
         rule_45: 'no',
         csra: 'standard',
@@ -70,10 +71,11 @@ RSpec.feature 'printing a PER', type: :feature do
         uses_weapons: 'no',
         arson: 'no',
         other_risk: 'no'
-      })
+      )
     }
     let(:healthcare) {
-      create(:healthcare, {
+      create(:healthcare,
+        :confirmed,
         physical_issues: 'no',
         mental_illness: 'no',
         personal_care: 'no',
@@ -82,7 +84,7 @@ RSpec.feature 'printing a PER', type: :feature do
         has_medications: 'no',
         mpv: 'no',
         contact_number: '1-131-999-0232'
-      })
+      )
     }
 
     scenario 'user prints the PER' do
@@ -112,7 +114,8 @@ RSpec.feature 'printing a PER', type: :feature do
       ]
     }
     let(:risk) {
-      create(:risk, {
+      create(:risk,
+          :confirmed,
           acct_status: 'open',
           rule_45: 'yes',
           csra: 'high',
@@ -194,11 +197,12 @@ RSpec.feature 'printing a PER', type: :feature do
           arson: 'yes',
           other_risk: 'yes',
           other_risk_details: 'suspected terrorist'
-        })
+        )
       }
 
     let(:healthcare) {
-      create(:healthcare, {
+      create(:healthcare,
+        :confirmed,
         physical_issues: 'yes',
         physical_issues_details: 'physical issues details',
         mental_illness: 'yes',
@@ -214,7 +218,7 @@ RSpec.feature 'printing a PER', type: :feature do
         mpv: 'yes',
         mpv_details: 'MPV details',
         contact_number: '1-131-999-0232'
-      })
+      )
     }
 
     scenario 'user prints the PER' do

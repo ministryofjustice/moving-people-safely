@@ -76,9 +76,7 @@ class HealthcareController < ApplicationController
   end
 
   def update_document_workflow
-    if healthcare.no_questions_answered?
-      healthcare.not_started!
-    elsif healthcare.all_questions_answered?
+    if healthcare.all_questions_answered?
       healthcare.unconfirmed!
     else
       healthcare.incomplete!

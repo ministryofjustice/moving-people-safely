@@ -4,8 +4,7 @@ class EscortCompletionValidator < SimpleDelegator
   end
 
   def call
-    valid_detainee? && valid_move? &&
-      valid_assessments? && completed?
+    valid_detainee? && valid_move? && valid_assessments?
   end
 
   private
@@ -20,9 +19,5 @@ class EscortCompletionValidator < SimpleDelegator
 
   def valid_assessments?
     risk_complete? && healthcare_complete? && offences_complete?
-  end
-
-  def completed?
-    move && move.complete?
   end
 end

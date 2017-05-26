@@ -60,8 +60,7 @@ RSpec.describe 'Confirm healthcare assessment requests', type: :request do
 
     context 'and the healthcare assessment is not yet complete' do
       let(:detainee) { create(:detainee) }
-      let(:move) { create(:move, :with_incomplete_healthcare_workflow) }
-      let(:healthcare_workflow) { move.healthcare_workflow }
+      let(:move) { create(:move) }
       let(:escort) { create(:escort, :with_incomplete_healthcare_assessment, detainee: detainee, move: move) }
 
       it 'sets a flash error' do
@@ -70,17 +69,16 @@ RSpec.describe 'Confirm healthcare assessment requests', type: :request do
         expect(flash[:error]).to eq('Healthcare assessment cannot be confirmed until all mandatory answers are filled')
       end
 
-      it 'does not change the state of the healthcare workflow' do
+      it 'does not change the state of the healthcare' do
         expect {
           put "/escorts/#{escort.id}/healthcare/confirm"
-        }.not_to change { healthcare_workflow.reload.status }.from('incomplete')
+        }.not_to change { escort.healthcare.reload.status }.from('incomplete')
       end
     end
 
-    context 'and the healthcare assessment is complete' do
-      let(:escort) { create(:escort, detainee: detainee, move: move, healthcare: healthcare) }
-      let(:move) { create(:move, :with_incomplete_healthcare_workflow) }
-      let(:healthcare_workflow) { move.healthcare_workflow }
+    context 'and the healthcare assessment is unconfirmed' do
+      let(:healthcare) { create(:healthcare, :unconfirmed) }
+      let(:escort) { create(:escort, :with_detainee, :with_move, healthcare: healthcare) }
 
       it 'redirects to the PER page' do
         put "/escorts/#{escort.id}/healthcare/confirm"
@@ -88,10 +86,10 @@ RSpec.describe 'Confirm healthcare assessment requests', type: :request do
         expect(response).to redirect_to(escort_path(escort))
       end
 
-      it 'marks healthcare workflow as confirmed' do
+      it 'marks healthcare as confirmed' do
         expect {
           put "/escorts/#{escort.id}/healthcare/confirm"
-        }.to change { healthcare_workflow.reload.status }.from('incomplete').to('confirmed')
+        }.to change { healthcare.reload.status }.from('unconfirmed').to('confirmed')
       end
     end
   end

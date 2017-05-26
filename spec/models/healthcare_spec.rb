@@ -17,84 +17,23 @@ RSpec.describe Healthcare, type: :model do
   describe '#confirm!' do
     let(:user) { build(:user) }
 
-    context 'when there is no move' do
-      it 'raises a StatusChangeError exception' do
-        expect { healthcare.confirm!(user: user) }
-          .to raise_error(Healthcare::StatusChangeError, 'confirm_with_user!')
+    before { create_escort }
+
+    context 'when the risk assessment is not confirmed' do
+      it 'marks the healthcare assessment as confirmed' do
+        expect {
+          healthcare.confirm!(user: user)
+        }.to change { healthcare.reload.status }.from('incomplete').to('confirmed')
       end
     end
 
-    context 'when there is a move' do
-      before { create_escort }
+    context 'when the risk assessment is already confirmed' do
+      subject(:healthcare) { described_class.new(status: Healthcare::STATES[:confirmed]) }
 
       it 'marks the healthcare assessment as confirmed' do
         expect {
           healthcare.confirm!(user: user)
-        }.to change { healthcare.reload.status }.from('not_started').to('confirmed')
-      end
-    end
-  end
-
-  describe '#not_started!' do
-    let(:user) { build(:user) }
-
-    context 'when there is no move' do
-      it 'raises a StatusChangeError exception' do
-        expect { healthcare.not_started! }
-          .to raise_error(Healthcare::StatusChangeError, 'not_started!')
-      end
-    end
-
-    context 'when there is a move' do
-      before { create_escort }
-
-      it 'marks the healthcare assessment as not started' do
-        healthcare.unconfirmed!
-        expect {
-          healthcare.not_started!
-        }.to change { healthcare.reload.status }.from('unconfirmed').to('not_started')
-      end
-    end
-  end
-
-  describe '#unconfirmed!' do
-    let(:user) { build(:user) }
-
-    context 'when there is no move' do
-      it 'raises a StatusChangeError exception' do
-        expect { healthcare.unconfirmed! }
-          .to raise_error(Healthcare::StatusChangeError, 'unconfirmed!')
-      end
-    end
-
-    context 'when there is a move' do
-      before { create_escort }
-
-      it 'marks the healthcare assessment as uncorfirmed' do
-        expect {
-          healthcare.unconfirmed!
-        }.to change { healthcare.reload.status }.from('not_started').to('unconfirmed')
-      end
-    end
-  end
-
-  describe '#incomplete!' do
-    let(:user) { build(:user) }
-
-    context 'when there is no move' do
-      it 'raises a StatusChangeError exception' do
-          expect { healthcare.incomplete! }
-          .to raise_error(Healthcare::StatusChangeError, 'incomplete!')
-      end
-    end
-
-    context 'when there is a move' do
-      before { create_escort }
-
-      it 'marks the healthcare assessment as incomplete' do
-        expect {
-          healthcare.incomplete!
-        }.to change { healthcare.reload.status }.from('not_started').to('incomplete')
+        }.to_not change { healthcare.reload.status }
       end
     end
   end

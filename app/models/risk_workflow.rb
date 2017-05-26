@@ -1,2 +1,0 @@
-class RiskWorkflow < Workflow
-end

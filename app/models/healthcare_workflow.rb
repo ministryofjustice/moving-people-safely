@@ -1,2 +1,0 @@
-class HealthcareWorkflow < Workflow
-end

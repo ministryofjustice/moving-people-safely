@@ -60,8 +60,7 @@ RSpec.describe 'Confirm risk assessment requests', type: :request do
 
     context 'and the risk assessment is not yet complete' do
       let(:detainee) { create(:detainee) }
-      let(:move) { create(:move, :with_incomplete_risk_workflow) }
-      let(:risk_workflow) { move.risk_workflow }
+      let(:move) { create(:move) }
       let(:escort) { create(:escort, :with_incomplete_risk_assessment, detainee: detainee, move: move) }
 
       it 'sets a flash error' do
@@ -70,17 +69,16 @@ RSpec.describe 'Confirm risk assessment requests', type: :request do
         expect(flash[:error]).to eq('Risk assessment cannot be confirmed until all mandatory answers are filled')
       end
 
-      it 'does not change the state of the risk workflow' do
+      it 'does not change the state of the risk assessment' do
         expect {
           put "/escorts/#{escort.id}/risk/confirm"
-        }.not_to change { risk_workflow.reload.status }.from('incomplete')
+        }.not_to change { escort.risk.reload.status }.from('incomplete')
       end
     end
 
-    context 'and the risk assessment is complete' do
-      let(:escort) { create(:escort, detainee: detainee, move: move, risk: risk) }
-      let(:move) { create(:move, :with_incomplete_risk_workflow) }
-      let(:risk_workflow) { move.risk_workflow }
+    context 'and the risk assessment is unconfirmed' do
+      let(:risk) { create(:risk, :unconfirmed) }
+      let(:escort) { create(:escort, :with_detainee, :with_move, risk: risk) }
 
       it 'redirects to the PER page' do
         put "/escorts/#{escort.id}/risk/confirm"
@@ -88,10 +86,10 @@ RSpec.describe 'Confirm risk assessment requests', type: :request do
         expect(response).to redirect_to(escort_path(escort))
       end
 
-      it 'marks risk workflow as confirmed' do
+      it 'marks risk assessment as confirmed' do
         expect {
           put "/escorts/#{escort.id}/risk/confirm"
-        }.to change { risk_workflow.reload.status }.from('incomplete').to('confirmed')
+        }.to change { risk.reload.status }.from('unconfirmed').to('confirmed')
       end
     end
   end
