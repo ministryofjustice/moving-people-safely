@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530105250) do
+ActiveRecord::Schema.define(version: 20170530114255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -212,6 +212,9 @@ ActiveRecord::Schema.define(version: 20170530105250) do
     t.integer  "status",                                            default: 0
     t.integer  "reviewer_id"
     t.datetime "reviewed_at"
+    t.string   "must_return"
+    t.string   "must_return_to"
+    t.text     "must_return_to_details"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
     t.index ["escort_id"], name: "index_risks_on_escort_id", using: :btree
   end

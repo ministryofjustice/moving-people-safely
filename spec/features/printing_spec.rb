@@ -68,6 +68,7 @@ RSpec.feature 'printing a PER', type: :feature do
         conceals_mobile_phone_or_other_items: 'no',
         uses_weapons: 'no',
         arson: 'no',
+        must_return: 'no',
         other_risk: 'no'
       )
     }
@@ -190,6 +191,9 @@ RSpec.feature 'printing a PER', type: :feature do
           uses_weapons: 'yes',
           uses_weapons_details: 'Created and used a 3D gun',
           arson: 'yes',
+          must_return: 'yes',
+          must_return_to: 'Alcatraz',
+          must_return_to_details: 'Some special reason',
           other_risk: 'yes',
           other_risk_details: 'suspected terrorist'
         )

@@ -113,12 +113,14 @@ Weapons, drugs or other items    Yes
   Conceals other items           Yes          Conceals other items details
 Arson                            Yes
   Arsonist                       Yes
+Return Instructions              Yes
+  Must Return                    Yes          Prison name: Alcatraz. Some special reason
 Other risk information           Yes
   Other risk information         Yes          Suspected terrorist
 Physical health issues           Yes
+
   Physical health needs          Yes          Physical issues details
 Mental health issues             Yes
-
   Mental health issues           Yes          Mental illness details
 Special vehicles                 Yes
   Special vehicle required       Yes          Mpv details
@@ -127,13 +129,13 @@ Essential medication             Yes
                                               Paracetamol | 2 days a week | Carried by: Prisoner
 Dependencies                     Yes
   Dependencies                   Yes          Dependencies details
-Allergies and intolerances       Yes
-  Allergies and intolerances     Yes          Allergies details
-W1234BY: McTest Testy                                                            Page 3 of 3
-Personal care             Yes
- Personal care issues     Yes              Personal care details
-Medical contact details   Yes
- Medical contact          1-131-999-0232
-Current offences          Yes              Burglary (LXAHTGNJQF) | Sex offence
-                                           (QDPREIBMSF)
+W1234BY: McTest Testy                                                                Page 3 of 3
+Allergies and intolerances    Yes
+ Allergies and intolerances   Yes              Allergies details
+Personal care                 Yes
+ Personal care issues         Yes              Personal care details
+Medical contact details       Yes
+ Medical contact              1-131-999-0232
+Current offences              Yes              Burglary (LXAHTGNJQF) | Sex offence
+                                               (QDPREIBMSF)
 

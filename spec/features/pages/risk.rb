@@ -19,6 +19,7 @@ module Page
       fill_in_substance_misuse
       fill_in_concealed_weapons
       fill_in_arson
+      fill_in_return_instructions
       fill_in_other_risk
     end
 
@@ -270,6 +271,17 @@ module Page
         choose 'arson_arson_yes'
       else
         choose 'arson_arson_no'
+      end
+      save_and_continue
+    end
+
+    def fill_in_return_instructions
+      if @risk.must_return == 'yes'
+        choose 'return_instructions_must_return_yes'
+        fill_in 'return_instructions_must_return_to', with: @risk.must_return_to
+        fill_in 'return_instructions_must_return_to_details', with: @risk.must_return_to_details
+      else
+        choose 'return_instructions_must_return_no'
       end
       save_and_continue
     end

@@ -13,6 +13,7 @@ module Page
       check_security_section(risk)
       check_section(risk, 'substance_misuse', %w[substance_supply])
       check_concealed_weapons_section(risk)
+      check_return_instructions_section(risk)
       check_section(risk, 'arson', %w[ arson ])
     end
 
@@ -119,6 +120,13 @@ module Page
         check_section(risk, 'concealed_weapons', fields)
       else
         check_section_is_all_no(risk, 'concealed_weapons', fields)
+      end
+    end
+
+    def check_return_instructions_section(risk)
+      if risk.violence_to_other_detainees == 'yes'
+        check_question(risk, 'return_instructions', 'must_return_to')
+        check_question(risk, 'return_instructions', 'must_return_to_details')
       end
     end
   end
