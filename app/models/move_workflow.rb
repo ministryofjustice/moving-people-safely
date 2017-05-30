@@ -1,2 +1,0 @@
-class MoveWorkflow < Workflow
-end

@@ -3,14 +3,14 @@ require 'rails_helper'
 RSpec.describe 'Offences', type: :request do
   let(:prison_number) { 'A1234BC' }
   let(:detainee) { create(:detainee, prison_number: prison_number) }
-  let(:move) { create(:move, :active) }
+  let(:move) { create(:move) }
   let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee, move: move) }
   let(:offences) { escort.offences }
-  let(:form_data) { 
-    { 
+  let(:form_data) {
+    {
       offences: {
         offences_attributes: {
-          "0" => { 
+          "0" => {
             id: "some-uuid",
             offence: "some offence",
             case_reference: "1234LOL",
@@ -51,15 +51,14 @@ RSpec.describe 'Offences', type: :request do
       end
 
       context 'but the escort is no longer editable' do
-        let(:move) { create(:move, :issued) }
-        let(:escort) { create(:escort, detainee: detainee, move: move) }
+        let(:escort) { create(:escort, :issued) }
 
         it 'still displays the offences page' do
           get "/escorts/#{escort.id}/offences"
           expect(response).to have_http_status(200)
         end
       end
-      
+
       context 'and there are no offences associated with the detainee' do
         let(:detainee) { create(:detainee, :with_no_offences, prison_number: prison_number) }
         let(:move) { create(:move) }
@@ -107,8 +106,7 @@ RSpec.describe 'Offences', type: :request do
       end
 
       context 'but the escort is no longer editable' do
-        let(:move) { create(:move, :issued) }
-        let(:escort) { create(:escort, detainee: detainee, move: move) }
+        let(:escort) { create(:escort, :issued) }
 
         it 'redirects to the homepage displaying an appropriate error' do
           put "/escorts/#{escort.id}/offences", params: form_data

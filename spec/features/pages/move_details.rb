@@ -6,7 +6,7 @@ module Page
       fill_in 'Date', with: move.date
       fill_in_not_for_release_details(move)
       destinations = options[:destinations]
-      fill_in_destinations(destinations) if destinations.present?
+      fill_in_destinations(destinations)
       save_and_continue
     end
 
@@ -30,11 +30,15 @@ module Page
     end
 
     def fill_in_destinations(destinations)
-      choose 'move_has_destinations_yes'
-      destinations.each_with_index do |destination, index|
-        fill_in "move_destinations_attributes_#{index}_establishment", with: destination[:establishment]
-        choose "move_destinations_attributes_#{index}_must_return_must_#{destination[:must]}"
-        click_button 'Add establishment' unless index == destinations.size - 1
+      if destinations.present?
+        choose 'move_has_destinations_yes'
+        destinations.each_with_index do |destination, index|
+          fill_in "move_destinations_attributes_#{index}_establishment", with: destination[:establishment]
+          choose "move_destinations_attributes_#{index}_must_return_must_#{destination[:must]}"
+          click_button 'Add establishment' unless index == destinations.size - 1
+        end
+      else
+        choose 'move_has_destinations_no'
       end
     end
   end

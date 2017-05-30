@@ -27,8 +27,7 @@ RSpec.describe 'Edit detainee requests', type: :request do
     end
 
     context 'when the escort is no longer editable' do
-      let(:move) { create(:move, :issued) }
-      let(:escort) { create(:escort, prison_number: prison_number, move: move) }
+      let(:escort) { create(:escort, :issued) }
 
       it 'redirects to the homepage displaying an appropriate error' do
         get "/escorts/#{escort.id}/detainee/edit"

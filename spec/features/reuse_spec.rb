@@ -10,7 +10,8 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
 
     dashboard.search(detainee.prison_number)
     dashboard.click_add_new_escort
-    move_details.complete_date_field Date.tomorrow.strftime('%d/%m/%Y')
+    move_data = build(:move, date: 1.day.from_now)
+    move_details.complete_form(move_data)
 
     escort_page.confirm_healthcare_status('Review')
     escort_page.click_edit_healthcare

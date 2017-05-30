@@ -2,7 +2,7 @@ require 'feature_helper'
 
 RSpec.describe 'managing healthcare medications', type: :feature do
   let(:detainee) { create(:detainee) }
-  let(:move) { create(:move, :active) }
+  let(:move) { create(:move) }
   let(:escort) { create(:escort, detainee: detainee, move: move) }
 
   scenario 'adding and removing move medications' do

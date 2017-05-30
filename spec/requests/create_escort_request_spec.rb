@@ -29,9 +29,9 @@ RSpec.describe 'Create escort request', type: :request do
 
       escort = Escort.where(prison_number: prison_number).first
       expect(escort.detainee).to be_an_instance_of(Detainee)
-      expect(escort.move).to be_an_instance_of(Move)
+      expect(escort.move).to be_nil
 
-      expect(response).to redirect_to(edit_escort_move_path(escort))
+      expect(response).to redirect_to(new_escort_move_path(escort))
     end
   end
 end

@@ -6,6 +6,8 @@ class EscortsController < ApplicationController
     escort = EscortCreator.call(escort_params)
     if escort.move
       redirect_to edit_escort_move_path(escort.id)
+    elsif escort.detainee
+      redirect_to new_escort_move_path(escort)
     else
       redirect_to new_escort_detainee_path(escort.id, escort_params)
     end

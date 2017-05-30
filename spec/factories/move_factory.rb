@@ -8,12 +8,6 @@ FactoryGirl.define do
     not_for_release 'no'
     has_destinations 'no'
 
-    association :move_workflow, strategy: :build
-
-    trait :issued do
-      association :move_workflow, :issued, strategy: :build
-    end
-
     trait :active do
       date { 1.week.from_now }
     end

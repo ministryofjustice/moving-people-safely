@@ -21,12 +21,11 @@ class EscortCreator
 
   INCLUDE_GRAPH = [
     { detainee: [:offences] },
-    { move: [:destinations] },
     :risk,
     { healthcare: [:medications] }
   ].freeze
 
-  EXCEPT_GRAPH = [{ move: [:date] }].freeze
+  EXCEPT_GRAPH = [:issued_at].freeze
 
   def existent_escort
     @existent_escort ||= Escort.find_by(prison_number: prison_number)

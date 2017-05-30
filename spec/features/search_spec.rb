@@ -11,7 +11,7 @@ RSpec.feature 'searching for a prisoner', type: :feature do
     scenario 'prisoner present with an active escort' do
       prison_number = 'A1324BC'
       detainee = create(:detainee, prison_number: prison_number)
-      move = create(:move, :active)
+      move = create(:move)
       escort = create(:escort, prison_number: prison_number, detainee: detainee, move: move)
 
       login
@@ -23,8 +23,8 @@ RSpec.feature 'searching for a prisoner', type: :feature do
     scenario 'prisoner present with a previously issued escort' do
       prison_number = 'A1324BC'
       detainee = create(:detainee, prison_number: prison_number)
-      move = create(:move, :issued)
-      create(:escort, prison_number: prison_number, detainee: detainee, move: move)
+      move = create(:move)
+      create(:escort, :issued, prison_number: prison_number, detainee: detainee, move: move)
 
       login
       search_with_valid_prison_number(prison_number)

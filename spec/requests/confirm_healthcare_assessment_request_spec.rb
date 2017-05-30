@@ -37,9 +37,9 @@ RSpec.describe 'Confirm healthcare assessment requests', type: :request do
 
     context 'but the escort is no longer editable' do
       let(:healthcare) { create(:healthcare) }
-      let(:move) { create(:move, :issued) }
+      let(:move) { create(:move) }
       let(:detainee) { create(:detainee) }
-      let(:escort) { create(:escort, detainee: detainee, move: move, healthcare: healthcare) }
+      let(:escort) { create(:escort, :issued, detainee: detainee, move: move, healthcare: healthcare) }
 
       it 'redirects to the homepage displaying an appropriate error' do
         put "/escorts/#{escort.id}/healthcare/confirm"

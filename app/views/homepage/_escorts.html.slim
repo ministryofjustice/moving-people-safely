@@ -17,7 +17,7 @@
             | #{escort.detainee.surname}
           span
             |  #{escort.detainee.forenames}
-        td = escort.move.to
+        td = escort.move&.to
         - if escort.issued?
           td.issued colspan=3
             | Issued
@@ -25,11 +25,11 @@
             = link_to_print_in_new_window(escort, text: 'Reprint')
         - else
           td.completion-status
-            span class="#{escort.risk_complete?}"
+            span class="#{escort.risk_complete? ? true : false}"
           td.completion-status
-            span class="#{escort.healthcare_complete?}"
+            span class="#{escort.healthcare_complete? ? true : false}"
           td.completion-status
-            span class="#{escort.offences_complete?}"
+            span class="#{escort.offences_complete? ? true : false}"
           td.print
             - if AccessPolicy.print?(escort: escort)
              = link_to_print_in_new_window(escort)
