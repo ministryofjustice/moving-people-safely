@@ -34,22 +34,6 @@ module Page
         expect(page).to have_content move.from
         expect(page).to have_content move.to
         expect(page).to have_content move.date.strftime('%d %b %Y')
-        destinations = options[:destinations]
-        if destinations.present?
-          must_returns = destinations.select { |d| d[:must] == :return }.pluck(:establishment)
-          must_not_returns = destinations.select { |d| d[:must] == :not_return }.pluck(:establishment)
-          within('.must-return-to') do
-            must_returns.each do |must_return|
-              expect(page).to have_content(must_return)
-            end
-          end
-
-          within('.must-not-return-to') do
-            must_not_returns.each do |must_not_return|
-              expect(page).to have_content(must_not_return)
-            end
-          end
-        end
       end
     end
 

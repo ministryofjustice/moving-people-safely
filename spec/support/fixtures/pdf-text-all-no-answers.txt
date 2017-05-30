@@ -72,8 +72,4 @@ Personal care                       No
 Medical contact details             Yes
   Medical contact                   1-131-999-0232
 Current offences                    None
-
-
-Must return to                     None
-Must NOT return to                 None
 

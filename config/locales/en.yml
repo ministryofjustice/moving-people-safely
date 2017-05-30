@@ -26,7 +26,6 @@ en:
         hostage_taker: Do they have a history of taking hostages?
         hostage_taker_type: 'Group involved (select all that apply):'
       move:
-        has_destinations: Are there establishments the detainee must or must not be sent?
         not_for_release: Not for release?
       mental:
         mental_illness: Are there any mental health issues that may affect this journey?
@@ -141,12 +140,6 @@ en:
         from: From
         to: To
         date: Date of travel
-        has_destinations: Are there establishments the detainee must or must not be sent
-        has_destinations_choices:
-          unknown: Clear selection
-        destinations:
-          establishment: Establishment
-          reasons: List the reasons, eg medical treatment, medical hold, treatment programmes or offender behaviour.
         not_for_release_choices:
           unknown: Clear selection
       mental:
@@ -557,9 +550,6 @@ en:
     <<: *summary
     <<: *escort
     label:
-      move:
-        must_return_to: Must return to
-        must_not_return_to: Must NOT return to
       offences:
         current_offences: Current offences
   activemodel:
@@ -567,8 +557,6 @@ en:
       models:
         move:
           attributes:
-            has_destinations:
-              inclusion: question must be answered
             not_for_release:
               inclusion: question must be answered
   errors:

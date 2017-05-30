@@ -15,8 +15,7 @@ RSpec.feature 'printing a PER', type: :feature do
       :move,
       from: 'HMP Bedford',
       to: 'Luton Crown Court',
-      date: Date.civil(2099, 4, 22),
-      destinations: destinations
+      date: Date.civil(2099, 4, 22)
     )
   }
 
@@ -40,7 +39,6 @@ RSpec.feature 'printing a PER', type: :feature do
   }
 
   context 'when a PER is completed with all answers as no' do
-    let(:destinations) { [] }
     let(:risk) {
       create(:risk,
         :confirmed,
@@ -104,9 +102,6 @@ RSpec.feature 'printing a PER', type: :feature do
       create(:offence, offence: 'Sex offence', case_reference: 'QDPREIBMSF')
       ]
     }
-    let(:must_return_destination) { create(:destination, :must_return, establishment: 'HMP Brixton', reasons: 'Its a lovely place.') }
-    let(:must_not_return_destination) { create(:destination, :must_not_return, establishment: 'HMP Clive House', reasons: 'Its too cold.') }
-    let(:destinations) { [must_return_destination, must_not_return_destination] }
     let(:medications) {
       [
       create(:medication, description: 'Xanax', administration: 'every 4 hours', carrier: 'escort'),

@@ -25,15 +25,9 @@ RSpec.feature 'filling in a PER', type: :feature do
     dashboard.create_new_escort.click
 
     detainee_details.complete_form(detainee)
-    destinations = [
-      { establishment: 'Hospital', must: :return },
-      { establishment: 'Court', must: :return },
-      { establishment: 'Dentist', must: :not_return },
-      { establishment: 'Tribunal', must: :not_return }
-    ]
-    move_details.complete_form(move_data, destinations: destinations)
+    move_details.complete_form(move_data)
 
-    escort_page.confirm_move_info(move_data, destinations: destinations)
+    escort_page.confirm_move_info(move_data)
     escort_page.confirm_detainee_details(detainee)
     escort_page.click_edit_healthcare
 
