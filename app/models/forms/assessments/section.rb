@@ -1,7 +1,11 @@
+require_relative 'concerns'
 module Forms
   module Assessments
     class Section < SimpleDelegator
-      attr_reader :parent
+      extend ActiveModel::Naming
+      extend ActiveModel::Translation
+      include Concerns
+      attr_reader :answers, :subsections, :errors
 
       def initialize(assessment, section, params, options = {})
         super(assessment)
@@ -11,6 +15,18 @@ module Forms
         @subsections = build_subsections(params)
         @answers = build_answers(params)
         @parent = options[:parent]
+        @errors = ActiveModel::Errors.new(self)
+      end
+
+      def find_question_by_name(name)
+        match1 = subsections.find { |subsection| subsection.find_question_by_name(name) }
+        match2 = find_first_match(answers, :find_by_name, name)
+        match1 || match2
+      end
+
+      def add_multiple(name)
+        question = find_question_by_name(name)
+        question&.add_multiple
       end
 
       def name
@@ -44,11 +60,17 @@ module Forms
 
       private
 
-      attr_reader :assessment, :section, :answers, :subsections
+      attr_reader :assessment, :section, :parent
+      delegate :read_attribute_for_validation, to: :__getobj__
 
       def valid_subsections?
         subsections.inject(true) do |valid, subsection|
-          subsection.valid? && valid
+          (subsection.valid? && valid).tap do
+            subsection.errors.each do |attr, message|
+              errors.add(attr, message)
+            end
+            subsection.errors.clear
+          end
         end
       end
 
@@ -58,6 +80,7 @@ module Forms
             answer.errors.each do |attr, message|
               errors.add(attr, message)
             end
+            answer.errors.clear
           end
         end
       end

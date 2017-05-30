@@ -1,12 +1,12 @@
 class RisksController < ApplicationController
-  include Wicked::Wizard
-  include Wizardable
+  include Assessable
 
   steps(*Risk.section_names)
 
   before_action :redirect_unless_detainee_exists
   before_action :redirect_if_risk_already_exists, only: %i[new create]
   before_action :redirect_unless_document_editable, except: :show
+  before_action :add_multiples, only: %i[create update]
 
   helper_method :escort, :risk
 
@@ -16,7 +16,6 @@ class RisksController < ApplicationController
   end
 
   def create
-    form = Forms::Assessment.for_section(escort.build_risk, step, form_params)
     if form.valid?
       form.save
       update_document_workflow
@@ -32,7 +31,6 @@ class RisksController < ApplicationController
   end
 
   def update
-    form = Forms::Assessment.for_section(risk, step, form_params)
     if form.valid?
       form.save
       update_document_workflow
@@ -59,7 +57,11 @@ class RisksController < ApplicationController
   end
 
   def risk
-    escort.risk || raise(ActiveRecord::RecordNotFound)
+    @risk ||= if %w[new create].include?(params[:action])
+                escort.build_risk
+              else
+                escort.risk || raise(ActiveRecord::RecordNotFound)
+              end
   end
 
   def update_document_workflow
@@ -80,6 +82,10 @@ class RisksController < ApplicationController
 
   def redirect_if_risk_already_exists
     redirect_to escort_risks_path(escort) if escort.risk
+  end
+
+  def form
+    @form ||= Forms::Assessment.for_section(risk, step, form_params)
   end
 
   def form_params

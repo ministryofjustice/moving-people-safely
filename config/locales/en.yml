@@ -36,6 +36,7 @@ en:
       physical:
         physical_issues: Are there any physical health issues that may affect this journey?
       return_instructions:
+        must_not_return: Is there any establishment they must not be sent to at the end of this journey?
         must_return: Must they return to a specific prison at the end of this journey?
       risk_from_others:
         rule_45: Are they held under Rule 45?
@@ -149,6 +150,9 @@ en:
           unknown: Clear selection
         mental_illness_details: Mental health issues details
       needs:
+        actions:
+          medications:
+            add_multiple: Add another medicine
         has_medications_choices:
           unknown: Clear selection
         medications:
@@ -165,6 +169,14 @@ en:
         other_risk_choices:
           unknown: Clear selection
       return_instructions:
+        actions:
+          must_not_return_details:
+            add_multiple: Add another establishment
+        must_not_return_choices:
+          unknown: Clear selection
+        must_not_return_details:
+          establishment: Establishment name
+          establishment_details: 'Give details of why they must not be sent here:'
         must_return_choices:
           unknown: Clear selection
         must_return_to: 'Prison name:'
@@ -345,9 +357,6 @@ en:
         violence_to_staff_details: Give details
   healthcare:
     form:
-      actions:
-        medications:
-          add_multiple: Add another medicine
       title:
         dependencies: Dependencies
         physical: Physical health issues

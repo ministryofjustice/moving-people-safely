@@ -69,6 +69,7 @@ RSpec.feature 'printing a PER', type: :feature do
         uses_weapons: 'no',
         arson: 'no',
         must_return: 'no',
+        must_not_return: 'no',
         other_risk: 'no'
       )
     }
@@ -105,8 +106,14 @@ RSpec.feature 'printing a PER', type: :feature do
     }
     let(:medications) {
       [
-      create(:medication, description: 'Xanax', administration: 'every 4 hours', carrier: 'escort'),
-      create(:medication, description: 'Paracetamol', administration: '2 days a week', carrier: 'prisoner')
+      build(:medication, description: 'Xanax', administration: 'every 4 hours', carrier: 'escort'),
+      build(:medication, description: 'Paracetamol', administration: '2 days a week', carrier: 'prisoner')
+      ]
+    }
+    let(:must_not_return_details) {
+      [
+      build(:must_not_return_detail, establishment: 'Alcatraz', establishment_details: 'Bad bad stuff happens there'),
+      build(:must_not_return_detail, establishment: 'York Castle Prison', establishment_details: 'Does not like it')
       ]
     }
     let(:risk) {
@@ -194,6 +201,8 @@ RSpec.feature 'printing a PER', type: :feature do
           must_return: 'yes',
           must_return_to: 'Alcatraz',
           must_return_to_details: 'Some special reason',
+          must_not_return: 'yes',
+          must_not_return_details: must_not_return_details,
           other_risk: 'yes',
           other_risk_details: 'suspected terrorist'
         )

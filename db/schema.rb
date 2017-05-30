@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530114255) do
+ActiveRecord::Schema.define(version: 20170601090245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,18 +67,9 @@ ActiveRecord::Schema.define(version: 20170530114255) do
     t.integer  "status",                  default: 0
     t.integer  "reviewer_id"
     t.datetime "reviewed_at"
+    t.text     "medications"
     t.index ["detainee_id"], name: "index_healthcare_on_detainee_id", using: :btree
     t.index ["escort_id"], name: "index_healthcare_on_escort_id", using: :btree
-  end
-
-  create_table "medications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "healthcare_id"
-    t.string   "description"
-    t.string   "administration"
-    t.string   "carrier"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["healthcare_id"], name: "index_medications_on_healthcare_id", using: :btree
   end
 
   create_table "moves", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -215,6 +206,8 @@ ActiveRecord::Schema.define(version: 20170530114255) do
     t.string   "must_return"
     t.string   "must_return_to"
     t.text     "must_return_to_details"
+    t.string   "must_not_return"
+    t.text     "must_not_return_details"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
     t.index ["escort_id"], name: "index_risks_on_escort_id", using: :btree
   end

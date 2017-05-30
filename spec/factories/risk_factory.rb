@@ -28,6 +28,7 @@ FactoryGirl.define do
     uses_weapons 'no'
     arson 'no'
     must_return 'no'
+    must_not_return 'no'
     other_risk 'no'
     status :incomplete
 

@@ -12,6 +12,7 @@ AllCops:
     - 'config/**/*'
     - 'app/models/forms/base.rb' # this is just too horrible
     - 'app/controllers/application_controller.rb'
+    - 'app/models/concerns/questionable.rb'
 
 # Just a preference to use %w[] over %w()
 Style/PercentLiteralDelimiters:
@@ -40,6 +41,7 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Exclude:
     - 'app/form_builders/mps_form_builder.rb'
+    - 'app/models/forms/assessments/answer.rb'
 
 Metrics/MethodLength:
   Max: 15

@@ -1,7 +1,14 @@
 class Healthcare < ApplicationRecord
   include Questionable
+  act_as_assessment :healthcare, complex_attributes: %i[medications]
 
-  act_as_assessment :healthcare
+  after_initialize :set_default_values
+
+  def set_default_values
+    unless read_attribute(:contact_number).present?
+      write_attribute(:contact_number, default_contact_number)
+    end
+  end
 
   STATES = {
     incomplete: 0,
@@ -14,7 +21,6 @@ class Healthcare < ApplicationRecord
 
   belongs_to :escort
   belongs_to :reviewer, class_name: 'User'
-  has_many :medications, dependent: :destroy
 
   scope :not_confirmed, -> { where.not(status: :confirmed) }
 

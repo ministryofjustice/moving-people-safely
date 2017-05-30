@@ -2,7 +2,8 @@
   .controls-optional-checkbox-section
     = f.checkbox question.name
 
-  - if question.conditional_questions.any?
+  - if question.answer_options_dependencies.any?
     .optional-checkbox-section-wrapper
-      - question.conditional_questions.each do |conditional_question|
-        = render partial: "shared/#{conditional_question.display_type}", locals: { f: f, question: conditional_question }
+      - question.answer_options_dependencies.each do |dependency|
+        = render partial: "shared/question",
+          locals: { f: f, question: QuestionPresenter.new(dependency) }
