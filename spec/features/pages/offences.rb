@@ -28,6 +28,11 @@ module Page
         to have_content("Offences aren't available right now, please try again or fill in the offences below")
     end
 
+    def confirm_read_only
+      expect(page).not_to have_selector('form.edit_offences')
+      expect(page).to have_selector('#offences-table')
+    end
+
     private
 
     def insert_into_row(row, description, case_reference)

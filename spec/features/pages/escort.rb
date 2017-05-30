@@ -59,6 +59,18 @@ module Page
       end
     end
 
+    def confirm_read_only_detainee_details
+      within('#personal-details') do
+        expect(page).not_to have_link('Edit')
+      end
+    end
+
+    def confirm_read_only_move_details
+      within('.move-information') do
+        expect(page).not_to have_link('Edit')
+      end
+    end
+
     def confirm_detainee_details(detainee)
       within('#personal-details') do
         expect(page).to have_content detainee.prison_number
@@ -135,29 +147,47 @@ module Page
       end
     end
 
-    def click_edit_healthcare
-      within('#healthcare') do
-        click_link 'Edit'
-      end
+    def click_edit_healthcare(name = 'Edit')
+      click_per_section_action_link(:healthcare, name)
     end
 
-    def click_edit_risk
-      within('#risk') do
-        click_link 'Edit'
-      end
+    def click_edit_risk(name = 'Edit')
+      click_per_section_action_link(:risk, name)
     end
 
-    def click_edit_offences
-      within('#offences') do
-        click_link 'Edit'
-      end
+    def click_edit_offences(name = 'Edit')
+      click_per_section_action_link(:offences, name)
     end
 
     def click_print
       click_link 'Print'
     end
 
+    def confirm_healthcare_action_link(name)
+      confirm_per_section_action_link(:healthcare, name)
+    end
+
+    def confirm_risk_action_link(name)
+      confirm_per_section_action_link(:risk, name)
+    end
+
+    def confirm_offences_action_link(name)
+      confirm_per_section_action_link(:offences, name)
+    end
+
     private
+
+    def click_per_section_action_link(section, name = 'Edit')
+      within("##{section}") do
+        click_link name
+      end
+    end
+
+    def confirm_per_section_action_link(section, name)
+      within("##{section}") do
+        expect(page).to have_link(name)
+      end
+    end
 
     def age(dob)
       now = Time.now.utc.to_date
