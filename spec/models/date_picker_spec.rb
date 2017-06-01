@@ -166,13 +166,14 @@ RSpec.describe DatePicker do
 
     describe "#forward" do
       before { subject.forward }
+      let(:tomorrow) { Date.today + 1.day }
 
       it "#date returns tomorrows date" do
-        expect(subject.date).to eql Date.tomorrow
+        expect(subject.date).to eq(tomorrow)
       end
 
       it "#to_s returns tomorrows date" do
-        expect(subject.to_s).to eql Date.tomorrow.strftime('%d/%m/%Y')
+        expect(subject.to_s).to eql tomorrow.strftime('%d/%m/%Y')
       end
     end
   end

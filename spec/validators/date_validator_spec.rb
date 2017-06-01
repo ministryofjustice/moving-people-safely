@@ -101,7 +101,7 @@ RSpec.describe DateValidator do
     subject { validatable_klass(not_in_the_future: true).new(date: date) }
 
     context 'and it is' do
-      let(:date) { Date.tomorrow }
+      let(:date) { Date.today + 1.day }
       specify {
         is_expected.not_to be_valid
         expect(subject.errors[:date]).to match_array(['is in the future'])
