@@ -267,24 +267,36 @@ en:
       allergies:
         allergies: "For example, dietary, medical or environmental allergies"
         allergies_details: 'Please give details:'
+      arson:
+        arson: In NOMIS, check the header section of the prisoner’s record for the Arsonist alert.
       contact:
         contact_number: "This is the contact number for HMP Bedford Healthcare. To use a different number, enter it below:"
       concealed_weapons:
         uses_weapons_details: 'Give details of previous incidents:'
+        conceals_weapons: Check Mercury for intelligence or NOMIS adjudications for details.
         conceals_weapons_details: 'Give details of previous incidents:'
+        conceals_drugs: 'Check Mercury for intelligence or NOMIS adjudications for details.'
         conceals_drugs_details: 'Give details of previous incidents:'
+        conceals_mobile_phone_or_other_items: Check Mercury for intelligence or NOMIS adjudications for details.
         conceals_other_items_details: Give details
+        uses_weapons: Check Mercury for intelligence or NOMIS adjudications for details.
       dependencies:
         dependencies_details: 'Please explain how these issues might affect the journey and how they should be managed:'
       detainee:
         date_of_birth: DD/MM/YYYY
       discrimination:
+        discrimination_to_other_religions: In NOMIS, check the header section of the prisoner’s record for the Risk to people with religious views alert. Check alert comments and case notes for details.
         discrimination_to_other_religions_details: Give details
+        homophobic: In NOMIS, check the header section of the prisoner’s record for the Risk to lesbian/gay/bisexual people or Risk to transgender people alert. Check alert comments and case notes for details.
         homophobic_details: Give details
+        other_violence_due_to_discrimination: In NOMIS, check the header section of the prisoner’s record for any other relevant alerts. Check alert comments and case notes for details.
         other_violence_due_to_discrimination_details: Give details
+        racist: In NOMIS, check the header section of the prisoner’s record for the Racist or Risk to certain ethnic groups alerts. Check alert comments and case notes for details.
         racist_details: Give details
+        risk_to_females: In NOMIS, check the header section of the prisoner’s record for the Risk to Females alert. Check alert comments and case notes for details.
         risk_to_females_details: Give details
       harassments:
+        intimidation_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and and <i>Security > Non-association</i> for known risks to named prisoners.'
         intimidation_to_staff_details: Give details, including any relevant court orders
         intimidation_to_public_details: Give details, including any relevant court orders
         intimidation_to_other_detainees_details: Give details, including any relevant court orders
@@ -293,6 +305,7 @@ en:
         date_most_recent_staff_hostage_taker_incident: DD/MM/YYYY
         date_most_recent_prisoners_hostage_taker_incident: DD/MM/YYYY
         date_most_recent_public_hostage_taker_incident: DD/MM/YYYY
+        hostage_taker: In NOMIS, check the header section of the prisoner’s record for the Hostage taker alert. Check alert comments, case notes and adjudications for details.
       move:
         date: DD/MM/YYYY
         not_for_release: Is there a known reason that the detainee is not for release?
@@ -311,8 +324,11 @@ en:
       return_instructions:
         must_return_to_details: 'Give details of why they must return here:'
       risk_from_others:
+        high_profile: In NOMIS, check the header section of the prisoner’s record for the High public interest alert and case notes for details.
         high_profile_details: Give details
+        rule_45: In NOMIS, check the header section of the prisoner’s record for the Rule 45 alert.
       risk_to_self:
+        acct_status: In NOMIS, check the header section of the prisoner’s record for the ACCT status alert.
         acct_status_details: Give details of methods and triggers recorded on NOMIS if entered
         open_acct: |
           If an ACCT is open, the ACCT plan should be present and there
@@ -323,27 +339,31 @@ en:
         suicide_details: Give details
         date_of_most_recently_closed_acct: DD/MM/YYYY
       security:
+        category_a: In NOMIS, check the header section of the prisoner’s record for category information.
+        current_e_risk: Check Mercury for intelligence or in NOMIS, check the header section of the prisoner’s record for the Escape Risk alert. Check alert comments and case notes for details.
         escape_pack_completion_date: DD/MM/YYYY
         escort_risk_assessment_completion_date: DD/MM/YYYY
+        previous_escape_attempts_html: 'In NOMIS, check <i>Incidents</i> for details of escape attempts.'
         prison_escape_attempt_details: Give details of last escape attempt
         court_escape_attempt_details: Give details of last escape attempt
         police_escape_attempt_details: Give details of last escape attempt
         other_type_escape_attempt_details: Give details of last escape attempt
       sex_offences:
-        sex_offence: This doesn't include prostitution offences, but does include procuring others into prostitution.
+        sex_offence_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and <i>Legal cases > Court cases > Offences</i> for details.'
         date_most_recent_sexual_offence: DD/MM/YYYY
       social:
         personal_care: For example, going to the toilet, eating or drinking
         personal_care_details: 'Please explain what they may need help with:'
       substance_misuse:
-        substance_supply: Risk will be indicated by intelligence or past history of trafficking drugs.
+        substance_supply: Check Mercury for intelligence or NOMIS adjudications for past history of trafficking drugs.
       transport:
         mpv: This could be a specially-adapted prison van (for example, to accommodate wheelchairs) or a taxi.
         mpv_details: 'Please explain why you feel they need a special vehicle:'
       violence:
+        controlled_unlock_required: In NOMIS, check the header section of the prisoner’s record for the Controlled Unlock alert.
         controlled_unlock_details: 'Give details of personal protection equipment (PPE) required:'
         co_defendant_details: Give details
-        csra: This information is available in NOMIS in the global personal details header at the top of the screen
+        csra: In NOMIS, check the header section of the prisoner’s record for the CSRA risk level.
         escort_or_court_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
         gang_member_details: Give details
         healthcare_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
@@ -352,8 +372,10 @@ en:
         police_details: Give details eg spits, punches, kicks, shouts, uses weapons
         prison_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
         public_offence_related_details: Give details eg spits, punches, kicks, shouts, uses weapons
+        violence_to_general_public_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts, <i>Case management > Case notes</i>, and <i>Adjudications</i> for relevant information.'
         violence_to_general_public_details: Give details
-        violence_to_staff: 'This includes prison, escort, court or hospital staff.'
+        violence_to_other_detainees_html: 'In NOMIS, check alert comments if the CSRA High alert is active and <i>Security > Non-association</i> for known risks to named prisoners.'
+        violence_to_staff_html: '<p>This includes prison, escort, court or hospital staff.</p><p>In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments, adjudications and case notes for details.</p>'
         violence_to_staff_details: Give details
   healthcare:
     form:

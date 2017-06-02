@@ -44,7 +44,7 @@ module Page
     end
 
     def fill_in_violence
-      fill_in_optional_details('CSRA', @risk, :csra)
+      fill_in_optional_details('What is their Cell Sharing Risk Assessment (CSRA) risk level?', @risk, :csra)
       fill_in_violence_to_staff
       fill_in_violence_to_other_detainees
       fill_in_violence_to_general_public
