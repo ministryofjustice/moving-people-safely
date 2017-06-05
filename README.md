@@ -85,12 +85,34 @@ For local integration with SSO refer to [SSO Integration](docs/sso_integration.m
 
 # Deployment
 
-## Staging
+## Development environment
 
 Any deploys are automatically performed on master green builds.
 
-## Production
+## Staging environment
 
-In [Jenkins](https://ci.service.dsd.io/view/MPS/) > `mps-deploy` > Build with Parameters
+In [Jenkins](https://ci.service.dsd.io/view/MPS/job/mps-deploy/build)
+
+```
+APP_BUILD_TAG = BRANCH_NAME.latest
+ENVIRONMENT = staging
+```
+
+## Production environment
+In [Jenkins](https://ci.service.dsd.io/view/MPS/job/mps-build-docker/) > LAST_BUILD > Console Output
+
+Find the 7 hex digit for SHORT_SHA
+
+```shell
+Pushing tag for rev [IMAGE_SHA] on {https://registry.service.dsd.io/v1/repositories/mps/tags/BRANCH_NAME.SHORT_SHA}
+Pushing docker image registry.service.dsd.io/mps:BRANCH_NAME.latest
+```
+
+In [Jenkins](https://ci.service.dsd.io/view/MPS/job/mps-deploy/build)
+
+```
+APP_BUILD_TAG = master.SHORT_SHA
+ENVIRONMENT = prod
+```
 
 **NOTE:** Requires appropriate permission to access
