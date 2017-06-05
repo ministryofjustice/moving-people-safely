@@ -1,89 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe QuestionPresenter do
+  let(:answer_options) { [] }
+  let(:question_name) { 'question_name' }
   let(:question_type) { 'string' }
-  let(:data) { { name: 'question_name', type: question_type } }
-  let(:question) { Schemas::Question.new(data) }
+  let(:question) {
+    double(Forms::Assessments::Answer,
+           question_name: question_name,
+           type: question_type,
+           answer_options: answer_options)
+  }
   subject(:presenter) { described_class.new(question) }
-
-  describe '#subquestions' do
-    context 'when the question has no subquestions' do
-      specify { expect(presenter.subquestions).to be_empty }
-    end
-
-    context 'when the question has associated subquestions' do
-      let(:data) {
-        {
-          name: 'question_name',
-          type: question_type,
-          questions: [
-            { name: 'subquestion_1', type: 'string' },
-            { name: 'subquestion_2', type: 'boolean' }
-          ]
-        }
-      }
-
-      it 'returns a list of presentation objects for the questions' do
-        expect(presenter.subquestions).not_to be_empty
-        presenter.subquestions.each do |question|
-          expect(question).to be_an_instance_of(QuestionPresenter)
-        end
-      end
-    end
-  end
-
-  describe '#answers_options' do
-    context 'when there are no answer options' do
-      let(:data) { { name: 'question_name', type: question_type } }
-      specify { expect(presenter.answers_options).to be_empty }
-    end
-
-    context 'when there are answer options' do
-      let(:answers) {
-        [
-          { value: 'option_1' },
-          { value: 'option_2' }
-        ]
-      }
-      let(:data) { { name: 'question_name', type: question_type, answers: answers } }
-
-      it 'returns a list of the values for all the possible answers' do
-        expect(presenter.answers_options).to match_array(%w[option_1 option_2])
-      end
-    end
-  end
-
-  describe '#conditional_questions' do
-    context 'when there are no answers options' do
-      let(:data) { { name: 'question_name', type: question_type } }
-      specify { expect(presenter.conditional_questions).to be_empty }
-    end
-
-    context 'when there are no answers requiring additional questions to be answered' do
-      let(:answers) {
-        [
-          { value: 'option_1' },
-          { value: 'option_2' }
-        ]
-      }
-      let(:data) { { name: 'question_name', type: question_type, answers: answers } }
-      specify { expect(presenter.conditional_questions).to be_empty }
-    end
-
-    context 'when there is at least one answer requiring additional questions to be answered' do
-      let(:answers) {
-        [
-          { value: 'option_1', questions: [ { name: 'option_1_question', type: 'string' } ] },
-          { value: 'option_2' }
-        ]
-      }
-      let(:data) { { name: 'question_name', type: question_type, answers: answers } }
-
-      it 'returns a list of all the additional questions that need to answered' do
-        expect(presenter.conditional_questions.map(&:name)).to match_array(%w[option_1_question])
-      end
-    end
-  end
 
   describe '#display_type' do
     context 'when the question type is group' do
@@ -105,23 +32,17 @@ RSpec.describe QuestionPresenter do
       let(:question_type) { 'string' }
 
       context 'and there are answer options' do
-        let(:answers) {
-          [
-            { value: 'option_1' },
-            { value: 'option_2' }
-          ]
-        }
-        let(:data) { { name: 'question_name', type: question_type, answers: answers } }
+        let(:answer_options) { %w[yes no] }
         specify { expect(presenter.display_type).to eq('radio_button') }
       end
 
       context 'and the question is a detail field' do
-        let(:data) { { name: 'question_name_details', type: question_type } }
+        let(:question_name) { 'question_name_details' }
         specify { expect(presenter.display_type).to eq('text_area') }
       end
 
       context 'and the question just requires a value to be inputted manually' do
-        let(:data) { { name: 'question_name', type: question_type } }
+        let(:question_name) { 'question_name' }
         specify { expect(presenter.display_type).to eq('text_field') }
       end
     end
@@ -134,62 +55,59 @@ RSpec.describe QuestionPresenter do
 
   describe '#display_inline?' do
     context 'when the question has no answer options' do
-      let(:data) { { name: 'question_name', type: question_type } }
+      let(:answer_options) { [] }
       specify { expect(presenter.display_inline?).to be_falsey }
     end
 
     context 'when none of the answer options are the value unknown' do
-      let(:answers) {
+      let(:answer_options) {
         [
-          { value: 'option_1' },
-          { value: 'option_2' }
+          double(Schemas::Answer, value: 'bla'),
+          double(Schemas::Answer, value: 'foo')
         ]
       }
-      let(:data) { { name: 'question_name', type: question_type, answers: answers } }
       specify { expect(presenter.display_inline?).to be_falsey }
     end
 
     context 'when one of the answer options has the value unknown' do
-      let(:answers) {
+      let(:answer_options) {
         [
-          { value: 'option_1' },
-          { value: 'unknown' }
+          double(Schemas::Answer, value: 'bla'),
+          double(Schemas::Answer, value: 'foo'),
+          double(Schemas::Answer, value: 'unknown')
         ]
       }
-      let(:data) { { name: 'question_name', type: question_type, answers: answers } }
       specify { expect(presenter.display_inline?).to be_truthy }
     end
   end
 
   describe '#toggle_field' do
     context 'when there are no answer options' do
-      let(:data) { { name: 'question_name', type: question_type } }
+      let(:answer_options) { [] }
       specify { expect(presenter.toggle_field).to be_nil }
     end
 
-    context 'when none of the answer options has additional questions to answer' do
-      let(:answers) {
+    context 'when there are answer options but they do not have any dependant questions' do
+      let(:answer_options) {
         [
-          { value: 'option_1' },
-          { value: 'option_2' }
+          double(Schemas::Answer, value: 'bla', questions: []),
+          double(Schemas::Answer, value: 'foo', questions: [])
         ]
       }
-      let(:data) { { name: 'question_name', type: question_type, answers: answers } }
       specify { expect(presenter.toggle_field).to be_nil }
     end
 
-    context 'when at least one of the answer options has additional questions to answer' do
-      let(:answers) {
+    context 'when there are answer options and at least one of them has dependant questions' do
+      let(:answer_options) {
         [
-          { value: 'option_1', questions: [ { name: 'option_1_question', type: 'string' } ] },
-          { value: 'option_2', questions: [ { name: 'option_2_question', type: 'string' } ] },
-          { value: 'unknown' }
+          double(Schemas::Answer, value: 'bla', questions: []),
+          double(Schemas::Answer, value: 'foo', questions: [double(Schemas::Question)]),
+          double(Schemas::Answer, value: 'zzz', questions: [])
         ]
       }
-      let(:data) { { name: 'question_name', type: question_type, answers: answers } }
 
-      it 'returns the first answer value with additional questions to answer' do
-        expect(presenter.toggle_field).to eq('option_1')
+      it 'returns the first answer value that has questions' do
+        expect(presenter.toggle_field).to eq('foo')
       end
     end
   end

@@ -22,7 +22,7 @@ class EscortCreator
   INCLUDE_GRAPH = [
     { detainee: [:offences] },
     :risk,
-    { healthcare: [:medications] }
+    :healthcare
   ].freeze
 
   EXCEPT_GRAPH = [:issued_at].freeze

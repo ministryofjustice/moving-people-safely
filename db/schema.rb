@@ -10,21 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524154953) do
+ActiveRecord::Schema.define(version: 20170601090245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
-
-  create_table "destinations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "move_id"
-    t.string   "establishment"
-    t.string   "must_return",   default: "unknown"
-    t.text     "reasons"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.index ["move_id"], name: "index_destinations_on_move_id", using: :btree
-  end
 
   create_table "detainees", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "forenames"
@@ -77,27 +67,17 @@ ActiveRecord::Schema.define(version: 20170524154953) do
     t.integer  "status",                  default: 0
     t.integer  "reviewer_id"
     t.datetime "reviewed_at"
+    t.text     "medications"
     t.index ["detainee_id"], name: "index_healthcare_on_detainee_id", using: :btree
     t.index ["escort_id"], name: "index_healthcare_on_escort_id", using: :btree
-  end
-
-  create_table "medications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "healthcare_id"
-    t.string   "description"
-    t.string   "administration"
-    t.string   "carrier"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["healthcare_id"], name: "index_medications_on_healthcare_id", using: :btree
   end
 
   create_table "moves", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "from"
     t.string   "to"
     t.date     "date"
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-    t.string   "has_destinations",               default: "unknown"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "not_for_release"
     t.string   "not_for_release_reason"
     t.text     "not_for_release_reason_details"
@@ -223,6 +203,11 @@ ActiveRecord::Schema.define(version: 20170524154953) do
     t.integer  "status",                                            default: 0
     t.integer  "reviewer_id"
     t.datetime "reviewed_at"
+    t.string   "must_return"
+    t.string   "must_return_to"
+    t.text     "must_return_to_details"
+    t.string   "must_not_return"
+    t.text     "must_not_return_details"
     t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
     t.index ["escort_id"], name: "index_risks_on_escort_id", using: :btree
   end

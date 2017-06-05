@@ -1,23 +1,22 @@
 class HealthcareController < ApplicationController
-  include Wicked::Wizard
-  include Wizardable
+  include Assessable
 
   steps(*Healthcare.section_names)
 
   before_action :redirect_unless_detainee_exists
   before_action :redirect_if_healthcare_already_exists, only: %i[new create]
   before_action :redirect_unless_document_editable, except: :show
-  before_action :add_medication, only: %i[create update]
+  before_action :add_multiples, only: %i[create update]
 
   helper_method :escort, :healthcare
 
   def new
-    form.prepopulate!
+    form = Forms::Assessment.for_section(escort.build_healthcare, step)
     render :new, locals: { form: form }
   end
 
   def create
-    if form.validate form_params
+    if form.valid?
       form.save
       update_document_workflow
       redirect_after_update
@@ -27,12 +26,12 @@ class HealthcareController < ApplicationController
   end
 
   def edit
-    form.prepopulate!
+    form = Forms::Assessment.for_section(healthcare, step)
     render :edit, locals: { form: form }
   end
 
   def update
-    if form.validate form_params
+    if form.valid?
       form.save
       update_document_workflow
       redirect_after_update
@@ -95,24 +94,12 @@ class HealthcareController < ApplicationController
     end
   end
 
-  def add_medication
-    if params.key? 'needs_add_medications'
-      form.deserialize form_params
-      form.add_medication
-      view = params[:action] == 'create' ? :new : :edit
-      render view, locals: { form: form }
-    end
+  def form
+    @form ||= Forms::Assessment.for_section(healthcare, step, form_params)
   end
 
   def form_params
-    params[step]
-  end
-
-  def form
-    @_form ||= form_for_section(step).new(healthcare)
-  end
-
-  def form_for_section(section)
-    "Forms::Healthcare::#{section.to_s.camelcase}".constantize
+    return unless params[step]
+    params[step].permit!.to_h
   end
 end

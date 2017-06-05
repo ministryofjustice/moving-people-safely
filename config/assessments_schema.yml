@@ -7,6 +7,11 @@ assessment:
           -
             name: physical_issues
             type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -14,6 +19,9 @@ assessment:
                   -
                     name: physical_issues_details
                     type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
               -
@@ -23,6 +31,11 @@ assessment:
           -
             name: mental_illness
             type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -30,6 +43,9 @@ assessment:
                   -
                     name: mental_illness_details
                     type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
               -
@@ -39,6 +55,11 @@ assessment:
           -
             name: mpv
             type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -46,6 +67,9 @@ assessment:
                   -
                     name: mpv_details
                     type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
               -
@@ -55,6 +79,11 @@ assessment:
           -
             name: has_medications
             type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -66,12 +95,21 @@ assessment:
                       -
                         name: description
                         type: string
+                        validators:
+                          -
+                            name: 'Assessments::PresenceValidator'
                       -
                         name: administration
                         type: string
+                        validators:
+                          -
+                            name: 'Assessments::PresenceValidator'
                       -
                         name: carrier
                         type: string
+                        validators:
+                          -
+                            name: 'Assessments::InclusionValidator'
                         answers:
                           -
                             value: 'escort'
@@ -86,6 +124,11 @@ assessment:
           -
             name: dependencies
             type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -93,6 +136,9 @@ assessment:
                   -
                     name: dependencies_details
                     type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
               -
@@ -102,6 +148,11 @@ assessment:
           -
             name: allergies
             type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -109,6 +160,9 @@ assessment:
                   -
                     name: allergies_details
                     type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
               -
@@ -118,6 +172,11 @@ assessment:
           -
             name: personal_care
             type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -125,6 +184,9 @@ assessment:
                   -
                     name: personal_care_details
                     type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
               -
@@ -134,6 +196,9 @@ assessment:
           -
             name: contact_number
             type: string
+            validators:
+              -
+                name: 'Assessments::PresenceValidator'
   risk:
     sections:
       risk_to_self:
@@ -1045,6 +1110,68 @@ assessment:
             answers:
               -
                 value: 'yes'
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+      return_instructions:
+        questions:
+          -
+            name: must_return
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: must_return_to
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+                  -
+                    name: must_return_to_details
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+              -
+                value: 'unknown'
+          -
+            name: must_not_return
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+                options:
+                  allow_blank: true
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: must_not_return_details
+                    type: complex
+                    questions:
+                      -
+                        name: establishment
+                        type: string
+                        validators:
+                          -
+                            name: 'Assessments::PresenceValidator'
+                      -
+                        name: establishment_details
+                        type: string
+                        validators:
+                          -
+                            name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
               -

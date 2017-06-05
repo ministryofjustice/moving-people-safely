@@ -19,7 +19,7 @@ module Schemas
       answers.find { |answer| answer.value == value }
     end
 
-    def answer_options
+    def answer_options_values
       answers.map(&:value)
     end
 

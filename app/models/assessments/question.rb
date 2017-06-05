@@ -2,7 +2,7 @@ module Assessments
   class Question < SimpleDelegator
     attr_reader :schema, :parent, :subquestions, :dependency_questions
 
-    delegate :name, :group?, :string?, :boolean?, :complex?, to: :schema
+    delegate :name, :type, :group?, :string?, :boolean?, :complex?, to: :schema
 
     def initialize(object, schema, options = {})
       @schema = schema

@@ -34,28 +34,24 @@ module Page
         expect(page).to have_content move.from
         expect(page).to have_content move.to
         expect(page).to have_content move.date.strftime('%d %b %Y')
-        destinations = options[:destinations]
-        if destinations.present?
-          must_returns = destinations.select { |d| d[:must] == :return }.pluck(:establishment)
-          must_not_returns = destinations.select { |d| d[:must] == :not_return }.pluck(:establishment)
-          within('.must-return-to') do
-            must_returns.each do |must_return|
-              expect(page).to have_content(must_return)
-            end
-          end
-
-          within('.must-not-return-to') do
-            must_not_returns.each do |must_not_return|
-              expect(page).to have_content(must_not_return)
-            end
-          end
-        end
       end
     end
 
     def assert_link_to_new_move(escort)
       within '#no-active-move' do
         expect(page).to have_selector(:css, "a[href='#{new_escort_move_path(escort.id)}']")
+      end
+    end
+
+    def confirm_read_only_detainee_details
+      within('#personal-details') do
+        expect(page).not_to have_link('Edit')
+      end
+    end
+
+    def confirm_read_only_move_details
+      within('.move-information') do
+        expect(page).not_to have_link('Edit')
       end
     end
 
@@ -135,29 +131,47 @@ module Page
       end
     end
 
-    def click_edit_healthcare
-      within('#healthcare') do
-        click_link 'Edit'
-      end
+    def click_edit_healthcare(name = 'Edit')
+      click_per_section_action_link(:healthcare, name)
     end
 
-    def click_edit_risk
-      within('#risk') do
-        click_link 'Edit'
-      end
+    def click_edit_risk(name = 'Edit')
+      click_per_section_action_link(:risk, name)
     end
 
-    def click_edit_offences
-      within('#offences') do
-        click_link 'Edit'
-      end
+    def click_edit_offences(name = 'Edit')
+      click_per_section_action_link(:offences, name)
     end
 
     def click_print
       click_link 'Print'
     end
 
+    def confirm_healthcare_action_link(name)
+      confirm_per_section_action_link(:healthcare, name)
+    end
+
+    def confirm_risk_action_link(name)
+      confirm_per_section_action_link(:risk, name)
+    end
+
+    def confirm_offences_action_link(name)
+      confirm_per_section_action_link(:offences, name)
+    end
+
     private
+
+    def click_per_section_action_link(section, name = 'Edit')
+      within("##{section}") do
+        click_link name
+      end
+    end
+
+    def confirm_per_section_action_link(section, name)
+      within("##{section}") do
+        expect(page).to have_link(name)
+      end
+    end
 
     def age(dob)
       now = Time.now.utc.to_date

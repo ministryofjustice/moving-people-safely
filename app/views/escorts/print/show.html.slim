@@ -43,17 +43,3 @@ html
               = offences.relevant
             td.column-50-percent
               = offences.formatted_list
-
-      div#move-returns-section.section
-        span.watermark = 'Move'
-        table#move-returns-table.section-table
-          tr#move-must-return-to-destinations
-            td.column-30-percent
-              = move.must_return_to_label
-            td.column-70-percent
-              = move.must_return_to
-          tr#move-must-not-return-to-destinations.top-dotted.bottom-dotted
-            td.column-30-percent
-              = move.must_not_return_to_label
-            td.column-70-percent
-              = move.must_not_return_to

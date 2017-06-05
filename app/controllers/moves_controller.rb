@@ -5,14 +5,11 @@ class MovesController < ApplicationController
 
   def new
     form = Forms::Move.new(escort.build_move)
-    form.prepopulate!
     render locals: { form: form }
   end
 
   def create
     form = Forms::Move.new(escort.build_move)
-    add_destination(form, template: :new)
-    return if performed?
 
     if form.validate(params[:move])
       form.save
@@ -24,14 +21,11 @@ class MovesController < ApplicationController
 
   def edit
     form = Forms::Move.new(move)
-    form.prepopulate!
     render locals: { form: form }
   end
 
   def update
     form = Forms::Move.new(move)
-    add_destination(form, template: :edit)
-    return if performed?
 
     if form.validate(params[:move])
       form.save
@@ -49,14 +43,6 @@ class MovesController < ApplicationController
 
   def move
     escort.move || raise(ActiveRecord::RecordNotFound)
-  end
-
-  def add_destination(form, options)
-    if params.key? 'move_add_destination'
-      form.deserialize params[:move]
-      form.add_destination
-      render options.fetch(:template), locals: { form: form }
-    end
   end
 
   def redirect_if_move_already_exists

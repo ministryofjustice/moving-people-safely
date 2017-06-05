@@ -17,7 +17,7 @@ FactoryGirl.define do
     end
 
     trait :incomplete do
-      contact_number nil
+      physical_issues nil
     end
 
     trait :unconfirmed do

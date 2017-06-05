@@ -6,23 +6,14 @@ class QuestionPresenter < SimpleDelegator
     'date' => 'text_field'
   }.freeze
 
-  def subquestions
-    @subquestions ||= model.subquestions.map { |question| QuestionPresenter.new(question) }
-  end
-
-  def answers_options
-    return [] if answers.empty?
-    answers.map(&:value)
-  end
-
-  def conditional_questions
-    answers.map(&:questions).flatten.compact
+  def name
+    question_name
   end
 
   def display_type
     return map_for_type if map_for_type
 
-    if answers.present?
+    if answer_options.present?
       'radio_button'
     elsif type == 'string' && name =~ /_details$/
       'text_area'
@@ -32,21 +23,17 @@ class QuestionPresenter < SimpleDelegator
   end
 
   def display_inline?
-    answers.any? { |a| a.value == 'unknown' }
+    answer_options.any? { |a| a.value == 'unknown' }
   end
 
   def toggle_field
-    answers.find { |a| a.questions.any? }&.value
+    answer_options.find { |a| a.questions.any? }&.value
   end
 
   private
 
   def map_for_type
     @map_for_type ||= DISPLAY_TYPE_MAPPING[type]
-  end
-
-  def answers
-    @answers ||= model.answers.map { |answer| AnswerPresenter.new(answer) }
   end
 
   def model

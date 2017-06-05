@@ -1,7 +1,6 @@
 class Risk < ApplicationRecord
   include Questionable
-
-  act_as_assessment :risk
+  act_as_assessment :risk, complex_attributes: %i[must_not_return_details]
 
   STATES = {
     incomplete: 0,

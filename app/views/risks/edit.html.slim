@@ -11,6 +11,5 @@
   .risk.column-two-thirds
     = render partial: 'shared/wizard_step_form',
       locals: { scope: 'risks',
-                assessment: AssessmentPresenter.new(risk, step),
                 form: form,
                 method: :put }

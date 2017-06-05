@@ -19,6 +19,7 @@ module Page
       fill_in_substance_misuse
       fill_in_concealed_weapons
       fill_in_arson
+      fill_in_return_instructions
       fill_in_other_risk
     end
 
@@ -272,6 +273,46 @@ module Page
         choose 'arson_arson_no'
       end
       save_and_continue
+    end
+
+    def fill_in_return_instructions
+      fill_in_must_return
+      fill_in_must_not_return
+      save_and_continue
+    end
+
+    def fill_in_must_return
+      if @risk.must_return == 'yes'
+        choose 'return_instructions_must_return_yes'
+        fill_in 'return_instructions_must_return_to', with: @risk.must_return_to
+        fill_in 'return_instructions_must_return_to', with: @risk.must_return_to_details
+      else
+        choose 'return_instructions_must_return_no'
+      end
+    end
+
+    def fill_in_must_not_return
+      if @risk.must_not_return == 'yes'
+        choose 'return_instructions_must_not_return_yes'
+        @risk.must_not_return_details.each_with_index do |detail, i|
+          add_must_not_return_detail unless i == 0
+          fill_in_must_not_return_detail(detail, i)
+        end
+      else
+        choose 'return_instructions_must_not_return_no'
+      end
+    end
+
+    def add_must_not_return_detail
+      click_button 'Add another establishment'
+    end
+
+    def fill_in_must_not_return_detail(detail, i)
+      el = all('.multiple-wrapper').to_a[i]
+      within(el) do
+        fill_in 'Establishment', with: detail.establishment
+        fill_in 'Give details of why they must not be sent here:', with: detail.establishment_details
+      end
     end
 
     def fill_in_other_risk

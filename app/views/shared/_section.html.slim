@@ -4,5 +4,5 @@ section
   - section.subsections.each do |section|
     = render partial: 'shared/section', locals: { f: f, section: section }
 
-  - section.questions.each do |question|
-    = render partial: "shared/#{question.display_type}", locals: { f: f, question: question }
+  - section.answers.each do |answer|
+    = render partial: "shared/question", locals: { f: f, question: QuestionPresenter.new(answer) }

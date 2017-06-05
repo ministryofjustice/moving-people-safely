@@ -2,10 +2,9 @@
   header
     h1 Move information
 
-  = GovukElementsErrorsHelper.error_summary form,
-    'There were problems saving this form', ''
-
   = form_for form, url: submit_path, method: method do |f|
+    = f.error_messages
+
     = f.text_field :from
     = f.text_field :to
     = f.date_picker_text_field :date
@@ -26,33 +25,6 @@
         choices: f.object.not_for_release_reasons,
         inline_choices: false,
         data: { 'toggle-field' => f.object.not_for_release_reason_with_details }
-
-    .multiple
-      = f.radio_toggle :has_destinations,
-        choices: f.object.toggle_strict_choices do
-        - if f.object.has_destinations_on?
-          #establishments
-          #error_move_destinations
-        = f.fields_for :destinations do |df|
-          .multiple-wrapper
-            = df.hidden_field :id
-            .multiple-field.inline
-              = df.text_field :establishment
-            .multiple-field.remove-link.inline
-              = df.label :_delete, 'Remove', class: 'styled-as-link'
-              = df.check_box :_delete
-            .multiple-field.inline.clear
-              .form-group
-                = df.label_with_radio(:must_return, 'Must return', 'must_return')
-                = df.label_with_radio(:must_return, 'Must NOT return', 'must_not_return')
-            .multiple-field
-              = df.text_area :reasons
-
-        .multiple-field.multiple-add
-          = f.submit 'Add establishment',
-            class: 'js-anchor-focus',
-            data: { 'anchor-focus' => 'establishments' },
-            name: "move_add_destination"
 
     .form-actions
       = f.submit 'Save and continue', class: 'button'

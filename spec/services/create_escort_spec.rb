@@ -46,10 +46,6 @@ RSpec.describe EscortCreator, type: :service do
     expect(new_escort.healthcare.id).not_to eq(existent_escort.healthcare.id)
     expect(new_escort.healthcare).to have_attributes(healthcare_attributes)
     expect(new_escort.healthcare.status).to eq('needs_review')
-
-    expected_medications_attributes = existent_escort.healthcare.medications.map { |m| m.attributes.except(*except_medication_attributes) }
-    medications_attributes = new_escort.healthcare.medications.map { |m| m.attributes.except(*except_medication_attributes) }
-    expect(medications_attributes).to match_array(expected_medications_attributes)
   end
 
   def expect_offences_to_be_cloned(existent_escort, new_escort)
@@ -72,19 +68,11 @@ RSpec.describe EscortCreator, type: :service do
     %w(id escort_id created_at updated_at status)
   end
 
-  def except_medication_attributes
-    %w(id healthcare_id created_at updated_at)
-  end
-
   def except_offences_attributes
     %w(id detainee_id created_at updated_at)
   end
 
   def except_current_offences_attributes
     %w(id detainee_id created_at updated_at)
-  end
-
-  def except_destinations_attributes
-    %w(id move_id created_at updated_at)
   end
 end

@@ -26,7 +26,6 @@ en:
         hostage_taker: Do they have a history of taking hostages?
         hostage_taker_type: 'Group involved (select all that apply):'
       move:
-        has_destinations: Are there establishments the detainee must or must not be sent?
         not_for_release: Not for release?
       mental:
         mental_illness: Are there any mental health issues that may affect this journey?
@@ -36,6 +35,9 @@ en:
         other_risk: Is there any other information related to risk on this journey you would like to include?
       physical:
         physical_issues: Are there any physical health issues that may affect this journey?
+      return_instructions:
+        must_not_return: Is there any establishment they must not be sent to at the end of this journey?
+        must_return: Must they return to a specific prison at the end of this journey?
       risk_from_others:
         rule_45: Are they held under Rule 45?
         high_profile: Are they of high public interest?
@@ -141,12 +143,6 @@ en:
         from: From
         to: To
         date: Date of travel
-        has_destinations: Are there establishments the detainee must or must not be sent
-        has_destinations_choices:
-          unknown: Clear selection
-        destinations:
-          establishment: Establishment
-          reasons: List the reasons, eg medical treatment, medical hold, treatment programmes or offender behaviour.
         not_for_release_choices:
           unknown: Clear selection
       mental:
@@ -154,6 +150,9 @@ en:
           unknown: Clear selection
         mental_illness_details: Mental health issues details
       needs:
+        actions:
+          medications:
+            add_multiple: Add another medicine
         has_medications_choices:
           unknown: Clear selection
         medications:
@@ -169,6 +168,19 @@ en:
       other_risk:
         other_risk_choices:
           unknown: Clear selection
+      return_instructions:
+        actions:
+          must_not_return_details:
+            add_multiple: Add another establishment
+        must_not_return_choices:
+          unknown: Clear selection
+        must_not_return_details:
+          establishment: Establishment name
+          establishment_details: 'Give details of why they must not be sent here:'
+        must_return_choices:
+          unknown: Clear selection
+        must_return_to: 'Prison name:'
+        must_return_to_details: Details for returning to a specific prison
       risk_from_others:
         rule_45_choices:
           unknown: Clear selection
@@ -296,6 +308,8 @@ en:
       physical:
         physical_issues_html: "<p>For example, issues that mean they can’t: <ul class='list list-bullet'><li>be handcuffed</li><li>travel in a standard van cell</li><li>sit for long periods of time</li></ul></p>"
         physical_issues_details: 'Please explain how these issues might affect the journey and how they should be managed:'
+      return_instructions:
+        must_return_to_details: 'Give details of why they must return here:'
       risk_from_others:
         high_profile_details: Give details
       risk_to_self:
@@ -343,9 +357,6 @@ en:
         violence_to_staff_details: Give details
   healthcare:
     form:
-      actions:
-        medications:
-          add_multiple: Add another medicine
       title:
         dependencies: Dependencies
         physical: Physical health issues
@@ -458,6 +469,8 @@ en:
           sex_offence_adult_female_victim: Adult female
           sex_offence_under18_victim: Under 18
           date_most_recent_sexual_offence: Most recent sex offence
+        return_instructions:
+          must_return_to: 'Prison name: '
         risk_from_others:
           high_profile: High public interest
           rule_45: Rule 45
@@ -557,9 +570,6 @@ en:
     <<: *summary
     <<: *escort
     label:
-      move:
-        must_return_to: Must return to
-        must_not_return_to: Must NOT return to
       offences:
         current_offences: Current offences
   activemodel:
@@ -567,8 +577,6 @@ en:
       models:
         move:
           attributes:
-            has_destinations:
-              inclusion: question must be answered
             not_for_release:
               inclusion: question must be answered
   errors:

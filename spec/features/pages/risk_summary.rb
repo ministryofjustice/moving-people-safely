@@ -1,10 +1,6 @@
 module Page
   class RiskSummary < Base
-    def confirm_status(expected_status)
-      within('header h3') do
-        expect(page).to have_content(expected_status)
-      end
-    end
+    include Page::AssessmentSummaryPageHelpers
 
     def confirm_risk_details(risk)
       check_section(risk, 'risk_to_self', %w[acct_status])
@@ -17,63 +13,8 @@ module Page
       check_security_section(risk)
       check_section(risk, 'substance_misuse', %w[substance_supply])
       check_concealed_weapons_section(risk)
+      check_return_instructions_section(risk)
       check_section(risk, 'arson', %w[ arson ])
-    end
-
-    def check_section_is_all_no(doc, section, questions)
-      check_change_link(doc, section)
-      questions.each do |question|
-        check_question_is_no(doc, section, question)
-      end
-    end
-
-    def check_section(doc, section, questions)
-      check_change_link(doc, section)
-      questions.each do |question|
-        check_question(doc, section, question)
-      end
-    end
-
-    def check_change_link(doc, section)
-      within("table.#{section}") do
-        within('thead') { expect(page).to have_link "Change" }
-      end
-    end
-
-    def check_question_is_no(doc, section, question)
-      within("table.#{section}") do
-        within("tr.#{question.underscore} td:nth-child(2)") do
-          expect(page).to have_text('No'),
-            "Expected #{section}/#{question} to be 'No': wasn't."
-        end
-      end
-    end
-
-    def check_question(doc, section, question)
-      within("table.#{section}") do
-        within("tr.#{question.underscore} td:nth-child(2)") do
-          option = doc.public_send(question.to_sym)
-          boolean_result = [true, false].include?(option)
-          if boolean_result || option
-            if boolean_result
-              expected_answer = option ? 'Yes' : 'No'
-            else
-              expected_answer = option.titlecase
-            end
-            expect(page).to have_text(expected_answer),
-              "Expected #{section}/#{question} to be shown: wasn't."
-          else
-            fail "Expected #{section}/#{question} to be shown: wasn't."
-          end
-        end
-        within("tr.#{question.underscore} td:nth-child(3)") do
-          details = "#{question}_details".to_sym
-          if doc.respond_to?(details)
-            expect(page).to have_text(doc.public_send details),
-              "Expected more details from #{section}/#{question}: didn't get 'em."
-          end
-        end
-      end
     end
 
     private
@@ -179,6 +120,13 @@ module Page
         check_section(risk, 'concealed_weapons', fields)
       else
         check_section_is_all_no(risk, 'concealed_weapons', fields)
+      end
+    end
+
+    def check_return_instructions_section(risk)
+      if risk.violence_to_other_detainees == 'yes'
+        check_question(risk, 'return_instructions', 'must_return_to')
+        check_question(risk, 'return_instructions', 'must_return_to_details')
       end
     end
   end

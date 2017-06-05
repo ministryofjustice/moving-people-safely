@@ -10,22 +10,7 @@ RSpec.describe Forms::Move, type: :form do
       to: 'Albany',
       date: '1/2/2017',
       not_for_release: 'yes',
-      not_for_release_reason: 'held_for_immigration',
-      has_destinations: 'yes',
-      destinations: [
-        {
-          establishment: 'Hospital',
-          must_return: 'must_return',
-          reasons: 'Not feeling good',
-          _delete: '0'
-        },
-        {
-          establishment: 'Tribunal',
-          must_return: 'must_return',
-          reasons: 'Sentence',
-          _delete: '0'
-        }
-      ]
+      not_for_release_reason: 'held_for_immigration'
     }.with_indifferent_access
   }
 
@@ -42,21 +27,7 @@ RSpec.describe Forms::Move, type: :form do
 
     it 'coerces params' do
       coerced_params = params.merge(
-        date: Date.civil(2017, 2, 1),
-        destinations: [
-          {
-            establishment: 'Hospital',
-            must_return: 'must_return',
-            reasons: 'Not feeling good',
-            _delete: false
-          },
-          {
-            establishment: 'Tribunal',
-            must_return: 'must_return',
-            reasons: 'Sentence',
-            _delete: false
-          }
-        ]
+        date: Date.civil(2017, 2, 1)
       )
 
       form.validate(params)
@@ -216,58 +187,6 @@ RSpec.describe Forms::Move, type: :form do
         end
       end
     end
-
-    context 'has destinations' do
-      it { is_expected.to validate_prepopulated_collection(:destinations, subform_class: Forms::Moves::Destination) }
-      it { is_expected.to validate_optional_field(:has_destinations, inclusion: { in: %w(yes no) }) }
-
-      context 'when has destinations is blank' do
-        before do
-          form.has_destinations = ''
-        end
-
-        specify {
-          expect(form).not_to be_valid
-          expect(form.errors.keys).to include(:has_destinations)
-          expect(form.errors[:has_destinations]).to match_array(['question must be answered'])
-        }
-
-      end
-
-      shared_examples_for 'no inclusion validation error' do
-        specify {
-          form.valid?
-          expect(form.errors.keys).not_to include(:has_destinations)
-        }
-      end
-
-      context 'when has destinations is set to "no"' do
-        before { form.has_destinations = 'no' }
-        include_examples 'no inclusion validation error'
-
-        context 'and no destinations are provided' do
-          before { form.destinations = [] }
-
-          it 'does not require to validate destinations' do
-            expect(form.errors.keys).not_to include(:destinations)
-          end
-        end
-      end
-
-      context 'when has destinations is set to "yes"' do
-        before { form.has_destinations = 'yes' }
-        include_examples 'no inclusion validation error'
-
-        context 'and no destinations are provided' do
-          before { form.destinations = [] }
-          specify {
-            expect(form).not_to be_valid
-            expect(form.errors.keys).to include(:destinations)
-            expect(form.errors[:destinations]).to match_array([I18n.t(:minimum_collection_size, scope: 'errors.messages')])
-          }
-        end
-      end
-    end
   end
 
   describe '#save' do
@@ -275,69 +194,7 @@ RSpec.describe Forms::Move, type: :form do
       form.validate(params)
       form.save
 
-      form_attributes_without_nested_forms = form.to_nested_hash.except(:destinations)
-      model_attributes = model.attributes
-
-      expect(model_attributes).to include form_attributes_without_nested_forms
-    end
-
-    it 'sets the data on nested models' do
-      form.validate(params)
-      form.save
-
-      model_destinations = model.destinations.map(&:attributes)
-      form_destinations = destinations_without_virtual_attributes(form)
-
-      model_destinations.each_with_index do |md, index|
-        expect(md).to include form_destinations[index]
-      end
-    end
-
-    def destinations_without_virtual_attributes(form)
-      form.to_nested_hash[:destinations].each { |d| d.delete(:_delete) }
-    end
-
-    context 'removing destinations' do
-      let(:params_with_destination_marked_for_delete) {
-        {
-          from: 'Bedford',
-          to: 'Albany',
-          date: '1/2/2017',
-          has_destinations: 'yes',
-          destinations: [
-            establishment: 'Hospital',
-            must_return: 'must_return',
-            reasons: 'Violence',
-            _delete: '1'
-          ]
-        }.with_indifferent_access
-      }
-
-      it 'doesnt pass the destination object to the model for saving' do
-        form.validate(params_with_destination_marked_for_delete)
-        form.save
-
-        expect(model.destinations).to be_empty
-      end
-
-      context 'when has destinations is not set to yes' do
-        it 'doesnt save the destination objects' do
-          %w[ no unknown ].each do |destination_value|
-            params[:has_destinations] = destination_value
-            form.validate(params)
-            form.save
-
-            expect(model.destinations).to be_empty
-          end
-        end
-      end
-    end
-  end
-
-  describe '#add_destination' do
-    it 'adds a new destination to the collection' do
-      expect { form.add_destination }.
-        to change { form.destinations.size }.by(1)
+      expect(model.attributes).to include(form.to_nested_hash)
     end
   end
 end
