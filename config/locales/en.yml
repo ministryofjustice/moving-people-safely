@@ -485,8 +485,6 @@ en:
           sex_offence_adult_female_victim: Adult female
           sex_offence_under18_victim: Under 18
           date_most_recent_sexual_offence: Most recent sex offence
-        return_instructions:
-          must_return_to: 'Prison name: '
         risk_from_others:
           high_profile: High public interest
           rule_45: Rule 45

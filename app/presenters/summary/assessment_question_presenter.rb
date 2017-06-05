@@ -20,7 +20,7 @@ module Summary
         elsif public_send(dependency.name).present?
           output << detail_content(dependency.name)
         end
-      end.join('. ')
+      end.join(' | ')
     end
 
     private
