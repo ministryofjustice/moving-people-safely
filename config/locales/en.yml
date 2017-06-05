@@ -364,14 +364,8 @@ en:
         controlled_unlock_details: 'Give details of personal protection equipment (PPE) required:'
         co_defendant_details: Give details
         csra: In NOMIS, check the header section of the prisoner’s record for the CSRA risk level.
-        escort_or_court_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
         gang_member_details: Give details
-        healthcare_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
-        other_detainees_details: Give details eg spits, punches, kicks, shouts, uses weapons
         other_violence_to_other_detainees_details: Give details
-        police_details: Give details eg spits, punches, kicks, shouts, uses weapons
-        prison_staff_details: Give details eg spits, punches, kicks, shouts, uses weapons
-        public_offence_related_details: Give details eg spits, punches, kicks, shouts, uses weapons
         violence_to_general_public_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts, <i>Case management > Case notes</i>, and <i>Adjudications</i> for relevant information.'
         violence_to_general_public_details: Give details
         violence_to_other_detainees_html: 'In NOMIS, check alert comments if the CSRA High alert is active and <i>Security > Non-association</i> for known risks to named prisoners.'
@@ -524,14 +518,8 @@ en:
           co_defendant: Co-defendant
           controlled_unlock_required: Controlled unlock
           csra: CSRA (Cell Sharing Risk Assessment)
-          escort_or_court_staff: Escort or court staff
           gang_member: Gang member
-          healthcare_staff: Healthcare staff
-          other_detainees: Other detainees
           other_violence_to_other_detainees: Other known conflicts
-          police: Police
-          prison_staff: Prison staff
-          public_offence_related: Public/offence related
           violence_to_general_public: Violent to anyone else
           violence_to_staff: Violent to staff
         csra: *summary_violence
