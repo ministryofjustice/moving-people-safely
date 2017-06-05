@@ -37,7 +37,7 @@ module Print
         elsif public_send(subquestion.name).present?
           output << detail_content(subquestion.name)
         end
-      end.join('. ')
+      end.join(' | ')
     end
 
     private

@@ -154,7 +154,7 @@ RSpec.describe Print::AssessmentQuestionPresenter do
       }
 
       it 'returns a string with the combined details for the question' do
-        expect(presenter.details).to eq('Foo. Bar')
+        expect(presenter.details).to eq('Foo | Bar')
       end
 
       context 'when one of the details is empty' do
@@ -179,7 +179,7 @@ RSpec.describe Print::AssessmentQuestionPresenter do
         end
 
         it 'prepends the localised label for the specified detail in the returned string' do
-          expect(presenter.details).to eq('Localised question detail 1: Foo. Bar')
+          expect(presenter.details).to eq('Localised question detail 1: Foo | Bar')
         end
       end
 
@@ -191,7 +191,7 @@ RSpec.describe Print::AssessmentQuestionPresenter do
         end
 
         it 'prepends the localised label for the specified detail in the returned string' do
-          expect(presenter.details).to eq('Foo. Localised answer detail 2')
+          expect(presenter.details).to eq('Foo | Localised answer detail 2')
         end
       end
     end

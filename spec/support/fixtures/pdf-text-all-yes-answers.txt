@@ -70,7 +70,7 @@ Violent to other prisoners       Yes
 Violent to anyone else           Yes
   Violent to anyone else         Yes      Violence to general public details
 Controlled unlock                Yes
-  Controlled unlock              Yes      More than 4 officers. Many people to hold the prisoner
+  Controlled unlock              Yes      More than 4 officers | Many people to hold the prisoner
 Hostage taker                    Yes
   Staff                          Yes      Last incident: 12/03/2010
   Prisoners                      Yes      Last incident: 24/05/2012
@@ -114,7 +114,7 @@ Weapons, drugs or other items    Yes
 Arson                            Yes
   Arsonist                       Yes
 Return Instructions              Yes
-  Must Return                    Yes          Prison name: Alcatraz. Some special reason
+  Must Return                    Yes          Alcatraz | Some special reason
   Must Not Return                Yes          Alcatraz | Bad bad stuff happens there
                                               York castle prison | Does not like it
 Other risk information           Yes
