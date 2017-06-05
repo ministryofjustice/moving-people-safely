@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601090245) do
+ActiveRecord::Schema.define(version: 20170605105913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,13 +62,11 @@ ActiveRecord::Schema.define(version: 20170601090245) do
     t.string   "contact_number"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
-    t.uuid     "detainee_id"
     t.uuid     "escort_id"
     t.integer  "status",                  default: 0
     t.integer  "reviewer_id"
     t.datetime "reviewed_at"
     t.text     "medications"
-    t.index ["detainee_id"], name: "index_healthcare_on_detainee_id", using: :btree
     t.index ["escort_id"], name: "index_healthcare_on_escort_id", using: :btree
   end
 
@@ -97,41 +95,22 @@ ActiveRecord::Schema.define(version: 20170601090245) do
   create_table "risks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "rule_45",                                           default: "unknown"
     t.string   "csra",                                              default: "unknown"
-    t.string   "violent",                                           default: "unknown"
-    t.boolean  "prison_staff"
-    t.text     "prison_staff_details"
     t.string   "risk_to_females"
     t.text     "risk_to_females_details"
-    t.boolean  "escort_or_court_staff"
-    t.text     "escort_or_court_staff_details"
-    t.boolean  "healthcare_staff"
-    t.text     "healthcare_staff_details"
-    t.boolean  "other_detainees"
-    t.text     "other_detainees_details"
     t.string   "homophobic"
     t.text     "homophobic_details"
     t.string   "racist"
     t.text     "racist_details"
-    t.boolean  "public_offence_related"
-    t.text     "public_offence_related_details"
-    t.boolean  "police"
-    t.text     "police_details"
-    t.boolean  "intimidator"
-    t.text     "intimidator_details"
-    t.boolean  "bully"
-    t.text     "bully_details"
     t.string   "sex_offence",                                       default: "unknown"
     t.string   "current_e_risk",                                    default: "unknown"
     t.text     "current_e_risk_details"
     t.string   "category_a",                                        default: "unknown"
-    t.text     "category_a_details"
     t.string   "substance_supply",                                  default: "unknown"
     t.string   "conceals_weapons",                                  default: "unknown"
     t.text     "conceals_weapons_details"
     t.string   "arson",                                             default: "unknown"
     t.datetime "created_at",                                                            null: false
     t.datetime "updated_at",                                                            null: false
-    t.uuid     "detainee_id"
     t.string   "acct_status"
     t.text     "acct_status_details"
     t.date     "date_of_most_recently_closed_acct"
@@ -208,7 +187,6 @@ ActiveRecord::Schema.define(version: 20170601090245) do
     t.text     "must_return_to_details"
     t.string   "must_not_return"
     t.text     "must_not_return_details"
-    t.index ["detainee_id"], name: "index_risks_on_detainee_id", using: :btree
     t.index ["escort_id"], name: "index_risks_on_escort_id", using: :btree
   end
 
