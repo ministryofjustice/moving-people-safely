@@ -6,10 +6,9 @@
 .status-label {
   @include status-label-colour;
   display: inline-block;
+  font-weight: bold;
   min-width: 120px;
   padding: 0 .6em;
-  border-radius: 8px;
-  margin-right: 20px;
   text-align: center;
 }
 
@@ -19,4 +18,16 @@
 
 .status-label--incomplete {
   @include status-label-colour(red);
+}
+
+.per-page {
+  .status-label {
+    margin-right: 10px;
+  }
+}
+
+.per-section-page {
+  .status-label {
+    margin-left: 10px;
+  }
 }

@@ -3,7 +3,7 @@
     - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
     - breadcrumb 'Risk summary'
 
-.summary
+.summary.per-section-page
   = render partial: 'summary/status', locals: { workflow: risk, title: 'Risk' }
 
   - risk.sections.each do |section|
