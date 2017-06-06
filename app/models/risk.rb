@@ -23,4 +23,8 @@ class Risk < ApplicationRecord
       status: :confirmed
     )
   end
+
+  def reviewed?
+    reviewer.present? && reviewed_at.present?
+  end
 end

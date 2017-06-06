@@ -34,12 +34,15 @@ About this Person Escort Record
    This PER was produced by the the Moving People Safely digital PER service, currently being piloted at
    HMP Bedford. If you have feedback or questions about the service, contact the Moving People Safely team
    at: moving-people-safely@digital.justice.gov.uk
-W1234BY: McTest Testy                                                        Page 1 of 1
+W1234BY: McTest Testy                                                                         Page 1 of 1
 
- NOT FOR RELEASE                         ACCT                RULE 45
+ NOT FOR RELEASE                         ACCT                                 RULE 45
 
 
- E LIST                         CSRA STANDARD        CAT A             MPV
+ E LIST                         CSRA STANDARD             CAT A                         MPV
+
+
+RISK      Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
 
 Risk to self                        No
 Risk from others                    No
@@ -63,6 +66,9 @@ Weapons, drugs or other items       No
 Arson                               No
 Return Instructions                 No
 Other risk information              No
+
+HEALTHCARE                Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
+
 Physical health issues              No
 Mental health issues                No
 Special vehicles                    No
@@ -72,5 +78,7 @@ Allergies and intolerances          No
 Personal care                       No
 Medical contact details             Yes
   Medical contact                   1-131-999-0232
+
+OFFENCES
 Current offences                    None
 

@@ -4,7 +4,9 @@
 
   h2
     ' Healthcare
-    / small 16:44 | 04 Apr 2016
+    - if healthcare&.reviewed?
+      small
+        = t('assessment.confirmed_timestamp', name: healthcare.reviewer.full_name, time: healthcare.reviewed_at.to_s(:humanized))
   - if healthcare
     .info-table.info-table-big
       .grid-row

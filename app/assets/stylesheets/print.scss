@@ -155,6 +155,10 @@ table {
     page-break-inside: avoid;
   }
 
+  th {
+    padding: 10px 0;
+  }
+
   td {
     font-weight: lighter;
     padding: 0.3em 0;
@@ -207,6 +211,10 @@ table {
   color: grey;
   font-size: 48px;
   font-weight: bold;
+}
+
+.timestamp {
+  margin-left: 10px;
 }
 
 .footer {

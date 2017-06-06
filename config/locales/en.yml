@@ -574,6 +574,8 @@ en:
         mpv: MPV
         not_for_release: Not for release
         rule_45: Rule 45
+  assessment:
+    confirmed_timestamp: "Last confirmed: %{name}, %{time}"
   print:
     <<: *summary
     <<: *escort

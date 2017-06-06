@@ -1,6 +1,9 @@
 require 'feature_helper'
 
 RSpec.feature 'printing a PER', type: :feature do
+  let(:reviewer) {
+    create(:user, first_name: 'Nelle', last_name: 'Bailey')
+  }
   let(:escort) {
     create(
       :escort,
@@ -70,7 +73,9 @@ RSpec.feature 'printing a PER', type: :feature do
         arson: 'no',
         must_return: 'no',
         must_not_return: 'no',
-        other_risk: 'no'
+        other_risk: 'no',
+        reviewer: reviewer,
+        reviewed_at: DateTime.civil(2016, 3, 10, 12, 30)
       )
     }
     let(:healthcare) {
@@ -83,7 +88,9 @@ RSpec.feature 'printing a PER', type: :feature do
         dependencies: 'no',
         has_medications: 'no',
         mpv: 'no',
-        contact_number: '1-131-999-0232'
+        contact_number: '1-131-999-0232',
+        reviewer: reviewer,
+        reviewed_at: DateTime.civil(2016, 3, 10, 12, 30)
       )
     }
 
@@ -204,7 +211,9 @@ RSpec.feature 'printing a PER', type: :feature do
           must_not_return: 'yes',
           must_not_return_details: must_not_return_details,
           other_risk: 'yes',
-          other_risk_details: 'suspected terrorist'
+          other_risk_details: 'suspected terrorist',
+          reviewer: reviewer,
+          reviewed_at: DateTime.civil(2016, 3, 10, 12, 30)
         )
       }
 
@@ -225,7 +234,9 @@ RSpec.feature 'printing a PER', type: :feature do
         medications: medications,
         mpv: 'yes',
         mpv_details: 'MPV details',
-        contact_number: '1-131-999-0232'
+        contact_number: '1-131-999-0232',
+        reviewer: reviewer,
+        reviewed_at: DateTime.civil(2016, 3, 10, 12, 30)
       )
     }
 

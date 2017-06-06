@@ -65,7 +65,7 @@ RSpec.describe EscortCreator, type: :service do
   end
 
   def except_assessment_attributes
-    %w(id escort_id created_at updated_at status)
+    %w(id escort_id created_at updated_at status reviewer_id reviewed_at)
   end
 
   def except_offences_attributes

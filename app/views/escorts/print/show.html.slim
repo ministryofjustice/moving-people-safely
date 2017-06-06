@@ -24,18 +24,29 @@ html
       div#risk-section.section
         span.watermark = 'Risk'
         table#risk-table.section-table
+          tr
+            th colspan=3
+              span.heading-large= 'RISK'
+              span.timestamp= t('assessment.confirmed_timestamp', name: risk.reviewer.full_name, time: risk.reviewed_at.to_s(:humanized))
           - risk.sections.each do |section|
             = render partial: 'escorts/print/section',
               locals: { section: Print::AssessmentSectionPresenter.new(section) }
       div#healthcare-section.section
         span.watermark = 'Healthcare'
         table#healthcare-table.section-table
+          tr
+            th colspan=3
+              span.heading-large= 'HEALTHCARE'
+              span.timestamp= t('assessment.confirmed_timestamp', name: healthcare.reviewer.full_name, time: healthcare.reviewed_at.to_s(:humanized))
           - healthcare.sections.each do |section|
             = render partial: 'escorts/print/section',
               locals: { section: Print::AssessmentSectionPresenter.new(section) }
       div#offences-section.section
         span.watermark = 'Offences'
         table#offences-table.section-table
+          tr
+            th colspan=3
+              span.heading-large= 'OFFENCES'
           tr
             td.column-30-percent
               = offences.label

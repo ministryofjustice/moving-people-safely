@@ -10,11 +10,11 @@ RSpec.describe Risk, type: :model do
 
   let(:detainee) { create(:detainee) }
   let(:move) { create(:move) }
+  let(:user) { build(:user) }
 
   subject(:risk) { described_class.new }
 
   describe '#confirm!' do
-    let(:user) { build(:user) }
 
     before { create_escort }
 
@@ -34,6 +34,17 @@ RSpec.describe Risk, type: :model do
           risk.confirm!(user: user)
         }.to_not change { risk.reload.status }
       end
+    end
+  end
+
+  describe '#reviewed?' do
+    context 'when has been reviewed' do
+      subject { described_class.new(reviewer: user, reviewed_at: 1.day.ago)}
+      specify { expect(subject.reviewed?).to be_truthy }
+    end
+
+    context 'when has not been reviewed' do
+      specify { expect(subject.reviewed?).to be_falsey }
     end
   end
 end
