@@ -16,12 +16,14 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     escort_page.confirm_healthcare_status('Review')
     escort_page.click_edit_healthcare
     healthcare_summary.confirm_status('Review')
+    healthcare_summary.confirm_review_warning
     healthcare_summary.confirm_and_save
     escort_page.confirm_healthcare_status('Complete')
 
     escort_page.confirm_risk_status('Review')
     escort_page.click_edit_risk
     risk_summary.confirm_status('Review')
+    risk_summary.confirm_review_warning
     risk_summary.confirm_and_save
     escort_page.confirm_risk_status('Complete')
 

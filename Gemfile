@@ -34,6 +34,7 @@ group :development, :test do
   gem 'pdftotext'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'timecop'
 end
 
 group :development do

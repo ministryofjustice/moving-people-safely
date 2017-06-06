@@ -5,3 +5,13 @@ header
     h3
       ' Status
       span.status-label class=("status-label--#{workflow.label_status}") = workflow.label
+
+    - if workflow.needs_review?
+      .alert--warning.review-warning
+        div.alert-sign
+          i.icon.icon-important
+            span.visually-hidden Warning
+        div.alert-content
+          span.bold-small = workflow.last_updated_info
+          br
+          span = workflow.up_to_date_warning

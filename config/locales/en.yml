@@ -418,6 +418,9 @@ en:
       risk_complete: Risk complete
       risk_incomplete: Risk incomplete
   summary: &summary
+    alerts:
+      last_updated_info: 'This information was last saved %{time_difference} ago.'
+      up_to_date_warning: Make sure all answers are up to date and check history and events in the last PER for any relevant updates.
     healthcare:
       title: Healthcare
     risk:

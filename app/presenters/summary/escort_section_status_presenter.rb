@@ -2,6 +2,8 @@ module Summary
   class EscortSectionStatusPresenter
     include PresenterHelpers
 
+    delegate :needs_review?, to: :section
+
     def initialize(section, name:)
       @section = section
       @name = name
@@ -28,6 +30,15 @@ module Summary
 
     def has_status?
       status.present?
+    end
+
+    def last_updated_info
+      time_difference = time_diff(escort.updated_at.utc, Time.now.utc)
+      t('summary.alerts.last_updated_info', time_difference: time_difference)
+    end
+
+    def up_to_date_warning
+      t('summary.alerts.up_to_date_warning')
     end
 
     private
