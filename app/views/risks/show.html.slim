@@ -4,7 +4,8 @@
     - breadcrumb 'Risk summary'
 
 .summary.per-section-page
-  = render partial: 'summary/status', locals: { workflow: risk, title: 'Risk' }
+  = render partial: 'summary/status',
+    locals: { workflow: Summary::EscortSectionStatusPresenter.new(risk, name: :risk) }
 
   - risk.sections.each do |section|
     = render partial: 'summary/section',

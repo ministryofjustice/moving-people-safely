@@ -4,7 +4,8 @@
     - breadcrumb 'Healthcare summary'
 
 .summary.per-section-page
-  = render partial: 'summary/status', locals: { workflow: healthcare, title: 'Healthcare' }
+  = render partial: 'summary/status',
+    locals: { workflow: Summary::EscortSectionStatusPresenter.new(healthcare, name: :healthcare) }
 
   - healthcare.sections.each do |section|
     = render partial: 'summary/section',

@@ -418,6 +418,10 @@ en:
       risk_complete: Risk complete
       risk_incomplete: Risk incomplete
   summary: &summary
+    healthcare:
+      title: Healthcare
+    risk:
+      title: Risk
     section:
       answers:
         risk_to_self:
@@ -553,6 +557,16 @@ en:
         violence_to_general_public: Violent to anyone else
         violence_to_other_detainees: Violent to other prisoners
         violence_to_staff: Violent to staff
+    status:
+      confirmed:
+        label: Complete
+        title: Check all answers, then confirm and save
+      incomplete:
+        label: Incomplete
+        title: Please complete the missing answers
+      needs_review:
+        label: Review
+        title: Check all answers, then confirm and save
   escort: &escort
     alerts:
       acct_status:
