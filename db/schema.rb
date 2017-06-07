@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170605105913) do
+ActiveRecord::Schema.define(version: 20170607172008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20170605105913) do
     t.datetime "updated_at",    null: false
     t.datetime "deleted_at"
     t.datetime "issued_at"
+    t.uuid     "cloned_id"
+    t.index ["cloned_id"], name: "index_escorts_on_cloned_id", using: :btree
     t.index ["deleted_at"], name: "index_escorts_on_deleted_at", using: :btree
     t.index ["prison_number"], name: "index_escorts_on_prison_number", using: :btree
   end

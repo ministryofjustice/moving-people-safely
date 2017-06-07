@@ -33,7 +33,8 @@ module Summary
     end
 
     def last_updated_info
-      time_difference = time_diff(escort.updated_at.utc, Time.now.utc)
+      start_time = twig&.send(name)&.reviewed_at || section.updated_at
+      time_difference = time_diff(start_time.utc, Time.now.utc)
       t('summary.alerts.last_updated_info', time_difference: time_difference)
     end
 
@@ -53,6 +54,10 @@ module Summary
     def set_status
       return unless %w[incomplete needs_review confirmed].include?(section.status)
       section.status
+    end
+
+    def twig
+      escort.twig
     end
   end
 end

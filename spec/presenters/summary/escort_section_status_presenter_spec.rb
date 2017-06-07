@@ -141,12 +141,34 @@ RSpec.describe Summary::EscortSectionStatusPresenter, type: :presenter do
   end
 
   describe '#last_updated_info' do
-    it 'returns a string containing the difference from the current time since the last update' do
-      now = Time.local(2008, 9, 1, 12, 0, 0)
-      Timecop.freeze(now) do
-        last_updated_at = 2.days.ago
-        expect(escort).to receive(:updated_at).and_return(last_updated_at)
-        expect(presenter.last_updated_info).to eq('This information was last saved 2 days ago.')
+    context 'when the escort is not a clone' do
+      before do
+        expect(escort).to receive(:twig).and_return(nil)
+      end
+
+      it 'returns a string containing the difference from the current time since the last update on the section' do
+        now = Time.local(2008, 9, 1, 12, 0, 0)
+        travel_to(now) do
+          last_updated_at = 2.days.ago
+          expect(section).to receive(:updated_at).and_return(last_updated_at)
+          expect(presenter.last_updated_info).to eq('This information was last saved 2 days ago.')
+        end
+      end
+    end
+    context 'when the escort was cloned from a twig' do
+      let(:reviewed_at) { Time.local(2008, 8, 14, 9, 22, 0) }
+      let(:twig_section) { double(:section, reviewed_at: reviewed_at) }
+      let(:twig) { double(Escort, section_name: twig_section) }
+
+      before do
+        expect(escort).to receive(:twig).and_return(twig)
+      end
+
+      it 'returns a string containing the difference from the current time since the last update on the twig section' do
+        now = Time.local(2008, 9, 1, 12, 0, 0)
+        travel_to(now) do
+          expect(presenter.last_updated_info).to eq('This information was last saved 18 days, 2 hours, 38 minutes ago.')
+        end
       end
     end
   end

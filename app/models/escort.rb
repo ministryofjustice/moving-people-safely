@@ -7,6 +7,8 @@ class Escort < ApplicationRecord
   has_one :move, dependent: :destroy
   has_one :risk, dependent: :destroy
   has_one :healthcare, dependent: :destroy
+  has_one :clone, class_name: 'Escort', foreign_key: :cloned_id
+  belongs_to :twig, class_name: 'Escort', foreign_key: :cloned_id
 
   scope :for_date, ->(date) { eager_load(:move).where(moves: { date: date }) }
   scope :with_incomplete_risk, -> { joins(:risk).merge(Risk.not_confirmed) }
