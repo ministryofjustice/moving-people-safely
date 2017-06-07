@@ -37,4 +37,8 @@ class Healthcare < ApplicationRecord
   def default_contact_number
     current_establishment&.default_healthcare_contact_number
   end
+
+  def reviewed?
+    reviewer.present? && reviewed_at.present?
+  end
 end

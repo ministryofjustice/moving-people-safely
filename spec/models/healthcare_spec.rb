@@ -10,12 +10,11 @@ RSpec.describe Healthcare, type: :model do
 
   let(:detainee) { create(:detainee) }
   let(:move) { create(:move) }
+  let(:user) { build(:user) }
 
   subject(:healthcare) { described_class.new }
 
   describe '#confirm!' do
-    let(:user) { build(:user) }
-
     before { create_escort }
 
     context 'when the risk assessment is not confirmed' do
@@ -56,6 +55,17 @@ RSpec.describe Healthcare, type: :model do
       it 'returns the default healthcare contact number for that establishment' do
         expect(healthcare.default_contact_number).to eq('111111')
       end
+    end
+  end
+
+  describe '#reviewed?' do
+    context 'when has been reviewed' do
+      subject { described_class.new(reviewer: user, reviewed_at: 1.day.ago)}
+      specify { expect(subject.reviewed?).to be_truthy }
+    end
+
+    context 'when has not been reviewed' do
+      specify { expect(subject.reviewed?).to be_falsey }
     end
   end
 end

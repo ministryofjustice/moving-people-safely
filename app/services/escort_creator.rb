@@ -25,7 +25,11 @@ class EscortCreator
     :healthcare
   ].freeze
 
-  EXCEPT_GRAPH = [:issued_at].freeze
+  EXCEPT_GRAPH = [
+    :issued_at,
+    { risk: [:reviewer_id, :reviewed_at] },
+    { healthcare: [:reviewer_id, :reviewed_at] }
+  ].freeze
 
   def existent_escort
     @existent_escort ||= Escort.find_by(prison_number: prison_number)

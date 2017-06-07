@@ -26,6 +26,7 @@ module MovingPeopleSafely
     config.feedback_url = ''
     config.assets.paths << Rails.root.join('vendor', 'bower')
     config.autoload_paths << "#{Rails.root}/app/models/sections"
+    config.time_zone = 'London'
 
     require "#{config.root}/app/form_builders/govuk_elements_errors_helper"
     require "#{config.root}/app/form_builders/mps_form_builder"
