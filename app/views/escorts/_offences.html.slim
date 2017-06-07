@@ -2,8 +2,9 @@
   = render partial: 'status',
     locals: { workflow: offences, not_started_path: escort_offences_path(escort), summary_path: escort_offences_path(escort) }
 
-  h2
-    ' Offences
+  .per-section-header
+    h2
+      ' Offences
   - if offences.all_questions_answered?
     .info-table
       .grid-row
