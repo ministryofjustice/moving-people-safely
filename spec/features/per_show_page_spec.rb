@@ -18,15 +18,6 @@ RSpec.feature 'PER show page', type: :feature do
         let(:options) { {} }
         let(:move) { create(:move, options) }
 
-        context 'when move has not for release set to unknown' do
-          let(:options) { { not_for_release: 'unknown' } }
-
-          scenario 'associated alert is displayed as inactive' do
-            escort_page.confirm_alert_as_inactive(:not_for_release)
-            expect(page.find('#not_for_release_alert .alert-text').text).to be_empty
-          end
-        end
-
         context 'when move has not for release set to no' do
           let(:options) { { not_for_release: 'no' } }
 
@@ -120,15 +111,6 @@ RSpec.feature 'PER show page', type: :feature do
           end
         end
 
-        context 'when detainee has ACCT status as unknown' do
-          let(:risk) { Risk.new(acct_status: 'unknown') }
-
-          scenario 'associated alert is displayed as inactive' do
-            escort_page.confirm_alert_as_inactive(:acct_status)
-            expect(page.find('#acct_status_alert .alert-text').text).to be_empty
-          end
-        end
-
         context 'when detainee has ACCT status as some other value' do
           let(:risk) { Risk.new(acct_status: 'some-other-value') }
 
@@ -162,15 +144,6 @@ RSpec.feature 'PER show page', type: :feature do
 
         context 'when detainee has Rule 45 as no' do
           let(:risk) { Risk.new(rule_45: 'no') }
-
-          scenario 'associated alert is displayed as inactive' do
-            escort_page.confirm_alert_as_inactive(:rule_45)
-            expect(page).not_to have_selector('#rule_45_alert .alert-text')
-          end
-        end
-
-        context 'when detainee has Rule 45 as unknown' do
-          let(:risk) { Risk.new(rule_45: 'unknown') }
 
           scenario 'associated alert is displayed as inactive' do
             escort_page.confirm_alert_as_inactive(:rule_45)
@@ -226,15 +199,6 @@ RSpec.feature 'PER show page', type: :feature do
             expect(page.find('#e_list_alert .alert-text').text).to be_empty
           end
         end
-
-        context 'when detainee has E list as unknown' do
-          let(:risk) { Risk.new(current_e_risk: 'unknown') }
-
-          scenario 'associated alert is displayed as inactive' do
-            escort_page.confirm_alert_as_inactive(:e_list)
-            expect(page.find('#e_list_alert .alert-text').text).to be_empty
-          end
-        end
       end
     end
 
@@ -262,16 +226,6 @@ RSpec.feature 'PER show page', type: :feature do
 
         context 'when detainee has CSRA as standard' do
           let(:risk) { Risk.new(csra: 'standard') }
-
-          scenario 'associated alert is displayed as inactive' do
-            escort_page.confirm_alert_as_inactive(:csra)
-            expect(page).not_to have_selector('#csra_alert .alert-text')
-            expect(page.find('#csra_alert .alert-toggle-text').text).to match(/^Standard$/i)
-          end
-        end
-
-        context 'when detainee has CSRA as unknown' do
-          let(:risk) { Risk.new(csra: 'unknown') }
 
           scenario 'associated alert is displayed as inactive' do
             escort_page.confirm_alert_as_inactive(:csra)
@@ -310,15 +264,6 @@ RSpec.feature 'PER show page', type: :feature do
             expect(page).not_to have_selector('#category_a_alert .alert-text')
           end
         end
-
-        context 'when detainee has Category A as unknown' do
-          let(:risk) { Risk.new(category_a: 'unknown') }
-
-          scenario 'associated alert is displayed as inactive' do
-            escort_page.confirm_alert_as_inactive(:category_a)
-            expect(page).not_to have_selector('#category_a_alert .alert-text')
-          end
-        end
       end
     end
 
@@ -344,15 +289,6 @@ RSpec.feature 'PER show page', type: :feature do
 
         context 'when detainee has MPV as no' do
           let(:healthcare) { Healthcare.new(mpv: 'no') }
-
-          scenario 'associated alert is displayed as inactive' do
-            escort_page.confirm_alert_as_inactive(:mpv)
-            expect(page).not_to have_selector('#mpv_alert .alert-text')
-          end
-        end
-
-        context 'when detainee has MPV as unknown' do
-          let(:healthcare) { Healthcare.new(mpv: 'unknown') }
 
           scenario 'associated alert is displayed as inactive' do
             escort_page.confirm_alert_as_inactive(:mpv)

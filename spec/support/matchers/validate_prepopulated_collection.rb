@@ -34,13 +34,6 @@ class ValidatePrepopulatedCollection
       set_error "Expected that #{subject.class.to_s} would implement has_#{field_name}, but it doesn't."
       return false
     end
-    unless has_defined_at_runtime?
-      result = subject.public_send("has_#{field_name}")
-      unless result == "unknown"
-        set_error "Expected #{subject.class.to_s}#has_#{field_name} to return 'unknown', got '#{result}'."
-        return false
-      end
-    end
     true
   end
 

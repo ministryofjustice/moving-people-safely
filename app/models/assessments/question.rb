@@ -26,7 +26,6 @@ module Assessments
     end
 
     def answered?
-      return false if value.nil? || value == 'unknown'
       value.present?
     end
 

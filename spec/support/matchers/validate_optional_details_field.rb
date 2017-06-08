@@ -64,17 +64,15 @@ class ValidateOptionalDetailsField
   end
 
   def doesnt_validate_presence_of_details_field_when_option_field_negative
-    %w[ no unknown ].reduce([]) do |acc, option_field_value|
-      reset_subject
+    reset_subject
 
-      result = !perform_presence_validation_on_details_field(option_field_value: option_field_value)
+    result = !perform_presence_validation_on_details_field(option_field_value: option_field_value)
 
-      unless result
-        set_error "Should be acceptable to set #{details_field_method_name} value to nil/empty string when the option field is set to: #{option_field_value}."
-      end
+    unless result
+      set_error "Should be acceptable to set #{details_field_method_name} value to nil/empty string when the option field is set to: #{option_field_value}."
+    end
 
-      acc << result
-    end.all?
+    result
   end
 
   def validates_details_field_as_strict_string

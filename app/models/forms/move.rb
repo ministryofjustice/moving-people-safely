@@ -9,7 +9,7 @@ module Forms
     property :date, type: TextDate
 
     optional_field :not_for_release,
-      options: TOGGLE_STRICT_CHOICES,
+      options: TOGGLE_CHOICES,
       allow_blank: false
     reset attributes: %i[not_for_release_reason not_for_release_reason_details],
           if_falsey: :not_for_release
@@ -17,8 +17,7 @@ module Forms
     optional_field :not_for_release_reason,
       type: StrictString,
       options: NOT_FOR_RELEASE_REASONS,
-      option_with_details: REASON_WITH_DETAILS,
-      default: 'unknown' do
+      option_with_details: REASON_WITH_DETAILS do
       validates :not_for_release_reason,
         inclusion: { in: NOT_FOR_RELEASE_REASONS },
         if: -> { not_for_release == 'yes' }

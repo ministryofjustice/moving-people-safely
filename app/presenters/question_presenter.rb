@@ -23,7 +23,7 @@ class QuestionPresenter < SimpleDelegator
   end
 
   def display_inline?
-    answer_options.any? { |a| a.value == 'unknown' }
+    answer_options.size <= 2
   end
 
   def toggle_field

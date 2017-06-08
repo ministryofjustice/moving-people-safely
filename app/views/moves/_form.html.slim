@@ -19,7 +19,7 @@
             == 'Tomorrow'
 
     = f.radio_toggle :not_for_release,
-      choices: f.object.toggle_strict_choices do
+      choices: f.object.toggle_choices do
       = f.radio_toggle_with_textarea :not_for_release_reason,
         legend: false,
         choices: f.object.not_for_release_reasons,

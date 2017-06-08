@@ -12,11 +12,6 @@ RSpec.describe Assessments::Question do
       specify { expect(question.answered?).to be_falsey }
     end
 
-    context 'when answer is "unknown"' do
-      let(:answer) { 'unknown' }
-      specify { expect(question.answered?).to be_falsey }
-    end
-
     context 'when answer is not present' do
       let(:answer) { '' }
       specify { expect(question.answered?).to be_falsey }

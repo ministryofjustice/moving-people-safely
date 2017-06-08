@@ -53,26 +53,6 @@ RSpec.describe Forms::Move, type: :form do
         end
       end
 
-      context 'when not for release is set to unknown' do
-        before do
-          form.not_for_release = 'unknown'
-          form.not_for_release_reason = nil
-          form.not_for_release_reason_details = nil
-        end
-
-        include_examples 'validation error on not for release value'
-        include_examples 'no validation on not for release reason'
-
-        context 'and not for release reason is set to other' do
-          before do
-            form.not_for_release_reason = 'other'
-          end
-
-          include_examples 'validation error on not for release value'
-          include_examples 'no validation on not for release reason'
-        end
-      end
-
       context 'when not for release is set to no' do
         before do
           form.not_for_release = 'no'

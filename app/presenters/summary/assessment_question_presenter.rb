@@ -9,7 +9,7 @@ module Summary
     def answer
       return parent_based_answer(parent_group_answer) if belongs_to_group?
       return parent_based_answer(parent.value) if parent&.is_question?
-      default_answer
+      format_answered_value
     end
 
     def details
@@ -27,7 +27,7 @@ module Summary
 
     def parent_based_answer(parent_value)
       case parent_value
-      when 'unknown', nil
+      when nil
         error_content('Missing')
       when 'no', false
         boolean? ? 'No' : 'None'
@@ -38,6 +38,8 @@ module Summary
 
     def format_answered_value
       case value
+      when nil
+        error_content('Missing')
       when 'no', false
         'No'
       when 'yes', true
@@ -45,15 +47,6 @@ module Summary
       else
         answer = answer_value(value)
         relevant_answer? ? highlight(answer) : answer
-      end
-    end
-
-    def default_answer
-      case value
-      when 'unknown', nil
-        error_content('Missing')
-      else
-        format_answered_value
       end
     end
 
