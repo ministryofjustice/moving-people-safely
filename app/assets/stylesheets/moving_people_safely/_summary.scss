@@ -63,4 +63,21 @@
   tr.even td {
     background-color: $highlight-colour;
   }
+
+  .alert--warning {
+    padding: 20px;
+    margin: 20px 0px;
+    min-height: 50px;
+
+    .alert-sign {
+      position: relative;
+      float: left;
+    }
+
+    .alert-content {
+      position: relative;
+      float: left;
+      padding-left: 20px;
+    }
+  }
 }

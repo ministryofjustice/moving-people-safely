@@ -7,7 +7,7 @@ module Page
     end
 
     def confirm_status(expected_status)
-      within('header h3') do
+      within('#offences-status') do
         expect(page).to have_content(expected_status)
       end
     end

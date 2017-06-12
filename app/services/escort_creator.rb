@@ -9,7 +9,10 @@ class EscortCreator
 
   def call
     if existent_escort
-      deep_clone_escort.tap(&:needs_review!)
+      deep_clone_escort.tap do |clone|
+        clone.twig = existent_escort
+        clone.needs_review!
+      end
     else
       Escort.create(prison_number: prison_number)
     end

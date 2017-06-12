@@ -1,3 +1,4 @@
+require 'time_diff'
 module PresenterHelpers
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::TranslationHelper
@@ -9,5 +10,9 @@ module PresenterHelpers
 
   def title_label(label)
     content_tag(:div, label, class: 'title')
+  end
+
+  def time_diff(start_time, end_time)
+    TimeDiff.new(start_time, end_time).to_s
   end
 end

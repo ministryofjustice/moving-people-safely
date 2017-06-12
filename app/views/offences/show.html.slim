@@ -3,11 +3,11 @@
     - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
     - breadcrumb 'Offences'
 
-.offences
+.offences.per-section-page
   - if offences.needs_review?
     header
       h1 Review before you save and continue
-      h3
+      p#offences-status
         ' Status
         span.status-label.status-label--incomplete Review
   - else

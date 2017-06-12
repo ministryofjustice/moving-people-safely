@@ -6,6 +6,10 @@ module Page
       end
     end
 
+    def confirm_review_warning
+      expect(page).to have_selector('.review-warning')
+    end
+
     def confirm_read_only
       expect(page).not_to have_link('Change')
     end
