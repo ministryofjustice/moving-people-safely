@@ -6,9 +6,7 @@ module Forms
 
     TOGGLE_YES = 'yes'
     TOGGLE_NO = 'no'
-    DEFAULT_CHOICE = 'unknown'
-    TOGGLE_STRICT_CHOICES = [TOGGLE_YES, TOGGLE_NO].freeze
-    TOGGLE_CHOICES = [TOGGLE_YES, TOGGLE_NO, DEFAULT_CHOICE].freeze
+    TOGGLE_CHOICES = [TOGGLE_YES, TOGGLE_NO].freeze
 
     StrictString = Forms::StrictString
     TextDate = Forms::TextDate
@@ -187,10 +185,6 @@ module Forms
 
     def toggle_choices
       TOGGLE_CHOICES
-    end
-
-    def toggle_strict_choices
-      TOGGLE_STRICT_CHOICES
     end
 
     def toggle_field

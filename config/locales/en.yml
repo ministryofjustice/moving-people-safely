@@ -70,29 +70,13 @@ en:
         violence_to_other_detainees_type: 'Victim of violence (select all that apply):'
         violence_to_staff: 'Are they violent to staff?'
     label:
-      allergies:
-        allergies_choices:
-          unknown: Clear selection
-      arson:
-        arson_choices:
-          unknown: Clear selection
       concealed_weapons:
-        conceals_weapons_choices:
-          unknown: Clear selection
-        conceals_drugs_choices:
-          unknown: Clear selection
         conceals_mobile_phones: Mobile phones
-        conceals_mobile_phone_or_other_items_choices:
-          unknown: Clear selection
         conceals_other_items: Other
         conceals_sim_cards: SIM cards
-        uses_weapons_choices:
-          unknown: Clear selection
       contact:
         contact_number: Medical contact
       dependencies:
-        dependencies_choices:
-          unknown: Clear selection
         dependencies_details: Addictions or dependencies details
       detainee:
         surname: Surname
@@ -105,23 +89,11 @@ en:
       detainee_search:
         prison_number: Enter a prison number. Eg. A1234AB
       discrimination:
-        discrimination_to_other_religions_choices:
-          unknown: Clear selection
         discrimination_to_other_religions_details: Risk to other religions details
-        homophobic_choices:
-          unknown: Clear selection
         homophobic_details: Risk to LGBT people details
-        other_violence_due_to_discrimination_choices:
-          unknown: Clear selection
         other_violence_due_to_discrimination_details: Risk to other groups details
-        racist_choices:
-          unknown: Clear selection
         racist_details: Risk to other races details
-        risk_to_females_choices:
-          unknown: Clear selection
       harassments:
-        intimidation_choices:
-          unknown: Clear selection
         intimidation_to_staff: Staff
         intimidation_to_staff_details: Staff details
         intimidation_to_public: Public
@@ -131,8 +103,6 @@ en:
         intimidation_to_witnesses: Witnesses
         intimidation_to_witnesses_details: Witnesses details
       hostage_taker:
-        hostage_taker_choices:
-          unknown: Clear selection
         staff_hostage_taker: Staff
         public_hostage_taker: Public
         prisoners_hostage_taker: Prisoners
@@ -143,18 +113,12 @@ en:
         from: From
         to: To
         date: Date of travel
-        not_for_release_choices:
-          unknown: Clear selection
       mental:
-        mental_illness_choices:
-          unknown: Clear selection
         mental_illness_details: Mental health issues details
       needs:
         actions:
           medications:
             add_multiple: Add another medicine
-        has_medications_choices:
-          unknown: Clear selection
         medications:
           description: Medicine
           administration: How is it given?
@@ -162,30 +126,16 @@ en:
           carrier_choices:
             escort: Escort
             detainee: Prisoner
-      physical:
-        physical_issues_choices:
-          unknown: Clear selection
-      other_risk:
-        other_risk_choices:
-          unknown: Clear selection
       return_instructions:
         actions:
           must_not_return_details:
             add_multiple: Add another establishment
-        must_not_return_choices:
-          unknown: Clear selection
         must_not_return_details:
           establishment: Establishment name
           establishment_details: 'Give details of why they must not be sent here:'
-        must_return_choices:
-          unknown: Clear selection
         must_return_to: 'Prison name:'
         must_return_to_details: Details for returning to a specific prison
       risk_from_others:
-        rule_45_choices:
-          unknown: Clear selection
-        high_profile_choices:
-          unknown: Clear selection
         high_profile_details: Details of high public interest
       risk_to_self:
         acct_status_choices:
@@ -196,23 +146,13 @@ en:
         acct_status_details: Give details of methods and triggers recorded on NOMIS if entered
         date_of_most_recently_closed_acct: Date of most recently closed ACCT
       security:
-        category_a_choices:
-          unknown: Clear selection
-        current_e_risk_choices:
-          unknown: Clear selection
         current_e_risk_details: E list type
         current_e_risk_details_choices:
           e_list_standard: E-List-Standard
           e_list_escort: E-List-Escort
           e_list_heightened: E-List-Heightened
-        escape_pack_choices:
-          unknown: Clear selection
-        escort_risk_assessment_choices:
-          unknown: Clear selection
         escape_pack_completion_date: 'Escape Pack completed on:'
         escort_risk_assessment_completion_date: 'Escort Risk Assessment completed on:'
-        previous_escape_attempts_choices:
-          unknown: Clear selection
         prison_escape_attempt: Prison
         prison_escape_attempt_details: Last prison escape attempt details
         court_escape_attempt: Court
@@ -222,21 +162,11 @@ en:
         other_type_escape_attempt: Other
         other_type_escape_attempt_details: Last other type of escape attempt details
       sex_offences:
-        sex_offence_choices:
-          unknown: Clear selection
         sex_offence_adult_male_victim: Adult male
         sex_offence_adult_female_victim: Adult female
         sex_offence_under18_victim: Under 18
         date_most_recent_sexual_offence: Date of most recent sexual offence
-      social:
-        personal_care_choices:
-          unknown: Clear selection
-      substance_misuse:
-        substance_supply_choices:
-          unknown: Clear selection
       transport:
-        mpv_choices:
-          unknown: Clear selection
         mpv_details: Details for need of a special vehicle
       violence:
         co_defendant: Co-defendant
@@ -247,22 +177,12 @@ en:
           three_officer_unlock: '3 officer unlock'
           four_officer_unlock: '4 officer unlock'
           more_than_four: 'More than 4 officers'
-        controlled_unlock_required_choices:
-          unknown: Clear selection
-        csra_choices:
-          unknown: Clear selection
         gang_member: Gang member
         gang_member_details: Gang member violence details
         other_violence_to_other_detainees: Other known conflicts
         other_violence_to_other_detainees_details: Other known conflicts details
-        violence_to_general_public_choices:
-          unknown: Clear selection
         violence_to_general_public_details: Violent to the general public details
-        violence_to_staff_choices:
-          unknown: Clear selection
         violence_to_staff_details: Violent to staff details
-        violence_to_other_detainees_choices:
-          unknown: Clear selection
     hint:
       allergies:
         allergies: "For example, dietary, medical or environmental allergies"
@@ -577,12 +497,10 @@ en:
         none: ''
         open: Open
         post_closure: Post closure
-        unknown: ''
       current_e_risk_details:
         e_list_escort: E-List-Escort
         e_list_heightened: E-List-Heightened
         e_list_standard: E-List-Standard
-        unknown: ''
       title:
         acct_status: ACCT
         category_a: Cat A

@@ -7,7 +7,7 @@ $(function () {
    * @param {jQuery wrapped input} $input - A radio button.
    */
 
-  var manageStateOfOptionalSection = function ($input, $clear_selection_control) {
+  var manageStateOfOptionalSection = function ($input) {
     var id = $input.attr('id');
     var control = $input.closest($.fn.optional_section.defaults['controls_for_optional_section']);
     var data = control.attr('data-toggle-field');
@@ -15,10 +15,8 @@ $(function () {
 
     if($input.val() != undefined && $input.val() == data){
       show(optionalSection);
-      show($clear_selection_control);
     } else {
       hide(optionalSection);
-      show($clear_selection_control);
     }
   };
 
@@ -37,16 +35,15 @@ $(function () {
     return this.each(function () {
       var $this = $(this),
         $controls = $(settings.controls_for_optional_section, $this),
-        $checked_item_at_load = $controls.find(':checked'),
-        $clear_selection_control = $controls.find('label[for$="_unknown"]');
+        $checked_item_at_load = $controls.find(':checked');
 
       // Initialization
-      manageStateOfOptionalSection($checked_item_at_load, $clear_selection_control);
+      manageStateOfOptionalSection($checked_item_at_load);
 
       // Event management
       $controls.on('change', function (e) {
         var $input = $(e.target);
-        manageStateOfOptionalSection($input, $clear_selection_control);
+        manageStateOfOptionalSection($input);
       });
 
     })

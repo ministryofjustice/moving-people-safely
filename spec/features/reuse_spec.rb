@@ -48,8 +48,10 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     escort_page.click_edit_healthcare
 
     find("a", :text => /\AChange\z/, match: :first).click
-    choose 'Clear selection'
+    choose 'Yes'
+    fill_in 'physical[physical_issues_details]', with: 'Some details'
     click_button 'Save and view summary'
-    healthcare_summary.confirm_status 'Incomplete'
+    healthcare_summary.confirm_and_save
+    escort_page.confirm_healthcare_status('Complete')
   end
 end

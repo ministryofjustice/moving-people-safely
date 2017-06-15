@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607172008) do
+ActiveRecord::Schema.define(version: 20170613132041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,22 +48,22 @@ ActiveRecord::Schema.define(version: 20170607172008) do
   end
 
   create_table "healthcare", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "physical_issues",         default: "unknown"
+    t.string   "physical_issues"
     t.text     "physical_issues_details"
-    t.string   "mental_illness",          default: "unknown"
+    t.string   "mental_illness"
     t.text     "mental_illness_details"
-    t.string   "personal_care",           default: "unknown"
+    t.string   "personal_care"
     t.text     "personal_care_details"
-    t.string   "allergies",               default: "unknown"
+    t.string   "allergies"
     t.text     "allergies_details"
-    t.string   "dependencies",            default: "unknown"
+    t.string   "dependencies"
     t.text     "dependencies_details"
-    t.string   "has_medications",         default: "unknown"
-    t.string   "mpv",                     default: "unknown"
+    t.string   "has_medications"
+    t.string   "mpv"
     t.text     "mpv_details"
     t.string   "contact_number"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.uuid     "escort_id"
     t.integer  "status",                  default: 0
     t.integer  "reviewer_id"
@@ -95,24 +95,24 @@ ActiveRecord::Schema.define(version: 20170607172008) do
   end
 
   create_table "risks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "rule_45",                                           default: "unknown"
-    t.string   "csra",                                              default: "unknown"
+    t.string   "rule_45"
+    t.string   "csra"
     t.string   "risk_to_females"
     t.text     "risk_to_females_details"
     t.string   "homophobic"
     t.text     "homophobic_details"
     t.string   "racist"
     t.text     "racist_details"
-    t.string   "sex_offence",                                       default: "unknown"
-    t.string   "current_e_risk",                                    default: "unknown"
+    t.string   "sex_offence"
+    t.string   "current_e_risk"
     t.text     "current_e_risk_details"
-    t.string   "category_a",                                        default: "unknown"
-    t.string   "substance_supply",                                  default: "unknown"
-    t.string   "conceals_weapons",                                  default: "unknown"
+    t.string   "category_a"
+    t.string   "substance_supply"
+    t.string   "conceals_weapons"
     t.text     "conceals_weapons_details"
-    t.string   "arson",                                             default: "unknown"
-    t.datetime "created_at",                                                            null: false
-    t.datetime "updated_at",                                                            null: false
+    t.string   "arson"
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
     t.string   "acct_status"
     t.text     "acct_status_details"
     t.date     "date_of_most_recently_closed_acct"

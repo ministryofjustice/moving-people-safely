@@ -21,7 +21,7 @@ class ValidateOptionalField
 
   private
 
-  FIELD_OPTIONS = %w[ yes no unknown ]
+  FIELD_OPTIONS = %w[ yes no ]
 
   def validates_inclusion
     in_values = FIELD_OPTIONS

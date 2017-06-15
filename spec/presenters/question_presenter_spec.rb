@@ -54,30 +54,25 @@ RSpec.describe QuestionPresenter do
   end
 
   describe '#display_inline?' do
-    context 'when the question has no answer options' do
-      let(:answer_options) { [] }
-      specify { expect(presenter.display_inline?).to be_falsey }
-    end
-
-    context 'when none of the answer options are the value unknown' do
+    context 'when the question has two answer options' do
       let(:answer_options) {
         [
           double(Schemas::Answer, value: 'bla'),
           double(Schemas::Answer, value: 'foo')
         ]
       }
-      specify { expect(presenter.display_inline?).to be_falsey }
+      specify { expect(presenter.display_inline?).to be_truthy }
     end
 
-    context 'when one of the answer options has the value unknown' do
+    context 'when the question has three answer options' do
       let(:answer_options) {
         [
           double(Schemas::Answer, value: 'bla'),
-          double(Schemas::Answer, value: 'foo'),
-          double(Schemas::Answer, value: 'unknown')
+          double(Schemas::Answer, value: 'bar'),
+          double(Schemas::Answer, value: 'foo')
         ]
       }
-      specify { expect(presenter.display_inline?).to be_truthy }
+      specify { expect(presenter.display_inline?).to be_falsey }
     end
   end
 

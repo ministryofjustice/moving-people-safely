@@ -136,16 +136,6 @@ RSpec.describe Summary::AssessmentQuestionPresenter do
         expect(question).to receive(:belongs_to_group?).and_return(true)
       end
 
-      context 'and group parent answer is "unknown"' do
-        before do
-          expect(question).to receive(:parent_group_answer).and_return('unknown')
-        end
-
-        it 'returns missing content' do
-          expect(presenter.answer).to eq("<span class='text-error'>Missing</span>")
-        end
-      end
-
       context 'and group parent answer is nil' do
         before do
           expect(question).to receive(:parent_group_answer).and_return(nil)
@@ -189,14 +179,6 @@ RSpec.describe Summary::AssessmentQuestionPresenter do
         expect(question).to receive(:belongs_to_group?).and_return(false)
       end
 
-      context 'and parent answer is "unknown"' do
-        let(:parent_value) { 'unknown' }
-
-        it 'returns missing content' do
-          expect(presenter.answer).to eq("<span class='text-error'>Missing</span>")
-        end
-      end
-
       context 'and parent answer is nil' do
         let(:parent_value) { nil }
 
@@ -229,14 +211,6 @@ RSpec.describe Summary::AssessmentQuestionPresenter do
 
       before do
         expect(question).to receive(:belongs_to_group?).and_return(false)
-      end
-
-      context 'when the answer for the question is "unknown"' do
-        let(:value) { 'unknown' }
-
-        it 'returns missing content' do
-          expect(presenter.answer).to eq("<span class='text-error'>Missing</span>")
-        end
       end
 
       context 'when the answer for the question is nil' do

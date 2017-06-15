@@ -37,8 +37,8 @@ FactoryGirl.define do
     end
 
     trait :incomplete do
-      rule_45 'unknown'
-      conceals_weapons 'unknown'
+      rule_45 nil
+      conceals_weapons nil
     end
 
     trait :unconfirmed do

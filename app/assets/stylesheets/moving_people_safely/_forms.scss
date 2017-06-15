@@ -21,19 +21,6 @@ form {
     font-weight: bold;
   }
 
-  label[for$=_unknown] {
-    background-color: transparent;
-    border-color: transparent;
-    padding-left: $padding-unit;
-    text-decoration: underline;
-    &:hover {
-      border-color: transparent;
-    }
-    input {
-      @extend .visuallyhidden;
-    }
-  }
-
   .checkbox-list input[type='checkbox'] {
     margin-right: 20px;
   }

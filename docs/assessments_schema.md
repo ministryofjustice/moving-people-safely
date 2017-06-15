@@ -154,8 +154,6 @@ Example of a subset of the assessments schema:
             value: 'yes'
           -
             value: 'no'
-          -
-            value: 'unknown'
   ...
   harassments:
     sections:
@@ -181,6 +179,4 @@ Example of a subset of the assessments schema:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
 ```

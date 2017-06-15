@@ -24,8 +24,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
       mental:
         questions:
           -
@@ -48,8 +46,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
       transport:
         questions:
           -
@@ -72,8 +68,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
       needs:
         questions:
           -
@@ -117,8 +111,6 @@ assessment:
                             value: 'detainee'
               -
                 value: 'no'
-              -
-                value: 'unknown'
       dependencies:
         questions:
           -
@@ -141,8 +133,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
       allergies:
         questions:
           -
@@ -165,8 +155,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
       social:
         questions:
           -
@@ -189,8 +177,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
       contact:
         questions:
           -
@@ -253,8 +239,6 @@ assessment:
                 value: 'yes'
               -
                 value: 'no'
-              -
-                value: 'unknown'
           -
             name: high_profile
             type: string
@@ -275,8 +259,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
       discrimination:
         questions:
           -
@@ -299,8 +281,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
           -
             name: homophobic
             type: string
@@ -321,8 +301,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
           -
             name: racist
             type: string
@@ -343,8 +321,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
           -
             name: discrimination_to_other_religions
             type: string
@@ -365,8 +341,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
           -
             name: other_violence_due_to_discrimination
             type: string
@@ -387,8 +361,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
       violence:
         sections:
           csra:
@@ -407,8 +379,6 @@ assessment:
                     relevant: true
                   -
                     value: 'standard'
-                  -
-                    value: 'unknown'
           violence_to_staff:
             questions:
               -
@@ -431,8 +401,6 @@ assessment:
                             name: 'Assessments::PresenceValidator'
                   -
                     value: 'no'
-                  -
-                    value: 'unknown'
           violence_to_other_detainees:
             questions:
               -
@@ -503,8 +471,6 @@ assessment:
                                         name: 'Assessments::PresenceValidator'
                   -
                     value: 'no'
-                  -
-                    value: 'unknown'
           violence_to_general_public:
             questions:
               -
@@ -527,8 +493,6 @@ assessment:
                             name: 'Assessments::PresenceValidator'
                   -
                     value: 'no'
-                  -
-                    value: 'unknown'
           controlled_unlock_required:
             questions:
               -
@@ -566,8 +530,6 @@ assessment:
                             name: 'Assessments::PresenceValidator'
                   -
                     value: 'no'
-                  -
-                    value: 'unknown'
       hostage_taker:
         questions:
           -
@@ -644,8 +606,6 @@ assessment:
                                       not_in_the_future: true
               -
                 value: 'no'
-              -
-                value: 'unknown'
       harassments:
         sections:
           intimidation:
@@ -733,8 +693,6 @@ assessment:
                                         name: 'Assessments::PresenceValidator'
                   -
                     value: 'no'
-                  -
-                    value: 'unknown'
       sex_offences:
         questions:
           -
@@ -777,8 +735,6 @@ assessment:
                           not_in_the_future: true
               -
                 value: 'no'
-              -
-                value: 'unknown'
       security:
         sections:
           escape_status:
@@ -810,8 +766,6 @@ assessment:
                             value: e_list_heightened
                   -
                     value: 'no'
-                  -
-                    value: 'unknown'
           previous_escape_attempts:
             questions:
               -
@@ -897,8 +851,6 @@ assessment:
                                         name: 'Assessments::PresenceValidator'
                   -
                     value: 'no'
-                  -
-                    value: 'unknown'
           category_a:
             questions:
               -
@@ -914,8 +866,6 @@ assessment:
                     value: 'yes'
                   -
                     value: 'no'
-                  -
-                    value: 'unknown'
           escort_details:
             questions:
               -
@@ -940,8 +890,6 @@ assessment:
                               not_in_the_future: true
                   -
                     value: 'no'
-                  -
-                    value: 'unknown'
               -
                 name: escape_pack
                 type: string
@@ -964,8 +912,6 @@ assessment:
                               not_in_the_future: true
                   -
                     value: 'no'
-                  -
-                    value: 'unknown'
       substance_misuse:
         questions:
           -
@@ -981,8 +927,6 @@ assessment:
                 value: 'yes'
               -
                 value: 'no'
-              -
-                value: 'unknown'
       concealed_weapons:
         questions:
           -
@@ -1005,8 +949,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
           -
             name: conceals_weapons
             type: string
@@ -1027,8 +969,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
           -
             name: conceals_drugs
             type: string
@@ -1049,8 +989,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
           -
             name: conceals_mobile_phone_or_other_items
             type: string
@@ -1095,8 +1033,6 @@ assessment:
                                     name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
       arson:
         questions:
           -
@@ -1112,8 +1048,6 @@ assessment:
                 value: 'yes'
               -
                 value: 'no'
-              -
-                value: 'unknown'
       return_instructions:
         questions:
           -
@@ -1142,8 +1076,6 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
           -
             name: must_not_return
             type: string
@@ -1174,8 +1106,6 @@ assessment:
                             name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
       other_risk:
         questions:
           -
@@ -1198,5 +1128,3 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-              -
-                value: 'unknown'
