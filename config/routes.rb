@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       put :confirm, on: :collection
     end
     resource :offences, only: %i[show update]
-    resource :print, only: %i[show], controller: 'escorts/print'
+    resource :print, only: %i[new show], controller: 'escorts/print'
   end
 
   post '/detainees/search', to: 'homepage#detainees'

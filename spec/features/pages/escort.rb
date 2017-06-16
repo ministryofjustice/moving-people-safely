@@ -147,6 +147,10 @@ module Page
       click_link 'Print'
     end
 
+    def click_reprint
+      click_link 'Reprint'
+    end
+
     def confirm_healthcare_action_link(name)
       confirm_per_section_action_link(:healthcare, name)
     end

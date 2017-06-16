@@ -1,7 +1,7 @@
 require 'feature_helper'
 
 RSpec.feature 'issued PERs', type: :feature do
-  scenario 'Checking issued PER sections are read only' do
+  scenario 'Checking issued PER sections are read only and allows reprint' do
     login
 
     escort = create(:escort, :issued)
@@ -27,5 +27,8 @@ RSpec.feature 'issued PERs', type: :feature do
     escort_page.confirm_offences_action_link('View')
     escort_page.click_edit_offences('View')
     offences.confirm_read_only
+
+    visit escort_path(escort)
+    escort_page.click_reprint
   end
 end

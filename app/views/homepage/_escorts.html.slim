@@ -19,10 +19,8 @@
             |  #{escort.detainee.forenames}
         td = escort.move&.to
         - if escort.issued?
-          td.issued colspan=3
+          td.issued colspan=4
             | Issued
-          td.print
-            = link_to_print_in_new_window(escort, text: 'Reprint')
         - else
           td.completion-status
             span class="#{escort.risk_complete? ? true : false}"

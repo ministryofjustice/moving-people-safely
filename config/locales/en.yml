@@ -509,6 +509,12 @@ en:
         mpv: MPV
         not_for_release: Not for release
         rule_45: Rule 45
+  escorts:
+    print:
+      new:
+        reprint_per_for: Reprint PER for
+        reprint_this_per: Reprint this PER
+        do_not_reprint_per: Do not reprint this PER
   assessment:
     confirmed_timestamp: "Last confirmed: %{name}, %{time}"
   print:
