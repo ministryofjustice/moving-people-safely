@@ -36,11 +36,11 @@
       .no-script
         .form-group.search-date-radios
           fieldset.inline
-            = label_tag "escorts_due_on_#{Date.today}", 'Today', class: 'block-label' do
-              = radio_button_tag 'escorts_due_on', Date.today.strftime('%d/%m/%Y'), (date_picker == Date.today), class: 'radio-date-selector', disabled: true
+            = label_tag "escorts_due_on_#{Time.current.to_date}", 'Today', class: 'block-label' do
+              = radio_button_tag 'escorts_due_on', Time.current.to_date.strftime('%d/%m/%Y'), (date_picker == Time.current.to_date), class: 'radio-date-selector', disabled: true
               == 'Today'
-            = label_tag "escorts_due_on_#{Date.tomorrow}", 'Tomorrow', class: 'block-label' do
-              = radio_button_tag 'escorts_due_on', Date.tomorrow.strftime('%d/%m/%Y'), (date_picker == Date.tomorrow), class: 'radio-date-selector', disabled: true
+            = label_tag "escorts_due_on_#{Time.current.tomorrow.to_date}", 'Tomorrow', class: 'block-label' do
+              = radio_button_tag 'escorts_due_on', Time.current.tomorrow.to_date.strftime('%d/%m/%Y'), (date_picker == Time.current.tomorrow.to_date), class: 'radio-date-selector', disabled: true
               == 'Tomorrow'
 
   - if dashboard.escorts.empty?

@@ -74,7 +74,7 @@ RSpec.describe DateValidator do
     subject { validatable_klass(not_in_the_past: true).new(date: date) }
 
     context 'and it is' do
-      let(:date) { Date.yesterday }
+      let(:date) { Time.current.yesterday.to_date }
       specify {
         is_expected.not_to be_valid
         expect(subject.errors[:date]).to match_array(['is in the past'])
@@ -92,7 +92,7 @@ RSpec.describe DateValidator do
     end
 
     context 'and its not' do
-      let(:date) { Date.today }
+      let(:date) { Time.current.to_date }
       specify { is_expected.to be_valid }
     end
   end
@@ -101,7 +101,7 @@ RSpec.describe DateValidator do
     subject { validatable_klass(not_in_the_future: true).new(date: date) }
 
     context 'and it is' do
-      let(:date) { Date.today + 1.day }
+      let(:date) { Time.current.tomorrow.to_date }
       specify {
         is_expected.not_to be_valid
         expect(subject.errors[:date]).to match_array(['is in the future'])
@@ -119,7 +119,7 @@ RSpec.describe DateValidator do
     end
 
     context 'and its not' do
-      let(:date) { Date.today }
+      let(:date) { Time.current.to_date }
       specify { is_expected.to be_valid }
     end
   end

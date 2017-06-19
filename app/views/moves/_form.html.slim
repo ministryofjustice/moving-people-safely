@@ -11,11 +11,11 @@
     .no-script
       .form-group.date-radios
         fieldset.inline
-          = label_tag "move_date_#{Date.today}", 'Today', class: 'block-label' do
-            = radio_button_tag 'move[date]', Date.today.strftime('%d/%m/%Y'), (form.date == Date.today), class: 'radio-date-selector', disabled: true
+          = label_tag "move_date_#{Time.current.to_date}", 'Today', class: 'block-label' do
+            = radio_button_tag 'move[date]', Time.current.to_date.strftime('%d/%m/%Y'), (form.date == Time.current.to_date), class: 'radio-date-selector', disabled: true
             == 'Today'
-          = label_tag "move_date_#{Date.tomorrow}", 'Tomorrow', class: 'block-label' do
-            = radio_button_tag 'move[date]', Date.tomorrow.strftime('%d/%m/%Y'), (form.date == Date.tomorrow), class: 'radio-date-selector', disabled: true
+          = label_tag "move_date_#{Time.current.tomorrow.to_date}", 'Tomorrow', class: 'block-label' do
+            = radio_button_tag 'move[date]', Time.current.tomorrow.to_date.strftime('%d/%m/%Y'), (form.date == Time.current.tomorrow.to_date), class: 'radio-date-selector', disabled: true
             == 'Tomorrow'
 
     = f.radio_toggle :not_for_release,

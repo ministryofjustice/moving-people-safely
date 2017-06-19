@@ -139,7 +139,7 @@ RSpec.describe DatePicker do
         before { subject.today }
 
         it "sets the date to today's date" do
-          expect(result).to eql Date.today
+          expect(result).to eq(Time.current.to_date)
         end
       end
     end
@@ -152,7 +152,7 @@ RSpec.describe DatePicker do
       let(:result) { subject.date }
 
       it "returns today's date" do
-        expect(result).to eql Date.today
+        expect(result).to eq(Time.current.to_date)
       end
     end
 
@@ -166,7 +166,7 @@ RSpec.describe DatePicker do
 
     describe "#forward" do
       before { subject.forward }
-      let(:tomorrow) { Date.today + 1.day }
+      let(:tomorrow) { (Time.current + 1.day).to_date }
 
       it "#date returns tomorrows date" do
         expect(subject.date).to eq(tomorrow)
