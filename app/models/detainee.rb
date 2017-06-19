@@ -17,11 +17,6 @@ class Detainee < ApplicationRecord
     AgeCalculator.age(date_of_birth)
   end
 
-  def each_alias
-    return [] unless aliases.present?
-    aliases.split(',').each { |a| yield a }
-  end
-
   class OffencesCollection < SimpleDelegator
     def initialize(workflow:, collection:)
       @workflow = workflow
