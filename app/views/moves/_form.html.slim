@@ -8,15 +8,7 @@
     = f.text_field :from
     = f.text_field :to
     = f.date_picker_text_field :date
-    .no-script
-      .form-group.date-radios
-        fieldset.inline
-          = label_tag "move_date_#{Time.current.to_date}", 'Today', class: 'block-label' do
-            = radio_button_tag 'move[date]', Time.current.to_date.strftime('%d/%m/%Y'), (form.date == Time.current.to_date), class: 'radio-date-selector', disabled: true
-            == 'Today'
-          = label_tag "move_date_#{Time.current.tomorrow.to_date}", 'Tomorrow', class: 'block-label' do
-            = radio_button_tag 'move[date]', Time.current.tomorrow.to_date.strftime('%d/%m/%Y'), (form.date == Time.current.tomorrow.to_date), class: 'radio-date-selector', disabled: true
-            == 'Tomorrow'
+    = render partial: 'shared/radio_date_picker', locals: { picker: RadioDatePickerPresenter.new('move[date]', form.date) }
 
     = f.radio_toggle :not_for_release,
       choices: f.object.toggle_choices do

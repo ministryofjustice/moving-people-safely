@@ -1,0 +1,9 @@
+.no-script
+  .form-group.date-radios
+    fieldset.inline
+      = label_tag picker.today_label, 'Today', class: 'block-label' do
+        = radio_button_tag picker.attr, picker.today, picker.today?, class: 'radio-date-selector', disabled: true
+        == 'Today'
+      = label_tag picker.tomorrow_label, 'Tomorrow', class: 'block-label' do
+        = radio_button_tag picker.attr, picker.tomorrow, picker.tomorrow? , class: 'radio-date-selector', disabled: true
+        == 'Tomorrow'
