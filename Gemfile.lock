@@ -1,11 +1,4 @@
 GIT
-  remote: https://github.com/ministryofjustice/govuk_elements_form_builder.git
-  revision: 72d4f260de4175660c23c96b855f106059000cfc
-  specs:
-    govuk_elements_form_builder (0.0.1)
-      rails (>= 4.2)
-
-GIT
   remote: https://github.com/thethanghn/custom-err-msg.git
   revision: b913309360995472507ea444c6f1a80315b99d28
   specs:
@@ -142,14 +135,18 @@ GEM
     geckoboard-ruby (0.4.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    govuk_elements_rails (1.2.1)
-      govuk_frontend_toolkit (>= 4.12.0)
+    govuk_elements_form_builder (1.2.0)
+      govuk_elements_rails (>= 3.0.0)
+      govuk_frontend_toolkit (>= 6.0.0)
+      rails (>= 4.2)
+    govuk_elements_rails (3.1.2)
+      govuk_frontend_toolkit (>= 6.0.2)
       rails (>= 4.1.0)
       sass (>= 3.2.0)
-    govuk_frontend_toolkit (4.13.0)
-      rails (>= 3.1.0)
+    govuk_frontend_toolkit (7.4.1)
+      railties (>= 3.1.0)
       sass (>= 3.2.0)
-    govuk_template (0.18.0)
+    govuk_template (0.23.0)
       rails (>= 3.1)
     hashdiff (0.3.7)
     hashie (3.5.6)
@@ -427,10 +424,10 @@ DEPENDENCIES
   faker
   faraday
   geckoboard-ruby
-  govuk_elements_form_builder!
+  govuk_elements_form_builder
   govuk_elements_rails
   govuk_frontend_toolkit
-  govuk_template (= 0.18.0)
+  govuk_template
   jasmine
   jasmine-jquery-rails
   jquery-rails

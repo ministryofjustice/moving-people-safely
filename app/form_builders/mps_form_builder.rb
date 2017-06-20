@@ -13,7 +13,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     GovukElementsErrorsHelper.error_summary(object, title, description, as: object_name)
   end
 
-  def radio_button_fieldset(attribute, options = {})
+  def custom_radio_button_fieldset(attribute, options = {})
     content_tag :div,
       class: form_group_classes(attribute),
       id: form_group_id(attribute) do
@@ -26,34 +26,11 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     end
   end
 
-  def fieldset_legend(attribute, options = {})
-    tags = []
-    legend_options = options.fetch(:legend_options, {})
-    legend = content_tag(:legend) do
-      if options.fetch(:legend, true)
-        tags << content_tag(
-          :span,
-          fieldset_text(attribute),
-          class: legend_options.fetch(:class, 'form-label-bold')
-        )
-      end
-
-      tags << error_message_tag_for_attr(attribute) if error_for?(attribute)
-
-      hint = hint_text attribute
-      tags << content_tag(:span, hint, class: 'form-hint') if hint
-
-      safe_join tags
-    end
-    legend.html_safe
-  end
-
-  def radio_inputs(attribute, options)
-    choices = options[:choices] || %i[yes no]
-    choices.map do |choice|
-      label(attribute, class: 'block-label', value: choice) do |_tag|
-        input = radio_button(attribute, choice)
-        input + localized_label("#{attribute}_choices.#{choice}")
+  def custom_check_box_fieldset(attribute)
+    content_tag :div, class: 'form-group' do
+      content_tag :div, class: 'multiple-choice' do
+        check_box(attribute) +
+          label(attribute) { localized_label(attribute) }
       end
     end
   end
@@ -65,7 +42,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     content_tag(:div, class: 'form-group js-show-hide') do
       safe_join([
         content_tag(:div, class: 'controls-optional-section', data: data) do
-          radio_button_fieldset attribute,
+          custom_radio_button_fieldset attribute,
             options.merge(choices: choices, inline: options.fetch(:inline_choices, true))
         end,
         (content_tag(:div, class: style) { yield } if block_given?)
@@ -80,26 +57,11 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     end
   end
 
-  def field_without_label(field_type, attribute, options = {})
-    content_tag :div,
-      class: form_group_classes(attribute.to_sym),
-      id: form_group_id(attribute) do
-      tags = [content_tag(:span, hint_text(attribute), class: 'form-hint')]
-      tags << error_message_tag_for_attr(attribute) if error_for?(attribute)
-      tags <<
-        field_type.new(
-          object.name, attribute, self,
-          { value: object.public_send(attribute), class: 'form-control' }.merge(options)
-        ).render
-      tags.join.html_safe
-    end
-  end
-
   def date_picker_text_field(attribute, options = {})
     content_tag :div,
       class: form_group_classes(attribute.to_sym) + ' date-picker-wrapper',
       id: form_group_id(attribute) do
-        set_field_classes! options
+        set_field_classes! options, attribute
 
         label_tag = label(attribute, class: 'form-label')
         add_hint :label, label_tag, attribute
@@ -130,52 +92,6 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     field_without_label ActionView::Helpers::Tags::TextField, attribute, options
   end
 
-  def label_with_radio(attribute, text, value)
-    label(attribute, value: value, class: 'block-label') do
-      safe_join([text, radio_button(attribute, value)])
-    end
-  end
-
-  def label_with_checkbox(attribute)
-    content_tag(:div, class: 'form-group') do
-      label(attribute) do
-        safe_join([check_box(attribute), localized_label(attribute)])
-      end
-    end
-  end
-
-  def checkbox(attribute)
-    style = 'optional-checkbox-section-wrapper'
-    style << ' mps-hide' unless object.public_send("#{attribute}?")
-    content_tag(:div, class: 'js-checkbox-show-hide form-group') do
-      safe_join([
-        label(attribute, class: 'block-label') do
-          content_tag(:div, class: 'controls-optional-checkbox-section') do
-            check_box attribute
-          end +
-            localized_label(attribute)
-        end,
-        (content_tag(:div, class: style) { yield } if block_given?)
-      ])
-    end
-  end
-
-  def checkbox_with_textarea(attribute)
-    style = 'optional-checkbox-section-wrapper'
-    style << ' mps-hide' unless object.public_send("#{attribute}_on?")
-    content_tag(:div, class: 'js-checkbox-show-hide form-group') do
-      label(attribute, class: 'block-label') do
-        content_tag(:div, class: 'controls-optional-checkbox-section') do
-          check_box attribute
-        end +
-          localized_label(attribute)
-      end +
-        content_tag(:div, class: style) do
-          text_area_without_label "#{attribute}_details"
-        end
-    end
-  end
-
   def radio_concertina_option(attribute, label_text, option)
     safe_join([
       label(attribute, for: "#{option}_toggler", class: 'block-label') do
@@ -197,6 +113,62 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
       object.class.name, attribute, self,
       { value: object.public_send(attribute), class: 'form-control' }.merge(options)
     ).render
+  end
+
+  def fieldset_legend(attribute, options = {})
+    tags = []
+    legend_options = options.fetch(:legend_options, {})
+    legend = content_tag(:legend) do
+      if options.fetch(:legend, true)
+        tags << content_tag(
+          :span,
+          fieldset_text(attribute),
+          class: legend_options.fetch(:class, 'form-label-bold')
+        )
+      end
+
+      tags << error_message_tag_for_attr(attribute) if error_for?(attribute)
+
+      hint = hint_text attribute
+      tags << content_tag(:span, hint, class: 'form-hint') if hint
+
+      safe_join tags
+    end
+    legend.html_safe
+  end
+
+  def radio_inputs(attribute, options)
+    choices = options[:choices] || %i[yes no]
+    choices.map do |choice|
+      value = choice.send(options[:value_method] || :to_s)
+      input = radio_button(attribute, value)
+      label = label(attribute, value: value) do
+        text = if options.key? :text_method
+                 choice.send(options[:text_method])
+               else
+                 localized_label("#{attribute}_choices.#{choice}")
+               end
+        text
+      end
+      content_tag :div, class: 'multiple-choice' do
+        input + label
+      end
+    end
+  end
+
+  def field_without_label(field_type, attribute, options = {})
+    content_tag :div,
+      class: form_group_classes(attribute.to_sym),
+      id: form_group_id(attribute) do
+      tags = [content_tag(:span, hint_text(attribute), class: 'form-hint')]
+      tags << error_message_tag_for_attr(attribute) if error_for?(attribute)
+      tags <<
+        field_type.new(
+          object.name, attribute, self,
+          { value: object.public_send(attribute), class: 'form-control' }.merge(options)
+        ).render
+      tags.join.html_safe
+    end
   end
 
   def style_for_radio_block(attribute, options = {})

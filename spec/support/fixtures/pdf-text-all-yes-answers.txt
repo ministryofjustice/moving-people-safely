@@ -42,6 +42,7 @@ Please send any feedback or questions to: eper@digital.justice.gov.uk
  Not for release ✘ No                  Escape risk ✔                            ACCT ✔
                                                                              Open
 
+
  Self harm ✔                  Rule 45 ✔                   CSRA High ✔                     Cat A ✔
 
 
@@ -79,58 +80,60 @@ Escape status/history                Yes
   Escape Pack needed                 Yes
 Hostage taker                        Yes
   Staff hostage taker                Yes                 Last incident: 12/03/2010
-
   Prisoner hostage taker             Yes                 Last incident: 24/05/2012
   Public hostage taker               Yes                 Last incident: 02/09/2007
-Sex offender                         Yes
-W1234BY: McTest Testy                                                                             Page 2 of 3
- Sex offender victim adult          Yes
+W1234BY: McTest Testy                                                                            Page 2 of 3
+
+Sex offender                       Yes
+ Sex offender victim adult         Yes
  male
- Sex offender victim adult          Yes
+ Sex offender victim adult         Yes
  female
- Sex offender victim under 18       Yes
- Most recent sex offence            12/10/2008
-Weapons, drugs or other items       Yes
- Creates or uses weapons            Yes                  Created and used a 3d gun
- Conceals weapons                   Yes                  Conceals weapons details
- Conceals drugs                     Yes                  Conceals drugs details
- Conceals mobile phones             Yes
- Conceals SIM cards                 Yes
- Conceals other items               Yes                  Conceals other items details
- Drug trafficking risk              Yes
-Arson                               Yes
- Arsonist                           Yes
-Return Instructions                 Yes
- Must return to                     Yes                  Alcatraz | Some special reason
- Must not be sent to                Yes                  Alcatraz | Bad bad stuff happens there
-                                                         York castle prison | Does not like it
-Other risk information              Yes
- Other risk information             Yes                  Suspected terrorist
+ Sex offender victim under 18      Yes
+ Most recent sex offence           12/10/2008
+Weapons, drugs or other items      Yes
+ Creates or uses weapons           Yes                  Created and used a 3d gun
+ Conceals weapons                  Yes                  Conceals weapons details
+ Conceals drugs                    Yes                  Conceals drugs details
+ Conceals mobile phones            Yes
+ Conceals SIM cards                Yes
+ Conceals other items              Yes                  Conceals other items details
+ Drug trafficking risk             Yes
+Arson                              Yes
+ Arsonist                          Yes
+Return Instructions                Yes
+ Must return to                    Yes                  Alcatraz | Some special reason
+ Must not be sent to               Yes                  Alcatraz | Bad bad stuff happens there
+                                                        York castle prison | Does not like it
+Other risk information             Yes
+ Other risk information            Yes                  Suspected terrorist
 
-HEALTHCARE                Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
+HEALTHCARE               Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
 
-Physical health issues              Yes
- Physical health needs              Yes                  Physical issues details
-Mental health issues                Yes
- Mental health issues               Yes                  Mental illness details
-Special vehicles                    Yes
- Special vehicle required           Yes                  Mpv details
-Essential medication                Yes
- Essential medication               Yes                  Xanax | Every 4 hours | By mouth | Daily | Carried by:
-                                                         Escort
-                                                         Paracetamol | 2 days a week | By mouth | Daily |
-                                                         Carried by: Prisoner
-Dependencies                        Yes
- Dependencies                       Yes                  Dependencies details
-Allergies and intolerances          Yes
- Allergies and intolerances         Yes                  Allergies details
-Personal care                       Yes
- Personal care issues               Yes                  Personal care details
-Medical contact details             Yes
- Medical contact                    1-131-999-0232
+Physical health issues             Yes
+ Physical health needs             Yes                  Physical issues details
+Mental health issues               Yes
+ Mental health issues              Yes                  Mental illness details
+Special vehicles                   Yes
+ Special vehicle required          Yes                  Mpv details
+Essential medication               Yes
+ Essential medication              Yes                  Xanax | Every 4 hours | By mouth | Daily | Carried by:
+                                                        Escort
+                                                        Paracetamol | 2 days a week | By mouth | Daily |
+                                                        Carried by: Prisoner
+Dependencies                       Yes
+ Dependencies                      Yes                  Dependencies details
+Allergies and intolerances         Yes
+ Allergies and intolerances        Yes                  Allergies details
+Personal care                      Yes
+ Personal care issues              Yes                  Personal care details
+W1234BY: McTest Testy                                                            Page 3 of 3
+
+
+Medical contact details   Yes
+ Medical contact          1-131-999-0232
 
 OFFENCES
-W1234BY: McTest Testy                                               Page 3 of 3
-Current offences        Yes   Burglary (LXAHTGNJQF) | Sex offence
-                              (QDPREIBMSF)
+Current offences          Yes              Burglary (LXAHTGNJQF) | Sex offence
+                                           (QDPREIBMSF)
 

@@ -24,7 +24,7 @@
       = f.text_field :date_of_birth
       = f.text_area  :nationalities
       .form-group
-        = f.radio_button_fieldset :gender,
+        = f.custom_radio_button_fieldset :gender,
           choices: form.genders,
           inline: true
       = f.text_field :ethnicity
