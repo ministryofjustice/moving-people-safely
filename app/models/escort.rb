@@ -15,7 +15,7 @@ class Escort < ApplicationRecord
   scope :with_incomplete_healthcare, -> { joins(:healthcare).merge(Healthcare.not_confirmed) }
   scope :without_risk_assessment, -> { includes(:risk).where(risks: { escort_id: nil }) }
   scope :without_healthcare_assessment, -> { includes(:healthcare).where(healthcare: { escort_id: nil }) }
-  scope :with_incomplete_offences, -> { joins(detainee: [:offences_workflow]).merge(Workflow.not_confirmed) }
+  scope :with_incomplete_offences, -> { joins(detainee: [:offences_workflow]).merge(OffencesWorkflow.not_confirmed) }
   scope :active, -> { where(issued_at: nil) }
 
   delegate :offences, :offences=, to: :detainee, allow_nil: true

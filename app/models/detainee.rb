@@ -1,7 +1,7 @@
 class Detainee < ApplicationRecord
   belongs_to :escort
   has_many :offences, dependent: :destroy
-  has_one :offences_workflow, foreign_key: :workflowable_id
+  has_one :offences_workflow
 
   before_create :set_defaults
 
@@ -15,11 +15,6 @@ class Detainee < ApplicationRecord
 
   def age
     AgeCalculator.age(date_of_birth)
-  end
-
-  def each_alias
-    return [] unless aliases.present?
-    aliases.split(',').each { |a| yield a }
   end
 
   class OffencesCollection < SimpleDelegator
@@ -43,8 +38,8 @@ class Detainee < ApplicationRecord
     end
 
     def confirm!(user:)
-      raise(StatusChangeError, :confirm_with_user!) unless workflow
-      workflow.confirm_with_user!(user: user)
+      raise(StatusChangeError, :confirm!) unless workflow
+      workflow.confirm!(user: user)
     end
   end
 end

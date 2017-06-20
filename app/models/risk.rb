@@ -1,30 +1,7 @@
 class Risk < ApplicationRecord
   include Questionable
+  include Reviewable
   act_as_assessment :risk, complex_attributes: %i[must_not_return_details]
 
-  STATES = {
-    incomplete: 0,
-    needs_review: 1,
-    unconfirmed: 2,
-    confirmed: 3
-  }.freeze
-
-  enum status: STATES
-
   belongs_to :escort
-  belongs_to :reviewer, class_name: 'User'
-
-  scope :not_confirmed, -> { where.not(status: :confirmed) }
-
-  def confirm!(user:)
-    update_attributes!(
-      reviewer_id: user.id,
-      reviewed_at: DateTime.now,
-      status: :confirmed
-    )
-  end
-
-  def reviewed?
-    reviewer.present? && reviewed_at.present?
-  end
 end

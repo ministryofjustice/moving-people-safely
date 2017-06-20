@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613132041) do
+ActiveRecord::Schema.define(version: 20170619105503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,16 @@ ActiveRecord::Schema.define(version: 20170613132041) do
     t.datetime "updated_at",     null: false
     t.uuid     "detainee_id"
     t.index ["detainee_id"], name: "index_offences_on_detainee_id", using: :btree
+  end
+
+  create_table "offences_workflows", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "detainee_id"
+    t.integer  "status",      default: 0
+    t.datetime "reviewed_at"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "reviewer_id"
+    t.index ["detainee_id"], name: "index_offences_workflows_on_detainee_id", using: :btree
   end
 
   create_table "risks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -210,18 +220,6 @@ ActiveRecord::Schema.define(version: 20170613132041) do
     t.string   "provider"
     t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-  end
-
-  create_table "workflows", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "workflowable_id"
-    t.string   "type",                        null: false
-    t.integer  "status",          default: 0
-    t.datetime "reviewed_at"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "reviewer_id"
-    t.index ["type"], name: "index_workflows_on_type", using: :btree
-    t.index ["workflowable_id"], name: "index_workflows_on_workflowable_id", using: :btree
   end
 
 end
