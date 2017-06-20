@@ -5,7 +5,7 @@
   .per-section-header
     h2
       ' Offences
-  - if offences.all_questions_answered?
+  - if offences.any?
     .info-table
       .grid-row
         #offences-summary.column-one-half
