@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :workflow do
+  factory :offences_workflow do
     status :incomplete
 
     trait :confirmed do
@@ -9,8 +9,5 @@ FactoryGirl.define do
     trait :needs_review do
       status :needs_review
     end
-  end
-
-  factory :offences_workflow, parent: :workflow, class: 'OffencesWorkflow' do
   end
 end

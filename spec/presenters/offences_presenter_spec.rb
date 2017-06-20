@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe OffencesPresenter, type: :presenter do
   let(:detainee) { create(:detainee, offences: offences) }
-  subject { described_class.new(detainee.offences) }
+  let(:workflow) { create(:offences_workflow) }
+  subject { described_class.new(detainee.offences, workflow) }
 
   describe '#empty?' do
     context 'when there are no offences' do

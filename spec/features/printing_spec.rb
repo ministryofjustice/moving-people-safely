@@ -14,6 +14,7 @@ RSpec.feature 'printing a PER', type: :feature do
       move: move,
       risk: risk,
       healthcare: healthcare,
+      offences_workflow: offences_workflow
     )
   }
   let(:move) {
@@ -25,12 +26,13 @@ RSpec.feature 'printing a PER', type: :feature do
     )
   }
 
+  let(:offences_workflow) { create(:offences_workflow, :confirmed) }
+
   let(:offences) { [] }
 
   let(:detainee) {
     create(
       :detainee,
-      :with_completed_offences,
       prison_number: 'W1234BY',
       forenames: 'Testy',
       surname: 'McTest',

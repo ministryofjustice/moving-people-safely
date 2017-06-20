@@ -8,6 +8,7 @@ class Escort < ApplicationRecord
   has_one :move, dependent: :destroy
   has_one :risk, dependent: :destroy
   has_one :healthcare, dependent: :destroy
+  has_one :offences_workflow, dependent: :destroy
   has_one :clone, class_name: 'Escort', foreign_key: :cloned_id
   belongs_to :twig, class_name: 'Escort', foreign_key: :cloned_id
   belongs_to :canceller, class_name: 'User'
@@ -19,11 +20,12 @@ class Escort < ApplicationRecord
   scope :for_user, lambda { |user|
     joins(:move).where('moves.from_establishment_id IN (?)', user.authorized_establishments) unless user.is_admin?
   }
-  scope :with_incomplete_risk, -> { joins(:risk).merge(Risk.not_confirmed) }
-  scope :with_incomplete_healthcare, -> { joins(:healthcare).merge(Healthcare.not_confirmed) }
+  scope :with_unconfirmed_risk, -> { joins(:risk).merge(Risk.not_confirmed) }
+  scope :with_unconfirmed_healthcare, -> { joins(:healthcare).merge(Healthcare.not_confirmed) }
+  scope :with_unconfirmed_offences, -> { joins(:offences_workflow).merge(OffencesWorkflow.not_confirmed) }
   scope :without_risk_assessment, -> { includes(:risk).where(risks: { escort_id: nil }) }
   scope :without_healthcare_assessment, -> { includes(:healthcare).where(healthcare: { escort_id: nil }) }
-  scope :with_incomplete_offences, -> { joins(detainee: [:offences_workflow]).merge(OffencesWorkflow.not_confirmed) }
+  scope :without_offences_workflow, -> { includes(:offences_workflow).where(offences_workflows: { escort_id: nil }) }
   scope :active, -> { where(issued_at: nil) }
   scope :uncancelled, -> { where(cancelled_at: nil) }
   scope :issued, -> { where.not(issued_at: nil) }
@@ -71,14 +73,14 @@ class Escort < ApplicationRecord
     transaction do
       risk&.needs_review!
       healthcare&.needs_review!
-      offences&.needs_review!
+      offences_workflow&.needs_review!
     end
   end
 
   def needs_review?
     risk.needs_review? ||
       healthcare.needs_review? ||
-      offences.needs_review?
+      offences_workflow.needs_review?
   end
 
   def risk_complete?
@@ -90,7 +92,7 @@ class Escort < ApplicationRecord
   end
 
   def offences_complete?
-    offences&.confirmed?
+    offences_workflow&.confirmed?
   end
 
   def document_path

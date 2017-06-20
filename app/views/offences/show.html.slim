@@ -5,7 +5,7 @@
 
 .column-three-quarters
   .offences.per-section-page
-    - if offences.needs_review?
+    - if offences_workflow.needs_review?
       header
         h1 Review before you save and continue
         p#offences-status

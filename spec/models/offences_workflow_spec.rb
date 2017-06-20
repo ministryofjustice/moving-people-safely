@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe OffencesWorkflow, type: :model do
   it { is_expected.to be_a(Reviewable) }
 
-  it { is_expected.to belong_to(:detainee) }
+  it { is_expected.to belong_to(:escort) }
 
   subject { described_class.new }
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170904133620) do
+ActiveRecord::Schema.define(version: 20170913110147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,13 +114,13 @@ ActiveRecord::Schema.define(version: 20170904133620) do
   end
 
   create_table "offences_workflows", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "detainee_id"
     t.integer  "status",      default: 0
     t.datetime "reviewed_at"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "reviewer_id"
-    t.index ["detainee_id"], name: "index_offences_workflows_on_detainee_id", using: :btree
+    t.uuid     "escort_id"
+    t.index ["escort_id"], name: "index_offences_workflows_on_escort_id", using: :btree
   end
 
   create_table "risks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

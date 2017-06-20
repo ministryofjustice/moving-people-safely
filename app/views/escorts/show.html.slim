@@ -9,9 +9,9 @@
 
   = render partial: 'detainee', locals: { detainee: DetaineePresenter.new(escort.detainee) }
 
-  = render partial: 'risk', locals: { risk: escort.risk, detainee: escort.detainee }
-  = render partial: 'healthcare', locals: { healthcare: escort.healthcare, detainee: escort.detainee }
-  = render partial: 'offences', locals: { offences: OffencesPresenter.new(escort.offences), detainee: escort.detainee }
+  = render partial: 'risk', locals: { risk: escort.risk }
+  = render partial: 'healthcare', locals: { healthcare: escort.healthcare }
+  = render partial: 'offences', locals: { offences: OffencesPresenter.new(escort.offences, escort.offences_workflow) }
   = render partial: 'actions'
 
 .column-one-quarter.side-profile

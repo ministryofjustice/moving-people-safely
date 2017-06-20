@@ -2,7 +2,7 @@ class OffencesController < ApplicationController
   before_action :redirect_unless_document_editable, except: :show
   before_action :add_offence, only: [:update]
 
-  helper_method :escort, :offences
+  helper_method :escort, :offences, :offences_workflow
 
   def show
     prepopulate_offences
@@ -14,7 +14,7 @@ class OffencesController < ApplicationController
   def update
     if form.validate form_data
       form.save
-      offences.confirm!(user: current_user)
+      offences_workflow.confirm!(user: current_user)
       redirect_to escort_path(escort)
     else
       flash[:form_data] = form_data
@@ -30,6 +30,10 @@ class OffencesController < ApplicationController
 
   def offences
     escort.offences
+  end
+
+  def offences_workflow
+    escort.offences_workflow || escort.build_offences_workflow
   end
 
   def add_offence
