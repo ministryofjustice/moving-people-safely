@@ -1,4 +1,4 @@
-FROM ministryofjustice/ruby:2.3.0-webapp-onbuild
+FROM ministryofjustice/ruby:2.4.1-webapp-onbuild
 
 ENV UNICORN_PORT 3000
 EXPOSE $UNICORN_PORT
