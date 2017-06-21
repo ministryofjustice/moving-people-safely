@@ -4,12 +4,9 @@ class DatePicker
 
   include Comparable
 
-  def initialize(date_from_session)
-    if date_from_session.present?
-      send(:date=, date_from_session)
-    else
-      today
-    end
+  def initialize(new_date)
+    return today unless new_date.present?
+    send(:date=, new_date)
   end
 
   def date
@@ -46,7 +43,7 @@ class DatePicker
   end
 
   def today
-    @date = Date.today
+    @date = Time.current.to_date
   end
 
   private

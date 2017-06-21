@@ -33,15 +33,7 @@
           span.no-script.calendar-icon.input-group-addon
         button.go type='submit' name='commit' Go
 
-      .no-script
-        .form-group.search-date-radios
-          fieldset.inline
-            = label_tag "escorts_due_on_#{Date.today}", 'Today', class: 'block-label' do
-              = radio_button_tag 'escorts_due_on', Date.today.strftime('%d/%m/%Y'), (date_picker == Date.today), class: 'radio-date-selector', disabled: true
-              == 'Today'
-            = label_tag "escorts_due_on_#{Date.tomorrow}", 'Tomorrow', class: 'block-label' do
-              = radio_button_tag 'escorts_due_on', Date.tomorrow.strftime('%d/%m/%Y'), (date_picker == Date.tomorrow), class: 'radio-date-selector', disabled: true
-              == 'Tomorrow'
+      = render partial: 'shared/radio_date_picker', locals: { picker: RadioDatePickerPresenter.new('escorts_due_on', date_picker) }
 
   - if dashboard.escorts.empty?
     #escorts_gauges.escorts-gauges
