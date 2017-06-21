@@ -1,17 +1,17 @@
 Outbound vehicle
-Registration                    Cell number                     PECS Barcode
+Registration                     Cell number                    PECS Barcode
 
 
 
 
 Return vehicle
-Registration                    Cell number
+Registration                     Cell number
 
 
 
 
 W1234BY: McTest Testy
- NOT FOR RELEASE                      E LIST                            MPV
+ NOT FOR RELEASE            NO        E LIST                            MPV
 
                                     E-List-Escort
 
@@ -38,7 +38,7 @@ About this Person Escort Record
    at: moving-people-safely@digital.justice.gov.uk
 W1234BY: McTest Testy                                                                                Page 1 of 3
 
- NOT FOR RELEASE                        ACCT                                    RULE 45
+ NOT FOR RELEASE             NO         ACCT                                    RULE 45
 
                                       Open
 
