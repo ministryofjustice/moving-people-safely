@@ -4,20 +4,6 @@ RSpec.describe OffencesPresenter, type: :presenter do
   let(:detainee) { create(:detainee, offences: offences) }
   subject { described_class.new(detainee.offences) }
 
-  describe '#all_questions_answered?' do
-    context 'when there are no offences' do
-      let(:offences) { [] }
-
-      specify { expect(subject.all_questions_answered?).to be_falsey }
-    end
-
-    context 'when there is at least a current offence' do
-      let(:offences) { build_list(:offence, rand(1..5))  }
-
-      specify { expect(subject.all_questions_answered?).to be_truthy }
-    end
-  end
-
   describe '#empty?' do
     context 'when there are no offences' do
       let(:offences) { [] }

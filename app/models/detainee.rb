@@ -23,23 +23,8 @@ class Detainee < ApplicationRecord
       super(collection)
     end
 
-    def all_questions_answered?
-      __getobj__.any?
-    end
-
     attr_reader :workflow
 
-    delegate :needs_review?, :needs_review!, :incomplete?, :unconfirmed?, :confirmed?, to: :workflow
-
-    StatusChangeError = Class.new(StandardError)
-
-    def status
-      workflow&.status
-    end
-
-    def confirm!(user:)
-      raise(StatusChangeError, :confirm!) unless workflow
-      workflow.confirm!(user: user)
-    end
+    delegate(*OffencesWorkflow::DELEGATED_METHODS, to: :workflow)
   end
 end

@@ -6,8 +6,6 @@ class OffencesPresenter < SimpleDelegator
 
   delegate :empty?, :any?, :each, :present?, to: :@offences
 
-  alias all_questions_answered? any?
-
   class CurrentOffencePresenter < SimpleDelegator
     def full_details
       info = offence
