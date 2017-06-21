@@ -35,7 +35,7 @@
           .phase-banner-inner
             p
               strong.phase-tag = current_phase.upcase
-              span = t('.current_phase_text_html', feedback_url: feedback_url)
+              span = t('.current_phase_text_html', contact_url: new_feedback_path, feedback_url: feedback_url)
 
         = render_breadcrumbs
         - %i[notice success alert warning error].each do |severity|

@@ -30,6 +30,7 @@ gem 'virtus'
 gem 'wicked'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'zendesk_api'
 
 group :development, :test do
   gem 'factory_girl_rails'
