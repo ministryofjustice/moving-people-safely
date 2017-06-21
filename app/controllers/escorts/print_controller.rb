@@ -1,5 +1,9 @@
 module Escorts
   class PrintController < ApplicationController
+    def new
+      escort
+    end
+
     def show
       error_redirect && return unless printable_escort?
       issue_escort_unless_issued!
