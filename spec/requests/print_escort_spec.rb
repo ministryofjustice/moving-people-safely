@@ -41,6 +41,7 @@ RSpec.describe 'Escorts::PrintController', type: :request do
           let(:escort) { create(:escort, :issued) }
 
           it "does not attempt to issue the PER again" do
+            expect(EscortIssuer).not_to receive(:call).with(escort)
             expect {
               get "/escorts/#{escort.id}/print"
             }.not_to change { escort.reload.issued? }.from(true)

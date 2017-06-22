@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
 gem 'activerecord-session_store'
+gem 'aws-sdk', '~> 2.3'
 gem 'connection_pool'
 gem 'countries'
 gem 'deep_cloneable'
 gem 'excon'
 gem 'rails', '~> 5.0.0'
+gem 'paperclip', '~> 5.1.0'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'

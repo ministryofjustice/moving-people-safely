@@ -7,8 +7,8 @@ module Escorts
     def show
       error_redirect && return unless printable_escort?
       issue_escort_unless_issued!
-      pdf = PdfGenerator.new(escort).call
-      send_data pdf, type: 'application/pdf', disposition: 'inline'
+      data = open(escort.document_path)
+      send_data data.read, type: 'application/pdf', disposition: 'inline'
     end
 
     private
@@ -18,15 +18,15 @@ module Escorts
     end
 
     def issue_escort_unless_issued!
-      escort.issue! unless escort.issued?
+      EscortIssuer.call(escort) unless escort.issued?
     end
 
     def printable_escort?
       escort.completed? || escort.issued?
     end
 
-    def error_redirect
-      redirect_back(fallback_location: root_path, alert: t('alerts.escort.print.unauthorized'))
+    def error_redirect(message = t('alerts.escort.print.unauthorized'))
+      redirect_back(fallback_location: root_path, alert: message)
     end
   end
 end

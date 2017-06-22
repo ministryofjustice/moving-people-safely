@@ -1,0 +1,48 @@
+class EscortIssuer
+  EscortAlreadyIssuedError = Class.new(StandardError)
+  EscortNotReadyForIssueError = Class.new(StandardError)
+
+  def self.call(escort)
+    new(escort).call
+  end
+
+  def initialize(escort)
+    @escort = escort
+  end
+
+  def call
+    raise EscortAlreadyIssuedError if escort.issued?
+    raise EscortNotReadyForIssueError unless escort.completed?
+    issue_per
+  end
+
+  private
+
+  attr_reader :escort
+
+  def issue_per
+    escort.transaction do
+      escort.document = issued_per_document
+      escort.issue!
+    end
+  ensure
+    delete_temp_file
+  end
+
+  def issued_per_document
+    @issued_per_document ||= generate_per_document
+  end
+
+  def generate_per_document
+    pdf = PdfGenerator.new(escort).call
+    file = Tempfile.new('per')
+    file.write(pdf.force_encoding('utf-8'))
+    file
+  end
+
+  def delete_temp_file
+    return unless issued_per_document
+    issued_per_document.close
+    issued_per_document.unlink
+  end
+end

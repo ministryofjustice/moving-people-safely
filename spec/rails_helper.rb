@@ -4,6 +4,7 @@ require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'paperclip/matchers'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -59,6 +60,7 @@ RSpec.configure do |config|
   config.include(NomisApiHelpers)
   config.include(ActionView::TestCase::Behavior, type: :presenter)
   config.include(LocalizerHelpers)
+  config.include Paperclip::Shoulda::Matchers
 end
 
 Shoulda::Matchers.configure do |config|

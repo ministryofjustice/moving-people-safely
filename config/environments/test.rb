@@ -46,6 +46,14 @@ Rails.application.configure do
   # enable logstasher, so our config is at least executed in test.
   config.logstasher.enabled = true
   config.logstasher.logger_path = '/dev/null'
+
   require 'sso/stub_app'
   config.middleware.use SSO::StubApp
+
+  config.paperclip_defaults = {
+    storage: :filesystem,
+    path: ':rails_root/spec/test_files:url',
+    url: '/:class/:attachment/:id/:filename',
+    use_timestamp: false
+  }
 end

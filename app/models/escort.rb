@@ -10,6 +10,9 @@ class Escort < ApplicationRecord
   has_one :clone, class_name: 'Escort', foreign_key: :cloned_id
   belongs_to :twig, class_name: 'Escort', foreign_key: :cloned_id
 
+  has_attached_file :document
+  validates_attachment_content_type :document, content_type: ['application/pdf']
+
   scope :for_date, ->(date) { eager_load(:move).where(moves: { date: date }) }
   scope :with_incomplete_risk, -> { joins(:risk).merge(Risk.not_confirmed) }
   scope :with_incomplete_healthcare, -> { joins(:healthcare).merge(Healthcare.not_confirmed) }
@@ -61,5 +64,9 @@ class Escort < ApplicationRecord
 
   def offences_complete?
     offences&.confirmed?
+  end
+
+  def document_path
+    document.options[:storage] == :filesystem ? document.path : document.expiring_url
   end
 end

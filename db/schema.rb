@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619105503) do
+ActiveRecord::Schema.define(version: 20170622120222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,11 +37,15 @@ ActiveRecord::Schema.define(version: 20170619105503) do
 
   create_table "escorts", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "prison_number"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.datetime "deleted_at"
     t.datetime "issued_at"
     t.uuid     "cloned_id"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
     t.index ["cloned_id"], name: "index_escorts_on_cloned_id", using: :btree
     t.index ["deleted_at"], name: "index_escorts_on_deleted_at", using: :btree
     t.index ["prison_number"], name: "index_escorts_on_prison_number", using: :btree
