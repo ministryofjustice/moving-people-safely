@@ -41,7 +41,8 @@ RSpec.describe Print::AlertPresenter, type: :presenter do
       let(:status) { :off }
 
       it 'returns the appropriate content for when the alert is off' do
-        expect(presenter.to_s).to eq('<div class="alert-wrapper"><div class="image alert-off"><span class="alert-title">Some alert</span></div></div>')
+        expect(presenter.to_s).to match('<div class="image alert-off"><span class="alert-title">Some alert</span>')
+        expect(presenter.to_s).to match('<img style="max-width: 25px; max-height: 25px;" src=.* alt="Ic grey cross"')
       end
 
       context 'and toggle content is provided' do

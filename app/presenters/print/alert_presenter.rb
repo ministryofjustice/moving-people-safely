@@ -51,15 +51,23 @@ module Print
     end
 
     def build_toggle_content
-      if toggle.present?
-        h.content_tag(:span, toggle, class: 'alert-toggle')
-      elsif on?
-        h.wicked_pdf_image_tag('ic_red_tick.png', style: 'max-width: 25px; max-height: 25px;')
-      end
+      return h.content_tag(:span, toggle, class: 'alert-toggle') if toggle.present?
+      on? ? alert_on_content : alert_off_content
     end
 
     def alert_class
       on? ? 'alert-on' : 'alert-off'
+    end
+
+    def alert_on_content
+      h.wicked_pdf_image_tag('ic_red_tick.png', style: 'max-width: 25px; max-height: 25px;')
+    end
+
+    def alert_off_content
+      h.content_tag(:span, class: 'alert-toggle-off') do
+        h.safe_join [h.wicked_pdf_image_tag('ic_grey_cross.png', style: 'max-width: 25px; max-height: 25px;'),
+                     h.content_tag(:span, 'No', style: 'margin-left: 30px')]
+      end
     end
   end
 end

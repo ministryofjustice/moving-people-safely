@@ -227,20 +227,36 @@ table {
 
 .alert-off {
   border-radius: 5px;
-  display: inline-block;
   border: 2px solid $secondary-text-colour;
   background-color: white;
-  text-transform: uppercase;
-  padding: 0.2em 0.5em;
+  position: relative;
+  display: inline-block;
   color: $secondary-text-colour;
+  text-transform: uppercase;
   font: 15px;
   font-weight: bold;
 
+  .alert-title {
+    padding: 0.2em 0.5em;
+    position: relative;
+    float: left;
+  }
+
   .alert-toggle {
-    padding-left: 5px;
-    text-transform: uppercase;
-    font: 15px;
-    font-weight: bold;
+    padding: 0.2em 0;
+    float: left;
+  }
+
+  .alert-toggle-off {
+    display: inline-block;
+    padding: 0.2em 0.5em 0.2em 0;
+
+    img {
+      float: left;
+      position: absolute;
+      display: block;
+      top: 0;
+    }
   }
 }
 
