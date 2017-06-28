@@ -1,19 +1,19 @@
 Outbound vehicle
-Registration                     Cell number                    PECS Barcode
+Registration                    Cell number                     PECS Barcode
 
 
 
 
 Return vehicle
-Registration                     Cell number
+Registration                    Cell number
 
 
 
 
 W1234BY: McTest Testy
- NOT FOR RELEASE            NO        E LIST                            MPV
+ NOT FOR RELEASE           NO                          E LIST
 
-                                    E-List-Escort
+                                                     E-List-Escort
 
 Prison number     CRO number        PNC number       Aliases
 W1234BY           56TYY/UU          YI896668TT       Terry Tibbs
@@ -33,16 +33,16 @@ Date of travel                      From                               To
 
 About this Person Escort Record
 
-   This PER was produced by the the Moving People Safely digital PER service, currently being piloted at
-   HMP Bedford. If you have feedback or questions about the service, contact the Moving People Safely team
-   at: moving-people-safely@digital.justice.gov.uk
+   This PER was produced by the the Moving People Safely digital PER service, currently being pilotedat HMP
+   Bedford. If you have feedback or questions about the service, contact the Moving People Safelyteam at:
+   moving-people-safely@digital.justice.gov.uk
 W1234BY: McTest Testy                                                                                Page 1 of 3
 
  NOT FOR RELEASE             NO         ACCT                                    RULE 45
 
                                       Open
 
- E LIST                       CSRA HIGH                   CAT A                           MPV
+ E LIST                                 CSRA HIGH                               CAT A
 
 E-List-Escort
 

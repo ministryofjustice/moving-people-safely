@@ -266,37 +266,6 @@ RSpec.feature 'PER show page', type: :feature do
         end
       end
     end
-
-    context 'MPV' do
-      context 'when PER has no yet a healthcare assessment' do
-        scenario 'associated alert is displayed as inactive' do
-          escort_page.confirm_alert_as_inactive(:mpv)
-          expect(page).not_to have_selector('#mpv_alert .alert-text')
-        end
-      end
-
-      context 'when PER has a healthcare assessment' do
-        let(:escort) { create(:escort, default_escort_options.merge(healthcare: healthcare)) }
-
-        context 'when detainee has MPV as yes' do
-          let(:healthcare) { Healthcare.new(mpv: 'yes') }
-
-          scenario 'associated alert is displayed as active' do
-            escort_page.confirm_alert_as_active(:mpv)
-            expect(page).not_to have_selector('#mpv_alert .alert-text')
-          end
-        end
-
-        context 'when detainee has MPV as no' do
-          let(:healthcare) { Healthcare.new(mpv: 'no') }
-
-          scenario 'associated alert is displayed as inactive' do
-            escort_page.confirm_alert_as_inactive(:mpv)
-            expect(page).not_to have_selector('#mpv_alert .alert-text')
-          end
-        end
-      end
-    end
   end
 
   context 'move information' do
