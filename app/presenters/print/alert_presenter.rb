@@ -64,10 +64,9 @@ module Print
     end
 
     def alert_off_content
-      h.content_tag(:span, class: 'alert-toggle-off') do
-        h.safe_join [h.wicked_pdf_image_tag('ic_grey_cross.png', style: 'max-width: 25px; max-height: 25px;'),
-                     h.content_tag(:span, 'No', style: 'margin-left: 30px')]
-      end
+      h.safe_join [h.tag(:span, class: 'alert-toggle-off'),
+                   h.wicked_pdf_image_tag('ic_grey_cross.png', style: 'max-width: 25px; max-height: 25px;'),
+                   h.content_tag(:span, 'No', class: 'alert-toggle-off-text')]
     end
   end
 end

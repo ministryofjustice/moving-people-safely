@@ -243,19 +243,31 @@ table {
   }
 
   .alert-toggle {
-    padding: 0.2em 0;
+    padding: 0.2em 0.4em 0.2em 0;
     float: left;
   }
 
   .alert-toggle-off {
-    display: inline-block;
-    padding: 0.2em 0.5em 0.2em 0;
+    border-radius: 5px;
+    border-top: 2px solid $secondary-text-colour;
+    border-bottom: 2px solid $secondary-text-colour;
+    border-left: 2px solid $secondary-text-colour;
+    margin-top: -2px;
+    margin-bottom: -2px;
+    background-color: white;
+    font: 15px;
+    font-weight: bold;
+    position: relative;
+    float: left;
+    color: $secondary-text-colour;
 
     img {
       float: left;
-      position: absolute;
-      display: block;
-      top: 0;
+    }
+
+    .alert-toggle-off-text {
+      padding: 3px 5px 3px 0;
+      display: inline-block;
     }
   }
 }

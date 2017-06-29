@@ -1,17 +1,18 @@
 Outbound vehicle
-Registration                    Cell number                     PECS Barcode
+Registration                   Cell number                      PECS Barcode
 
 
 
 
 Return vehicle
-Registration                    Cell number
+Registration                   Cell number
 
 
 
 
 W1234BY: McTest Testy
- NOT FOR RELEASE           NO                          E LIST      NO
+ NOT FOR RELEASE          NO                           E LIST      NO
+
 
 Prison number    CRO number        PNC number        Aliases
 W1234BY          56TYY/UU          YI896668TT        Terry Tibbs
@@ -36,7 +37,7 @@ About this Person Escort Record
    moving-people-safely@digital.justice.gov.uk
 W1234BY: McTest Testy                                                                         Page 1 of 1
 
- NOT FOR RELEASE               NO        ACCT      NO                         RULE 45    NO
+ NOT FOR RELEASE               NO        ACCT     NO                          RULE 45    NO
 
 
  E LIST        NO                        CSRA STANDARD                        CAT A     NO
@@ -78,6 +79,7 @@ Allergies and intolerances          No
 Personal care                       No
 Medical contact details             Yes
   Medical contact                   1-131-999-0232
+
 
 OFFENCES
 Current offences                    None

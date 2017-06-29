@@ -31,7 +31,7 @@ RSpec.describe Print::EscortAlertsPresenter, type: :presenter do
       let(:not_for_release) { 'no' }
 
       it "does not show the reason not for release" do
-        expect(presenter.not_for_release_alert).to match "<span class=\"alert-title\">Not for release</span><span class=\"alert-toggle-off\">"
+        expect(presenter.not_for_release_alert).to match "<span class=\"alert-title\">Not for release</span><span class=\"alert-toggle-off\" />"
       end
     end
   end
