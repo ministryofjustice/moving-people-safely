@@ -11,11 +11,11 @@ Registration                    Cell number
 
 
 W1234BY: McTest Testy
- NOT FOR RELEASE           NO        E LIST      NO                     MPV       NO
+ NOT FOR RELEASE           NO                          E LIST      NO
 
-Prison number    CRO number        PNC number         Aliases
-W1234BY          56TYY/UU          YI896668TT         Terry Tibbs
-                                                      Mr T
+Prison number    CRO number        PNC number        Aliases
+W1234BY          56TYY/UU          YI896668TT        Terry Tibbs
+                                                     Mr T
 Date of birth    Age      Gender Nationality
 10 Dec 1970      46       M      British
 
@@ -23,23 +23,23 @@ Date of birth    Age      Gender Nationality
 
 
 Move details
-Date of travel                     From                                To
-22 Apr 2099                        HMP Bedford                         Luton Crown Court
+Date of travel                     From                                 To
+22 Apr 2099                        HMP Bedford                          Luton Crown Court
 
 
 
 
 About this Person Escort Record
 
-   This PER was produced by the the Moving People Safely digital PER service, currently being piloted at
-   HMP Bedford. If you have feedback or questions about the service, contact the Moving People Safely team
-   at: moving-people-safely@digital.justice.gov.uk
-W1234BY: McTest Testy                                                                              Page 1 of 1
+   This PER was produced by the the Moving People Safely digital PER service, currently being pilotedat HMP
+   Bedford. If you have feedback or questions about the service, contact the Moving People Safelyteam at:
+   moving-people-safely@digital.justice.gov.uk
+W1234BY: McTest Testy                                                                         Page 1 of 1
 
- NOT FOR RELEASE               NO        ACCT      NO                         RULE 45         NO
+ NOT FOR RELEASE               NO        ACCT      NO                         RULE 45    NO
 
 
- E LIST        NO               CSRA STANDARD             CAT A       NO                MPV        NO
+ E LIST        NO                        CSRA STANDARD                        CAT A     NO
 
 
 RISK      Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016

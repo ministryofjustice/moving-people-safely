@@ -30,12 +30,10 @@ html
             span#detainee-identifier.strong-text => detainee.identifier
             = detainee.forenames
         div.grid-row.indicators
-          #not_for_release_alert.grid-column.column-one-third
+          #not_for_release_alert.grid-column.column-one-half
             = alerts.not_for_release_alert
-          #e_list_alert.grid-column.column-one-third
+          #e_list_alert.grid-column.column-one-half
             = alerts.current_e_risk_alert
-          #mpv_alert.grid-column.column-one-third
-            = alerts.mpv_alert
         div.grid-row.padded.top-dotted
           div.grid-column.column-one-half
             div.grid-row
@@ -84,11 +82,11 @@ html
         div.grid-row.top-dotted.min-heighted
       table.about.footer
         tr
-          th 
+          th
             .strong-text About this Person Escort Record
         tr
           td.panel
             .feedback-text
-              | This PER was produced by the the Moving People Safely digital PER service, currently being piloted 
-              | at HMP Bedford. If you have feedback or questions about the service, contact the Moving People Safely 
+              | This PER was produced by the the Moving People Safely digital PER service, currently being piloted
+              | at HMP Bedford. If you have feedback or questions about the service, contact the Moving People Safely
               | team at: moving-people-safely@digital.justice.gov.uk

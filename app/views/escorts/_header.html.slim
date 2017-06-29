@@ -33,28 +33,22 @@ header#header
               span.alert-title = t('escort.alerts.title.rule_45')
               span.red-tick
       .info-tiles
-        #e_list_alert.tile-4
+        #e_list_alert.tile-3
           div.alert-wrapper
             div.image#e_list_header class=(alerts.current_e_risk_alert_class)
               span.alert-title = t('escort.alerts.title.current_e_risk')
               span.red-tick
             span.alert-text = alerts.current_e_risk_text
 
-        #csra_alert.tile-4
+        #csra_alert.tile-3
           div.alert-wrapper
             div.image#csra_header class=(alerts.csra_alert_class)
               span.alert-title = t('escort.alerts.title.csra')
               span.alert-toggle-text = alerts.csra_text
 
-        #category_a_alert.tile-4
+        #category_a_alert.tile-3
           div.alert-wrapper
             div.image#category_a_header class=(alerts.category_a_alert_class)
               span.alert-title = t('escort.alerts.title.category_a')
-              span.red-tick
-
-        #mpv_alert.tile-4
-          div.alert-wrapper
-            div.image#mpv_header class=(alerts.mpv_alert_class)
-              span.alert-title = t('escort.alerts.title.mpv')
               span.red-tick
   .clearer
