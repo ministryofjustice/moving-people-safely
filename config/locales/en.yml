@@ -557,13 +557,12 @@ en:
         exists: "Detainee details for the PER already exist."
       move:
         exists: "Move details for the PER already exist."
+      print:
+        unauthorized: "PER is not in a status that can be printed"
     offences:
       api_error: Offences aren't available right now, please try again or fill in the offences below
       internal_error: Offences aren't available right now, please try again or fill in the offences below
       not_found: "Offences data could not be retrieved. Please fill in manually."
-    move:
-      print:
-        unauthorized: "PER is not in a status that can be printed"
     unable_to_confirm_assessment: "%{assessment} assessment cannot be confirmed until all mandatory answers are filled"
   sessions:
     create:

@@ -54,6 +54,7 @@ FactoryGirl.define do
     trait :issued do
       completed
       issued_at 1.day.ago
+      document { File.new("#{Rails.root}/spec/support/fixtures/pdf-per-document.pdf") }
     end
   end
 end

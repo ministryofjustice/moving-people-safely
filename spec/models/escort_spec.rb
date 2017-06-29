@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Escort do
+  it { should have_attached_file(:document) }
+  it { should validate_attachment_content_type(:document).allowing('application/pdf') }
+
   describe 'default scope' do
     it 'returns only the escorts that have not been deleted' do
       create_list(:escort, 2)

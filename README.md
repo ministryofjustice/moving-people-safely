@@ -71,6 +71,12 @@ For local integration with SSO refer to [SSO Integration](docs/sso_integration.m
   MOCK_SSO=true bundle exec rails s
   ```
 
+  It is also possible to use the filesystem storage (instead of the default AWS S3) for the PER documents by running the server like the following:
+
+  ```bash
+  MOCK_AWS_S3=true bundle exec rails s
+  ```
+
 # Running tests
 
   ```bash
