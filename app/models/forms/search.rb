@@ -21,7 +21,7 @@ module Forms
     end
 
     def escort
-      @escort ||= ::Escort.find_by(_at[:prison_number].matches(prison_number)) if valid?
+      @escort ||= ::Escort.uncancelled.find_by(_at[:prison_number].matches(prison_number)) if valid?
     end
 
     def detainee

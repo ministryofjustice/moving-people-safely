@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get :ping, to: 'ping#show'
 
   resources :escorts, only: %i[new create show] do
+    get :confirm_cancel, on: :member
+    put :cancel, on: :member
     resource :detainee do
       resource :image, only: %i[show], controller: 'detainees/images', constraints: { format: 'jpg' }
     end

@@ -2,25 +2,30 @@
   table
     thead
       tr
-        th.prison_number Prison No.
-        th.name Name
-        th.destination Destination
-        th Risk
-        th Health
-        th Offences
+        th.prison_number= t('.prison_number')
+        th.name= t('.detainee_name')
+        th.destination= t('.destination')
+        th= t('.risk')
+        th= t('.health')
+        th= t('.offences')
         th
     - escorts.each do |escort|
-      tr.move-row id="prison_number_#{escort.detainee.prison_number}"
-        td = link_to escort.detainee.prison_number, escort_path(escort)
+      tr.move-row id="prison_number_#{escort.prison_number}"
+        td = link_to_unless escort.cancelled?, escort.prison_number, escort_path(escort)
         td
           span.strong-text
-            | #{escort.detainee.surname}
+            | #{escort.detainee_surname}
           span
-            |  #{escort.detainee.forenames}
+            |  #{escort.detainee_forenames}
         td = escort.move&.to
         - if escort.issued?
           td.issued colspan=4
-            | Issued
+            = t('.issued')
+        - elsif escort.cancelled?
+          td colspan=4
+            span.cancelled
+              = t('.cancelled')
+            | By: #{escort.canceller_full_name}. #{escort.cancelling_reason}
         - else
           td.completion-status
             span class="#{escort.risk_complete? ? true : false}"

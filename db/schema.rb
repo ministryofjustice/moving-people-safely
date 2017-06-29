@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622120222) do
+ActiveRecord::Schema.define(version: 20170629152622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,9 @@ ActiveRecord::Schema.define(version: 20170622120222) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
+    t.integer  "canceller_id"
+    t.datetime "cancelled_at"
+    t.text     "cancelling_reason"
     t.index ["cloned_id"], name: "index_escorts_on_cloned_id", using: :btree
     t.index ["deleted_at"], name: "index_escorts_on_deleted_at", using: :btree
     t.index ["prison_number"], name: "index_escorts_on_prison_number", using: :btree

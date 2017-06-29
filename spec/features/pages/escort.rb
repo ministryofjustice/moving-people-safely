@@ -151,6 +151,10 @@ module Page
       click_link 'Reprint'
     end
 
+    def click_cancel
+      click_link 'Cancel PER'
+    end
+
     def confirm_healthcare_action_link(name)
       confirm_per_section_action_link(:healthcare, name)
     end

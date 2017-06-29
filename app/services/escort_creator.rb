@@ -35,7 +35,7 @@ class EscortCreator
   ].freeze
 
   def existent_escort
-    @existent_escort ||= Escort.find_by(prison_number: prison_number)
+    @existent_escort ||= Escort.uncancelled.find_by(prison_number: prison_number)
   end
 
   def deep_clone_escort

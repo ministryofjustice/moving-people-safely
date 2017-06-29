@@ -44,6 +44,17 @@ RSpec.describe Forms::Search, type: :form do
         end
       end
 
+      context 'when an escort has been cancelled for a given prison number' do
+        let(:prison_number) { 'A1234BC' }
+        let(:detainee) { create(:detainee, prison_number: prison_number) }
+        let!(:escort) { create(:escort, :cancelled, prison_number: prison_number, detainee: detainee) }
+
+        it 'returns nothing' do
+          subject.validate(prison_number: 'A1234BC')
+          expect(subject.detainee).to be_nil
+        end
+      end
+
       context 'when the provided prison name is in a different format than the one recorded for the detainee' do
         let(:prison_number) { 'A1234BC' }
         let(:detainee) { create(:detainee, prison_number: prison_number) }
