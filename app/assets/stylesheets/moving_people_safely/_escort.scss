@@ -62,9 +62,8 @@
         height: 90px;
         min-height: 90px;
 
-        .alert-wrapper {
-          display: inline;
-          position: absolute;
+        .alert-tile {
+          vertical-align: top;
         }
 
         .alert-off {
@@ -129,6 +128,7 @@
         .alert-text {
           display: block;
           padding-top: 5px;
+          width: 250px;
         }
       }
     }
@@ -136,6 +136,7 @@
 
   .move-information {
     clear: both;
+    overflow: auto;
   }
 
   .info-tiles {
