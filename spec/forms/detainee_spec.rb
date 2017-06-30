@@ -30,7 +30,7 @@ RSpec.describe Forms::Detainee, type: :form do
 
     it 'coerces params' do
       subject.validate(params)
-      coerced_params = params.merge(prison_number: prison_number.upcase, date_of_birth: Date.civil(1946, 12, 30))
+      coerced_params = params.merge(prison_number: prison_number.upcase, date_of_birth: Date.civil(1946, 12, 30), image: nil)
       expect(subject.to_nested_hash).to eq coerced_params
     end
 

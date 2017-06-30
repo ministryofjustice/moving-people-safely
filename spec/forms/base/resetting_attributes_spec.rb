@@ -3,8 +3,8 @@ require "rails_helper"
 RSpec.describe Forms::Base, "resetting attributes" do
   let(:form) do
     Class.new(described_class) do
-      property :foo, type: String, validates: { presence: true }
-      property :bar, type: String
+      property :foo, type: Forms::Base::StrictString, validates: { presence: true }
+      property :bar, type: Forms::Base::StrictString
 
       reset attributes: %i[ bar ], if_falsey: :foo, enabled_value: "yes"
 

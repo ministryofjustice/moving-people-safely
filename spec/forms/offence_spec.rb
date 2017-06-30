@@ -26,7 +26,7 @@ RSpec.describe Forms::Offence, type: :form do
       subject.validate(form_data)
       subject.save
 
-      form_attributes = subject.to_nested_hash
+      form_attributes = subject.to_nested_hash.except(:_delete)
       model_attributes = subject.model.attributes
 
       expect(model_attributes).to include form_attributes

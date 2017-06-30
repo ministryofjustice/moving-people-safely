@@ -113,27 +113,11 @@ class ValidatePrepopulatedCollection
 
   # attempt to generate workable params for the collection model
   def subform_params
-    params = {}
+    factory_id = subform_model_class.to_s.underscore.to_sym
+    params = FactoryGirl.attributes_for(factory_id).stringify_keys
     f = subform_class.new(subform_model_class.new)
-    f.schema.each do |sch|
-      options_hash = sch.instance_variable_get(:@options)
-      name = options_hash[:name]
-      type = options_hash[:type]
-
-      case
-      when name == 'carrier'
-        params[name] = 'detainee'
-      when name == 'must_return'
-        params[name] = 'must_not_return'
-      when type.to_s == "Forms::StrictString"
-        params[name] = 'xxx DATA xxx'
-      when name == '_delete'
-        params[name] = '0'
-      else
-        raise "Undefined subform property type!"
-      end
-    end
-    params
+    form_attrs = f.schema.keys
+    params.select { |param| form_attrs.include?(param) }
   end
 
   def set_error(msg)

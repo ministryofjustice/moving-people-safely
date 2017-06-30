@@ -27,7 +27,8 @@ RSpec.describe Forms::Move, type: :form do
 
     it 'coerces params' do
       coerced_params = params.merge(
-        date: Date.civil(2017, 2, 1)
+        date: Date.civil(2017, 2, 1),
+        not_for_release_reason_details: nil
       )
 
       form.validate(params)

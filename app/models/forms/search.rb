@@ -10,7 +10,7 @@ module Forms
 
     PRISON_NUMBER_REGEX = /\A[a-z]\d{4}[a-z]{2}\z/i
 
-    property :prison_number, type: String
+    property :prison_number, type: Types::String
 
     validates :prison_number,
       presence: true,

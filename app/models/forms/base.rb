@@ -8,8 +8,8 @@ module Forms
     TOGGLE_NO = 'no'
     TOGGLE_CHOICES = [TOGGLE_YES, TOGGLE_NO].freeze
 
-    StrictString = Forms::StrictString
-    TextDate = Forms::TextDate
+    StrictString = (Types::Form::Nil | Types::String)
+    TextDate = Types::Form::Date
 
     concerning :ResetAttributes do
       included do
@@ -53,7 +53,7 @@ module Forms
 
       def optional_field(field_name, options = {})
         _define_attribute_is_on(field_name, options.fetch(:option_with_details, TOGGLE_YES))
-        property_options = { type: options.fetch(:type, String), default: options[:default] }
+        property_options = { type: options.fetch(:type, StrictString), default: options[:default] }
         property(field_name, property_options)
         yield and return if block_given?
 
@@ -85,12 +85,12 @@ module Forms
 
       def optional_checkbox(field_name)
         _define_attribute_is_on(field_name, true)
-        property field_name, type: Axiom::Types::Boolean, default: false
+        property field_name, type: Types::Form::Bool, default: false
       end
 
       def optional_checkbox_with_details(field_name, toggle = nil)
         _define_attribute_is_on(field_name, true)
-        property field_name, type: Axiom::Types::Boolean, default: false
+        property field_name, type: Types::Form::Bool, default: false
         property "#{field_name}_details", type: StrictString
         validates "#{field_name}_details",
           presence: true,
