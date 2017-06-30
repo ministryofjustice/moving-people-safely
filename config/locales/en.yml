@@ -70,17 +70,28 @@ en:
         violence_to_other_detainees_type: 'Victim of violence (select all that apply):'
         violence_to_staff: 'Are they violent to staff?'
     label:
+      arson:
+        arson: "Are they an arsonist?"
       concealed_weapons:
+        conceals_drugs: "Have they concealed drugs in custody?"
+        conceals_drugs_details: "Details for concealed drugs in custody"
         conceals_mobile_phones: Mobile phones
+        conceals_mobile_phone_or_other_items: "Have they concealed mobile phones, SIMs or other items in custody?"
+        conceals_mobile_phone_or_other_items_type: "Concealed mobile phones, SIMs or other items in custody"
         conceals_other_items: Other
+        conceals_other_items_details: "Details for other concealed items"
         conceals_sim_cards: SIM cards
+        conceals_weapons: "Have they concealed weapons in custody?"
+        conceals_weapons_details: "Details for concealed weapons in custody"
+        uses_weapons: "Have they created or used weapons in custody?"
+        uses_weapons_details: "Details for created or used weapons in custody"
       contact:
         contact_number: Medical contact
       dependencies:
         dependencies_details: Addictions or dependencies details
       detainee:
         surname: Surname
-        forenames: Forename(s)
+        forenames: First name(s)
         nationalities: Nationalities
         pnc_number: PNC number
         cro_number: CRO number
@@ -89,11 +100,17 @@ en:
       detainee_search:
         prison_number: Enter a prison number. Eg. A1234AB
       discrimination:
+        discrimination_to_other_religions: Risk to other religions
         discrimination_to_other_religions_details: Risk to other religions details
+        homophobic: Risk to LGBT people
         homophobic_details: Risk to LGBT people details
+        other_violence_due_to_discrimination: Risk to other groups
         other_violence_due_to_discrimination_details: Risk to other groups details
+        racist: Risk to other races
         racist_details: Risk to other races details
       harassments:
+        intimidation: Known harasser, intimidator or bully
+        intimidation_type: Targets of harassment, intimidation or bullying
         intimidation_to_staff: Staff
         intimidation_to_staff_details: Staff details
         intimidation_to_public: Public
@@ -103,6 +120,8 @@ en:
         intimidation_to_witnesses: Witnesses
         intimidation_to_witnesses_details: Witnesses details
       hostage_taker:
+        hostage_taker: History of taking hostages
+        hostage_taker_type: Group involved in hostage taking
         staff_hostage_taker: Staff
         public_hostage_taker: Public
         prisoners_hostage_taker: Prisoners
@@ -126,18 +145,25 @@ en:
           carrier_choices:
             escort: Escort
             detainee: Prisoner
+      other_risk:
+        other_risk: "Is there any other information related to risk on this journey you would like to include?"
+        other_risk_details: "Other information related to risk on this journey"
       return_instructions:
         actions:
           must_not_return_details:
             add_multiple: Add another establishment
+        must_not_return: "Is there any establishment they must not be sent to at the end of this journey?"
         must_not_return_details:
           establishment: Establishment name
           establishment_details: 'Give details of why they must not be sent here:'
+        must_return: "Must they return to a specific prison at the end of this journey?"
         must_return_to: 'Prison name:'
         must_return_to_details: Details for returning to a specific prison
       risk_from_others:
+        high_profile: High public interest
         high_profile_details: Details of high public interest
       risk_to_self:
+        acct_status: ACCT status
         acct_status_choices:
           open: Open
           post_closure: Post Closure
@@ -146,13 +172,19 @@ en:
         acct_status_details: Give details of methods and triggers recorded on NOMIS if entered
         date_of_most_recently_closed_acct: Date of most recently closed ACCT
       security:
-        current_e_risk_details: E list type
+        category_a: "Are they Category A, potential Category A or Restricted Status?"
+        current_e_risk: "Are they on the Escape List (E-List)?"
+        current_e_risk_details: E-List category
         current_e_risk_details_choices:
           e_list_standard: E-List-Standard
           e_list_escort: E-List-Escort
           e_list_heightened: E-List-Heightened
+        escape_pack: "Has an Escape Pack been created for this journey?"
         escape_pack_completion_date: 'Escape Pack completed on:'
+        escort_risk_assessment: "Has an Escort Risk Assessment been completed for this journey?"
         escort_risk_assessment_completion_date: 'Escort Risk Assessment completed on:'
+        previous_escape_attempts: Have they made previous escape attempts?
+        previous_escape_attempts_type: Location which attempted to escape from
         prison_escape_attempt: Prison
         prison_escape_attempt_details: Last prison escape attempt details
         court_escape_attempt: Court
@@ -162,15 +194,21 @@ en:
         other_type_escape_attempt: Other
         other_type_escape_attempt_details: Last other type of escape attempt details
       sex_offences:
+        sex_offence: Are they a current or previous sex offender?
         sex_offence_adult_male_victim: Adult male
         sex_offence_adult_female_victim: Adult female
+        sex_offence_type: Victims of sex offences
         sex_offence_under18_victim: Under 18
         date_most_recent_sexual_offence: Date of most recent sexual offence
+      substance_misuse:
+        substance_supply: "Is there a risk that they might traffic drugs on this journey?"
       transport:
         mpv_details: Details for need of a special vehicle
       violence:
+        csra: CSRA risk level
         co_defendant: Co-defendant
         co_defendant_details: Co-defendant violence details
+        controlled_unlock_required: Controlled unlock
         controlled_unlock: Number of officers
         controlled_unlock_choices:
           two_officer_unlock: '2 officer unlock'
@@ -181,7 +219,11 @@ en:
         gang_member_details: Gang member violence details
         other_violence_to_other_detainees: Other known conflicts
         other_violence_to_other_detainees_details: Other known conflicts details
+        violence_to_general_public: Violent risk to anyone else
         violence_to_general_public_details: Violent to the general public details
+        violence_to_other_detainees: Violent to other prisoners
+        violence_to_other_detainees_type: Victim of violence
+        violence_to_staff: Violent to staff
         violence_to_staff_details: Violent to staff details
     hint:
       allergies:
@@ -582,3 +624,50 @@ en:
   sessions:
     create:
       cannot_sign_in: You cannot be signed in
+  errors: &errors
+    summary:
+      title: "There were errors saving this form"
+    messages:
+      inclusion: "^Please answer %{attribute}"
+      blank: "^Please fill in %{attribute}"
+      date_not_valid: "^Enter a valid %{attribute}"
+      date_is_in_the_past: "must not be in the past"
+      date_is_in_the_future: "must not be in the future"
+    models:
+      forms/assessments/section: &assessment_form
+        attributes:
+          acct_status_details:
+            blank: "^%{attribute}"
+          base:
+            minimum_one_option: "Please select at least one option for %{attribute}"
+          date_most_recent_prisoners_hostage_taker_incident:
+            date_not_valid: "^Enter a valid date for most recent prisoners hostage taking incident"
+            date_is_in_the_future: "^Enter a past date for most recent prisoners hostage taking incident"
+          date_most_recent_public_hostage_taker_incident:
+            date_not_valid: "^Enter a valid date for most recent public hostage taking incident"
+            date_is_in_the_future: "^Enter a past date for most recent public hostage taking incident"
+          date_most_recent_staff_hostage_taker_incident:
+            date_not_valid: "^Enter a valid date for most recent staff hostage taking incident"
+            date_is_in_the_future: "^Enter a past date for most recent public hostage taking incident"
+          high_profile_details:
+            blank: "^Give details for high public interest"
+      forms/assessments/answer:
+        <<: *assessment_form
+      detainee:
+        attributes:
+          date_of_birth:
+            date_not_valid: "^Enter a valid date of birth"
+      move:
+        attributes:
+          not_for_release:
+            inclusion: "^Select one of the options not for release"
+          not_for_release_reason:
+            inclusion: "^Select a reason not for release"
+          not_for_release_reason_details:
+            blank: "^Please provide details why the detainee is not for release"
+  activerecord:
+    errors:
+      <<: *errors
+  activemodel:
+    errors:
+      <<: *errors

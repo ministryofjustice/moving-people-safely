@@ -30,7 +30,7 @@ RSpec.describe DateValidator do
     let(:date) { 'not-a-date' }
     specify {
       is_expected.not_to be_valid
-      expect(subject.errors[:date]).to match_array(['is not a valid date'])
+      expect(subject.errors[:date]).to match_array(['^Enter a valid Date'])
     }
 
     context 'with a custom error message' do
@@ -48,7 +48,7 @@ RSpec.describe DateValidator do
     let(:date) { '11-02-98' }
     specify {
       is_expected.not_to be_valid
-      expect(subject.errors[:date]).to match_array(['is not a valid date'])
+      expect(subject.errors[:date]).to match_array(['^Enter a valid Date'])
     }
   end
 
@@ -65,7 +65,7 @@ RSpec.describe DateValidator do
       let(:date) { '11.02.98' }
       specify {
         is_expected.not_to be_valid
-        expect(subject.errors[:date]).to match_array(['is not a valid date'])
+        expect(subject.errors[:date]).to match_array(['^Enter a valid Date'])
       }
     end
   end
@@ -77,7 +77,7 @@ RSpec.describe DateValidator do
       let(:date) { Time.current.yesterday.to_date }
       specify {
         is_expected.not_to be_valid
-        expect(subject.errors[:date]).to match_array(['is in the past'])
+        expect(subject.errors[:date]).to match_array(['must not be in the past'])
       }
 
       context 'with a custom error message' do
@@ -104,7 +104,7 @@ RSpec.describe DateValidator do
       let(:date) { Time.current.tomorrow.to_date }
       specify {
         is_expected.not_to be_valid
-        expect(subject.errors[:date]).to match_array(['is in the future'])
+        expect(subject.errors[:date]).to match_array(['must not be in the future'])
       }
 
       context 'with a custom error message' do

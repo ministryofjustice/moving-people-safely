@@ -17,14 +17,9 @@ module Forms
     validates :surname, :forenames, presence: true
 
     validates :gender,
-      inclusion: { in: GENDERS },
-      allow_blank: true
+      inclusion: { in: GENDERS }
 
-    validate :validate_date_of_birth
-
-    def validate_date_of_birth
-      errors.add(:date_of_birth) unless date_of_birth.is_a? Date
-    end
+    validates :date_of_birth, date: { not_in_the_future: true }
 
     def prison_number=(value)
       value && super(value.upcase)

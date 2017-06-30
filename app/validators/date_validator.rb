@@ -18,9 +18,9 @@ class DateValidator < ActiveModel::EachValidator
   end
 
   def valid_date(record, attribute, value)
-    message = options[:message] || 'is not a valid date'
+    message = options[:message] || :date_not_valid
     unless value.is_a?(Date)
-      record.errors[attribute] << message
+      record.errors.add(attribute, message)
       return false
     end
     true
@@ -29,14 +29,14 @@ class DateValidator < ActiveModel::EachValidator
   def validate_not_in_past(record, attribute, value)
     required = options[:not_in_the_past]
     message = required[:message] if required.is_a?(Hash)
-    message ||= 'is in the past'
-    record.errors[attribute] << message if required.present? && value < Time.current.to_date
+    message ||= :date_is_in_the_past
+    record.errors.add(attribute, message) if required.present? && value < Time.current.to_date
   end
 
   def validate_not_in_future(record, attribute, value)
     required = options[:not_in_the_future]
     message = required[:message] if required.is_a?(Hash)
-    message ||= 'is in the future'
-    record.errors[attribute] << message if required.present? && value > Time.current.to_date
+    message ||= :date_is_in_the_future
+    record.errors.add(attribute, message) if required.present? && value > Time.current.to_date
   end
 end

@@ -195,8 +195,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'open'
@@ -232,8 +230,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -245,8 +241,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -267,8 +261,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -287,8 +279,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -307,8 +297,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -327,8 +315,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -347,8 +333,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -371,8 +355,6 @@ assessment:
                 validators:
                   -
                     name: 'Assessments::InclusionValidator'
-                    options:
-                      allow_blank: true
                 answers:
                   -
                     value: 'high'
@@ -387,8 +369,6 @@ assessment:
                 validators:
                   -
                     name: 'Assessments::InclusionValidator'
-                    options:
-                      allow_blank: true
                 answers:
                   -
                     value: 'yes'
@@ -409,8 +389,6 @@ assessment:
                 validators:
                   -
                     name: 'Assessments::InclusionValidator'
-                    options:
-                      allow_blank: true
                 answers:
                   -
                     value: 'yes'
@@ -479,8 +457,6 @@ assessment:
                 validators:
                   -
                     name: 'Assessments::InclusionValidator'
-                    options:
-                      allow_blank: true
                 answers:
                   -
                     value: 'yes'
@@ -501,8 +477,6 @@ assessment:
                 validators:
                   -
                     name: 'Assessments::InclusionValidator'
-                    options:
-                      allow_blank: true
                 answers:
                   -
                     value: 'yes'
@@ -538,8 +512,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -616,8 +588,6 @@ assessment:
                 validators:
                   -
                     name: 'Assessments::InclusionValidator'
-                    options:
-                      allow_blank: true
                 answers:
                   -
                     value: 'yes'
@@ -701,8 +671,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -745,8 +713,6 @@ assessment:
                 validators:
                   -
                     name: 'Assessments::InclusionValidator'
-                    options:
-                      allow_blank: true
                 answers:
                   -
                     value: 'yes'
@@ -774,8 +740,6 @@ assessment:
                 validators:
                   -
                     name: 'Assessments::InclusionValidator'
-                    options:
-                      allow_blank: true
                 answers:
                   -
                     value: 'yes'
@@ -859,8 +823,6 @@ assessment:
                 validators:
                   -
                     name: 'Assessments::InclusionValidator'
-                    options:
-                      allow_blank: true
                 answers:
                   -
                     value: 'yes'
@@ -874,8 +836,6 @@ assessment:
                 validators:
                   -
                     name: 'Assessments::InclusionValidator'
-                    options:
-                      allow_blank: true
                 answers:
                   -
                     value: 'yes'
@@ -896,8 +856,6 @@ assessment:
                 validators:
                   -
                     name: 'Assessments::InclusionValidator'
-                    options:
-                      allow_blank: true
                 answers:
                   -
                     value: 'yes'
@@ -920,8 +878,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -935,8 +891,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -955,8 +909,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -975,8 +927,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -995,8 +945,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -1041,8 +989,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -1056,8 +1002,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -1082,8 +1026,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -1114,8 +1056,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
