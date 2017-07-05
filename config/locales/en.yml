@@ -215,6 +215,8 @@ en:
         racist_details: Give details
         risk_to_females: In NOMIS, check the header section of the prisoner’s record for the Risk to Females alert. Check alert comments and case notes for details.
         risk_to_females_details: Give details
+      escort:
+        cancelling_reason: Give details of why this PER is being cancelled
       harassments:
         intimidation_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and and <i>Security > Non-association</i> for known risks to named prisoners.'
         intimidation_to_staff_details: Give details, including any relevant court orders
@@ -337,6 +339,15 @@ en:
       offences_incomplete: Offences incomplete
       risk_complete: Risk complete
       risk_incomplete: Risk incomplete
+    escorts:
+      cancelled: Cancelled
+      destination: Destination
+      detainee_name: Name
+      health: Health
+      issued: Issued
+      offences: Offences
+      prison_number: Prison No.
+      risk: Risk
   summary: &summary
     alerts:
       last_updated_info: 'This information was last saved %{time_difference} ago.'
@@ -510,6 +521,10 @@ en:
         not_for_release: Not for release
         rule_45: Rule 45
   escorts:
+    confirm_cancel:
+      title: Cancelling PER for
+      cancel_this_per: Cancel this PER
+      do_not_cancel_per: Do not cancel this PER
     print:
       new:
         reprint_per_for: Reprint PER for

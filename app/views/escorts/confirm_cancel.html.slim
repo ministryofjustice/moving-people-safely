@@ -1,0 +1,17 @@
+= content_for :breadcrumbs do
+  - breadcrumbs_for_page root: true do
+    - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
+
+h1
+  = t('.title')
+  br
+  = "#{escort.prison_number}: #{escort.detainee_surname} #{escort.detainee_forenames}"
+
+= form_for @form, url: cancel_escort_path(escort), method: :put do |f|
+  = f.error_messages
+
+  = f.text_area_without_label :cancelling_reason
+
+  .form-actions
+    = f.submit t('.cancel_this_per'), class: 'button'
+    = link_to t('.do_not_cancel_per'), escort_path(escort), class: 'button button-secondary'

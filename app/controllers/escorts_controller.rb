@@ -1,6 +1,7 @@
 class EscortsController < ApplicationController
   helper_method :escort
   before_action :redirect_if_missing_data, only: :show
+  before_action :redirect_if_not_cancellable, only: [:confirm_cancel, :cancel]
 
   def create
     escort = EscortCreator.call(escort_params)
@@ -16,6 +17,20 @@ class EscortsController < ApplicationController
   def show
   end
 
+  def confirm_cancel
+    @form = Forms::Escort.new(escort)
+  end
+
+  def cancel
+    @form = Forms::Escort.new(escort)
+    if @form.validate(escort_params)
+      escort.cancel!(current_user, escort_params[:cancelling_reason])
+      redirect_to root_path
+    else
+      render :confirm_cancel
+    end
+  end
+
   private
 
   def escort
@@ -23,11 +38,15 @@ class EscortsController < ApplicationController
   end
 
   def escort_params
-    params.require(:escort).permit(:prison_number)
+    params.require(:escort).permit(:prison_number, :cancelling_reason)
   end
 
   def redirect_if_missing_data
     redirect_to(new_escort_detainee_path(escort)) && return unless escort.detainee
     redirect_to(new_escort_move_path(escort)) && return unless escort.move
+  end
+
+  def redirect_if_not_cancellable
+    redirect_to escort_path(escort) unless escort.cancellable?
   end
 end

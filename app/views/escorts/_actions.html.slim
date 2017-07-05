@@ -5,5 +5,8 @@ ul.actions
   - elsif escort.completed?
     li
       = link_to_print_in_new_window(escort, styles: 'button button-print')
+  - if escort.cancellable?
+    li
+      = link_to('Cancel PER', confirm_cancel_escort_path(escort), class: 'button')
   li.link-return-home
     = link_to "Return to home", root_path

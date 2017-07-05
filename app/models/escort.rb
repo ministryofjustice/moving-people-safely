@@ -1,5 +1,6 @@
 class Escort < ApplicationRecord
   AlreadyIssuedError = Class.new(StandardError)
+  AlreadyCancelledError = Class.new(StandardError)
 
   default_scope { order('escorts.created_at desc') }
   default_scope { where(deleted_at: nil) }
@@ -9,6 +10,7 @@ class Escort < ApplicationRecord
   has_one :healthcare, dependent: :destroy
   has_one :clone, class_name: 'Escort', foreign_key: :cloned_id
   belongs_to :twig, class_name: 'Escort', foreign_key: :cloned_id
+  belongs_to :canceller, class_name: 'User'
 
   has_attached_file :document
   validates_attachment_content_type :document, content_type: ['application/pdf']
@@ -20,8 +22,12 @@ class Escort < ApplicationRecord
   scope :without_healthcare_assessment, -> { includes(:healthcare).where(healthcare: { escort_id: nil }) }
   scope :with_incomplete_offences, -> { joins(detainee: [:offences_workflow]).merge(OffencesWorkflow.not_confirmed) }
   scope :active, -> { where(issued_at: nil) }
+  scope :uncancelled, -> { where(cancelled_at: nil) }
 
   delegate :offences, :offences=, to: :detainee, allow_nil: true
+  delegate :surname, :forenames, to: :detainee, prefix: true
+  delegate :full_name, to: :canceller, prefix: true
+  delegate :date, to: :move, prefix: true
 
   def current_establishment
     @current_establishment ||= Establishment.current_for(prison_number)
@@ -29,6 +35,20 @@ class Escort < ApplicationRecord
 
   def completed?
     EscortCompletionValidator.call(self)
+  end
+
+  def cancelled?
+    cancelled_at.present?
+  end
+
+  def cancellable?
+    !(issued? || cancelled?)
+  end
+
+  def cancel!(user, reason)
+    raise AlreadyCancelledError if cancelled?
+    raise AlreadyIssuedError if issued?
+    update_attributes!(canceller_id: user.id, cancelling_reason: reason, cancelled_at: Time.now.utc)
   end
 
   def issued?
