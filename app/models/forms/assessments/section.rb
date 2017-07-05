@@ -63,6 +63,10 @@ module Forms
       attr_reader :assessment, :section, :parent
       delegate :read_attribute_for_validation, to: :__getobj__
 
+      def to_ary
+        nil
+      end
+
       def valid_subsections?
         subsections.inject(true) do |valid, subsection|
           (subsection.valid? && valid).tap do

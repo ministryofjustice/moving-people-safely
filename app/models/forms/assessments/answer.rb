@@ -75,6 +75,10 @@ module Forms
 
       attr_reader :assessment, :question, :parent, :validators, :params
 
+      def to_ary
+        nil
+      end
+
       def answer_schema
         question.answer_for(value)
       end
