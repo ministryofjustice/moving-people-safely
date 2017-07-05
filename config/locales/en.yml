@@ -70,6 +70,9 @@ en:
         violence_to_other_detainees_type: 'Victim of violence (select all that apply):'
         violence_to_staff: 'Are they violent to staff?'
     label:
+      allergies:
+        allergies: "Do they have any known allergies or intolerances?"
+        allergies_details: "Details for any known allergies or intolerances"
       arson:
         arson: "Are they an arsonist?"
       concealed_weapons:
@@ -88,7 +91,8 @@ en:
       contact:
         contact_number: Medical contact
       dependencies:
-        dependencies_details: Addictions or dependencies details
+        dependencies: "Do they have any addictions or dependencies that may affect this journey?"
+        dependencies_details: Details for addictions or dependencies
       detainee:
         surname: Surname
         forenames: First name(s)
@@ -133,11 +137,13 @@ en:
         to: To
         date: Date of travel
       mental:
-        mental_illness_details: Mental health issues details
+        mental_illness: "Are there any mental health issues that may affect this journey?"
+        mental_illness_details: Details for mental health issues
       needs:
         actions:
           medications:
             add_multiple: Add another medicine
+        has_medications: "Will they need to be given medication during this journey?"
         medications:
           description: Medicine
           administration: How is it given?
@@ -148,6 +154,9 @@ en:
       other_risk:
         other_risk: "Is there any other information related to risk on this journey you would like to include?"
         other_risk_details: "Other information related to risk on this journey"
+      physical:
+        physical_issues: "Are there any physical health issues that may affect this journey?"
+        physical_issues_details: "Details for physical health issues"
       return_instructions:
         actions:
           must_not_return_details:
@@ -200,9 +209,13 @@ en:
         sex_offence_type: Victims of sex offences
         sex_offence_under18_victim: Under 18
         date_most_recent_sexual_offence: Date of most recent sexual offence
+      social:
+        personal_care: "Will they need help with personal tasks on this journey?"
+        personal_care_details: Details for help needs with personal tasks on this journey
       substance_misuse:
         substance_supply: "Is there a risk that they might traffic drugs on this journey?"
       transport:
+        mpv: "Do they need to travel in a special vehicle on this journey?"
         mpv_details: Details for need of a special vehicle
       violence:
         csra: CSRA risk level

@@ -10,8 +10,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -32,8 +30,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -54,8 +50,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -76,8 +70,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -119,8 +111,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -141,8 +131,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
@@ -163,8 +151,6 @@ assessment:
             validators:
               -
                 name: 'Assessments::InclusionValidator'
-                options:
-                  allow_blank: true
             answers:
               -
                 value: 'yes'
