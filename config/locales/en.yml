@@ -662,6 +662,12 @@ en:
           date_most_recent_staff_hostage_taker_incident:
             date_not_valid: "^Enter a valid date for most recent staff hostage taking incident"
             date_is_in_the_future: "^Enter a past date for most recent public hostage taking incident"
+          escape_pack_completion_date:
+            date_not_valid: "^Enter a valid Escape Pack completion date"
+            date_is_in_the_future: "^Enter a past date for Escape Pack completion date"
+          escort_risk_assessment_completion_date:
+            date_not_valid: "^Enter a valid Escort Risk Assessment completion date"
+            date_is_in_the_future: "^Enter a past date for Escort Risk Assessment completion date"
           high_profile_details:
             blank: "^Give details for high public interest"
       forms/assessments/answer:
@@ -670,14 +676,24 @@ en:
         attributes:
           date_of_birth:
             date_not_valid: "^Enter a valid date of birth"
+          forenames:
+            blank: "^Enter first name(s)"
+          gender:
+            inclusion: "^Choose a gender"
+          surname:
+            blank: "^Enter a surname"
       move:
         attributes:
+          from:
+            blank: "^Enter start point"
           not_for_release:
             inclusion: "^Select one of the options not for release"
           not_for_release_reason:
             inclusion: "^Select a reason not for release"
           not_for_release_reason_details:
             blank: "^Please provide details why the detainee is not for release"
+          to:
+            blank: "^Enter destination"
   activerecord:
     errors:
       <<: *errors
