@@ -20,7 +20,6 @@ html
         #category_a_alert.grid-column.column-one-third
           = alerts.category_a_alert
       div#risk-section.section
-        span.watermark = 'Risk'
         table#risk-table.section-table
           tr
             th colspan=3
@@ -30,7 +29,6 @@ html
             = render partial: 'escorts/print/section',
               locals: { section: Print::AssessmentSectionPresenter.new(section) }
       div#healthcare-section.section
-        span.watermark = 'Healthcare'
         table#healthcare-table.section-table
           tr
             th colspan=3
@@ -40,12 +38,11 @@ html
             = render partial: 'escorts/print/section',
               locals: { section: Print::AssessmentSectionPresenter.new(section) }
       div#offences-section.section
-        span.watermark = 'Offences'
         table#offences-table.section-table
           tr
             th colspan=3
               span.heading-large= 'OFFENCES'
-          tr
+          tr.top-dotted
             td.column-30-percent
               = offences.label
             td.column-20-percent.indented
