@@ -14,39 +14,39 @@ header#header
   .escort-alerts
     .alerts-table
       .info-tiles
-        #not_for_release_alert.tile-3
+        #not_for_release_alert.tile-3.alert-tile
           div.alert-wrapper
             div.image#not_for_release_header class=(alerts.not_for_release_alert_class)
               span.alert-title = t('escort.alerts.title.not_for_release')
               span.red-tick
-            span.alert-text = alerts.not_for_release_text
-        #acct_status_alert.tile-3
+            .alert-text = alerts.not_for_release_text
+        #acct_status_alert.tile-3.alert-tile
           div.alert-wrapper
             div.image#acct_status_header class=(alerts.acct_status_alert_class)
               span.alert-title = t('escort.alerts.title.acct_status')
               span.red-tick
-            span.alert-text = alerts.acct_status_text
+            .alert-text = alerts.acct_status_text
 
-        #rule_45_alert.tile-3
+        #rule_45_alert.tile-3.alert-tile
           div.alert-wrapper
             div.image#rule_45_header class=(alerts.rule_45_alert_class)
               span.alert-title = t('escort.alerts.title.rule_45')
               span.red-tick
       .info-tiles
-        #e_list_alert.tile-3
+        #e_list_alert.tile-3.alert-tile
           div.alert-wrapper
             div.image#e_list_header class=(alerts.current_e_risk_alert_class)
               span.alert-title = t('escort.alerts.title.current_e_risk')
               span.red-tick
-            span.alert-text = alerts.current_e_risk_text
+            .alert-text = alerts.current_e_risk_text
 
-        #csra_alert.tile-3
+        #csra_alert.tile-3.alert-tile
           div.alert-wrapper
             div.image#csra_header class=(alerts.csra_alert_class)
               span.alert-title = t('escort.alerts.title.csra')
               span.alert-toggle-text = alerts.csra_text
 
-        #category_a_alert.tile-3
+        #category_a_alert.tile-3.alert-tile
           div.alert-wrapper
             div.image#category_a_header class=(alerts.category_a_alert_class)
               span.alert-title = t('escort.alerts.title.category_a')
