@@ -78,7 +78,7 @@ RSpec.describe Forms::Move, type: :form do
           it 'an inclusion error is added to the error list' do
             expect(form).not_to be_valid
             expect(form.errors.keys).to include(:not_for_release_reason)
-            expect(form.errors[:not_for_release_reason]).to match_array([I18n.t(:inclusion, scope: 'errors.messages')])
+            expect(form.errors[:not_for_release_reason]).to match_array(['^Select a reason not for release'])
           end
         end
 
@@ -113,7 +113,7 @@ RSpec.describe Forms::Move, type: :form do
             it 'a presence error is added to the error list' do
               expect(form).not_to be_valid
               expect(form.errors.keys).to include(:not_for_release_reason_details)
-              expect(form.errors[:not_for_release_reason_details]).to match_array([I18n.t(:blank, scope: 'errors.messages')])
+              expect(form.errors[:not_for_release_reason_details]).to match_array(['^Please provide details why the detainee is not for release'])
             end
           end
 

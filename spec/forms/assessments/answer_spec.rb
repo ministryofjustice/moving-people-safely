@@ -155,7 +155,7 @@ RSpec.describe Forms::Assessments::Answer do
         context 'and at least one of the validations fails' do
           it 'returns false and contains validation errors' do
             expect(form).not_to be_valid
-            expect(form.errors[:question_1]).to match_array([I18n.t(:blank, scope: 'errors.messages')])
+            expect(form.errors[:question_1]).to match_array(['^Please fill in Question 1'])
           end
         end
 
@@ -196,7 +196,7 @@ RSpec.describe Forms::Assessments::Answer do
           }
           it 'returns false and sets validation errors' do
             expect(form).not_to be_valid
-            expect(form.errors[:question_1]).to match_array([I18n.t(:blank, scope: 'errors.messages')])
+            expect(form.errors[:question_1]).to match_array(['^Please fill in Question 1'])
           end
         end
 

@@ -4,8 +4,8 @@ module Forms
     NOT_FOR_RELEASE_REASONS = %w[serving_sentence further_charges licence_revoke
                                  held_for_immigration other].freeze
 
-    property :from, type: StrictString, default: 'HMP Bedford'
-    property :to,   type: StrictString
+    property :from, type: StrictString, default: 'HMP Bedford', validates: { presence: true }
+    property :to,   type: StrictString, validates: { presence: true }
     property :date, type: TextDate
 
     optional_field :not_for_release,
@@ -33,7 +33,7 @@ module Forms
 
     delegate :persisted?, to: :model
 
-    validates :date, date: { not_in_the_past: { message: 'must not be in the past' } }
+    validates :date, date: { not_in_the_past: true }
 
     def not_for_release_reasons
       NOT_FOR_RELEASE_REASONS

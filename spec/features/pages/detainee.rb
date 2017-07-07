@@ -4,7 +4,7 @@ module Page
       expect(find('p.prison_number').text).to eql detainee.prison_number
 
       fill_in 'Surname', with: detainee.surname
-      fill_in 'Forename(s)', with: detainee.forenames
+      fill_in 'First name(s)', with: detainee.forenames
       fill_in 'Date of birth', with: detainee.date_of_birth
       fill_in 'Nationalities', with: detainee.nationalities
       choose detainee.gender.titlecase

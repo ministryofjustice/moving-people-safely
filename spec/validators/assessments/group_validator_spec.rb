@@ -47,6 +47,7 @@ RSpec.describe Assessments::GroupValidator do
 
       context 'and there no group elements present' do
         before do
+          localize_key('activemodel.errors.models.test_group_validatable.attributes.base.minimum_one_option', 'Select one option from the test group')
           localize_key('helpers.label.some_scope.elem1', 'ELEM 1')
           localize_key('helpers.label.some_scope.elem2', 'ELEM 2')
         end
@@ -61,7 +62,7 @@ RSpec.describe Assessments::GroupValidator do
         it 'adds a minimum one option error to the validatable record' do
           validator.call
           expect(validatable.errors).not_to be_empty
-          expect(validatable.errors[:base]).to match_array(['At least one option (ELEM 1, ELEM 2) needs to be provided'])
+          expect(validatable.errors[:base]).to match_array(['Select one option from the test group'])
         end
 
         context 'with a custom error message' do

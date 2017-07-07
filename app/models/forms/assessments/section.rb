@@ -4,7 +4,7 @@ module Forms
     class Section < SimpleDelegator
       extend ActiveModel::Naming
       extend ActiveModel::Translation
-      include Concerns
+      include Forms::Assessments::Concerns
       attr_reader :answers, :subsections, :errors
 
       def initialize(assessment, section, params, options = {})

@@ -25,7 +25,7 @@ module Assessments
       return unless options.key?(:at_least)
       if present_group_elements.none?
         message = options[:message] || :minimum_one_option
-        errors.add(:base, message, options: group_names)
+        errors.add(:base, message, attribute: attr_label, options: group_names)
       else
         validate_present_group_elements
       end
@@ -39,6 +39,14 @@ module Assessments
           end
         end
       end
+    end
+
+    def attr_label
+      I18n.t(attr, scope: [:helpers, :label, scope])
+    end
+
+    def scope
+      group.first.scope
     end
 
     def group_names

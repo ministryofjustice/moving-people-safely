@@ -3,7 +3,7 @@ module Forms
   module Assessments
     class Answer < SimpleDelegator
       include ActiveModel::Validations
-      include Concerns
+      include Forms::Assessments::Concerns
 
       delegate :type, :has_dependencies?, to: :question
 
