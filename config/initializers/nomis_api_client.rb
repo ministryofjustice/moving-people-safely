@@ -17,8 +17,8 @@ read_key = lambda { |string|
 nomis_secrets = Rails.application.secrets[:nomis_api]
 
 Nomis::Api.configure do |config|
-  config.api_host  = nomis_secrets['host']
-  config.api_token = nomis_secrets['token']
-  config.api_key   = read_key.call(nomis_secrets['key'])
+  config.api_host  = nomis_secrets[:host]
+  config.api_token = nomis_secrets[:token]
+  config.api_key   = read_key.call(nomis_secrets[:key])
   config.pool_size = 5
 end

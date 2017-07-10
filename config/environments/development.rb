@@ -63,9 +63,9 @@ Rails.application.configure do
     paperclip_configurations = {
       storage: :s3,
       s3_credentials: {
-        bucket: aws_secrets['s3_bucket_name'],
-        access_key_id: aws_secrets['access_key_id'],
-        secret_access_key: aws_secrets['secret_access_key'],
+        bucket: aws_secrets[:s3_bucket_name],
+        access_key_id: aws_secrets[:access_key_id],
+        secret_access_key: aws_secrets[:secret_access_key],
         s3_region: 'eu-west-1'
       },
       path: '/:class/:attachment/:id/:filename',
