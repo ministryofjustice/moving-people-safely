@@ -24,7 +24,7 @@ module MovingPeopleSafely
     config.phase = 'beta'
     config.product_type = 'service'
     config.feedback_url = ''
-    config.assets.paths << Rails.root.join('vendor', 'bower')
+    config.assets.paths << Rails.root.join('node_modules')
     config.autoload_paths << "#{Rails.root}/app/models/sections"
     config.time_zone = 'London'
 
