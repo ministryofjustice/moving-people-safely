@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def current_phase
+    Rails.application.config.phase
+  end
+
   def flash_message_for(messages)
     return messages unless messages.is_a?(Array)
     content_tag(:ul) do

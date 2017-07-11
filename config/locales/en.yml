@@ -700,3 +700,6 @@ en:
   activemodel:
     errors:
       <<: *errors
+  layouts:
+    application:
+      current_phase_text: This is a new service

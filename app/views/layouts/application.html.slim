@@ -31,6 +31,12 @@
   main id="wrapper" role="main"
     .container
       section class="content inner cf" id="content" role="main"
+        .phase-banner class=("#{current_phase}-banner")
+          .phase-banner-inner
+            p
+              strong.phase-tag = current_phase.upcase
+              span = t('.current_phase_text')
+
         = render_breadcrumbs
         - %i[notice success alert warning error].each do |severity|
             - if flash[severity].present?
