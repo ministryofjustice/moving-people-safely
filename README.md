@@ -24,15 +24,7 @@
   ```bash
   brew bundle
   ```
-  **NOTE:** These will install node and postgresql. If you do not use brew you need to install them manually.
-
-* Bower
-
-  Using brew:
-
-  ```bash
-  npm install -g bower
-  ```
+  **NOTE:** These will install node, postgresql and yarn. If you do not use brew you need to install them manually.
 
 ## Setup
 
