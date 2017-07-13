@@ -1,7 +1,12 @@
 require 'time_diff'
 module PresenterHelpers
+  include ActionView::Helpers::SanitizeHelper
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::TranslationHelper
+
+  def self.included(base)
+    base.extend(ActionView::Helpers::SanitizeHelper::ClassMethods)
+  end
 
   def highlighted_content(content)
     content_tag(:div, content, class: 'strong-text')

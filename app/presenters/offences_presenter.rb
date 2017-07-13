@@ -7,8 +7,10 @@ class OffencesPresenter < SimpleDelegator
   delegate :empty?, :any?, :each, :present?, to: :@offences
 
   class CurrentOffencePresenter < SimpleDelegator
+    include ActionView::Helpers::SanitizeHelper
+
     def full_details
-      info = offence
+      info = sanitize(offence)
       info << " (CR: #{case_reference})" if case_reference.present?
       info
     end
