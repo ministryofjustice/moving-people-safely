@@ -13,6 +13,7 @@ module Forms
         @parent = options[:parent]
         @answer = answer || dummy_answer
         super(@answer)
+        define_complex_attr_methods
       end
 
       def complex_attributes
@@ -37,6 +38,13 @@ module Forms
           subquestion.validators.each do |validator|
             validator.call(self, subquestion.name, in: subquestion.answer_options_values)
           end
+        end
+      end
+
+      def define_complex_attr_methods
+        complex_attributes.each do |attr|
+          attr_name = attr.name.to_sym
+          define_singleton_method(attr_name) { __getobj__.send(attr_name) }
         end
       end
     end
