@@ -15,9 +15,10 @@ div
               - if subquestion.answer_options_values.empty?
                 = mf.text_field subquestion.name.to_sym
               - else
-                .form-group
-                  = mf.label subquestion.name.to_sym, class: 'form-label'
-                  = mf.select subquestion.name.to_sym, select_values_for("#{f.object.name}.#{question.name}.#{subquestion.name}"), include_blank: true
+                = mf.radio_button_fieldset subquestion.name.to_sym,
+                  choices: subquestion.answer_options_values,
+                  legend_options: { class: 'form-label' },
+                  inline: true
         .column-one-third
           - if question.complex_answers.size > 1
             .multiple-field.remove-link
