@@ -1,4 +1,12 @@
 class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
+  class << GovukElementsFormBuilder::FormBuilder
+    def localized(scope, attribute, default, object_name)
+      @object_name = object_name.gsub(/\[(.*)_attributes\]\[\d+\]/, '.\1')
+      key = "#{@object_name}.#{attribute}"
+      translate(key, default, scope)
+    end
+  end
+
   def error_messages(options = {})
     title = options.fetch(:title, I18n.t('.errors.summary.title'))
     description = options.fetch(:description, '')
