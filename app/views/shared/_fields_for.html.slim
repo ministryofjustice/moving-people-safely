@@ -4,30 +4,30 @@ div
 
   = f.fields_for question.name, question.complex_answers do |mf|
     .multiple-wrapper
-      - unless mf.index == 0
-        hr
-
       .grid-row
         .column-two-thirds
-          = mf.hidden_field :id
-          - mf.object.complex_attributes.each do |subquestion|
-            .multiple-field
-              - if subquestion.answer_options_values.empty?
-                = mf.text_field subquestion.name.to_sym
-              - else
-                = mf.radio_button_fieldset subquestion.name.to_sym,
-                  choices: subquestion.answer_options_values,
-                  legend_options: { class: 'form-label' },
-                  inline: true
+          .form-group-compound
+            h2 = "Item #{mf.index + 1}"
+            = mf.hidden_field :id
+            - mf.object.complex_attributes.each do |subquestion|
+              .multiple-field
+                - if subquestion.answer_options_values.empty?
+                  = mf.text_field subquestion.name.to_sym
+                - else
+                  = mf.radio_button_fieldset subquestion.name.to_sym,
+                    choices: subquestion.answer_options_values,
+                    legend_options: { class: 'form-label' },
+                    inline: true
         .column-one-third
           - if question.complex_answers.size > 1
-            .multiple-field.remove-link
+            .remove-link.remove-list-item-vertical
               .form-group
                 = mf.label :_delete, 'Remove'
                 = mf.check_box :_delete
+      hr
 
-  .multiple-field.multiple-add
-    = f.submit t("helpers.label.#{f.object.name}.actions.#{question.name}.add_multiple"),
-      class: 'js-anchor-focus',
+  .multiple-field.multiple-add.form-group
+    = f.button t("helpers.label.#{f.object.name}.actions.#{question.name}.add_multiple"),
+      class: 'js-anchor-focus button button-add-another-vertical',
       data: { 'anchor-focus' => question.name },
       name: "#{f.object.name}_add_multiple_#{question.name}"

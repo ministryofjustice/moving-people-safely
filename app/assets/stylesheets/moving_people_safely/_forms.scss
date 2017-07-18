@@ -13,6 +13,13 @@ form {
     .panel > .form-group > .form-hint { padding-top: 0; }
   }
 
+  h2 {
+    @extend .heading-medium;
+    margin-bottom: .25em;
+    margin-top: 1.875em;
+    font-size: 24px;
+  }
+
   legend {
     font-weight: bold;
   }
@@ -48,6 +55,7 @@ form {
     float: left;
     clear: left;
     width: 100%;
+    padding-top: 30px;
 
     .remove-link {
       label {
@@ -132,6 +140,8 @@ form {
   }
 
   .multiple-add {
+    padding-top: 30px;
+
     input {
       @extend .styled-as-link;
     }
@@ -148,5 +158,31 @@ form {
 
     h2 { font-weight: bold; }
     p { margin: 0; }
+  }
+
+  .button-add-another-vertical,
+  .button-add-another {
+    background-color: #eee;
+    color: #000;
+    box-shadow: 0 2px 0 #666;
+  }
+
+  .button-add-another-vertical:hover,
+  .button-add-another:hover {
+    background-color: #ccc;
+    color: #000;
+    box-shadow: 0 2px 0 #666;
+  }
+
+  .button-add-another-vertical:focus,
+  .button-add-another:focus {
+    background-color: #ccc;
+    color: #000;
+    box-shadow: 0 2px 0 #666;
+  }
+
+  .remove-list-item-vertical {
+    margin-top: 4.4em !important;
+    display: block;
   }
 }
