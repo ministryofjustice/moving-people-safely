@@ -21,7 +21,7 @@ module MovingPeopleSafely
     # -- all .rb files in that directory are automatically loaded.
     config.app_title = 'Moving people safely'
     config.proposition_title = 'Moving people safely'
-    config.phase = 'beta'
+    config.phase = 'alpha'
     config.product_type = 'service'
     config.feedback_url = ''
     config.assets.paths << Rails.root.join('vendor', 'bower')
