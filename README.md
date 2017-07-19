@@ -24,7 +24,7 @@
   ```bash
   brew bundle
   ```
-  **NOTE:** These will install node and postgresql. If you do not use brew you need to install them manually.
+  **NOTE:** These will install the specified OS dependencies. If you do not use brew you need to install them manually.
 
 * Bower
 

@@ -1,8 +1,23 @@
 require 'feature_helper'
 require 'capybara/rspec'
 require 'database_cleaner'
+require 'selenium/webdriver'
 
-Capybara.default_driver = :selenium
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+Capybara.register_driver :headless_chrome do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    chromeOptions: { args: %w(headless disable-gpu) }
+  )
+
+  Capybara::Selenium::Driver.new app,
+    browser: :chrome,
+    desired_capabilities: capabilities
+end
+
+Capybara.default_driver = (ENV.fetch('HEADLESS_FEATURES', 'true') == 'true' ? :headless_chrome : :chrome)
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
@@ -13,7 +28,6 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
-    Capybara.page.driver.browser.manage.window.maximize
   end
 
   config.after(:each) do
