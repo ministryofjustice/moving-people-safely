@@ -28,3 +28,6 @@ vendor/bower/*
 
 # Ignore coverage directory
 coverage
+
+# Ignore ruby gemset files
+.ruby-gemset
