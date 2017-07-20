@@ -28,8 +28,6 @@
 
 * Bower
 
-  Using brew:
-
   ```bash
   npm install -g bower
   ```
@@ -47,14 +45,8 @@
 * Install dependencies and setup database
 
   ```bash
-  bundle exec bin/setup
+  bin/setup
   ```
-
-* Seeding data for **development** environment **only**
-
-   ```bash
-   bundle exec rake dev:moves
-   ```
 
 For local integration with SSO refer to [SSO Integration](docs/sso_integration.md)
 
