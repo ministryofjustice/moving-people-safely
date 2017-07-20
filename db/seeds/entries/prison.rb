@@ -3,8 +3,8 @@ module Seeds
     class Prison
       def initialize(seed_data)
         @seed_data = seed_data
-        @code = seed_data[0]
         @data = seed_data[1]
+        @code = @data['key']
       end
 
       def nomis_id
