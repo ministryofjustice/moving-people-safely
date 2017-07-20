@@ -31,3 +31,6 @@ coverage
 
 # Ignore ruby gemset files
 .ruby-gemset
+
+# Ignore OSX specific artifacts
+.DS_Store
