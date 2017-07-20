@@ -54,6 +54,16 @@ ActiveRecord::Schema.define(version: 20170721132806) do
     t.index ["prison_number"], name: "index_escorts_on_prison_number", using: :btree
   end
 
+  create_table "establishments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.string "nomis_id"
+    t.string "sso_id"
+    t.index ["nomis_id"], name: "index_establishments_on_nomis_id", unique: true, using: :btree
+    t.index ["sso_id"], name: "index_establishments_on_sso_id", unique: true, using: :btree
+    t.index ["type"], name: "index_establishments_on_type", using: :btree
+  end
+
   create_table "healthcare", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "physical_issues"
     t.text     "physical_issues_details"
