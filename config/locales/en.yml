@@ -51,8 +51,8 @@ en:
         category_a: Are they Category A, potential Category A or Restricted Status?
         current_e_risk: Are they on the Escape List (E-List)?
         current_e_risk_details: 'Select the E-List category:'
-        escape_pack: Has an Escape Pack been created for this journey?
-        escort_risk_assessment: Has an Escort Risk Assessment been completed for this journey?
+        escape_pack: Is an Escape Pack needed for this journey?
+        escort_risk_assessment: Is an Escort Risk Assessment needed for this journey?
         previous_escape_attempts: Have they made previous escape attempts?
         previous_escape_attempts_type: 'Attempted to escape from (select all that apply):'
       sex_offences:
@@ -193,9 +193,7 @@ en:
           e_list_escort: E-List-Escort
           e_list_heightened: E-List-Heightened
         escape_pack: "Has an Escape Pack been created for this journey?"
-        escape_pack_completion_date: 'Escape Pack completed on:'
         escort_risk_assessment: "Has an Escort Risk Assessment been completed for this journey?"
-        escort_risk_assessment_completion_date: 'Escort Risk Assessment completed on:'
         previous_escape_attempts: Have they made previous escape attempts?
         previous_escape_attempts_type: Location which attempted to escape from
         prison_escape_attempt: Prison
@@ -322,8 +320,6 @@ en:
       security:
         category_a: In NOMIS, check the header section of the prisoner’s record for category information.
         current_e_risk: Check Mercury for intelligence or in NOMIS, check the header section of the prisoner’s record for the Escape Risk alert. Check alert comments and case notes for details.
-        escape_pack_completion_date: DD/MM/YYYY
-        escort_risk_assessment_completion_date: DD/MM/YYYY
         previous_escape_attempts_html: 'In NOMIS, check <i>Incidents</i> for details of escape attempts.'
         prison_escape_attempt_details: Give details of last escape attempt
         court_escape_attempt_details: Give details of last escape attempt
@@ -492,8 +488,8 @@ en:
           category_a: Category A, potential Category A or Restricted Status
           current_e_risk: Currently on E list
           escape_list: Escape list
-          escape_pack_completion_date: 'Completed on: '
-          escort_risk_assessment_completion_date: 'Completed on: '
+          escape_pack: Escape pack needed?
+          escort_risk_assessment: Escort risk assessment needed?
           other_escape_risk_info: Other escape risk information
           prison_escape_attempt: Prison
           court_escape_attempt: Court
@@ -666,12 +662,6 @@ en:
           date_most_recent_staff_hostage_taker_incident:
             date_not_valid: "^Enter a valid date for most recent staff hostage taking incident"
             date_is_in_the_future: "^Enter a past date for most recent public hostage taking incident"
-          escape_pack_completion_date:
-            date_not_valid: "^Enter a valid Escape Pack completion date"
-            date_is_in_the_future: "^Enter a past date for Escape Pack completion date"
-          escort_risk_assessment_completion_date:
-            date_not_valid: "^Enter a valid Escort Risk Assessment completion date"
-            date_is_in_the_future: "^Enter a past date for Escort Risk Assessment completion date"
           high_profile_details:
             blank: "^Give details for high public interest"
       forms/assessments/answer:

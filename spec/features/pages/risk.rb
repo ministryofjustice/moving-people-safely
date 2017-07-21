@@ -196,7 +196,6 @@ module Page
     def fill_in_escort_risk_assessment
       if @risk.escort_risk_assessment == 'yes'
         choose 'security_escort_risk_assessment_yes'
-        fill_in 'security_escort_risk_assessment_completion_date', with: @risk.escort_risk_assessment_completion_date
       else
         choose 'security_escort_risk_assessment_no'
       end
@@ -205,7 +204,6 @@ module Page
     def fill_in_escape_pack
       if @risk.escape_pack == 'yes'
         choose 'security_escape_pack_yes'
-        fill_in 'security_escape_pack_completion_date', with: @risk.escape_pack_completion_date
       else
         choose 'security_escape_pack_no'
       end
