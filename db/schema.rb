@@ -229,11 +229,12 @@ ActiveRecord::Schema.define(version: 20170721132806) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email",      default: "", null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "email",       default: "", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "provider"
     t.string   "uid"
+    t.text     "permissions"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 

@@ -1,5 +1,6 @@
 class EscortsController < ApplicationController
   helper_method :escort
+  before_action :authorize_user!, only: :create
   before_action :redirect_if_missing_data, only: :show
   before_action :redirect_if_not_cancellable, only: [:confirm_cancel, :cancel]
 
@@ -32,6 +33,10 @@ class EscortsController < ApplicationController
   end
 
   private
+
+  def prison_number
+    escort_params[:prison_number]
+  end
 
   def escort
     @escort ||= Escort.find(params[:id])

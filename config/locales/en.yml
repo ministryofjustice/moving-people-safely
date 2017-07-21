@@ -612,6 +612,8 @@ en:
   alerts:
     detainee_already_exists: "Detainee already exists. You've been redirected to the next relevant form"
     detainee:
+      access:
+        unauthorized: "You cannot access the detainee with the provided prison number %{prison_number}."
       details:
         unavailable: "Look-Up function is not currently available. Please enter person details manually or try again later"
         not_found: "No record for that prison reference exists. Please check the reference used or enter the details manually"

@@ -1,4 +1,4 @@
-if Rails.env.development? && ENV['MOCK_SSO']
+if Rails.env.development? && ENV['MOCK_SSO'] == 'true'
   OmniAuth.config.test_mode = true
 
   begin
@@ -18,7 +18,7 @@ if Rails.env.development? && ENV['MOCK_SSO']
         "email": "example@some.prison.com",
         "first_name": "Joe",
         "last_name": "Bloggs",
-        "permissions": [],
+        "permissions": [{"organisation"=>"digital.noms.moj"}],
         "links": {
           "profile": "http://#{base_url}/profile",
           "logout": "http://#{base_url}/session/new"

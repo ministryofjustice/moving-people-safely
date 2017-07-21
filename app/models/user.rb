@@ -1,9 +1,15 @@
 class User < ApplicationRecord
+  serialize :permissions
+
   class << self
     def from_omniauth(auth)
       user = where(email: auth.info.email).first
       if user
-        user.update_attributes(provider: auth.provider, uid: auth.uid)
+        user.update_attributes(
+          provider: auth.provider,
+          uid: auth.uid,
+          permissions: auth.info.permissions
+        )
       else
         user = first_or_create_by_uid_and_provider(auth)
       end
@@ -19,6 +25,7 @@ class User < ApplicationRecord
         u.email = auth.info.email
         u.first_name = auth.info.first_name
         u.last_name = auth.info.last_name
+        u.permissions = auth.info.permissions
       end
     end
   end

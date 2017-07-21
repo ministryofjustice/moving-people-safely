@@ -1,6 +1,8 @@
 class HomepageController < ApplicationController
+  before_action :validate_search, only: :show
+  before_action :authorize_user!, only: :show, if: :valid_search?
+
   def show
-    search_form.validate(search_params) if search_params.present?
     @escorts = Escort.for_date(date_picker.date)
     render :show, locals: locals
   end
@@ -16,6 +18,18 @@ class HomepageController < ApplicationController
   end
 
   private
+
+  def validate_search
+    search_form.validate(search_params) if search_params.present?
+  end
+
+  def valid_search?
+    search_params.present? && search_form.valid?
+  end
+
+  def prison_number
+    search_form.prison_number
+  end
 
   def locals
     {

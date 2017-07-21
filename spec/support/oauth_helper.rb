@@ -1,11 +1,11 @@
 module OauthHelper
-  def sign_in(*)
-    configure_mock
+  def sign_in(_user, options = { sso: { info: { permissions: [{'organisation' => 'digital.noms.moj'}]}}})
+    configure_mock(options.fetch(:sso, {}))
     get "/auth/mojsso/callback"
   end
 
-  def configure_mock
-    OmniAuth.config.add_mock(:mojsso, OAUTH_HASH)
+  def configure_mock(sso_config = {})
+    OmniAuth.config.add_mock(:mojsso, OAUTH_HASH.deep_merge(sso_config))
   end
 
   module_function :sign_in, :configure_mock
