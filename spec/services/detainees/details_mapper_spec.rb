@@ -6,7 +6,9 @@ RSpec.describe Detainees::DetailsMapper do
   let(:middle_names) { 'C.' }
   let(:surname) { 'Doe' }
   let(:date_of_birth) { '1969-01-23' }
-  let(:gender) { 'Male' }
+  let(:gender) { { 'code' => 'M', 'desc' => 'Male' } }
+  let(:ethnicity) { { 'code' => 'EU', 'desc' => 'European' } }
+  let(:religion) { { 'code' => 'B', 'desc' => 'Baptist' } }
   let(:nationalities) { 'French' }
   let(:pnc_number) { '12344' }
   let(:cro_number) { '54321' }
@@ -24,6 +26,8 @@ RSpec.describe Detainees::DetailsMapper do
       'surname' => surname,
       'date_of_birth' => date_of_birth,
       'gender' => gender,
+      'ethnicity' => ethnicity,
+      'religion' => religion,
       'nationalities' => nationalities,
       'pnc_number' => pnc_number,
       'cro_number' => cro_number,
@@ -37,6 +41,8 @@ RSpec.describe Detainees::DetailsMapper do
       surname: 'DOE',
       date_of_birth: '23/01/1969',
       gender: 'male',
+      ethnicity: 'European',
+      religion: 'Baptist',
       nationalities: 'French',
       pnc_number: '12344',
       cro_number: '54321',
@@ -54,6 +60,8 @@ RSpec.describe Detainees::DetailsMapper do
       surname: 'DOE',
       date_of_birth: '23/01/1969',
       gender: 'male',
+      ethnicity: 'European',
+      religion: 'Baptist',
       nationalities: 'French',
       pnc_number: '12344',
       cro_number: '54321',
@@ -129,7 +137,7 @@ RSpec.describe Detainees::DetailsMapper do
   end
 
   context 'when retrieved gender is neither male or female' do
-    let(:gender) { 'Other' }
+    let(:gender) { { 'code' => 'O', 'desc' => 'Other' } }
 
     it 'returns the downcase version of the gender' do
       expect(mapper.call).to eq(expected_result.merge('gender' => 'other'))
@@ -137,7 +145,7 @@ RSpec.describe Detainees::DetailsMapper do
   end
 
   context 'when retrieved gender is male' do
-    let(:gender) { 'Male' }
+    let(:gender) { { 'code' => 'M', 'desc' => 'Male' } }
 
     it 'returns the gender as male' do
       expect(mapper.call).to eq(expected_result.merge('gender' => 'male'))
@@ -145,10 +153,18 @@ RSpec.describe Detainees::DetailsMapper do
   end
 
   context 'when retrieved gender is female' do
-    let(:gender) { 'Female' }
+    let(:gender) { { 'code' => 'F', 'desc' => 'Female' } }
 
     it 'returns the gender as female' do
       expect(mapper.call).to eq(expected_result.merge('gender' => 'female'))
+    end
+  end
+
+  context 'when retrieved gender is a string' do
+    let(:gender) { 'Male' }
+
+    it 'returns the gender as downcased' do
+      expect(mapper.call).to eq(expected_result)
     end
   end
 

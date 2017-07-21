@@ -17,6 +17,8 @@ module Detainees
         nationalities: details[:nationalities],
         pnc_number: details[:pnc_number],
         cro_number: details[:cro_number],
+        ethnicity: mapped_ethnicity,
+        religion: mapped_religion,
         aliases: mapped_aliases
       }.with_indifferent_access
     end
@@ -65,7 +67,24 @@ module Detainees
     end
 
     def mapped_gender
-      gender.downcase if gender.present?
+      return details[:gender].downcase if details[:gender].is_a?(String)
+      gender['desc']&.downcase if gender.present?
+    end
+
+    def ethnicity
+      details[:ethnicity]
+    end
+
+    def mapped_ethnicity
+      ethnicity['desc'] if ethnicity.present?
+    end
+
+    def religion
+      details[:religion]
+    end
+
+    def mapped_religion
+      religion['desc'] if religion.present?
     end
 
     def aliases
