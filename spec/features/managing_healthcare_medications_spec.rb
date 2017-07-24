@@ -87,7 +87,7 @@ RSpec.describe 'managing healthcare medications', type: :feature do
 
   def delete_medication(position:)
     within_medication(position) {
-      find('label', text: 'Remove').click || check('Remove')
+      check_attribute('Remove')
     }
   end
 
@@ -103,6 +103,14 @@ RSpec.describe 'managing healthcare medications', type: :feature do
     case field
     when :description then "Description #{position}"
     when :administration then "Administration #{position}"
+    end
+  end
+
+  def check_attribute(label)
+    if Capybara.default_driver == :rack_test
+      check(label)
+    else
+      find('label', text: label).click
     end
   end
 end
