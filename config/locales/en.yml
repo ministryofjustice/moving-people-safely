@@ -31,6 +31,10 @@ en:
         mental_illness: Are there any mental health issues that may affect this journey?
       needs:
         has_medications: Will they need to be given medication during this journey?
+        medications:
+          description: Medicine
+          administration: How is it given?
+          carrier: Who will carry the medicine?
       other_risk:
         other_risk: Is there any other information related to risk on this journey you would like to include?
       physical:

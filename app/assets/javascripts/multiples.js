@@ -16,7 +16,15 @@ $(function () {
 
       // Hide multiple from when 'delete' radio state changes
       input.on('change', function () {
-        $this.closest('.multiple-wrapper').addClass('mps-hide');
+        var multipleWrapper = $this.closest('.multiple-wrapper');
+        var multiplesParent = multipleWrapper.parent();
+        multipleWrapper.addClass('mps-hide');
+        var removeLinks = multiplesParent.find('.multiple-wrapper:not(.mps-hide) .remove-link');
+        if(removeLinks.length == 1){
+          removeLinks.each(function(){
+            $(this).hide();
+          });
+        }
       })
     })
   };

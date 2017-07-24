@@ -1,4 +1,12 @@
 class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
+  class << GovukElementsFormBuilder::FormBuilder
+    def localized(scope, attribute, default, object_name)
+      @object_name = object_name.gsub(/\[(.*)_attributes\]\[\d+\]/, '.\1')
+      key = "#{@object_name}.#{attribute}"
+      translate(key, default, scope)
+    end
+  end
+
   def error_messages(options = {})
     title = options.fetch(:title, I18n.t('.errors.summary.title'))
     description = options.fetch(:description, '')
@@ -20,12 +28,13 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
 
   def fieldset_legend(attribute, options = {})
     tags = []
+    legend_options = options.fetch(:legend_options, {})
     legend = content_tag(:legend) do
       if options.fetch(:legend, true)
         tags << content_tag(
           :span,
           fieldset_text(attribute),
-          class: 'form-label-bold'
+          class: legend_options.fetch(:class, 'form-label-bold')
         )
       end
 
