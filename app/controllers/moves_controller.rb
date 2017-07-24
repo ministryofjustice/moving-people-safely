@@ -13,6 +13,7 @@ class MovesController < ApplicationController
 
     if form.validate(params[:move])
       form.save
+      track_events.call
       redirect_to escort_path(escort)
     else
       render :new, locals: { form: form }
@@ -47,5 +48,9 @@ class MovesController < ApplicationController
 
   def redirect_if_move_already_exists
     redirect_to escort_path(escort), alert: t('alerts.escort.move.exists') if escort.move
+  end
+
+  def track_events
+    TrackEvents.new(current_user, escort, :move_complete, request)
   end
 end

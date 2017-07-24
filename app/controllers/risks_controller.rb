@@ -43,6 +43,7 @@ class RisksController < ApplicationController
   def confirm
     if risk.all_questions_answered?
       risk.confirm!(user: current_user)
+      track_events.call
       redirect_to escort_path(escort)
     else
       flash.now[:error] = t('alerts.unable_to_confirm_assessment', assessment: 'Risk')
@@ -91,5 +92,9 @@ class RisksController < ApplicationController
   def form_params
     return unless params[step]
     params[step].permit!.to_h
+  end
+
+  def track_events
+    TrackEvents.new(current_user, escort, :risks_complete, request)
   end
 end

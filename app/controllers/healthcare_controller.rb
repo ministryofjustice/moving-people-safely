@@ -53,6 +53,7 @@ class HealthcareController < ApplicationController
   def confirm
     if healthcare.all_questions_answered?
       healthcare.confirm!(user: current_user)
+      track_events.call
       redirect_to escort_path(escort)
     else
       flash.now[:error] = t('alerts.unable_to_confirm_assessment', assessment: 'Healthcare')
@@ -101,5 +102,9 @@ class HealthcareController < ApplicationController
   def form_params
     return unless params[step]
     params[step].permit!.to_h
+  end
+
+  def track_events
+    TrackEvents.new(current_user, escort, :healthcare_complete, request)
   end
 end
