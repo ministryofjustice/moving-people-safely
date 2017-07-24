@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170629152622) do
+ActiveRecord::Schema.define(version: 20170721132806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,9 +176,7 @@ ActiveRecord::Schema.define(version: 20170629152622) do
     t.boolean  "other_type_escape_attempt"
     t.text     "other_type_escape_attempt_details"
     t.string   "escort_risk_assessment"
-    t.date     "escort_risk_assessment_completion_date"
     t.string   "escape_pack"
-    t.date     "escape_pack_completion_date"
     t.string   "conceals_drugs"
     t.text     "conceals_drugs_details"
     t.text     "conceals_mobile_phone_or_other_items"

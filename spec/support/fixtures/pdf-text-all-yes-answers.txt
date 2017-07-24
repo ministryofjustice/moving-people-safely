@@ -103,8 +103,9 @@ A or Restricted Status
   Category A or Restricted
   Status
 Further security information        Yes
-  Escort Risk Assessment            Yes                  Completed on: 26/11/2016
-  Escape Pack                       Yes                  Completed on: 13/12/2016
+  Escort risk assessment            Yes
+  needed?
+  Escape pack needed?               Yes
 Drug trafficking risk               Yes
   Drug trafficking risk             Yes
 Weapons, drugs or other items       Yes

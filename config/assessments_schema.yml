@@ -825,15 +825,6 @@ assessment:
                 answers:
                   -
                     value: 'yes'
-                    questions:
-                      -
-                        name: escort_risk_assessment_completion_date
-                        type: date
-                        validators:
-                          -
-                            name: 'Assessments::DateValidator'
-                            options:
-                              not_in_the_future: true
                   -
                     value: 'no'
               -
@@ -845,15 +836,6 @@ assessment:
                 answers:
                   -
                     value: 'yes'
-                    questions:
-                      -
-                        name: escape_pack_completion_date
-                        type: date
-                        validators:
-                          -
-                            name: 'Assessments::DateValidator'
-                            options:
-                              not_in_the_future: true
                   -
                     value: 'no'
       substance_misuse:
