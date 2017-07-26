@@ -698,4 +698,4 @@ en:
       <<: *errors
   layouts:
     application:
-      current_phase_text: This is a new service
+      current_phase_text_html: This is a new service - your <a href="%{feedback_url}" target="_blank" rel="noopener">feedback</a> will help us to improve it.

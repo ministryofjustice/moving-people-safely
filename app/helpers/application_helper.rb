@@ -3,6 +3,10 @@ module ApplicationHelper
     Rails.application.config.phase
   end
 
+  def feedback_url
+    Rails.application.config.feedback_url
+  end
+
   def flash_message_for(messages)
     return messages unless messages.is_a?(Array)
     content_tag(:ul) do
