@@ -25,6 +25,7 @@ gem 'logstasher', git: 'https://github.com/shadabahmed/logstasher.git', ref: '4b
 gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'reform', '2.1.0'
 gem 'reform-rails'
+gem 'sentry-raven'
 gem 'virtus'
 gem 'wicked'
 gem 'wicked_pdf'
