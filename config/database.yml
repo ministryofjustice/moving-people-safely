@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  host: <%= ENV['DB_HOST'] %>
   database: moving-people-safely_production
-  username: moving-people-safely
+  username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['MOVING-PEOPLE-SAFELY_DATABASE_PASSWORD'] %>

@@ -19,6 +19,7 @@
 # Ignore .env files
 .env
 .envrc
+.docker-env
 
 # Ignore test artifacts
 /spec/examples.txt

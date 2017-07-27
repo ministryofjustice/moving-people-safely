@@ -2,6 +2,12 @@
 export RAILS_ENV=production
 cd /usr/src/app
 case ${DOCKER_STATE} in
+setup)
+    echo "running setup"
+    bundle exec rails db:setup
+    bundle exec rails db:migrate
+    bundle exec rails db:seed
+    ;;
 create)
     echo "running create"
     bundle exec rails db:setup db:seed
