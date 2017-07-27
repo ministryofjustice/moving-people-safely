@@ -23,6 +23,10 @@ class Escort < ApplicationRecord
   scope :with_incomplete_offences, -> { joins(detainee: [:offences_workflow]).merge(OffencesWorkflow.not_confirmed) }
   scope :active, -> { where(issued_at: nil) }
   scope :uncancelled, -> { where(cancelled_at: nil) }
+  scope :issued, -> { where.not(issued_at: nil) }
+  scope :in_last_days, lambda { |num_days|
+    joins(:move).where('moves.date >= ? AND moves.date < ?', num_days.days.ago.to_date, Date.current)
+  }
 
   delegate :offences, :offences=, to: :detainee, allow_nil: true
   delegate :surname, :forenames, to: :detainee, prefix: true

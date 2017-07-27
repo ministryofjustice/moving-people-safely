@@ -4,7 +4,7 @@ module Metrics
       @logger = options.fetch(:logger, Rails.logger)
     end
 
-    def call
+    def total_escorts
       [
         {
           total_initiated_escorts: total_initiated_escorts,
@@ -14,6 +14,10 @@ module Metrics
           total_unused_escorts: total_escorts_auto_deleted
         }
       ]
+    end
+
+    def escorts_by_date
+      all_escorts_in_last_number_of_days(30)
     end
 
     private
@@ -38,6 +42,29 @@ module Metrics
 
     def total_escorts_auto_deleted
       @tautodel ||= Escort.unscoped.where(at[:deleted_at].not_eq(nil)).count
+    end
+
+    def all_escorts_in_last_number_of_days(num_days = 30)
+      @last_num_dats ||= Escort.connection.execute(%{
+        SELECT
+          COALESCE(subquery1.date, subquery2.date) AS date,
+          COALESCE(subquery1.total, 0) as total_issued,
+          COALESCE(subquery2.total, 0) AS total_not_issued
+        FROM
+          (#{issued_in_last_number_of_days(num_days)}) subquery1
+          FULL OUTER JOIN
+          (#{not_issued_in_last_number_of_days(num_days)}) subquery2
+          ON (subquery1.date = subquery2.date)
+        ORDER BY date;
+      })
+    end
+
+    def issued_in_last_number_of_days(num_days)
+      Escort.unscoped.issued.select('count(*) AS total, moves.date').in_last_days(num_days).group(:date).to_sql
+    end
+
+    def not_issued_in_last_number_of_days(num_days)
+      Escort.unscoped.active.select('count(*) AS total, moves.date').in_last_days(num_days).group(:date).to_sql
     end
   end
 end
