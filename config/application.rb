@@ -23,7 +23,7 @@ module MovingPeopleSafely
     config.proposition_title = 'Moving people safely'
     config.phase = 'alpha'
     config.product_type = 'service'
-    config.feedback_url = ''
+    config.feedback_url = 'https://www.surveymonkey.co.uk/r/eperfeedback'
     config.assets.paths << Rails.root.join('vendor', 'bower')
     config.autoload_paths << "#{Rails.root}/app/models/sections"
     config.time_zone = 'London'
