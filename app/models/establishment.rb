@@ -1,4 +1,4 @@
-class Establishment
+class Establishment < ApplicationRecord
   def self.current_for(_prison_number)
     # current will return a dummy record
     # in the future should create an instance of the establishment

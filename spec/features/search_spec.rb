@@ -2,10 +2,24 @@ require 'feature_helper'
 
 RSpec.feature 'searching for a prisoner', type: :feature do
   context 'with a valid prison number' do
+    let(:prison_number) { 'A1324BC' }
+
+    before do
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/location")
+    end
+
     scenario 'prisoner not present in MPS' do
       login
       search_with_valid_prison_number
       expect_no_results
+    end
+
+    scenario 'but user has no access to the given prison number' do
+      login_options = { sso: { info: { permissions: [{'organisation' => 'unauthorized.location.noms.moj'}]}} }
+
+      login(nil, login_options)
+      search_with_valid_prison_number(prison_number)
+      expect_error_message('You cannot access the detainee with the provided prison number A1324BC')
     end
 
     scenario 'prisoner present with an active escort' do
@@ -63,8 +77,9 @@ RSpec.feature 'searching for a prisoner', type: :feature do
     expect(page).to have_button('Start new PER')
   end
 
-  def expect_error_message
-    expect(page).to have_content("The prison number 'INVALID-PRISON-NUMBER' is not valid")
+  def expect_error_message(error_message = nil)
+    error_message ||= "The prison number 'INVALID-PRISON-NUMBER' is not valid"
+    expect(page).to have_content(error_message)
   end
 
   def expect_result_with_move(detainee, move)

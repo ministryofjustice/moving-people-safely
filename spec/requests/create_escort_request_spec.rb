@@ -2,8 +2,26 @@ require 'rails_helper'
 
 RSpec.describe 'Create escort request', type: :request do
   let(:prison_number) { 'A1234AY' }
+  let(:user) { create(:user) }
+  let(:sso_config) { { info: { permissions: user.permissions } } }
 
-  before { sign_in create(:user) }
+  before do
+    sign_in(user, sso: sso_config)
+    stub_nomis_api_request(:get, "/offenders/#{prison_number}/location")
+  end
+
+  context 'when the user is not authorized to initiate a PER for the given prison number' do
+    let(:sso_config) { { info: { permissions: [{'organisation' => 'does.not.have.access'}] } } }
+
+    it 'does not create a new escort record and redirects to homepage' do
+      expect {
+        post '/escorts', params: { escort: { prison_number: prison_number } }
+      }.not_to change { Escort.where(prison_number: prison_number).count }.from(0)
+
+      expect(flash[:error]).to eq("You cannot access the detainee with the provided prison number #{prison_number}.")
+      expect(response).to redirect_to(root_path)
+    end
+  end
 
   context 'when there is no previous escort for given prison number' do
     it 'creates a brand new escort record and redirects to the new detainee form' do

@@ -21,6 +21,13 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_path unless sso_identity
   end
 
+  def authorize_user!
+    unless AuthorizeUserToAccessPrisoner.call(current_user, prison_number)
+      flash[:error] = t('alerts.detainee.access.unauthorized', prison_number: prison_number)
+      redirect_to(root_path)
+    end
+  end
+
   def current_user
     @current_user ||= sso_identity&.user
   end

@@ -54,6 +54,16 @@ ActiveRecord::Schema.define(version: 20170721132806) do
     t.index ["prison_number"], name: "index_escorts_on_prison_number", using: :btree
   end
 
+  create_table "establishments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.string "nomis_id"
+    t.string "sso_id"
+    t.index ["nomis_id"], name: "index_establishments_on_nomis_id", unique: true, using: :btree
+    t.index ["sso_id"], name: "index_establishments_on_sso_id", unique: true, using: :btree
+    t.index ["type"], name: "index_establishments_on_type", using: :btree
+  end
+
   create_table "healthcare", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "physical_issues"
     t.text     "physical_issues_details"
@@ -219,11 +229,12 @@ ActiveRecord::Schema.define(version: 20170721132806) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email",      default: "", null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "email",       default: "", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "provider"
     t.string   "uid"
+    t.text     "permissions"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 

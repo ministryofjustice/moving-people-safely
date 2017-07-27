@@ -1,6 +1,6 @@
 module ApplicationPageHelpers
-  def login(user=nil)
-    OauthHelper.configure_mock
+  def login(user=nil, options = { sso: { info: { permissions: [{'organisation' => 'digital.noms.moj'}]}}})
+    OauthHelper.configure_mock(options.fetch(:sso))
     visit new_session_path
     click_on "Sign in with Mojsso"
   end
