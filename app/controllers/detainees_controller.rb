@@ -12,6 +12,7 @@ class DetaineesController < ApplicationController
     form = Forms::Detainee.new(escort.build_detainee)
     if form.validate(params[:detainee])
       form.save
+      track_events.call
       redirect_to new_escort_move_path(escort)
     else
       render :new, locals: { form: form }
@@ -99,5 +100,9 @@ class DetaineesController < ApplicationController
     else
       redirect_to new_escort_move_path(escort), options
     end
+  end
+
+  def track_events
+    TrackEvents.new(current_user, escort, :detainee_complete, request)
   end
 end
