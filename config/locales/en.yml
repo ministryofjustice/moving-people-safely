@@ -1,5 +1,8 @@
 en:
   helpers:
+    complex_attributes:
+      needs: Medication
+      return_instructions: Establishment
     fieldset:
       default_title: 'Select all that apply:'
       allergies:
@@ -32,7 +35,7 @@ en:
       needs:
         has_medications: Will they need to be given medication during this journey?
         medications:
-          description: Medicine
+          description: Medicine name
           administration: How is it given?
           carrier: Who will carry the medicine?
       other_risk:
@@ -149,7 +152,7 @@ en:
             add_multiple: Add another medicine
         has_medications: "Will they need to be given medication during this journey?"
         medications:
-          description: Medicine
+          description: Medicine name
           administration: How is it given?
           carrier: Who will carry the medicine?
           carrier_choices:

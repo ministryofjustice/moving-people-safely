@@ -7,7 +7,7 @@ div
       .grid-row
         .column-two-thirds
           .form-group-compound
-            h2 = "Item #{mf.index + 1}"
+            h2= t("helpers.complex_attributes.#{f.object.name}")
             = mf.hidden_field :id
             - mf.object.complex_attributes.each do |subquestion|
               .multiple-field
