@@ -48,6 +48,7 @@ module GovukElementsErrorsHelper
     localised_message = localized_label(object_prefixes, attribute)
     localised_message = nested_error_message(nested_model, nested_index, localised_message) if nested_index
     message.sub! default_label(attribute), localised_message
+    message
   end
 
   def self.nested_error_message(nested_model, nested_index, message)
