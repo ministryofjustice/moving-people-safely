@@ -4,7 +4,6 @@ module Forms
     NOT_FOR_RELEASE_REASONS = %w[serving_sentence further_charges licence_revoke
                                  held_for_immigration other].freeze
 
-    property :from, type: StrictString, default: 'HMP Bedford', validates: { presence: true }
     property :to,   type: StrictString, validates: { presence: true }
     property :date, type: TextDate
 

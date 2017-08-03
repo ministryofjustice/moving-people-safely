@@ -1,7 +1,6 @@
 module Page
   class MoveDetails < Base
     def complete_form(move, options = {})
-      fill_in 'From', with: move.from
       fill_in 'To', with: move.to
       fill_in 'Date', with: move.date
       fill_in_not_for_release_details(move)

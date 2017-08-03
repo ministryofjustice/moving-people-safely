@@ -31,7 +31,7 @@ module Page
 
     def confirm_move_info(move, options = {})
       within('.move-information') do
-        expect(page).to have_content move.from
+        expect(page).to have_content move.from_establishment.name
         expect(page).to have_content move.to
         expect(page).to have_content move.date.strftime('%d %b %Y')
       end

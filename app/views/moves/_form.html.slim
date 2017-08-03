@@ -5,7 +5,9 @@
   = form_for form, url: submit_path, method: method do |f|
     = f.error_messages
 
-    = f.text_field :from
+    .form-group
+      label.form-label From
+      = from_establishment&.name
     = f.text_field :to
     = f.date_picker_text_field :date
     = render partial: 'shared/radio_date_picker', locals: { picker: RadioDatePickerPresenter.new('move[date]', form.date) }

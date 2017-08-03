@@ -36,5 +36,31 @@ RSpec.feature 'detainees due to move', type: :feature do
       dashboard.assert_incomplete_gauge(:offences, 2)
       dashboard.assert_escorts_due(5)
     end
+
+    scenario 'shows escorts scoped in the establishment of the user' do
+      bedford_sso_id = 'bedford.prisons.noms.moj'
+      bedford_nomis_id = 'BDI'
+      bedford = create(:prison, name: 'HMP Bedford', sso_id: bedford_sso_id, nomis_id: bedford_nomis_id)
+
+      brixton_sso_id = 'brixton.prisons.noms.moj'
+      brixton_nomis_id = 'BXI'
+      brixton = create(:prison, name: 'HMP Brixton', sso_id: brixton_sso_id, nomis_id: brixton_nomis_id)
+
+      move = create(:move, date: '11/08/2016', from_establishment: bedford)
+      create(:escort, :completed, move: move)
+
+      move = create(:move, date: '11/08/2016', from_establishment: bedford)
+      create(:escort, :completed, move: move)
+
+      move = create(:move, date: '11/08/2016', from_establishment: brixton)
+      create(:escort, :completed, move: move)
+
+      login_options = { sso: { info: { permissions: [{'organisation' => bedford_sso_id}]}} }
+
+      login(nil, login_options)
+
+      dashboard.search_escorts_due_on('11/08/2016')
+      dashboard.assert_escorts_due(2)
+    end
   end
 end

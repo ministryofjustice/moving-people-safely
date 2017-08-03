@@ -16,6 +16,9 @@ class Escort < ApplicationRecord
   validates_attachment_content_type :document, content_type: ['application/pdf']
 
   scope :for_date, ->(date) { eager_load(:move).where(moves: { date: date }) }
+  scope :for_user, lambda { |user|
+    joins(:move).where('moves.from_establishment_id IN (?)', user.authorized_establishments) unless user.is_admin?
+  }
   scope :with_incomplete_risk, -> { joins(:risk).merge(Risk.not_confirmed) }
   scope :with_incomplete_healthcare, -> { joins(:healthcare).merge(Healthcare.not_confirmed) }
   scope :without_risk_assessment, -> { includes(:risk).where(risks: { escort_id: nil }) }

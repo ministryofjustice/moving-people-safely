@@ -1,9 +1,9 @@
 class HomepageController < ApplicationController
   before_action :validate_search, only: :show
-  before_action :authorize_user!, only: :show, if: :valid_search?
+  before_action :authorize_user_to_access_prisoner!, only: :show, if: :valid_search?
 
   def show
-    @escorts = Escort.for_date(date_picker.date)
+    @escorts = Escort.for_date(date_picker.date).for_user(current_user)
     render :show, locals: locals
   end
 

@@ -6,7 +6,6 @@ RSpec.describe Forms::Move, type: :form do
 
   let(:params) {
     {
-      from: 'Bedford',
       to: 'Albany',
       date: '1/2/2017',
       not_for_release: 'yes',
@@ -14,13 +13,9 @@ RSpec.describe Forms::Move, type: :form do
     }.with_indifferent_access
   }
 
-  describe 'defaults' do
-    its(:from) { is_expected.to eq 'HMP Bedford' }
-  end
-
   describe '#validate' do
     describe 'nilifies empty strings' do
-      %w[from to].each do |attribute|
+      %w[to].each do |attribute|
         it { is_expected.to validate_strict_string(attribute) }
       end
     end
