@@ -4,6 +4,9 @@ RSpec.feature 'printing a PER', type: :feature do
   let(:reviewer) {
     create(:user, first_name: 'Nelle', last_name: 'Bailey')
   }
+  let(:bedford) {
+    create(:prison, name: 'HMP Bedford')
+  }
   let(:escort) {
     create(
       :escort,
@@ -16,7 +19,7 @@ RSpec.feature 'printing a PER', type: :feature do
   let(:move) {
     create(
       :move,
-      from: 'HMP Bedford',
+      from_establishment: bedford,
       to: 'Luton Crown Court',
       date: Date.civil(2099, 4, 22)
     )

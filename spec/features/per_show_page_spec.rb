@@ -269,29 +269,25 @@ RSpec.feature 'PER show page', type: :feature do
   end
 
   context 'move information' do
-    let(:detainee) { create(:detainee) }
-    let(:move) { create(:move) }
-    let(:escort) { create(:escort, detainee: detainee, move: move) }
-
     context 'issued PER' do
-      let(:escort) { create(:escort, :issued, detainee: detainee, move: move) }
+      let(:escort) { create(:escort, :issued) }
 
       scenario 'displays all the mandatory move information' do
         login
 
         visit escort_path(escort)
-        escort_page.confirm_move_info(move)
+        escort_page.confirm_move_info(escort.move)
       end
     end
 
     context 'unissued PER' do
-      let(:move) { create(:move) }
+      let(:escort) { create(:escort, :completed) }
 
       scenario 'displays all the mandatory move information' do
         login
 
         visit escort_path(escort)
-        escort_page.confirm_move_info(move)
+        escort_page.confirm_move_info(escort.move)
       end
     end
   end

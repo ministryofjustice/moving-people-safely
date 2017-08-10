@@ -2,9 +2,14 @@ require 'feature_helper'
 
 RSpec.feature 'Reuse of previously entered PER data', type: :feature do
   scenario 'Reviewing the data of a reused PER' do
+    prison_number = 'A4321FD'
+    establishment_nomis_id = 'BDI'
+    valid_body = { establishment: { code: establishment_nomis_id } }.to_json
+    stub_nomis_api_request(:get, "/offenders/#{prison_number}/location", body: valid_body)
+    prison = create(:prison, name: 'HMP Bedford', nomis_id: establishment_nomis_id)
+
     login
 
-    prison_number = 'A4321FD'
     detainee = create(:detainee, prison_number: prison_number)
     create(:escort, :issued, prison_number: prison_number, detainee: detainee)
 

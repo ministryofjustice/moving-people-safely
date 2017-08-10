@@ -107,4 +107,32 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '#is_admin?' do
+    context 'when is admin' do
+      subject { described_class.new(permissions: [{"organisation"=>User::ADMIN_ORGANISATION}])}
+      its(:is_admin?) { is_expected.to be_truthy }
+    end
+
+    context 'when is not admin' do
+      subject { described_class.new(permissions: []) }
+      its(:is_admin?) { is_expected.to be_falsey }
+    end
+  end
+
+  describe '#authorized_establishments' do
+    let!(:bedford) { create(:establishment, sso_id: 'bedford.prisons.noms.moj')}
+    let!(:pentonville) { create(:establishment, sso_id: 'pentonville.prisons.noms.moj')}
+    let(:permissions) {
+      [
+        { 'organisation' => 'bedford.prisons.noms.moj' },
+        { 'organisation' => 'pentonville.prisons.noms.moj' }
+      ]
+    }
+    subject { described_class.new(permissions: permissions)}
+
+    it 'returns the establishments' do
+      expect(subject.authorized_establishments).to eq [bedford, pentonville]
+    end
+  end
 end

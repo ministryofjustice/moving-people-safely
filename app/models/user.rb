@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  ADMIN_ORGANISATION = 'digital.noms.moj'.freeze
+
   serialize :permissions
 
   class << self
@@ -32,5 +34,16 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}".strip
+  end
+
+  def authorized_establishments
+    permissions.each_with_object([]) do |permission, locations|
+      location = Establishment.find_by(sso_id: permission['organisation'])
+      locations << location if location
+    end
+  end
+
+  def is_admin?
+    permissions.any? { |permission| permission['organisation'] == ADMIN_ORGANISATION }
   end
 end

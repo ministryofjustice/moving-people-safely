@@ -1,6 +1,7 @@
 class EscortsController < ApplicationController
   helper_method :escort
-  before_action :authorize_user!, only: :create
+  before_action :authorize_user_to_access_prisoner!, only: :create
+  before_action :authorize_user_to_access_escort!, except: :create
   before_action :redirect_if_missing_data, only: :show
   before_action :redirect_if_not_cancellable, only: [:confirm_cancel, :cancel]
 

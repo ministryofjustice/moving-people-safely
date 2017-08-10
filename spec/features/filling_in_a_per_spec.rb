@@ -11,15 +11,22 @@ RSpec.feature 'filling in a PER', type: :feature do
   }
 
   scenario 'adding a new escort and filling it in' do
-    login
+    establishment_sso_id = 'bedford.prisons.noms.moj'
+    establishment_nomis_id = 'BDI'
+    prison = create(:prison, name: 'HMP Bedford', sso_id: establishment_sso_id, nomis_id: establishment_nomis_id)
+    login_options = { sso: { info: { permissions: [{'organisation' => establishment_sso_id}]}} }
+
+    login(nil, login_options)
 
     healthcare_data = build(:healthcare, :with_medications)
     risk_data = build(:risk, :with_high_csra)
     detainee = build(:detainee)
-    move_data = build(:move)
+    move_data = build(:move, from_establishment: prison)
 
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}", status: 404)
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/image", status: 404)
+    valid_body = { establishment: { code: establishment_nomis_id } }.to_json
+    stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/location", body: valid_body)
 
     dashboard.search(detainee.prison_number)
     dashboard.create_new_escort.click

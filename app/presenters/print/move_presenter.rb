@@ -6,6 +6,10 @@ module Print
       model.date.to_s(:humanized)
     end
 
+    def from
+      model.from_establishment&.name
+    end
+
     private
 
     def model

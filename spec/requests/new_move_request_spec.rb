@@ -5,6 +5,13 @@ RSpec.describe 'New Move requests', type: :request do
   let(:detainee) { create(:detainee, prison_number: prison_number) }
   let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee) }
 
+  before do
+    establishment_nomis_id = 'BDI'
+    valid_body = { establishment: { code: establishment_nomis_id } }.to_json
+    stub_nomis_api_request(:get, "/offenders/#{prison_number}/location", body: valid_body)
+    prison = create(:prison, name: 'HMP Bedford', nomis_id: establishment_nomis_id)
+  end
+
   describe "#new" do
     context "when the user is not authorized" do
       it "user is redirected to the login page" do

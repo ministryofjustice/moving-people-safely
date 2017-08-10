@@ -16,7 +16,9 @@ RSpec.describe 'PER page requests', type: :request do
     end
 
     context 'when user is authorized' do
-      before { sign_in(create(:user)) }
+      let(:permissions) { { sso: { info: { permissions: [{'organisation' => 'digital.noms.moj'}]}}} }
+
+      before { sign_in(create(:user), permissions) }
 
       context 'when the escort for the provided id does not exist' do
         it 'raises a record not found error' do
@@ -50,6 +52,36 @@ RSpec.describe 'PER page requests', type: :request do
         it "responds with 200" do
           get "/escorts/#{escort.id}"
           expect(response).to have_http_status(200)
+        end
+      end
+
+      context 'when the escort and the user belong to the same establishment' do
+        let(:bedford_sso_id) { 'bedford.prisons.noms.moj' }
+        let(:bedford_nomis_id) { 'BDI' }
+        let(:bedford) { create(:prison, name: 'HMP Bedford', sso_id: bedford_sso_id, nomis_id: bedford_nomis_id) }
+        let(:escort) { create(:escort, :completed, move: create(:move, from_establishment: bedford)) }
+
+        let(:permissions) { { sso: { info: { permissions: [{'organisation' => bedford_sso_id}]}} } }
+
+        it "redirects to root path" do
+          get "/escorts/#{escort.id}"
+          expect(response).to have_http_status(200)
+        end
+      end
+
+      context 'when the escort and the user do not belong to the same establishment' do
+        let(:bedford_sso_id) { 'bedford.prisons.noms.moj' }
+        let(:brixton_sso_id) { 'brixton.prisons.noms.moj' }
+        let(:bedford_nomis_id) { 'BDI' }
+        let(:bedford) { create(:prison, name: 'HMP Bedford', sso_id: bedford_sso_id, nomis_id: bedford_nomis_id) }
+        let(:escort) { create(:escort, :completed, move: create(:move, from_establishment: bedford)) }
+
+        let(:permissions) { { sso: { info: { permissions: [{'organisation' => brixton_sso_id}]}} } }
+
+        it "redirects to root path" do
+          get "/escorts/#{escort.id}"
+          expect(response).to have_http_status(302)
+          expect(response).to redirect_to root_path
         end
       end
     end

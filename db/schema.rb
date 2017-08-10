@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721132806) do
+ActiveRecord::Schema.define(version: 20170802160521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,7 +90,6 @@ ActiveRecord::Schema.define(version: 20170721132806) do
   end
 
   create_table "moves", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "from"
     t.string   "to"
     t.date     "date"
     t.datetime "created_at",                     null: false
@@ -99,6 +98,7 @@ ActiveRecord::Schema.define(version: 20170721132806) do
     t.string   "not_for_release_reason"
     t.text     "not_for_release_reason_details"
     t.uuid     "escort_id"
+    t.uuid     "from_establishment_id"
     t.index ["escort_id"], name: "index_moves_on_escort_id", using: :btree
   end
 
