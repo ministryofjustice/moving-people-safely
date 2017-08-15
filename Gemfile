@@ -29,7 +29,7 @@ gem 'sentry-raven'
 gem 'virtus'
 gem 'wicked'
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary', git: 'https://github.com/ownadi/wkhtmltopdf_binary_gem', branch: 'update'
 
 group :development, :test do
   gem 'factory_girl_rails'

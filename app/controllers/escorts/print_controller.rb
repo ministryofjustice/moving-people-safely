@@ -5,6 +5,7 @@ module Escorts
     end
 
     def show
+      escort.update issued_at: nil
       error_redirect && return unless printable_escort?
       issue_escort_unless_issued!
       data = open(escort.document_path)

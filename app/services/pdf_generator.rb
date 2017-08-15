@@ -11,7 +11,9 @@ class PdfGenerator
       cover: cover_page,
       header: { content: header_content, spacing: 5 },
       footer: { content: footer_content, spacing: 10 },
-      print_media_type: true
+      print_media_type: true,
+      disable_smart_shrinking: true,
+      dpi: 70
     )
   end
 
