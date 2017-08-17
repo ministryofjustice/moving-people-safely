@@ -56,8 +56,8 @@ en:
         current_e_risk_details: 'Select the E-List category:'
         escape_pack: Is an Escape Pack needed for this journey?
         escort_risk_assessment: Is an Escort Risk Assessment needed for this journey?
-        previous_escape_attempts: Have they made previous escape attempts?
-        previous_escape_attempts_type: 'Attempted to escape from (select all that apply):'
+        previous_escape_attempts: Are they an escape risk?
+        previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
       sex_offences:
         sex_offence: Are they a current or previous sex offender?
         sex_offence_type: 'Victim (select all that apply):'
@@ -197,16 +197,8 @@ en:
           e_list_heightened: E-List-Heightened
         escape_pack: "Has an Escape Pack been created for this journey?"
         escort_risk_assessment: "Has an Escort Risk Assessment been completed for this journey?"
-        previous_escape_attempts: Have they made previous escape attempts?
-        previous_escape_attempts_type: Location which attempted to escape from
-        prison_escape_attempt: Prison
-        prison_escape_attempt_details: Last prison escape attempt details
-        court_escape_attempt: Court
-        court_escape_attempt_details: Last court escape attempt details
-        police_escape_attempt: Police custody
-        police_escape_attempt_details: Last police escape attempt details
-        other_type_escape_attempt: Other
-        other_type_escape_attempt_details: Last other type of escape attempt details
+        previous_escape_attempts: escape risk
+        previous_escape_attempts_details: details for escape risk
       sex_offences:
         sex_offence: Are they a current or previous sex offender?
         sex_offence_adult_male_victim: Adult male
@@ -322,12 +314,9 @@ en:
         date_of_most_recently_closed_acct: DD/MM/YYYY
       security:
         category_a: In NOMIS, check the header section of the prisoner’s record for category information.
-        current_e_risk: Check Mercury for intelligence or in NOMIS, check the header section of the prisoner’s record for the Escape Risk alert. Check alert comments and case notes for details.
-        previous_escape_attempts_html: 'In NOMIS, check <i>Incidents</i> for details of escape attempts.'
-        prison_escape_attempt_details: Give details of last escape attempt
-        court_escape_attempt_details: Give details of last escape attempt
-        police_escape_attempt_details: Give details of last escape attempt
-        other_type_escape_attempt_details: Give details of last escape attempt
+        current_e_risk: Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the E-List alert. Check alert comments and case notes for details.
+        previous_escape_attempts_html: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the Escape Risk alert. Check alert comments and case notes for details.'
+        previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
       sex_offences:
         sex_offence_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and <i>Legal cases > Court cases > Offences</i> for details.'
         date_most_recent_sexual_offence: DD/MM/YYYY
@@ -494,10 +483,7 @@ en:
           escape_pack: Escape pack needed?
           escort_risk_assessment: Escort risk assessment needed?
           other_escape_risk_info: Other escape risk information
-          prison_escape_attempt: Prison
-          court_escape_attempt: Court
-          police_escape_attempt: Police
-          other_type_escape_attempt: Other
+          previous_escape_attempts: 'Escape risk'
         current_e_risk: *summary_security
         previous_escape_attempts: *summary_security
         escape_status: *summary_security
@@ -539,7 +525,7 @@ en:
         needs: Essential medication
         other_risk: Other risk information
         physical: Physical health issues
-        previous_escape_attempts: Made previous escape attempts
+        previous_escape_attempts: Escape risk
         risk_to_self: Risk to self
         risk_from_others: Risk from others
         sex_offences: Sex offender
@@ -574,7 +560,7 @@ en:
         acct_status: ACCT
         category_a: Cat A
         csra: CSRA
-        current_e_risk: E list
+        current_e_risk_html: "Escape&nbsp;risk"
         mpv: MPV
         not_for_release: Not for release
         rule_45: Rule 45

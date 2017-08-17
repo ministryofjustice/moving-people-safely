@@ -157,37 +157,25 @@ RSpec.feature 'PER show page', type: :feature do
       context 'when PER has no yet a risk assessment' do
         scenario 'associated alert is displayed as inactive' do
           escort_page.confirm_alert_as_inactive(:e_list)
-          expect(page.find('#e_list_alert .alert-text').text).to be_empty
         end
       end
 
       context 'when PER has a risk assessment' do
         let(:escort) { create(:escort, default_escort_options.merge(risk: risk)) }
 
-        context 'when detainee has E list as yes and as standard' do
+        context 'when detainee has E list as yes' do
           let(:risk) { Risk.new(current_e_risk: 'yes', current_e_risk_details: 'e_list_standard') }
 
           scenario 'associated alert is displayed as active' do
             escort_page.confirm_alert_as_active(:e_list)
-            expect(page.find('#e_list_alert .alert-text').text).to eq('E-List-Standard')
           end
         end
 
-        context 'when detainee has E list as yes and as escort' do
-          let(:risk) { Risk.new(current_e_risk: 'yes', current_e_risk_details: 'e_list_escort') }
+        context 'when detainee has escape risk as yes' do
+          let(:risk) { Risk.new(previous_escape_attempts: 'yes', previous_escape_attempts_details: 'escape risk details') }
 
           scenario 'associated alert is displayed as active' do
             escort_page.confirm_alert_as_active(:e_list)
-            expect(page.find('#e_list_alert .alert-text').text).to eq('E-List-Escort')
-          end
-        end
-
-        context 'when detainee has E list as yes and as heightened' do
-          let(:risk) { Risk.new(current_e_risk: 'yes', current_e_risk_details: 'e_list_heightened') }
-
-          scenario 'associated alert is displayed as active' do
-            escort_page.confirm_alert_as_active(:e_list)
-            expect(page.find('#e_list_alert .alert-text').text).to eq('E-List-Heightened')
           end
         end
 
@@ -196,7 +184,14 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as inactive' do
             escort_page.confirm_alert_as_inactive(:e_list)
-            expect(page.find('#e_list_alert .alert-text').text).to be_empty
+          end
+        end
+
+        context 'when detainee has escape risk as no' do
+          let(:risk) { Risk.new(previous_escape_attempts: 'no') }
+
+          scenario 'associated alert is displayed as inactive' do
+            escort_page.confirm_alert_as_inactive(:e_list)
           end
         end
       end

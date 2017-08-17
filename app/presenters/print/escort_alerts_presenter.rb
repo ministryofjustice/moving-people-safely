@@ -11,7 +11,7 @@ module Print
 
     RISK_ATTRIBUTES = %i[
       acct_status date_of_most_recently_closed_acct rule_45
-      current_e_risk current_e_risk_details csra category_a
+      current_e_risk previous_escape_attempts csra category_a
     ].freeze
 
     delegate(:detainee, :move, :risk, :healthcare, to: :model)
@@ -32,7 +32,7 @@ module Print
     end
 
     def current_e_risk_alert
-      alert_for(:current_e_risk, status: current_e_risk_status, text: current_e_risk_text)
+      alert_for(:current_e_risk_html, status: current_e_risk_status)
     end
 
     def csra_alert
@@ -80,14 +80,7 @@ module Print
     end
 
     def current_e_risk_status
-      return :off if current_e_risk != 'yes'
-      return :on if %w[e_list_standard e_list_escort e_list_heightened].include?(current_e_risk_details)
-      :off
-    end
-
-    def current_e_risk_text
-      return unless current_e_risk == 'yes' || current_e_risk_details.present?
-      localised_attr_value(:current_e_risk_details)
+      current_e_risk == 'yes' || previous_escape_attempts == 'yes' ? :on : :off
     end
 
     def status_for(attribute)
