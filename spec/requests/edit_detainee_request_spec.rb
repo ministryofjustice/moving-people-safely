@@ -48,8 +48,9 @@ RSpec.describe 'Edit detainee requests', type: :request do
 
     context 'when the detainee exists' do
       context 'and no pull option is provided' do
-        it 'does not retrieve image from remote API' do
-          expect(Nomis::Api.instance).not_to receive(:get).with("/offenders/#{prison_number}/image")
+        it 'retrieves details and image from remote API' do
+          expect(Nomis::Api.instance).to receive(:get).with("/offenders/#{prison_number}")
+          expect(Nomis::Api.instance).to receive(:get).with("/offenders/#{prison_number}/image")
           get "/escorts/#{escort.id}/detainee/edit"
         end
       end

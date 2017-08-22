@@ -60,7 +60,7 @@ class DetaineesController < ApplicationController
   end
 
   def set_extra_attrs
-    options = { pull: :none }
+    options = { pull: :all }
     options = params.slice(:pull) if params[:pull]
     status, remote_attrs = fetch_response_for(detainee.prison_number, options)
     flash_fetcher_errors(status.errors) if status.error?

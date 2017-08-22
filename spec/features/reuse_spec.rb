@@ -6,6 +6,8 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     establishment_nomis_id = 'BDI'
     valid_body = { establishment: { code: establishment_nomis_id } }.to_json
     stub_nomis_api_request(:get, "/offenders/#{prison_number}/location", body: valid_body)
+    stub_nomis_api_request(:get, "/offenders/#{prison_number}/image")
+    stub_nomis_api_request(:get, "/offenders/#{prison_number}")
     prison = create(:prison, name: 'HMP Bedford', nomis_id: establishment_nomis_id)
 
     login
@@ -15,6 +17,9 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
 
     dashboard.search(detainee.prison_number)
     dashboard.click_add_new_escort
+
+    detainee_details.complete_form(detainee)
+
     move_data = build(:move, date: 1.day.from_now)
     move_details.complete_form(move_data)
 

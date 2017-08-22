@@ -40,7 +40,7 @@ RSpec.describe 'Create escort request', type: :request do
   context 'when there is a previous escort for given prison number' do
     let!(:existent_escort) { create(:escort, :completed, prison_number: prison_number) }
 
-    it 'creates a new escort record with the data from the existent escort and redirects to the new move form' do
+    it 'creates a new escort record with the data from the existent escort and redirects to the edit detainee form' do
       expect {
         post '/escorts', params: { escort: { prison_number: prison_number } }
       }.to change { Escort.where(prison_number: prison_number).count }.from(1).to(2)
@@ -49,7 +49,7 @@ RSpec.describe 'Create escort request', type: :request do
       expect(escort.detainee).to be_an_instance_of(Detainee)
       expect(escort.move).to be_nil
 
-      expect(response).to redirect_to(new_escort_move_path(escort))
+      expect(response).to redirect_to(edit_escort_detainee_path(escort))
     end
   end
 end
