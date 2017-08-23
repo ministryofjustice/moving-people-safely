@@ -10,7 +10,7 @@ module Metrics
           total_initiated_escorts: total_initiated_escorts,
           total_issued_escorts: total_issued_escorts,
           total_unique_detainees_escorted: total_unique_detainees_escorted,
-          total_reused_escorts: total_issued_escorts - total_unique_detainees_escorted,
+          total_reused_escorts: total_reused_escorts,
           total_unused_escorts: total_escorts_auto_deleted
         }
       ]
@@ -18,6 +18,12 @@ module Metrics
 
     def escorts_by_date
       all_escorts_in_last_number_of_days(30)
+    end
+
+    def hours_saved
+      hours = (total_reused_escorts * 23.minutes) / (60 * 60)
+
+      [{ hours_saved: hours }]
     end
 
     private
@@ -30,6 +36,10 @@ module Metrics
 
     def total_initiated_escorts
       @tinitiated ||= Escort.unscoped.count
+    end
+
+    def total_reused_escorts
+      total_issued_escorts - total_unique_detainees_escorted
     end
 
     def total_issued_escorts

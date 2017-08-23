@@ -11,6 +11,7 @@ module Metrics
       logger.info 'Sending updated metrics to Geckoboard dataset'
       send_dataset(total_escorts_dataset, calculator.total_escorts, 'total escorts')
       send_dataset(escorts_by_date_dataset, calculator.escorts_by_date, 'escorts by date')
+      send_dataset(hours_saved_dataset, calculator.hours_saved, 'hours saved')
     end
 
     private
@@ -53,6 +54,12 @@ module Metrics
         Geckoboard::NumberField.new(:total_issued, name: 'Total Issued Escorts'),
         Geckoboard::NumberField.new(:total_not_issued, name: 'Total Not Issued Escorts'),
         Geckoboard::DateField.new(:date, name: 'PER move date')
+      ])
+    end
+
+    def hours_saved_dataset
+      @time_saved_dataset ||= client.datasets.find_or_create("#{dataset_prefix}.hours_saved_report", fields: [
+        Geckoboard::NumberField.new(:hours_saved, name: 'Hours saved')
       ])
     end
 
