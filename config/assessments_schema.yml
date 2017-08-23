@@ -731,74 +731,11 @@ assessment:
                     value: 'yes'
                     questions:
                       -
-                        name: previous_escape_attempts_type
-                        type: group
+                        name: previous_escape_attempts_details
+                        type: string
                         validators:
                           -
-                            name: 'Assessments::GroupValidator'
-                            options:
-                              at_least: true
-                        questions:
-                          -
-                            name: prison_escape_attempt
-                            type: boolean
-                            answers:
-                              -
-                                value: false
-                              -
-                                value: true
-                                questions:
-                                  -
-                                    name: prison_escape_attempt_details
-                                    type: string
-                                    validators:
-                                      -
-                                        name: 'Assessments::PresenceValidator'
-                          -
-                            name: court_escape_attempt
-                            type: boolean
-                            answers:
-                              -
-                                value: false
-                              -
-                                value: true
-                                questions:
-                                  -
-                                    name: court_escape_attempt_details
-                                    type: string
-                                    validators:
-                                      -
-                                        name: 'Assessments::PresenceValidator'
-                          -
-                            name: police_escape_attempt
-                            type: boolean
-                            answers:
-                              -
-                                value: false
-                              -
-                                value: true
-                                questions:
-                                  -
-                                    name: police_escape_attempt_details
-                                    type: string
-                                    validators:
-                                      -
-                                        name: 'Assessments::PresenceValidator'
-                          -
-                            name: other_type_escape_attempt
-                            type: boolean
-                            answers:
-                              -
-                                value: false
-                              -
-                                value: true
-                                questions:
-                                  -
-                                    name: other_type_escape_attempt_details
-                                    type: string
-                                    validators:
-                                      -
-                                        name: 'Assessments::PresenceValidator'
+                            name: 'Assessments::PresenceValidator'
                   -
                     value: 'no'
           category_a:

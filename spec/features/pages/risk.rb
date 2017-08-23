@@ -176,10 +176,7 @@ module Page
     def fill_in_previous_escape_attempts
       if @risk.previous_escape_attempts == 'yes'
         choose 'security_previous_escape_attempts_yes'
-        fill_in_checkbox_with_details('Prison', @risk, :prison_escape_attempt)
-        fill_in_checkbox_with_details('Court', @risk, :court_escape_attempt)
-        fill_in_checkbox_with_details('Police', @risk, :police_escape_attempt)
-        fill_in_checkbox_with_details('Other', @risk, :other_type_escape_attempt)
+        fill_in 'security_previous_escape_attempts_details', with: @risk.previous_escape_attempts_details
       else
         choose 'security_previous_escape_attempts_no'
       end

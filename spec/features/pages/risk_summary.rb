@@ -98,12 +98,8 @@ module Page
     end
 
     def check_previous_escape_attempts(risk)
-      fields = %w[prison_escape_attempt court_escape_attempt
-                  police_escape_attempt other_type_escape_attempt]
       if risk.previous_escape_attempts == 'yes'
         check_section(risk, 'previous_escape_attempts', fields)
-      else
-        check_section_is_all_no(risk, 'previous_escape_attempts', fields)
       end
     end
 

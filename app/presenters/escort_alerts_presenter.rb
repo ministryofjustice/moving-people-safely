@@ -5,7 +5,7 @@ class EscortAlertsPresenter < SimpleDelegator
   ].freeze
   RISK_ATTRIBUTES = %i[
     acct_status date_of_most_recently_closed_acct rule_45
-    current_e_risk current_e_risk_details csra category_a
+    current_e_risk previous_escape_attempts csra category_a
   ].freeze
 
   delegate(*MOVE_ATTRIBUTES, to: :move, allow_nil: true)
@@ -50,15 +50,7 @@ class EscortAlertsPresenter < SimpleDelegator
   end
 
   def current_e_risk_alert_class
-    return 'alert-off' if current_e_risk != 'yes'
-    return 'alert-on' if %w[e_list_standard e_list_escort e_list_heightened].include?(current_e_risk_details)
-    'alert-off'
-  end
-
-  def current_e_risk_text
-    return unless current_e_risk == 'yes'
-    return unless current_e_risk_details.present?
-    localised_attr_value(:current_e_risk_details)
+    current_e_risk == 'yes' || previous_escape_attempts == 'yes' ? 'alert-on' : 'alert-off'
   end
 
   def csra_alert_class
