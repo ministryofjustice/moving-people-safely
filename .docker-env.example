@@ -1,0 +1,16 @@
+DB_HOST=db
+DB_USERNAME=postgres
+MOVING-PEOPLE-SAFELY_DATABASE_PASSWORD=
+DOCKER_STATE=setup
+RAILS_SERVE_STATIC_FILES=true
+MOCK_AWS_S3=true
+MOCK_SSO=true
+SECRET_KEY_BASE=f28f075b641e91a34e886373017ef056be2be44fda7a78e16a20a6ab9ae5851a0b20e4569da1dcebc392c8e18075f72ef6cd2775b5d822bdfa19f892bac77348
+MOJSSO_URL=<insert-sso-url>
+MOJSSO_ID=<insert-sso-id>
+MOJSSO_SECRET=<insert-sso-secret>
+NOMIS_API_HOST=<insert-nomis-api-host>
+NOMIS_API_TOKEN=<insert-nomis-api-token>
+NOMIS_API_KEY=<insert-nomis-api-host>
+GECKOBOARD_API_KEY=<insert-geckoboard-api-key>
+GECKOBOARD_DATASET_PREFIX=moving-people-safely-development

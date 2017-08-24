@@ -1,4 +1,4 @@
-if Rails.env.development? && ENV['MOCK_SSO'] == 'true'
+if ENV['MOCK_SSO'] == 'true'
   OmniAuth.config.test_mode = true
 
   begin
