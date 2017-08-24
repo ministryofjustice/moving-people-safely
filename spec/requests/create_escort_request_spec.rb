@@ -11,7 +11,16 @@ RSpec.describe 'Create escort request', type: :request do
   end
 
   context 'when the user is not authorized to initiate a PER for the given prison number' do
+    let(:prison_code) { 'BDI' }
+    let!(:prison) { create(:prison, nomis_id: prison_code) }
+    let(:location_service) { double(Detainees::LocationFetcher) }
+    let(:location_response) { { code: prison_code } }
     let(:sso_config) { { info: { permissions: [{'organisation' => 'does.not.have.access'}] } } }
+
+    before do
+      allow(Detainees::LocationFetcher).to receive(:new).with(prison_number).and_return(location_service)
+      allow(location_service).to receive(:call).and_return(location_response)
+    end
 
     it 'does not create a new escort record and redirects to homepage' do
       expect {
