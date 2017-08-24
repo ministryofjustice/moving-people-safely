@@ -11,6 +11,8 @@ RSpec.describe Forms::Detainee, type: :form do
       surname: 'Nail',
       gender: 'male',
       nationalities: 'British',
+      religion: 'Baptist',
+      ethnicity: 'European',
       date_of_birth: '30/12/1946',
       cro_number: 'SOMECRO',
       pnc_number: 'SOMEPNC',
@@ -77,4 +79,3 @@ RSpec.describe Forms::Detainee, type: :form do
     end
   end
 end
-

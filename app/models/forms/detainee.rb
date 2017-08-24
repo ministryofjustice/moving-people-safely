@@ -7,6 +7,8 @@ module Forms
     property :forenames,     type: StrictString
     property :date_of_birth, type: TextDate
     property :nationalities, type: StrictString
+    property :ethnicity,     type: StrictString
+    property :religion,      type: StrictString
     property :gender,        type: StrictString
     property :pnc_number,    type: StrictString
     property :cro_number,    type: StrictString

@@ -8,6 +8,8 @@ module Page
       fill_in 'Date of birth', with: detainee.date_of_birth
       fill_in 'Nationalities', with: detainee.nationalities
       choose detainee.gender.titlecase
+      fill_in 'Religion', with: detainee.religion
+      fill_in 'Ethnicity', with: detainee.ethnicity
       fill_in 'PNC number', with: detainee.pnc_number
       fill_in 'CRO number', with: detainee.cro_number
       fill_in 'Aliases', with: detainee.aliases
@@ -25,6 +27,8 @@ module Page
       expect(forenames_input.value).to be_blank
       expect(dob_input.value).to be_blank
       expect(nationalities_input.value).to be_blank
+      expect(religion_input.value).to be_blank
+      expect(ethnicity_input.value).to be_blank
       expect(gender_input).to eq(nil)
       expect(pnc_number_input.value).to be_blank
       expect(cro_number_input.value).to be_blank
@@ -74,6 +78,14 @@ module Page
 
     def nationalities_input
       find('#detainee_nationalities')
+    end
+
+    def religion_input
+      find('#detainee_religion')
+    end
+
+    def ethnicity_input
+      find('#detainee_ethnicity')
     end
 
     def pnc_number_input

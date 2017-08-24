@@ -1,31 +1,33 @@
 Outbound vehicle
-Registration                   Cell number                      PECS Barcode
+Registration                     Cell number                    PECS Barcode
 
 
 
 
 Return vehicle
-Registration                   Cell number
+Registration                     Cell number
 
 
 
 
 W1234BY: McTest Testy
- NOT FOR RELEASE          NO                           ESCAPE RISK        NO
+ NOT FOR RELEASE            NO                         ESCAPE RISK        NO
 
 
-Prison number    CRO number        PNC number        Aliases
-W1234BY          56TYY/UU          YI896668TT        Terry Tibbs
+Prison number    CRO number         PNC number       Aliases
+W1234BY          56TYY/UU           YI896668TT       Terry Tibbs
                                                      Mr T
-Date of birth    Age      Gender Nationality
-10 Dec 1970      46       M      British
+Date of birth    Age                Gender
+10 Dec 1970      46                 M
+Nationality      Religion           Ethnicity
+British          Baptist            European
 
 
 
 
 Move details
-Date of travel                     From                                To
-22 Apr 2099                        HMP Bedford                         Luton Crown Court
+Date of travel                      From                               To
+22 Apr 2099                         HMP Bedford                        Luton Crown Court
 
 
 

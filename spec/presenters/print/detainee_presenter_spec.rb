@@ -35,6 +35,30 @@ RSpec.describe Print::DetaineePresenter, type: :presenter do
     end
   end
 
+  describe 'religion' do
+    context 'when religin is not present' do
+      let(:options) { { religion: nil } }
+      specify { expect(presenter.religion).to eq('None') }
+    end
+
+    context 'when religion is present' do
+      let(:options) { { religion: 'Baptist' } }
+      specify { expect(presenter.religion).to eq('Baptist') }
+    end
+  end
+
+  describe 'ethnicity' do
+    context 'when ethnicity is not present' do
+      let(:options) { { ethnicity: nil } }
+      specify { expect(presenter.ethnicity).to eq('None') }
+    end
+
+    context 'when ethnicity is present' do
+      let(:options) { { ethnicity: 'European' } }
+      specify { expect(presenter.ethnicity).to eq('European') }
+    end
+  end
+
   describe '#nationalities' do
     context 'when the detainee info has no nationalities' do
       let(:options) { { nationalities: '' } }
