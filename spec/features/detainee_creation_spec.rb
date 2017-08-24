@@ -25,7 +25,7 @@ RSpec.feature 'Detainee creation', type: :feature do
         middle_names: 'C.',
         surname: 'Doe',
         date_of_birth: '11-09-1975',
-        gender: 'Male',
+        gender: { 'code' => 'M', 'desc' => 'Male'},
         nationalities: 'British',
         pnc_number: '12345',
         cro_number: '112233'

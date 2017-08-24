@@ -103,7 +103,9 @@ RSpec.describe Detainees::DetailsFetcher do
     let(:middle_names) { 'C.' }
     let(:surname) { 'Doe' }
     let(:date_of_birth) { '1969-01-23' }
-    let(:gender) { 'Male' }
+    let(:gender) { { 'code' => 'M', 'desc' => 'Male' } }
+    let(:ethnicity) { { 'code' => 'EU', 'desc' => 'European' } }
+    let(:religion) { { 'code' => 'B', 'desc' => 'Baptist' } }
     let(:nationalities) { 'American' }
     let(:pnc_number) { '12344' }
     let(:cro_number) { '54321' }
@@ -114,6 +116,8 @@ RSpec.describe Detainees::DetailsFetcher do
         surname: surname,
         date_of_birth: date_of_birth,
         gender: gender,
+        ethnicity: ethnicity,
+        religion: religion,
         nationalities: nationalities,
         pnc_number: pnc_number,
         cro_number: cro_number,
@@ -134,6 +138,8 @@ RSpec.describe Detainees::DetailsFetcher do
         surname: 'DOE',
         date_of_birth: '23/01/1969',
         gender: 'male',
+        ethnicity: 'European',
+        religion: 'Baptist',
         nationalities: 'American',
         pnc_number: '12344',
         cro_number: '54321',
