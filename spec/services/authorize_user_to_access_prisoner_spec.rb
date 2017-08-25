@@ -11,6 +11,18 @@ RSpec.describe AuthorizeUserToAccessPrisoner do
     specify { is_expected.to be_truthy }
   end
 
+  context 'when the prisoner_location is nil' do
+    let(:user) { create(:user, permissions: []) }
+    let(:location_service) { double(Detainees::LocationFetcher) }
+
+    before do
+      allow(Detainees::LocationFetcher).to receive(:new).with(prison_number).and_return(location_service)
+      allow(location_service).to receive(:call).and_return(nil)
+    end
+
+    specify { is_expected.to be_truthy }
+  end
+
   context 'when the user is not an admin' do
     let(:permissions) {
       [
