@@ -129,10 +129,12 @@ Mental health issues                Yes
 Special vehicles                    Yes
   Special vehicle required          Yes                  Mpv details
 Essential medication                Yes
-  Essential medication              Yes                  Xanax | Every 4 hours | Carried by: Escort
-                                                         Paracetamol | 2 days a week | Carried by: Prisoner
-Dependencies                        Yes
-W1234BY: McTest Testy                                                                Page 3 of 3
+W1234BY: McTest Testy                                                                   Page 3 of 3
+ Essential medication         Yes              Xanax | Every 4 hours | By mouth | Daily | Carried by:
+                                               Escort
+                                               Paracetamol | 2 days a week | By mouth | Daily |
+                                               Carried by: Prisoner
+Dependencies                  Yes
  Dependencies                 Yes              Dependencies details
 Allergies and intolerances    Yes
  Allergies and intolerances   Yes              Allergies details

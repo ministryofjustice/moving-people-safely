@@ -75,6 +75,8 @@ RSpec.describe 'managing healthcare medications', type: :feature do
     within_medication(position) do
       fill_in 'Medicine', with: text_for(:description, position)
       fill_in 'How is it given', with: text_for(:administration, position)
+      fill_in 'Dosage', with: text_for(:dosage, position)
+      fill_in 'When is it given?', with: text_for(:when_given, position)
       within_fieldset('Who will carry the medicine?') do
         choose 'Escort'
       end
@@ -103,6 +105,8 @@ RSpec.describe 'managing healthcare medications', type: :feature do
     case field
     when :description then "Description #{position}"
     when :administration then "Administration #{position}"
+    when :dosage then "Dosage #{position}"
+    when :when_given then "When given #{position}"
     end
   end
 

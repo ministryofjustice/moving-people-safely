@@ -9,6 +9,8 @@ FactoryGirl.define do
   factory :medication, class: Hash do
     description { Faker::Beer.name }
     administration "Take regularly"
+    dosage "By mouth"
+    when_given "Daily"
     carrier { %w[ escort prisoner ].sample }
 
     initialize_with { attributes }

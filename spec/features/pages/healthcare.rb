@@ -70,6 +70,8 @@ module Page
       within(el) do
         fill_in 'Medicine', with: med.description
         fill_in 'How is it given', with: med.administration
+        fill_in 'Dosage', with: med.dosage
+        fill_in 'When is it given?', with: med.when_given
         within_fieldset('Who will carry the medicine?') do
           choose med.carrier.titlecase
         end
