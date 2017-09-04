@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'activerecord-session_store'
 gem 'aws-sdk', '~> 2.3'
 gem 'connection_pool'
 gem 'countries'
