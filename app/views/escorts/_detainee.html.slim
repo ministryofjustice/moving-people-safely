@@ -25,18 +25,27 @@
             small
               | Date of birth
             p = detainee.humanized_date_of_birth
-          .column-one-sixth
+          .column-one-third
             small
               | Age
             p = detainee.age
-          .column-one-sixth
+          .column-one-third
             small
               | Sex
             p = detainee.short_gender
+        .grid-row
           .column-one-third
             small
               | Nationality
             p = detainee.nationalities
+          .column-one-third
+            small
+              | Religion
+            p = detainee.religion
+          .column-one-third
+            small
+              | Ethnicity
+            p = detainee.ethnicity
       .column-one-half
         small
           | Aliases

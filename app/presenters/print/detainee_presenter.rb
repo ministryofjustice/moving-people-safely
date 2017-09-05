@@ -12,6 +12,14 @@ module Print
       model.pnc_number.present? ? model.pnc_number : 'None'
     end
 
+    def religion
+      model.religion.present? ? model.religion : 'None'
+    end
+
+    def ethnicity
+      model.ethnicity.present? ? model.ethnicity : 'None'
+    end
+
     def date_of_birth
       model.date_of_birth.to_s(:humanized)
     end

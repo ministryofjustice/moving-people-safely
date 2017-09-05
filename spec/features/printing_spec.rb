@@ -38,6 +38,8 @@ RSpec.feature 'printing a PER', type: :feature do
       aliases: 'Terry Tibbs, Mr T',
       gender: 'male',
       nationalities: 'British',
+      religion: 'Baptist',
+      ethnicity: 'European',
       cro_number: '56TYY/UU',
       pnc_number: 'YI896668TT',
       offences: offences

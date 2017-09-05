@@ -26,6 +26,8 @@ RSpec.feature 'Detainee creation', type: :feature do
         surname: 'Doe',
         date_of_birth: '11-09-1975',
         gender: { 'code' => 'M', 'desc' => 'Male'},
+        ethnicity: { 'code' => 'EU', 'desc' => 'European'},
+        religion: { 'code' => 'B', 'desc' => 'Baptist'},
         nationalities: 'British',
         pnc_number: '12345',
         cro_number: '112233'
@@ -38,6 +40,8 @@ RSpec.feature 'Detainee creation', type: :feature do
         date_of_birth: '11/09/1975',
         nationalities: 'British',
         gender: 'male',
+        religion: 'Baptist',
+        ethnicity: 'European',
         pnc_number: '12345',
         cro_number: '112233'
       }

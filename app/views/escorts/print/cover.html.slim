@@ -50,16 +50,23 @@ html
               div.grid-column.column-one-third
                 div.title Date of birth
                 div#date-of-birth.strong-text = detainee.date_of_birth
-              div.grid-column.column-one-sixth
+              div.grid-column.column-one-third
                 div.title Age
                 div#age.strong-text = detainee.age
-              div.grid-column.column-one-sixth
+              div.grid-column.column-one-third
                 div.title Gender
                 div#gender.strong-text = detainee.gender_code
+            div.grid-row.padded
               div.grid-column.column-one-third
                 div.title Nationality
                 - detainee.nationalities.each do |nationality|
                   div.strong-text.nationality = nationality
+              div.grid-column.column-one-third
+                div.title Religion
+                div#age.strong-text = detainee.religion
+              div.grid-column.column-one-third
+                div.title Ethnicity
+                div#age.strong-text = detainee.ethnicity
           div.grid-column.column-one-quarter
             div.title Aliases
             - detainee.aliases.each do |a|
