@@ -1,42 +1,42 @@
 Outbound vehicle
-Registration                     Cell number                    PECS Barcode
+Registration                      Cell number                      PECS Barcode
 
 
 
 
 Return vehicle
-Registration                     Cell number
+Registration                      Cell number
 
 
 
 
 W1234BY: McTest Testy
- NOT FOR RELEASE            NO                         ESCAPE RISK        NO
+ NOT FOR RELEASE             NO                           ESCAPE RISK         NO
 
 
-Prison number    CRO number         PNC number       Aliases
-W1234BY          56TYY/UU           YI896668TT       Terry Tibbs
-                                                     Mr T
-Date of birth    Age                Gender
-10 Dec 1970      46                 M
-Nationality      Religion           Ethnicity
-British          Baptist            European
+Prison number     CRO number         PNC number         Aliases
+W1234BY           56TYY/UU           YI896668TT         Terry Tibbs
+                                                        Mr T
+Date of birth     Age                Gender
+10 Dec 1970       46                 M
+Nationality       Religion           Ethnicity
+British           Baptist            European
 
 
 
 
 Move details
-Date of travel                      From                               To
-22 Apr 2099                         HMP Bedford                        Luton Crown Court
+Date of travel                       From                                  To
+22 Apr 2099                          HMP Bedford                           Luton Crown Court
 
 
 
 
 About this Person Escort Record
 
-   This PER was produced by the the Moving People Safely digital PER service, currently being piloted at
-   HMP Bedford. If you have feedback or questions about the service, contact the Moving People Safely team
-   at: moving-people-safely@digital.justice.gov.uk
+This ePER was produced by the Ministry of Justice ePER service, currently in pilot at HMP
+Bedford. This ePER is approved by HMPPS - please treat it as a fully valid and official record.
+Please send any feedback or questions to: eper@digital.justice.gov.uk
 W1234BY: McTest Testy                                                                         Page 1 of 1
 
  NOT FOR RELEASE               NO        ACCT     NO                          RULE 45    NO

@@ -362,3 +362,26 @@ table.about {
     }
   }
 }
+
+.moj-declaration {
+  width: 100%;
+  border-top: 2px solid black;
+  padding-top: 15px;
+  position: fixed;
+  bottom: 0;
+
+  .legend {
+    width: 85%;
+
+    .title {
+      font-weight: bold;
+      padding-bottom: 10px;
+    }
+  }
+
+  .logo {
+    width: 15%;
+    position: relative;
+    bottom: 0;
+  }
+}

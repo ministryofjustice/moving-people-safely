@@ -87,11 +87,12 @@ html
             div.title To
             div.strong-text = move.to
         div.grid-row.top-dotted.min-heighted
-      table.about.footer
-        tr
-          th
-            .strong-text About this Person Escort Record
-        tr
-          td.panel
-            .feedback-text
-              | This PER was produced by the the Moving People Safely digital PER service, currently being piloted at HMP Bedford. If you have feedback or questions about the service, contact the Moving People Safely team at: moving-people-safely@digital.justice.gov.uk
+
+      div.grid.footer.moj-declaration
+        div.grid-row
+          div.grid-column.legend
+            .title About this Person Escort Record
+            p
+              | This ePER was produced by the Ministry of Justice ePER service, currently in pilot at HMP Bedford. This ePER is approved by HMPPS - please treat it as a fully valid and official record. Please send any feedback or questions to: eper@digital.justice.gov.uk
+          div.grid-column.logo
+            = wicked_pdf_image_tag('moj_logo.png')
