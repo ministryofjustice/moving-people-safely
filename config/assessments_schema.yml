@@ -91,6 +91,18 @@ assessment:
                           -
                             name: 'Assessments::PresenceValidator'
                       -
+                        name: dosage
+                        type: string
+                        validators:
+                          -
+                            name: 'Assessments::PresenceValidator'
+                      -
+                        name: when_given
+                        type: string
+                        validators:
+                          -
+                            name: 'Assessments::PresenceValidator'
+                      -
                         name: carrier
                         type: string
                         validators:
