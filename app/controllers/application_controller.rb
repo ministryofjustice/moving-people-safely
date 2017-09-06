@@ -23,14 +23,15 @@ class ApplicationController < ActionController::Base
 
   def authorize_user_to_access_prisoner!
     unless AuthorizeUserToAccessPrisoner.call(current_user, prison_number)
-      flash[:error] = t('alerts.detainee.access.unauthorized', prison_number: prison_number)
+      establishments = current_user.authorized_establishments.map(&:name).join(' or ')
+      flash[:error] = t('alerts.detainee.access.unauthorized', establishments: establishments)
       redirect_to(root_path)
     end
   end
 
   def authorize_user_to_access_escort!
     unless AuthorizeUserToAccessEscort.call(current_user, escort)
-      flash[:error] = t('alerts.detainee.access.unauthorized', prison_number: escort.prison_number)
+      flash[:error] = t('alerts.escort.access.unauthorized')
       redirect_to(root_path)
     end
   end

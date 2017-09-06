@@ -606,7 +606,7 @@ en:
     detainee_already_exists: "Detainee already exists. You've been redirected to the next relevant form"
     detainee:
       access:
-        unauthorized: "You cannot access the detainee with the provided prison number %{prison_number}."
+        unauthorized: "Enter a prisoner number for someone currently at %{establishments} to start a PER."
       details:
         unavailable: "Look-Up function is not currently available. Please enter person details manually or try again later"
         not_found: "No record for that prison reference exists. Please check the reference used or enter the details manually"
@@ -616,6 +616,8 @@ en:
         not_found: "Look-Up function for photograph returned no image. Either try again later or attach photograph manually to print out"
         invalid_input: The provided prison number is not valid, please try again with a valid prison number
     escort:
+      access:
+        unauthorized: "The PER you are trying to access has not been created from your prison"
       edit:
         unauthorized: "The PER can no longer be changed."
       detainee:

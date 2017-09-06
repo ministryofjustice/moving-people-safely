@@ -10,12 +10,15 @@ RSpec.describe 'Create escort request', type: :request do
     stub_nomis_api_request(:get, "/offenders/#{prison_number}/location")
   end
 
-  context 'when the user is not authorized to initiate a PER for the given prison number' do
+  context 'when the user is in an establishment different from the one of the given prisoner' do
+    let(:brighton_sso_id) { 'brighton.prisons.noms.moj' }
+    let(:brighton_name) { 'HMP Brighton' }
     let(:prison_code) { 'BDI' }
     let!(:prison) { create(:prison, nomis_id: prison_code) }
+    let!(:user_establishment) { create(:establishment, sso_id: brighton_sso_id, name: brighton_name) }
     let(:location_service) { double(Detainees::LocationFetcher) }
     let(:location_response) { { code: prison_code } }
-    let(:sso_config) { { info: { permissions: [{'organisation' => 'does.not.have.access'}] } } }
+    let(:sso_config) { { info: { permissions: [{'organisation' => brighton_sso_id}] } } }
 
     before do
       allow(Detainees::LocationFetcher).to receive(:new).with(prison_number).and_return(location_service)
@@ -27,7 +30,7 @@ RSpec.describe 'Create escort request', type: :request do
         post '/escorts', params: { escort: { prison_number: prison_number } }
       }.not_to change { Escort.where(prison_number: prison_number).count }.from(0)
 
-      expect(flash[:error]).to eq("You cannot access the detainee with the provided prison number #{prison_number}.")
+      expect(flash[:error]).to eq("Enter a prisoner number for someone currently at #{brighton_name} to start a PER.")
       expect(response).to redirect_to(root_path)
     end
   end
