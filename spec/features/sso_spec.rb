@@ -7,13 +7,13 @@ RSpec.feature 'SSO integration', type: :feature do
 
   scenario 'authenticating a user using SSO' do
     visit root_path
-    click_on 'Sign in with Mojsso'
+    click_on 'Start now'
     expect(page).to have_button('Sign out')
   end
 
   scenario 'signing a user out of the app' do
     visit root_path
-    click_on 'Sign in with Mojsso'
+    click_on 'Start now'
 
     click_on 'Sign out'
     expect(current_path).to eq '/users/sign_out'
@@ -28,8 +28,8 @@ RSpec.feature 'SSO integration', type: :feature do
 
     scenario 'user is redirected to the login page' do
       visit root_path
-      click_on 'Sign in with Mojsso'
-      expect(page).to have_link('Sign in with Mojsso')
+      click_on 'Start now'
+      expect(page).to have_link('Start now')
       expect(page).not_to have_button('Sign out')
     end
   end
