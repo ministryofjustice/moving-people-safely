@@ -48,7 +48,7 @@ class Escort < ApplicationRecord
     cancelled_at.present?
   end
 
-  def cancellable?
+  def editable?
     !(issued? || cancelled?)
   end
 

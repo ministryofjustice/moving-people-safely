@@ -1,5 +1,5 @@
 class EscortIssuer
-  EscortAlreadyIssuedError = Class.new(StandardError)
+  EscortNotEditableError = Class.new(StandardError)
   EscortNotReadyForIssueError = Class.new(StandardError)
 
   def self.call(escort)
@@ -11,7 +11,7 @@ class EscortIssuer
   end
 
   def call
-    raise EscortAlreadyIssuedError if escort.issued?
+    raise EscortNotEditableError unless escort.editable?
     raise EscortNotReadyForIssueError unless escort.completed?
     issue_per
   end

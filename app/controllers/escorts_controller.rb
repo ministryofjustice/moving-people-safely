@@ -51,6 +51,6 @@ class EscortsController < ApplicationController
   end
 
   def redirect_if_not_cancellable
-    redirect_to escort_path(escort) unless escort.cancellable?
+    redirect_to escort_path(escort) unless escort.editable?
   end
 end

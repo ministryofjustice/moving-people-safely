@@ -72,20 +72,20 @@ RSpec.describe Escort do
     end
   end
 
-  describe '#cancellable?' do
+  describe '#editable?' do
     context 'when is already issued' do
       let(:escort) { create(:escort, :issued) }
-      specify { expect(escort).not_to be_cancellable }
+      specify { expect(escort).not_to be_editable }
     end
 
     context 'when is already cancelled' do
       let(:escort) { create(:escort, :cancelled) }
-      specify { expect(escort).not_to be_cancellable }
+      specify { expect(escort).not_to be_editable }
     end
 
     context 'when is not cancelled or issued' do
       let(:escort) { create(:escort) }
-      specify { expect(escort).to be_cancellable }
+      specify { expect(escort).to be_editable }
     end
   end
 

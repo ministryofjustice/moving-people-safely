@@ -14,17 +14,7 @@
     header
       h1 Offences
 
-  - if escort.issued?
-    table#offences-table
-      thead
-        tr
-          th Offence
-          th Case Reference
-      - escort.offences.each do |offence|
-        tr
-          td = offence.offence
-          td = offence.case_reference
-  - else
+  - if escort.editable?
     = form_for form, url: escort_offences_path(escort), method: :put do |f|
       = f.error_messages
 
@@ -50,3 +40,13 @@
 
       .form-actions
         = f.submit 'Save and continue', class: 'button'
+  - else
+    table#offences-table
+      thead
+        tr
+          th Offence
+          th Case Reference
+      - escort.offences.each do |offence|
+        tr
+          td = offence.offence
+          td = offence.case_reference
