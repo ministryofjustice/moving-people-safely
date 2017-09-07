@@ -33,7 +33,7 @@ For local setup of SSO integration follow the steps described below.
   bundle exec rails s -p 3000
   ```
 
-* Click the link 'Sign in with Mojsso' (you should be redirected to the MOJ SSO login page)
+* Click the link 'Start now' (you should be redirected to the MOJ SSO login page)
 * Authenticate using the **user** that belongs to the _Moving People Safely_ **team** in the _MOJ SSO_ **application**
 * You should be successfully logged in
 
