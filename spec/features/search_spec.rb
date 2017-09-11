@@ -14,17 +14,20 @@ RSpec.feature 'searching for a prisoner', type: :feature do
       expect_no_results
     end
 
-    scenario 'but user has no access to the given prison number' do
+    scenario 'but user is in an establishment different from the one of the given prisoner' do
+      brighton_sso_id = 'brighton.prisons.noms.moj'
+      brighton_name = 'HMP Brighton'
+      create(:establishment, sso_id: brighton_sso_id, name: brighton_name)
       create(:prison, nomis_id: 'BFI')
       location_service = double(Detainees::LocationFetcher)
       allow(Detainees::LocationFetcher).to receive(:new).with(prison_number).and_return(location_service)
       allow(location_service).to receive(:call).and_return({ code: 'BFI' })
 
-      login_options = { sso: { info: { permissions: [{'organisation' => 'unauthorized.location.noms.moj'}]}} }
+      login_options = { sso: { info: { permissions: [{'organisation' => brighton_sso_id}]}} }
 
       login(nil, login_options)
       search_with_valid_prison_number(prison_number)
-      expect_error_message('You cannot access the detainee with the provided prison number A1324BC')
+      expect_error_message("Enter a prisoner number for someone currently at #{brighton_name} to start a PER.")
     end
 
     scenario 'but NOMIS API is down' do
