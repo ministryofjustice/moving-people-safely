@@ -19,6 +19,22 @@ RSpec.describe AccessPolicy do
         expect(described_class.edit?(escort: escort)).to be_falsey
       end
     end
+
+    context "with a PER that has not been cancelled" do
+      before { allow(escort).to receive(:cancelled?).and_return(false) }
+
+      it "returns true" do
+        expect(described_class.edit?(escort: escort)).to be_truthy
+      end
+    end
+
+    context "with a PER that has been cancelled" do
+      before { allow(escort).to receive(:cancelled?).and_return(true) }
+
+      it "returns false" do
+        expect(described_class.edit?(escort: escort)).to be_falsey
+      end
+    end
   end
 
   describe "#print?" do

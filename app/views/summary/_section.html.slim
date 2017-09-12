@@ -10,7 +10,7 @@
        th.title colspan="2"
          = section.label
        th.edit
-         - unless escort.issued?
+         - if escort.editable?
            = link_to 'Change', path
     tbody
       - section.questions.each_with_index do |question, i|

@@ -2,7 +2,7 @@ module AccessPolicy
   module_function
 
   def edit?(escort:)
-    escort && !escort.issued?
+    escort && escort.editable?
   end
 
   def print?(escort:)

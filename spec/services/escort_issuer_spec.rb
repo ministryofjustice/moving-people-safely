@@ -7,8 +7,16 @@ RSpec.describe EscortIssuer do
     context 'when the escort has been issued already' do
       let(:escort) { create(:escort, :issued) }
 
-      it 'raises an EscortAlreadyIssuedError' do
-        expect { issuer.call }.to raise_error(EscortIssuer::EscortAlreadyIssuedError)
+      it 'raises an EscortNotEditableError' do
+        expect { issuer.call }.to raise_error(EscortIssuer::EscortNotEditableError)
+      end
+    end
+
+    context 'when the escort has been cancelled' do
+      let(:escort) { create(:escort, :cancelled) }
+
+      it 'raises an EscortNotEditableError' do
+        expect { issuer.call }.to raise_error(EscortIssuer::EscortNotEditableError)
       end
     end
 
