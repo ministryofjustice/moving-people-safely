@@ -5,7 +5,10 @@
   = GovukElementsErrorsHelper.error_summary form,
     'There were problems saving this form', ''
 
-  - unless form.image.present?
+  - if form.image.present?
+    .detainee-image
+      = image_tag "data:image/jpeg;base64,#{form.image}", size: '128x180'
+  - else
     .no-image
       span = 'Photo unavailable'
     - if form.prison_number
