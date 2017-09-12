@@ -1,16 +1,13 @@
 header#header
   h1
-    ' #{detainee.prison_number}: #{detainee.surname}, #{detainee.forenames}
+    = detainee.prison_number
+    | :&nbsp;
+    = detainee.surname
+    span.heading-light
+      | ,&nbsp;
+      = detainee.forenames
 
 .image-and-alerts
-  .escort-image-wrapper
-    - if detainee.image.present?
-      .image
-        = image_tag escort_detainee_image_path(escort, format: :jpg), size: '128x180'
-    - else
-      .no-image
-        span = 'Photo unavailable'
-
   .escort-alerts
     .alerts-table
       .info-tiles

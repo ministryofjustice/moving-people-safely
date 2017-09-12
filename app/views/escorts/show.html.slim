@@ -2,7 +2,7 @@
   - breadcrumbs_for_page root: true do
     - breadcrumb detainee_breadcrumb(escort.detainee)
 
-.escort.per-page
+.escort.per-page.column-two-thirds
   = render partial: 'header', locals: { detainee: escort.detainee, alerts: EscortAlertsPresenter.new(escort) }
 
   = render partial: 'move', locals: { move: MovePresenter.new(escort.move) }
@@ -13,3 +13,6 @@
   = render partial: 'healthcare', locals: { healthcare: escort.healthcare, detainee: escort.detainee }
   = render partial: 'offences', locals: { offences: OffencesPresenter.new(escort.offences), detainee: escort.detainee }
   = render partial: 'actions'
+
+.column-one-third.side-profile
+  = render partial: 'shared/detainee_sidebar', locals: { detainee: DetaineePresenter.new(escort.detainee), escort: escort, move: MovePresenter.new(escort.move) }

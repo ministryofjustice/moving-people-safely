@@ -1,0 +1,30 @@
+.panel.panel-border-narrow
+  h2.heading-large
+    span.heading-light = link_to_unless_current detainee.prison_number, escort
+    br
+    = detainee.surname
+    br
+    span.heading-light = detainee.forenames
+
+  .escort-image-wrapper
+    - if detainee.image.present?
+      .image
+        = image_tag escort_detainee_image_path(escort, format: :jpg), size: '128x180'
+    - else
+      .no-image
+        span = 'Photo unavailable'
+
+  p
+    span.font-xsmall Date of travel
+    br
+    span.side-profile__value = move.humanized_date
+
+  p
+    span.font-xsmall From
+    br
+    span.side-profile__value = move.from
+
+  p
+    span.font-xsmall To
+    br
+    span.side-profile__value = move.to
