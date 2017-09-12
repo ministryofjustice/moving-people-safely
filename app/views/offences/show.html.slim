@@ -26,7 +26,7 @@
             = f.fields_for :offences do |cf|
               .multiple-wrapper class=(cf.index == 0 ? 'multiple-first' : 'multiple-not-first')
                 = cf.hidden_field :id
-                .multiple-field.inline.wide
+                .multiple-field.inline
                   = cf.text_area :offence, rows: 1
                 .multiple-field.inline
                   = cf.text_field :case_reference
