@@ -1,10 +1,7 @@
-.column-two-thirds
-  = content_for :breadcrumbs do
-    - breadcrumbs_for_page root: true do
-      - breadcrumb detainee_breadcrumb(escort.detainee)
-      - breadcrumb 'Move information'
+= content_for :breadcrumbs do
+  - breadcrumbs_for_page root: true do
+    - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
+    - breadcrumb 'Move information'
 
-  = render partial: 'form', locals: { form: form, submit_path: escort_move_path(escort), method: :patch }
+= render partial: 'form', locals: { form: form, submit_path: escort_move_path(escort), method: :patch }
 
-.column-one-third.side-profile
-  = render partial: 'shared/detainee_sidebar', locals: { detainee: DetaineePresenter.new(escort.detainee), escort: escort, move: MovePresenter.new(escort.move) }
