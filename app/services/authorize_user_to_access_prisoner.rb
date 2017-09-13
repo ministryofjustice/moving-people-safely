@@ -9,7 +9,7 @@ class AuthorizeUserToAccessPrisoner
   end
 
   def call
-    return true if user.is_admin?
+    return true if user.admin?
     return true unless prisoner_location
     user.authorized_establishments.include?(prisoner_location)
   end

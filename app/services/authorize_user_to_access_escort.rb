@@ -9,7 +9,7 @@ class AuthorizeUserToAccessEscort
   end
 
   def call
-    return true if user.is_admin?
+    return true if user.admin?
     user.authorized_establishments.any? { |e| e.sso_id == escort.move&.from_establishment&.sso_id }
   end
 

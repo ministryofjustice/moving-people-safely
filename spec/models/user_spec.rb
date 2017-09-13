@@ -108,15 +108,15 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#is_admin?' do
+  describe '#admin?' do
     context 'when is admin' do
       subject { described_class.new(permissions: [{"organisation"=>User::ADMIN_ORGANISATION}])}
-      its(:is_admin?) { is_expected.to be_truthy }
+      its(:admin?) { is_expected.to be_truthy }
     end
 
     context 'when is not admin' do
       subject { described_class.new(permissions: []) }
-      its(:is_admin?) { is_expected.to be_falsey }
+      its(:admin?) { is_expected.to be_falsey }
     end
   end
 

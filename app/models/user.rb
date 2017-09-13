@@ -43,7 +43,7 @@ class User < ApplicationRecord
     end
   end
 
-  def is_admin?
+  def admin?
     permissions.any? { |permission| permission['organisation'] == ADMIN_ORGANISATION }
   end
 end
