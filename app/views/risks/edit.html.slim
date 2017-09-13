@@ -4,7 +4,7 @@
     - breadcrumb 'Risk summary', escort_risks_path(escort)
     - breadcrumb t("risks.form.title.#{form.name}")
 
-.column-two-thirds
+.column-three-quarters
   .grid-row
     = render partial: 'shared/wizard_header'
 
@@ -14,5 +14,5 @@
                   form: form,
                   method: :put }
 
-.column-one-third.side-profile
+.column-one-quarter.side-profile
   = render partial: 'shared/detainee_sidebar', locals: { detainee: DetaineePresenter.new(escort.detainee), escort: escort, move: MovePresenter.new(escort.move) }

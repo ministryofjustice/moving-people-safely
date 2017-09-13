@@ -3,7 +3,7 @@
     - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
     - breadcrumb 'Offences'
 
-.column-two-thirds
+.column-three-quarters
   .offences.per-section-page
     - if offences.needs_review?
       header
@@ -52,5 +52,5 @@
             td = offence.offence
             td = offence.case_reference
 
-.column-one-third.side-profile
+.column-one-quarter.side-profile
   = render partial: 'shared/detainee_sidebar', locals: { detainee: DetaineePresenter.new(escort.detainee), escort: escort, move: MovePresenter.new(escort.move) }
