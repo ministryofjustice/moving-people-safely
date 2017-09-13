@@ -2,16 +2,17 @@
   - section.subsections.each do |subsection|
     = render partial: 'summary/section',
       locals: { section: Summary::AssessmentSectionPresenter.new(subsection),
-                path: path + "##{subsection.name}_subsection" }
+                path: path + "##{subsection.name}_subsection",
+                assessment: assessment}
 - else
   table class="#{section.name}"
     thead
       tr
-       th.title colspan="2"
-         = section.label
-       th.edit
-         - if escort.editable?
-           = link_to 'Change', path
+        th.title colspan="2"
+          = section.label
+        th.edit
+          - if can? :update, assessment
+            = link_to 'Change', path
     tbody
       - section.questions.each_with_index do |question, i|
         = render partial: 'summary/question',

@@ -1,6 +1,9 @@
 #healthcare
   = render partial: 'status',
-    locals: { workflow: healthcare, not_started_path: intro_escort_healthcare_path(escort), summary_path: escort_healthcare_path(escort) }
+    locals: { workflow: healthcare,
+              not_started_path: intro_escort_healthcare_path(escort),
+              summary_path: escort_healthcare_path(escort),
+              section: healthcare || escort.build_healthcare }
 
   .per-section-header
     h2

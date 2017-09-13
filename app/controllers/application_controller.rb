@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_unless_document_editable
-    unless AccessPolicy.edit?(escort: escort)
+    unless can? :update, escort
       redirect_back(fallback_location: root_path, alert: t('alerts.escort.edit.unauthorized'))
     end
   end
@@ -29,10 +29,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def authorize_user_to_access_escort!
-    unless AuthorizeUserToAccessEscort.call(current_user, escort)
+  def authorize_user_to_read_escort!
+    unless can? :read, escort
       flash[:error] = t('alerts.escort.access.unauthorized')
-      redirect_to(root_path)
+      redirect_to root_path
+    end
+  end
+
+  def authorize_user_to_update_escort!
+    unless can? :update, escort
+      flash[:error] = t('alerts.escort.access.unauthorized')
+      redirect_to escort_path(escort)
     end
   end
 

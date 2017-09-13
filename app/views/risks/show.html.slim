@@ -11,7 +11,8 @@
     - risk.sections.each do |section|
       = render partial: 'summary/section',
         locals: { section: Summary::AssessmentSectionPresenter.new(section),
-                  path: edit_escort_risks_path(escort, step: section.name) }
+                  path: edit_escort_risks_path(escort, step: section.name),
+                  assessment: risk }
 
     = render partial: 'summary/call_to_action',
       locals: { workflow: risk,

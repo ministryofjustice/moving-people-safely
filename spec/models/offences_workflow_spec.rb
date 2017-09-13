@@ -5,6 +5,8 @@ RSpec.describe OffencesWorkflow, type: :model do
 
   it { is_expected.to belong_to(:escort) }
 
+  it { is_expected.to delegate_method(:editable?).to(:escort) }
+
   subject { described_class.new }
 
   include_examples 'reviewable'

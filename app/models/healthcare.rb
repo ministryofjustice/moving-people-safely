@@ -3,6 +3,8 @@ class Healthcare < ApplicationRecord
   include Reviewable
   act_as_assessment :healthcare, complex_attributes: %i[medications]
 
+  delegate :editable?, to: :escort
+
   after_initialize :set_default_values
 
   def set_default_values

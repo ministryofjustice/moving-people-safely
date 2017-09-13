@@ -1,6 +1,9 @@
 #offences
   = render partial: 'status',
-    locals: { workflow: offences, not_started_path: escort_offences_path(escort), summary_path: escort_offences_path(escort) }
+    locals: { workflow: escort.offences_workflow,
+              not_started_path: escort_offences_path(escort),
+              summary_path: escort_offences_path(escort),
+              section: escort.offences_workflow || escort.build_offences_workflow }
 
   .per-section-header
     h2

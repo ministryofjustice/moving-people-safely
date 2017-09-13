@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 ### Added
 - Added a floating side bar displaying detainee and move details to ePER editing screens. This ensures that detainee and move details are visible at all stages of ePER creation.
-- Moved OffencesWorkflow model from the Detainee to the Escort
+- Add restrictions based on user roles (admin, healthcare, non-admin-or-healthcare)
 ### Changed
 ### Fixed
 
