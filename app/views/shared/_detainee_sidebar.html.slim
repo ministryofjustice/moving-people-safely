@@ -1,8 +1,8 @@
 .panel.panel-border-narrow
-  h2.heading-large
+  h2.heading-smaller
     span.heading-light = link_to_unless_current detainee.prison_number, escort
     br
-    = detainee.surname
+    span.heading-bold = detainee.surname
     br
     span.heading-light = detainee.forenames
 
