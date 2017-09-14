@@ -4,6 +4,7 @@ RSpec.feature 'Detainee updates', type: :feature do
   let(:prison_number) { 'A1234BC' }
   let(:detainee) { create(:detainee, prison_number: prison_number) }
   let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee) }
+  let!(:move) { create(:move, escort: escort) }
 
   context 'when pull option is not provided' do
     before do

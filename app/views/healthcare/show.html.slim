@@ -1,15 +1,19 @@
-= content_for :breadcrumbs do
-  - breadcrumbs_for_page root: true do
-    - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
-    - breadcrumb 'Healthcare summary'
+.column-three-quarters
+  = content_for :breadcrumbs do
+    - breadcrumbs_for_page root: true do
+      - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
+      - breadcrumb 'Healthcare summary'
 
-.summary.per-section-page
-  = render partial: 'summary/status',
-    locals: { workflow: Summary::EscortSectionStatusPresenter.new(healthcare, name: :healthcare) }
+  .summary.per-section-page
+    = render partial: 'summary/status',
+      locals: { workflow: Summary::EscortSectionStatusPresenter.new(healthcare, name: :healthcare) }
 
-  - healthcare.sections.each do |section|
-    = render partial: 'summary/section',
-      locals: { section: Summary::AssessmentSectionPresenter.new(section),
-                path: edit_escort_healthcare_path(escort, step: section.name) }
+    - healthcare.sections.each do |section|
+      = render partial: 'summary/section',
+        locals: { section: Summary::AssessmentSectionPresenter.new(section),
+                  path: edit_escort_healthcare_path(escort, step: section.name) }
 
-  = render partial: 'summary/call_to_action', locals: { workflow: healthcare, confirm_path: confirm_escort_healthcare_path(escort) }
+    = render partial: 'summary/call_to_action', locals: { workflow: healthcare, confirm_path: confirm_escort_healthcare_path(escort) }
+
+.column-one-quarter.side-profile
+  = render partial: 'shared/detainee_sidebar', locals: { detainee: DetaineePresenter.new(escort.detainee), escort: escort, move: MovePresenter.new(escort.move) }

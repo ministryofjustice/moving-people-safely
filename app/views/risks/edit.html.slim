@@ -4,12 +4,15 @@
     - breadcrumb 'Risk summary', escort_risks_path(escort)
     - breadcrumb t("risks.form.title.#{form.name}")
 
-.grid-row
-  .column-two-thirds
+.column-three-quarters
+  .grid-row
     = render partial: 'shared/wizard_header'
 
-  .risk.column-two-thirds
-    = render partial: 'shared/wizard_step_form',
-      locals: { scope: 'risks',
-                form: form,
-                method: :put }
+    .risk
+      = render partial: 'shared/wizard_step_form',
+        locals: { scope: 'risks',
+                  form: form,
+                  method: :put }
+
+.column-one-quarter.side-profile
+  = render partial: 'shared/detainee_sidebar', locals: { detainee: DetaineePresenter.new(escort.detainee), escort: escort, move: MovePresenter.new(escort.move) }
