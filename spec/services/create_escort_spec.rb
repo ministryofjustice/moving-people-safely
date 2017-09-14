@@ -81,7 +81,7 @@ RSpec.describe EscortCreator, type: :service do
   end
 
   def expect_offences_to_be_cloned(existent_escort, new_escort)
-    expect(new_escort.offences.status).to eq('needs_review')
+    expect(new_escort.offences_workflow.status).to eq('needs_review')
 
     expected_offences_attributes = existent_escort.offences.map { |o| o.attributes.except(*except_current_offences_attributes) }
     offences_attributes = new_escort.offences.map { |o| o.attributes.except(*except_current_offences_attributes) }

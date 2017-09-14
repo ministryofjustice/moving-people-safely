@@ -19,17 +19,5 @@ FactoryGirl.define do
     trait :with_no_offences do
       offences { [] }
     end
-
-    trait :with_completed_offences do
-      association :offences_workflow, :confirmed
-    end
-
-    trait :with_incompleted_offences do
-      association :offences_workflow
-    end
-
-    trait :with_needs_review_offences do
-      association :offences_workflow, :needs_review
-    end
   end
 end

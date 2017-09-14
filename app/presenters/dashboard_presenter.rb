@@ -59,14 +59,14 @@ class DashboardPresenter
   end
 
   def count_of_incomplete_risk
-    escorts.uncancelled.with_incomplete_risk.count + escorts.uncancelled.without_risk_assessment.count
+    escorts.uncancelled.with_unconfirmed_risk.count + escorts.uncancelled.without_risk_assessment.count
   end
 
   def count_of_incomplete_healthcare
-    escorts.uncancelled.with_incomplete_healthcare.count + escorts.uncancelled.without_healthcare_assessment.count
+    escorts.uncancelled.with_unconfirmed_healthcare.count + escorts.uncancelled.without_healthcare_assessment.count
   end
 
   def count_of_incomplete_offences
-    escorts.uncancelled.with_incomplete_offences.count
+    escorts.uncancelled.with_unconfirmed_offences.count + escorts.uncancelled.without_offences_workflow.count
   end
 end

@@ -25,9 +25,10 @@ RSpec.describe Escort do
   describe '#completed?' do
     let(:risk) { create(:risk) }
     let(:healthcare) { create(:healthcare) }
+    let(:offences_workflow) { create(:offences_workflow) }
     let(:detainee) { create(:detainee) }
     let(:move) { create(:move) }
-    let(:escort) { create(:escort, detainee: detainee, move: move, risk: risk, healthcare: healthcare) }
+    let(:escort) { create(:escort, detainee: detainee, move: move, risk: risk, healthcare: healthcare, offences_workflow: offences_workflow) }
 
     specify {
       escort = create(:escort, :completed)
@@ -55,7 +56,7 @@ RSpec.describe Escort do
     end
 
     context 'when offences info is not complete' do
-      let(:detainee) { create(:detainee, :with_incompleted_offences) }
+      let(:offences_workflow) { create(:offences_workflow) }
       specify { expect(escort).not_to be_completed }
     end
   end
@@ -206,7 +207,8 @@ RSpec.describe Escort do
     let(:detainee) { create(:detainee) }
     let(:risk) { create(:risk) }
     let(:healthcare) { create(:healthcare) }
-    let(:escort) { create(:escort, detainee: detainee, risk: risk, healthcare: healthcare) }
+    let(:offences_workflow) { create(:offences_workflow) }
+    let(:escort) { create(:escort, detainee: detainee, risk: risk, healthcare: healthcare, offences_workflow: offences_workflow) }
 
     specify { expect(escort.needs_review?).to be_falsey }
 
@@ -223,7 +225,7 @@ RSpec.describe Escort do
     end
 
     context 'when offences needs reviewing' do
-      let(:detainee) { create(:detainee, :with_needs_review_offences) }
+      let(:offences_workflow) { create(:offences_workflow, :needs_review) }
 
       specify { expect(escort.needs_review?).to be_truthy }
     end

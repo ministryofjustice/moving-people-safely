@@ -23,7 +23,7 @@ FactoryGirl.define do
     end
 
     trait :with_complete_offences do
-      association :detainee, :with_completed_offences
+      association :offences_workflow, :confirmed
     end
 
     trait :with_incomplete_risk_assessment do
@@ -34,19 +34,18 @@ FactoryGirl.define do
       association :healthcare, :incomplete
     end
 
-    trait :with_incomplete_offences do
-      association :detainee, :with_incompleted_offences
-    end
-
     trait :completed do
-      association :detainee, :with_completed_offences
+      association :detainee
       association :move
       association :risk, :confirmed
       association :healthcare, :confirmed
+      association :offences_workflow, :confirmed
     end
 
     trait :needs_review do
-      association :detainee, :with_needs_review_offences
+      association :detainee
+      association :move
+      association :offences_workflow, :needs_review
       association :risk, :needs_review
       association :healthcare, :needs_review
     end

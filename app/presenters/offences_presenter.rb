@@ -1,10 +1,11 @@
 class OffencesPresenter < SimpleDelegator
-  def initialize(offences)
+  def initialize(offences, workflow)
     @offences = offences.map { |offence| CurrentOffencePresenter.new(offence) }
-    super
+    @workflow = workflow
   end
 
   delegate :empty?, :any?, :each, :present?, to: :@offences
+  delegate :needs_review?, :incomplete?, :unconfirmed?, :confirmed?, to: :@workflow, allow_nil: true
 
   class CurrentOffencePresenter < SimpleDelegator
     include ActionView::Helpers::SanitizeHelper
