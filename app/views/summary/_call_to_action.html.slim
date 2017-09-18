@@ -1,4 +1,4 @@
-- if workflow.unconfirmed? || workflow.needs_review?
+- if (workflow.unconfirmed? || workflow.needs_review?) && (can? :update, workflow)
   .alert.alert--warning
     p
       b

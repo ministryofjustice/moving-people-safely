@@ -1,6 +1,9 @@
 #risk
   = render partial: 'status',
-    locals: { workflow: risk, not_started_path: new_escort_risks_path(escort), summary_path: escort_risks_path(escort) }
+    locals: { workflow: risk,
+              not_started_path: new_escort_risks_path(escort),
+              summary_path: escort_risks_path(escort),
+              section: risk || escort.build_risk }
 
   .per-section-header
     h2

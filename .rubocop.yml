@@ -13,6 +13,7 @@ AllCops:
     - 'app/models/forms/base.rb' # this is just too horrible
     - 'app/controllers/application_controller.rb'
     - 'app/models/concerns/questionable.rb'
+    - 'app/models/ability.rb'
 
 # Just a preference to use %w[] over %w()
 Style/PercentLiteralDelimiters:

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'aws-sdk', '~> 2.3'
+gem 'cancancan', '~> 2.0'
 gem 'connection_pool'
 gem 'countries'
 gem 'custom_error_message', git: 'https://github.com/thethanghn/custom-err-msg.git'

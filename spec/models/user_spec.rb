@@ -108,15 +108,27 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#is_admin?' do
+  describe '#admin?' do
     context 'when is admin' do
       subject { described_class.new(permissions: [{"organisation"=>User::ADMIN_ORGANISATION}])}
-      its(:is_admin?) { is_expected.to be_truthy }
+      its(:admin?) { is_expected.to be_truthy }
     end
 
     context 'when is not admin' do
       subject { described_class.new(permissions: []) }
-      its(:is_admin?) { is_expected.to be_falsey }
+      its(:admin?) { is_expected.to be_falsey }
+    end
+  end
+
+  describe '#healthcare?' do
+    context 'when is healthcare' do
+      subject { described_class.new(permissions: [{"roles"=>['healthcare']}])}
+      its(:healthcare?) { is_expected.to be_truthy }
+    end
+
+    context 'when is not healthcare' do
+      subject { described_class.new(permissions: []) }
+      its(:healthcare?) { is_expected.to be_falsey }
     end
   end
 
@@ -133,6 +145,58 @@ RSpec.describe User, type: :model do
 
     it 'returns the establishments' do
       expect(subject.authorized_establishments).to eq [bedford, pentonville]
+    end
+  end
+
+  describe '#can_access_escort?' do
+    let(:establishment_sso_id) { 'bedford.prisons.noms.moj' }
+    let(:prison) { create(:prison, sso_id: establishment_sso_id) }
+    let(:move) { create(:move, from_establishment: prison) }
+    let(:escort) { create(:escort, move: move)}
+    let(:user) { described_class.new(permissions: []) }
+
+    subject { user.can_access_escort?(escort)  }
+
+    context 'when the user is an admin' do
+      let(:permissions) {
+        [
+          { 'organisation' => User::ADMIN_ORGANISATION }
+        ]
+      }
+      let(:user) { described_class.new(permissions: permissions) }
+
+      specify { is_expected.to be_truthy }
+    end
+
+    context 'when the move has not an establishment set' do
+      let(:move) { nil }
+
+      specify { is_expected.to be_truthy }
+    end
+
+    context 'when the user tries to access an escort of the same prison' do
+      let(:establishment_sso_id) { 'bedford.prisons.noms.moj' }
+      let(:permissions) {
+        [
+          { 'organisation' => 'bedford.prisons.noms.moj' }
+        ]
+      }
+      let(:user) { described_class.new(permissions: permissions) }
+
+      specify { is_expected.to be_truthy }
+    end
+
+    context 'when the user tries to access an escort of another prison' do
+      let(:establishment_sso_id) { 'bedford.prisons.noms.moj' }
+
+      let(:permissions) {
+        [
+          { 'organisation' => 'pentonville.prisons.noms.moj' }
+        ]
+      }
+      let(:user) { described_class.new(permissions: permissions) }
+
+      specify { is_expected.to be_falsey }
     end
   end
 end

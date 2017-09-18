@@ -15,7 +15,7 @@
       header
         h1 Offences
 
-    - if escort.editable?
+    - if can? :update, offences_workflow
       = form_for form, url: escort_offences_path(escort), method: :put do |f|
         = f.error_messages
 
@@ -51,6 +51,9 @@
           tr
             td = offence.offence
             td = offence.case_reference
+      p
+        = link_to 'View PER', escort_path(escort), class: 'button'
+
 
 .column-one-quarter.side-profile
   = render partial: 'shared/detainee_sidebar', locals: { detainee: DetaineePresenter.new(escort.detainee), escort: escort, move: MovePresenter.new(escort.move) }

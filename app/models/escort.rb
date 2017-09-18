@@ -18,7 +18,7 @@ class Escort < ApplicationRecord
 
   scope :for_date, ->(date) { eager_load(:move).where(moves: { date: date }) }
   scope :for_user, lambda { |user|
-    joins(:move).where('moves.from_establishment_id IN (?)', user.authorized_establishments) unless user.is_admin?
+    joins(:move).where('moves.from_establishment_id IN (?)', user.authorized_establishments) unless user.admin?
   }
   scope :with_unconfirmed_risk, -> { joins(:risk).merge(Risk.not_confirmed) }
   scope :with_unconfirmed_healthcare, -> { joins(:healthcare).merge(Healthcare.not_confirmed) }

@@ -12,11 +12,9 @@
     - elsif workflow.confirmed?
       span.status-label.status-label--complete Complete
 
-    = link_to "#{escort.editable? ? 'Edit' : 'View'}", summary_path
+    = link_to "#{(can? :update, workflow) ? 'Edit' : 'View'}", summary_path
 
   - else
     span.status-label.status-label--incomplete Incomplete
-    - if escort.editable?
+    - if can? :update, section
       = link_to 'Edit', not_started_path
-    - else
-      = link_to 'View', summary_path

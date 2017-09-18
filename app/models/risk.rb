@@ -4,4 +4,6 @@ class Risk < ApplicationRecord
   act_as_assessment :risk, complex_attributes: %i[must_not_return_details]
 
   belongs_to :escort
+
+  delegate :editable?, to: :escort
 end

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   ADMIN_ORGANISATION = 'digital.noms.moj'.freeze
+  HEALTHCARE_ROLE = 'healthcare'.freeze
 
   serialize :permissions
 
@@ -43,7 +44,18 @@ class User < ApplicationRecord
     end
   end
 
-  def is_admin?
+  def can_access_escort?(escort)
+    return true if admin?
+    escort_establishment_sso_id = escort.move&.from_establishment&.sso_id
+    return true unless escort_establishment_sso_id
+    authorized_establishments.any? { |establishment| establishment.sso_id == escort_establishment_sso_id }
+  end
+
+  def admin?
     permissions.any? { |permission| permission['organisation'] == ADMIN_ORGANISATION }
+  end
+
+  def healthcare?
+    permissions.any? { |permission| permission['roles']&.include? HEALTHCARE_ROLE }
   end
 end

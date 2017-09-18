@@ -32,16 +32,11 @@ RSpec.feature 'filling in a PER', type: :feature do
     dashboard.create_new_escort.click
 
     detainee_details.complete_form(detainee)
+
     move_details.complete_form(move_data)
 
     escort_page.confirm_move_info(move_data)
     escort_page.confirm_detainee_details(detainee)
-    escort_page.click_edit_healthcare
-
-    healthcare.complete_forms(healthcare_data)
-    healthcare_summary.confirm_and_save
-
-    escort_page.confirm_healthcare_details(healthcare_data)
     escort_page.click_edit_risk
 
     risk.complete_forms(risk_data)
@@ -53,6 +48,24 @@ RSpec.feature 'filling in a PER', type: :feature do
     escort_page.click_edit_offences
 
     offences.complete_form(offences_data)
+
     escort_page.confirm_offence_details(offences_data)
+
+    click_button 'Sign out'
+
+    login_options = { sso: { info: { permissions: [{'organisation' => establishment_sso_id, 'roles' => ['healthcare']}]}} }
+    login(nil, login_options)
+
+    dashboard.search(detainee.prison_number)
+    dashboard.click_view_escort
+
+    escort_page.click_edit_healthcare
+
+    healthcare.complete_forms(healthcare_data)
+    healthcare_summary.confirm_and_save
+
+    escort_page.confirm_healthcare_details(healthcare_data)
+    escort_page.confirm_offences_action_link('View')
+    escort_page.confirm_risk_action_link('View')
   end
 end
