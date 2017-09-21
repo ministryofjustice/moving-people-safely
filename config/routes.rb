@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resource :print, only: %i[new show], controller: 'escorts/print'
   end
 
+  resources :feedbacks, only: %i[new create]
   post '/detainees/search', to: 'homepage#detainees'
   post '/escorts/search', to: 'homepage#escorts'
   root to: 'homepage#show'

@@ -121,6 +121,9 @@ en:
         other_violence_due_to_discrimination_details: Risk to other groups details
         racist: Risk to other races
         racist_details: Risk to other races details
+      forms_feedback:
+        email: Your email address
+        message: Your message
       harassments:
         intimidation: Known harasser, intimidator or bully
         intimidation_type: Targets of harassment, intimidation or bullying
@@ -271,6 +274,9 @@ en:
         racist_details: Give details
         risk_to_females: In NOMIS, check the header section of the prisoner’s record for the Risk to Females alert. Check alert comments and case notes for details.
         risk_to_females_details: Give details
+      forms_feedback:
+        message: Describe the issue you are having, including what you were doing before it happened
+        prisoner_number: For example, A1234BC
       escort:
         cancelling_reason: Give details of why this PER is being cancelled
       harassments:
@@ -626,6 +632,8 @@ en:
         exists: "Move details for the PER already exist."
       print:
         unauthorized: "PER is not in a status that can be printed"
+    feedback:
+      created: Your message has been sent
     offences:
       api_error: Offences aren't available right now, please try again or fill in the offences below
       internal_error: Offences aren't available right now, please try again or fill in the offences below
@@ -693,4 +701,4 @@ en:
       <<: *errors
   layouts:
     application:
-      current_phase_text_html: This is a new service - your <a href="%{feedback_url}" target="_blank" rel="noopener">feedback</a> will help us to improve it.
+      current_phase_text_html: This is a new service. <a href="%{contact_url}">Contact us</a> if you need help or give us your <a href="%{feedback_url}" target="_blank" rel="noopener">feedback</a> to help us improve it.
