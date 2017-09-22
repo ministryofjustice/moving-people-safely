@@ -39,7 +39,7 @@ Bedford. This ePER is approved by HMPPS - please treat it as a fully valid and o
 Please send any feedback or questions to: eper@digital.justice.gov.uk
 W1234BY: McTest Testy                                                                         Page 1 of 1
 
- NOT FOR RELEASE               NO        ACCT     NO                          RULE 45    NO
+ NOT FOR RELEASE              NO         ACCT     NO                          RULE 45    NO
 
 
  ESCAPE RISK             NO              CSRA STANDARD                        CAT A     NO
@@ -48,24 +48,14 @@ Please send any feedback or questions to: eper@digital.justice.gov.uk
 RISK      Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
 
 Risk to self                        No
-Risk from others                    No
+Security and segregation            No
+Harassment and gangs                No
 Discrimination against others       No
-CSRA (Cell Sharing Risk             No
-Assessment)
-Violent to staff                    No
-Violent to other prisoners          No
-Violent to anyone else              No
-Controlled unlock                   No
-Hostage taker                       No
-Harassment and bullying             No
-Sex offender                        No
 Escape status/history               No
-Escape risk                         No
-Category A, potential Category A    No
-or Restricted Status
-Further security information        No
-Drug trafficking risk               No
+Hostage taker                       No
+Sex offender                        No
 Weapons, drugs or other items       No
+Drug trafficking risk               No
 Arson                               No
 Return Instructions                 No
 Other risk information              No
@@ -81,7 +71,6 @@ Allergies and intolerances          No
 Personal care                       No
 Medical contact details             Yes
   Medical contact                   1-131-999-0232
-
 
 OFFENCES
 Current offences                    None

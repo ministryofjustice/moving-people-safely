@@ -19,7 +19,7 @@ Each assessment is split into **sections**:
   sections:
     risk_to_self:
       ...
-    risk_from_others:
+    security_and_segregation:
       ...
 ```
 
@@ -30,7 +30,7 @@ Each section has two main components, a list of **questions** and an *optional* 
 ```yml
 ...
   sections:
-    risk_from_others:
+    security_and_segregation:
       questions:
         -
           name: acct_status

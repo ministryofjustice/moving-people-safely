@@ -22,7 +22,18 @@ en:
         other_violence_due_to_discrimination: 'Are they a risk to any other groups?'
         racist: 'Are they a risk to other races?'
         risk_to_females: 'Are they a risk to females?'
-      harassments:
+        violence_to_staff: 'Are they a risk to staff?'
+      drug_trafficking:
+        substance_supply: Is there a risk that they might traffic drugs on this journey?
+      escape:
+        current_e_risk: Are they on the Escape List (E-List)?
+        current_e_risk_details: 'Select the E-List category:'
+        escape_pack: Is an Escape Pack needed for this journey?
+        escort_risk_assessment: Is an Escort Risk Assessment needed for this journey?
+        previous_escape_attempts: Are they an escape risk?
+        previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
+      harassment_and_gangs:
+        gang_member: Are they a gang member?
         intimidation: Are they a known harasser, intimidator or bully?
         intimidation_type: 'Targets (select all that apply):'
       hostage_taker:
@@ -47,37 +58,24 @@ en:
       return_instructions:
         must_not_return: Is there any establishment they must not be sent to at the end of this journey?
         must_return: Must they return to a specific prison at the end of this journey?
-      risk_from_others:
-        rule_45: Are they held under Rule 45?
+      security_and_segregation:
+        category_a: Are they Category A, potential Category A or Restricted Status?
+        controlled_unlock: Number of officers required
+        controlled_unlock_required: Are they on a controlled unlock?
+        csra: 'What is their Cell Sharing Risk Assessment (CSRA) risk level?'
         high_profile: Are they of high public interest?
+        rule_45: Are they held under Rule 45?
       risk_to_self:
         acct_status: What is the prisoner's ACCT status?
-      security:
-        category_a: Are they Category A, potential Category A or Restricted Status?
-        current_e_risk: Are they on the Escape List (E-List)?
-        current_e_risk_details: 'Select the E-List category:'
-        escape_pack: Is an Escape Pack needed for this journey?
-        escort_risk_assessment: Is an Escort Risk Assessment needed for this journey?
-        previous_escape_attempts: Are they an escape risk?
-        previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
+        self_harm: Is there any other risk of self harm on this journey?
       sex_offences:
         sex_offence: Are they a current or previous sex offender?
         sex_offence_type: 'Victim (select all that apply):'
         date_most_recent_sexual_offence: Date of most recent sexual offence
       social:
         personal_care: Will they need help with personal tasks on this journey?
-      substance_misuse:
-        substance_supply: Is there a risk that they might traffic drugs on this journey?
       transport:
         mpv: Do they need to travel in a special vehicle on this journey?
-      violence:
-        controlled_unlock_required: Are they on a controlled unlock?
-        controlled_unlock: Number of officers required
-        csra: 'What is their Cell Sharing Risk Assessment (CSRA) risk level?'
-        violence_to_general_public: 'Is there anyone else who they might be a violent risk to?'
-        violence_to_other_detainees: 'Are they violent to other prisoners?'
-        violence_to_other_detainees_type: 'Victim of violence (select all that apply):'
-        violence_to_staff: 'Are they violent to staff?'
     label:
       allergies:
         allergies: "Do they have any known allergies or intolerances?"
@@ -121,14 +119,29 @@ en:
         other_violence_due_to_discrimination_details: Risk to other groups details
         racist: Risk to other races
         racist_details: Risk to other races details
+        violence_to_staff: Violent to staff
+        violence_to_staff_details: Violent to staff details
+      drug_trafficking:
+        substance_supply: "Is there a risk that they might traffic drugs on this journey?"
+      escape:
+        current_e_risk: "Are they on the Escape List (E-List)?"
+        current_e_risk_details: E-List category
+        current_e_risk_details_choices:
+          e_list_standard: E-List-Standard
+          e_list_escort: E-List-Escort
+          e_list_heightened: E-List-Heightened
+        escape_pack: "Has an Escape Pack been created for this journey?"
+        escort_risk_assessment: "Has an Escort Risk Assessment been completed for this journey?"
+        previous_escape_attempts: escape risk
+        previous_escape_attempts_details: details for escape risk
       forms_feedback:
         email: Your email address
         message: Your message
-      harassments:
+      harassment_and_gangs:
+        gang_member: Gang member
+        gang_member_details: Gang member details
         intimidation: Known harasser, intimidator or bully
         intimidation_type: Targets of harassment, intimidation or bullying
-        intimidation_to_staff: Staff
-        intimidation_to_staff_details: Staff details
         intimidation_to_public: Public
         intimidation_to_public_details: Public details
         intimidation_to_other_detainees: Prisoners
@@ -182,7 +195,16 @@ en:
         must_return: "Must they return to a specific prison at the end of this journey?"
         must_return_to: 'Prison name:'
         must_return_to_details: Details for returning to a specific prison
-      risk_from_others:
+      security_and_segregation:
+        category_a: Cat A or potential Cat A
+        controlled_unlock_required: Controlled unlock
+        controlled_unlock: Number of officers
+        controlled_unlock_choices:
+          two_officer_unlock: '2 officer unlock'
+          three_officer_unlock: '3 officer unlock'
+          four_officer_unlock: '4 officer unlock'
+          more_than_four: 'More than 4 officers'
+        csra: CSRA risk level
         high_profile: High public interest
         high_profile_details: Details of high public interest
       risk_to_self:
@@ -194,18 +216,6 @@ en:
           none: No ACCT history
         acct_status_details: Give details of methods and triggers recorded on NOMIS if entered
         date_of_most_recently_closed_acct: Date of most recently closed ACCT
-      security:
-        category_a: "Are they Category A, potential Category A or Restricted Status?"
-        current_e_risk: "Are they on the Escape List (E-List)?"
-        current_e_risk_details: E-List category
-        current_e_risk_details_choices:
-          e_list_standard: E-List-Standard
-          e_list_escort: E-List-Escort
-          e_list_heightened: E-List-Heightened
-        escape_pack: "Has an Escape Pack been created for this journey?"
-        escort_risk_assessment: "Has an Escort Risk Assessment been completed for this journey?"
-        previous_escape_attempts: escape risk
-        previous_escape_attempts_details: details for escape risk
       sex_offences:
         sex_offence: Are they a current or previous sex offender?
         sex_offence_adult_male_victim: Adult male
@@ -216,32 +226,9 @@ en:
       social:
         personal_care: "Will they need help with personal tasks on this journey?"
         personal_care_details: Details for help needs with personal tasks on this journey
-      substance_misuse:
-        substance_supply: "Is there a risk that they might traffic drugs on this journey?"
       transport:
         mpv: "Do they need to travel in a special vehicle on this journey?"
         mpv_details: Details for need of a special vehicle
-      violence:
-        csra: CSRA risk level
-        co_defendant: Co-defendant
-        co_defendant_details: Co-defendant violence details
-        controlled_unlock_required: Controlled unlock
-        controlled_unlock: Number of officers
-        controlled_unlock_choices:
-          two_officer_unlock: '2 officer unlock'
-          three_officer_unlock: '3 officer unlock'
-          four_officer_unlock: '4 officer unlock'
-          more_than_four: 'More than 4 officers'
-        gang_member: Gang member
-        gang_member_details: Gang member violence details
-        other_violence_to_other_detainees: Other known conflicts
-        other_violence_to_other_detainees_details: Other known conflicts details
-        violence_to_general_public: Violent risk to anyone else
-        violence_to_general_public_details: Violent to the general public details
-        violence_to_other_detainees: Violent to other prisoners
-        violence_to_other_detainees_type: Victim of violence
-        violence_to_staff: Violent to staff
-        violence_to_staff_details: Violent to staff details
     hint:
       allergies:
         allergies: "For example, dietary, medical or environmental allergies"
@@ -274,14 +261,23 @@ en:
         racist_details: Give details
         risk_to_females: In NOMIS, check the header section of the prisoner’s record for the Risk to Females alert. Check alert comments and case notes for details.
         risk_to_females_details: Give details
+        violence_to_staff_html: '<p>This includes prison, escort, court or hospital staff.</p><p>In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments, adjudications and case notes for details.</p>'
+        violence_to_staff_details: Give details
+      drug_trafficking:
+        substance_supply: Check Mercury for intelligence or NOMIS adjudications for past history of trafficking drugs.
+      escape:
+        current_e_risk: Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the E-List alert. Check alert comments and case notes for details.
+        previous_escape_attempts_html: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the Escape Risk alert. Check alert comments and case notes for details.'
+        previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
       forms_feedback:
         message: Describe the issue you are having, including what you were doing before it happened
         prisoner_number: For example, A1234BC
       escort:
         cancelling_reason: Give details of why this PER is being cancelled
-      harassments:
+      harassment_and_gangs:
+        gang_member_html: In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and and Security > Non-association for known risks to named prisoners.
+        gang_member_details: Give details
         intimidation_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and and <i>Security > Non-association</i> for known risks to named prisoners.'
-        intimidation_to_staff_details: Give details, including any relevant court orders
         intimidation_to_public_details: Give details, including any relevant court orders
         intimidation_to_other_detainees_details: Give details, including any relevant court orders
         intimidation_to_witnesses_details: Give details, including any relevant court orders
@@ -307,49 +303,36 @@ en:
         physical_issues_details: 'Please explain how these issues might affect the journey and how they should be managed:'
       return_instructions:
         must_return_to_details: 'Give details of why they must return here:'
-      risk_from_others:
-        high_profile: In NOMIS, check the header section of the prisoner’s record for the High public interest alert and case notes for details.
-        high_profile_details: Give details
-        rule_45: In NOMIS, check the header section of the prisoner’s record for the Rule 45 alert.
       risk_to_self:
         acct_status: In NOMIS, check the header section of the prisoner’s record for the ACCT status alert.
         acct_status_details: Give details of methods and triggers recorded on NOMIS if entered
+        date_of_most_recently_closed_acct: DD/MM/YYYY
         open_acct: |
           If an ACCT is open, the ACCT plan should be present and there
           should be a relevant alert on NOMIS
+        self_harm: In NOMIS, check the header section of the prisoner’s record for the Self Harm and Vulnerability alerts.
+        self_harm_details: Give details
         suicide: |
           Give details of recent suicide or self-harm attempts and
           previous ACCTs
         suicide_details: Give details
-        date_of_most_recently_closed_acct: DD/MM/YYYY
-      security:
+      security_and_segregation:
         category_a: In NOMIS, check the header section of the prisoner’s record for category information.
-        current_e_risk: Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the E-List alert. Check alert comments and case notes for details.
-        previous_escape_attempts_html: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the Escape Risk alert. Check alert comments and case notes for details.'
-        previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
+        controlled_unlock_required: In NOMIS, check the header section of the prisoner’s record for the Controlled Unlock alert.
+        controlled_unlock_details: 'Give details of personal protection equipment (PPE) required:'
+        csra: In NOMIS, check the header section of the prisoner’s record for the CSRA risk level.
+        high_profile: In NOMIS, check the header section of the prisoner’s record for the High public interest alert and case notes for details.
+        high_profile_details: Give details
+        rule_45: In NOMIS, check the header section of the prisoner’s record for the Rule 45 alert.
       sex_offences:
         sex_offence_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and <i>Legal cases > Court cases > Offences</i> for details.'
         date_most_recent_sexual_offence: DD/MM/YYYY
       social:
         personal_care: For example, going to the toilet, eating or drinking
         personal_care_details: 'Please explain what they may need help with:'
-      substance_misuse:
-        substance_supply: Check Mercury for intelligence or NOMIS adjudications for past history of trafficking drugs.
       transport:
         mpv: This could be a specially-adapted prison van (for example, to accommodate wheelchairs) or a taxi.
         mpv_details: 'Please explain why you feel they need a special vehicle:'
-      violence:
-        controlled_unlock_required: In NOMIS, check the header section of the prisoner’s record for the Controlled Unlock alert.
-        controlled_unlock_details: 'Give details of personal protection equipment (PPE) required:'
-        co_defendant_details: Give details
-        csra: In NOMIS, check the header section of the prisoner’s record for the CSRA risk level.
-        gang_member_details: Give details
-        other_violence_to_other_detainees_details: Give details
-        violence_to_general_public_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts, <i>Case management > Case notes</i>, and <i>Adjudications</i> for relevant information.'
-        violence_to_general_public_details: Give details
-        violence_to_other_detainees_html: 'In NOMIS, check alert comments if the CSRA High alert is active and <i>Security > Non-association</i> for known risks to named prisoners.'
-        violence_to_staff_html: '<p>This includes prison, escort, court or hospital staff.</p><p>In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments, adjudications and case notes for details.</p>'
-        violence_to_staff_details: Give details
   healthcare:
     form:
       title:
@@ -376,14 +359,14 @@ en:
         arson: Arson
         concealed_weapons: Weapons, drugs or other items
         discrimination: Discrimination against others
-        harassments: Harassment and bullying
+        drug_trafficking: Drug trafficking risk
+        escape: Escape status and history
+        harassment_and_gangs: Harassment and gangs
         hostage_taker: Hostage taker
         other_risk: Other risk on this journey
         risk_to_self: Risk to self
-        risk_from_others: Risk from others
-        security: Escape status/history
+        security_and_segregation: Security and segregation
         sex_offences: Sex offender
-        substance_misuse: Drug trafficking risk
         violence: Risk to others
   homepage:
     titles:
@@ -415,27 +398,22 @@ en:
       title: Risk
     section:
       answers:
-        risk_to_self:
-          closed_in_last_6_months: Closed
-        security: &summary_security_answers
+        escape:
           e_list_escort: E-List-Escort
           e_list_heightened: E-List-Heightened
           e_list_standard: E-List-Standard
-        current_e_risk: *summary_security_answers
-        escape_status: *summary_security_answers
-        violence: &summary_violence_answers
+        risk_to_self:
+          closed_in_last_6_months: Closed
+        security_and_segregation:
           two_officer_unlock: '2 officer unlock'
           three_officer_unlock: '3 officer unlock'
           four_officer_unlock: '4 officer unlock'
           more_than_four: 'More than 4 officers'
-        controlled_unlock_required: *summary_violence_answers
       questions:
         allergies:
           allergies: Allergies and intolerances
         arson:
           arson: Arsonist
-        category_a:
-          category_a: Category A, potential Category A or Restricted Status
         concealed_weapons:
           conceals_weapons: Conceals weapons
           conceals_drugs: Conceals drugs
@@ -451,16 +429,23 @@ en:
           other_violence_due_to_discrimination: Risk to other groups
           racist: Racist
           risk_to_females: Risk to females
-        harassments: &summary_intimidation
-          intimidation_to_staff: Staff
-          intimidation_to_public: Public
-          intimidation_to_other_detainees: Prisoners
-          intimidation_to_witnesses: Witnesses
-        intimidation: *summary_intimidation
+          violence_to_staff: Violent to staff
+        drug_trafficking:
+          substance_supply: Drug trafficking risk
+        escape:
+          current_e_risk: Currently on E list
+          escape_pack: Escape Pack needed
+          escort_risk_assessment: Escort Risk Assessment needed
+          previous_escape_attempts: 'Escape risk'
+        harassment_and_gangs:
+          gang_member: Gang member
+          intimidation_to_public: Public harasser
+          intimidation_to_other_detainees: Prisoners harasser
+          intimidation_to_witnesses: Witnesses harasser
         hostage_taker:
-          staff_hostage_taker: Staff
-          prisoners_hostage_taker: Prisoners
-          public_hostage_taker: Public
+          staff_hostage_taker: Staff hostage taker
+          prisoners_hostage_taker: Prisoner hostage taker
+          public_hostage_taker: Public hostage taker
           date_most_recent_staff_hostage_taker_incident: 'Last incident: '
           date_most_recent_prisoners_hostage_taker_incident: 'Last incident: '
           date_most_recent_public_hostage_taker_incident: 'Last incident: '
@@ -474,61 +459,36 @@ en:
           other_risk: Other risk information
         physical:
           physical_issues: Physical health needs
-        sex_offences:
-          sex_offence: Sex offender
-          sex_offence_adult_male_victim: Adult male
-          sex_offence_adult_female_victim: Adult female
-          sex_offence_under18_victim: Under 18
-          date_most_recent_sexual_offence: Most recent sex offence
-        risk_from_others:
-          high_profile: High public interest
-          rule_45: Rule 45
         risk_to_self:
           acct_status: ACCT status
+          self_harm: Risk of self harm
           suicide: Risk of suicide or self-harm
-        security: &summary_security
-          category_a: Category A, potential Category A or Restricted Status
-          current_e_risk: Currently on E list
-          escape_list: Escape list
-          escape_pack: Escape pack needed?
-          escort_risk_assessment: Escort risk assessment needed?
-          other_escape_risk_info: Other escape risk information
-          previous_escape_attempts: 'Escape risk'
-        current_e_risk: *summary_security
-        previous_escape_attempts: *summary_security
-        escape_status: *summary_security
-        escort_details: *summary_security
+        security_and_segregation:
+          category_a: Cat A or potential Cat A
+          controlled_unlock_required: Controlled unlock
+          csra: CSRA level
+          high_profile: High public interest
+          rule_45: Rule 45
+        sex_offences:
+          sex_offence: Sex offender
+          sex_offence_adult_male_victim: Sex offender victim adult male
+          sex_offence_adult_female_victim: Sex offender victim adult female
+          sex_offence_under18_victim: Sex offender victim under 18
+          date_most_recent_sexual_offence: Most recent sex offence
         social:
           personal_care: Personal care issues
-        substance_misuse:
-          substance_supply: Drug trafficking risk
         transport:
           mpv: Special vehicle required
-        violence: &summary_violence
-          co_defendant: Co-defendant
-          controlled_unlock_required: Controlled unlock
-          csra: CSRA (Cell Sharing Risk Assessment)
-          gang_member: Gang member
-          other_violence_to_other_detainees: Other known conflicts
-          violence_to_general_public: Violent to anyone else
-          violence_to_staff: Violent to staff
-        csra: *summary_violence
-        violence_to_staff: *summary_violence
-        violence_to_other_detainees: *summary_violence
-        violence_to_general_public: *summary_violence
-        controlled_unlock_required: *summary_violence
       titles:
         allergies: Allergies and intolerances
         arson: Arson
-        category_a: Category A, potential Category A or Restricted Status
         concealed_weapons: Weapons, drugs or other items
-        controlled_unlock_required: Controlled unlock
         contact: Medical contact details
-        csra: CSRA (Cell Sharing Risk Assessment)
         discrimination: Discrimination against others
-        escape_status: Escape status/history
+        drug_trafficking: Drug trafficking risk
+        escape_status: Escape status and history
         escort_details: Further security information
-        harassment: "Risk to others: harasser and/or bully"
+        harassment_and_gangs: Harassment and gangs
         hostage_taker: "Hostage taker"
         intimidation: Harassment and bullying
         mental: Mental health issues
@@ -537,13 +497,11 @@ en:
         physical: Physical health issues
         previous_escape_attempts: Escape risk
         risk_to_self: Risk to self
-        risk_from_others: Risk from others
+        escape: Escape status/history
+        security_and_segregation: Security and segregation
         sex_offences: Sex offender
         social: Personal care
-        substance_misuse: Drug trafficking risk
         transport: Special vehicles
-        violence_to_general_public: Violent to anyone else
-        violence_to_other_detainees: Violent to other prisoners
         violence_to_staff: Violent to staff
     status:
       confirmed:

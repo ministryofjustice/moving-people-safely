@@ -1,35 +1,47 @@
 FactoryGirl.define do
   factory :risk do
     acct_status 'open'
-    rule_45 'no'
+    self_harm 'no'
+
     csra 'standard'
+    rule_45 'no'
+    controlled_unlock_required 'no'
+    category_a 'no'
     high_profile 'no'
+
+    intimidation 'no'
+    gang_member 'no'
+
+    violence_to_staff 'no'
     risk_to_females 'no'
     homophobic 'no'
     racist 'no'
     discrimination_to_other_religions 'no'
     other_violence_due_to_discrimination 'no'
-    violence_to_staff 'no'
-    violence_to_other_detainees 'no'
-    violence_to_general_public 'no'
-    controlled_unlock_required 'no'
-    hostage_taker 'no'
-    intimidation 'no'
-    sex_offence 'no'
+
     current_e_risk 'no'
     previous_escape_attempts 'no'
-    category_a 'no'
     escape_pack 'no'
     escort_risk_assessment 'no'
-    substance_supply 'no'
+
+    hostage_taker 'no'
+
+    sex_offence 'no'
+
     conceals_weapons 'no'
+    uses_weapons 'no'
     conceals_drugs 'no'
     conceals_mobile_phone_or_other_items 'no'
-    uses_weapons 'no'
+
+    substance_supply 'no'
+
     arson 'no'
+
     must_return 'no'
     must_not_return 'no'
+
     other_risk 'no'
+
     status :incomplete
 
     trait :with_high_csra do

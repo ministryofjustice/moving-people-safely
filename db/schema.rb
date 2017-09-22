@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170913110147) do
+ActiveRecord::Schema.define(version: 20170926135536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,18 +150,9 @@ ActiveRecord::Schema.define(version: 20170913110147) do
     t.string   "other_violence_due_to_discrimination"
     t.text     "other_violence_due_to_discrimination_details"
     t.string   "violence_to_staff"
-    t.string   "violence_to_other_detainees"
-    t.boolean  "co_defendant"
-    t.text     "co_defendant_details"
-    t.boolean  "gang_member"
+    t.string   "gang_member"
     t.text     "gang_member_details"
-    t.boolean  "other_violence_to_other_detainees"
-    t.text     "other_violence_to_other_detainees_details"
-    t.string   "violence_to_general_public"
-    t.text     "violence_to_general_public_details"
     t.text     "intimidation"
-    t.boolean  "intimidation_to_staff"
-    t.text     "intimidation_to_staff_details"
     t.boolean  "intimidation_to_public"
     t.text     "intimidation_to_public_details"
     t.boolean  "intimidation_to_other_detainees"
@@ -217,6 +208,8 @@ ActiveRecord::Schema.define(version: 20170913110147) do
     t.string   "must_not_return"
     t.text     "must_not_return_details"
     t.text     "previous_escape_attempts_details"
+    t.string   "self_harm"
+    t.text     "self_harm_details"
     t.index ["escort_id"], name: "index_risks_on_escort_id", using: :btree
   end
 
