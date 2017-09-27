@@ -25,7 +25,7 @@ Each assessment is split into **sections**:
 
 ## Section
 
-Each section has two main components, a list of **questions** and an *optional* list of **subsections**:
+Each section has a list of **questions**
 
 ```yml
 ...
@@ -39,20 +39,6 @@ Each section has two main components, a list of **questions** and an *optional* 
           name: csra
           ...
 ```
-
-```yml
-...
-  sections:
-    violence:
-      ...
-      subsections:
-        discrimination:
-          questions:
-            -
-              name: risk_to_females
-```
-
-The subsections have exactly the same structure of a section.
 
 ## Question
 

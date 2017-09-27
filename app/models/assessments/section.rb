@@ -1,14 +1,13 @@
 module Assessments
   class Section < SimpleDelegator
-    attr_reader :schema, :parent, :subsections, :questions
+    attr_reader :schema, :parent, :questions
 
-    delegate :name, :has_subsections?, to: :schema
+    delegate :name, to: :schema
 
     def initialize(object, schema, options = {})
       @schema = schema
       @parent = options[:parent]
       super(object)
-      initialize_subsections
       initialize_questions
     end
 
@@ -21,16 +20,10 @@ module Assessments
     end
 
     def mandatory_questions
-      questions + subsections.flat_map(&:questions)
+      questions
     end
 
     private
-
-    def initialize_subsections
-      @subsections = schema.subsections.map do |subsection_schema|
-        self.class.new(model, subsection_schema, parent: self)
-      end
-    end
 
     def initialize_questions
       @questions = schema.questions.map do |question_schema|

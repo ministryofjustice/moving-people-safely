@@ -1,14 +1,9 @@
-- if section.has_subsections?
-  - section.subsections.each do |subsection|
-    = render partial: 'escorts/print/section',
-      locals: { section: Print::AssessmentSectionPresenter.new(subsection) }
-- else
-  tr.top-dotted
-   td.column-30-percent
-     == section.label
-   td.column-20-percent.indented
-     == section.relevant
-   td.column-50-percent
-     == "&nbsp;".html_safe
-  - section.questions.each do |question|
-    = render partial: 'escorts/print/question', locals: { question: question }
+tr.top-dotted
+ td.column-30-percent
+   == section.label
+ td.column-20-percent.indented
+   == section.relevant
+ td.column-50-percent
+   == "&nbsp;".html_safe
+- section.questions.each do |question|
+  = render partial: 'escorts/print/question', locals: { question: question }

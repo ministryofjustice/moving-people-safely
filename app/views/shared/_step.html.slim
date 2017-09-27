@@ -1,6 +1,3 @@
-- form.subsections.each do |section|
-  = render partial: 'shared/section', locals: { f: f, section: section }
-
 - form.answers.each do |answer|
   = render partial: "shared/question",
     locals: { f: f, question: QuestionPresenter.new(answer) }

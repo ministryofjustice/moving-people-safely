@@ -4,12 +4,6 @@ class AssessmentPresenter < SimpleDelegator
     super(assessment)
   end
 
-  def sections
-    @sections ||= (step_schema&.subsections || []).map do |section|
-      SectionPresenter.new(section)
-    end
-  end
-
   def questions
     @questions ||= (step_schema&.questions || []).map do |question|
       QuestionPresenter.new(question)

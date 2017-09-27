@@ -8,46 +8,6 @@ RSpec.describe AssessmentPresenter, type: :presenter do
 
   subject(:presenter) { described_class.new(assessment, step) }
 
-  describe '#sections' do
-    context 'when the assessment has no sections' do
-      specify { expect(presenter.sections).to be_empty }
-    end
-
-    context 'when there is no assessment section for the provided step' do
-      let(:sections) { { foo: 'bar' } }
-
-      specify { expect(presenter.sections).to be_empty }
-    end
-
-    context 'when the assessment section for the provided step has no associated subsections' do
-      let(:sections) { { sections: { step => {} } } }
-
-      specify { expect(presenter.sections).to be_empty }
-    end
-
-    context 'when the assessment section for the provided step has associated subsections' do
-      let(:sections) {
-        {
-          sections: {
-            step => {
-              sections: {
-                section_1: {},
-                section_2: {}
-              }
-            }
-          }
-        }
-      }
-
-      it 'returns a list of presentation objects for the subsections' do
-        expect(presenter.sections).not_to be_empty
-        presenter.sections.each do |section|
-          expect(section).to be_an_instance_of(SectionPresenter)
-        end
-      end
-    end
-  end
-
   describe '#questions' do
     context 'when the assessment has no sections' do
       specify { expect(presenter.questions).to be_empty }
