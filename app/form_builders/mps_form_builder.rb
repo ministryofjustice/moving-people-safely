@@ -30,11 +30,12 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     tags = []
     legend_options = options.fetch(:legend_options, {})
     legend = content_tag(:legend) do
+      style = (attribute =~ /_details/ ? '' : 'question')
       if options.fetch(:legend, true)
         tags << content_tag(
           :span,
           fieldset_text(attribute),
-          class: legend_options.fetch(:class, 'form-label-bold')
+          class: legend_options.fetch(:class, style)
         )
       end
 

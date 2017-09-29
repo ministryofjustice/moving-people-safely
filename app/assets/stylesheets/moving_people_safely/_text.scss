@@ -1,11 +1,20 @@
 .heading-light {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .heading-bold {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .heading-smaller {
-    font-size: 24px;
+  font-size: 24px;
+}
+
+.heading-secondary {
+  font-size: 22px;
+  font-weight: normal;
+  color: grey;
+
+  @extend .heading-medium;
+  margin-bottom: 30px;
 }
