@@ -526,12 +526,13 @@ en:
         e_list_standard: E-List-Standard
       title:
         acct_status: ACCT
-        category_a: Cat A
+        category_a: "Cat A"
         csra: CSRA
         current_e_risk_html: "Escape&nbsp;risk"
         mpv: MPV
-        not_for_release: Not for release
-        rule_45: Rule 45
+        not_for_release: "Not for release"
+        rule_45: "Rule 45"
+        self_harm: "Self harm"
   escorts:
     confirm_cancel:
       title: Cancelling PER for

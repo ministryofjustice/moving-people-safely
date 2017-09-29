@@ -39,11 +39,11 @@ Bedford. This ePER is approved by HMPPS - please treat it as a fully valid and o
 Please send any feedback or questions to: eper@digital.justice.gov.uk
 W1234BY: McTest Testy                                                                               Page 1 of 2
 
- NOT FOR RELEASE             NO         ACCT                                    RULE 45
+ NOT FOR RELEASE             NO         ESCAPE RISK                             ACCT
 
-                                      Open
+                                                                             Open
 
- ESCAPE RISK                            CSRA HIGH                               CAT A
+ SELF HARM                    RULE 45                     CSRA HIGH                       CAT A
 
 
 RISK       Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016

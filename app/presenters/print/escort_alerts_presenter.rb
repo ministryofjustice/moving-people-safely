@@ -10,7 +10,7 @@ module Print
     ].freeze
 
     RISK_ATTRIBUTES = %i[
-      acct_status date_of_most_recently_closed_acct rule_45
+      acct_status date_of_most_recently_closed_acct self_harm rule_45
       current_e_risk previous_escape_attempts csra category_a
     ].freeze
 
@@ -29,6 +29,10 @@ module Print
 
     def rule_45_alert
       alert_for(:rule_45, status: status_for(rule_45))
+    end
+
+    def self_harm_alert
+      alert_for(:self_harm, status: status_for(self_harm))
     end
 
     def current_e_risk_alert
