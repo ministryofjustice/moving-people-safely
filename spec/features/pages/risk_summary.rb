@@ -3,45 +3,37 @@ module Page
     include Page::AssessmentSummaryPageHelpers
 
     def confirm_risk_details(risk)
-      check_section(risk, 'risk_to_self', %w[acct_status])
-      check_section(risk, 'risk_from_others', %w[rule_45 high_profile])
-      check_discrimination_section(risk)
-      check_violence_section(risk)
+      check_section(risk, 'risk_to_self', %w[acct_status self_harm])
+      check_security_and_segregation(risk)
+      check_harassment_and_gangs_section(risk)
+      check_section(risk, 'discrimination', %w[violence_to_staff risk_to_females homophobic racist discrimination_to_other_religions other_violence_due_to_discrimination])
+      check_escape_section(risk)
       check_hostage_taker_section(risk)
-      check_harassment_section(risk)
       check_sex_offences_section(risk)
-      check_security_section(risk)
-      check_section(risk, 'substance_misuse', %w[substance_supply])
       check_concealed_weapons_section(risk)
+      check_section(risk, 'drug_trafficking', %w[substance_supply])
       check_return_instructions_section(risk)
       check_section(risk, 'arson', %w[ arson ])
     end
 
     private
 
-    def check_violence_section(risk)
-      check_section(risk, 'csra', %w[csra])
-      check_section(risk, 'violence_to_staff', %w[violence_to_staff])
-      check_violence_to_other_detainees(risk)
-      check_violence_to_general_public(risk)
+    def check_security_and_segregation(risk)
+      check_section(risk, 'security_and_segregation', %w[csra rule_45 high_profile category_a])
       check_controlled_unlock_required(risk)
     end
 
-    def check_discrimination_section(risk)
-      check_section(risk, 'discrimination', %w[risk_to_females homophobic racist discrimination_to_other_religions other_violence_due_to_discrimination])
+    def check_harassment_and_gangs_section(risk)
+      check_intimidation(risk)
+      check_section(risk, 'harassment_and_gangs', %w[gang_member])
     end
 
-    def check_violence_to_other_detainees(risk)
-      if risk.violence_to_other_detainees == 'yes'
-        check_section(risk, 'violence_to_other_detainees', %w[co_defendant gang_member other_violence_to_other_detainees])
+    def check_intimidation(risk)
+      fields = %w[intimidation_to_public intimidation_to_other_detainees intimidation_to_witnesses]
+      if risk.intimidation == 'yes'
+        check_section(risk, 'harassment_and_gangs', fields)
       else
-        check_section_is_all_no(risk, 'violence_to_other_detainees', %w[co_defendant gang_member other_violence_to_other_detainees])
-      end
-    end
-
-    def check_violence_to_general_public(risk)
-      if risk.violence_to_general_public == 'yes'
-        check_question(risk, 'violence_to_general_public', 'violence_to_general_public')
+        check_section_is_all_no(risk, 'harassment_and_gangs', fields)
       end
     end
 
@@ -60,19 +52,6 @@ module Page
       end
     end
 
-    def check_harassment_section(risk)
-      check_intimidation(risk)
-    end
-
-    def check_intimidation(risk)
-      fields = %w[intimidation_to_staff intimidation_to_public intimidation_to_other_detainees intimidation_to_witnesses]
-      if risk.intimidation == 'yes'
-        check_section(risk, 'intimidation', fields)
-      else
-        check_section_is_all_no(risk, 'intimidation', fields)
-      end
-    end
-
     def check_sex_offences_section(risk)
       fields = %w[sex_offence_adult_male_victim sex_offence_adult_female_victim
                   sex_offence_under18_victim]
@@ -83,23 +62,14 @@ module Page
       end
     end
 
-    def check_security_section(risk)
+    def check_escape_section(risk)
       check_current_e_risk(risk)
-      check_previous_escape_attempts(risk)
-      check_question(risk, 'category_a', 'category_a')
-      check_question(risk, 'escort_details', 'escort_risk_assessment')
-      check_question(risk, 'escort_details', 'escape_pack')
+      check_section(risk, 'escape', %w[previous_escape_attempts escort_risk_assessment escape_pack])
     end
 
     def check_current_e_risk(risk)
       if risk.current_e_risk == 'yes'
         check_question(risk, 'escape_status', 'current_e_risk_details')
-      end
-    end
-
-    def check_previous_escape_attempts(risk)
-      if risk.previous_escape_attempts == 'yes'
-        check_section(risk, 'previous_escape_attempts', fields)
       end
     end
 
@@ -120,7 +90,7 @@ module Page
     end
 
     def check_return_instructions_section(risk)
-      if risk.violence_to_other_detainees == 'yes'
+      if risk.violence_to_staff == 'yes'
         check_question(risk, 'return_instructions', 'must_return_to')
         check_question(risk, 'return_instructions', 'must_return_to_details')
       end

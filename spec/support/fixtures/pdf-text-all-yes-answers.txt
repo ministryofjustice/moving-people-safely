@@ -37,73 +37,56 @@ About this Person Escort Record
 This ePER was produced by the Ministry of Justice ePER service, currently in pilot at HMP
 Bedford. This ePER is approved by HMPPS - please treat it as a fully valid and official record.
 Please send any feedback or questions to: eper@digital.justice.gov.uk
-W1234BY: McTest Testy                                                                                Page 1 of 3
+W1234BY: McTest Testy                                                                               Page 1 of 2
 
- NOT FOR RELEASE             NO         ACCT                                    RULE 45
+ NOT FOR RELEASE             NO         ESCAPE RISK                             ACCT
 
-                                      Open
+                                                                             Open
 
- ESCAPE RISK                            CSRA HIGH                               CAT A
+ SELF HARM                    RULE 45                     CSRA HIGH                       CAT A
 
 
 RISK       Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
 
 Risk to self                         Yes
   ACCT status                        Open
-Risk from others                     Yes
+  Risk of self harm                  Yes                 Self harm details
+Security and segregation             Yes
+  CSRA level                         High
   Rule 45                            Yes
+  Controlled unlock                  Yes                 More than 4 officers | Many people to hold the prisoner
+  Cat A or potential Cat A           Yes
   High public interest               Yes                 High profile details
+Harassment and gangs                 Yes
+  Public harasser                    Yes                 Intimidation to public details
+  Prisoners harasser                 Yes                 Intimidation to other detainees details
+  Witnesses harasser                 Yes                 Intimidation to witnesses details
+  Gang member                        Yes                 Violence gang member details
 Discrimination against others        Yes
+  Violent to staff                   Yes                 Violent to staff details
   Risk to females                    Yes                 Risk to females details
   Risk to LGBT people                Yes                 Lgtb details
   Racist                             Yes                 Violence racist details
   Risk to other religions            Yes                 Discrimination to other religion details
   Risk to other groups               Yes                 Other violence due to discrimination details
-CSRA (Cell Sharing Risk              Yes
-Assessment)
-  CSRA (Cell Sharing Risk            High
-  Assessment)
-Violent to staff                     Yes
-  Violent to staff                   Yes                 Violent to staff details
-Violent to other prisoners           Yes
-  Co-defendant                       Yes                 Violente co-defendant details
-  Gang member                        Yes                 Violence gang member details
-  Other known conflicts              Yes                 Other violence to other detainees details
-Violent to anyone else               Yes
-  Violent to anyone else             Yes                 Violence to general public details
-Controlled unlock                    Yes
-  Controlled unlock                  Yes                 More than 4 officers | Many people to hold the prisoner
+Escape status/history                Yes
+  Currently on E list                Yes                 E-List-Escort
+  Escape risk                        Yes                 Escape attempt details
+  Escort Risk Assessment             Yes
+  needed
+  Escape Pack needed                 Yes
 Hostage taker                        Yes
-  Staff                              Yes                 Last incident: 12/03/2010
-  Prisoners                          Yes                 Last incident: 24/05/2012
-  Public                             Yes                 Last incident: 02/09/2007
-Harassment and bullying              Yes
-  Staff                              Yes                 Intimidation to staff details
-  Public                             Yes                 Intimidation to public details
-
-  Prisoners                          Yes                 Intimidation to other detainees details
-  Witnesses                          Yes                 Intimidation to witnesses details
+  Staff hostage taker                Yes                 Last incident: 12/03/2010
+  Prisoner hostage taker             Yes                 Last incident: 24/05/2012
+  Public hostage taker               Yes                 Last incident: 02/09/2007
 Sex offender                         Yes
-  Adult male                         Yes
-W1234BY: McTest Testy                                                                             Page 2 of 3
-  Adult female                      Yes
-  Under 18                          Yes
+  Sex offender victim adult          Yes
+  male
+  Sex offender victim adult          Yes
+  female
+  Sex offender victim under 18       Yes
+W1234BY: McTest Testy                                                                             Page 2 of 2
   Most recent sex offence           12/10/2008
-Escape status/history               Yes
-  Currently on E list               Yes                  E-List-Escort
-Escape risk                         Yes
-  Escape risk                       Yes                  Escape attempt details
-Category A, potential Category      Yes
-A or Restricted Status
-  Category A, potential             Yes
-  Category A or Restricted
-  Status
-Further security information        Yes
-  Escort risk assessment            Yes
-  needed?
-  Escape pack needed?               Yes
-Drug trafficking risk               Yes
-  Drug trafficking risk             Yes
 Weapons, drugs or other items       Yes
   Creates or uses weapons           Yes                  Created and used a 3d gun
   Conceals weapons                  Yes                  Conceals weapons details
@@ -111,6 +94,8 @@ Weapons, drugs or other items       Yes
   Conceals mobile phones            Yes
   Conceals SIM cards                Yes
   Conceals other items              Yes                  Conceals other items details
+Drug trafficking risk               Yes
+  Drug trafficking risk             Yes
 Arson                               Yes
   Arsonist                          Yes
 Return Instructions                 Yes
@@ -129,21 +114,21 @@ Mental health issues                Yes
 Special vehicles                    Yes
   Special vehicle required          Yes                  Mpv details
 Essential medication                Yes
-W1234BY: McTest Testy                                                                   Page 3 of 3
- Essential medication         Yes              Xanax | Every 4 hours | By mouth | Daily | Carried by:
-                                               Escort
-                                               Paracetamol | 2 days a week | By mouth | Daily |
-                                               Carried by: Prisoner
-Dependencies                  Yes
- Dependencies                 Yes              Dependencies details
-Allergies and intolerances    Yes
- Allergies and intolerances   Yes              Allergies details
-Personal care                 Yes
- Personal care issues         Yes              Personal care details
-Medical contact details       Yes
- Medical contact              1-131-999-0232
+  Essential medication              Yes                  Xanax | Every 4 hours | By mouth | Daily | Carried by:
+                                                         Escort
+                                                         Paracetamol | 2 days a week | By mouth | Daily |
+                                                         Carried by: Prisoner
+Dependencies                        Yes
+  Dependencies                      Yes                  Dependencies details
+Allergies and intolerances          Yes
+
+  Allergies and intolerances        Yes                  Allergies details
+Personal care                       Yes
+  Personal care issues              Yes                  Personal care details
+Medical contact details             Yes
+  Medical contact                   1-131-999-0232
 
 OFFENCES
-Current offences              Yes              Burglary (LXAHTGNJQF) | Sex offence
-                                               (QDPREIBMSF)
+Current offences                    Yes                  Burglary (LXAHTGNJQF) | Sex offence
+                                                         (QDPREIBMSF)
 

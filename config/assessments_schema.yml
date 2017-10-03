@@ -220,10 +220,84 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'none'
-      risk_from_others:
+          -
+            name: self_harm
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: self_harm_details
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+      security_and_segregation:
         questions:
           -
+            name: csra
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+            answers:
+              -
+                value: 'high'
+                relevant: true
+              -
+                value: 'standard'
+          -
             name: rule_45
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+            answers:
+              -
+                value: 'yes'
+              -
+                value: 'no'
+          -
+            name: controlled_unlock_required
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: controlled_unlock
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::InclusionValidator'
+                    answers:
+                      -
+                        value: two_officer_unlock
+                      -
+                        value: three_officer_unlock
+                      -
+                        value: four_officer_unlock
+                      -
+                        value: more_than_four
+                  -
+                    name: controlled_unlock_details
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+          -
+            name: category_a
             type: string
             validators:
               -
@@ -251,8 +325,112 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
+      harassment_and_gangs:
+        questions:
+          -
+            name: intimidation
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: intimidation_type
+                    type: group
+                    validators:
+                      -
+                        name: 'Assessments::GroupValidator'
+                        options:
+                          at_least: true
+                    questions:
+                      -
+                        name: intimidation_to_public
+                        type: boolean
+                        answers:
+                          -
+                            value: false
+                          -
+                            value: true
+                            questions:
+                              -
+                                name: intimidation_to_public_details
+                                type: string
+                                validators:
+                                  -
+                                    name: 'Assessments::PresenceValidator'
+                      -
+                        name: intimidation_to_other_detainees
+                        type: boolean
+                        answers:
+                          -
+                            value: false
+                          -
+                            value: true
+                            questions:
+                              -
+                                name: intimidation_to_other_detainees_details
+                                type: string
+                                validators:
+                                  -
+                                    name: 'Assessments::PresenceValidator'
+                      -
+                        name: intimidation_to_witnesses
+                        type: boolean
+                        answers:
+                          -
+                            value: false
+                          -
+                            value: true
+                            questions:
+                              -
+                                name: intimidation_to_witnesses_details
+                                type: string
+                                validators:
+                                  -
+                                    name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+          -
+            name: gang_member
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: gang_member_details
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
       discrimination:
         questions:
+          -
+            name: violence_to_staff
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: violence_to_staff_details
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
           -
             name: risk_to_females
             type: string
@@ -343,165 +521,73 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-      violence:
-        sections:
-          csra:
-            questions:
+      escape:
+        questions:
+          -
+            name: current_e_risk
+            type: string
+            validators:
               -
-                name: csra
-                type: string
-                validators:
-                  -
-                    name: 'Assessments::InclusionValidator'
-                answers:
-                  -
-                    value: 'high'
-                    relevant: true
-                  -
-                    value: 'standard'
-          violence_to_staff:
-            questions:
+                name: 'Assessments::InclusionValidator'
+            answers:
               -
-                name: violence_to_staff
-                type: string
-                validators:
+                value: 'yes'
+                questions:
                   -
-                    name: 'Assessments::InclusionValidator'
-                answers:
-                  -
-                    value: 'yes'
-                    questions:
+                    name: current_e_risk_details
+                    type: string
+                    validators:
                       -
-                        name: violence_to_staff_details
-                        type: string
-                        validators:
-                          -
-                            name: 'Assessments::PresenceValidator'
-                  -
-                    value: 'no'
-          violence_to_other_detainees:
-            questions:
+                        name: 'Assessments::InclusionValidator'
+                    answers:
+                      -
+                        value: e_list_standard
+                      -
+                        value: e_list_escort
+                      -
+                        value: e_list_heightened
               -
-                name: violence_to_other_detainees
-                type: string
-                validators:
-                  -
-                    name: 'Assessments::InclusionValidator'
-                answers:
-                  -
-                    value: 'yes'
-                    questions:
-                      -
-                        name: violence_to_other_detainees_type
-                        type: group
-                        validators:
-                          -
-                            name: 'Assessments::GroupValidator'
-                            options:
-                              at_least: true
-                        questions:
-                          -
-                            name: co_defendant
-                            type: boolean
-                            answers:
-                              -
-                                value: false
-                              -
-                                value: true
-                                questions:
-                                  -
-                                    name: co_defendant_details
-                                    type: string
-                                    validators:
-                                      -
-                                        name: 'Assessments::PresenceValidator'
-                          -
-                            name: gang_member
-                            type: boolean
-                            answers:
-                              -
-                                value: false
-                              -
-                                value: true
-                                questions:
-                                  -
-                                    name: gang_member_details
-                                    type: string
-                                    validators:
-                                      -
-                                        name: 'Assessments::PresenceValidator'
-                          -
-                            name: other_violence_to_other_detainees
-                            type: boolean
-                            answers:
-                              -
-                                value: false
-                              -
-                                value: true
-                                questions:
-                                  -
-                                    name: other_violence_to_other_detainees_details
-                                    type: string
-                                    validators:
-                                      -
-                                        name: 'Assessments::PresenceValidator'
-                  -
-                    value: 'no'
-          violence_to_general_public:
-            questions:
+                value: 'no'
+          -
+            name: previous_escape_attempts
+            type: string
+            validators:
               -
-                name: violence_to_general_public
-                type: string
-                validators:
-                  -
-                    name: 'Assessments::InclusionValidator'
-                answers:
-                  -
-                    value: 'yes'
-                    questions:
-                      -
-                        name: violence_to_general_public_details
-                        type: string
-                        validators:
-                          -
-                            name: 'Assessments::PresenceValidator'
-                  -
-                    value: 'no'
-          controlled_unlock_required:
-            questions:
+                name: 'Assessments::InclusionValidator'
+            answers:
               -
-                name: controlled_unlock_required
-                type: string
-                validators:
+                value: 'yes'
+                questions:
                   -
-                    name: 'Assessments::InclusionValidator'
-                answers:
-                  -
-                    value: 'yes'
-                    questions:
+                    name: previous_escape_attempts_details
+                    type: string
+                    validators:
                       -
-                        name: controlled_unlock
-                        type: string
-                        validators:
-                          -
-                            name: 'Assessments::InclusionValidator'
-                        answers:
-                          -
-                            value: two_officer_unlock
-                          -
-                            value: three_officer_unlock
-                          -
-                            value: four_officer_unlock
-                          -
-                            value: more_than_four
-                      -
-                        name: controlled_unlock_details
-                        type: string
-                        validators:
-                          -
-                            name: 'Assessments::PresenceValidator'
-                  -
-                    value: 'no'
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+          -
+            name: escort_risk_assessment
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+            answers:
+              -
+                value: 'yes'
+              -
+                value: 'no'
+          -
+            name: escape_pack
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+            answers:
+              -
+                value: 'yes'
+              -
+                value: 'no'
       hostage_taker:
         questions:
           -
@@ -576,91 +662,6 @@ assessment:
                                       not_in_the_future: true
               -
                 value: 'no'
-      harassments:
-        sections:
-          intimidation:
-            questions:
-              -
-                name: intimidation
-                type: string
-                validators:
-                  -
-                    name: 'Assessments::InclusionValidator'
-                answers:
-                  -
-                    value: 'yes'
-                    questions:
-                      -
-                        name: intimidation_type
-                        type: group
-                        validators:
-                          -
-                            name: 'Assessments::GroupValidator'
-                            options:
-                              at_least: true
-                        questions:
-                          -
-                            name: intimidation_to_staff
-                            type: boolean
-                            answers:
-                              -
-                                value: false
-                              -
-                                value: true
-                                questions:
-                                  -
-                                    name: intimidation_to_staff_details
-                                    type: string
-                                    validators:
-                                      -
-                                        name: 'Assessments::PresenceValidator'
-                          -
-                            name: intimidation_to_public
-                            type: boolean
-                            answers:
-                              -
-                                value: false
-                              -
-                                value: true
-                                questions:
-                                  -
-                                    name: intimidation_to_public_details
-                                    type: string
-                                    validators:
-                                      -
-                                        name: 'Assessments::PresenceValidator'
-                          -
-                            name: intimidation_to_other_detainees
-                            type: boolean
-                            answers:
-                              -
-                                value: false
-                              -
-                                value: true
-                                questions:
-                                  -
-                                    name: intimidation_to_other_detainees_details
-                                    type: string
-                                    validators:
-                                      -
-                                        name: 'Assessments::PresenceValidator'
-                          -
-                            name: intimidation_to_witnesses
-                            type: boolean
-                            answers:
-                              -
-                                value: false
-                              -
-                                value: true
-                                questions:
-                                  -
-                                    name: intimidation_to_witnesses_details
-                                    type: string
-                                    validators:
-                                      -
-                                        name: 'Assessments::PresenceValidator'
-                  -
-                    value: 'no'
       sex_offences:
         questions:
           -
@@ -699,105 +700,6 @@ assessment:
                         name: 'Assessments::DateValidator'
                         options:
                           not_in_the_future: true
-              -
-                value: 'no'
-      security:
-        sections:
-          escape_status:
-            questions:
-              -
-                name: current_e_risk
-                type: string
-                validators:
-                  -
-                    name: 'Assessments::InclusionValidator'
-                answers:
-                  -
-                    value: 'yes'
-                    questions:
-                      -
-                        name: current_e_risk_details
-                        type: string
-                        validators:
-                          -
-                            name: 'Assessments::InclusionValidator'
-                        answers:
-                          -
-                            value: e_list_standard
-                          -
-                            value: e_list_escort
-                          -
-                            value: e_list_heightened
-                  -
-                    value: 'no'
-          previous_escape_attempts:
-            questions:
-              -
-                name: previous_escape_attempts
-                type: string
-                validators:
-                  -
-                    name: 'Assessments::InclusionValidator'
-                answers:
-                  -
-                    value: 'yes'
-                    questions:
-                      -
-                        name: previous_escape_attempts_details
-                        type: string
-                        validators:
-                          -
-                            name: 'Assessments::PresenceValidator'
-                  -
-                    value: 'no'
-          category_a:
-            questions:
-              -
-                name: category_a
-                type: string
-                validators:
-                  -
-                    name: 'Assessments::InclusionValidator'
-                answers:
-                  -
-                    value: 'yes'
-                  -
-                    value: 'no'
-          escort_details:
-            questions:
-              -
-                name: escort_risk_assessment
-                type: string
-                validators:
-                  -
-                    name: 'Assessments::InclusionValidator'
-                answers:
-                  -
-                    value: 'yes'
-                  -
-                    value: 'no'
-              -
-                name: escape_pack
-                type: string
-                validators:
-                  -
-                    name: 'Assessments::InclusionValidator'
-                answers:
-                  -
-                    value: 'yes'
-                  -
-                    value: 'no'
-      substance_misuse:
-        questions:
-          -
-            name: substance_supply
-            type: string
-            validators:
-              -
-                name: 'Assessments::InclusionValidator'
-            answers:
-              -
-                value: 'yes'
               -
                 value: 'no'
       concealed_weapons:
@@ -896,6 +798,19 @@ assessment:
                                 validators:
                                   -
                                     name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+      drug_trafficking:
+        questions:
+          -
+            name: substance_supply
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+            answers:
+              -
+                value: 'yes'
               -
                 value: 'no'
       arson:

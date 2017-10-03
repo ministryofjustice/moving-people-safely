@@ -4,7 +4,7 @@ class EscortAlertsPresenter < SimpleDelegator
     not_for_release_reason_details
   ].freeze
   RISK_ATTRIBUTES = %i[
-    acct_status date_of_most_recently_closed_acct rule_45
+    acct_status date_of_most_recently_closed_acct self_harm rule_45
     current_e_risk previous_escape_attempts csra category_a
   ].freeze
 
@@ -30,6 +30,10 @@ class EscortAlertsPresenter < SimpleDelegator
     else
       'alert-off'
     end
+  end
+
+  def self_harm_alert_class
+    self_harm == 'yes' ? 'alert-on' : 'alert-off'
   end
 
   def acct_status_text

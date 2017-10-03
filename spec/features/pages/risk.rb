@@ -9,15 +9,14 @@ module Page
     def complete_forms(risk)
       @risk = risk
       fill_in_risk_to_self
-      fill_in_risk_from_others
+      fill_in_security_and_segregation
+      fill_in_harassment_and_gangs
       fill_in_discrimination
-      fill_in_violence
+      fill_in_escape
       fill_in_hostage_taker
-      fill_in_harassments
       fill_in_sex_offences
-      fill_in_security
-      fill_in_substance_misuse
       fill_in_concealed_weapons
+      fill_in_drug_trafficking
       fill_in_arson
       fill_in_return_instructions
       fill_in_other_risk
@@ -25,16 +24,27 @@ module Page
 
     def fill_in_risk_to_self
       fill_in_optional_details("What is the prisoner's ACCT status?", @risk, :acct_status)
+      fill_in_optional_details("Is there any other risk of self harm on this journey?", @risk, :self_harm)
       save_and_continue
     end
 
-    def fill_in_risk_from_others
+    def fill_in_security_and_segregation
+      fill_in_optional_details('What is their Cell Sharing Risk Assessment (CSRA) risk level?', @risk, :csra)
       fill_in_optional_details('Are they held under Rule 45?', @risk, :rule_45)
+      fill_in_controlled_unlock_required
+      fill_in_category_a
       fill_in_optional_details('Are they of high public interest?', @risk, :high_profile)
       save_and_continue
     end
 
+    def fill_in_harassment_and_gangs
+      fill_in_intimidation
+      fill_in_optional_details('Are they a gang member?', @risk, :gang_member)
+      save_and_continue
+    end
+
     def fill_in_discrimination
+      fill_in_optional_details('Are they a risk to staff?', @risk, :violence_to_staff)
       fill_in_optional_details('Are they a risk to females?', @risk, :risk_to_females)
       fill_in_optional_details('Are they a risk to lesbian, gay, bisexual, transgender or transexual (LGBT) people?', @risk, :homophobic)
       fill_in_optional_details('Are they a risk to other races?', @risk, :racist)
@@ -43,53 +53,12 @@ module Page
       save_and_continue
     end
 
-    def fill_in_violence
-      fill_in_optional_details('What is their Cell Sharing Risk Assessment (CSRA) risk level?', @risk, :csra)
-      fill_in_violence_to_staff
-      fill_in_violence_to_other_detainees
-      fill_in_violence_to_general_public
-      fill_in_controlled_unlock_required
+    def fill_in_escape
+      fill_in_current_e_risk
+      fill_in_previous_escape_attempts
+      fill_in_escort_risk_assessment
+      fill_in_escape_pack
       save_and_continue
-    end
-
-    def fill_in_violence_to_staff
-      if @risk.violence_to_staff == 'yes'
-        choose 'violence_violence_to_staff_yes'
-        check 'Staff custody'
-        check 'Staff community'
-      else
-        choose 'violence_violence_to_staff_no'
-      end
-    end
-
-    def fill_in_violence_to_other_detainees
-      if @risk.violence_to_other_detainees == 'yes'
-        choose 'violence_violence_to_other_detainees_yes'
-        fill_in_checkbox_with_details('Co-defendant', @risk, :co_defendant)
-        fill_in_checkbox_with_details('Gang member', @risk, :gang_member)
-        fill_in_checkbox_with_details('Other known conflicts', @risk, :other_violence_to_other_detainees)
-      else
-        choose 'violence_violence_to_other_detainees_no'
-      end
-    end
-
-    def fill_in_violence_to_general_public
-      if @risk.violence_to_general_public == 'yes'
-        choose 'violence_violence_to_general_public_yes'
-        fill_in 'violence_violence_to_general_public_details', with: @risk.violence_to_general_public_details
-      else
-        choose 'violence_violence_to_general_public_no'
-      end
-    end
-
-    def fill_in_controlled_unlock_required
-      if @risk.controlled_unlock_required == 'yes'
-        choose 'violence_controlled_unlock_required_yes'
-        choose 'violence_controlled_unlock_more_than_four'
-        fill_in 'violence_controlled_unlock_details', with: @risk.controlled_unlock_details
-      else
-        choose 'violence_controlled_unlock_required_no'
-      end
     end
 
     def fill_in_hostage_taker
@@ -102,6 +71,70 @@ module Page
         choose 'hostage_taker_hostage_taker_no'
       end
       save_and_continue
+    end
+
+    def fill_in_sex_offences
+      if @risk.sex_offence == 'yes'
+        choose 'sex_offences_sex_offence_yes'
+        fill_in_checkbox('Adult male', @risk, :sex_offence_adult_male_victim)
+        fill_in_checkbox('Adult female', @risk, :sex_offence_adult_female_victim)
+        fill_in_checkbox_with_details('Under 18', @risk, :sex_offence_under18_victim)
+        fill_in 'sex_offence_date_most_recent_sexual_offence', with: @risk.date_most_recent_sexual_offence
+      else
+        choose 'sex_offences_sex_offence_no'
+      end
+      save_and_continue
+    end
+
+    def fill_in_concealed_weapons
+      fill_in_optional_details('Have they created or used weapons in custody?', @risk, :uses_weapons)
+      fill_in_optional_details('Have they concealed weapons in custody?', @risk, :conceals_weapons)
+      fill_in_optional_details('Have they concealed drugs in custody?', @risk, :conceals_drugs)
+      fill_in_concealed_mobile_phone_or_other_items
+      save_and_continue
+    end
+
+    def fill_in_drug_trafficking
+      fill_in_optional_details('Is there a risk that they might traffic drugs on this journey?', @risk, :substance_supply)
+      save_and_continue
+    end
+
+    def fill_in_arson
+      if @risk.arson == 'yes'
+        choose 'arson_arson_yes'
+      else
+        choose 'arson_arson_no'
+      end
+      save_and_continue
+    end
+
+    def fill_in_return_instructions
+      fill_in_must_return
+      fill_in_must_not_return
+      save_and_continue
+    end
+
+    def fill_in_other_risk
+      fill_in_optional_details('Is there any other information related to risk on this journey you would like to include?', @risk, :other_risk)
+      save_and_continue
+    end
+
+    private
+
+    def fill_in_controlled_unlock_required
+      if @risk.controlled_unlock_required == 'yes'
+        choose 'security_and_segregation_controlled_unlock_required_yes'
+        choose 'security_and_segregation_controlled_unlock_more_than_four'
+        fill_in 'security_and_segregation_controlled_unlock_details', with: @risk.controlled_unlock_details
+      else
+        choose 'security_and_segregation_controlled_unlock_required_no'
+      end
+    end
+
+    def fill_in_trafficking_drugs
+      if @risk.trafficking_drugs
+        check 'drug_trafficking_trafficking_drugs'
+      end
     end
 
     def fill_in_staff_hostage_taker
@@ -125,110 +158,63 @@ module Page
       end
     end
 
-    def fill_in_harassments
-      fill_in_intimidation
-      save_and_continue
-    end
-
     def fill_in_intimidation
       if @risk.intimidation == 'yes'
-        choose 'harassments_intimidation_yes'
-        fill_in_checkbox_with_details('Staff', @risk, :intimidation_to_staff)
+        choose 'harassment_and_gangs_intimidation_yes'
         fill_in_checkbox_with_details('Public', @risk, :intimidation_to_public)
         fill_in_checkbox_with_details('Prisoners', @risk, :intimidation_to_other_detainees)
         fill_in_checkbox_with_details('Witnesses', @risk, :intimidation_to_witnesses)
       else
-        choose 'harassments_intimidation_no'
-      end
-    end
-
-    def fill_in_sex_offences
-      if @risk.sex_offence == 'yes'
-        choose 'sex_offences_sex_offence_yes'
-        fill_in_checkbox('Adult male', @risk, :sex_offence_adult_male_victim)
-        fill_in_checkbox('Adult female', @risk, :sex_offence_adult_female_victim)
-        fill_in_checkbox_with_details('Under 18', @risk, :sex_offence_under18_victim)
-        fill_in 'sex_offence_date_most_recent_sexual_offence', with: @risk.date_most_recent_sexual_offence
-      else
-        choose 'sex_offences_sex_offence_no'
-      end
-      save_and_continue
-    end
-
-    def fill_in_security
-      fill_in_current_e_risk
-      fill_in_previous_escape_attempts
-      fill_in_category_a
-      fill_in_escort_risk_assessment
-      fill_in_escape_pack
-      save_and_continue
-    end
-
-    def fill_in_current_e_risk
-      if @risk.current_e_risk == 'yes'
-        choose 'security_current_e_risk_yes'
-        choose "security_current_e_risk_details_#{@risk.current_e_risk_details}"
-      else
-        choose 'security_current_e_risk_no'
+        choose 'harassment_and_gangs_intimidation_no'
       end
     end
 
     def fill_in_previous_escape_attempts
       if @risk.previous_escape_attempts == 'yes'
-        choose 'security_previous_escape_attempts_yes'
-        fill_in 'security_previous_escape_attempts_details', with: @risk.previous_escape_attempts_details
+        choose 'escape_previous_escape_attempts_yes'
+        fill_in 'escape_previous_escape_attempts_details', with: @risk.previous_escape_attempts_details
       else
-        choose 'security_previous_escape_attempts_no'
+        choose 'escape_previous_escape_attempts_no'
       end
     end
 
     def fill_in_category_a
       if @risk.category_a == 'yes'
-        choose 'security_category_a_yes'
+        choose 'security_and_segregation_category_a_yes'
       else
-        choose 'security_category_a_no'
+        choose 'security_and_segregation_category_a_no'
+      end
+    end
+
+    def fill_in_current_e_risk
+      if @risk.current_e_risk == 'yes'
+        choose 'escape_current_e_risk_yes'
+        choose "escape_current_e_risk_details_#{@risk.current_e_risk_details}"
+      else
+        choose 'escape_current_e_risk_no'
       end
     end
 
     def fill_in_escort_risk_assessment
       if @risk.escort_risk_assessment == 'yes'
-        choose 'security_escort_risk_assessment_yes'
+        choose 'escape_escort_risk_assessment_yes'
       else
-        choose 'security_escort_risk_assessment_no'
+        choose 'escape_escort_risk_assessment_no'
       end
     end
 
     def fill_in_escape_pack
       if @risk.escape_pack == 'yes'
-        choose 'security_escape_pack_yes'
+        choose 'escape_escape_pack_yes'
       else
-        choose 'security_escape_pack_no'
-      end
-    end
-
-    def fill_in_substance_misuse
-      fill_in_optional_details('Is there a risk that they might traffic drugs on this journey?', @risk, :substance_supply)
-      save_and_continue
-    end
-
-    def fill_in_trafficking_drugs
-      if @risk.trafficking_drugs
-        check 'substance_misuse_trafficking_drugs'
+        choose 'escape_escape_pack_no'
       end
     end
 
     def fill_in_trafficking_alcohol
       if @risk.trafficking_alcohol
-        check 'substance_misuse_trafficking_alcohol'
+        check 'drug_trafficking_trafficking_alcohol'
       end
-    end
-
-    def fill_in_concealed_weapons
-      fill_in_optional_details('Have they created or used weapons in custody?', @risk, :uses_weapons)
-      fill_in_optional_details('Have they concealed weapons in custody?', @risk, :conceals_weapons)
-      fill_in_optional_details('Have they concealed drugs in custody?', @risk, :conceals_drugs)
-      fill_in_concealed_mobile_phone_or_other_items
-      save_and_continue
     end
 
     def fill_in_concealed_mobile_phone_or_other_items
@@ -259,21 +245,6 @@ module Page
         check 'concealed_weapons_conceals_other_items'
         fill_in 'concealed_weapons_conceals_other_items_details', with: @risk.conceals_other_items_details
       end
-    end
-
-    def fill_in_arson
-      if @risk.arson == 'yes'
-        choose 'arson_arson_yes'
-      else
-        choose 'arson_arson_no'
-      end
-      save_and_continue
-    end
-
-    def fill_in_return_instructions
-      fill_in_must_return
-      fill_in_must_not_return
-      save_and_continue
     end
 
     def fill_in_must_return
@@ -308,11 +279,6 @@ module Page
         fill_in 'Establishment', with: detail.establishment
         fill_in 'Give details of why they must not be sent here:', with: detail.establishment_details
       end
-    end
-
-    def fill_in_other_risk
-      fill_in_optional_details('Is there any other information related to risk on this journey you would like to include?', @risk, :other_risk)
-      save_and_continue
     end
   end
 end
