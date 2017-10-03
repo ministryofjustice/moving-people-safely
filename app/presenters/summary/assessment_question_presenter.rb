@@ -72,6 +72,7 @@ module Summary
     end
 
     def answer_value(value)
+      return '' if value.nil?
       default_value = value.respond_to?(:humanize) ? sanitize(value.humanize) : value
       t(value, scope: [:summary, :section, :answers, section_name], default: default_value)
     end
