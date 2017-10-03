@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   ADMIN_ORGANISATION = 'digital.noms.moj'.freeze
+  COURT_ORGANISATION = 'courts.noms.moj'.freeze
   HEALTHCARE_ROLE = 'healthcare'.freeze
 
   serialize :permissions
@@ -53,6 +54,10 @@ class User < ApplicationRecord
 
   def admin?
     permissions.any? { |permission| permission['organisation'] == ADMIN_ORGANISATION }
+  end
+
+  def court?
+    permissions.any? { |permission| permission['organisation'] == COURT_ORGANISATION }
   end
 
   def healthcare?

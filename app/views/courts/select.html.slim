@@ -1,0 +1,15 @@
+header
+  h1 Where do you work?
+
+= form_for @form, url: change_court_path do |f|
+  .radio-concertina
+    .form-group
+      fieldset
+        - %i[crown_court magistrates_court].each do |option|
+          = f.radio_concertina_option(:to_type, t(option, scope: 'move.destination_types.labels'), option) do
+            label.form-label for=option
+              = t(option, scope: 'move.destination_types.prompts')
+            = f.select "#{option}_id", option.to_s.classify.constantize.pluck(:name, :id), {include_blank: true}, { id: option }
+
+  .form-actions
+    = f.submit 'Save and continue', class: 'button'

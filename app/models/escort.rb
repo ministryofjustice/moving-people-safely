@@ -32,6 +32,8 @@ class Escort < ApplicationRecord
   scope :in_last_days, lambda { |num_days|
     joins(:move).where('moves.date >= ? AND moves.date < ?', num_days.days.ago.to_date, Date.current)
   }
+  scope :in_court, ->(court_name) { joins(:move).where('moves.to = ?', court_name) if court_name }
+  scope :for_today, -> { joins(:move).where('moves.date = ?', Date.current) }
 
   delegate :offences, :offences=, to: :detainee, allow_nil: true
   delegate :surname, :forenames, to: :detainee, prefix: true
@@ -93,5 +95,9 @@ class Escort < ApplicationRecord
 
   def document_path
     document.options[:storage] == :filesystem ? document.path : document.expiring_url
+  end
+
+  def active_alerts
+    move.active_alerts + risk.active_alerts
   end
 end

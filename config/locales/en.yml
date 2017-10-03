@@ -528,6 +528,14 @@ en:
         label: Review
         title: Check all answers, then confirm and save
   escort: &escort
+    active_alerts:
+      acct_status: ACCT
+      category_a: Cat A
+      csra: CSRA High
+      current_e_risk: Escape risk
+      not_for_release: Not for release
+      rule_45: Rule 45
+      self_harm: Self harm
     alerts:
       acct_status:
         closed_in_last_6_months: 'Closed:'
@@ -543,7 +551,6 @@ en:
         category_a: "Cat A"
         csra: CSRA
         current_e_risk_html: "Escape&nbsp;risk"
-        mpv: MPV
         not_for_release: "Not for release"
         rule_45: "Rule 45"
         self_harm: "Self harm"

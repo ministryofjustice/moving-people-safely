@@ -4,7 +4,12 @@ Rails.application.routes.draw do
 
   get :ping, to: 'ping#show'
 
-  resources :escorts, only: %i[new create show] do
+  resource :court, only: %i[show] do
+    get :select
+    post :change
+  end
+
+  resources :escorts, only: %i[show new create] do
     get :confirm_cancel, on: :member
     put :cancel, on: :member
     resource :detainee do

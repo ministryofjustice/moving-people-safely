@@ -14,10 +14,8 @@ module Print
       current_e_risk previous_escape_attempts csra category_a
     ].freeze
 
-    delegate(:detainee, :move, :risk, :healthcare, to: :model)
     delegate(*MOVE_ATTRIBUTES, to: :move, allow_nil: true)
     delegate(*RISK_ATTRIBUTES, to: :risk, allow_nil: true)
-    delegate(:mpv, to: :healthcare, allow_nil: true)
 
     def not_for_release_alert
       alert_for(:not_for_release, status: status_for(not_for_release), text: not_for_release_text)
@@ -47,10 +45,6 @@ module Print
 
     def category_a_alert
       alert_for(:category_a, status: status_for(category_a))
-    end
-
-    def mpv_alert
-      alert_for(:mpv, status: status_for(mpv))
     end
 
     private

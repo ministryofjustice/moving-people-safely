@@ -49,6 +49,13 @@ Metrics/MethodLength:
   Exclude:
     - 'app/form_builders/mps_form_builder.rb'
 
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'app/models/risk.rb'
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'app/models/risk.rb'
 
 # Allow ===. It's useful.
 Style/CaseEquality:
