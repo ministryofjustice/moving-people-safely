@@ -1,8 +1,0 @@
-section
-  = link_to '', '#', id: "#{section.name}_subsection"
-
-  - section.subsections.each do |section|
-    = render partial: 'shared/section', locals: { f: f, section: section }
-
-  - section.answers.each do |answer|
-    = render partial: "shared/question", locals: { f: f, question: QuestionPresenter.new(answer) }
