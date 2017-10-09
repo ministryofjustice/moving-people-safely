@@ -36,11 +36,7 @@ class Escort < ApplicationRecord
   delegate :offences, :offences=, to: :detainee, allow_nil: true
   delegate :surname, :forenames, to: :detainee, prefix: true
   delegate :full_name, to: :canceller, prefix: true
-  delegate :date, to: :move, prefix: true
-
-  def current_establishment
-    @current_establishment ||= Establishment.current_for(prison_number)
-  end
+  delegate :date, :from_establishment, to: :move, prefix: true
 
   def completed?
     EscortCompletionValidator.call(self)

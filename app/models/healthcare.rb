@@ -5,19 +5,13 @@ class Healthcare < ApplicationRecord
 
   delegate :editable?, to: :escort
 
+  belongs_to :escort
+
   after_initialize :set_default_values
 
   def set_default_values
-    unless read_attribute(:contact_number).present?
-      write_attribute(:contact_number, default_contact_number)
+    if read_attribute(:contact_number).blank? && escort&.move_from_establishment
+      write_attribute(:contact_number, escort.move_from_establishment.healthcare_contact_number)
     end
-  end
-
-  belongs_to :escort
-
-  delegate :current_establishment, to: :escort, allow_nil: true
-
-  def default_contact_number
-    current_establishment&.default_healthcare_contact_number
   end
 end

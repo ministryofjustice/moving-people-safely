@@ -12,24 +12,20 @@ RSpec.describe Healthcare, type: :model do
 
   include_examples 'reviewable'
 
-  describe '#default_contact_number' do
-    context 'when there is no current establishment set for the detainee' do
-      before do
-        expect(subject).to receive(:current_establishment).and_return(nil)
-      end
-
-      specify { expect(subject.default_contact_number).to be_nil }
+  describe '#set_default_values' do
+    context 'when there is no establishment' do
+      specify { expect(subject.contact_number).to be_nil }
     end
 
-    context 'when there is a current establishment set for the detainee' do
-      let(:establishment) { double(Establishment, default_healthcare_contact_number: '111111') }
+    context 'when there is an establishment set in the move' do
+      let(:establishment) { create(:establishment, healthcare_contact_number: '111111') }
+      let(:move) { create(:move, from_establishment: establishment) }
+      let(:escort) { create(:escort, move: move) }
 
-      before do
-        expect(subject).to receive(:current_establishment).and_return(establishment)
-      end
+      subject { described_class.new(escort: escort) }
 
       it 'returns the default healthcare contact number for that establishment' do
-        expect(subject.default_contact_number).to eq('111111')
+        expect(subject.contact_number).to eq('111111')
       end
     end
   end

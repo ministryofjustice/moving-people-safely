@@ -236,7 +236,7 @@ en:
       arson:
         arson: In NOMIS, check the header section of the prisoner’s record for the Arsonist alert.
       contact:
-        contact_number: "This is the contact number for HMP Bedford Healthcare. To use a different number, enter it below:"
+        contact_number: "This is the default contact number for Healthcare at this prison. To use a different number, enter it below:"
       concealed_weapons:
         uses_weapons_details: 'Give details of previous incidents:'
         conceals_weapons: Check Mercury for intelligence or NOMIS adjudications for details.
