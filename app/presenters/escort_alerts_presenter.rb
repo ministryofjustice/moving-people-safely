@@ -33,7 +33,7 @@ class EscortAlertsPresenter < SimpleDelegator
   end
 
   def self_harm_alert_class
-    self_harm == 'yes' ? 'alert-on' : 'alert-off'
+    self_harm == 'yes' || acct_status == 'open' || acct_status == 'post_closure' ? 'alert-on' : 'alert-off'
   end
 
   def acct_status_text
