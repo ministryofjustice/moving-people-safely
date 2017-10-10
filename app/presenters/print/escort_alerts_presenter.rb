@@ -32,7 +32,7 @@ module Print
     end
 
     def self_harm_alert
-      alert_for(:self_harm, status: status_for(self_harm))
+      alert_for(:self_harm, status: self_harm_status)
     end
 
     def current_e_risk_alert
@@ -81,6 +81,10 @@ module Print
       else
         localised_attr_value(:acct_status)
       end
+    end
+
+    def self_harm_status
+      self_harm == 'yes' || acct_status == 'open' || acct_status == 'post_closure' ? :on : :off
     end
 
     def current_e_risk_status

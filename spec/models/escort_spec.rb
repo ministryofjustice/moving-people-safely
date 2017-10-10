@@ -230,12 +230,4 @@ RSpec.describe Escort do
       specify { expect(escort.needs_review?).to be_truthy }
     end
   end
-
-  describe '#current_establishment' do
-    subject(:escort) { described_class.new }
-
-    it 'returns the current establishment the prisoner is at' do
-      expect(escort.current_establishment).to be_instance_of(Establishment)
-    end
-  end
 end

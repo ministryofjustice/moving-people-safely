@@ -236,7 +236,7 @@ en:
       arson:
         arson: In NOMIS, check the header section of the prisoner’s record for the Arsonist alert.
       contact:
-        contact_number: "This is the contact number for HMP Bedford Healthcare. To use a different number, enter it below:"
+        contact_number: "This is the default contact number for Healthcare at this prison. To use a different number, enter it below:"
       concealed_weapons:
         uses_weapons_details: 'Give details of previous incidents:'
         conceals_weapons: Check Mercury for intelligence or NOMIS adjudications for details.
@@ -275,9 +275,9 @@ en:
       escort:
         cancelling_reason: Give details of why this PER is being cancelled
       harassment_and_gangs:
-        gang_member_html: In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and and Security > Non-association for known risks to named prisoners.
+        gang_member_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and <i>Security > Non-association</i> for known risks to named prisoners.'
         gang_member_details: Give details
-        intimidation_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and and <i>Security > Non-association</i> for known risks to named prisoners.'
+        intimidation_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and <i>Security > Non-association</i> for known risks to named prisoners.'
         intimidation_to_public_details: Give details, including any relevant court orders
         intimidation_to_other_detainees_details: Give details, including any relevant court orders
         intimidation_to_witnesses_details: Give details, including any relevant court orders
