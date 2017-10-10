@@ -4,13 +4,13 @@
     - breadcrumb 'Healthcare'
     - breadcrumb t("healthcare.form.title.#{form.name}")
 
-.grid-row
-  .column-two-thirds
-    = render partial: 'shared/wizard_header'
+.column-three-quarters
+  = render partial: 'shared/wizard_header'
 
-  .healthcare.column-two-thirds
+  .healthcare
     = render partial: 'shared/wizard_step_form',
-      locals: { scope: 'healthcare',
-                assessment: AssessmentPresenter.new(healthcare, step),
-                form: form,
-                method: :post }
+      locals: { scope: 'healthcare', form: form, method: :post }
+
+.column-one-quarter.side-profile
+  = render partial: 'shared/detainee_sidebar',
+    locals: { detainee: DetaineePresenter.new(escort.detainee), escort: escort, move: MovePresenter.new(escort.move) }

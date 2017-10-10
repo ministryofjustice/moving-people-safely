@@ -2,15 +2,15 @@
   margin-top: 10px;
 }
 
+.form-label-bold{
+  font-size: 24px;
+}
+
 form {
   @include media(desktop) {
     .form-hint {
       padding: 10px 0 8px 0;
     }
-
-    legend .form-hint { padding: 0; }
-    .panel > fieldset > .form-hint { padding-top: 0; }
-    .panel > .form-group > .form-hint { padding-top: 0; }
   }
 
   h2 {
@@ -184,9 +184,5 @@ form {
   .remove-list-item-vertical {
     margin-top: 4.4em !important;
     display: block;
-  }
-
-  .question {
-    font-size: 24px;
   }
 }
