@@ -5,6 +5,14 @@ FactoryGirl.define do
     sso_id   { "#{Faker::Lorem.characters(6)}.noms.moj".downcase }
   end
 
+  factory :crown_court, parent: :establishment do
+    type 'CrownCourt'
+  end
+
+  factory :magistrates_court, parent: :establishment do
+    type 'MagistratesCourt'
+  end
+
   factory :prison, parent: :establishment do
     type 'Prison'
   end

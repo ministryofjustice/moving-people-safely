@@ -42,24 +42,28 @@ module Forms
       REASON_WITH_DETAILS
     end
 
-    FREE_FORM_DESTINATION_TYPES = %i[ hospital other ].freeze
+    FREE_FORM_DESTINATION_TYPES = %i[hospital other].freeze
 
     property :to_type, validates: { presence: true }
 
     ::Establishment::ESTABLISHMENT_TYPES.each do |establishment_type|
-      property "to_#{establishment_type}".to_sym, virtual: true,
-        prepopulator: ->(options) {
-          send("to_#{establishment_type}=", to) if to_type == establishment_type.to_s
-        }
-      validates "to_#{establishment_type}".to_sym, presence: { message: 'Please enter a value' }, if: -> { to_type == establishment_type.to_s }
+      property "to_#{establishment_type}".to_sym,
+        virtual: true,
+        prepopulator: ->(_options) { send("to_#{establishment_type}=", to) if to_type == establishment_type.to_s }
+
+      validates "to_#{establishment_type}".to_sym,
+        presence: { message: 'Please enter a value' },
+        if: -> { to_type == establishment_type.to_s }
     end
 
     FREE_FORM_DESTINATION_TYPES.each do |destination_type|
-      property "to_#{destination_type}".to_sym, virtual: true,
-        prepopulator: ->(options) {
-          send("to_#{destination_type}=", to) if to_type == destination_type.to_s
-        }
-      validates "to_#{destination_type}".to_sym, presence: { message: "Please enter a destination" }, if: -> { to_type == destination_type.to_s }
+      property "to_#{destination_type}".to_sym,
+        virtual: true,
+        prepopulator: ->(_options) { send("to_#{destination_type}=", to) if to_type == destination_type.to_s }
+
+      validates "to_#{destination_type}".to_sym,
+        presence: { message: 'Please enter a destination' },
+        if: -> { to_type == destination_type.to_s }
     end
 
     def save

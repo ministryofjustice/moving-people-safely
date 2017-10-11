@@ -59,7 +59,7 @@ RSpec.describe 'New Move requests', type: :request do
   end
 
   describe "#create" do
-    let(:move_params) { { move: attributes_for(:move) } }
+    let(:move_params) { { move: attributes_for(:move, :with_form_attributes) } }
 
     context "when the user is not authorized" do
       it "user is redirected to the login page" do

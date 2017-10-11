@@ -126,7 +126,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     field_without_label ActionView::Helpers::Tags::TextArea, attribute
   end
 
-  def text_field_without_label(attribute, options = {} )
+  def text_field_without_label(attribute, options = {})
     field_without_label ActionView::Helpers::Tags::TextField, attribute, options
   end
 

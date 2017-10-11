@@ -59,4 +59,12 @@ module FixtureData
       'Worthing','Wrexham','Yeovil','York'
     ]
   end
+
+  def magistrates_court
+    MagistratesCourt.pluck(:name).sample
+  end
+
+  def bedford_prison
+    Prison.find_by_sso_id('bedford.prisons.noms.moj')
+  end
 end

@@ -22,6 +22,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     risk_data = build(:risk, :with_high_csra)
     detainee = build(:detainee)
     move_data = build(:move, from_establishment: prison)
+    create(:magistrates_court, name: move_data.to)
 
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}", status: 404)
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/image", status: 404)

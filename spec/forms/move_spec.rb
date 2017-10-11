@@ -6,7 +6,8 @@ RSpec.describe Forms::Move, type: :form do
 
   let(:params) {
     {
-      to: 'Albany',
+      to_magistrates_court: 'Albany',
+      to_type: 'magistrates_court',
       date: '1/2/2017',
       not_for_release: 'yes',
       not_for_release_reason: 'held_for_immigration'
@@ -15,7 +16,7 @@ RSpec.describe Forms::Move, type: :form do
 
   describe '#validate' do
     describe 'nilifies empty strings' do
-      %w[to].each do |attribute|
+      %w[not_for_release_reason not_for_release_reason_details].each do |attribute|
         it { is_expected.to validate_strict_string(attribute) }
       end
     end
@@ -169,7 +170,10 @@ RSpec.describe Forms::Move, type: :form do
       form.validate(params)
       form.save
 
-      expect(model.attributes).to include(form.to_nested_hash)
+      model_attributes = form.to_nested_hash.except(:to_magistrates_court).
+        merge(to: form.to_nested_hash[:to_magistrates_court])
+
+      expect(model.attributes).to include(model_attributes)
     end
   end
 end
