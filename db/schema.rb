@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20171009095042) do
     t.text     "not_for_release_reason_details"
     t.uuid     "escort_id"
     t.uuid     "from_establishment_id"
+    t.string   "to_type"
     t.index ["escort_id"], name: "index_moves_on_escort_id", using: :btree
   end
 

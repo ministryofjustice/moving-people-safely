@@ -22,11 +22,13 @@ class MovesController < ApplicationController
 
   def edit
     form = Forms::Move.new(move)
+    form.prepopulate!
     render locals: { form: form }
   end
 
   def update
     form = Forms::Move.new(move)
+    form.prepopulate!
 
     if form.validate(params[:move])
       form.save

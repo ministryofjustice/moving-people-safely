@@ -30,6 +30,7 @@ module Seeds
       Prison.create_with(entry.to_h).find_or_create_by(nomis_id: entry.nomis_id)
     rescue
       logger.error "Error seeding #{prison_seed.inspect}"
+      false
     end
 
     def prison_seeds
