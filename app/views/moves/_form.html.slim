@@ -16,11 +16,7 @@
             span.form-label-bold To
 
           - ::Establishment::ESTABLISHMENT_TYPES.each do |option|
-            label.block-label for="#{option}_toggler"
-              = f.radio_button :to_type, option, id: "#{option}_toggler"
-              = I18n.t(option, scope: 'move.destination_types.labels')
-
-            div.panel.panel-border-narrow data-toggled-by="#{option}_toggler"
+            = f.radio_concertina_option(:to_type, I18n.t(option, scope: 'move.destination_types.labels'), option) do
               label.form-label for=option
                 = I18n.t(option, scope: 'move.destination_types.prompts')
               - if form.errors["to_#{option}"].any?
@@ -32,11 +28,7 @@
                 = f.select "to_#{option}", option.to_s.classify.constantize.pluck(:name), {include_blank: true}, { id: option }
 
           - Forms::Move::FREE_FORM_DESTINATION_TYPES.each do |option|
-            label.block-label for="#{option}_toggler"
-              = f.radio_button :to_type, option, id: "#{option}_toggler"
-              = I18n.t(option, scope: 'move.destination_types.labels')
-
-            div.panel.panel-border-narrow data-toggled-by="#{option}_toggler"
+            = f.radio_concertina_option(:to_type, I18n.t(option, scope: 'move.destination_types.labels'), option) do
               label.form-label for="#{option}-text"
                 = I18n.t(option, scope: 'move.destination_types.prompts')
               = f.text_field_without_label "to_#{option}".to_sym, id: "#{option}-text"

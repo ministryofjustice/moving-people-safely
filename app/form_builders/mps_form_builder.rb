@@ -176,6 +176,20 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     end
   end
 
+  def radio_concertina_option(attribute, label_text, option)
+    safe_join([
+      label(attribute, for: "#{option}_toggler", class: 'block-label') do
+        safe_join([
+          radio_button(attribute, option, id: "#{option}_toggler"),
+          label_text
+        ])
+      end,
+      content_tag(:div, class: 'panel panel-border-narrow', data: {toggled_by: "#{option}_toggler"}) do
+        yield
+      end
+    ])
+  end
+
   private
 
   def custom_text_field(attribute, options = {})
