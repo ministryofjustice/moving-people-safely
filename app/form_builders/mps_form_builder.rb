@@ -184,7 +184,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
           label_text
         ])
       end,
-      content_tag(:div, class: 'panel panel-border-narrow', data: {toggled_by: "#{option}_toggler"}) do
+      content_tag(:div, class: 'panel panel-border-narrow', data: { toggled_by: "#{option}_toggler" }) do
         yield
       end
     ])
