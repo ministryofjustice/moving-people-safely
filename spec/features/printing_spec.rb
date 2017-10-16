@@ -4,7 +4,9 @@ RSpec.feature 'printing a PER', type: :feature do
   let(:reviewer) {
     create(:user, first_name: 'Nelle', last_name: 'Bailey')
   }
-  let(:bedford) { FixtureData.bedford_prison }
+  let(:bedford) {
+    create(:prison, name: 'HMP Bedford')
+  }
   let(:escort) {
     create(
       :escort,
