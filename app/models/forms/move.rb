@@ -52,7 +52,7 @@ module Forms
         prepopulator: ->(_options) { send("to_#{establishment_type}=", to) if to_type == establishment_type.to_s }
 
       validates "to_#{establishment_type}".to_sym,
-        presence: { message: 'Please enter a value' },
+        presence: true,
         if: -> { to_type == establishment_type.to_s }
     end
 
@@ -62,7 +62,7 @@ module Forms
         prepopulator: ->(_options) { send("to_#{destination_type}=", to) if to_type == destination_type.to_s }
 
       validates "to_#{destination_type}".to_sym,
-        presence: { message: 'Please enter a destination' },
+        presence: true,
         if: -> { to_type == destination_type.to_s }
     end
 

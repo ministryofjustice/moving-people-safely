@@ -664,8 +664,18 @@ en:
             inclusion: "^Select a reason not for release"
           not_for_release_reason_details:
             blank: "^Please provide details why the detainee is not for release"
-          to:
+          to: &blank_destination_error
             blank: "^Enter destination"
+          to_magistrates_court:
+            <<: *blank_destination_error
+          to_crown_court:
+            <<: *blank_destination_error
+          to_prison:
+            <<: *blank_destination_error
+          to_hospital:
+            <<: *blank_destination_error
+          to_other:
+            <<: *blank_destination_error
   activerecord:
     errors:
       <<: *errors
