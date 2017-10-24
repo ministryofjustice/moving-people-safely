@@ -21,4 +21,5 @@ Rails.application.config.assets.precompile += %w(
     print
     print-ie8
     accessible-autocomplete.min.css
+    auto-complete.js
 )

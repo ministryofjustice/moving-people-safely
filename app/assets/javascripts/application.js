@@ -13,5 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-datepicker/dist/js/bootstrap-datepicker.min
-//= require accessible-autocomplete.min
 //= require_tree .
