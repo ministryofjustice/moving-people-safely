@@ -10,7 +10,5 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require bootstrap-datepicker/dist/js/bootstrap-datepicker.min
-//= require_tree ./auto-complete
+//= require 'accessible-autocomplete.min'
+//= require 'auto-complete-init'
