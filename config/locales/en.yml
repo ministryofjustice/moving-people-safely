@@ -342,9 +342,9 @@ en:
         hospital: Hospital
         other: A different destination
       prompts:
-        crown_court: Start typing name of crown court
-        magistrates_court: Start typing name of magistrates' court
-        prison: Start typing name of prison
+        crown_court: Start typing name of crown court or select from dropdown
+        magistrates_court: Start typing name of magistrates' court or select from dropdown
+        prison: Start typing name of prison or select from dropdown
         hospital: Enter name of hospital
         other: Enter name of destination
   healthcare:
