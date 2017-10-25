@@ -45,21 +45,22 @@ RSpec.feature 'detainees due to move', type: :feature do
       brixton_sso_id = 'brixton.prisons.noms.moj'
       brixton_nomis_id = 'BXI'
       brixton = create(:prison, name: 'HMP Brixton', sso_id: brixton_sso_id, nomis_id: brixton_nomis_id)
+      move_date = '12/10/2017'
 
-      move = create(:move, date: '11/08/2016', from_establishment: bedford)
+      move = create(:move, date: move_date, from_establishment: bedford)
       create(:escort, :completed, move: move)
 
-      move = create(:move, date: '11/08/2016', from_establishment: bedford)
+      move = create(:move, date: move_date, from_establishment: bedford)
       create(:escort, :completed, move: move)
 
-      move = create(:move, date: '11/08/2016', from_establishment: brixton)
+      move = create(:move, date: move_date, from_establishment: brixton)
       create(:escort, :completed, move: move)
 
       login_options = { sso: { info: { permissions: [{'organisation' => bedford_sso_id}]}} }
 
       login(nil, login_options)
 
-      dashboard.search_escorts_due_on('11/08/2016')
+      dashboard.search_escorts_due_on(move_date)
       dashboard.assert_escorts_due(2)
     end
   end

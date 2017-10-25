@@ -10,6 +10,9 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     stub_nomis_api_request(:get, "/offenders/#{prison_number}")
     prison = create(:prison, name: 'HMP Bedford', nomis_id: establishment_nomis_id)
 
+    move_data = build(:move, date: 1.day.from_now)
+    create(:magistrates_court, name: move_data.to)
+
     login
 
     detainee = create(:detainee, prison_number: prison_number)
@@ -20,7 +23,6 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
 
     detainee_details.complete_form(detainee)
 
-    move_data = build(:move, date: 1.day.from_now)
     move_details.complete_form(move_data)
 
     escort_page.confirm_healthcare_status('Review')

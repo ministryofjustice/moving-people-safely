@@ -32,7 +32,7 @@ form {
     margin-right: 20px;
   }
 
-  input.form-control {
+  input.form-control, input.autocomplete__input {
     @include media(desktop) {
       max-width: 13em;
     }

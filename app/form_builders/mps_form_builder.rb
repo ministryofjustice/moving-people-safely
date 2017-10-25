@@ -80,7 +80,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     end
   end
 
-  def field_without_label(field_type, attribute)
+  def field_without_label(field_type, attribute, options = {})
     content_tag :div,
       class: form_group_classes(attribute.to_sym),
       id: form_group_id(attribute) do
@@ -89,7 +89,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
       tags <<
         field_type.new(
           object.name, attribute, self,
-          value: object.public_send(attribute), class: 'form-control'
+          { value: object.public_send(attribute), class: 'form-control' }.merge(options)
         ).render
       tags.join.html_safe
     end
@@ -126,8 +126,8 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     field_without_label ActionView::Helpers::Tags::TextArea, attribute
   end
 
-  def text_field_without_label(attribute)
-    field_without_label ActionView::Helpers::Tags::TextField, attribute
+  def text_field_without_label(attribute, options = {})
+    field_without_label ActionView::Helpers::Tags::TextField, attribute, options
   end
 
   def label_with_radio(attribute, text, value)
@@ -174,6 +174,20 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
           text_area_without_label "#{attribute}_details"
         end
     end
+  end
+
+  def radio_concertina_option(attribute, label_text, option)
+    safe_join([
+      label(attribute, for: "#{option}_toggler", class: 'block-label') do
+        safe_join([
+          radio_button(attribute, option, id: "#{option}_toggler"),
+          label_text
+        ])
+      end,
+      content_tag(:div, class: 'panel panel-border-narrow', data: { toggled_by: "#{option}_toggler" }) do
+        yield
+      end
+    ])
   end
 
   private

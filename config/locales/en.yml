@@ -333,6 +333,20 @@ en:
       transport:
         mpv: This could be a specially-adapted prison van (for example, to accommodate wheelchairs) or a taxi.
         mpv_details: 'Please explain why you feel they need a special vehicle:'
+  move:
+    destination_types:
+      labels:
+        crown_court: Crown court
+        magistrates_court: Magistrates' court
+        prison: Prison
+        hospital: Hospital
+        other: A different destination
+      prompts:
+        crown_court: Start typing name of crown court
+        magistrates_court: Start typing name of magistrates' court
+        prison: Start typing name of prison
+        hospital: Enter name of hospital
+        other: Enter name of destination
   healthcare:
     form:
       title:
@@ -650,8 +664,18 @@ en:
             inclusion: "^Select a reason not for release"
           not_for_release_reason_details:
             blank: "^Please provide details why the detainee is not for release"
-          to:
+          to: &blank_destination_error
             blank: "^Enter destination"
+          to_magistrates_court:
+            <<: *blank_destination_error
+          to_crown_court:
+            <<: *blank_destination_error
+          to_prison:
+            <<: *blank_destination_error
+          to_hospital:
+            <<: *blank_destination_error
+          to_other:
+            <<: *blank_destination_error
   activerecord:
     errors:
       <<: *errors

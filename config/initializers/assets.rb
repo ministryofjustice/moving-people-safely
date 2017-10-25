@@ -20,4 +20,6 @@ Rails.application.config.assets.precompile += %w(
     main
     print
     print-ie8
+    accessible-autocomplete.min.css
+    auto-complete.js
 )
