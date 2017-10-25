@@ -21,5 +21,4 @@ drop_and_create)
     bundle exec rails db:drop db:setup db:seed
     ;;
 esac
-bundle exec rails server -d --binding 0.0.0.0
-tail -f log/${RAILS_ENV}.log
+bundle exec rails server --binding 0.0.0.0
