@@ -1,4 +1,5 @@
 class HomepageController < ApplicationController
+  before_action :redirect_to_court_view, if: :court_user?
   before_action :validate_search, only: :show
   before_action :authorize_user_to_access_prisoner!, only: :show, if: :valid_search?
 

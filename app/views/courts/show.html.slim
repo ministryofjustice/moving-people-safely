@@ -1,0 +1,40 @@
+.court-dashboard-indicators.column-one-third
+  span.data-item.bold-large= Date.today
+  span.data-item.bold-small= @court.name
+  = link_to 'Change court', select_court_path
+
+.court-dashboard-indicators.column-one-third
+  span.data-item.bold-large= @escorts.count
+  span.data-item.bold-small Total custodies
+
+table.court-dashboard
+  thead
+    tr
+      th.prisoner-image
+      th.prisoner-number Prisoner no
+      th Name
+      th From
+      th Date of birth
+      th Age
+
+  - @escorts.each do |escort|
+    tbody.tag-with-href-j data-href="#{escort_print_path(escort)}"
+      tr
+        td.detainee-image rowspan="2"
+          - if escort.detainee.image.present?
+            = image_tag escort_detainee_image_path(escort, format: :jpg), size: '86x108', class: 'person'
+          - else
+            .no-court-dashboard-image
+              span = 'No photo'
+        td= link_to escort.prison_number, escort_print_url(escort), target: "_blank"
+        td
+          span.surname= escort.detainee.surname
+          = escort.detainee.forenames
+        td= escort.move.from_establishment.name
+        td= escort.detainee.date_of_birth
+        td= escort.detainee.age
+
+      tr
+        td colspan="6"
+          - escort.active_alerts.each do |alert|
+            li.flag= t("escort.active_alerts.#{alert}")

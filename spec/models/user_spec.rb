@@ -120,6 +120,18 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#court?' do
+    context 'when belongs to court staff' do
+      subject { described_class.new(permissions: [{"organisation"=>User::COURT_ORGANISATION}])}
+      its(:court?) { is_expected.to be_truthy }
+    end
+
+    context 'when is not court staff' do
+      subject { described_class.new(permissions: []) }
+      its(:court?) { is_expected.to be_falsey }
+    end
+  end
+
   describe '#healthcare?' do
     context 'when is healthcare' do
       subject { described_class.new(permissions: [{"roles"=>['healthcare']}])}

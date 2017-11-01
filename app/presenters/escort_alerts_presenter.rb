@@ -1,7 +1,6 @@
 class EscortAlertsPresenter < SimpleDelegator
   MOVE_ATTRIBUTES = %i[
-    not_for_release not_for_release_reason
-    not_for_release_reason_details
+    not_for_release not_for_release_reason not_for_release_reason_details
   ].freeze
   RISK_ATTRIBUTES = %i[
     acct_status date_of_most_recently_closed_acct self_harm rule_45
@@ -10,7 +9,6 @@ class EscortAlertsPresenter < SimpleDelegator
 
   delegate(*MOVE_ATTRIBUTES, to: :move, allow_nil: true)
   delegate(*RISK_ATTRIBUTES, to: :risk, allow_nil: true)
-  delegate(:mpv, to: :healthcare, allow_nil: true)
 
   def not_for_release_alert_class
     not_for_release == 'yes' ? 'alert-on' : 'alert-off'
@@ -67,10 +65,6 @@ class EscortAlertsPresenter < SimpleDelegator
 
   def category_a_alert_class
     category_a == 'yes' ? 'alert-on' : 'alert-off'
-  end
-
-  def mpv_alert_class
-    mpv == 'yes' ? 'alert-on' : 'alert-off'
   end
 
   private

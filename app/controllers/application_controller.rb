@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def court_user?
+    current_user.court?
+  end
+
+  def redirect_to_court_view
+    redirect_to court_path
+  end
+
   def redirect_unless_detainee_exists
     redirect_to escort_path(escort) unless escort.detainee.present?
   end
