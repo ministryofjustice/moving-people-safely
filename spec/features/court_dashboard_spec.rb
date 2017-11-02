@@ -7,14 +7,14 @@ RSpec.feature 'court dashboard', type: :feature do
     st_albans_court = create(:magistrates_court, name: 'St Albans CC', nomis_id: 'albans')
 
     escort = create(:escort, :issued, :completed)
-    move = create(:move, escort: escort, date: Date.today, to: luton_court.name)
-    detainee = create(:detainee, escort: escort, forenames: 'PETER', surname: 'GABRIEL')
+    escort.move.update(date: Date.today, to: luton_court.name)
+    escort.detainee.update(forenames: 'PETER', surname: 'GABRIEL')
 
     escort = create(:escort, :issued, :completed)
-    move = create(:move, escort: escort, date: Date.today, to: basildon_court.name)
+    escort.move.update(date: Date.today, to: basildon_court.name)
 
     escort = create(:escort, :completed)
-    move = create(:move, escort: escort, date: Date.tomorrow, to: luton_court.name)
+    escort.move.update(date: Date.tomorrow, to: luton_court.name)
 
     login_options = { sso: { info: { permissions: [{'organisation' => User::COURT_ORGANISATION}]}} }
     login(nil, login_options)
