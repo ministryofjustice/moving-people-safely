@@ -20,7 +20,7 @@ table.court-dashboard
   - @escorts.each do |escort|
     tbody.tag-with-href-j data-href="#{escort_print_path(escort)}"
       tr
-        td.detainee-image rowspan="2"
+        td.detainee-photo rowspan="2"
           - if escort.detainee.image.present?
             = image_tag escort_detainee_image_path(escort, format: :jpg), size: '86x108', class: 'person'
           - else
