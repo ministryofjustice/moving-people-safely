@@ -1,20 +1,22 @@
-.move-information
+section#move
   .header
+    span.section-title Move information
     .float-right
       - if escort.editable?
         = link_to 'Edit', edit_escort_move_path(escort)
-    h2
-      ' Move information
-  .info-tiles
+  .tile-3
+    h6 Date of travel
+    p= move.humanized_date
+
+  .tile-3
+    h6 From
+    p= move.from
+
+  .tile-3
+    h6 To
+    p= move.to
+
+  - if move.not_for_release == 'yes'
     .tile-3
-      | Date of travel
-      br
-      b = move.humanized_date
-    .tile-3
-      | From
-      br
-      b = move.from
-    .tile-3
-      | To
-      br
-      b = move.to
+      h6 Not for release
+      p= move.not_for_release_text

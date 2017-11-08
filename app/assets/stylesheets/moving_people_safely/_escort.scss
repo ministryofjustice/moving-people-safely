@@ -3,145 +3,80 @@
     font-weight: bold;
   }
 
-  h2 {
-    @extend .heading-medium;
-    margin-bottom: .25em;
-    margin-top: 1.875em;
-    font-size: 24px;
-
-    small {
-      font-size: .75em;
+  .alerts-table {
+    .alert-tile {
+      vertical-align: top;
+      background-color: $grey-3;
+      border-left: 1px solid white;
+      height: 90px;
+      min-height: 90px;
+      padding: 10px;
+      margin-bottom: 1px;
     }
-  }
 
-  .image-and-alerts {
-    clear: both;
-    height: 180px;
+    .alert-off {
+      display: inline-block;
+      border: 2px solid $secondary-text-colour;
+      background-color: white;
+      text-transform: uppercase;
+      padding: 0.2em 0.5em;
+      color: $secondary-text-colour;
+      font: 19px "Arial Narrow";
+      font-weight: bold;
 
-    .escort-image-wrapper {
+      .alert-toggle-text {
+        padding-left: 5px;
+        text-transform: uppercase;
+        font: 19px "Arial Narrow";
+        font-weight: bold;
+      }
+    }
+
+    .alert-on {
+      border: 2px solid $mellow-red;
+      background-color: $mellow-red;
       position: relative;
-      display: table;
-      float: left;
-      width: auto;
+      display: inline-block;
 
-      .image {
-        width: 128px;
-        height: 180px;
-
-        img {
-          top: 0;
-          left: 0;
-        }
+      .alert-title {
+        text-transform: uppercase;
+        padding: 0.2em 0.5em;
+        color: white;
+        font: 19px "Arial Narrow";
+        font-weight: bold;
+        position: relative;
+        float: left;
       }
 
-      .no-image {
-        width: 128px;
-        height: 180px;
-        line-height: 180px;
-        padding: 1px;
-        background-image: image-url('photo_unavailable.png');
+      .red-tick {
+        width: 30px;
+        height: 30px;
+        background-image: image-url('ic_red_tick.png');
         background-position: center center;
         background-repeat: no-repeat;
-        text-align: center;
-        font-size: 12px;
+        display: inline-block;
+        position: relative;
+        float: left;
+      }
+
+      .alert-toggle-text {
+        padding: 0 5px;
+        margin-top: 3px;
+        margin-right: 3px;
+        background-color: white;
+        color: $mellow-red;
+        text-transform: uppercase;
+        font: 19px "Arial Narrow";
+        font-weight: bold;
+        position: relative;
+        float: left;
       }
     }
 
-    .escort-alerts {
-      position: relative;
-      display: table;
-      float: left;
-      width: 100%;
+    .alert-text {
+      display: block;
+      padding-top: 5px;
     }
-
-    .alerts-table {
-      width: 100%;
-      clear: both;
-
-      .info-tiles {
-        height: 90px;
-        min-height: 90px;
-
-        .alert-tile {
-          vertical-align: top;
-        }
-
-        .alert-off {
-          display: inline-block;
-          border: 2px solid $secondary-text-colour;
-          background-color: white;
-          text-transform: uppercase;
-          padding: 0.2em 0.5em;
-          color: $secondary-text-colour;
-          font: 19px "Arial Narrow";
-          font-weight: bold;
-
-          .alert-toggle-text {
-            padding-left: 5px;
-            text-transform: uppercase;
-            font: 19px "Arial Narrow";
-            font-weight: bold;
-          }
-        }
-
-        .alert-on {
-          border: 2px solid $mellow-red;
-          background-color: $mellow-red;
-          position: relative;
-          display: inline-block;
-
-          .alert-title {
-            text-transform: uppercase;
-            padding: 0.2em 0.5em;
-            color: white;
-            font: 19px "Arial Narrow";
-            font-weight: bold;
-            position: relative;
-            float: left;
-          }
-
-          .red-tick {
-            width: 30px;
-            height: 30px;
-            background-image: image-url('ic_red_tick.png');
-            background-position: center center;
-            background-repeat: no-repeat;
-            display: inline-block;
-            position: relative;
-            float: left;
-          }
-
-          .alert-toggle-text {
-            padding: 0 5px;
-            margin-top: 3px;
-            margin-right: 3px;
-            background-color: white;
-            color: $mellow-red;
-            text-transform: uppercase;
-            font: 19px "Arial Narrow";
-            font-weight: bold;
-            position: relative;
-            float: left;
-          }
-        }
-
-        .alert-text {
-          display: block;
-          padding-top: 5px;
-        }
-      }
-    }
-  }
-
-  .move-information {
-    clear: both;
-    overflow: auto;
-  }
-
-  .info-tiles {
-    display: table;
-    width: 100%;
-    margin-bottom: 1px;
   }
 
   .empty {
@@ -152,8 +87,21 @@
   .tile {
     @extend .empty;
     @extend .padded;
-    background-color: $grey-3;
-    border-left: 1px solid white;
+
+    p {
+      font-weight: bold;
+      font-size: 19px;
+      margin: 0px 0px;
+    }
+
+    h6 {
+      font-size: 16px;
+    }
+
+    vertical-align: top;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 10px 0px 15px 0px;
   }
 
   .tile-2 {
@@ -171,49 +119,13 @@
     width: (100% / 4);
   }
 
+  .data_container {
+    width: 66%;
+    display: inline-block;
+  }
+
   .float-right {
     float: right;
-  }
-
-  .info-table {
-    @extend .padded;
-    background-color: $grey-3;
-    font-size: 0.85em;
-    margin-bottom: 0.85em;
-
-    small {
-      display: block;
-    }
-
-    p {
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .attention {
-      color: red;
-    }
-  }
-
-  ul.info-list {
-    list-style: none;
-    margin-top: 5px;
-
-    li {
-      font-weight: bold;
-    }
-  }
-
-  .column-one-sixth {
-    @extend .column-one-third;
-    width: (100% / 6);
-  }
-
-  .info-table-big {
-    p {
-      margin: 0;
-      font-size: 2em;
-    }
   }
 
   .status {
@@ -225,5 +137,42 @@
     list-style-type: none;
     li { float: left; margin-right: 20px; }
     li.link-return-home a { display: inline-block; margin-top: 10px; }
+  }
+
+  .header {
+    border-top: solid 3px #0B0C0C;
+    border-bottom: solid 1px #0B0C0C;
+    padding: 15px 10px 0px 0px;
+    margin-bottom: 0px;
+    margin-top: 40px;
+    background-color: white;
+    min-height: 60px;
+
+    span.section-title {
+      font-weight: bold;
+      font-size: 28px;
+    }
+
+    p.review {
+      margin: 0px 0px 15px;
+      font-size: 16px;
+    }
+  }
+
+  tr {
+    &:last-child {
+      td {
+        border: 0;
+      }
+    }
+
+    td.question {
+      vertical-align: top;
+      width: 30%;
+    }
+
+    td.answer {
+      width: 70%;
+    }
   }
 }

@@ -89,25 +89,5 @@ module Questionable
     def all_questions_answered?
       mandatory_questions.all?(&:answered?)
     end
-
-    def no_questions_answered?
-      mandatory_questions.none?(&:answered?)
-    end
-
-    def total_questions_with_relevant_answer
-      mandatory_questions.count do |question|
-        question.answered? && question.relevant_answer?
-      end
-    end
-
-    def total_questions_without_relevance
-      mandatory_questions.count do |question|
-        question.answered? && !question.relevant_answer?
-      end
-    end
-
-    def total_questions_not_answered
-      mandatory_questions.count { |question| !question.answered? }
-    end
   end
 end

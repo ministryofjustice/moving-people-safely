@@ -23,7 +23,6 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as inactive' do
             escort_page.confirm_alert_as_inactive(:not_for_release)
-            expect(page.find('#not_for_release_alert .alert-text').text).to be_empty
           end
         end
 
@@ -32,26 +31,6 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as active with associated reason displayed' do
             escort_page.confirm_alert_as_active(:not_for_release)
-            within('#not_for_release_alert .alert-text') do
-              expect(page).to have_content('Held for immigration')
-            end
-          end
-
-          context 'and there is some details for the reason not for release' do
-            let(:options) {
-              {
-                not_for_release: 'yes',
-                not_for_release_reason: 'other',
-                not_for_release_reason_details: 'some details'
-              }
-            }
-
-            scenario 'associated alert is displayed as active with associated reason details displayed' do
-              escort_page.confirm_alert_as_active(:not_for_release)
-              within('#not_for_release_alert .alert-text') do
-                expect(page).to have_content('Other (some details)')
-              end
-            end
           end
         end
       end
@@ -61,7 +40,6 @@ RSpec.feature 'PER show page', type: :feature do
       context 'when PER has no yet a risk assessment' do
         scenario 'associated alert is displayed as inactive' do
           escort_page.confirm_alert_as_inactive(:acct_status)
-          expect(page.find('#acct_status_alert .alert-text').text).to be_empty
         end
       end
 
@@ -73,9 +51,6 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as active' do
             escort_page.confirm_alert_as_active(:acct_status)
-            within('#acct_status_alert .alert-text') do
-              expect(page).to have_content('Open')
-            end
           end
         end
 
@@ -84,9 +59,6 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as active' do
             escort_page.confirm_alert_as_active(:acct_status)
-            within('#acct_status_alert .alert-text') do
-              expect(page).to have_content('Post closure')
-            end
           end
         end
 
@@ -96,9 +68,6 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as inactive' do
             escort_page.confirm_alert_as_inactive(:acct_status)
-            within('#acct_status_alert .alert-text') do
-              expect(page).to have_content("Closed: #{date}")
-            end
           end
         end
 
@@ -107,7 +76,6 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as inactive' do
             escort_page.confirm_alert_as_inactive(:acct_status)
-            expect(page.find('#acct_status_alert .alert-text').text).to be_empty
           end
         end
 
@@ -116,7 +84,6 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as inactive' do
             escort_page.confirm_alert_as_inactive(:acct_status)
-            expect(page.find('#acct_status_alert .alert-text').text).to match(/^some-other-value$/i)
           end
         end
       end
@@ -126,7 +93,6 @@ RSpec.feature 'PER show page', type: :feature do
       context 'when PER has no yet a risk assessment' do
         scenario 'associated alert is displayed as inactive' do
           escort_page.confirm_alert_as_inactive(:rule_45)
-          expect(page).not_to have_selector('#rule_45_alert .alert-text')
         end
       end
 
@@ -138,7 +104,6 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as active' do
             escort_page.confirm_alert_as_active(:rule_45)
-            expect(page).not_to have_selector('#rule_45_alert .alert-text')
           end
         end
 
@@ -147,7 +112,6 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as inactive' do
             escort_page.confirm_alert_as_inactive(:rule_45)
-            expect(page).not_to have_selector('#rule_45_alert .alert-text')
           end
         end
       end
@@ -201,7 +165,6 @@ RSpec.feature 'PER show page', type: :feature do
       context 'when PER has no yet a risk assessment' do
         scenario 'associated alert is displayed as inactive' do
           escort_page.confirm_alert_as_inactive(:csra)
-          expect(page).not_to have_selector('#csra_alert .alert-text')
           expect(page.find('#csra_alert .alert-toggle-text').text).to match(/^Standard$/i)
         end
       end
@@ -214,7 +177,6 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as active' do
             escort_page.confirm_alert_as_active(:csra)
-            expect(page).not_to have_selector('#csra_alert .alert-text')
             expect(page.find('#csra_alert .alert-toggle-text').text).to match(/^high$/i)
           end
         end

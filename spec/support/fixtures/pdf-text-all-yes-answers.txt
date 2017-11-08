@@ -99,8 +99,8 @@ Drug trafficking risk               Yes
 Arson                               Yes
   Arsonist                          Yes
 Return Instructions                 Yes
-  Must Return                       Yes                  Alcatraz | Some special reason
-  Must Not Return                   Yes                  Alcatraz | Bad bad stuff happens there
+  Must return to                    Yes                  Alcatraz | Some special reason
+  Must not be sent to               Yes                  Alcatraz | Bad bad stuff happens there
                                                          York castle prison | Does not like it
 Other risk information              Yes
   Other risk information            Yes                  Suspected terrorist

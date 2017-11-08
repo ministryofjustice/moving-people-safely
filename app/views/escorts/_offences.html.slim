@@ -1,23 +1,23 @@
-#offences
-  = render partial: 'status',
-    locals: { workflow: escort.offences_workflow,
-              not_started_path: escort_offences_path(escort),
-              summary_path: escort_offences_path(escort),
-              section: escort.offences_workflow || escort.build_offences_workflow }
+section#offences
+  .header
+    span.section-title Offences
 
-  .per-section-header
-    h2
-      ' Offences
+    = render partial: 'status',
+      locals: { workflow: escort.offences_workflow,
+                not_started_path: escort_offences_path(escort),
+                summary_path: escort_offences_path(escort),
+                section: escort.offences_workflow || escort.build_offences_workflow }
+
+    - if workflow&.reviewed?
+      p.review
+        = t('assessment.confirmed_timestamp', name: workflow.reviewer.full_name, time: workflow.reviewed_at.to_s(:humanized))
+
   - if offences.any?
-    .info-table
-      .grid-row
-        #offences-summary.column-one-half
-          small Current offences
-          - if offences.empty?
-            p = 'None'
-          - else
-            ul.info-list
-              - offences.each do |offence|
-                li == offence.full_details
-  - else
-    hr
+    table
+      tr
+        td.question
+          | Current offences
+        td.answer
+          - offences.each do |offence|
+            b #{offence.offence} (#{offence.case_reference})
+            br
