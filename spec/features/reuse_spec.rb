@@ -2,12 +2,15 @@ require 'feature_helper'
 
 RSpec.feature 'Reuse of previously entered PER data', type: :feature do
   scenario 'Reviewing the data of a reused PER' do
+    fixture_json_file_path = Rails.root.join('spec', 'support', 'fixtures', 'valid-nomis-charges.json')
+    valid_json = File.read(fixture_json_file_path)
     prison_number = 'A4321FD'
     establishment_nomis_id = 'BDI'
     valid_body = { establishment: { code: establishment_nomis_id } }.to_json
     stub_nomis_api_request(:get, "/offenders/#{prison_number}/location", body: valid_body)
     stub_nomis_api_request(:get, "/offenders/#{prison_number}/image")
     stub_nomis_api_request(:get, "/offenders/#{prison_number}")
+    stub_nomis_api_request(:get, "/offenders/#{prison_number}/charges", body: valid_json)
     prison = create(:prison, name: 'HMP Bedford', nomis_id: establishment_nomis_id)
 
     move_data = build(:move, date: 1.day.from_now)
