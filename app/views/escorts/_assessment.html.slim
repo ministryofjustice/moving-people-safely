@@ -1,0 +1,28 @@
+section id=name.downcase
+  .header
+    span.section-title= name
+
+    = render partial: 'status',
+      locals: { workflow: assessment,
+                not_started_path: not_started_path,
+                summary_path: summary_path,
+                section: section }
+
+    - if assessment&.reviewed?
+      p.review
+        = t('assessment.confirmed_timestamp', name: assessment.reviewer.full_name, time: assessment.reviewed_at.to_s(:humanized))
+
+  - if assessment
+    table
+      - assessment.sections.each do |section|
+        - section = Summary::AssessmentSectionPresenter.new(section)
+        - section.questions.each do |question|
+          - if question.relevant_answer?
+            - question = Summary::AssessmentQuestionPresenter.new(question)
+            tr
+              td.question= question.label
+              td.answer
+                - if question.details
+                  b== question.details
+                - else
+                  == question.answer

@@ -10,8 +10,8 @@ RSpec.feature 'Adding offences to a move', type: :feature do
 
   let(:expected_offences) {
     [
-      { name: "Attempt burglary dwelling with intent to inflict grievous bodily harm (CR: T20117495)" },
-      { name: "Abstract / use without authority electricity (CR: T20117495)" }
+      { name: "Attempt burglary dwelling with intent to inflict grievous bodily harm (T20117495)" },
+      { name: "Abstract / use without authority electricity (T20117495)" }
     ]
   }
 
@@ -30,9 +30,9 @@ RSpec.feature 'Adding offences to a move', type: :feature do
 
   let(:expected_offences_after_ammendment) {
     [
-      { name: "Updated text (CR: NEW_REFERENCE)" },
-      { name: "Abstract / use without authority electricity (CR: T20117495)" },
-      { name: "Some other description (CR: ANOTHER_REFERENCE)" }
+      { name: "Updated text (NEW_REFERENCE)" },
+      { name: "Abstract / use without authority electricity (T20117495)" },
+      { name: "Some other description (ANOTHER_REFERENCE)" }
     ]
   }
 
@@ -48,7 +48,7 @@ RSpec.feature 'Adding offences to a move', type: :feature do
 
   let(:expected_offences_after_failure) {
     [
-      { name: "Manually adding an offence (CR: YET_ANOTHER_REFERENCE)" }
+      { name: "Manually adding an offence (YET_ANOTHER_REFERENCE)" }
     ]
   }
 

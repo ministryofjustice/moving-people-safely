@@ -4,55 +4,43 @@ header#header
     | :&nbsp;
     = detainee.surname
     span.heading-light
-      | ,&nbsp;
+      | &nbsp;
       = detainee.forenames
 
-.image-and-alerts
-  .escort-alerts
-    .alerts-table
-      .info-tiles
-        #not_for_release_alert.tile-3.alert-tile
-          div.alert-wrapper
-            div.image#not_for_release_header class=(alerts.not_for_release_alert_class)
-              span.alert-title = t('escort.alerts.title.not_for_release')
-              span.red-tick
-            .alert-text = alerts.not_for_release_text
+.alerts-table
+  #not_for_release_alert.tile-3.alert-tile
+    #not_for_release_header class=(alerts.not_for_release_alert_class)
+      span.alert-title = t('escort.alerts.title.not_for_release')
+      span.red-tick
+    .alert-text = alerts.not_for_release_text
 
-        #e_list_alert.tile-3.alert-tile
-          div.alert-wrapper
-            div.image#e_list_header class=(alerts.current_e_risk_alert_class)
-              span.alert-title = t('escort.alerts.title.current_e_risk_html')
-              span.red-tick
+  #e_list_alert.tile-3.alert-tile
+    #e_list_header class=(alerts.current_e_risk_alert_class)
+      span.alert-title = t('escort.alerts.title.current_e_risk_html')
+      span.red-tick
 
-        #acct_status_alert.tile-3.alert-tile
-          div.alert-wrapper
-            div.image#acct_status_header class=(alerts.acct_status_alert_class)
-              span.alert-title = t('escort.alerts.title.acct_status')
-              span.red-tick
-            .alert-text = alerts.acct_status_text
+  #acct_status_alert.tile-3.alert-tile
+    #acct_status_header class=(alerts.acct_status_alert_class)
+      span.alert-title = t('escort.alerts.title.acct_status')
+      span.red-tick
+    .alert-text = alerts.acct_status_text
 
-      .info-tiles
-        #acct_status_alert.tile-4.alert-tile
-          div.alert-wrapper
-            div.image#acct_status_header class=(alerts.self_harm_alert_class)
-              span.alert-title = t('escort.alerts.title.self_harm')
-              span.red-tick
+  #self_harm_alert.tile-4.alert-tile
+    #self_harm_header class=(alerts.self_harm_alert_class)
+      span.alert-title = t('escort.alerts.title.self_harm')
+      span.red-tick
 
-        #rule_45_alert.tile-4.alert-tile
-          div.alert-wrapper
-            div.image#rule_45_header class=(alerts.rule_45_alert_class)
-              span.alert-title = t('escort.alerts.title.rule_45')
-              span.red-tick
+  #rule_45_alert.tile-4.alert-tile
+    #rule_45_header class=(alerts.rule_45_alert_class)
+      span.alert-title = t('escort.alerts.title.rule_45')
+      span.red-tick
 
-        #csra_alert.tile-4.alert-tile
-          div.alert-wrapper
-            div.image#csra_header class=(alerts.csra_alert_class)
-              span.alert-title = t('escort.alerts.title.csra')
-              span.alert-toggle-text = alerts.csra_text
+  #csra_alert.tile-4.alert-tile
+    #csra_header class=(alerts.csra_alert_class)
+      span.alert-title = t('escort.alerts.title.csra')
+      span.alert-toggle-text = alerts.csra_text
 
-        #category_a_alert.tile-4.alert-tile
-          div.alert-wrapper
-            div.image#category_a_header class=(alerts.category_a_alert_class)
-              span.alert-title = t('escort.alerts.title.category_a')
-              span.red-tick
-  .clearer
+  #category_a_alert.tile-4.alert-tile
+    #category_a_header class=(alerts.category_a_alert_class)
+      span.alert-title = t('escort.alerts.title.category_a')
+      span.red-tick

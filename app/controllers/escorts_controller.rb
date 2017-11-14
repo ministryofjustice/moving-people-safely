@@ -1,7 +1,6 @@
 class EscortsController < ApplicationController
   helper_method :escort
 
-  before_action :redirect_to_court_view, if: :court_user?
   before_action :redirect_if_missing_data, only: :show
   before_action :authorize_user_to_access_prisoner!, only: :create
   before_action :authorize_user_to_read_escort!, only: :show

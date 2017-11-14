@@ -18,7 +18,7 @@ table.court-dashboard
       th Age
 
   - @escorts.each do |escort|
-    tbody.tag-with-href-j data-href="#{escort_print_path(escort)}"
+    tbody.tag-with-href-j data-href="#{escort_path(escort)}"
       tr
         td.detainee-photo rowspan="2"
           - if escort.detainee.image.present?
@@ -26,7 +26,7 @@ table.court-dashboard
           - else
             .no-court-dashboard-image
               span = 'No photo'
-        td= link_to escort.prison_number, escort_print_url(escort), target: "_blank"
+        td= link_to escort.prison_number, escort_url(escort)
         td
           span.surname= escort.detainee.surname
           = escort.detainee.forenames

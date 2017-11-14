@@ -44,7 +44,6 @@ RSpec.feature 'filling in a PER', type: :feature do
     risk_summary.confirm_risk_details(risk_data)
     risk_summary.confirm_and_save
 
-    escort_page.confirm_risk_details(risk_data)
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/charges", status: 404)
     escort_page.click_edit_offences
 
@@ -65,7 +64,6 @@ RSpec.feature 'filling in a PER', type: :feature do
     healthcare.complete_forms(healthcare_data)
     healthcare_summary.confirm_and_save
 
-    escort_page.confirm_healthcare_details(healthcare_data)
     escort_page.confirm_offences_action_link('View')
     escort_page.confirm_risk_action_link('View')
   end
