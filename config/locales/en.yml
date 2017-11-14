@@ -541,7 +541,8 @@ en:
       self_harm: Self harm
     alerts:
       acct_status:
-        closed_in_last_6_months: 'Closed:'
+        closed_in_last_6_months: 'Closed on:'
+        closed: 'Closed on:'
         none: ''
         open: Open
         post_closure: Post closure

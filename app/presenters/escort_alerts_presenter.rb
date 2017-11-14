@@ -2,9 +2,10 @@ class EscortAlertsPresenter < SimpleDelegator
   MOVE_ATTRIBUTES = %i[
     not_for_release not_for_release_reason not_for_release_reason_details
   ].freeze
+
   RISK_ATTRIBUTES = %i[
-    acct_status date_of_most_recently_closed_acct self_harm rule_45
-    current_e_risk previous_escape_attempts csra category_a
+    acct_status acct_status_details date_of_most_recently_closed_acct
+    self_harm rule_45 current_e_risk previous_escape_attempts csra category_a
   ].freeze
 
   delegate(*MOVE_ATTRIBUTES, to: :move, allow_nil: true)
@@ -35,13 +36,12 @@ class EscortAlertsPresenter < SimpleDelegator
   end
 
   def acct_status_text
-    return unless acct_status.present?
-    case acct_status
-    when 'closed_in_last_6_months'
-      [
-        localised_attr_value(:acct_status),
-        date_of_most_recently_closed_acct
-      ].join(' ')
+    return '' unless acct_status.present?
+    case
+    when %w[ closed_in_last_6_months closed].include?(acct_status)
+      localised_attr_value(:acct_status) +  ' ' +
+        date_of_most_recently_closed_acct.to_s + ' | ' +
+        (acct_status_details || '')
     else
       localised_attr_value(:acct_status)
     end
