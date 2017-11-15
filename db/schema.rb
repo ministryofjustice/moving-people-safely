@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010154443) do
+ActiveRecord::Schema.define(version: 20171031103435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -200,7 +200,6 @@ ActiveRecord::Schema.define(version: 20171010154443) do
     t.string   "discrimination_to_other_religions"
     t.text     "discrimination_to_other_religions_details"
     t.text     "violence_to_staff_details"
-    t.date     "date_most_recent_sexual_offence"
     t.integer  "status",                                            default: 0
     t.integer  "reviewer_id"
     t.datetime "reviewed_at"
@@ -212,6 +211,7 @@ ActiveRecord::Schema.define(version: 20171010154443) do
     t.text     "previous_escape_attempts_details"
     t.string   "self_harm"
     t.text     "self_harm_details"
+    t.string   "date_most_recent_sexual_offence"
     t.index ["escort_id"], name: "index_risks_on_escort_id", using: :btree
   end
 
