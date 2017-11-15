@@ -37,9 +37,8 @@ class EscortAlertsPresenter < SimpleDelegator
 
   def acct_status_text
     return '' unless acct_status.present?
-    case
-    when %w[ closed_in_last_6_months closed].include?(acct_status)
-      localised_attr_value(:acct_status) +  ' ' +
+    if %w[closed_in_last_6_months closed].include?(acct_status)
+      localised_attr_value(:acct_status) + ' ' +
         date_of_most_recently_closed_acct.to_s + ' | ' +
         (acct_status_details || '')
     else
