@@ -68,9 +68,6 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as inactive' do
             escort_page.confirm_alert_as_inactive(:acct_status)
-            within('#acct_status_alert .alert-text') do
-              expect(page).to have_content("Closed on: #{date}")
-            end
           end
         end
 

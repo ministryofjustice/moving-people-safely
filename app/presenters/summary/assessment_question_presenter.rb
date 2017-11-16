@@ -66,7 +66,7 @@ module Summary
     end
 
     def detail_label(attribute)
-      scope =  [:summary, :section, :questions, section_name]
+      scope = [:summary, :section, :questions, section_name]
       t(attribute, scope: scope, raise: true)
     rescue
       nil
