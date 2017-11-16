@@ -480,6 +480,7 @@ en:
           acct_status: ACCT status
           self_harm: Risk of self harm
           suicide: Risk of suicide or self-harm
+          date_of_most_recently_closed_acct: 'Closed on '
         security_and_segregation:
           category_a: Cat A or potential Cat A
           controlled_unlock_required: Controlled unlock
