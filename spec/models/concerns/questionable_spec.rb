@@ -44,4 +44,19 @@ RSpec.describe Questionable do
       end
     end
   end
+
+  describe '#any_questions_answered?' do
+    context 'when some questions have been answered' do
+      it 'returns true' do
+        assessment.question_2 = default_relevant_value
+        expect(subject.any_questions_answered?).to be_truthy
+      end
+    end
+
+    context 'when no questions have been answered' do
+      it 'returns false' do
+        expect(subject.any_questions_answered?).to be_falsey
+      end
+    end
+  end
 end
