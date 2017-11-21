@@ -5,7 +5,7 @@ class OffencesController < ApplicationController
   helper_method :escort, :offences, :offences_workflow
 
   def show
-    prepopulate_offences
+    prepopulate_offences if escort.editable?
     form.validate(flash[:form_data]) if flash[:form_data]
     form.prepopulate!
     render locals: { form: form }
@@ -53,7 +53,7 @@ class OffencesController < ApplicationController
   end
 
   def prepopulate_offences
-    offences.blank? && offences.build(fetch_offences)
+    offences.clear.build(fetch_offences)
   end
 
   def fetch_offences

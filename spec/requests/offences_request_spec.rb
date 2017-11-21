@@ -86,12 +86,13 @@ RSpec.describe 'Offences', type: :request do
       end
 
       it "returns a 200 code" do
+        allow(Nomis::Api.instance).to receive(:get)
         get "/escorts/#{escort.id}/offences"
         expect(response).to have_http_status(200)
       end
 
-      it "does not call the NOMIS API" do
-        expect(Nomis::Api.instance).not_to receive(:get)
+      it "calls the NOMIS API" do
+        expect(Nomis::Api.instance).to receive(:get)
         get "/escorts/#{escort.id}/offences"
       end
     end
