@@ -91,7 +91,7 @@ module Questionable
     end
 
     def any_questions_answered?
-      sections.flat_map(&:questions).flat_map(&:relevant_answer?).any?
+      mandatory_questions.any?(&:answered?)
     end
   end
 end
