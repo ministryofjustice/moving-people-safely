@@ -44,17 +44,16 @@ class Escort < ApplicationRecord
     EscortCompletionValidator.call(self)
   end
 
-  def cancelled?
-    cancelled_at.present?
-  end
-
   def editable?
     !(issued? || cancelled?)
   end
 
+  def cancelled?
+    cancelled_at.present?
+  end
+
   def cancel!(user, reason)
     raise AlreadyCancelledError if cancelled?
-    raise AlreadyIssuedError if issued?
     update_attributes!(canceller_id: user.id, cancelling_reason: reason, cancelled_at: Time.now.utc)
   end
 

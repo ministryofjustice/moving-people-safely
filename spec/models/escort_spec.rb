@@ -109,20 +109,6 @@ RSpec.describe Escort do
       end
     end
 
-    context 'when the escort is already issued' do
-      let(:issued_date) { 3.days.ago }
-      let(:escort) { create(:escort, issued_at: issued_date) }
-
-      it 'raises an AlreadyIssuedError' do
-        expect { escort.cancel!(user, reason) }.to raise_error(Escort::AlreadyIssuedError)
-      end
-
-      it 'keeps the current issued date' do
-        expect { escort.issue! rescue nil }
-          .not_to change { escort.reload.issued_at.to_i }.from(issued_date.to_i)
-      end
-    end
-
     context 'when the escort is not cancelled or issued yet' do
       let(:escort) { create(:escort) }
 

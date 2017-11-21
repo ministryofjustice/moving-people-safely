@@ -37,17 +37,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def authorize_user_to_read_escort!
+  def authorize_user_to_access_escort!
     unless can? :read, escort
       flash[:error] = t('alerts.escort.access.unauthorized')
       redirect_to root_path
-    end
-  end
-
-  def authorize_user_to_update_escort!
-    unless can? :update, escort
-      flash[:error] = t('alerts.escort.access.unauthorized')
-      redirect_to escort_path(escort)
     end
   end
 

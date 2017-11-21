@@ -25,23 +25,14 @@ RSpec.describe 'PER page requests', type: :request do
         end
       end
 
-      context "when the escort has already been cancelled" do
-        let(:escort) { create(:escort, :cancelled, prison_number: prison_number) }
-
-        it 'redirects to the escort page' do
-          put "/escorts/#{escort.id}/cancel", params: params
-          expect(response).to have_http_status(302)
-          expect(response).to redirect_to escort_path(escort)
-        end
-      end
-
       context "when the escort has already been issued" do
         let(:escort) { create(:escort, :issued, prison_number: prison_number) }
 
-        it 'redirects to the escort page' do
+        it 'cancel the escort and redirect to the dashboard page' do
           put "/escorts/#{escort.id}/cancel", params: params
+          expect(escort.reload).to be_cancelled
           expect(response).to have_http_status(302)
-          expect(response).to redirect_to escort_path(escort)
+          expect(response).to redirect_to root_path
         end
       end
 
