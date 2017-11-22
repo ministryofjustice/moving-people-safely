@@ -4,7 +4,7 @@ class EscortsController < ApplicationController
   before_action :redirect_if_missing_data, only: :show
   before_action :authorize_user_to_access_prisoner!, only: :create
   before_action :authorize_user_to_read_escort!, only: :show
-  before_action :authorize_user_to_update_escort!, except: [:create, :show]
+  before_action :authorize_user_to_update_escort!, except: %i[create show]
 
   def create
     escort = EscortCreator.call(escort_params)
@@ -13,9 +13,6 @@ class EscortsController < ApplicationController
     else
       redirect_to new_escort_detainee_path(escort.id, escort_params)
     end
-  end
-
-  def show
   end
 
   def confirm_cancel

@@ -1,4 +1,4 @@
-brew "chromedriver"
-brew "node"
-brew "postgresql"
-brew "poppler"
+brew 'chromedriver'
+brew 'node'
+brew 'postgresql'
+brew 'poppler'

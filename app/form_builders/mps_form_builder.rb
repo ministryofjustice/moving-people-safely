@@ -49,7 +49,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
   end
 
   def radio_inputs(attribute, options)
-    choices = options[:choices] || [:yes, :no]
+    choices = options[:choices] || %i[yes no]
     choices.map do |choice|
       label(attribute, class: 'block-label', value: choice) do |_tag|
         input = radio_button(attribute, choice)

@@ -37,7 +37,7 @@ class RadioDatePickerPresenter
   attr_reader :normalized_attr
 
   def today_date
-    Time.current.to_date
+    Date.current
   end
 
   def tomorrow_date

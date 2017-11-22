@@ -43,7 +43,7 @@ module SSO
     end
 
     def user_id
-      user && user.id
+      user&.id
     end
 
     def to_h
