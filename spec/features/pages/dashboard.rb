@@ -16,7 +16,7 @@ end
 
 module Page
   class Dashboard < SitePrism::Page
-    include FactoryGirl::Syntax::Methods
+    include FactoryBot::Syntax::Methods
     include RSpec::Matchers
     include Capybara::DSL
 

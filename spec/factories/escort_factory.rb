@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :escort do
     prison_number do
       a = 3.times.map { ('A'..'Z').to_a.sample }

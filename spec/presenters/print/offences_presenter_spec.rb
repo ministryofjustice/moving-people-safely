@@ -5,7 +5,7 @@ RSpec.describe Print::OffencesPresenter do
 
   describe '#label' do
     context 'when there are no offences' do
-      let(:detainee) { FactoryGirl.build(:detainee, :with_no_offences) }
+      let(:detainee) { build(:detainee, :with_no_offences) }
 
       it 'returns a non-highlighed label' do
         expect(presenter.label).to eq('Current offences')
@@ -14,7 +14,7 @@ RSpec.describe Print::OffencesPresenter do
 
     context 'when there are offences' do
       let(:offences) { build_list(:offence, 2) }
-      let(:detainee) { FactoryGirl.build(:detainee, offences: offences) }
+      let(:detainee) { build(:detainee, offences: offences) }
 
       it 'returns an highlighed label' do
         expect(presenter.label).to eq('<div class="strong-text">Current offences</div>')
@@ -24,7 +24,7 @@ RSpec.describe Print::OffencesPresenter do
 
   describe '#relevant' do
     context 'when there are no offences' do
-      let(:detainee) { FactoryGirl.build(:detainee, :with_no_offences) }
+      let(:detainee) { build(:detainee, :with_no_offences) }
 
       it 'returns a non-highlighed None' do
         expect(presenter.relevant).to eq('None')
@@ -33,7 +33,7 @@ RSpec.describe Print::OffencesPresenter do
 
     context 'when there are offences' do
       let(:offences) { build_list(:offence, 2) }
-      let(:detainee) { FactoryGirl.build(:detainee, offences: offences) }
+      let(:detainee) { build(:detainee, offences: offences) }
 
       it 'returns an highlighed Yes' do
         expect(presenter.relevant).to eq('<div class="strong-text">Yes</div>')
@@ -43,7 +43,7 @@ RSpec.describe Print::OffencesPresenter do
 
   describe '#formatted_list' do
     context 'when there are no offences' do
-      let(:detainee) { FactoryGirl.build(:detainee, :with_no_offences) }
+      let(:detainee) { build(:detainee, :with_no_offences) }
 
       it 'returns nil' do
         expect(presenter.formatted_list).to be_nil
@@ -52,7 +52,7 @@ RSpec.describe Print::OffencesPresenter do
 
     context 'when there are offences' do
       let(:offences) { build_list(:offence, 2) }
-      let(:detainee) { FactoryGirl.build(:detainee, offences: offences) }
+      let(:detainee) { build(:detainee, offences: offences) }
 
       it 'returns the list of offences' do
         offences.each do |offence|

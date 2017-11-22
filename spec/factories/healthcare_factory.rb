@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :healthcare do
     allergies 'no'
     physical_issues 'no'

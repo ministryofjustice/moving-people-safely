@@ -29,7 +29,7 @@ RSpec.describe User, type: :model do
 
     context 'when the user with provided email already exists in the local database' do
       before do
-        FactoryGirl.create(:user, email: 'bob@example.com')
+        create(:user, email: 'bob@example.com')
       end
 
       it 'does not create a new user' do
@@ -48,7 +48,7 @@ RSpec.describe User, type: :model do
 
     context 'when the user with provided uid and provider already exists in the local database' do
       before do
-        FactoryGirl.create(:user, uid: uid, provider: provider, first_name: 'Local First Name')
+        create(:user, uid: uid, provider: provider, first_name: 'Local First Name')
       end
 
       it 'does not create a new user' do

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :risk do
     acct_status 'open'
     self_harm 'no'

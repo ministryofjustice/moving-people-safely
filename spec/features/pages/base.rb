@@ -1,6 +1,6 @@
 module Page
   class Base
-    include FactoryGirl::Syntax::Methods
+    include FactoryBot::Syntax::Methods
     include RSpec::Matchers
     include Capybara::DSL
     include Rails.application.routes.url_helpers
