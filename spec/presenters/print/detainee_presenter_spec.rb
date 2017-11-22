@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Print::DetaineePresenter, type: :presenter do
   let(:options) { {} }
-  let(:detainee) { FactoryGirl.create(:detainee, options) }
+  let(:detainee) { create(:detainee, options) }
 
   subject(:presenter) { described_class.new(detainee) }
 

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :establishment do
     name     { "Establishment #{Faker::Number.number(3)}" }
     nomis_id { "#{Faker::Lorem.characters(2)}I".upcase }

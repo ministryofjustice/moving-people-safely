@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :offences_workflow do
     status :incomplete
 

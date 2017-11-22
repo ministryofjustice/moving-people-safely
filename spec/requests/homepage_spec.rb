@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Homepage', type: :request do
-  before { sign_in FactoryGirl.create(:user) }
+  before { sign_in create(:user) }
 
   describe "#show" do
     context "with no search params" do

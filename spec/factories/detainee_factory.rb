@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :detainee do
     forenames { Faker::Name.first_name }
     surname { Faker::Name.last_name }

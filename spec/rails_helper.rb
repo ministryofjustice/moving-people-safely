@@ -55,7 +55,7 @@ RSpec.configure do |config|
   config.include(Shoulda::Matchers::ActiveModel, type: :form)
   config.include(ActiveSupport::Testing::TimeHelpers)
   config.include(OauthHelper, type: :request)
-  config.include(FactoryGirl::Syntax::Methods)
+  config.include(FactoryBot::Syntax::Methods)
   config.include(FormsHelper, type: :form)
   config.include(NomisApiHelpers)
   config.include(ZendeskApiHelpers)

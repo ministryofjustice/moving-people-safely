@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :must_not_return_detail, class: Hash do
     establishment { Faker::Beer.name }
     establishment_details "Does not like it"
