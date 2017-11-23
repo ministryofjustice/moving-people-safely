@@ -53,7 +53,8 @@ class OffencesController < ApplicationController
   end
 
   def prepopulate_offences
-    offences.clear.build(fetch_offences)
+    nomis_offences = fetch_offences
+    offences.clear.build(nomis_offences) if nomis_offences.any?
   end
 
   def fetch_offences
