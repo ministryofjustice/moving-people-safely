@@ -92,7 +92,7 @@ RSpec.describe DateValidator do
     end
 
     context 'and its not' do
-      let(:date) { Time.current.to_date }
+      let(:date) { Date.current }
       specify { is_expected.to be_valid }
     end
   end
@@ -119,7 +119,7 @@ RSpec.describe DateValidator do
     end
 
     context 'and its not' do
-      let(:date) { Time.current.to_date }
+      let(:date) { Date.current }
       specify { is_expected.to be_valid }
     end
   end

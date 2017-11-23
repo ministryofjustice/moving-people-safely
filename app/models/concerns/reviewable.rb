@@ -21,7 +21,7 @@ module Reviewable
   def confirm!(user:)
     update_attributes!(
       reviewer_id: user.id,
-      reviewed_at: DateTime.now,
+      reviewed_at: Time.now,
       status: :confirmed
     )
   end

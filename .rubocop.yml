@@ -15,14 +15,6 @@ AllCops:
     - 'app/models/concerns/questionable.rb'
     - 'app/models/ability.rb'
 
-# Just a preference to use %w[] over %w()
-Style/PercentLiteralDelimiters:
-  PreferredDelimiters:
-    '%i': '[]'
-    '%w': '[]'
-    '%W': '[]'
-    '%': '{}'
-
 # Prefer sensible naming to comments everywhere.
 Documentation:
   Description: Document classes and non-namespace modules.
@@ -30,7 +22,7 @@ Documentation:
 
 # Just indent parameters by two spaces. It's less volatile if methods change,
 # and there's less busy work lining things up.
-Style/AlignParameters:
+Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
 # Don't worry about the complexity of spec methods
@@ -57,12 +49,11 @@ Metrics/PerceivedComplexity:
   Exclude:
     - 'app/models/risk.rb'
 
-# Allow ===. It's useful.
-Style/CaseEquality:
+Lint/RescueWithoutErrorClass:
   Enabled: false
 
 # Chain methods with trailing dots.
-Style/DotPosition:
+Layout/DotPosition:
   EnforcedStyle: trailing
 
 # No-one in this team uses a fixed-width terminal
@@ -73,14 +64,11 @@ Metrics/LineLength:
 Style/GuardClause:
   Enabled: false
 
-Style/PredicateName:
+Naming/PredicateName:
   Enabled: false
-
-Style/MultilineOperationIndentation:
-  EnforcedStyle: indented
 
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/IndentArray:
+Layout/IndentArray:
   Enabled: false

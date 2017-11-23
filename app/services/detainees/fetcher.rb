@@ -35,7 +35,7 @@ module Detainees
 
     private
 
-    attr_reader :prison_number, :options, :errors, :details_attrs, :image_attrs
+    attr_reader :prison_number, :options, :errors
 
     def pull_data
       options.fetch(:pull, :all).to_sym

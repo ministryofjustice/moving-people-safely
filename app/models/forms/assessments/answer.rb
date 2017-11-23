@@ -57,7 +57,7 @@ module Forms
 
       def requires_dependencies?
         return parent.requires_dependencies? unless group_answers.empty?
-        answer_schema && !answer_schema.questions.empty?
+        answer_schema&.questions&.any?
       end
 
       def reset
@@ -73,7 +73,7 @@ module Forms
 
       private
 
-      attr_reader :assessment, :question, :parent, :validators, :params
+      attr_reader :assessment, :question, :parent, :params
 
       def to_ary
         nil

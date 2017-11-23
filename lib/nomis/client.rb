@@ -74,7 +74,7 @@ module Nomis
     def params_options(method, params)
       return {} if params.empty?
 
-      { query: params } if method == :get || method == :delete
+      { query: params } if %i[get delete].includes? method
     end
 
     def auth_header

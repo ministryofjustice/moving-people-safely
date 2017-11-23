@@ -5,8 +5,7 @@ class DatePicker
   include Comparable
 
   def initialize(new_date)
-    return today unless new_date.present?
-    send(:date=, new_date)
+    new_date.present? ? send(:date=, new_date) : today
   end
 
   def date
@@ -43,7 +42,7 @@ class DatePicker
   end
 
   def today
-    @date = Time.current.to_date
+    @date = Date.current
   end
 
   private
