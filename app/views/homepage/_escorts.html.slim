@@ -18,14 +18,14 @@
           span
             |  #{escort.detainee_forenames}
         td = escort.move&.to
-        - if escort.issued?
-          td.issued colspan=4
-            = t('.issued')
-        - elsif escort.cancelled?
+        - if escort.cancelled?
           td colspan=4
             span.cancelled
               = t('.cancelled')
             | By: #{escort.canceller_full_name}. #{escort.cancelling_reason}
+        - elsif escort.issued?
+          td.issued colspan=4
+            = t('.issued')
         - else
           td.completion-status
             span class="#{escort.risk_complete? ? true : false}"

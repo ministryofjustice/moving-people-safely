@@ -3,8 +3,7 @@ class EscortsController < ApplicationController
 
   before_action :redirect_if_missing_data, only: :show
   before_action :authorize_user_to_access_prisoner!, only: :create
-  before_action :authorize_user_to_read_escort!, only: :show
-  before_action :authorize_user_to_update_escort!, except: %i[create show]
+  before_action :authorize_user_to_access_escort!, except: :create
 
   def create
     escort = EscortCreator.call(escort_params)

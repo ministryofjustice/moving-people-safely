@@ -36,5 +36,9 @@ table.court-dashboard
 
       tr
         td colspan="6"
-          - escort.active_alerts.each do |alert|
-            li.flag= t("escort.active_alerts.#{alert}")
+          - if escort.cancelled?
+            span.text-error Cancelled
+            | &nbsp;by: #{escort.canceller.full_name}, at #{escort.cancelled_at.to_s(:timestamped)}. #{escort.cancelling_reason}.
+          - else
+            - escort.active_alerts.each do |alert|
+              li.flag= t("escort.active_alerts.#{alert}")
