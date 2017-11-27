@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   resource :session, only: %i[ new destroy ]
 
-  get :ping, to: 'ping#show'
+  get :ping, to: 'heartbeat#ping', format: :json
+  get :healthcheck, to: 'heartbeat#healthcheck',  as: 'healthcheck', format: :json
 
   resource :court, only: %i[show] do
     get :select
