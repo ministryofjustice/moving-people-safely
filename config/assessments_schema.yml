@@ -238,7 +238,7 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-      security_and_segregation:
+      segregation:
         questions:
           -
             name: csra
@@ -263,6 +263,26 @@ assessment:
                 value: 'yes'
               -
                 value: 'no'
+          -
+            name: vulnerable_prisoner
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: vulnerable_prisoner_details
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+      security:
+        questions:
           -
             name: controlled_unlock_required
             type: string
@@ -325,6 +345,25 @@ assessment:
                         name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
+          -
+            name: pnc_warnings
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: pnc_warnings_details
+                    type: string
+                    validators:
+                      -
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+
       harassment_and_gangs:
         questions:
           -
@@ -795,8 +834,6 @@ assessment:
                                     name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
-      drug_trafficking:
-        questions:
           -
             name: substance_supply
             type: string

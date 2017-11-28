@@ -5,9 +5,12 @@ FactoryBot.define do
 
     csra 'standard'
     rule_45 'no'
+    vulnerable_prisoner 'no'
+
     controlled_unlock_required 'no'
     category_a 'no'
     high_profile 'no'
+    pnc_warnings 'no'
 
     intimidation 'no'
     gang_member 'no'

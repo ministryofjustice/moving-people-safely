@@ -37,41 +37,41 @@ About this Person Escort Record
 This ePER was produced by the Ministry of Justice ePER service, currently in pilot at HMP
 Bedford. This ePER is approved by HMPPS - please treat it as a fully valid and official record.
 Please send any feedback or questions to: eper@digital.justice.gov.uk
-W1234BY: McTest Testy                                                                           Page 1 of 1
+W1234BY: McTest Testy                                                                         Page 1 of 1
 
- NOT FOR RELEASE                NO          ESCAPE RISK       NO                 ACCT    NO
-
-
- SELF HARM              NO       RULE 45       NO            CSRA STANDARD              CAT A   NO
+ NOT FOR RELEASE              NO          ESCAPE RISK          NO              ACCT    NO
 
 
-RISK      Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
+ SELF HARM            NO        RULE 45      NO            CSRA STANDARD              CAT A   NO
 
-Risk to self                           No
-Security and segregation               No
-Harassment and gangs                   No
-Discrimination against others          No
-Escape status/history                  No
-Hostage taker                          No
-Sex offender                           No
-Weapons, drugs or other items          No
-Drug trafficking risk                  No
-Arson                                  No
-Return Instructions                    No
-Other risk information                 No
 
-HEALTHCARE                   Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
+RISK       Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
 
-Physical health issues                 No
-Mental health issues                   No
-Special vehicles                       No
-Essential medication                   No
-Dependencies                           No
-Allergies and intolerances             No
-Personal care                          No
-Medical contact details                Yes
-  Medical contact                      1-131-999-0232
+Risk to self                         No
+Segregation                          No
+Security                             No
+Harassment and gangs                 No
+Discrimination against others        No
+Escape status/history                No
+Hostage taker                        No
+Sex offender                         No
+Weapons, drugs or other items        No
+Arson                                No
+Return Instructions                  No
+Other risk information               No
+
+HEALTHCARE                 Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
+
+Physical health issues               No
+Mental health issues                 No
+Special vehicles                     No
+Essential medication                 No
+Dependencies                         No
+Allergies and intolerances           No
+Personal care                        No
+Medical contact details              Yes
+  Medical contact                    1-131-999-0232
 
 OFFENCES
-Current offences                       None
+Current offences                     None
 
