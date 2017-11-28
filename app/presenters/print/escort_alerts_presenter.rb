@@ -1,21 +1,9 @@
 module Print
-  class EscortAlertsPresenter < SimpleDelegator
+  class EscortAlertsPresenter < ::EscortAlertsPresenter
     def initialize(object, view_context)
       super(object)
       @view_context = view_context
     end
-
-    MOVE_ATTRIBUTES = %i[
-      not_for_release not_for_release_reason not_for_release_reason_details
-    ].freeze
-
-    RISK_ATTRIBUTES = %i[
-      acct_status date_of_most_recently_closed_acct self_harm rule_45
-      current_e_risk previous_escape_attempts csra category_a
-    ].freeze
-
-    delegate(*MOVE_ATTRIBUTES, to: :move, allow_nil: true)
-    delegate(*RISK_ATTRIBUTES, to: :risk, allow_nil: true)
 
     def not_for_release_alert
       alert_for(:not_for_release, status: status_for(not_for_release), text: not_for_release_text)
@@ -52,29 +40,9 @@ module Print
     attr_reader :view_context
     alias h view_context
 
-    def not_for_release_text
-      return unless not_for_release == 'yes'
-      text = localised_attr_value(:not_for_release_reason)
-      text << " (#{not_for_release_reason_details})" if not_for_release_reason == 'other'
-      text
-    end
-
     def acct_status_status
       return :on if %w[open post_closure].include?(acct_status)
       :off
-    end
-
-    def acct_status_text
-      return unless acct_status.present?
-      case acct_status
-      when 'closed_in_last_6_months'
-        [
-          localised_attr_value(:acct_status),
-          date_of_most_recently_closed_acct
-        ].join(' ')
-      else
-        localised_attr_value(:acct_status)
-      end
     end
 
     def self_harm_status
