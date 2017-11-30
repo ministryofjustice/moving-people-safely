@@ -46,4 +46,6 @@
               div class="alert alert--#{severity}" = flash_message_for(flash[severity])
         = yield
 
+= content_for :page_title, t(:html_title)
+
 = render template: "layouts/govuk_template"

@@ -1,4 +1,5 @@
 en:
+  html_title: Person Escort Record
   helpers:
     complex_attributes:
       needs: Medication
