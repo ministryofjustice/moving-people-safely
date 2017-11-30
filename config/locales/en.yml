@@ -112,7 +112,7 @@ en:
         gender: Gender
         aliases: Aliases
       detainee_search:
-        prison_number: Enter a prison number. Eg. A1234AB
+        prison_number: Enter a prisoner number. For example A1234AB
       discrimination:
         discrimination_to_other_religions: Risk to other religions
         discrimination_to_other_religions_details: Risk to other religions details
@@ -390,7 +390,7 @@ en:
         violence: Risk to others
   homepage:
     titles:
-      detainee_search: Start a Person Escort Record
+      detainee_search: Start a PER
     gauges:
       detainees_due_to_move: Detainees due to move
       healthcare_complete: Healthcare complete
