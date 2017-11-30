@@ -42,6 +42,7 @@
   padding-top: 1.25em;
   padding-bottom: 0.625em;
   padding-left: 0.625em;
+  min-height: 50px;
 
   h2 {
     @extend .heading-medium;
@@ -58,6 +59,7 @@
   form {
     @include media(desktop) {
       display: inline-block;
+      float: right;
     }
   }
 
