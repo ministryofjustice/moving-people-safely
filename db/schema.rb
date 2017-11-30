@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031103435) do
+ActiveRecord::Schema.define(version: 20171127162638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -212,6 +212,10 @@ ActiveRecord::Schema.define(version: 20171031103435) do
     t.string   "self_harm"
     t.text     "self_harm_details"
     t.string   "date_most_recent_sexual_offence"
+    t.string   "vulnerable_prisoner"
+    t.text     "vulnerable_prisoner_details"
+    t.string   "pnc_warnings"
+    t.text     "pnc_warnings_details"
     t.index ["escort_id"], name: "index_risks_on_escort_id", using: :btree
   end
 

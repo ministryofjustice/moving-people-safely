@@ -4,22 +4,26 @@ module Page
 
     def confirm_risk_details(risk)
       check_section(risk, 'risk_to_self', %w[acct_status self_harm])
-      check_security_and_segregation(risk)
+      check_segregation(risk)
+      check_security(risk)
       check_harassment_and_gangs_section(risk)
       check_section(risk, 'discrimination', %w[violence_to_staff risk_to_females homophobic racist discrimination_to_other_religions other_violence_due_to_discrimination])
       check_escape_section(risk)
       check_hostage_taker_section(risk)
       check_sex_offences_section(risk)
       check_concealed_weapons_section(risk)
-      check_section(risk, 'drug_trafficking', %w[substance_supply])
       check_return_instructions_section(risk)
       check_section(risk, 'arson', %w[ arson ])
     end
 
     private
 
-    def check_security_and_segregation(risk)
-      check_section(risk, 'security_and_segregation', %w[csra rule_45 high_profile category_a])
+    def check_segregation(risk)
+      check_section(risk, 'segregation', %w[csra rule_45 vulnerable_prisoner])
+    end
+
+    def check_security(risk)
+      check_section(risk, 'security', %w[category_a high_profile pnc_warnings])
       check_controlled_unlock_required(risk)
     end
 
@@ -74,8 +78,7 @@ module Page
     end
 
     def check_concealed_weapons_section(risk)
-      check_section(risk, 'concealed_weapons', %w[conceals_weapons])
-      check_section(risk, 'concealed_weapons', %w[conceals_drugs])
+      check_section(risk, 'concealed_weapons', %w[conceals_weapons conceals_drugs substance_supply])
       check_conceals_mobile_phone_or_other_items(risk)
     end
 

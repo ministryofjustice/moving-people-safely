@@ -9,14 +9,14 @@ module Page
     def complete_forms(risk)
       @risk = risk
       fill_in_risk_to_self
-      fill_in_security_and_segregation
+      fill_in_segregation
+      fill_in_security
       fill_in_harassment_and_gangs
       fill_in_discrimination
       fill_in_escape
       fill_in_hostage_taker
       fill_in_sex_offences
       fill_in_concealed_weapons
-      fill_in_drug_trafficking
       fill_in_arson
       fill_in_return_instructions
       fill_in_other_risk
@@ -28,12 +28,18 @@ module Page
       save_and_continue
     end
 
-    def fill_in_security_and_segregation
+    def fill_in_segregation
       fill_in_optional_details('What is their Cell Sharing Risk Assessment (CSRA) risk level?', @risk, :csra)
       fill_in_optional_details('Are they held under Rule 45?', @risk, :rule_45)
+      fill_in_optional_details('Are they a vulnerable prisoner?', @risk, :vulnerable_prisoner)
+      save_and_continue
+    end
+
+    def fill_in_security
       fill_in_controlled_unlock_required
       fill_in_category_a
       fill_in_optional_details('Are they of high public interest?', @risk, :high_profile)
+      fill_in_optional_details('PNC warnings', @risk, :pnc_warnings)
       save_and_continue
     end
 
@@ -91,10 +97,6 @@ module Page
       fill_in_optional_details('Have they concealed weapons in custody?', @risk, :conceals_weapons)
       fill_in_optional_details('Have they concealed drugs in custody?', @risk, :conceals_drugs)
       fill_in_concealed_mobile_phone_or_other_items
-      save_and_continue
-    end
-
-    def fill_in_drug_trafficking
       fill_in_optional_details('Is there a risk that they might traffic drugs on this journey?', @risk, :substance_supply)
       save_and_continue
     end
@@ -123,17 +125,11 @@ module Page
 
     def fill_in_controlled_unlock_required
       if @risk.controlled_unlock_required == 'yes'
-        choose 'security_and_segregation_controlled_unlock_required_yes'
-        choose 'security_and_segregation_controlled_unlock_more_than_four'
-        fill_in 'security_and_segregation_controlled_unlock_details', with: @risk.controlled_unlock_details
+        choose 'security_controlled_unlock_required_yes'
+        choose 'security_controlled_unlock_more_than_four'
+        fill_in 'security_controlled_unlock_details', with: @risk.controlled_unlock_details
       else
-        choose 'security_and_segregation_controlled_unlock_required_no'
-      end
-    end
-
-    def fill_in_trafficking_drugs
-      if @risk.trafficking_drugs
-        check 'drug_trafficking_trafficking_drugs'
+        choose 'security_controlled_unlock_required_no'
       end
     end
 
@@ -180,9 +176,9 @@ module Page
 
     def fill_in_category_a
       if @risk.category_a == 'yes'
-        choose 'security_and_segregation_category_a_yes'
+        choose 'security_category_a_yes'
       else
-        choose 'security_and_segregation_category_a_no'
+        choose 'security_category_a_no'
       end
     end
 
@@ -208,12 +204,6 @@ module Page
         choose 'escape_escape_pack_yes'
       else
         choose 'escape_escape_pack_no'
-      end
-    end
-
-    def fill_in_trafficking_alcohol
-      if @risk.trafficking_alcohol
-        check 'drug_trafficking_trafficking_alcohol'
       end
     end
 

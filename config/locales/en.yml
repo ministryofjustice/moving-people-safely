@@ -13,6 +13,7 @@ en:
         conceals_drugs: Have they concealed drugs in custody?
         conceals_mobile_phone_or_other_items: Have they concealed mobile phones, SIMs or other items in custody?
         conceals_weapons: Have they concealed weapons in custody?
+        substance_supply: Is there a risk that they might traffic drugs on this journey?
         uses_weapons: Have they created or used weapons in custody?
       dependencies:
         dependencies: Do they have any addictions or dependencies that may affect this journey?
@@ -23,8 +24,6 @@ en:
         racist: 'Are they a risk to other races?'
         risk_to_females: 'Are they a risk to females?'
         violence_to_staff: 'Are they a risk to staff?'
-      drug_trafficking:
-        substance_supply: Is there a risk that they might traffic drugs on this journey?
       escape:
         current_e_risk: Are they on the Escape List (E-List)?
         current_e_risk_details: 'Select the E-List category:'
@@ -58,13 +57,16 @@ en:
       return_instructions:
         must_not_return: Is there any establishment they must not be sent to at the end of this journey?
         must_return: Must they return to a specific prison at the end of this journey?
-      security_and_segregation:
+      security:
         category_a: Are they Category A, potential Category A or Restricted Status?
         controlled_unlock: Number of officers required
         controlled_unlock_required: Are they on a controlled unlock?
-        csra: 'What is their Cell Sharing Risk Assessment (CSRA) risk level?'
         high_profile: Are they of high public interest?
+        pnc_warnings: PNC warnings
+      segregation:
+        csra: 'What is their Cell Sharing Risk Assessment (CSRA) risk level?'
         rule_45: Are they held under Rule 45?
+        vulnerable_prisoner: Are they a vulnerable prisoner?
       risk_to_self:
         acct_status: What is the prisoner's ACCT status?
         self_harm: Is there any other risk of self harm on this journey?
@@ -93,6 +95,7 @@ en:
         conceals_sim_cards: SIM cards
         conceals_weapons: "Have they concealed weapons in custody?"
         conceals_weapons_details: "Details for concealed weapons in custody"
+        substance_supply: "Is there a risk that they might traffic drugs on this journey?"
         uses_weapons: "Have they created or used weapons in custody?"
         uses_weapons_details: "Details for created or used weapons in custody"
       contact:
@@ -121,8 +124,6 @@ en:
         racist_details: Risk to other races details
         violence_to_staff: Violent to staff
         violence_to_staff_details: Violent to staff details
-      drug_trafficking:
-        substance_supply: "Is there a risk that they might traffic drugs on this journey?"
       escape:
         current_e_risk: "Are they on the Escape List (E-List)?"
         current_e_risk_details: E-List category
@@ -195,7 +196,7 @@ en:
         must_return: "Must they return to a specific prison at the end of this journey?"
         must_return_to: 'Prison name:'
         must_return_to_details: Details for returning to a specific prison
-      security_and_segregation:
+      security:
         category_a: Cat A or potential Cat A
         controlled_unlock_required: Controlled unlock
         controlled_unlock: Number of officers
@@ -204,9 +205,10 @@ en:
           three_officer_unlock: '3 officer unlock'
           four_officer_unlock: '4 officer unlock'
           more_than_four: 'More than 4 officers'
-        csra: CSRA risk level
         high_profile: High public interest
         high_profile_details: Details of high public interest
+      segregation:
+        csra: CSRA risk level
       risk_to_self:
         acct_status: ACCT status
         acct_status_choices:
@@ -245,6 +247,7 @@ en:
         conceals_drugs_details: 'Give details of previous incidents:'
         conceals_mobile_phone_or_other_items: Check Mercury for intelligence or NOMIS adjudications for details.
         conceals_other_items_details: Give details
+        substance_supply: Check Mercury for intelligence or NOMIS adjudications for past history of trafficking drugs.
         uses_weapons: Check Mercury for intelligence or NOMIS adjudications for details.
       dependencies:
         dependencies_details: 'Please explain how these issues might affect the journey and how they should be managed:'
@@ -263,8 +266,6 @@ en:
         risk_to_females_details: Give details
         violence_to_staff_html: '<p>This includes prison, escort, court or hospital staff.</p><p>In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments, adjudications and case notes for details.</p>'
         violence_to_staff_details: Give details
-      drug_trafficking:
-        substance_supply: Check Mercury for intelligence or NOMIS adjudications for past history of trafficking drugs.
       escape:
         current_e_risk: Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the E-List alert. Check alert comments and case notes for details.
         previous_escape_attempts_html: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the Escape Risk alert. Check alert comments and case notes for details.'
@@ -316,14 +317,19 @@ en:
           Give details of recent suicide or self-harm attempts and
           previous ACCTs
         suicide_details: Give details
-      security_and_segregation:
+      security:
         category_a: In NOMIS, check the header section of the prisoner’s record for category information.
         controlled_unlock_required: In NOMIS, check the header section of the prisoner’s record for the Controlled Unlock alert.
         controlled_unlock_details: 'Give details of personal protection equipment (PPE) required:'
-        csra: In NOMIS, check the header section of the prisoner’s record for the CSRA risk level.
         high_profile: In NOMIS, check the header section of the prisoner’s record for the High public interest alert and case notes for details.
         high_profile_details: Give details
+        pnc_warnings: Do they have PNC warnings that you think are relevant to risk on this journey?
+        pnc_warnings_details: Give details
+      segregation:
+        csra: In NOMIS, check the header section of the prisoner’s record for the CSRA risk level.
         rule_45: In NOMIS, check the header section of the prisoner’s record for the Rule 45 alert.
+        vulnerable_prisoner: In NOMIS, check the header section of the prisoner’s record for the Rule 46, Rule 49, Victim, Isolated prisoner or Poor Coper alerts. Include any other reasons you think they may be vulnerable (for example, transgender prisoners or young adults in an adult establishment).
+        vulnerable_prisoner_details: Give details
       sex_offences:
         sex_offence_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and <i>Legal cases > Court cases > Offences</i> for details.'
         date_most_recent_sexual_offence: DD/MM/YYYY
@@ -373,13 +379,13 @@ en:
         arson: Arson
         concealed_weapons: Weapons, drugs or other items
         discrimination: Discrimination against others
-        drug_trafficking: Drug trafficking risk
         escape: Escape status and history
         harassment_and_gangs: Harassment and gangs
         hostage_taker: Hostage taker
         other_risk: Other risk on this journey
         risk_to_self: Risk to self
-        security_and_segregation: Security and segregation
+        security: Security
+        segregation: Segregation
         sex_offences: Sex offender
         violence: Risk to others
   homepage:
@@ -418,7 +424,7 @@ en:
           e_list_standard: E-List-Standard
         risk_to_self:
           closed_in_last_6_months: Closed
-        security_and_segregation:
+        security:
           two_officer_unlock: '2 officer unlock'
           three_officer_unlock: '3 officer unlock'
           four_officer_unlock: '4 officer unlock'
@@ -434,6 +440,7 @@ en:
           conceals_mobile_phones: Conceals mobile phones
           conceals_sim_cards: Conceals SIM cards
           conceals_other_items: Conceals other items
+          substance_supply: Drug trafficking risk
           uses_weapons: Creates or uses weapons
         contact:
           contact_number: Medical contact
@@ -444,8 +451,6 @@ en:
           racist: Racist
           risk_to_females: Risk to females
           violence_to_staff: Violent to staff
-        drug_trafficking:
-          substance_supply: Drug trafficking risk
         escape:
           current_e_risk: Currently on E list
           escape_pack: Escape Pack needed
@@ -478,15 +483,18 @@ en:
           must_not_return: Must not be sent to
         risk_to_self:
           acct_status: ACCT status
+          date_of_most_recently_closed_acct: 'Closed on '
           self_harm: Risk of self harm
           suicide: Risk of suicide or self-harm
-          date_of_most_recently_closed_acct: 'Closed on '
-        security_and_segregation:
+        security:
           category_a: Cat A or potential Cat A
           controlled_unlock_required: Controlled unlock
-          csra: CSRA level
           high_profile: High public interest
+          pnc_warnings: PNC warnings
+        segregation:
+          csra: CSRA level
           rule_45: Rule 45
+          vulnerable_prisoner: Vulnerable prisoner
         sex_offences:
           sex_offence: Sex offender
           sex_offence_adult_male_victim: Sex offender victim adult male
@@ -503,7 +511,6 @@ en:
         concealed_weapons: Weapons, drugs or other items
         contact: Medical contact details
         discrimination: Discrimination against others
-        drug_trafficking: Drug trafficking risk
         escape_status: Escape status and history
         escort_details: Further security information
         harassment_and_gangs: Harassment and gangs
@@ -516,7 +523,8 @@ en:
         previous_escape_attempts: Escape risk
         risk_to_self: Risk to self
         escape: Escape status/history
-        security_and_segregation: Security and segregation
+        security: Security
+        segregation: Segregation
         sex_offences: Sex offender
         social: Personal care
         transport: Special vehicles

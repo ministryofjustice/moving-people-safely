@@ -37,7 +37,7 @@ About this Person Escort Record
 This ePER was produced by the Ministry of Justice ePER service, currently in pilot at HMP
 Bedford. This ePER is approved by HMPPS - please treat it as a fully valid and official record.
 Please send any feedback or questions to: eper@digital.justice.gov.uk
-W1234BY: McTest Testy                                                                               Page 1 of 2
+W1234BY: McTest Testy                                                                               Page 1 of 3
 
  NOT FOR RELEASE             NO         ESCAPE RISK                             ACCT
 
@@ -51,12 +51,15 @@ RISK       Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
 Risk to self                         Yes
   ACCT status                        Open
   Risk of self harm                  Yes                 Self harm details
-Security and segregation             Yes
+Segregation                          Yes
   CSRA level                         High
   Rule 45                            Yes
+  Vulnerable prisoner                Yes                 Vulnerable prisoner details
+Security                             Yes
   Controlled unlock                  Yes                 More than 4 officers | Many people to hold the prisoner
   Cat A or potential Cat A           Yes
   High public interest               Yes                 High profile details
+  PNC warnings                       Yes                 Pnc warning details
 Harassment and gangs                 Yes
   Public harasser                    Yes                 Intimidation to public details
   Prisoners harasser                 Yes                 Intimidation to other detainees details
@@ -80,55 +83,55 @@ Hostage taker                        Yes
   Prisoner hostage taker             Yes                 Last incident: 24/05/2012
   Public hostage taker               Yes                 Last incident: 02/09/2007
 Sex offender                         Yes
-  Sex offender victim adult          Yes
-  male
-  Sex offender victim adult          Yes
-  female
-  Sex offender victim under 18       Yes
-W1234BY: McTest Testy                                                                             Page 2 of 2
-  Most recent sex offence           12/10/2008
+W1234BY: McTest Testy                                                                             Page 2 of 3
+ Sex offender victim adult          Yes
+ male
+ Sex offender victim adult          Yes
+ female
+ Sex offender victim under 18       Yes
+ Most recent sex offence            12/10/2008
 Weapons, drugs or other items       Yes
-  Creates or uses weapons           Yes                  Created and used a 3d gun
-  Conceals weapons                  Yes                  Conceals weapons details
-  Conceals drugs                    Yes                  Conceals drugs details
-  Conceals mobile phones            Yes
-  Conceals SIM cards                Yes
-  Conceals other items              Yes                  Conceals other items details
-Drug trafficking risk               Yes
-  Drug trafficking risk             Yes
+ Creates or uses weapons            Yes                  Created and used a 3d gun
+ Conceals weapons                   Yes                  Conceals weapons details
+ Conceals drugs                     Yes                  Conceals drugs details
+ Conceals mobile phones             Yes
+ Conceals SIM cards                 Yes
+ Conceals other items               Yes                  Conceals other items details
+ Drug trafficking risk              Yes
 Arson                               Yes
-  Arsonist                          Yes
+ Arsonist                           Yes
 Return Instructions                 Yes
-  Must return to                    Yes                  Alcatraz | Some special reason
-  Must not be sent to               Yes                  Alcatraz | Bad bad stuff happens there
+ Must return to                     Yes                  Alcatraz | Some special reason
+ Must not be sent to                Yes                  Alcatraz | Bad bad stuff happens there
                                                          York castle prison | Does not like it
 Other risk information              Yes
-  Other risk information            Yes                  Suspected terrorist
+ Other risk information             Yes                  Suspected terrorist
 
 HEALTHCARE                Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
 
 Physical health issues              Yes
-  Physical health needs             Yes                  Physical issues details
+ Physical health needs              Yes                  Physical issues details
 Mental health issues                Yes
-  Mental health issues              Yes                  Mental illness details
+ Mental health issues               Yes                  Mental illness details
 Special vehicles                    Yes
-  Special vehicle required          Yes                  Mpv details
+ Special vehicle required           Yes                  Mpv details
 Essential medication                Yes
-  Essential medication              Yes                  Xanax | Every 4 hours | By mouth | Daily | Carried by:
+ Essential medication               Yes                  Xanax | Every 4 hours | By mouth | Daily | Carried by:
                                                          Escort
                                                          Paracetamol | 2 days a week | By mouth | Daily |
                                                          Carried by: Prisoner
 Dependencies                        Yes
-  Dependencies                      Yes                  Dependencies details
-Allergies and intolerances          Yes
 
-  Allergies and intolerances        Yes                  Allergies details
+ Dependencies                       Yes                  Dependencies details
+Allergies and intolerances          Yes
+ Allergies and intolerances         Yes                  Allergies details
 Personal care                       Yes
-  Personal care issues              Yes                  Personal care details
+ Personal care issues               Yes                  Personal care details
 Medical contact details             Yes
-  Medical contact                   1-131-999-0232
+ Medical contact                    1-131-999-0232
+W1234BY: McTest Testy                                               Page 3 of 3
 
 OFFENCES
-Current offences                    Yes                  Burglary (LXAHTGNJQF) | Sex offence
-                                                         (QDPREIBMSF)
+Current offences        Yes   Burglary (LXAHTGNJQF) | Sex offence
+                              (QDPREIBMSF)
 
