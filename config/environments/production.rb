@@ -48,6 +48,7 @@ Rails.application.configure do
   config.logstasher.suppress_app_log = true
   config.logstasher.log_level = Logger::INFO
   config.logstasher.logger_path = STDOUT
+  config.logstasher.controller_enabled = true
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
