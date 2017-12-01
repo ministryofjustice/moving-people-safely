@@ -21,18 +21,14 @@ module Metrics
     end
 
     def hours_saved
-      hours = (total_reused_escorts * 23.minutes) / (60 * 60)
-
+      hours = (total_reused_escorts * 23.minutes) / 3600
+      hours += (total_unique_detainees_escorted * 2.5.minutes) / 3600
       [{ hours_saved: hours }]
     end
 
     private
 
     attr_reader :logger
-
-    def at
-      Escort.arel_table
-    end
 
     def total_initiated_escorts
       @tinitiated ||= Escort.unscoped.count
@@ -43,15 +39,15 @@ module Metrics
     end
 
     def total_issued_escorts
-      @tissued ||= Escort.where(at[:issued_at].not_eq(nil)).count
+      @tissued ||= Escort.issued.count
     end
 
     def total_unique_detainees_escorted
-      @tuniq_detainees ||= Escort.select('distinct(prison_number)').where(at[:issued_at].not_eq(nil)).count
+      @tuniq_detainees ||= Escort.issued.select('distinct(prison_number)').count
     end
 
     def total_escorts_auto_deleted
-      @tautodel ||= Escort.unscoped.where(at[:deleted_at].not_eq(nil)).count
+      @tautodel ||= Escort.unscoped.where.not(deleted_at: nil).count
     end
 
     def all_escorts_in_last_number_of_days(num_days = 30)
