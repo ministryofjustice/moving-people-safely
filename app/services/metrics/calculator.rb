@@ -26,6 +26,13 @@ module Metrics
       [{ hours_saved: hours }]
     end
 
+    def percentage_saved
+      minutes_saved_with_eper = total_reused_escorts * 23.minutes + total_unique_detainees_escorted * 2.5.minutes
+      minutes_to_complete_per_manually = total_issued_escorts * 28.minutes
+      percentage = minutes_saved_with_eper / minutes_to_complete_per_manually * 100
+      [{ percentage_saved: percentage }]
+    end
+
     private
 
     attr_reader :logger
