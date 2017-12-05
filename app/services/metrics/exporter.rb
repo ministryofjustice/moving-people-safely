@@ -21,6 +21,7 @@ module Metrics
       send_dataset(escorts_by_date, calculator.escorts_by_date, 'escorts by date')
       send_dataset(hours_saved, calculator.hours_saved, 'hours saved')
       send_dataset(percentage_saved, calculator.percentage_saved, 'percentage saved')
+      send_dataset(hours_saved_last_3_months, calculator.hours_saved_last_3_months, 'hours saved in last 3 months')
     end
 
     def send_dataset(dataset, data, report_name)
@@ -71,6 +72,13 @@ module Metrics
     def percentage_saved
       @percentage_saved ||= client.datasets.find_or_create("#{dataset_prefix}.percentage_saved_report", fields: [
         Geckoboard::NumberField.new(:percentage_saved, name: 'Percentage saved through use of ePer')
+      ])
+    end
+
+    def hours_saved_last_3_months
+      @last_3_months ||= client.datasets.find_or_create("#{dataset_prefix}.hours_saved_last_3_months_report", fields: [
+        Geckoboard::StringField.new(:month_name, name: 'Month'),
+        Geckoboard::NumberField.new(:hours_saved, name: 'Hours saved')
       ])
     end
 

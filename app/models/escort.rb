@@ -32,6 +32,9 @@ class Escort < ApplicationRecord
   scope :in_last_days, lambda { |num_days|
     joins(:move).where('moves.date >= ? AND moves.date < ?', num_days.days.ago.to_date, Date.current)
   }
+  scope :in_month, lambda { |month, year|
+    joins(:move).where('extract(month from moves.date) = ? AND extract(year from moves.date) = ? ', month, year)
+  }
   scope :in_court, ->(court_name) { joins(:move).where('moves.to = ?', court_name) if court_name }
   scope :for_today, -> { joins(:move).where('moves.date = ?', Date.current) }
 
