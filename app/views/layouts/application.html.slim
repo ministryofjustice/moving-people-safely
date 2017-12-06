@@ -18,11 +18,16 @@
 = content_for :header_class do
   = "with-proposition"
 
+= content_for :logo_link_title do
+  = t(:global_header_text)
+
+= content_for :global_header_text do
+  = t(:global_header_text)
+
 = content_for :proposition_header do
   .header-proposition
     .content
       nav#proposition-menu
-        = link_to 'Moving people safely', root_path, id: 'proposition-name'
         - if user_signed_in?
           ul#signed-in-box
             li == "Signed in as #{current_user.full_name}"

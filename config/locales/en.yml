@@ -1,5 +1,6 @@
 en:
   html_title: Person Escort Record
+  global_header_text: Create or view a PER
   helpers:
     complex_attributes:
       needs: Medication
