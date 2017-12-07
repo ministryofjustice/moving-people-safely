@@ -6,9 +6,9 @@ class Prison < Establishment
     today_y   = today.strftime('%Y')
 
     where(
-      '(end_date IS NULL) OR ' +
-      '(LENGTH(end_date) = 10 AND end_date >= ?) OR ' +
-      '(LENGTH(end_date) = 7 AND end_date >= ?) OR ' +
+      '(end_date IS NULL) OR ' \
+      '(LENGTH(end_date) = 10 AND end_date >= ?) OR ' \
+      '(LENGTH(end_date) = 7 AND end_date >= ?) OR ' \
       '(LENGTH(end_date) = 4 AND end_date >= ?)', today_ymd, today_ym, today_y
     )
   }
