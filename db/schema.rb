@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127162638) do
+ActiveRecord::Schema.define(version: 20171207111608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20171127162638) do
     t.string "nomis_id"
     t.string "sso_id"
     t.string "healthcare_contact_number"
+    t.string "end_date"
     t.index ["nomis_id"], name: "index_establishments_on_nomis_id", unique: true, using: :btree
     t.index ["sso_id"], name: "index_establishments_on_sso_id", unique: true, using: :btree
     t.index ["type"], name: "index_establishments_on_type", using: :btree
