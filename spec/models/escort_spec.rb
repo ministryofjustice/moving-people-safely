@@ -61,6 +61,18 @@ RSpec.describe Escort do
     end
   end
 
+  describe '#expired?' do
+    context 'for an expired escort' do
+      let(:escort) { create(:escort, :expired) }
+      specify { expect(escort).to be_expired }
+    end
+
+    context 'when the escort has not expired' do
+      let(:escort) { create(:escort, :with_move) }
+      specify { expect(escort).to_not be_expired }
+    end
+  end
+
   describe '#cancelled?' do
     context 'for a newly created escort' do
       let(:escort) { create(:escort) }

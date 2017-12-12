@@ -12,6 +12,10 @@ FactoryBot.define do
       date { 1.week.from_now }
     end
 
+    trait :expired do
+      date { 1.week.ago }
+    end
+
     trait :with_form_attributes do
       to nil
       to_magistrates_court 'My magistrates court'
