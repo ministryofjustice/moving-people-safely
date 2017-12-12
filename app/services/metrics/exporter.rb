@@ -9,14 +9,20 @@ module Metrics
     def call
       log_disabled && return unless api_key
       logger.info 'Sending updated metrics to Geckoboard dataset'
-      send_dataset(total_escorts_dataset, calculator.total_escorts, 'total escorts')
-      send_dataset(escorts_by_date_dataset, calculator.escorts_by_date, 'escorts by date')
-      send_dataset(hours_saved_dataset, calculator.hours_saved, 'hours saved')
+      send_datasets
     end
 
     private
 
     attr_reader :calculator, :api_config, :logger
+
+    def send_datasets
+      send_dataset(total_escorts, calculator.total_escorts, 'total escorts')
+      send_dataset(escorts_by_date, calculator.escorts_by_date, 'escorts by date')
+      send_dataset(hours_saved, calculator.hours_saved, 'hours saved')
+      send_dataset(percentage_saved, calculator.percentage_saved, 'percentage saved')
+      send_dataset(hours_saved_last_3_months, calculator.hours_saved_last_3_months, 'hours saved in last 3 months')
+    end
 
     def send_dataset(dataset, data, report_name)
       dataset.put(data).tap do |result|
@@ -39,7 +45,7 @@ module Metrics
       @client ||= Geckoboard.client(api_key)
     end
 
-    def total_escorts_dataset
+    def total_escorts
       @escorts_dataset ||= client.datasets.find_or_create("#{dataset_prefix}.escorts_report", fields: [
         Geckoboard::NumberField.new(:total_initiated_escorts, name: 'Total Initiated Escorts'),
         Geckoboard::NumberField.new(:total_issued_escorts, name: 'Total Issued Escorts'),
@@ -49,16 +55,29 @@ module Metrics
       ])
     end
 
-    def escorts_by_date_dataset
-      @escorts_by_date_dataset ||= client.datasets.find_or_create("#{dataset_prefix}.escorts_by_date_report", fields: [
+    def escorts_by_date
+      @escorts_by_date ||= client.datasets.find_or_create("#{dataset_prefix}.escorts_by_date_report", fields: [
         Geckoboard::NumberField.new(:total_issued, name: 'Total Issued Escorts'),
         Geckoboard::NumberField.new(:total_not_issued, name: 'Total Not Issued Escorts'),
         Geckoboard::DateField.new(:date, name: 'PER move date')
       ])
     end
 
-    def hours_saved_dataset
-      @time_saved_dataset ||= client.datasets.find_or_create("#{dataset_prefix}.hours_saved_report", fields: [
+    def hours_saved
+      @hours_saved ||= client.datasets.find_or_create("#{dataset_prefix}.hours_saved_report", fields: [
+        Geckoboard::NumberField.new(:hours_saved, name: 'Hours saved')
+      ])
+    end
+
+    def percentage_saved
+      @percentage_saved ||= client.datasets.find_or_create("#{dataset_prefix}.percentage_saved_report", fields: [
+        Geckoboard::NumberField.new(:percentage_saved, name: 'Percentage saved through use of ePer')
+      ])
+    end
+
+    def hours_saved_last_3_months
+      @last_3_months ||= client.datasets.find_or_create("#{dataset_prefix}.hours_saved_last_3_months_report", fields: [
+        Geckoboard::StringField.new(:month_name, name: 'Month'),
         Geckoboard::NumberField.new(:hours_saved, name: 'Hours saved')
       ])
     end
