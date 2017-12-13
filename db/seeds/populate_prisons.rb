@@ -13,7 +13,6 @@ module Seeds
 
     def call
       logger.info "Seeding #{prison_seeds.size} prisons..."
-      Prison.unscoped.delete_all
       seeded = 0
       prison_seeds.each do |prison_seed|
         prison = seed_entry(prison_seed)
@@ -28,7 +27,15 @@ module Seeds
 
     def seed_entry(prison_seed)
       entry = Entries::Prison.new(prison_seed)
-      Prison.create(entry.to_h)
+      existing = Prison.unscoped.find_by_nomis_id(entry.nomis_id)
+
+      if existing
+        existing.update_attributes!(entry.to_h)
+        existing
+      else
+        Prison.create(entry.to_h)
+      end
+
     rescue => e
       logger.error "Error seeding #{prison_seed.inspect}: #{e.message}"
       false
