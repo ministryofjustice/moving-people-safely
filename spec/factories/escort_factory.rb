@@ -14,6 +14,10 @@ FactoryBot.define do
       association :move
     end
 
+    trait :with_expired_move do
+      association :move, :expired
+    end
+
     trait :with_complete_risk_assessment do
       association :risk, :confirmed
     end
@@ -59,6 +63,11 @@ FactoryBot.define do
     trait :cancelled do
       completed
       cancelled_at 1.day.ago.utc
+    end
+
+    trait :expired do
+      completed
+      with_expired_move
     end
   end
 end

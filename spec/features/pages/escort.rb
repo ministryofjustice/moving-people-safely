@@ -144,6 +144,10 @@ module Page
       confirm_per_section_action_link(:offences, name)
     end
 
+    def confirm_not_cancellable
+      expect(page).not_to have_link('Cancel PER')
+    end
+
     private
 
     def click_per_section_action_link(section, name = 'Edit')

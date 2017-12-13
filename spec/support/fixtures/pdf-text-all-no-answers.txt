@@ -18,7 +18,7 @@ Prison number     CRO number         PNC number         Aliases
 W1234BY           56TYY/UU           YI896668TT         Terry Tibbs
                                                         Mr T
 Date of birth     Age                Gender
-10 Dec 1970       46                 M
+10 Dec 1970       47                 M
 Nationality       Religion           Ethnicity
 British           Baptist            European
 

@@ -47,6 +47,10 @@ class Escort < ApplicationRecord
     EscortCompletionValidator.call(self)
   end
 
+  def expired?
+    move.date < Date.current
+  end
+
   def editable?
     !(issued? || cancelled?)
   end
