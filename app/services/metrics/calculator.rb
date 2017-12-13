@@ -1,7 +1,8 @@
 module Metrics
   class Calculator
-    MINUTES_SAVED_WITH_REUSE_OF_PER = 23.minutes
-    MINUTES_SAVED_FILLING_A_PER_FOR_THE_FIRST_TIME = 2.5.minutes
+    TIME_SAVED_WITH_REUSE_OF_PER = 23.minutes
+    TIME_SAVED_FILLING_A_PER_FOR_THE_FIRST_TIME = 2.5.minutes
+    TIME_TAKEN_TO_COMPLETE_A_PER_MANUALLY = 28.minutes
 
     def initialize(options = {})
       @logger = options.fetch(:logger, Rails.logger)
@@ -24,24 +25,22 @@ module Metrics
     end
 
     def hours_saved
-      # 3600 is the number of seconds in an hour
-      hours = (total_reused_escorts * MINUTES_SAVED_WITH_REUSE_OF_PER) / 3600
-      hours += (total_unique_detainees_escorted * MINUTES_SAVED_FILLING_A_PER_FOR_THE_FIRST_TIME) / 3600
+      hours = (time_saved_with_reuse_of_escorts + time_saved_for_first_time_escorts) / 3600
       [{ hours_saved: hours.round }]
     end
 
     def percentage_saved
-      minutes_saved_with_eper = total_reused_escorts * 23.minutes + total_unique_detainees_escorted * 2.5.minutes
-      minutes_to_complete_per_manually = total_issued_escorts * 28.minutes
-      percentage = minutes_saved_with_eper / minutes_to_complete_per_manually * 100
+      time_saved_with_eper = time_saved_with_reuse_of_escorts + time_saved_for_first_time_escorts
+      time_to_complete_pers_manually = total_issued_escorts * TIME_TAKEN_TO_COMPLETE_A_PER_MANUALLY
+      percentage = time_saved_with_eper / time_to_complete_pers_manually * 100
       [{ percentage_saved: percentage.round }]
     end
 
     def hours_saved_last_3_months
       last_three_months.map do |month_year|
         {
-          month_name: Date::MONTHNAMES[month_year[:month]],
-          hours_saved: hours_saved_in_month(month_year[:month], month_year[:year]).round
+          month_name: "#{month_year[:year]}-#{month_year[:month]}",
+          hours_saved: hours_saved_in_month(month_year[:month], month_year[:year])
         }
       end
     end
@@ -51,23 +50,31 @@ module Metrics
     attr_reader :logger
 
     def total_initiated_escorts
-      @tinitiated ||= Escort.unscoped.count
+      @_total_initiated_escorts ||= Escort.unscoped.count
+    end
+
+    def total_issued_escorts
+      @_total_issued_escorts ||= Escort.issued.count
+    end
+
+    def total_unique_detainees_escorted
+      @_total_unique_detainees_escorted ||= Escort.issued.distinct.count(:prison_number)
+    end
+
+    def total_escorts_auto_deleted
+      @_total_escorts_auto_deleted ||= Escort.unscoped.where.not(deleted_at: nil).count
     end
 
     def total_reused_escorts
       total_issued_escorts - total_unique_detainees_escorted
     end
 
-    def total_issued_escorts
-      @tissued ||= Escort.issued.count
+    def time_saved_with_reuse_of_escorts
+      total_reused_escorts * TIME_SAVED_WITH_REUSE_OF_PER
     end
 
-    def total_unique_detainees_escorted
-      @tuniq_detainees ||= Escort.issued.select('distinct(prison_number)').count
-    end
-
-    def total_escorts_auto_deleted
-      @tautodel ||= Escort.unscoped.where.not(deleted_at: nil).count
+    def time_saved_for_first_time_escorts
+      total_unique_detainees_escorted * TIME_SAVED_FILLING_A_PER_FOR_THE_FIRST_TIME
     end
 
     def all_escorts_in_last_number_of_days(num_days = 30)
@@ -94,8 +101,14 @@ module Metrics
     end
 
     def hours_saved_in_month(month, year)
-      hours = (Escort.issued.in_month(month, year).count * 23.minutes) / 3600
-      hours + (Escort.issued.in_month(month, year).select('distinct(prison_number)').count * 2.5.minutes) / 3600
+      total_issued_escorts_in_month = Escort.issued.in_month(month, year).count
+      total_unique_detainees_escorted_in_month = Escort.issued.in_month(month, year).distinct.count(:prison_number)
+      total_reused_escorts_in_month = total_issued_escorts_in_month - total_unique_detainees_escorted_in_month
+
+      time_saved_in_month = total_reused_escorts_in_month * TIME_SAVED_WITH_REUSE_OF_PER +
+                            total_unique_detainees_escorted_in_month * TIME_SAVED_FILLING_A_PER_FOR_THE_FIRST_TIME
+
+      (time_saved_in_month / 3600).round
     end
 
     def last_three_months
