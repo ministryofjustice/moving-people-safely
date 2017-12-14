@@ -12,7 +12,7 @@ module Seeds
       end
 
       def to_h
-        { name: name }
+        { name: name, end_date: end_date, nomis_id: nomis_id }
       end
 
       private
@@ -25,6 +25,10 @@ module Seeds
 
       def name
         item['name']
+      end
+
+      def end_date
+        item['end-date']
       end
     end
   end

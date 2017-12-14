@@ -27,9 +27,17 @@ module Seeds
 
     def seed_entry(prison_seed)
       entry = Entries::Prison.new(prison_seed)
-      Prison.create_with(entry.to_h).find_or_create_by(nomis_id: entry.nomis_id)
-    rescue
-      logger.error "Error seeding #{prison_seed.inspect}"
+      existing = Prison.unscoped.find_by_nomis_id(entry.nomis_id)
+
+      if existing
+        existing.update_attributes!(entry.to_h)
+        existing
+      else
+        Prison.create(entry.to_h)
+      end
+
+    rescue => e
+      logger.error "Error seeding #{prison_seed.inspect}: #{e.message}"
       false
     end
 
