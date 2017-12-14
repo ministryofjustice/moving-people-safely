@@ -31,7 +31,7 @@ RSpec.feature 'court dashboard', type: :feature do
     click_link 'A9876XC'
     expect(current_path).to eq escort_path(escort_1)
 
-    click_link 'Moving people safely'
+    click_link 'Create or view a PER'
 
     click_link 'Change court'
     select 'St Albans CC', from: 'magistrates_court'
