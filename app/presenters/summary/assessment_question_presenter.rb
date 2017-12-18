@@ -56,13 +56,15 @@ module Summary
 
     def complex_detail_context(question)
       public_send(question.name).each_with_object([]) do |item, output|
+        output << '<p>'
         output << question.subquestions.map do |subquestion|
           [
             detail_label("#{question.name}_collection.#{subquestion.name}"),
             answer_value(item.send(subquestion.name))
           ].join(' ')
         end.join(' | ')
-      end.join('</br>')
+        output << '</p>'
+      end.join
     end
 
     def detail_label(attribute)

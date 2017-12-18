@@ -19,5 +19,5 @@ section#offences
           | Current offences
         td.answer
           - offences.each do |offence|
-            b #{offence.offence} (#{offence.case_reference})
-            br
+            p
+              b #{offence.offence} (#{offence.case_reference})
