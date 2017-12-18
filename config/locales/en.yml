@@ -41,7 +41,7 @@ en:
         hostage_taker: Do they have a history of taking hostages?
         hostage_taker_type: 'Group involved (select all that apply):'
       move:
-        not_for_release: Not for release?
+        not_for_release: Is there a reason they should not be released?
       mental:
         mental_illness: Are there any mental health issues that may affect this journey?
       needs:
@@ -291,7 +291,7 @@ en:
         hostage_taker: In NOMIS, check the header section of the prisoner’s record for the Hostage taker alert. Check alert comments, case notes and adjudications for details.
       move:
         date: DD/MM/YYYY
-        not_for_release: Is there a known reason that the detainee is not for release?
+        not_for_release: In NOMIS, check the header section of the prisoner’s record for the Not For Release alert.
         not_for_release_reason_details: Give details of why the detainee is not for release
       mental:
         mental_illness: For example, if they become anxious in certain situations.
