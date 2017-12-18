@@ -8,6 +8,8 @@ RSpec.describe Questionable do
   end
 
   let(:default_relevant_value) { 'yes' }
+  let(:default_non_relevant_value) { 'no' }
+
   let(:hash) {
     {
       sections: {
@@ -31,7 +33,7 @@ RSpec.describe Questionable do
     context 'when all questions have been answered' do
       it 'returns true' do
         assessment.question_1 = default_relevant_value
-        assessment.question_2 = 'no'
+        assessment.question_2 = default_non_relevant_value
         assessment.question_3 = default_relevant_value
         expect(subject.all_questions_answered?).to be_truthy
       end
@@ -39,8 +41,32 @@ RSpec.describe Questionable do
 
     context 'when not all questions have been answered' do
       it 'returns false' do
-        assessment.question_1 = 'no'
+        assessment.question_1 = default_non_relevant_value
         expect(subject.all_questions_answered?).to be_falsey
+      end
+    end
+  end
+
+  describe '#any_questions_relevant?' do
+    context 'when some questions have been answered' do
+      context 'but not relevantly' do
+        it 'returns false' do
+          assessment.question_2 = default_non_relevant_value
+          expect(subject.any_questions_relevant?).to be_falsey
+        end
+      end
+
+      context 'relevantly' do
+        it 'returns true' do
+          assessment.question_2 = default_relevant_value
+          expect(subject.any_questions_relevant?).to be_truthy
+        end
+      end
+    end
+
+    context 'when no questions have been answered' do
+      it 'returns false' do
+        expect(subject.any_questions_relevant?).to be_falsey
       end
     end
   end

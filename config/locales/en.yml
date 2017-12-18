@@ -580,6 +580,9 @@ en:
         do_not_reprint_per: Do not reprint this PER
   assessment:
     confirmed_timestamp: "Last confirmed: %{name}, %{time}"
+    no_filled_answers: None known
+    risk:
+      no_filled_answers: No known risks
   print:
     <<: *summary
     <<: *escort

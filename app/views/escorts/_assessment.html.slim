@@ -12,7 +12,7 @@ section id=name.downcase
       p.review
         = t('assessment.confirmed_timestamp', name: assessment.reviewer.full_name, time: assessment.reviewed_at.to_s(:humanized))
 
-  - if assessment
+  - if assessment&.any_questions_relevant?
     table
       - assessment.sections.each do |section|
         - section = Summary::AssessmentSectionPresenter.new(section)
@@ -26,3 +26,7 @@ section id=name.downcase
                   b== question.details
                 - else
                   == question.answer
+
+  - else
+    p.info
+      = t('no_filled_answers', scope: [:assessment, name.downcase], default: 'None known')

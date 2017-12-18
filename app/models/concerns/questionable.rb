@@ -89,5 +89,9 @@ module Questionable
     def all_questions_answered?
       mandatory_questions.all?(&:answered?)
     end
+
+    def any_questions_relevant?
+      mandatory_questions.any?(&:relevant_answer?)
+    end
   end
 end
