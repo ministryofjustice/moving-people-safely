@@ -13,47 +13,12 @@
           span.status-label.status-label--incomplete Review
     - else
       header
-        h1 Offences
+        h1 Current offences
 
     - if can? :update, offences_workflow
-      = form_for form, url: escort_offences_path(escort), method: :put do |f|
-        = f.error_messages
-
-        fieldset.form-group
-          legend.heading-small Current offences
-
-          .multiple
-            = f.fields_for :offences do |cf|
-              .multiple-wrapper class=(cf.index == 0 ? 'multiple-first' : 'multiple-not-first')
-                = cf.hidden_field :id
-                .multiple-field.inline
-                  = cf.text_area :offence, rows: 1
-                .multiple-field.inline
-                  = cf.text_field :case_reference
-                .multiple-field.inline.remove-link
-                  = cf.label :_delete, 'Remove'
-                  = cf.check_box :_delete
-
-            .multiple-field.multiple-add
-              =f.submit 'Add offence',
-                class: 'js-anchor-focus',
-                name: "offences_add_offence"
-
-        .form-actions
-          = f.submit 'Save and continue', class: 'button'
+      = render partial: 'form', locals: { form: form, escort: escort }
     - else
-      table#offences-table
-        thead
-          tr
-            th Offence
-            th Case Reference
-        - escort.offences.each do |offence|
-          tr
-            td = offence.offence
-            td = offence.case_reference
-      p
-        = link_to 'View PER', escort_path(escort), class: 'button'
-
+      = render partial: 'table', locals: { escort: escort }
 
 .column-one-quarter.side-profile
   = render partial: 'shared/detainee_sidebar', locals: { detainee: DetaineePresenter.new(escort.detainee), escort: escort, move: MovePresenter.new(escort.move) }

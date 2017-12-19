@@ -1,0 +1,11 @@
+table#offences-table
+  thead
+    tr
+      th Offence
+      th Case Reference
+  - escort.offences.each do |offence|
+    tr
+      td = offence.offence
+      td = offence.case_reference
+p
+  = link_to 'View PER', escort_path(escort), class: 'button'

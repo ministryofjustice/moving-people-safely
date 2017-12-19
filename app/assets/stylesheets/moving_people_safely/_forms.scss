@@ -57,6 +57,10 @@ form {
     width: 100%;
     padding-top: 30px;
 
+    h2 {
+      margin: 0 0 10px 0;
+    }
+
     .remove-link {
       label {
         @extend .styled-as-link;
@@ -182,7 +186,6 @@ form {
   }
 
   .remove-list-item-vertical {
-    margin-top: 4.4em !important;
     display: block;
   }
 }
