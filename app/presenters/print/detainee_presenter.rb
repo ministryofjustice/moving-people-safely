@@ -17,7 +17,12 @@ module Print
     end
 
     def ethnicity
-      model.ethnicity.present? ? model.ethnicity : 'None'
+      if model.ethnicity.present?
+        return 'White: British' if model.ethnicity == 'White: Eng./Welsh/Scot./N.Irish/British'
+        model.ethnicity
+      else
+        'None'
+      end
     end
 
     def date_of_birth
