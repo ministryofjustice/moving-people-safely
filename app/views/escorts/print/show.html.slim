@@ -1,26 +1,30 @@
 doctype html
 html
   head
+    meta charset="utf-8"
     = wicked_pdf_stylesheet_link_tag "print.css", media: 'all'
 
   body
     main.inner-page
-      div.grid-row.indicators.top-dotted
-        #not_for_release_alert.grid-column.column-one-third
-          = alerts.not_for_release_alert
-        #e_list_alert.grid-column.column-one-third
-          = alerts.current_e_risk_alert
-        #acct_status_alert.grid-column.column-one-third
-          = alerts.acct_status_alert
-      div.grid-row.indicators
-        #self_harm_alert.grid-column.column-one-quarter
-          = alerts.self_harm_alert
-        #rule_45_alert.grid-column.column-one-quarter
-          = alerts.rule_45_alert
-        #csra_alert.grid-column.column-one-quarter
-          = alerts.csra_alert
-        #category_a_alert.grid-column.column-one-quarter
-          = alerts.category_a_alert
+      .grid-row.indicators.top-dotted
+        .grid-column.column-one-third
+          = render partial: 'escorts/print/alert', locals: { alert_name: :not_for_release, on: alerts[:not_for_release] }
+          - if alerts[:not_for_release]
+            p.alert-text= move.not_for_release_text
+        .grid-column.column-one-third
+          = render partial: 'escorts/print/alert', locals: { alert_name: :current_e_risk, on: alerts[:current_e_risk] }
+        .grid-column.column-one-third
+          = render partial: 'escorts/print/alert', locals: { alert_name: :acct_status, on: alerts[:acct_status] }
+          p.alert-text= risk.acct_status_text
+      .grid-row.indicators
+        .grid-column.column-one-quarter
+          = render partial: 'escorts/print/alert', locals: { alert_name: :self_harm, on: alerts[:self_harm] }
+        .grid-column.column-one-quarter
+          = render partial: 'escorts/print/alert', locals: { alert_name: :rule_45, on: alerts[:rule_45] }
+        .grid-column.column-one-quarter
+          = render partial: 'escorts/print/alert', locals: { alert_name: :csra, on: alerts[:csra] }
+        .grid-column.column-one-quarter
+          = render partial: 'escorts/print/alert', locals: { alert_name: :category_a, on: alerts[:category_a] }
       div#risk-section.section
         table#risk-table.section-table
           tr

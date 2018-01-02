@@ -1,18 +1,17 @@
 Outbound vehicle
-Registration                      Cell number                      PECS Barcode
+Registration                     Cell number                       PECS Barcode
 
 
 
 
 Return vehicle
-Registration                      Cell number
+Registration                     Cell number
 
 
 
 
 W1234BY: McTest Testy
- NOT FOR RELEASE             NO                           ESCAPE RISK         NO
-
+ Not for release ✘ No                                    Escape risk ✘ No
 
 Prison number     CRO number         PNC number         Aliases
 W1234BY           56TYY/UU           YI896668TT         Terry Tibbs
@@ -37,12 +36,12 @@ About this Person Escort Record
 This ePER was produced by the Ministry of Justice ePER service, currently in pilot at HMP
 Bedford. This ePER is approved by HMPPS - please treat it as a fully valid and official record.
 Please send any feedback or questions to: eper@digital.justice.gov.uk
-W1234BY: McTest Testy                                                                         Page 1 of 1
+W1234BY: McTest Testy                                                                        Page 1 of 1
 
- NOT FOR RELEASE              NO          ESCAPE RISK          NO              ACCT    NO
+ Not for release ✘ No                  Escape risk ✘ No                       ACCT ✘ No
 
 
- SELF HARM            NO        RULE 45      NO            CSRA STANDARD              CAT A   NO
+ Self harm ✘ No                 Rule 45 ✘ No              CSRA ✘ Standard           Cat A ✘ No
 
 
 RISK       Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
@@ -60,7 +59,7 @@ Arson                                No
 Return Instructions                  No
 Other risk information               No
 
-HEALTHCARE                 Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
+HEALTHCARE                Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
 
 Physical health issues               No
 Mental health issues                 No

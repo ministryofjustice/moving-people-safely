@@ -3,79 +3,45 @@
     font-weight: bold;
   }
 
-  .alerts-table {
-    .alert-tile {
-      vertical-align: top;
-      background-color: $grey-3;
-      border-left: 1px solid white;
-      height: 90px;
-      min-height: 90px;
-      padding: 10px;
-      margin-bottom: 1px;
+  .flag {
+    box-sizing: border-box;
+    font-family: 'arial narrow', sans-serif;
+    display: inline-block;
+    padding: 2px 6px;
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+
+  .flag-active {
+    @extend .flag;
+
+    &:after {
+      content: "✔";
+      margin-left: 6px;
     }
 
-    .alert-off {
-      display: inline-block;
-      border: 2px solid $secondary-text-colour;
-      background-color: white;
-      text-transform: uppercase;
-      padding: 0.2em 0.5em;
-      color: $secondary-text-colour;
-      font: 19px "Arial Narrow";
-      font-weight: bold;
+    background-color: #B10E1E;
+    border: solid 2px #B10E1E;
+    color: white;
+  }
 
-      .alert-toggle-text {
-        padding-left: 5px;
-        text-transform: uppercase;
-        font: 19px "Arial Narrow";
-        font-weight: bold;
-      }
+  .flag-inactive {
+    @extend .flag;
+
+    &:after {
+      content: "✘ No";
+      margin-left: 10px;
     }
 
-    .alert-on {
-      border: 2px solid $mellow-red;
-      background-color: $mellow-red;
-      position: relative;
-      display: inline-block;
+    background-color: white;
+    border: solid 2px #BFC1C3;
+    color: #0b0c0c;
+    font-weight: lighter;
+  }
 
-      .alert-title {
-        text-transform: uppercase;
-        padding: 0.2em 0.5em;
-        color: white;
-        font: 19px "Arial Narrow";
-        font-weight: bold;
-        position: relative;
-        float: left;
-      }
-
-      .red-tick {
-        width: 30px;
-        height: 30px;
-        background-image: image-url('ic_red_tick.png');
-        background-position: center center;
-        background-repeat: no-repeat;
-        display: inline-block;
-        position: relative;
-        float: left;
-      }
-
-      .alert-toggle-text {
-        padding: 0 5px;
-        margin-top: 3px;
-        margin-right: 3px;
-        background-color: white;
-        color: $mellow-red;
-        text-transform: uppercase;
-        font: 19px "Arial Narrow";
-        font-weight: bold;
-        position: relative;
-        float: left;
-      }
-    }
-
-    .alert-text {
-      display: block;
-      padding-top: 5px;
+  #csra-inactive {
+    &:after {
+      content: "✘ Standard";
     }
   }
 

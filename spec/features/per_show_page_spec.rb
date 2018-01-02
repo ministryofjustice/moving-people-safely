@@ -38,8 +38,8 @@ RSpec.feature 'PER show page', type: :feature do
 
     context 'ACCT alert' do
       context 'when PER has no yet a risk assessment' do
-        scenario 'associated alert is displayed as inactive' do
-          escort_page.confirm_alert_as_inactive(:acct_status)
+        scenario 'associated alert is not displayed' do
+          escort_page.confirm_alert_not_present(:acct_status)
         end
       end
 
@@ -91,8 +91,8 @@ RSpec.feature 'PER show page', type: :feature do
 
     context 'Rule 45' do
       context 'when PER has no yet a risk assessment' do
-        scenario 'associated alert is displayed as inactive' do
-          escort_page.confirm_alert_as_inactive(:rule_45)
+        scenario 'associated alert is not displayed' do
+          escort_page.confirm_alert_not_present(:rule_45)
         end
       end
 
@@ -117,10 +117,10 @@ RSpec.feature 'PER show page', type: :feature do
       end
     end
 
-    context 'E list' do
+    context 'Escape risk' do
       context 'when PER has no yet a risk assessment' do
-        scenario 'associated alert is displayed as inactive' do
-          escort_page.confirm_alert_as_inactive(:e_list)
+        scenario 'associated alert is not displayed' do
+          escort_page.confirm_alert_not_present(:current_e_risk)
         end
       end
 
@@ -131,7 +131,7 @@ RSpec.feature 'PER show page', type: :feature do
           let(:risk) { Risk.new(current_e_risk: 'yes', current_e_risk_details: 'e_list_standard') }
 
           scenario 'associated alert is displayed as active' do
-            escort_page.confirm_alert_as_active(:e_list)
+            escort_page.confirm_alert_as_active(:current_e_risk)
           end
         end
 
@@ -139,7 +139,7 @@ RSpec.feature 'PER show page', type: :feature do
           let(:risk) { Risk.new(previous_escape_attempts: 'yes', previous_escape_attempts_details: 'escape risk details') }
 
           scenario 'associated alert is displayed as active' do
-            escort_page.confirm_alert_as_active(:e_list)
+            escort_page.confirm_alert_as_active(:current_e_risk)
           end
         end
 
@@ -147,7 +147,7 @@ RSpec.feature 'PER show page', type: :feature do
           let(:risk) { Risk.new(current_e_risk: 'no') }
 
           scenario 'associated alert is displayed as inactive' do
-            escort_page.confirm_alert_as_inactive(:e_list)
+            escort_page.confirm_alert_as_inactive(:current_e_risk)
           end
         end
 
@@ -155,7 +155,7 @@ RSpec.feature 'PER show page', type: :feature do
           let(:risk) { Risk.new(previous_escape_attempts: 'no') }
 
           scenario 'associated alert is displayed as inactive' do
-            escort_page.confirm_alert_as_inactive(:e_list)
+            escort_page.confirm_alert_as_inactive(:current_e_risk)
           end
         end
       end
@@ -163,9 +163,8 @@ RSpec.feature 'PER show page', type: :feature do
 
     context 'CSRA' do
       context 'when PER has no yet a risk assessment' do
-        scenario 'associated alert is displayed as inactive' do
-          escort_page.confirm_alert_as_inactive(:csra)
-          expect(page.find('#csra_alert .alert-toggle-text').text).to match(/^Standard$/i)
+        scenario 'associated alert is not displayed' do
+          escort_page.confirm_alert_not_present(:csra)
         end
       end
 
@@ -177,7 +176,6 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as active' do
             escort_page.confirm_alert_as_active(:csra)
-            expect(page.find('#csra_alert .alert-toggle-text').text).to match(/^high$/i)
           end
         end
 
@@ -185,9 +183,9 @@ RSpec.feature 'PER show page', type: :feature do
           let(:risk) { Risk.new(csra: 'standard') }
 
           scenario 'associated alert is displayed as inactive' do
-            escort_page.confirm_alert_as_inactive(:csra)
-            expect(page).not_to have_selector('#csra_alert .alert-text')
-            expect(page.find('#csra_alert .alert-toggle-text').text).to match(/^Standard$/i)
+            within(".flag-inactive#csra-inactive") do
+              expect(page).to have_content I18n.t("escort.inactive_alerts.csra")
+            end
           end
         end
       end
@@ -195,9 +193,8 @@ RSpec.feature 'PER show page', type: :feature do
 
     context 'Category A' do
       context 'when PER has no yet a risk assessment' do
-        scenario 'associated alert is displayed as inactive' do
-          escort_page.confirm_alert_as_inactive(:category_a)
-          expect(page).not_to have_selector('#category_a_alert .alert-text')
+        scenario 'associated alert is not displayed' do
+          escort_page.confirm_alert_not_present(:category_a)
         end
       end
 
@@ -209,7 +206,6 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as active' do
             escort_page.confirm_alert_as_active(:category_a)
-            expect(page).not_to have_selector('#category_a_alert .alert-text')
           end
         end
 
@@ -218,7 +214,6 @@ RSpec.feature 'PER show page', type: :feature do
 
           scenario 'associated alert is displayed as inactive' do
             escort_page.confirm_alert_as_inactive(:category_a)
-            expect(page).not_to have_selector('#category_a_alert .alert-text')
           end
         end
       end

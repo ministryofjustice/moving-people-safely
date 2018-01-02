@@ -1,18 +1,17 @@
 Outbound vehicle
-Registration                      Cell number                      PECS Barcode
+Registration                     Cell number                       PECS Barcode
 
 
 
 
 Return vehicle
-Registration                      Cell number
+Registration                     Cell number
 
 
 
 
 W1234BY: McTest Testy
- NOT FOR RELEASE             NO                           ESCAPE RISK
-
+ Not for release ✘ No                                    Escape risk ✔
 
 Prison number     CRO number         PNC number         Aliases
 W1234BY           56TYY/UU           YI896668TT         Terry Tibbs
@@ -39,11 +38,10 @@ Bedford. This ePER is approved by HMPPS - please treat it as a fully valid and o
 Please send any feedback or questions to: eper@digital.justice.gov.uk
 W1234BY: McTest Testy                                                                               Page 1 of 3
 
- NOT FOR RELEASE             NO         ESCAPE RISK                             ACCT
-
+ Not for release ✘ No                  Escape risk ✔                            ACCT ✔
                                                                              Open
 
- SELF HARM                    RULE 45                     CSRA HIGH                       CAT A
+ Self harm ✔                  Rule 45 ✔                   CSRA High ✔                     Cat A ✔
 
 
 RISK       Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
@@ -80,6 +78,7 @@ Escape status/history                Yes
   Escape Pack needed                 Yes
 Hostage taker                        Yes
   Staff hostage taker                Yes                 Last incident: 12/03/2010
+
   Prisoner hostage taker             Yes                 Last incident: 24/05/2012
   Public hostage taker               Yes                 Last incident: 02/09/2007
 Sex offender                         Yes
@@ -121,7 +120,6 @@ Essential medication                Yes
                                                          Paracetamol | 2 days a week | By mouth | Daily |
                                                          Carried by: Prisoner
 Dependencies                        Yes
-
  Dependencies                       Yes                  Dependencies details
 Allergies and intolerances          Yes
  Allergies and intolerances         Yes                  Allergies details
@@ -129,9 +127,9 @@ Personal care                       Yes
  Personal care issues               Yes                  Personal care details
 Medical contact details             Yes
  Medical contact                    1-131-999-0232
-W1234BY: McTest Testy                                               Page 3 of 3
 
 OFFENCES
+W1234BY: McTest Testy                                               Page 3 of 3
 Current offences        Yes   Burglary (LXAHTGNJQF) | Sex offence
                               (QDPREIBMSF)
 

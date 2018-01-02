@@ -32,20 +32,3 @@
   color: #B10E1E;
   font-weight: bold;
 }
-
-.flag {
-  &::after {
-    content: "✔";
-    margin-left: 6px;
-  }
-
-  box-sizing: border-box;
-  font-family: 'arial narrow', sans-serif;
-  display: inline-block;
-  color: white;
-  background-color: #B10E1E;
-  padding: 2px 6px;
-  margin-right: 2px;
-  margin-top: 5px;
-  border: solid 2px #B10E1E;
-}

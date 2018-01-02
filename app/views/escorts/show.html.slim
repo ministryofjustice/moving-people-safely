@@ -3,7 +3,7 @@
     - breadcrumb detainee_breadcrumb(escort.detainee)
 
 .escort.per-page.column-three-quarters
-  = render partial: 'header', locals: { detainee: escort.detainee, alerts: EscortAlertsPresenter.new(escort) }
+  = render partial: 'header', locals: { detainee: escort.detainee }
 
   = render partial: 'move', locals: { move: MovePresenter.new(escort.move) }
 

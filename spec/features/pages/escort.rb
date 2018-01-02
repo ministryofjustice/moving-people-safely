@@ -1,7 +1,7 @@
 module Page
   class Escort < Base
     def confirm_header_details(detainee)
-      within('#header') do
+      within('header') do
         detainee_detail = "#{detainee.prison_number}: #{detainee.surname}, #{detainee.forenames}"
         expect(page).to have_content(detainee_detail)
       end
@@ -18,15 +18,20 @@ module Page
     end
 
     def confirm_alert_as_inactive(attr)
-      within('.alerts-table') do
-        expect(page).to have_css("##{attr}_header.alert-off")
+      within(".flag-inactive##{attr}") do
+        expect(page).to have_content I18n.t("escort.inactive_alerts.#{attr}")
       end
     end
 
     def confirm_alert_as_active(attr)
-      within('.alerts-table') do
-        expect(page).to have_css("##{attr}_header.alert-on")
+      within(".flag-active##{attr}") do
+        expect(page).to have_content I18n.t("escort.active_alerts.#{attr}")
       end
+    end
+
+    def confirm_alert_not_present(attr)
+      expect(page).to_not have_content I18n.t("escort.inactive_alerts.#{attr}")
+      expect(page).to_not have_content I18n.t("escort.active_alerts.#{attr}")
     end
 
     def confirm_move_info(move, options = {})
