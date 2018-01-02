@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2018-01-02
+### Changed
+- Improved display where a question has multiple parts to the answer to make it more understandable.
+- Improved wording in _Not for release_ section.
+- Header now reads _Create or view a PER_.
+- Improved display and interaction in _Offences_ section.
+
+### Added
+- Added the wording _No known risks_ to sections with no risks to avoid ambiguity.
+
+### Fixed
+- No longer lists prisons that have ended in list of prisons in destination section.
+
+
 ## 2017-12-13
 ### Added
 - Added the ability to cancel a PER after it has been issued so the destination can be informed.
