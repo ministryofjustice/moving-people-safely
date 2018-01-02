@@ -181,6 +181,9 @@ en:
           carrier_choices:
             escort: Escort
             detainee: Prisoner
+      offences:
+        offences:
+          offence: Offence name
       other_risk:
         other_risk: "Is there any other information related to risk on this journey you would like to include?"
         other_risk_details: "Other information related to risk on this journey"

@@ -18,7 +18,7 @@ module Page
     end
 
     def add(description:, case_reference:)
-      click_button 'Add offence'
+      click_button 'Add another'
       offence_row = all(".multiple-wrapper").last
       insert_into_row(offence_row, description, case_reference)
     end
@@ -50,7 +50,7 @@ module Page
         if offence[:case_reference]
           fill_in "#{field_prefix}_#{index}_case_reference", with: offence[:case_reference]
         end
-        click_button 'Add offence' unless index >= offences.size - 1
+        click_button 'Add another' unless index >= offences.size - 1
       end
     end
   end
