@@ -59,8 +59,10 @@ module Summary
         output << '<p>'
         output << question.subquestions.map do |subquestion|
           [
+            '<b>',
             detail_label("#{question.name}_collection.#{subquestion.name}"),
-            answer_value(item.send(subquestion.name))
+            answer_value(item.send(subquestion.name)),
+            '</b>'
           ].join(' ')
         end.join(' | ')
         output << '</p>'
