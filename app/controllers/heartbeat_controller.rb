@@ -1,3 +1,5 @@
+require 'net/http'
+
 class HeartbeatController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ping healthcheck]
 
@@ -13,12 +15,14 @@ class HeartbeatController < ApplicationController
 
   def healthcheck
     checks = {
-      database: database_connected?
+      database: database_connected?,
+      'moj-sign-on': sso_ok?
     }
 
     status = checks.values.all? ? :ok : :bad_gateway
     render status: status, json: {
-      checks: checks
+      checks: checks,
+      healthy: checks.values.all? { |val| val == true }
     }
   end
 
@@ -27,6 +31,13 @@ class HeartbeatController < ApplicationController
   def database_connected?
     ActiveRecord::Base.connection.active?
   rescue PG::ConnectionBad
+    false
+  end
+
+  def sso_ok?
+    resp = Net::HTTP.get_response(URI(Rails.application.config.x.moj_sso_url))
+    %w[200 302].include?(resp.code)
+  rescue
     false
   end
 end
