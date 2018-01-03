@@ -1,6 +1,6 @@
 module Metrics
   class Calculator
-    TIME_SAVED_WITH_REUSE_OF_PER = 23.minutes
+    TIME_SAVED_WITH_REUSE_OF_PER = 15.minutes
     TIME_SAVED_FILLING_A_PER_FOR_THE_FIRST_TIME = 2.5.minutes
     TIME_TAKEN_TO_COMPLETE_A_PER_MANUALLY = 28.minutes
 
