@@ -10,4 +10,9 @@ class DetaineePresenter < SimpleDelegator
   def humanized_date_of_birth
     date_of_birth.to_s(:humanized)
   end
+
+  def short_ethnicity
+    return 'White: British' if ethnicity == 'White: Eng./Welsh/Scot./N.Irish/British'
+    ethnicity
+  end
 end

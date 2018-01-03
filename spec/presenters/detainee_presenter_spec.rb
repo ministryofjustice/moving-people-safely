@@ -25,4 +25,16 @@ RSpec.describe DetaineePresenter, type: :presenter do
     let(:detainee) { build(:detainee, date_of_birth: 50.years.ago.to_date) }
     its(:age) { is_expected.to eq(detainee.age) }
   end
+
+  describe '#short_ethnicity' do
+    context 'when White: Eng./Welsh/Scot./N.Irish/British' do
+      let(:detainee) { build(:detainee, ethnicity: 'White: Eng./Welsh/Scot./N.Irish/British') }
+      its(:short_ethnicity) { is_expected.to eq 'White: British' }
+    end
+
+    context 'when other' do
+      let(:detainee) { build(:detainee, ethnicity: 'other') }
+      its(:short_ethnicity) { is_expected.to eq 'other' }
+    end
+  end
 end

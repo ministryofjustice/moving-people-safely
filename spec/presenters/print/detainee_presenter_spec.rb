@@ -110,6 +110,18 @@ RSpec.describe Print::DetaineePresenter, type: :presenter do
     end
   end
 
+  describe '#short_ethnicity' do
+    context 'when White: Eng./Welsh/Scot./N.Irish/British' do
+      let(:options) { { ethnicity: 'White: Eng./Welsh/Scot./N.Irish/British' } }
+      specify { expect(presenter.ethnicity).to eq('White: British') }
+    end
+
+    context 'when other' do
+      let(:options) { { ethnicity: 'other' } }
+      specify { expect(presenter.ethnicity).to eq('other') }
+    end
+  end
+
   describe '#image' do
     context 'when an image is present' do
       it 'returns a base64 image as html' do
