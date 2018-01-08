@@ -2,7 +2,7 @@ class Escort < ApplicationRecord
   AlreadyIssuedError = Class.new(StandardError)
   AlreadyCancelledError = Class.new(StandardError)
 
-  default_scope { order('escorts.created_at desc') }
+  default_scope { order('escorts.cancelled_at desc, escorts.created_at desc') }
   default_scope { where(deleted_at: nil) }
   has_one :detainee, dependent: :destroy
   has_one :move, dependent: :destroy
