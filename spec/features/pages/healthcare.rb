@@ -24,17 +24,17 @@ module Page
     end
 
     def fill_in_physical_healthcare
-      fill_in_optional_details('Are there any physical health issues that may affect this journey?', @hc, :physical_issues)
+      fill_in_optional_details('Do they have physical health needs that might affect them while they are out of prison?', @hc, :physical_issues)
       click_button 'Save and continue'
     end
 
     def fill_in_mental_healthcare
-      fill_in_optional_details('Are there any mental health issues that may affect this journey?', @hc, :mental_illness)
+      fill_in_optional_details('Do they have mental health needs that might affect them while they are out of prison?', @hc, :mental_illness)
       click_button 'Save and continue'
     end
 
     def fill_in_social_healthcare
-      fill_in_optional_details('Will they need help with personal tasks on this journey?', @hc, :personal_care)
+      fill_in_optional_details('Will they need help with personal tasks while they are out of prison?', @hc, :personal_care)
       click_button 'Save and continue'
     end
 
@@ -57,7 +57,7 @@ module Page
     end
 
     def fill_in_dependencies
-      fill_in_optional_details('Do they have any addictions or dependencies that may affect this journey?', @hc, :dependencies)
+      fill_in_optional_details('Do they have any addictions or dependencies that might affect them while they are out of prison?', @hc, :dependencies)
       save_and_continue
     end
 
@@ -79,7 +79,7 @@ module Page
     end
 
     def fill_in_transport
-      fill_in_optional_details('Do they need to travel in a special vehicle on this journey?', @hc, :mpv)
+      fill_in_optional_details('Do they need to travel in a special vehicle?', @hc, :mpv)
       click_button 'Save and continue'
     end
 
