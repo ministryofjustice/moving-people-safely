@@ -59,41 +59,10 @@ RSpec.describe 'Offences', type: :request do
         end
       end
 
-      context 'and there are no offences associated with the detainee' do
-        let(:detainee) { create(:detainee, :with_no_offences, prison_number: prison_number) }
-        let(:move) { create(:move) }
-        let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee, move: move) }
-
-        it "calls the NOMIS API" do
-          expect(Nomis::Api.instance).
-            to receive(:get).with("/offenders/#{detainee.prison_number}/charges")
-
-          get "/escorts/#{escort.id}/offences"
-        end
-
-        context "when the NOMIS API is unavailable" do
-          before do
-            stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/charges", status: 500)
-          end
-
-          it 'sets a flash error message indicating the image could not be prefetched' do
-            get "/escorts/#{escort.id}/offences"
-
-            expect(flash[:warning]).
-              to include("Offences aren't available right now, please try again or fill in the offences below")
-          end
-        end
-      end
-
       it "returns a 200 code" do
         allow(Nomis::Api.instance).to receive(:get)
         get "/escorts/#{escort.id}/offences"
         expect(response).to have_http_status(200)
-      end
-
-      it "calls the NOMIS API" do
-        expect(Nomis::Api.instance).to receive(:get)
-        get "/escorts/#{escort.id}/offences"
       end
     end
 
