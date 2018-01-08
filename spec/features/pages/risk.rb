@@ -45,7 +45,7 @@ module Page
 
     def fill_in_harassment_and_gangs
       fill_in_intimidation
-      fill_in_optional_details('Are they a gang member?', @risk, :gang_member)
+      fill_in_optional_details('Are they a gang member or involved in organised crime?', @risk, :gang_member)
       save_and_continue
     end
 

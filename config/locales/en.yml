@@ -18,7 +18,7 @@ en:
         substance_supply: Is there a risk that they might traffic drugs on this journey?
         uses_weapons: Have they created or used weapons in custody?
       dependencies:
-        dependencies: Do they have any addictions or dependencies that may affect this journey?
+        dependencies: Do they have any addictions or dependencies that might affect them while they are out of prison?
       discrimination:
         discrimination_to_other_religions: 'Are they a risk to other religions?'
         homophobic: 'Are they a risk to lesbian, gay, bisexual, transgender or transexual (LGBT) people?'
@@ -34,7 +34,7 @@ en:
         previous_escape_attempts: Are they an escape risk?
         previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
       harassment_and_gangs:
-        gang_member: Are they a gang member?
+        gang_member: Are they a gang member or involved in organised crime?
         intimidation: Are they a known harasser, intimidator or bully?
         intimidation_type: 'Targets (select all that apply):'
       hostage_taker:
@@ -43,9 +43,9 @@ en:
       move:
         not_for_release: Is there a reason they should not be released?
       mental:
-        mental_illness: Are there any mental health issues that may affect this journey?
+        mental_illness: Do they have mental health needs that might affect them while they are out of prison?
       needs:
-        has_medications: Will they need to be given medication during this journey?
+        has_medications: Will they need to be given medication while they are out of prison?
         medications:
           description: Medicine name
           administration: How is it given?
@@ -55,7 +55,7 @@ en:
       other_risk:
         other_risk: Is there any other information related to risk on this journey you would like to include?
       physical:
-        physical_issues: Are there any physical health issues that may affect this journey?
+        physical_issues: Do they have physical health needs that might affect them while they are out of prison?
       return_instructions:
         must_not_return: Is there any establishment they must not be sent to at the end of this journey?
         must_return: Must they return to a specific prison at the end of this journey?
@@ -77,9 +77,9 @@ en:
         sex_offence_type: 'Victim (select all that apply):'
         date_most_recent_sexual_offence: Date of most recent sexual offence
       social:
-        personal_care: Will they need help with personal tasks on this journey?
+        personal_care: Will they need help with personal tasks while they are out of prison?
       transport:
-        mpv: Do they need to travel in a special vehicle on this journey?
+        mpv: Do they need to travel in a special vehicle?
     label:
       allergies:
         allergies: "Do they have any known allergies or intolerances?"
@@ -103,7 +103,7 @@ en:
       contact:
         contact_number: Medical contact
       dependencies:
-        dependencies: "Do they have any addictions or dependencies that may affect this journey?"
+        dependencies: "Do they have any addictions or dependencies that might affect them while they are out of prison?"
         dependencies_details: Details for addictions or dependencies
       detainee:
         surname: Surname
@@ -165,13 +165,13 @@ en:
         to: To
         date: Date of travel
       mental:
-        mental_illness: "Are there any mental health issues that may affect this journey?"
+        mental_illness: "Do they have mental health needs that might affect them while they are out of prison?"
         mental_illness_details: Details for mental health issues
       needs:
         actions:
           medications:
             add_multiple: Add another medicine
-        has_medications: "Will they need to be given medication during this journey?"
+        has_medications: "Will they need to be given medication while they are out of prison?"
         medications:
           description: Medicine name
           administration: How is it given?
@@ -188,7 +188,7 @@ en:
         other_risk: "Is there any other information related to risk on this journey you would like to include?"
         other_risk_details: "Other information related to risk on this journey"
       physical:
-        physical_issues: "Are there any physical health issues that may affect this journey?"
+        physical_issues: "Do they have physical health needs that might affect them while they are out of prison?"
         physical_issues_details: "Details for physical health issues"
       return_instructions:
         actions:
@@ -231,10 +231,10 @@ en:
         sex_offence_under18_victim: Under 18
         date_most_recent_sexual_offence: Date of most recent sexual offence
       social:
-        personal_care: "Will they need help with personal tasks on this journey?"
+        personal_care: "Will they need help with personal tasks while they are out of prison?"
         personal_care_details: Details for help needs with personal tasks on this journey
       transport:
-        mpv: "Do they need to travel in a special vehicle on this journey?"
+        mpv: "Do they need to travel in a special vehicle?"
         mpv_details: Details for need of a special vehicle
     hint:
       allergies:

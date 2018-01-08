@@ -56,13 +56,13 @@ RSpec.describe 'managing healthcare medications', type: :feature do
   end
 
   def check_medication
-    within_fieldset('Will they need to be given medication during this journey?') do
+    within_fieldset('Will they need to be given medication while they are out of prison?') do
       choose 'Yes'
     end
   end
 
   def select_no_medications
-    within_fieldset('Will they need to be given medication during this journey?') do
+    within_fieldset('Will they need to be given medication while they are out of prison?') do
       choose 'No'
     end
   end
