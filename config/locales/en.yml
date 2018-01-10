@@ -545,32 +545,20 @@ en:
         label: Review
         title: Check all answers, then confirm and save
   escort: &escort
-    active_alerts:
+    alerts: &alerts
       acct_status: ACCT
       category_a: Cat A
-      csra: CSRA High
       current_e_risk: Escape risk
+      current_e_risk_html: Escape&nbsp;risk
       not_for_release: Not for release
       rule_45: Rule 45
       self_harm: Self harm
-    alerts:
-      acct_status:
-        closed_in_last_6_months: 'Closed:'
-        none: ''
-        open: Open
-        post_closure: Post closure
-      current_e_risk_details:
-        e_list_escort: E-List-Escort
-        e_list_heightened: E-List-Heightened
-        e_list_standard: E-List-Standard
-      title:
-        acct_status: ACCT
-        category_a: "Cat A"
-        csra: CSRA
-        current_e_risk_html: "Escape&nbsp;risk"
-        not_for_release: "Not for release"
-        rule_45: "Rule 45"
-        self_harm: "Self harm"
+    active_alerts:
+      <<: *alerts
+      csra: CSRA High
+    inactive_alerts:
+      <<: *alerts
+      csra: CSRA
   escorts:
     confirm_cancel:
       title: Cancelling PER for

@@ -1,6 +1,7 @@
 doctype html
 html
   head
+    meta charset="utf-8"
     = wicked_pdf_stylesheet_link_tag "print.css", media: 'all'
 
   body
@@ -31,9 +32,11 @@ html
             = detainee.forenames
         div.grid-row.indicators
           #not_for_release_alert.grid-column.column-one-half
-            = alerts.not_for_release_alert
+            = render partial: 'escorts/print/alert', locals: { alert_name: :not_for_release, on: alerts[:not_for_release] }
+            - if alerts[:not_for_release]
+              p.alert-text= move.not_for_release_text
           #e_list_alert.grid-column.column-one-half
-            = alerts.current_e_risk_alert
+            = render partial: 'escorts/print/alert', locals: { alert_name: :current_e_risk, on: alerts[:current_e_risk] }
         div.grid-row.padded.top-dotted
           div.grid-column.column-one-half
             div.grid-row

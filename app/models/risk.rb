@@ -7,22 +7,31 @@ class Risk < ApplicationRecord
 
   delegate :editable?, to: :escort
 
+  def alerts
+    {
+      acct_status: acct_status_alert_on?,
+      self_harm: (self_harm == 'yes' || acct_status_alert_on?),
+      rule_45: (rule_45 == 'yes'),
+      current_e_risk: (current_e_risk == 'yes' || previous_escape_attempts == 'yes'),
+      csra: (csra == 'high'),
+      category_a: (category_a == 'yes')
+    }
+  end
+
+  def acct_status_text
+    case acct_status
+    when 'closed_in_last_6_months'
+      "Closed: #{date_of_most_recently_closed_acct}"
+    when 'none'
+      ''
+    else
+      acct_status.humanize
+    end
+  end
+
+  private
+
   def acct_status_alert_on?
     acct_status == 'open' || acct_status == 'post_closure'
-  end
-
-  def escape_risk_alert_on?
-    current_e_risk == 'yes' || previous_escape_attempts == 'yes'
-  end
-
-  def active_alerts
-    alerts = []
-    alerts << :acct_status if acct_status_alert_on?
-    alerts << :self_harm if self_harm == 'yes' || acct_status_alert_on?
-    alerts << :rule_45 if rule_45 == 'yes'
-    alerts << :current_e_risk if escape_risk_alert_on?
-    alerts << :csra if csra == 'high'
-    alerts << :category_a if category_a == 'yes'
-    alerts
   end
 end

@@ -31,7 +31,7 @@ class PdfGenerator
       risk: risk,
       healthcare: healthcare,
       offences: offences_presenter,
-      alerts: alerts_presenter
+      alerts: escort.alerts
     }
   end
 

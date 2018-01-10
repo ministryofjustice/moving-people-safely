@@ -103,7 +103,11 @@ class Escort < ApplicationRecord
     document.options[:storage] == :filesystem ? document.path : document.expiring_url
   end
 
+  def alerts
+    move.alerts.merge(risk&.alerts || {})
+  end
+
   def active_alerts
-    move.active_alerts + risk.active_alerts
+    alerts.select { |_k, v| v == true }.keys
   end
 end

@@ -214,92 +214,49 @@ table {
   padding: 10px 0;
 }
 
-.alert-off {
-  border-radius: 5px;
-  border: 2px solid $secondary-text-colour;
+.flag {
+  box-sizing: border-box;
+  font-family: 'arial narrow', sans-serif;
+  display: inline-block;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+
+.flag-active {
+  @extend .flag;
+
+  &:after {
+    content: "✔";
+    margin-left: 6px;
+  }
+
+  background-color: #B10E1E;
+  border: solid 2px #B10E1E;
+  color: white;
+}
+
+.flag-inactive {
+  @extend .flag;
+
+  &:after {
+    content: "✘ No";
+    margin-left: 10px;
+  }
+
   background-color: white;
-  position: relative;
-  display: inline-block;
-  color: $secondary-text-colour;
-  text-transform: uppercase;
-  font: 15px;
-  font-weight: bold;
+  border: solid 2px #BFC1C3;
+  color: #0b0c0c;
+  font-weight: lighter;
+}
 
-  .alert-title {
-    padding: 0.2em 0.5em;
-    position: relative;
-    float: left;
-  }
-
-  .alert-toggle {
-    padding: 0.2em 0.4em 0.2em 0;
-    float: left;
-  }
-
-  .alert-toggle-off {
-    border-radius: 5px;
-    border-top: 2px solid $secondary-text-colour;
-    border-bottom: 2px solid $secondary-text-colour;
-    border-left: 2px solid $secondary-text-colour;
-    margin-top: -2px;
-    margin-bottom: -2px;
-    background-color: white;
-    font: 15px;
-    font-weight: bold;
-    position: relative;
-    float: left;
-    color: $secondary-text-colour;
-
-    img {
-      float: left;
-    }
-
-    .alert-toggle-off-text {
-      padding: 3px 5px 3px 0;
-      display: inline-block;
-    }
+#csra-inactive {
+  &:after {
+    content: "✘ Standard";
   }
 }
 
-.alert-on {
-  border-radius: 5px;
-  border: 2px solid $mellow-red;
-  background-color: $mellow-red !important;
-  position: relative;
-  display: inline-block;
-
-  .alert-title {
-    text-transform: uppercase;
-    padding: 0.2em 0.5em;
-    color: white;
-    font: 15px;
-    font-weight: bold;
-    position: relative;
-    float: left;
-  }
-
-  img {
-    float: left;
-  }
-
-  .alert-toggle {
-    border-radius: 5px;
-    padding: 0 5px;
-    margin-top: 3px;
-    margin-right: 3px;
-    background-color: white;
-    color: $mellow-red;
-    text-transform: uppercase;
-    font: 15px;
-    font-weight: bold;
-    position: relative;
-    float: left;
-  }
-}
-
-.alert-text {
-  display: block;
-  padding-top: 5px;
+p.alert-text {
+  margin: 5px 0;
 }
 
 table.vehicles {
