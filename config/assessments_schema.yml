@@ -659,12 +659,7 @@ assessment:
                             questions:
                               -
                                 name: date_most_recent_staff_hostage_taker_incident
-                                type: date
-                                validators:
-                                  -
-                                    name: 'Assessments::DateValidator'
-                                    options:
-                                      not_in_the_future: true
+                                type: string
                       -
                         name: prisoners_hostage_taker
                         type: boolean
@@ -676,12 +671,7 @@ assessment:
                             questions:
                               -
                                 name: date_most_recent_prisoners_hostage_taker_incident
-                                type: date
-                                validators:
-                                  -
-                                    name: 'Assessments::DateValidator'
-                                    options:
-                                      not_in_the_future: true
+                                type: string
                       -
                         name: public_hostage_taker
                         type: boolean
@@ -693,12 +683,7 @@ assessment:
                             questions:
                               -
                                 name: date_most_recent_public_hostage_taker_incident
-                                type: date
-                                validators:
-                                  -
-                                    name: 'Assessments::DateValidator'
-                                    options:
-                                      not_in_the_future: true
+                                type: string
               -
                 value: 'no'
       sex_offences:
