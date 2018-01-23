@@ -1,6 +1,6 @@
-url = Rails.application.secrets[:zendesk_api]['url']
-username = Rails.application.secrets[:zendesk_api]['username']
-token = Rails.application.secrets[:zendesk_api]['token']
+url = Rails.application.secrets[:zendesk_api][:url]
+username = Rails.application.secrets[:zendesk_api][:username]
+token = Rails.application.secrets[:zendesk_api][:token]
 
 if url && username && token
   Rails.configuration.zendesk_client = ZendeskAPI::Client.new do |config|

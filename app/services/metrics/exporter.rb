@@ -33,12 +33,12 @@ module Metrics
 
     def api_key
       return unless api_config.present?
-      api_config['api_key']
+      api_config[:api_key]
     end
 
     def dataset_prefix
       return unless api_config.present?
-      api_config['dataset_prefix']
+      api_config[:dataset_prefix]
     end
 
     def client

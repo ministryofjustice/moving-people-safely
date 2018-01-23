@@ -24,8 +24,8 @@
 # Ignore test artifacts
 /spec/examples.txt
 
-# Ignore bower local installs
-vendor/bower/*
+# Ignore Yarn local installs
+node_modules
 
 # Ignore coverage directory
 coverage
