@@ -42,6 +42,9 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # Suppress logger output for asset requests.
+  config.assets.quiet = true
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
@@ -63,9 +66,9 @@ Rails.application.configure do
     paperclip_configurations = {
       storage: :s3,
       s3_credentials: {
-        bucket: aws_secrets['s3_bucket_name'],
-        access_key_id: aws_secrets['access_key_id'],
-        secret_access_key: aws_secrets['secret_access_key'],
+        bucket: aws_secrets[:s3_bucket_name],
+        access_key_id: aws_secrets[:access_key_id],
+        secret_access_key: aws_secrets[:secret_access_key],
         s3_region: 'eu-west-1'
       },
       path: '/:class/:attachment/:id/:filename',

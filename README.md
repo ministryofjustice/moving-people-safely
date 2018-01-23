@@ -26,12 +26,6 @@
   ```
   **NOTE:** These will install the specified OS dependencies. If you do not use brew you need to install them manually.
 
-* Bower
-
-  ```bash
-  npm install -g bower
-  ```
-
 ## Setup
 
 * Configure the projects ENV vars
@@ -51,7 +45,7 @@
 * Install required fonts
 
   Double-click on each of the `app/assets/fonts/liberation_sans/*.ttf` files and Font Book will invite you to install them.
-  
+
 For local integration with SSO refer to [SSO Integration](docs/sso_integration.md)
 
 [Assessment schema](docs/assessments_schema.md) has information that describes the configuration for the existent assessments that relate to a given PER.
@@ -118,4 +112,3 @@ ENVIRONMENT = prod
 ```
 
 **NOTE:** Requires appropriate permission to access
-
