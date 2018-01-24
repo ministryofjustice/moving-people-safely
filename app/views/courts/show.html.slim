@@ -41,4 +41,4 @@ table.court-dashboard
             |  by: #{escort.canceller.full_name}, at #{escort.cancelled_at.to_s(:timestamped)}. #{escort.cancelling_reason}.
           - else
             - escort.active_alerts.each do |alert|
-              li.flag= t("escort.active_alerts.#{alert}")
+              li.flag-active= t("escort.active_alerts.#{alert}")

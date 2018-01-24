@@ -21,8 +21,8 @@ Rails.application.config.assets.precompile += %w(
     gov.uk_logotype_crown.png
     main-ie8
     main
+    nomis_alerts
     print
-    print-ie8
     accessible-autocomplete.min.css
     auto-complete.js
 )
