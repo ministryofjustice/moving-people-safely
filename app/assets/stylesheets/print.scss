@@ -12,6 +12,7 @@ $is-print: true;
 @import "shims";
 @import "elements/elements-typography";
 @import "elements/layout";
+@import "moving_people_safely/nomis_alerts";
 
 * {
   font-family: "Liberation Sans" !important;
@@ -214,51 +215,6 @@ table {
   padding: 10px 0;
 }
 
-.flag {
-  box-sizing: border-box;
-  font-family: 'arial narrow', sans-serif;
-  display: inline-block;
-  padding: 2px 6px;
-  white-space: nowrap;
-}
-
-.flag-active {
-  @extend .flag;
-
-  &:after {
-    content: "✔";
-    margin-left: 6px;
-  }
-
-  background-color: #B10E1E;
-  border: solid 2px #B10E1E;
-  color: white;
-}
-
-.flag-inactive {
-  @extend .flag;
-
-  &:after {
-    content: "✘ No";
-    margin-left: 10px;
-  }
-
-  background-color: white;
-  border: solid 2px #BFC1C3;
-  color: #0b0c0c;
-  font-weight: lighter;
-}
-
-#csra-inactive {
-  &:after {
-    content: "✘ Standard";
-  }
-}
-
-p.alert-text {
-  margin: 5px 0;
-}
-
 table.vehicles {
   tr.header-row {
     height: 30px;
@@ -341,4 +297,9 @@ table.about {
     position: relative;
     bottom: 0;
   }
+}
+
+.flag {
+  @extend .flag;
+  margin: 0;
 }
