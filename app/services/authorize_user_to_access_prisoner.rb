@@ -20,6 +20,7 @@ class AuthorizeUserToAccessPrisoner
 
   def prisoner_location
     response = Detainees::LocationFetcher.new(prison_number).call
+    return false unless response.to_h[:code]
     Establishment.find_by(nomis_id: response.to_h[:code])
   end
 end
