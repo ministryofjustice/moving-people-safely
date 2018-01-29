@@ -48,46 +48,11 @@ RSpec.describe 'Edit detainee requests', type: :request do
     end
 
     context 'when the detainee exists' do
-      context 'and no pull option is provided' do
-        it 'retrieves details and image from remote API' do
-          expect(Nomis::Api.instance).to receive(:get).with("/offenders/#{prison_number}")
-          expect(Nomis::Api.instance).to receive(:get).with("/offenders/#{prison_number}/image")
-          get "/escorts/#{escort.id}/detainee/edit"
-        end
-      end
-
       context 'and option to pull image is provided' do
         let(:params) { { pull: :image } }
 
         before do
           stub_nomis_api_request(:get, "/offenders/#{prison_number}/image")
-        end
-
-        it 'retrieves image from remote API' do
-          expect(Nomis::Api.instance).to receive(:get).with("/offenders/#{prison_number}/image")
-          get "/escorts/#{escort.id}/detainee/edit", params: params
-        end
-
-        context 'when image details cannot be prefetched' do
-          before do
-            stub_nomis_api_request(:get, "/offenders/#{prison_number}/image", status: 500)
-          end
-
-          it 'sets a flash error message indicating the image could not be prefetched' do
-            get "/escorts/#{escort.id}/detainee/edit", params: params
-            expect(flash[:warning]).to include('Image Look-Up function is not currently available. Please try again later')
-          end
-        end
-
-        context 'when image for the detainee cannot be found' do
-          before do
-            stub_nomis_api_request(:get, "/offenders/#{prison_number}/image", body: { image: nil }.to_json)
-          end
-
-          it 'sets a flash error message indicating the image was not found' do
-            get "/escorts/#{escort.id}/detainee/edit", params: params
-            expect(flash[:warning]).to include('Look-Up function for photograph returned no image. Either try again later or attach photograph manually to print out')
-          end
         end
       end
     end

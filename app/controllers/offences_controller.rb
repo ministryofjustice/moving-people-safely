@@ -5,7 +5,6 @@ class OffencesController < ApplicationController
   helper_method :escort, :offences, :offences_workflow
 
   def show
-    prepopulate_offences if escort.editable?
     form.validate(flash[:form_data]) if flash[:form_data]
     form.prepopulate!
     render locals: { form: form }
@@ -50,21 +49,5 @@ class OffencesController < ApplicationController
 
   def form
     @_form ||= Forms::Offences.new(escort)
-  end
-
-  def prepopulate_offences
-    nomis_offences = fetch_offences
-    offences.clear.build(nomis_offences) if nomis_offences.any?
-  end
-
-  def fetch_offences
-    result = Detainees::OffencesFetcher.new(escort.prison_number).call
-    flash_fetcher_error(result.error) if result.error.present?
-    result.data.map(&:attributes)
-  end
-
-  def flash_fetcher_error(error)
-    flash.now[:warning] ||= []
-    flash.now[:warning] << t("alerts.offences.#{error}")
   end
 end

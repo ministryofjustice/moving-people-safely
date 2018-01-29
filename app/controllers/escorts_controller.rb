@@ -6,12 +6,10 @@ class EscortsController < ApplicationController
   before_action :authorize_user_to_access_escort!, except: :create
 
   def create
-    escort = EscortCreator.call(escort_params)
-    if escort.detainee
-      redirect_to edit_escort_detainee_path(escort.id)
-    else
-      redirect_to new_escort_detainee_path(escort.id, escort_params)
-    end
+    escort_creator = EscortCreator.new(escort_params)
+    escort = escort_creator.call
+    flash[:warning] = escort_creator.nomis_errors.map { |err| t(err) }
+    redirect_to edit_escort_detainee_path(escort.id)
   end
 
   def confirm_cancel
