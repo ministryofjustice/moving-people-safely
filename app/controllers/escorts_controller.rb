@@ -7,6 +7,7 @@ class EscortsController < ApplicationController
 
   def create
     escort = EscortCreator.call(escort_params)
+    EscortPopulator.new(escort).call
     if escort.detainee
       redirect_to edit_escort_detainee_path(escort.id)
     else

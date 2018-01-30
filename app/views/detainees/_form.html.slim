@@ -11,18 +11,12 @@
   - else
     .no-image
       span = 'Photo unavailable'
-    - if form.prison_number
-      - pull_options = method == :post ? { prison_number: form.prison_number, pull: :image } : { pull: :image }
-      = link_to 'Pull image', pull_options
 
   .form-wrapper
     = form_for form, url: submit_path, method: method do |f|
-      - if form.prison_number
-        label.form-label Prison number
-        p.prison_number = form.prison_number
-        = f.hidden_field :prison_number
-      - else
-        = f.text_field :prison_number
+      label.form-label Prison number
+      p.prison_number = escort.prison_number
+      = f.hidden_field :prison_number, value: escort.prison_number
       = f.hidden_field :image_filename
       = f.hidden_field :image
       = f.text_field :surname

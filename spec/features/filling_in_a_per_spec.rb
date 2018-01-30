@@ -26,6 +26,7 @@ RSpec.feature 'filling in a PER', type: :feature do
 
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}", status: 404)
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/image", status: 404)
+    stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/charges", status: 404)
     valid_body = { establishment: { code: establishment_nomis_id } }.to_json
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/location", body: valid_body)
 
@@ -44,7 +45,6 @@ RSpec.feature 'filling in a PER', type: :feature do
     risk_summary.confirm_risk_details(risk_data)
     risk_summary.confirm_and_save
 
-    stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/charges", status: 404)
     escort_page.click_edit_offences
 
     offences.complete_form(offences_data)

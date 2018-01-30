@@ -32,7 +32,8 @@ class EscortCreator
   EXCEPT_GRAPH = [
     :issued_at,
     { risk: %i[reviewer_id reviewed_at] },
-    { healthcare: %i[reviewer_id reviewed_at] }
+    { healthcare: %i[reviewer_id reviewed_at] },
+    { offences_workflow: %i[reviewer_id reviewed_at] }
   ].freeze
 
   def existent_escort
