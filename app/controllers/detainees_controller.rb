@@ -4,7 +4,8 @@ class DetaineesController < ApplicationController
   helper_method :escort
 
   def new
-    form = Forms::Detainee.new(escort.build_detainee(default_attrs))
+    flash.now[:warning] = t('alerts.detainee.details.unavailable')
+    form = Forms::Detainee.new(escort.build_detainee)
     render locals: { form: form }
   end
 
@@ -19,7 +20,6 @@ class DetaineesController < ApplicationController
   end
 
   def edit
-    detainee.assign_attributes(extra_attrs)
     form = Forms::Detainee.new(detainee)
     render locals: { form: form }
   end
@@ -42,47 +42,6 @@ class DetaineesController < ApplicationController
 
   def detainee
     escort.detainee || raise(ActiveRecord::RecordNotFound)
-  end
-
-  def default_prison_number
-    escort.prison_number
-  end
-
-  def set_default_attrs
-    return {} unless default_prison_number.present?
-    status, remote_attrs = fetch_response_for(default_prison_number)
-    flash_fetcher_errors(status.errors) if status.error?
-    permitted_params(remote_attrs)
-  end
-
-  def default_attrs
-    @default_attrs ||= set_default_attrs
-  end
-
-  def set_extra_attrs
-    options = { pull: :all }
-    options = params.slice(:pull) if params[:pull]
-    status, remote_attrs = fetch_response_for(detainee.prison_number, options)
-    flash_fetcher_errors(status.errors) if status.error?
-    permitted_params(remote_attrs)
-  end
-
-  def extra_attrs
-    @extra_attrs ||= set_extra_attrs
-  end
-
-  def flash_fetcher_errors(errors)
-    errors.each do |error|
-      message = t("alerts.detainee.#{error}")
-      flash.now[:warning] ||= []
-      flash.now[:warning] << message
-    end
-  end
-
-  def fetch_response_for(prison_number, options = {})
-    fetcher_response = Detainees::Fetcher.new(prison_number, options).call
-    remote_attrs = fetcher_response.to_h.merge(prison_number: prison_number).with_indifferent_access
-    [fetcher_response, remote_attrs]
   end
 
   def permitted_params(params)

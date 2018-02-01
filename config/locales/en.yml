@@ -602,7 +602,7 @@ en:
       access:
         unauthorized: "Enter a prisoner number for someone currently at %{establishments} to start a PER."
       details:
-        unavailable: "Look-Up function is not currently available. Please enter person details manually or try again later"
+        unavailable: "Look-Up function is not currently available. Please enter person details manually"
         not_found: "No record for that prison reference exists. Please check the reference used or enter the details manually"
         invalid_input: The provided prison number is not valid, please try again with a valid prison number
       image:

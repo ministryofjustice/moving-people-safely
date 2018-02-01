@@ -8,6 +8,9 @@ RSpec.describe 'Create escort request', type: :request do
   before do
     sign_in(user, sso: sso_config)
     stub_nomis_api_request(:get, "/offenders/#{prison_number}/location")
+    stub_nomis_api_request(:get, "/offenders/#{prison_number}")
+    stub_nomis_api_request(:get, "/offenders/#{prison_number}/charges")
+    stub_nomis_api_request(:get, "/offenders/#{prison_number}/image")
   end
 
   context 'when the user is in an establishment different from the one of the given prisoner' do
