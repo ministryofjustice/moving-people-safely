@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Detainees::DetailsFetcher do
+RSpec.describe Detainees::RiskFetcher do
   let(:prison_number) { 'A1234AB' }
   subject(:fetcher) { described_class.new(prison_number) }
 
@@ -20,7 +20,7 @@ RSpec.describe Detainees::DetailsFetcher do
     it 'calls the NOMIS API' do
       expect(Nomis::Api.instance)
         .to receive(:get)
-        .with("/offenders/#{prison_number}").once
+        .with("/offenders/#{prison_number}/alerts").once
       fetcher.call
     end
   end
@@ -37,7 +37,7 @@ RSpec.describe Detainees::DetailsFetcher do
 
   context 'when NOMIS API response is 404' do
     before do
-      stub_nomis_api_request(:get, "/offenders/#{prison_number}", status: 404)
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts", status: 404)
     end
 
     include_examples 'request to NOMIS API'
@@ -53,7 +53,7 @@ RSpec.describe Detainees::DetailsFetcher do
     let(:prison_number) { 'invalid-number' }
 
     before do
-      stub_nomis_api_request(:get, "/offenders/#{prison_number}", status: 400)
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts", status: 400)
     end
 
     include_examples 'request to NOMIS API'
@@ -69,7 +69,7 @@ RSpec.describe Detainees::DetailsFetcher do
     let(:prison_number) { 'invalid-number' }
 
     before do
-      stub_nomis_api_request(:get, "/offenders/#{prison_number}", status: 500)
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts", status: 500)
     end
 
     include_examples 'request to NOMIS API'
@@ -85,7 +85,7 @@ RSpec.describe Detainees::DetailsFetcher do
     let(:invalid_body) { 'not-valid-json' }
 
     before do
-      stub_nomis_api_request(:get, "/offenders/#{prison_number}", body: invalid_body)
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts", body: invalid_body)
     end
 
     include_examples 'request to NOMIS API'
@@ -98,58 +98,75 @@ RSpec.describe Detainees::DetailsFetcher do
   end
 
   context 'when NOMIS API response contains a valid JSON response' do
-    let(:given_name) { 'John' }
-    let(:middle_names) { 'C.' }
-    let(:surname) { 'Doe' }
-    let(:date_of_birth) { '1969-01-23' }
-    let(:gender) { { 'code' => 'M', 'desc' => 'Male' } }
-    let(:ethnicity) { { 'code' => 'EU', 'desc' => 'European' } }
-    let(:religion) { { 'code' => 'B', 'desc' => 'Baptist' } }
-    let(:nationalities) { 'American' }
-    let(:language) { { 'preferred_spoken' => { 'code' => 'WEL-CYM', 'desc' => 'Welsh' }, 'interpreter_required' => false } }
-    let(:diet) { { 'code' => 'GLU', 'desc' => 'Medical - Gluten Free Diet' } }
-    let(:pnc_number) { '12344' }
-    let(:cro_number) { '54321' }
     let(:valid_body) {
       {
-        given_name: given_name,
-        middle_names: middle_names,
-        surname: surname,
-        date_of_birth: date_of_birth,
-        gender: gender,
-        ethnicity: ethnicity,
-        religion: religion,
-        nationalities: nationalities,
-        language: language,
-        diet: diet,
-        pnc_number: pnc_number,
-        cro_number: cro_number,
-        aliases: []
+        "alerts":
+          [
+            {
+              "alert_type" =>
+                {
+                  "code" => "X",
+                  "desc" => "Security"
+                },
+              "alert_sub_type" =>
+                {
+                  "code" => "XEL",
+                  "desc" => "Escape List"
+                },
+              "alert_date" => "2018-01-12",
+              "status" => "ACTIVE",
+              "comment" => "has a large poster on cell wall"
+            },
+            {
+              "alert_type" =>
+                {
+                  "code" => "R",
+                  "desc" => "Risk"
+                },
+              "alert_sub_type":
+                {
+                  "code" => "RKS",
+                  "desc" => "Risk to Known Adult - Custody"
+                },
+              "alert_date" => "2018-01-12",
+              "expiry_date" => "2018-03-12",
+              "status" => "ACTIVE"
+            }
+          ]
       }.to_json
     }
 
     before do
-      stub_nomis_api_request(:get, "/offenders/#{prison_number}", body: valid_body)
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts", body: valid_body)
     end
 
     include_examples 'request to NOMIS API'
 
     it 'returns a mapped hash for the detainee data retrieved' do
       expected_response = {
-        prison_number: prison_number,
-        forenames: 'JOHN C.',
-        surname: 'DOE',
-        date_of_birth: '23/01/1969',
-        gender: 'male',
-        ethnicity: 'European',
-        religion: 'Baptist',
-        nationalities: 'American',
-        language: 'Welsh',
-        interpreter_required: 'no',
-        diet: 'Medical - Gluten Free Diet',
-        pnc_number: '12344',
-        cro_number: '54321',
-        aliases: nil
+        self_harm: "no",
+        rule_45: "no",
+        vulnerable_prisoner: "no",
+        controlled_unlock_required: "no",
+        high_profile: "no",
+        intimidation: "yes",
+        intimidation_to_public: false,
+        intimidation_to_other_detainees: true,
+        gang_member: "no",
+        violence_to_staff: "no",
+        risk_to_females: "no",
+        homophobic: "no",
+        racist: "no",
+        discrimination_to_other_religions: "no",
+        current_e_risk: "yes",
+        current_e_risk_details: "has a large poster on cell wall",
+        previous_escape_attempts: "no",
+        hostage_taker: "no",
+        sex_offence: "no",
+        arson: "no",
+        must_return: "no",
+        must_not_return: "no",
+        other_risk: "no",
       }.with_indifferent_access
       response = fetcher.call
       expect(response.to_h).to eq(expected_response)
