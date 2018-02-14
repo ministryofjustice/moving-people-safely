@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'aws-sdk', '< 3.0'
+gem 'aws-sdk', '< 3.0' # do not remove version
 gem 'cancancan'
 gem 'connection_pool'
 gem 'countries'
@@ -15,15 +15,15 @@ gem 'govuk_frontend_toolkit'
 gem 'govuk_template', '0.18.0'
 gem 'jquery-rails'
 gem 'logstasher'
-gem 'omniauth-oauth2', '~> 1.3.1'
+gem 'omniauth-oauth2', '~> 1.3.1' # do not remove version
 gem 'paper_trail'
-gem 'paperclip', '~> 5.2.1'
+gem 'paperclip'
 gem 'pg'
 gem 'puma'
 gem 'rails', '~> 5.1.4'
-gem 'reform', '2.1.0'
+gem 'reform', '2.1.0' # do not remove version
 gem 'reform-rails'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 gem 'sentry-raven'
 gem 'slim-rails'
 gem 'uglifier'
@@ -46,11 +46,11 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'listen', '~> 3.0.5'
+  gem 'listen'
   gem 'meta_request'
-  gem 'rubocop', '~> 0.51.0', require: false
+  gem 'rubocop', require: false
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
 end
 
 group :test do
