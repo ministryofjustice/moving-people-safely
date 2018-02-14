@@ -9,10 +9,10 @@ module Detainees
 
       refine Array do
         def active_cases_grouped_by_case_reference
-          find { |b| b['booking_active'] }.
-            fetch('legal_cases').
-            select { |lc| lc['case_active'] }.
-            group_by { |lc| lc['case_info_number'] }
+          find { |b| b['booking_active'] }
+            .fetch('legal_cases')
+            .select { |lc| lc['case_active'] }
+            .group_by { |lc| lc['case_info_number'] }
         end
 
         def value_objects
@@ -23,9 +23,9 @@ module Detainees
       refine Hash do
         def extract_offences_with_normalised_keys_and_case_reference
           flat_map do |(case_ref, cases)|
-            cases.
-              flat_map  { |c| c['charges'] }.
-              map       do |c|
+            cases
+              .flat_map { |c| c['charges'] }
+              .map do |c|
                 offence = c['offence']
                 offence['offence'] = offence.delete('desc')
                 offence.merge('case_reference' => case_ref)
@@ -43,10 +43,10 @@ module Detainees
     end
 
     def call
-      @offences['bookings'].
-        active_cases_grouped_by_case_reference.
-        extract_offences_with_normalised_keys_and_case_reference.
-        value_objects
+      @offences['bookings']
+        .active_cases_grouped_by_case_reference
+        .extract_offences_with_normalised_keys_and_case_reference
+        .value_objects
     end
   end
 end

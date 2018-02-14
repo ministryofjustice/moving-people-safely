@@ -11,9 +11,7 @@ AllCops:
     - 'spec/**/*'
     - 'config/**/*'
     - 'app/models/forms/base.rb' # this is just too horrible
-    - 'app/controllers/application_controller.rb'
     - 'app/models/concerns/questionable.rb'
-    - 'app/models/ability.rb'
 
 # Prefer sensible naming to comments everywhere.
 Documentation:
@@ -40,29 +38,14 @@ Metrics/MethodLength:
   Max: 15
   Exclude:
     - 'app/form_builders/mps_form_builder.rb'
+    - 'app/models/ability.rb'
 
-Metrics/CyclomaticComplexity:
-  Exclude:
-    - 'app/models/risk.rb'
-
-Metrics/PerceivedComplexity:
-  Exclude:
-    - 'app/models/risk.rb'
-
-Lint/RescueWithoutErrorClass:
+Style/RescueStandardError:
   Enabled: false
-
-# Chain methods with trailing dots.
-Layout/DotPosition:
-  EnforcedStyle: trailing
 
 # No-one in this team uses a fixed-width terminal
 Metrics/LineLength:
   Max: 120
-
-# It's not really clearer to replace every if with a return if.
-Style/GuardClause:
-  Enabled: false
 
 Naming/PredicateName:
   Enabled: false

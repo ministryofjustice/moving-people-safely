@@ -10,8 +10,8 @@ class Healthcare < ApplicationRecord
   after_initialize :set_default_values
 
   def set_default_values
-    if read_attribute(:contact_number).blank? && escort&.move_from_establishment
-      write_attribute(:contact_number, escort.move_from_establishment.healthcare_contact_number)
-    end
+    return if read_attribute(:contact_number).present?
+    return unless escort&.move_from_establishment
+    write_attribute(:contact_number, escort.move_from_establishment.healthcare_contact_number)
   end
 end

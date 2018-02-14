@@ -21,9 +21,8 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_unless_document_editable
-    unless can? :update, escort
-      redirect_back(fallback_location: root_path, alert: t('alerts.escort.edit.unauthorized'))
-    end
+    return if can? :update, escort
+    redirect_back(fallback_location: root_path, alert: t('alerts.escort.edit.unauthorized'))
   end
 
   def authenticate_user!
@@ -31,18 +30,16 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_user_to_access_prisoner!
-    unless AuthorizeUserToAccessPrisoner.call(current_user, prison_number)
-      establishments = current_user.authorized_establishments.map(&:name).join(' or ')
-      flash[:error] = t('alerts.detainee.access.unauthorized', establishments: establishments)
-      redirect_to(root_path)
-    end
+    return if AuthorizeUserToAccessPrisoner.call(current_user, prison_number)
+    establishments = current_user.authorized_establishments.map(&:name).join(' or ')
+    flash[:error] = t('alerts.detainee.access.unauthorized', establishments: establishments)
+    redirect_to(root_path)
   end
 
   def authorize_user_to_access_escort!
-    unless can? :read, escort
-      flash[:error] = t('alerts.escort.access.unauthorized')
-      redirect_to root_path
-    end
+    return if can? :read, escort
+    flash[:error] = t('alerts.escort.access.unauthorized')
+    redirect_to root_path
   end
 
   def current_user

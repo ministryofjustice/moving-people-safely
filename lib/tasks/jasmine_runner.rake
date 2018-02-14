@@ -1,3 +1,1 @@
-if %w[development test].include? Rails.env
-  task(:default).prerequisites << task('jasmine:ci')
-end
+task(:default).prerequisites << task('jasmine:ci') if %w[development test].include? Rails.env

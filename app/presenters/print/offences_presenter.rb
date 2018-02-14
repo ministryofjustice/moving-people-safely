@@ -29,9 +29,7 @@ module Print
       return if list.empty?
       safe_join(list.map do |item|
         array = [item.offence]
-        if item.respond_to?(:case_reference) && item.case_reference.present?
-          array << "(#{item.case_reference})"
-        end
+        array << "(#{item.case_reference})" if item.respond_to?(:case_reference) && item.case_reference.present?
         array.join(' ')
       end, ' | ')
     end
