@@ -13,7 +13,7 @@ class EscortPopulator
   attr_accessor :escort
 
   def update_detainee
-    result = Detainees::Fetcher.new(escort.prison_number).call
+    result = Detainees::DetailsFetcher.new(escort.prison_number).call
     nomis_detainee_attrs = result.to_h
 
     detainee.update(nomis_detainee_attrs) if nomis_detainee_attrs.select { |_k, v| v.present? }.many?

@@ -4,7 +4,6 @@ RSpec.describe Detainees::DetailsFetcher do
   let(:prison_number) { 'A1234AB' }
   subject(:fetcher) { described_class.new(prison_number) }
 
-
   shared_examples_for 'empty response without API calls' do
     specify {
       response = fetcher.call

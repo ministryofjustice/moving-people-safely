@@ -12,6 +12,7 @@ AllCops:
     - 'config/**/*'
     - 'app/models/forms/base.rb' # this is just too horrible
     - 'app/models/concerns/questionable.rb'
+    - 'app/services/detainees/risk_mapper.rb'
 
 # Prefer sensible naming to comments everywhere.
 Documentation:

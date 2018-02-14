@@ -9,8 +9,8 @@ RSpec.describe EscortPopulator, type: :service do
     result = double(Object)
     data = double(Object)
 
-    detainee_fetcher = double(Detainees::Fetcher)
-    allow(Detainees::Fetcher).to receive(:new).with(escort.prison_number).and_return(detainee_fetcher)
+    detainee_fetcher = double(Detainees::DetailsFetcher)
+    allow(Detainees::DetailsFetcher).to receive(:new).with(escort.prison_number).and_return(detainee_fetcher)
     allow(detainee_fetcher).to receive(:call).and_return(result)
     allow(result).to receive(:to_h).and_return(nomis_detainee_attrs)
 
