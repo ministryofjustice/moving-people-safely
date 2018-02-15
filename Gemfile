@@ -20,7 +20,7 @@ gem 'paper_trail'
 gem 'paperclip'
 gem 'pg'
 gem 'puma'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.1.5'
 gem 'reform', '2.1.0' # do not remove version
 gem 'reform-rails'
 gem 'sass-rails'
