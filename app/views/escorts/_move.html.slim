@@ -16,7 +16,6 @@ section#move
     h6 To
     p= move.to
 
-  - if move.not_for_release == 'yes'
-    .tile-3
-      h6 Not for release
-      p= move.not_for_release_text
+  .tile-3
+    h6 Release status
+    p= move.not_for_release_text
