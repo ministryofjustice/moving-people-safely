@@ -20,8 +20,9 @@ Date of birth     Age                Gender
 10 Dec 1970       47                 M
 Nationality       Religion           Ethnicity
 British           Baptist            European
-
-
+Preferred         Interpreter        Diet
+language          Not required       Gluten free
+English
 
 
 Move details

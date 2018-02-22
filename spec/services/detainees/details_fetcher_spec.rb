@@ -107,6 +107,8 @@ RSpec.describe Detainees::DetailsFetcher do
     let(:ethnicity) { { 'code' => 'EU', 'desc' => 'European' } }
     let(:religion) { { 'code' => 'B', 'desc' => 'Baptist' } }
     let(:nationalities) { 'American' }
+    let(:language) { { 'preferred_spoken' => { 'code' => 'WEL-CYM', 'desc' => 'Welsh' }, 'interpreter_required' => false } }
+    let(:diet) { { 'code' => 'GLU', 'desc' => 'Medical - Gluten Free Diet' } }
     let(:pnc_number) { '12344' }
     let(:cro_number) { '54321' }
     let(:valid_body) {
@@ -119,6 +121,8 @@ RSpec.describe Detainees::DetailsFetcher do
         ethnicity: ethnicity,
         religion: religion,
         nationalities: nationalities,
+        language: language,
+        diet: diet,
         pnc_number: pnc_number,
         cro_number: cro_number,
         aliases: []
@@ -141,6 +145,9 @@ RSpec.describe Detainees::DetailsFetcher do
         ethnicity: 'European',
         religion: 'Baptist',
         nationalities: 'American',
+        language: 'Welsh',
+        interpreter_required: 'no',
+        diet: 'Medical - Gluten Free Diet',
         pnc_number: '12344',
         cro_number: '54321',
         aliases: nil

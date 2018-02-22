@@ -13,12 +13,15 @@ module Detainees
         forenames: mapped_forenames,
         surname: surname,
         date_of_birth: mapped_dob,
-        gender: mapped_gender,
+        gender: gender,
         nationalities: details[:nationalities],
         pnc_number: details[:pnc_number],
         cro_number: details[:cro_number],
-        ethnicity: mapped_ethnicity,
-        religion: mapped_religion,
+        ethnicity: ethnicity,
+        religion: religion,
+        diet: diet,
+        language: language,
+        interpreter_required: interpreter_required,
         aliases: mapped_aliases
       }.with_indifferent_access
     end
@@ -63,28 +66,28 @@ module Detainees
     end
 
     def gender
-      details[:gender]
-    end
-
-    def mapped_gender
-      return details[:gender].downcase if details[:gender].is_a?(String)
-      gender['desc']&.downcase if gender.present?
+      details.dig(:gender, :desc)&.downcase
     end
 
     def ethnicity
-      details[:ethnicity]
-    end
-
-    def mapped_ethnicity
-      ethnicity['desc'] if ethnicity.present?
+      details.dig(:ethnicity, :desc)
     end
 
     def religion
-      details[:religion]
+      details.dig(:religion, :desc)
     end
 
-    def mapped_religion
-      religion['desc'] if religion.present?
+    def diet
+      details.dig(:diet, :desc)
+    end
+
+    def language
+      details.dig(:language, :preferred_spoken, :desc)
+    end
+
+    def interpreter_required
+      return 'yes' if details.dig(:language, :interpreter_required)
+      'no' if details.dig(:language, :interpreter_required) == false
     end
 
     def aliases

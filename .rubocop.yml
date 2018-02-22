@@ -39,6 +39,7 @@ Metrics/MethodLength:
   Exclude:
     - 'app/form_builders/mps_form_builder.rb'
     - 'app/models/ability.rb'
+    - 'app/services/detainees/details_mapper.rb'
 
 Style/RescueStandardError:
   Enabled: false

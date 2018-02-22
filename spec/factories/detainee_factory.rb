@@ -8,6 +8,9 @@ FactoryBot.define do
     pnc_number { rand(9999) }
     cro_number { rand(9999) }
     aliases { Faker::Name.name }
+    interpreter_required { %w[ yes no ].sample }
+    diet { %w[ gluten_free vegan ].sample.humanize }
+    language { %w[ english italian spanish ].sample.humanize }
     prison_number do
       a = 3.times.map { ('A'..'Z').to_a.sample }
       b = 4.times.map { (0..9).to_a.sample }

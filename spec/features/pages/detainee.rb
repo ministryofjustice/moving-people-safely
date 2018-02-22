@@ -13,6 +13,9 @@ module Page
       fill_in 'PNC number', with: detainee.pnc_number
       fill_in 'CRO number', with: detainee.cro_number
       fill_in 'Aliases', with: detainee.aliases
+      fill_in 'Preferred language', with: detainee.language
+      choose detainee.interpreter_required.humanize
+      fill_in 'Diet', with: detainee.diet
 
       save_and_continue
     end
@@ -45,6 +48,9 @@ module Page
       expect(pnc_number_input.value).to eq(options.fetch(:pnc_number))
       expect(cro_number_input.value).to eq(options.fetch(:cro_number))
       expect(aliases_input.value).to eq('')
+      expect(language_input.value).to eq(options.fetch(:language))
+      expect(diet_input.value).to eq(options.fetch(:diet))
+      expect(interpreter_required_input.value).to eq(options.fetch(:interpreter_required))
     end
 
     def assert_form_with_image_placeholder
@@ -98,6 +104,20 @@ module Page
 
     def aliases_input
       find('#detainee_aliases')
+    end
+
+    def language_input
+      find('#detainee_language')
+    end
+
+    def diet_input
+      find('#detainee_diet')
+    end
+
+    def interpreter_required_input
+      find(:radio_button, 'detainee[interpreter_required]', checked: true)
+    rescue Capybara::ElementNotFound
+      nil
     end
 
     def gender_input
