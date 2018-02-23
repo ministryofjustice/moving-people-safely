@@ -15,4 +15,9 @@ class DetaineePresenter < SimpleDelegator
     return 'White: British' if ethnicity == 'White: Eng./Welsh/Scot./N.Irish/British'
     ethnicity
   end
+
+  def expanded_interpreter_required
+    return 'Not required' if interpreter_required == 'no'
+    interpreter_required&.capitalize
+  end
 end

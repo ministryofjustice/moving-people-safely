@@ -113,6 +113,7 @@ en:
         cro_number: CRO number
         gender: Gender
         aliases: Aliases
+        language: Preferred language
       detainee_search:
         prison_number: Enter a prisoner number. For example A1234AB
       discrimination:

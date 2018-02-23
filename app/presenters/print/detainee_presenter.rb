@@ -43,6 +43,11 @@ module Print
       model.nationalities.split(',').map(&:strip)
     end
 
+    def expanded_interpreter_required
+      return 'Not required' if model.interpreter_required == 'no'
+      model.interpreter_required&.capitalize
+    end
+
     def image
       if model.image.present?
         h.image_tag("data:image;base64,#{model.image}")

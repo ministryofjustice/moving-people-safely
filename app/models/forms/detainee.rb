@@ -2,17 +2,20 @@ module Forms
   class Detainee < Forms::Base
     GENDERS = %w[male female].freeze
 
-    property :prison_number, type: StrictString
-    property :surname,       type: StrictString
-    property :forenames,     type: StrictString
-    property :date_of_birth, type: TextDate
-    property :nationalities, type: StrictString
-    property :ethnicity,     type: StrictString
-    property :religion,      type: StrictString
-    property :gender,        type: StrictString
-    property :pnc_number,    type: StrictString
-    property :cro_number,    type: StrictString
-    property :aliases,       type: StrictString
+    property :prison_number,        type: StrictString
+    property :surname,              type: StrictString
+    property :forenames,            type: StrictString
+    property :date_of_birth,        type: TextDate
+    property :nationalities,        type: StrictString
+    property :ethnicity,            type: StrictString
+    property :religion,             type: StrictString
+    property :gender,               type: StrictString
+    property :pnc_number,           type: StrictString
+    property :cro_number,           type: StrictString
+    property :aliases,              type: StrictString
+    property :language,             type: StrictString
+    property :interpreter_required, type: StrictString
+    property :diet,                 type: StrictString
     property :image_filename
     property :image
 

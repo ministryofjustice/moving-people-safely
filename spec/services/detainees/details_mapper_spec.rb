@@ -10,6 +10,8 @@ RSpec.describe Detainees::DetailsMapper do
   let(:ethnicity) { { 'code' => 'EU', 'desc' => 'European' } }
   let(:religion) { { 'code' => 'B', 'desc' => 'Baptist' } }
   let(:nationalities) { 'French' }
+  let(:language) { { 'preferred_spoken' => { 'code' => 'WEL-CYM', 'desc' => 'Welsh' }, 'interpreter_required' => false } }
+  let(:diet) { { 'code' => 'GLU', 'desc' => 'Medical - Gluten Free Diet' } }
   let(:pnc_number) { '12344' }
   let(:cro_number) { '54321' }
   let(:aliases) {
@@ -29,6 +31,8 @@ RSpec.describe Detainees::DetailsMapper do
       'ethnicity' => ethnicity,
       'religion' => religion,
       'nationalities' => nationalities,
+      'language' => language,
+      'diet' => diet,
       'pnc_number' => pnc_number,
       'cro_number' => cro_number,
       'aliases' => aliases
@@ -44,6 +48,9 @@ RSpec.describe Detainees::DetailsMapper do
       ethnicity: 'European',
       religion: 'Baptist',
       nationalities: 'French',
+      language: 'Welsh',
+      interpreter_required: 'no',
+      diet: 'Medical - Gluten Free Diet',
       pnc_number: '12344',
       cro_number: '54321',
       aliases: 'JAMES BOND, TOM FORD'
@@ -54,19 +61,6 @@ RSpec.describe Detainees::DetailsMapper do
 
   it 'returns a mapped hash with all the mandatory details' do
     result = mapper.call
-    expected_result = {
-      prison_number: prison_number,
-      forenames: 'JOHN C.',
-      surname: 'DOE',
-      date_of_birth: '23/01/1969',
-      gender: 'male',
-      ethnicity: 'European',
-      religion: 'Baptist',
-      nationalities: 'French',
-      pnc_number: '12344',
-      cro_number: '54321',
-      aliases: 'JAMES BOND, TOM FORD'
-    }.with_indifferent_access
     expect(result).to eq(expected_result)
   end
 
@@ -125,46 +119,6 @@ RSpec.describe Detainees::DetailsMapper do
 
     it 'returns the date of birth as nil' do
       expect(mapper.call).to eq(expected_result.merge('date_of_birth' => nil))
-    end
-  end
-
-  context 'when retrieved gender is nil' do
-    let(:gender) { nil }
-
-    it 'returns the gender as nil' do
-      expect(mapper.call).to eq(expected_result.merge('gender' => nil))
-    end
-  end
-
-  context 'when retrieved gender is neither male or female' do
-    let(:gender) { { 'code' => 'O', 'desc' => 'Other' } }
-
-    it 'returns the downcase version of the gender' do
-      expect(mapper.call).to eq(expected_result.merge('gender' => 'other'))
-    end
-  end
-
-  context 'when retrieved gender is male' do
-    let(:gender) { { 'code' => 'M', 'desc' => 'Male' } }
-
-    it 'returns the gender as male' do
-      expect(mapper.call).to eq(expected_result.merge('gender' => 'male'))
-    end
-  end
-
-  context 'when retrieved gender is female' do
-    let(:gender) { { 'code' => 'F', 'desc' => 'Female' } }
-
-    it 'returns the gender as female' do
-      expect(mapper.call).to eq(expected_result.merge('gender' => 'female'))
-    end
-  end
-
-  context 'when retrieved gender is a string' do
-    let(:gender) { 'Male' }
-
-    it 'returns the gender as downcased' do
-      expect(mapper.call).to eq(expected_result)
     end
   end
 
@@ -235,6 +189,30 @@ RSpec.describe Detainees::DetailsMapper do
 
     it 'returns a list of the unique aliases' do
       expect(mapper.call).to eq(expected_result.merge('aliases' => 'JOHN UNIQUE, TOM DUPLICATE'))
+    end
+  end
+
+  context 'when retrieved interpreter_required is empty' do
+    let(:language) { { 'preferred_spoken' => { 'code' => 'WEL-CYM', 'desc' => 'Welsh' } } }
+
+    it 'returns the nationalities as empty' do
+      expect(mapper.call).to eq(expected_result.merge('interpreter_required' => nil))
+    end
+  end
+
+  context 'when retrieved interpreter_required is true' do
+    let(:language) { { 'preferred_spoken' => { 'code' => 'WEL-CYM', 'desc' => 'Welsh' }, 'interpreter_required' => true } }
+
+    it 'returns the nationalities as empty' do
+      expect(mapper.call).to eq(expected_result.merge('interpreter_required' => 'yes'))
+    end
+  end
+
+  context 'when retrieved interpreter_required is false' do
+    let(:language) { { 'preferred_spoken' => { 'code' => 'WEL-CYM', 'desc' => 'Welsh' }, 'interpreter_required' => false } }
+
+    it 'returns the nationalities as empty' do
+      expect(mapper.call).to eq(expected_result.merge('interpreter_required' => 'no'))
     end
   end
 end

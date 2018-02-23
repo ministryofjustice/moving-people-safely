@@ -70,6 +70,17 @@ html
               div.grid-column.column-one-third
                 div.title Ethnicity
                 div#age.strong-text = detainee.ethnicity
+            div.grid-row.padded
+              div.grid-column.column-one-third
+                div.title Preferred language
+                div.strong-text.language = detainee.language
+              div.grid-column.column-one-third
+                div.title Interpreter
+                div#age.strong-text = detainee.expanded_interpreter_required
+              div.grid-column.column-one-third
+                div.title Diet
+                div#age.strong-text = detainee.diet
+
           div.grid-column.column-one-quarter
             div.title Aliases
             - detainee.aliases.each do |a|

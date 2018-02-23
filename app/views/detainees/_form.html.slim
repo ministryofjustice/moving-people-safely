@@ -32,6 +32,11 @@
       = f.text_field :pnc_number
       = f.text_field :cro_number
       = f.text_area  :aliases
+      = f.text_field :language
+      .form-group
+        = f.radio_button_fieldset :interpreter_required,
+          inline: true
+      = f.text_field :diet
 
       .form-actions
         = f.submit 'Save and continue', class: 'button'
