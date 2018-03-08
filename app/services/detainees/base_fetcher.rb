@@ -4,6 +4,7 @@ module Detainees
       @prison_number = prison_number
       @logger = options.fetch(:logger) { Rails.logger }
       @api_client = options.fetch(:api_client) { Nomis::Api.instance }
+      @move_date = options.fetch(:move_date) { Date.current }
     end
 
     def call
@@ -12,7 +13,7 @@ module Detainees
 
     private
 
-    attr_reader :prison_number, :logger, :api_client, :response
+    attr_reader :prison_number, :logger, :api_client, :response, :move_date
 
     def successful_response(hash)
       FetcherResponse.new(hash)
