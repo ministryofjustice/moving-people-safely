@@ -6,28 +6,41 @@ RSpec.describe EscortPopulator, type: :service do
   subject { described_class.new(escort) }
 
   before do
-    result = double(Object)
     data = double(Object)
 
+    detainee_result = double(Object)
     detainee_fetcher = double(Detainees::Fetcher)
     allow(Detainees::Fetcher).to receive(:new).with(escort.prison_number).and_return(detainee_fetcher)
-    allow(detainee_fetcher).to receive(:call).and_return(result)
-    allow(result).to receive(:to_h).and_return(nomis_detainee_attrs)
+    allow(detainee_fetcher).to receive(:call).and_return(detainee_result)
+    allow(detainee_result).to receive(:to_h).and_return(nomis_detainee_attrs)
 
+    offences_result = double(Object)
     offences_fetcher = double(Detainees::OffencesFetcher)
     allow(Detainees::OffencesFetcher).to receive(:new).with(escort.prison_number).and_return(offences_fetcher)
-    allow(offences_fetcher).to receive(:call).and_return(result)
-    allow(result).to receive(:data).and_return(data)
+    allow(offences_fetcher).to receive(:call).and_return(offences_result)
+    allow(offences_result).to receive(:data).and_return(data)
     allow(data).to receive(:map).and_return(nomis_offences)
+
+    risk_result = double(Object)
+    risk_fetcher = double(Detainees::RiskFetcher)
+    allow(Detainees::RiskFetcher).to receive(:new).with(escort.prison_number).and_return(risk_fetcher)
+    allow(risk_fetcher).to receive(:call).and_return(risk_result)
+    allow(risk_result).to receive(:to_h).and_return(nomis_risk_attrs)
   end
 
   context 'NOMIS API is down' do
     let(:nomis_detainee_attrs) { {} }
+    let(:nomis_risk_attrs) { {} }
     let(:nomis_offences) { [] }
 
     it 'does not create the detainee' do
       subject.call
       expect(escort.detainee).to be_nil
+    end
+
+    it 'does not create the risk' do
+      subject.call
+      expect(escort.risk).to be_nil
     end
   end
 
@@ -56,6 +69,13 @@ RSpec.describe EscortPopulator, type: :service do
       ]
     }
 
+    let(:nomis_risk_attrs) {
+      {
+        "self_harm"=>"yes",
+        "self_harm_details"=>"Some details",
+      }
+    }
+
     it 'populates the detainee' do
       subject.call
 
@@ -67,6 +87,12 @@ RSpec.describe EscortPopulator, type: :service do
       subject.call
 
       expect(escort.offences.map{ |o| o.slice(:offence, :case_reference) }).to eq nomis_offences
+    end
+
+    it 'populates the risk' do
+      subject.call
+
+      expect(escort.risk.attributes).to include nomis_risk_attrs
     end
   end
 end
