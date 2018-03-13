@@ -5,10 +5,16 @@ class RisksController < ApplicationController
 
   before_action :redirect_unless_detainee_exists
   before_action :redirect_if_risk_already_exists, only: %i[new create]
-  before_action :redirect_unless_document_editable, except: :show
+  before_action :redirect_unless_document_editable, except: %i[show automation]
   before_action :add_multiples, only: %i[create update]
 
   helper_method :escort, :risk
+
+  def automation
+    api_client = Nomis::Api.instance
+    @nomis_alerts = api_client.get("/offenders/#{escort.prison_number}/alerts?include_inactive=true")
+    @automated_risk = Detainees::RiskMapper.new(@nomis_alerts, escort.move.date).call
+  end
 
   def new
     form = Forms::Assessment.for_section(escort.build_risk, step)
