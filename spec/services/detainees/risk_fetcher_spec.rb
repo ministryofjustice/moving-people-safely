@@ -128,8 +128,8 @@ RSpec.describe Detainees::RiskFetcher do
                   "code" => "RKS",
                   "desc" => "Risk to Known Adult - Custody"
                 },
-              "alert_date" => "2018-01-12",
-              "expiry_date" => "2018-03-12",
+              "alert_date" => 5.days.ago.to_date.to_s(:db),
+              "expiry_date" => 20.days.from_now.to_date.to_s(:db),
               "status" => "ACTIVE"
             }
           ]
