@@ -56,14 +56,23 @@ module CompareAutoAlerts
       automated_risks.each_with_object({}) do |pair, comparison|
         attr = pair.first
         val = pair.last
-        human_val = escort[attr]
-        outcome = human_val == val ? 'MATCH' : 'DIFFER'
-        comparison[attr] = { human: human_val, auto: val, outcome: outcome }
+        human = escort[attr]
+        comparison[attr] = { human: human, auto: val, outcome: outcome(human, val) }
       end
     end
 
     def ensure_date(expr)
       expr.is_a?(Date) ? expr : Date.parse(expr)
+    end
+
+    def outcome(human, auto)
+      return 'MATCH' if human == auto
+      truthy?(human) && !truthy?(auto) ? 'FALSE_NEGATIVE' : 'DIFFER'
+    end
+
+    def truthy?(expr)
+      return expr if [TrueClass, FalseClass].include?(expr.class)
+      /yes|true/i =~ expr
     end
   end
 end

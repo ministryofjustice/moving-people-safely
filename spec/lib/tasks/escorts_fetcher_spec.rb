@@ -13,9 +13,6 @@ RSpec.describe CompareAutoAlerts::EscortsFetcher do
   end
 
   let(:mapper) { double('RiskMapper', call: automated_risks) }
-  let(:automated_risks) do
-    { 'arson' => 'no' }
-  end
 
   before do
     allow(File).to receive(:exist?).and_return(false)
@@ -23,16 +20,45 @@ RSpec.describe CompareAutoAlerts::EscortsFetcher do
   end
 
   describe '#compare' do
-    it 'populates prison number with alerts' do
-      expect(subject[escort.prison_number]).to include(
+    context 'Auto and human match' do
+      let(:automated_risks) { { 'arson' => 'no' } }
+
+      it 'indicates MATCH' do
+        expect(subject[escort.prison_number]).to include(
           to_type: escort.move.to_type,
           comparison: {
-            'arson' => {
-              human: 'no',
-              auto: 'no',
-              outcome: 'MATCH'
-            }
-          })
+            'arson' => { human: 'no', auto: 'no', outcome: 'MATCH' }
+          }
+        )
+      end
+    end
+
+    context 'Auto and human differ' do
+      let(:automated_risks) { { 'arson' => 'yes' } }
+
+      it 'indicates DIFFER' do
+        expect(subject[escort.prison_number]).to include(
+          to_type: escort.move.to_type,
+          comparison: {
+            'arson' => { human: 'no', auto: 'yes', outcome: 'DIFFER' }
+          }
+        )
+      end
+    end
+
+    context 'Auto says negative but human says positive' do
+      let(:automated_risks) { { 'arson' => 'no' } }
+
+      before { escort.risk.update_column(:arson, 'yes') }
+
+      it 'indicates FALSE_NEGATIVE' do
+        expect(subject[escort.prison_number]).to include(
+          to_type: escort.move.to_type,
+          comparison: {
+            'arson' => { human: 'yes', auto: 'no', outcome: 'FALSE_NEGATIVE' }
+          }
+        )
+      end
     end
   end
 end
