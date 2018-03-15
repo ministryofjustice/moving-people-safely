@@ -12,7 +12,7 @@ module Detainees
 
     def fetch_risk
       log_api_request "Requesting alerts for offender with NOMS id #{prison_number}"
-      @response = api_client.get("/offenders/#{prison_number}/alerts")
+      @response = api_client.get("/offenders/#{prison_number}/alerts?include_inactive=true")
     end
 
     def mapped_risk
