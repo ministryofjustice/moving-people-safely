@@ -20,7 +20,7 @@ RSpec.describe Detainees::RiskFetcher do
     it 'calls the NOMIS API' do
       expect(Nomis::Api.instance)
         .to receive(:get)
-        .with("/offenders/#{prison_number}/alerts").once
+        .with("/offenders/#{prison_number}/alerts?include_inactive=true").once
       fetcher.call
     end
   end
@@ -37,7 +37,7 @@ RSpec.describe Detainees::RiskFetcher do
 
   context 'when NOMIS API response is 404' do
     before do
-      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts", status: 404)
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts?include_inactive=true", status: 404)
     end
 
     include_examples 'request to NOMIS API'
@@ -53,7 +53,7 @@ RSpec.describe Detainees::RiskFetcher do
     let(:prison_number) { 'invalid-number' }
 
     before do
-      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts", status: 400)
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts?include_inactive=true", status: 400)
     end
 
     include_examples 'request to NOMIS API'
@@ -69,7 +69,7 @@ RSpec.describe Detainees::RiskFetcher do
     let(:prison_number) { 'invalid-number' }
 
     before do
-      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts", status: 500)
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts?include_inactive=true", status: 500)
     end
 
     include_examples 'request to NOMIS API'
@@ -85,7 +85,7 @@ RSpec.describe Detainees::RiskFetcher do
     let(:invalid_body) { 'not-valid-json' }
 
     before do
-      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts", body: invalid_body)
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts?include_inactive=true", body: invalid_body)
     end
 
     include_examples 'request to NOMIS API'
@@ -137,7 +137,7 @@ RSpec.describe Detainees::RiskFetcher do
     }
 
     before do
-      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts", body: valid_body)
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts?include_inactive=true", body: valid_body)
     end
 
     include_examples 'request to NOMIS API'
