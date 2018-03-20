@@ -167,11 +167,8 @@ ActiveRecord::Schema.define(version: 20180222123608) do
     t.text "intimidation_to_witnesses_details"
     t.string "hostage_taker"
     t.boolean "staff_hostage_taker"
-    t.date "date_most_recent_staff_hostage_taker_incident"
     t.boolean "prisoners_hostage_taker"
-    t.date "date_most_recent_prisoners_hostage_taker_incident"
     t.boolean "public_hostage_taker"
-    t.date "date_most_recent_public_hostage_taker_incident"
     t.boolean "sex_offence_adult_male_victim"
     t.boolean "sex_offence_adult_female_victim"
     t.boolean "sex_offence_under18_victim"
@@ -220,6 +217,9 @@ ActiveRecord::Schema.define(version: 20180222123608) do
     t.text "vulnerable_prisoner_details"
     t.string "pnc_warnings"
     t.text "pnc_warnings_details"
+    t.string "date_most_recent_staff_hostage_taker_incident"
+    t.string "date_most_recent_prisoners_hostage_taker_incident"
+    t.string "date_most_recent_public_hostage_taker_incident"
     t.index ["escort_id"], name: "index_risks_on_escort_id"
   end
 
