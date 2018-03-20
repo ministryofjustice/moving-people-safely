@@ -1,10 +1,10 @@
 module CompareAutoAlerts
   class Compare
     RISK_CACHE = 'risk_cache.json'.freeze
-    PAUSE_BETWEEN_API_CALLS = 5
 
-    def initialize(limit, pause = PAUSE_BETWEEN_API_CALLS)
+    def initialize(limit: ENV.fetch('LIMIT', 200), offset: ENV.fetch('OFFSET', 0), pause: ENV.fetch('PAUSE', 3))
       @limit = limit
+      @offset = offset
       @pause = pause
     end
 
@@ -18,10 +18,10 @@ module CompareAutoAlerts
 
     private
 
-    attr_reader :limit, :pause
+    attr_reader :limit, :offset, :pause
 
     def escorts
-      @_escorts ||= Escort.issued.limit(limit)
+      @_escorts ||= Escort.issued.offset(offset).limit(limit).order(:id)
     end
 
     def compare_escorts(cached_risks)

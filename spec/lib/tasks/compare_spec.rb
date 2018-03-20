@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe CompareAutoAlerts::Compare do
-  subject { described_class.new(limit, 0).call }
+  subject { described_class.new(limit: 1, pause: 0).call }
 
-  let(:limit) { 1 }
   let!(:escort) do
     create(:escort, :issued, :with_move, :with_complete_risk_assessment)
   end
