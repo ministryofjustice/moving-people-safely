@@ -1,25 +1,26 @@
 require 'rails_helper'
 
-RSpec.describe CompareAutoAlerts::EscortsFetcher do
-  subject { described_class.new(limit).compare(alerts) }
+RSpec.describe CompareAutoAlerts::Compare do
+  subject { described_class.new(limit, 0).call }
 
   let(:limit) { 1 }
   let!(:escort) do
-    create(:escort, :with_move, :with_complete_risk_assessment)
+    create(:escort, :issued, :with_move, :with_complete_risk_assessment)
   end
 
   let(:alerts) do
     { escort.prison_number => { 'foo' => true } }
   end
 
-  let(:mapper) { double('RiskMapper', call: automated_risks) }
+  let(:fetcher) { double('RiskFetcher', call: response) }
+  let(:response) { double('FetcherResponse', to_h: automated_risks) }
 
   before do
     allow(File).to receive(:exist?).and_return(false)
-    allow(Detainees::RiskMapper).to receive(:new).and_return(mapper)
+    allow(Detainees::RiskFetcher).to receive(:new).and_return(fetcher)
   end
 
-  describe '#compare' do
+  describe '#call' do
     context 'Auto and human match' do
       let(:automated_risks) { { 'arson' => 'no' } }
 
@@ -27,7 +28,7 @@ RSpec.describe CompareAutoAlerts::EscortsFetcher do
         expect(subject[escort.prison_number]).to include(
           to_type: escort.move.to_type,
           comparison: {
-            'arson' => { human: 'no', auto: 'no', outcome: 'MATCH' }
+            arson: { human: 'no', auto: 'no', outcome: 'MATCH' }
           }
         )
       end
@@ -40,7 +41,7 @@ RSpec.describe CompareAutoAlerts::EscortsFetcher do
         expect(subject[escort.prison_number]).to include(
           to_type: escort.move.to_type,
           comparison: {
-            'arson' => { human: 'no', auto: 'yes', outcome: 'DIFFER' }
+            arson: { human: 'no', auto: 'yes', outcome: 'DIFFER' }
           }
         )
       end
@@ -55,7 +56,7 @@ RSpec.describe CompareAutoAlerts::EscortsFetcher do
         expect(subject[escort.prison_number]).to include(
           to_type: escort.move.to_type,
           comparison: {
-            'arson' => { human: 'yes', auto: 'no', outcome: 'FALSE_NEGATIVE' }
+            arson: { human: 'yes', auto: 'no', outcome: 'FALSE_NEGATIVE' }
           }
         )
       end
