@@ -157,14 +157,6 @@ RSpec.describe Print::AssessmentQuestionPresenter do
         expect(presenter.details).to eq('Foo | Bar')
       end
 
-      context 'when one of the details is empty' do
-        let(:answer_detail_1) { nil }
-
-        it 'returns a string only with the details that are present' do
-          expect(presenter.details).to eq('Bar')
-        end
-      end
-
       context 'when one of the details has a locale for its label in the print page' do
         let(:answer_dependant_questions) {
           [
