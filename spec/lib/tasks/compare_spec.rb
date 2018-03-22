@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe CompareAutoAlerts::Compare do
-  subject { described_class.new(limit, 0).call }
+  subject { described_class.as_hash([escort.id], pause: 0) }
 
-  let(:limit) { 1 }
   let!(:escort) do
     create(:escort, :issued, :with_move, :with_complete_risk_assessment)
   end
@@ -20,7 +19,7 @@ RSpec.describe CompareAutoAlerts::Compare do
     allow(Detainees::RiskFetcher).to receive(:new).and_return(fetcher)
   end
 
-  describe '#call' do
+  describe '.as_hash' do
     context 'Auto and human match' do
       let(:automated_risks) { { 'arson' => 'no' } }
 
