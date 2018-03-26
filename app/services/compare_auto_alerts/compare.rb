@@ -61,14 +61,14 @@ module CompareAutoAlerts
         id: escort.id,
         moved_at: escort.move.date,
         to_type: escort.move.to_type,
-        time_since_moved: time_since_moved(escort),
+        days_since_moved: days_since_moved(escort),
         comparison: comparison(escort, mapped_risks)
       }
     end
 
-    def self.time_since_moved(escort)
+    def self.days_since_moved(escort)
       return nil unless escort.move
-      Date.today - escort.move.date
+      (Date.today - escort.move.date).to_i
     end
 
     def self.comparison(escort, mapped_risks)
