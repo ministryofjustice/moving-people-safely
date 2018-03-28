@@ -15,11 +15,7 @@ module Summary
     def details
       return unless has_dependencies?
       dependency_questions.each_with_object([]) do |dependency, output|
-        if dependency.complex?
-          output << complex_detail_context(dependency)
-        elsif public_send(dependency.name).present?
-          output << detail_content(dependency.name)
-        end
+        output << (dependency.complex? ? complex_detail_context(dependency) : detail_content(dependency.name))
       end.join(' | ')
     end
 
@@ -40,6 +36,8 @@ module Summary
       case value
       when nil
         error_content('Missing')
+      when ''
+        'No date available'
       when 'no', false
         'No'
       when 'yes', true
@@ -51,7 +49,12 @@ module Summary
     end
 
     def detail_content(attribute)
-      [detail_label(attribute), answer_value(public_send(attribute))].join('')
+      label = detail_label(attribute)
+      value = answer_value(public_send(attribute))
+
+      value = 'No date available' if label == 'Last incident: ' && value.blank?
+
+      [label, value].join('')
     end
 
     def complex_detail_context(question)

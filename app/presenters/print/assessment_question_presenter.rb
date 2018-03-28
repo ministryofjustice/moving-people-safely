@@ -32,18 +32,19 @@ module Print
     def details
       return unless has_dependencies?
       dependency_questions.each_with_object([]) do |subquestion, output|
-        if subquestion.complex?
-          output << complex_detail_context(subquestion)
-        elsif public_send(subquestion.name).present?
-          output << detail_content(subquestion.name)
-        end
+        output << (subquestion.complex? ? complex_detail_context(subquestion) : detail_content(subquestion.name))
       end.join(' | ')
     end
 
     private
 
     def detail_content(attribute)
-      [detail_label(attribute), answer_value(public_send(attribute))].join('')
+      label = detail_label(attribute)
+      value = answer_value(public_send(attribute))
+
+      value = 'No date available' if label == 'Last incident: ' && value.blank?
+
+      [label, value].join('')
     end
 
     def complex_detail_context(question)
@@ -65,6 +66,7 @@ module Print
 
     def answer_value(value)
       default_value = value.respond_to?(:humanize) ? value.humanize : value
+      return nil if default_value.blank?
       t(value, scope: [:print, :section, :answers, section_name], default: default_value)
     end
 
