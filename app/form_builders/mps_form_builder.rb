@@ -94,11 +94,11 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
 
   def radio_concertina_option(attribute, label_text, option)
     safe_join([
-      label(attribute, for: "#{option}_toggler", class: 'block-label') do
-        safe_join([
-          radio_button(attribute, option, id: "#{option}_toggler"),
+      content_tag(:div, class: 'multiple-choice') do
+        radio_button(attribute, option, id: "#{option}_toggler") +
+        label(attribute, for: "#{option}_toggler", class: 'block-label') do
           label_text
-        ])
+        end
       end,
       content_tag(:div, class: 'panel panel-border-narrow', data: { toggled_by: "#{option}_toggler" }) do
         yield
