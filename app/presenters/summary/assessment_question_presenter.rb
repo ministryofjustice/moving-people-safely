@@ -81,8 +81,9 @@ module Summary
 
     def answer_value(value)
       return '' if value.blank?
-      default_value = value.respond_to?(:humanize) ? sanitize(value.humanize) : value
-      t(value, scope: [:summary, :section, :answers, section_name], default: default_value)
+      valid_value = value.to_s.gsub(/^\./, '')
+      default_value = valid_value.respond_to?(:humanize) ? sanitize(valid_value.humanize) : valid_value
+      t(valid_value, scope: [:summary, :section, :answers, section_name], default: default_value)
     end
 
     def highlight(text)
