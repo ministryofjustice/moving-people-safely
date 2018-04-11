@@ -10,7 +10,8 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
   def error_messages(options = {})
     title = options.fetch(:title, I18n.t('.errors.summary.title'))
     description = options.fetch(:description, '')
-    GovukElementsErrorsHelper.error_summary(object, title, description, as: object_name)
+    GovukElementsErrorsHelper.error_summary(object, title, description,
+      as: object_name)
   end
 
   def custom_radio_button_fieldset(attribute, options = {})
@@ -43,7 +44,8 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
       safe_join([
         content_tag(:div, class: 'controls-optional-section', data: data) do
           custom_radio_button_fieldset attribute,
-            options.merge(choices: choices, inline: options.fetch(:inline_choices, true))
+            options.merge(choices: choices,
+                          inline: options.fetch(:inline_choices, true))
         end,
         (content_tag(:div, class: style) { yield } if block_given?)
       ])
@@ -80,7 +82,8 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
   def search_text_field(attribute, options = {})
     ActionView::Helpers::Tags::TextField.new(
       object.class.name, attribute, self,
-      { value: object.public_send(attribute), class: 'form-control' }.merge(options)
+      { value: object.public_send(attribute),
+        class: 'form-control' }.merge(options)
     ).render
   end
 
@@ -92,15 +95,11 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     field_without_label ActionView::Helpers::Tags::TextField, attribute, options
   end
 
-  def radio_concertina_option(attribute, label_text, option)
+  def radio_concertina_option(attribute, option)
     safe_join([
-      content_tag(:div, class: 'multiple-choice') do
-        radio_button(attribute, option, id: "#{option}_toggler") +
-        label(attribute, for: "#{option}_toggler", class: 'block-label') do
-          label_text
-        end
-      end,
-      content_tag(:div, class: 'panel panel-border-narrow', data: { toggled_by: "#{option}_toggler" }) do
+      radio_inputs(attribute, choices: [option], id_postfix: '_toggler'),
+      content_tag(:div, class: 'panel panel-border-narrow',
+                        data: { toggled_by: "#{option}_toggler" }) do
         yield
       end
     ])
@@ -111,7 +110,8 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
   def custom_text_field(attribute, options = {})
     ActionView::Helpers::Tags::TextField.new(
       object.class.name, attribute, self,
-      { value: object.public_send(attribute), class: 'form-control' }.merge(options)
+      { value: object.public_send(attribute),
+        class: 'form-control' }.merge(options)
     ).render
   end
 
@@ -139,20 +139,29 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
 
   def radio_inputs(attribute, options)
     choices = options[:choices] || %i[yes no]
+    id_postfix = options[:id_postfix]
+
     choices.map do |choice|
       value = choice.send(options[:value_method] || :to_s)
-      input = radio_button(attribute, value)
-      label = label(attribute, value: value) do
-        text = if options.key? :text_method
-                 choice.send(options[:text_method])
-               else
-                 localized_label("#{attribute}_choices.#{choice}")
-               end
-        text
+      input = radio_button(attribute, choice, radio_options(choice, id_postfix))
+
+      label = label(attribute, label_options(value, choice, id_postfix)) do
+        localized_label("#{attribute}_choices.#{choice}")
       end
+
       content_tag :div, class: 'multiple-choice' do
         input + label
       end
+    end
+  end
+
+  def radio_options(choice, id_postfix)
+    id_postfix ? { id: choice.to_s + id_postfix.to_s } : {}
+  end
+
+  def label_options(value, choice, id_postfix)
+    { value: value }.tap do |options|
+      options.merge!(for: choice.to_s + id_postfix.to_s) if id_postfix
     end
   end
 
@@ -165,7 +174,8 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
       tags <<
         field_type.new(
           object.name, attribute, self,
-          { value: object.public_send(attribute), class: 'form-control' }.merge(options)
+          { value: object.public_send(attribute),
+            class: 'form-control' }.merge(options)
         ).render
       tags.join.html_safe
     end
