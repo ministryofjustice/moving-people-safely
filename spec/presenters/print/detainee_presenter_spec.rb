@@ -138,7 +138,7 @@ RSpec.describe Print::DetaineePresenter, type: :presenter do
         image_location = Rails.application.assets.find_asset("photo_unavailable.png").filename
 
         expect(subject.image).
-          to eq "<img src=\"file:///#{image_location}\" alt=\"Photo unavailable\" />"
+          to eq "<img src=\"file:///#{image_location}\" />"
       end
     end
   end

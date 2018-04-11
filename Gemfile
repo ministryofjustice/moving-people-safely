@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'aws-sdk', '< 3.0' # do not remove version
+gem 'bootsnap', require: false
 gem 'cancancan'
 gem 'connection_pool'
 gem 'countries'
@@ -20,7 +21,7 @@ gem 'paper_trail'
 gem 'paperclip'
 gem 'pg'
 gem 'puma'
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.2'
 gem 'reform', '2.1.0' # do not remove version
 gem 'reform-rails'
 gem 'sass-rails'
