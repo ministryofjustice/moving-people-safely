@@ -14,7 +14,7 @@ div
               - if subquestion.answer_options_values.empty?
                 = mf.text_field subquestion.name.to_sym
               - else
-                = mf.radio_button_fieldset subquestion.name.to_sym,
+                = mf.custom_radio_button_fieldset subquestion.name.to_sym,
                   choices: subquestion.answer_options_values,
                   legend_options: { class: 'form-label' },
                   inline: true

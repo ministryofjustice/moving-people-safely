@@ -14,3 +14,9 @@ textarea.form-control {
 legend {
   max-width: 100%;
 }
+
+.multiple-choice {
+  input {
+    filter: none;
+  }
+}
