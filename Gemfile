@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'aws-sdk', '< 3.0' # do not remove version
+gem 'aws-sdk-s3'
 gem 'bootsnap', require: false
 gem 'cancancan'
 gem 'connection_pool'

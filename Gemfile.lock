@@ -54,13 +54,18 @@ GEM
       io-like (~> 0.3.0)
     arel (9.0.0)
     ast (2.4.0)
-    aws-sdk (2.11.33)
-      aws-sdk-resources (= 2.11.33)
-    aws-sdk-core (2.11.33)
+    aws-partitions (1.80.0)
+    aws-sdk-core (3.19.0)
+      aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.33)
-      aws-sdk-core (= 2.11.33)
+    aws-sdk-kms (1.5.0)
+      aws-sdk-core (~> 3)
+      aws-sigv4 (~> 1.0)
+    aws-sdk-s3 (1.9.0)
+      aws-sdk-core (~> 3)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -416,7 +421,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk (< 3.0)
+  aws-sdk-s3
   better_errors
   binding_of_caller
   bootsnap
@@ -479,4 +484,4 @@ DEPENDENCIES
   zendesk_api
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
