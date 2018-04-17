@@ -17,7 +17,6 @@ gem 'govuk_template'
 gem 'jquery-rails'
 gem 'logstasher'
 gem 'omniauth-oauth2', '~> 1.3.1' # do not remove version
-gem 'paper_trail'
 gem 'paperclip'
 gem 'pg'
 gem 'puma'
