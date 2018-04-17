@@ -57,3 +57,10 @@ Style/FrozenStringLiteralComment:
 
 Layout/IndentArray:
   Enabled: false
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+Security/Open:
+  Exclude:
+    - 'app/controllers/escorts/print_controller.rb'
