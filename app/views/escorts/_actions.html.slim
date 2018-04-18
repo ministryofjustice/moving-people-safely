@@ -5,7 +5,7 @@ ul.actions
   - elsif escort.issued?
     li
       = link_to('Reprint', new_escort_print_path(escort), class: 'button button-print')
-  - if !escort.cancelled? && !escort.expired?
+  - if !escort.cancelled? && !escort.expired? && !current_user.court?
     li
       = link_to('Cancel PER', confirm_cancel_escort_path(escort), class: 'button')
   li.link-return-home
