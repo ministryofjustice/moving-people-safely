@@ -1,15 +1,38 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2018-02
+### Changed
+- Improved Release Status text and easier editing
+- Better defaults for prisoner location if NOMIS API is down
+- Better wording for information on journies
+- Improved wording and usability in gangs section
+- Improved display of alerts in court reciever view
+- All cancelled PERs now appear together at the bottom of the list
+- Improved saved time calculations in Geckobaord reporting
+
+### Added
+- The Personal details sections has added fields:
+  - Preferred language
+  - Dietary requirements
+
+### Fixed
+- Fixed a bug which had stopped logging to Google Analytics
+- Fixed a bug where long ethnicity information was spilling onto other page componens
+- Fixed a bug where long prisoner names were not wrapping correctly in the sidebar
+
+
 ## 2018-01-02
 ### Changed
 - Improved display where a question has multiple parts to the answer to make it more understandable.
 - Improved wording in _Not for release_ section.
 - Header now reads _Create or view a PER_.
 - Improved display and interaction in _Offences_ section.
+- Improved layout of alerts
 
 ### Added
 - Added the wording _No known risks_ to sections with no risks to avoid ambiguity.
+- Information on Single Signon added to healthcare endpoint
 
 ### Fixed
 - No longer lists prisons that have ended in list of prisons in destination section.
