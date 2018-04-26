@@ -41,6 +41,10 @@ section#detainee
     .tile-3
       h6 Diet
       p= detainee.diet
+    - if detainee.peep == 'yes'
+      .tile
+        h6 Personal Emergency Evacuation Plan
+        p= detainee.peep_details
   .tile-3
     h6 Aliases
     p= detainee.aliases

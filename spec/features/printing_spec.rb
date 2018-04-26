@@ -47,6 +47,9 @@ RSpec.feature 'printing a PER', type: :feature do
       ethnicity: 'European',
       cro_number: '56TYY/UU',
       pnc_number: 'YI896668TT',
+      peep: 'yes',
+      peep_details: 'Broken leg',
+      pnc_number: 'YI896668TT',
       offences: offences
     )
   }

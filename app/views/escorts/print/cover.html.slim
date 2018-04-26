@@ -80,6 +80,11 @@ html
               div.grid-column.column-one-third
                 div.title Diet
                 div#age.strong-text = detainee.diet
+            - if detainee.peep == 'yes'
+              div.grid-row.padded
+                div.grid-column.column-full-length
+                  div.title Personal Emergency Evacuation Plan
+                  div.strong-text.language = detainee.peep_details
 
           div.grid-column.column-one-quarter
             div.title Aliases

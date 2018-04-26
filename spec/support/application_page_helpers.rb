@@ -18,7 +18,7 @@ module ApplicationPageHelpers
   end
 
   def move_details
-    @_move_details ||= Page::MoveDetails.new
+    @_move_details ||= Page::Move.new
   end
 
   def escort_page

@@ -19,6 +19,9 @@ en:
         uses_weapons: Have they created or used weapons in custody?
       dependencies:
         dependencies: Do they have any addictions or dependencies that might affect them while they are out of prison?
+      detainee:
+        peep: Do they have a Personal Emergency Evacuation Plan?
+        interpreter_required: Do they require an interpreter?
       discrimination:
         discrimination_to_other_religions: 'Are they a risk to other religions?'
         homophobic: 'Are they a risk to lesbian, gay, bisexual, transgender or transexual (LGBT) people?'
@@ -259,6 +262,7 @@ en:
         dependencies_details: 'Please explain how these issues might affect the journey and how they should be managed:'
       detainee:
         date_of_birth: DD/MM/YYYY
+        peep_details: Give details
       discrimination:
         discrimination_to_other_religions: In NOMIS, check the header section of the prisoner’s record for the Risk to people with religious views alert. Check alert comments and case notes for details.
         discrimination_to_other_religions_details: Give details

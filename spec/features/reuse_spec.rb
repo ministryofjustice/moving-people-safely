@@ -11,6 +11,7 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     stub_nomis_api_request(:get, "/offenders/#{prison_number}/image")
     stub_nomis_api_request(:get, "/offenders/#{prison_number}")
     stub_nomis_api_request(:get, "/offenders/#{prison_number}/charges", body: valid_json)
+    stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts")
     prison = create(:prison, name: 'HMP Bedford', nomis_id: establishment_nomis_id)
 
     move_data = build(:move, date: 1.day.from_now)
