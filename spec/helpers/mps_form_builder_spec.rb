@@ -120,7 +120,7 @@ RSpec.describe MpsFormBuilder do
     let(:html) do
       <<-HTML
         <div class="form-group">
-          <div class="multiple-choice">
+          <div>
             <input name="#{object_name}[my_attribute]" type="hidden" value="0" />
             <input type="checkbox" value="1" name="#{object_name}[my_attribute]" id="#{object_name}_my_attribute" />
             <label for="#{object_name}_my_attribute">My attribute</label>
