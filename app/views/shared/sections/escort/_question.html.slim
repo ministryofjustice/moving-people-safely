@@ -1,0 +1,11 @@
+- if assessment.question_relevant?(question)
+  tr
+    td.question= t("summary.section.questions.#{section}.#{question}")
+    td.answer
+      - if details&.is_a? String
+        b= details.capitalize
+      - elsif details && multiples
+        - details.each do |multiple|
+          = render partial: "#{assessment.class.to_s.downcase.pluralize}/sections/#{partial}", locals: { multiple: multiple }
+      - elsif value.present?
+        b= value.humanize.capitalize

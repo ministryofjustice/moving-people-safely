@@ -1,9 +1,0 @@
-tr.top-dotted
-  td.column-30-percent
-    == section.label
-  td.column-20-percent.indented
-    == section.relevant
-  td.column-50-percent
-    | &nbsp;
-- section.questions.each do |question|
-  = render partial: 'escorts/print/question', locals: { question: question }

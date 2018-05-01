@@ -1,0 +1,12 @@
+tbody
+  tr class="#{alternance} #{question}"
+    td.first-column
+      = t("summary.section.questions.#{section}.#{question}")
+    td.second-column
+      == summary_answer(value)
+    td.third-column
+      - if details.is_a? String
+        = details.capitalize
+      - elsif details && multiples
+        - details.each do |multiple|
+          = render partial: "#{assessment.class.to_s.downcase.pluralize}/sections/#{partial}", locals: { multiple: multiple }

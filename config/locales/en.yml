@@ -60,12 +60,12 @@ en:
       physical:
         physical_issues: Do they have physical health needs that might affect them while they are out of prison?
       return_instructions:
-        must_not_return: Is there any establishment they must not be sent to at the end of this journey?
+        has_must_not_return_details: Is there any establishment they must not be sent to at the end of this journey?
         must_return: Must they return to a specific prison at the end of this journey?
       security:
         category_a: Are they Category A, potential Category A or Restricted Status?
         controlled_unlock: Number of officers required
-        controlled_unlock_required: Are they on a controlled unlock?
+        controlled_unlock: Are they on a controlled unlock?
         high_profile: Are they of high public interest?
         pnc_warnings: PNC warnings
       segregation:
@@ -198,7 +198,7 @@ en:
         actions:
           must_not_return_details:
             add_multiple: Add another establishment
-        must_not_return: "Is there any establishment they must not be sent to at the end of this journey?"
+        has_must_not_return_details: "Is there any establishment they must not be sent to at the end of this journey?"
         must_not_return_details:
           establishment: Establishment name
           establishment_details: 'Give details of why they must not be sent here:'
@@ -207,7 +207,7 @@ en:
         must_return_to_details: Details for returning to a specific prison
       security:
         category_a: Cat A or potential Cat A
-        controlled_unlock_required: Controlled unlock
+        controlled_unlock: Controlled unlock
         controlled_unlock: Number of officers
         controlled_unlock_choices:
           two_officer_unlock: '2 officer unlock'
@@ -223,7 +223,7 @@ en:
         acct_status_choices:
           open: Open
           post_closure: Post Closure
-          closed_in_last_6_months: Closed
+          closed: Closed
           none: No ACCT history
         acct_status_details: Give details of methods and triggers recorded on NOMIS if entered
         date_of_most_recently_closed_acct: Date of most recently closed ACCT
@@ -330,7 +330,7 @@ en:
         suicide_details: Give details
       security:
         category_a: In NOMIS, check the header section of the prisoner’s record for category information.
-        controlled_unlock_required: In NOMIS, check the header section of the prisoner’s record for the Controlled Unlock alert.
+        controlled_unlock: In NOMIS, check the header section of the prisoner’s record for the Controlled Unlock alert.
         controlled_unlock_details: 'Give details of number of officers required and any personal protection equipment (PPE) required:'
         high_profile: In NOMIS, check the header section of the prisoner’s record for the High public interest alert and case notes for details.
         high_profile_details: Give details
@@ -342,7 +342,7 @@ en:
         vulnerable_prisoner: In NOMIS, check the header section of the prisoner’s record for the Rule 46, Rule 49, Victim, Isolated prisoner or Poor Coper alerts. Include any other reasons you think they may be vulnerable (for example, transgender prisoners or young adults in an adult establishment).
         vulnerable_prisoner_details: Give details
       sex_offences:
-        sex_offences_details: Give details of victim group (for example, adult male, adult female or under 18) and the date of the most recent incident if known
+        sex_offence_details: Give details of victim group (for example, adult male, adult female or under 18) and the date of the most recent incident if known
         sex_offence_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and <i>Legal cases > Court cases > Offences</i> for details.'
         date_most_recent_sexual_offence: DD/MM/YYYY
       social:
@@ -435,7 +435,7 @@ en:
           e_list_heightened: E-List-Heightened
           e_list_standard: E-List-Standard
         risk_to_self:
-          closed_in_last_6_months: Closed
+          closed: Closed
         security:
           two_officer_unlock: '2 officer unlock'
           three_officer_unlock: '3 officer unlock'
@@ -492,7 +492,7 @@ en:
           physical_issues: Physical health needs
         return_instructions:
           must_return: Must return to
-          must_not_return: Must not be sent to
+          has_must_not_return_details: Must not be sent to
         risk_to_self:
           acct_status: ACCT status
           date_of_most_recently_closed_acct: 'Closed on '
@@ -500,7 +500,7 @@ en:
           suicide: Risk of suicide or self-harm
         security:
           category_a: Cat A or potential Cat A
-          controlled_unlock_required: Controlled unlock
+          controlled_unlock: Controlled unlock
           high_profile: High public interest
           pnc_warnings: PNC warnings
         segregation:

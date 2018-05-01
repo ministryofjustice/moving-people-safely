@@ -1,0 +1,19 @@
+= content_for :breadcrumbs do
+  - breadcrumbs_for_page root: true do
+    - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
+    - breadcrumb t('healthcare.intro.breadcrumb')
+
+.column-two-thirds
+  h1 = t('healthcare.intro.title')
+
+  - t('healthcare.intro.content').each_line do |paragraph|
+    p = paragraph
+
+  - if t('healthcare.intro.note').present?
+    .panel.panel-border-wide
+      - t('healthcare.intro.note').each_line do |paragraph|
+        p = paragraph
+
+  .form-group
+    p
+      = link_to 'Continue', assessment_wizard_path(assessment), class: 'button'

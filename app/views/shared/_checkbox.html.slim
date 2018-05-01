@@ -1,9 +1,0 @@
-.form-group.js-checkbox-show-hide
-  .controls-optional-checkbox-section
-    = f.custom_check_box_fieldset question.name
-
-  - if question.answer_options_dependencies.any?
-    .optional-checkbox-section-wrapper
-      - question.answer_options_dependencies.each do |dependency|
-        = render partial: "shared/question",
-          locals: { f: f, question: QuestionPresenter.new(dependency) }

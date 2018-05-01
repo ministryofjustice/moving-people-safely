@@ -147,7 +147,7 @@ RSpec.describe Detainees::RiskFetcher do
         self_harm: "no",
         rule_45: "no",
         vulnerable_prisoner: "no",
-        controlled_unlock_required: "no",
+        controlled_unlock: "no",
         high_profile: "no",
         intimidation: "yes",
         intimidation_to_public: false,
@@ -165,7 +165,7 @@ RSpec.describe Detainees::RiskFetcher do
         sex_offence: "no",
         arson: "no",
         must_return: "no",
-        must_not_return: "no",
+        has_must_not_return_details: "no",
         other_risk: "no",
       }.with_indifferent_access
       response = fetcher.call

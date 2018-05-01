@@ -74,7 +74,7 @@ Discrimination against others        Yes
   Risk to other religions            Yes                 Discrimination to other religion details
   Risk to other groups               Yes                 Other violence due to discrimination details
 Escape status/history                Yes
-  Currently on E list                Yes                 E-List-Escort
+  Currently on E list                Yes                 E-list escort
   Escape risk                        Yes                 Escape attempt details
   Escort Risk Assessment             Yes
   needed
@@ -95,7 +95,7 @@ Weapons, drugs or other items        Yes
 Arson                               Yes
  Arsonist                           Yes
 Return Instructions                 Yes
- Must return to                     Yes                  Alcatraz | Some special reason
+ Must return to                     Yes                  Alcatraz | some special reason
  Must not be sent to                Yes                  Alcatraz | Bad bad stuff happens there
                                                          York castle prison | Does not like it
 Other risk information              Yes
@@ -113,7 +113,7 @@ Essential medication                Yes
  Essential medication               Yes                  Xanax | Every 4 hours | By mouth | Daily | Carried by:
                                                          Escort
                                                          Paracetamol | 2 days a week | By mouth | Daily |
-                                                         Carried by: Prisoner
+                                                         Carried by: Detainee
 Dependencies                        Yes
  Dependencies                       Yes                  Dependencies details
 Allergies and intolerances          Yes

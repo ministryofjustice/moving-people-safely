@@ -71,6 +71,10 @@ RSpec.describe EscortCreator, type: :service do
     expect(new_escort.risk.id).not_to eq(existent_escort.risk.id)
     expect(new_escort.risk).to have_attributes(risk_attributes)
     expect(new_escort.risk.status).to eq('needs_review')
+
+    expected_must_not_return_details_attributes = existent_escort.risk.must_not_return_details.map { |m| m.attributes.except(*except_must_not_return_detail_attributes) }
+    must_not_return_details_attributes = new_escort.risk.must_not_return_details.map { |m| m.attributes.except(*except_must_not_return_detail_attributes) }
+    expect(must_not_return_details_attributes).to match_array(expected_must_not_return_details_attributes)
   end
 
   def expect_healthcare_assessment_to_be_cloned(existent_escort, new_escort)
@@ -78,6 +82,10 @@ RSpec.describe EscortCreator, type: :service do
     expect(new_escort.healthcare.id).not_to eq(existent_escort.healthcare.id)
     expect(new_escort.healthcare).to have_attributes(healthcare_attributes)
     expect(new_escort.healthcare.status).to eq('needs_review')
+
+    expected_medications_attributes = existent_escort.healthcare.medications.map { |m| m.attributes.except(*except_medication_attributes) }
+    medications_attributes = new_escort.healthcare.medications.map { |m| m.attributes.except(*except_medication_attributes) }
+    expect(medications_attributes).to match_array(expected_medications_attributes)
   end
 
   def expect_offences_to_be_cloned(existent_escort, new_escort)
@@ -97,7 +105,15 @@ RSpec.describe EscortCreator, type: :service do
   end
 
   def except_assessment_attributes
-    %w(id escort_id created_at updated_at status reviewer_id reviewed_at)
+    %w(id escort_id medications must_not_return_details created_at updated_at status reviewer_id reviewed_at)
+  end
+
+  def except_medication_attributes
+    %w(id healthcare_id)
+  end
+
+  def except_must_not_return_detail_attributes
+    %w(id risk_id)
   end
 
   def except_offences_attributes

@@ -1,6 +1,6 @@
-section id=name.downcase
+section id=model.to_s.downcase
   .header
-    span.section-title= name
+    span.section-title= model
 
     = render partial: 'status',
       locals: { workflow: assessment,
@@ -12,21 +12,15 @@ section id=name.downcase
       p.review
         = t('assessment.confirmed_timestamp', name: assessment.reviewer.full_name, time: assessment.reviewed_at.to_s(:humanized))
 
-  - if assessment&.any_questions_relevant?
+  - if assessment&.relevant_questions&.any?
     table
-      - assessment.sections.each do |section|
-        - section = Summary::AssessmentSectionPresenter.new(section)
-        - section.questions.each do |question|
-          - if question.relevant_answer?
-            - question = Summary::AssessmentQuestionPresenter.new(question)
-            tr
-              td.question= question.label
-              td.answer
-                - if question.details
-                  b== question.details
-                - else
-                  == question.answer
+      - model::SECTIONS.each do |section|
+        = render partial: "#{model.to_s.downcase.pluralize}/sections/#{section}",
+          locals: { views: 'escort',
+                    section: section,
+                    path: nil,
+                    assessment: assessment }
 
   - else
     p.info
-      = t('no_filled_answers', scope: [:assessment, name.downcase], default: 'None known')
+      = t('no_filled_answers', scope: [:assessment, model.to_s.downcase], default: 'None known')

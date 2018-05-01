@@ -12,13 +12,13 @@
   = render partial: 'offences', locals: { offences: escort.offences, workflow: escort.offences_workflow }
 
   = render partial: 'assessment', locals: { assessment: escort.risk,
-                                            name: 'Risk',
+                                            model: Risk,
                                             not_started_path: new_escort_risks_path(escort),
                                             summary_path: escort_risks_path(escort),
                                             section: escort.risk || escort.build_risk }
 
   = render partial: 'assessment', locals: { assessment: escort.healthcare,
-                                            name: 'Healthcare',
+                                            model: Healthcare,
                                             not_started_path: intro_escort_healthcare_path(escort),
                                             summary_path: escort_healthcare_path(escort),
                                             section: escort.healthcare || escort.build_healthcare }

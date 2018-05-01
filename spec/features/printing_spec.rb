@@ -49,7 +49,6 @@ RSpec.feature 'printing a PER', type: :feature do
       pnc_number: 'YI896668TT',
       peep: 'yes',
       peep_details: 'Broken leg',
-      pnc_number: 'YI896668TT',
       offences: offences
     )
   }
@@ -127,7 +126,7 @@ RSpec.feature 'printing a PER', type: :feature do
           discrimination_to_other_religions_details: 'discrimination to other religion details',
           other_violence_due_to_discrimination: 'yes',
           other_violence_due_to_discrimination_details: 'other violence due to discrimination details',
-          controlled_unlock_required: 'yes',
+          controlled_unlock: 'yes',
           controlled_unlock_details: 'many people to hold the prisoner',
           hostage_taker: 'yes',
           hostage_taker_details: 'Takes staff hostages. Most recent: 01/01/1999',
@@ -136,9 +135,9 @@ RSpec.feature 'printing a PER', type: :feature do
           intimidation_prisoners: 'yes',
           intimidation_prisoners_details: 'intimidation to other detainees details',
           sex_offence: 'yes',
-          sex_offences_details: 'Mean to people. Last offence: 01/01/2001',
+          sex_offence_details: 'Mean to people. Last offence: 01/01/2001',
           current_e_risk: 'yes',
-          current_e_risk_details: 'e_list_escort',
+          current_e_risk_details: 'E-List escort',
           previous_escape_attempts: 'yes',
           previous_escape_attempts_details: 'escape attempt details',
           category_a: 'yes',
@@ -157,7 +156,7 @@ RSpec.feature 'printing a PER', type: :feature do
           must_return: 'yes',
           must_return_to: 'Alcatraz',
           must_return_to_details: 'Some special reason',
-          must_not_return: 'yes',
+          has_must_not_return_details: 'yes',
           must_not_return_details: must_not_return_details,
           other_risk: 'yes',
           other_risk_details: 'suspected terrorist',

@@ -1,0 +1,9 @@
+- questions = %w[allergies]
+
+- unless views == 'escort'
+  = render partial: "shared/sections/#{views}/section",
+    locals: { assessment: assessment, path: path, section: section, questions: questions }
+
+= render partial: "shared/sections/#{views}/question",
+  locals: { alternance: 'even', assessment: assessment, section: section, question: 'allergies',
+            value: assessment.allergies, details: assessment.allergies_details }

@@ -1,0 +1,36 @@
+.medication.multiple
+  = f.radio_toggle :has_medications, legend_options: { class: 'form-label-assessment' } do
+    #medications
+    #error_needs_medications
+    = f.fields_for :medications do |mf|
+      .multiple-wrapper
+        hr
+        .grid-row
+          .column-two-thirds
+            h2 Medication
+            = mf.hidden_field :id
+            .multiple-field
+              = mf.text_field :description
+            .multiple-field
+              = mf.text_field :administration
+            .multiple-field
+              = mf.text_field :dosage
+            .multiple-field
+              = mf.text_field :when_given
+            .multiple-field
+              = mf.radio_button_fieldset :carrier,
+                choices: %w[escort prisoner],
+                legend_options: { class: 'form-label' },
+                inline: true
+          - if f.object.medications.size > 1
+            .column-one-third
+              .remove-link
+                .form-group
+                  = mf.label :_delete, 'Remove'
+                  = mf.check_box :_delete
+
+    .multiple-add.form-group
+      hr
+      = f.button 'Add another medicine',
+        class: 'js-anchor-focus button button-add-another-vertical',
+        name: "needs_add_medication"

@@ -36,7 +36,7 @@ module Page
     end
 
     def fill_in_security
-      fill_in_controlled_unlock_required
+      fill_in_controlled_unlock
       fill_in_category_a
       fill_in_optional_details('Are they of high public interest?', @risk, :high_profile)
       fill_in_optional_details('PNC warnings', @risk, :pnc_warnings)
@@ -123,13 +123,13 @@ module Page
 
     private
 
-    def fill_in_controlled_unlock_required
-      if @risk.controlled_unlock_required == 'yes'
-        choose 'security_controlled_unlock_required_yes'
+    def fill_in_controlled_unlock
+      if @risk.controlled_unlock == 'yes'
+        choose 'security_controlled_unlock_yes'
         choose 'security_controlled_unlock_more_than_four'
         fill_in 'security_controlled_unlock_details', with: @risk.controlled_unlock_details
       else
-        choose 'security_controlled_unlock_required_no'
+        choose 'security_controlled_unlock_no'
       end
     end
 
@@ -252,14 +252,14 @@ module Page
     end
 
     def fill_in_must_not_return
-      if @risk.must_not_return == 'yes'
-        choose 'return_instructions_must_not_return_yes'
+      if @risk.has_must_not_return_details == 'yes'
+        choose 'return_instructions_has_must_not_return_details_yes'
         @risk.must_not_return_details.each_with_index do |detail, i|
           add_must_not_return_detail unless i == 0
           fill_in_must_not_return_detail(detail, i)
         end
       else
-        choose 'return_instructions_must_not_return_no'
+        choose 'return_instructions_has_must_not_return_details_no'
       end
     end
 

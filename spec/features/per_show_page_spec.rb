@@ -64,7 +64,7 @@ RSpec.feature 'PER show page', type: :feature do
 
         context 'when detainee has ACCT status as closed in last 6 months' do
           let(:date) { Date.yesterday }
-          let(:risk) { Risk.new(acct_status: 'closed_in_last_6_months', date_of_most_recently_closed_acct: date) }
+          let(:risk) { Risk.new(acct_status: 'closed', date_of_most_recently_closed_acct: date) }
 
           scenario 'associated alert is displayed as inactive' do
             escort_page.confirm_alert_as_inactive(:acct_status)
