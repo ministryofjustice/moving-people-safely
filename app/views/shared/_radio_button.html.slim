@@ -13,4 +13,5 @@
   .form-group
     = f.custom_radio_button_fieldset question.name.to_sym,
       choices: question.answer_options_values,
-      inline: question.display_inline?
+      inline: question.display_inline?,
+      legend_options: {class: 'form-label'}

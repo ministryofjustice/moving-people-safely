@@ -29,7 +29,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
 
   def custom_check_box_fieldset(attribute)
     content_tag :div, class: 'form-group' do
-      content_tag :div, class: 'multiple-choice' do
+      content_tag :div do
         check_box(attribute) +
           label(attribute) { localized_label(attribute) }
       end
