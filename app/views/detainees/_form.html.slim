@@ -33,9 +33,10 @@
       = f.text_field :cro_number
       = f.text_area  :aliases
       = f.text_field :language
-      .form-group
+      #interpreter_required.form-group
         = f.radio_button_fieldset :interpreter_required,
           inline: true
+      #peep= f.radio_toggle_with_textarea :peep
       = f.text_field :diet
 
       .form-actions

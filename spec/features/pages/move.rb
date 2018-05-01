@@ -1,14 +1,9 @@
 module Page
-  class MoveDetails < Base
+  class Move < Base
     def complete_form(move, options = {})
       fill_in_destination_details(move)
       fill_in 'Date', with: move.date
       fill_in_not_for_release_details(move)
-      save_and_continue
-    end
-
-    def complete_date_field(date)
-      fill_in 'Date', with: date
       save_and_continue
     end
 

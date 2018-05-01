@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_17_131721) do
+ActiveRecord::Schema.define(version: 2018_04_24_134244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 2018_04_17_131721) do
     t.string "language"
     t.string "interpreter_required"
     t.string "diet"
+    t.string "peep"
+    t.text "peep_details"
     t.index ["escort_id"], name: "index_detainees_on_escort_id"
     t.index ["prison_number"], name: "index_detainees_on_prison_number"
   end

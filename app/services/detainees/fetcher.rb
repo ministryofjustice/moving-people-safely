@@ -7,8 +7,9 @@ module Detainees
     end
 
     def call
-      fetch_details if fetch_details?
-      fetch_image if fetch_image? && !has_detainee_not_found_error?
+      fetch_details
+      fetch_image unless has_detainee_not_found_error?
+      fetch_peep unless has_detainee_not_found_error?
       Response.new(remote_attrs, errors)
     end
 
@@ -37,18 +38,6 @@ module Detainees
 
     attr_reader :prison_number, :options, :errors
 
-    def pull_data
-      options.fetch(:pull, :all).to_sym
-    end
-
-    def fetch_details?
-      pull_data == :all || pull_data == :details
-    end
-
-    def fetch_image?
-      pull_data == :all || pull_data == :image
-    end
-
     def details_attrs
       @details_attrs ||= {}
     end
@@ -57,8 +46,12 @@ module Detainees
       @image_attrs ||= {}
     end
 
+    def peep_attrs
+      @peep_attrs ||= {}
+    end
+
     def remote_attrs
-      details_attrs.merge(image_attrs)
+      details_attrs.merge(image_attrs).merge(peep_attrs)
     end
 
     def fetch_details
@@ -80,6 +73,17 @@ module Detainees
         @errors << error_message_for(:image, response.error)
       else
         @image_attrs = response.to_h
+      end
+    end
+
+    def fetch_peep
+      response = PeepFetcher.new(prison_number).call
+
+      if response.error
+        @peep_attrs = {}
+        @errors << error_message_for(:peep, response.error)
+      else
+        @peep_attrs = response.to_h
       end
     end
 
