@@ -48,7 +48,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # enable logstasher, so our config is at least executed in test.
-  config.logstasher.enabled = true
+  config.logstasher.enabled = false
   config.logstasher.logger_path = '/dev/null'
 
   require 'sso/stub_app'

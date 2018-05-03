@@ -12,7 +12,8 @@ FactoryBot.define do
     high_profile 'no'
     pnc_warnings 'no'
 
-    intimidation 'no'
+    intimidation_public 'no'
+    intimidation_prisoners 'no'
     gang_member 'no'
 
     violence_to_staff 'no'

@@ -294,21 +294,6 @@ assessment:
                 value: 'yes'
                 questions:
                   -
-                    name: controlled_unlock
-                    type: string
-                    validators:
-                      -
-                        name: 'Assessments::InclusionValidator'
-                    answers:
-                      -
-                        value: two_officer_unlock
-                      -
-                        value: three_officer_unlock
-                      -
-                        value: four_officer_unlock
-                      -
-                        value: more_than_four
-                  -
                     name: controlled_unlock_details
                     type: string
                     validators:
@@ -367,7 +352,7 @@ assessment:
       harassment_and_gangs:
         questions:
           -
-            name: intimidation
+            name: intimidation_public
             type: string
             validators:
               -
@@ -377,59 +362,29 @@ assessment:
                 value: 'yes'
                 questions:
                   -
-                    name: intimidation_type
-                    type: group
+                    name: intimidation_public_details
+                    type: string
                     validators:
                       -
-                        name: 'Assessments::GroupValidator'
-                        options:
-                          at_least: true
-                    questions:
+                        name: 'Assessments::PresenceValidator'
+              -
+                value: 'no'
+          -
+            name: intimidation_prisoners
+            type: string
+            validators:
+              -
+                name: 'Assessments::InclusionValidator'
+            answers:
+              -
+                value: 'yes'
+                questions:
+                  -
+                    name: intimidation_prisoners_details
+                    type: string
+                    validators:
                       -
-                        name: intimidation_to_public
-                        type: boolean
-                        answers:
-                          -
-                            value: false
-                          -
-                            value: true
-                            questions:
-                              -
-                                name: intimidation_to_public_details
-                                type: string
-                                validators:
-                                  -
-                                    name: 'Assessments::PresenceValidator'
-                      -
-                        name: intimidation_to_other_detainees
-                        type: boolean
-                        answers:
-                          -
-                            value: false
-                          -
-                            value: true
-                            questions:
-                              -
-                                name: intimidation_to_other_detainees_details
-                                type: string
-                                validators:
-                                  -
-                                    name: 'Assessments::PresenceValidator'
-                      -
-                        name: intimidation_to_witnesses
-                        type: boolean
-                        answers:
-                          -
-                            value: false
-                          -
-                            value: true
-                            questions:
-                              -
-                                name: intimidation_to_witnesses_details
-                                type: string
-                                validators:
-                                  -
-                                    name: 'Assessments::PresenceValidator'
+                        name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
           -
@@ -577,14 +532,7 @@ assessment:
                     type: string
                     validators:
                       -
-                        name: 'Assessments::InclusionValidator'
-                    answers:
-                      -
-                        value: e_list_standard
-                      -
-                        value: e_list_escort
-                      -
-                        value: e_list_heightened
+                        name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
           -
@@ -640,50 +588,11 @@ assessment:
                 value: 'yes'
                 questions:
                   -
-                    name: hostage_taker_type
-                    type: group
+                    name: hostage_taker_details
+                    type: string
                     validators:
                       -
-                        name: 'Assessments::GroupValidator'
-                        options:
-                          at_least: true
-                    questions:
-                      -
-                        name: staff_hostage_taker
-                        type: boolean
-                        answers:
-                          -
-                            value: false
-                          -
-                            value: true
-                            questions:
-                              -
-                                name: date_most_recent_staff_hostage_taker_incident
-                                type: string
-                      -
-                        name: prisoners_hostage_taker
-                        type: boolean
-                        answers:
-                          -
-                            value: false
-                          -
-                            value: true
-                            questions:
-                              -
-                                name: date_most_recent_prisoners_hostage_taker_incident
-                                type: string
-                      -
-                        name: public_hostage_taker
-                        type: boolean
-                        answers:
-                          -
-                            value: false
-                          -
-                            value: true
-                            questions:
-                              -
-                                name: date_most_recent_public_hostage_taker_incident
-                                type: string
+                        name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
       sex_offences:
@@ -699,26 +608,11 @@ assessment:
                 value: 'yes'
                 questions:
                   -
-                    name: sex_offence_type
-                    type: group
+                    name: sex_offences_details
+                    type: string
                     validators:
                       -
-                        name: 'Assessments::GroupValidator'
-                        options:
-                          at_least: true
-                    questions:
-                      -
-                        name: sex_offence_adult_male_victim
-                        type: boolean
-                      -
-                        name: sex_offence_adult_female_victim
-                        type: boolean
-                      -
-                        name: sex_offence_under18_victim
-                        type: boolean
-                  -
-                    name: date_most_recent_sexual_offence
-                    type: string
+                        name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
       concealed_weapons:

@@ -38,8 +38,8 @@ en:
         previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
       harassment_and_gangs:
         gang_member: Are they a gang member or involved in organised crime?
-        intimidation: Are they a known harasser, intimidator or bully?
-        intimidation_type: 'Targets (select all that apply):'
+        intimidation_public: Are they a known public harasser or witness intimidator?
+        intimidation_prisoners: Do they bully or intimidate other prisoners?
       hostage_taker:
         hostage_taker: Do they have a history of taking hostages?
         hostage_taker_type: 'Group involved (select all that apply):'
@@ -278,6 +278,7 @@ en:
         violence_to_staff_details: Give details
       escape:
         current_e_risk: Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the E-List alert. Check alert comments and case notes for details.
+        current_e_risk_details: Give details of the E-List category (standard, heightened or escort) if known
         previous_escape_attempts_html: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the Escape Risk alert. Check alert comments and case notes for details.'
         previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
       forms_feedback:
@@ -288,15 +289,15 @@ en:
       harassment_and_gangs:
         gang_member_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and <i>Security > Non-association</i> for known risks to named prisoners.'
         gang_member_details: Give details
-        intimidation_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and <i>Security > Non-association</i> for known risks to named prisoners.'
-        intimidation_to_public_details: Give details, including any relevant court orders
-        intimidation_to_other_detainees_details: Give details, including any relevant court orders
-        intimidation_to_witnesses_details: Give details, including any relevant court orders
+        intimidation_public_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details.'
+        intimidation_prisoners_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and <i>Security > Non-association</i> for known risks to named prisoners.'
+        intimidation_public_details: Give details of targets, including any relevant court orders
+        intimidation_prisoners_details: Give details of targets, including any relevant court orders
       hostage_taker:
         date_most_recent_staff_hostage_taker_incident: DD/MM/YYYY
         date_most_recent_prisoners_hostage_taker_incident: DD/MM/YYYY
         date_most_recent_public_hostage_taker_incident: DD/MM/YYYY
-        hostage_taker: In NOMIS, check the header section of the prisoner’s record for the Hostage taker alert. Check alert comments, case notes and adjudications for details.
+        hostage_taker_details: Give details of people involved (for example, public, staff or prisoners) and the date of the most recent incident if known
       move:
         date: DD/MM/YYYY
         not_for_release: In NOMIS, check the header section of the prisoner’s record for the Not For Release alert.
@@ -330,7 +331,7 @@ en:
       security:
         category_a: In NOMIS, check the header section of the prisoner’s record for category information.
         controlled_unlock_required: In NOMIS, check the header section of the prisoner’s record for the Controlled Unlock alert.
-        controlled_unlock_details: 'Give details of personal protection equipment (PPE) required:'
+        controlled_unlock_details: 'Give details of number of officers required and any personal protection equipment (PPE) required:'
         high_profile: In NOMIS, check the header section of the prisoner’s record for the High public interest alert and case notes for details.
         high_profile_details: Give details
         pnc_warnings: Do they have PNC warnings that you think are relevant to risk on this journey?
@@ -341,6 +342,7 @@ en:
         vulnerable_prisoner: In NOMIS, check the header section of the prisoner’s record for the Rule 46, Rule 49, Victim, Isolated prisoner or Poor Coper alerts. Include any other reasons you think they may be vulnerable (for example, transgender prisoners or young adults in an adult establishment).
         vulnerable_prisoner_details: Give details
       sex_offences:
+        sex_offences_details: Give details of victim group (for example, adult male, adult female or under 18) and the date of the most recent incident if known
         sex_offence_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and <i>Legal cases > Court cases > Offences</i> for details.'
         date_most_recent_sexual_offence: DD/MM/YYYY
       social:

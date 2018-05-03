@@ -39,7 +39,7 @@ About this Person Escort Record
 This ePER was produced by the Ministry of Justice ePER service, currently in pilot at HMP
 Bedford. This ePER is approved by HMPPS - please treat it as a fully valid and official record.
 Please send any feedback or questions to: eper@digital.justice.gov.uk
-W1234BY: McTest Testy                                                                               Page 1 of 3
+W1234BY: McTest Testy                                                                               Page 1 of 2
 
  Not for release ✘ No                  Escape risk ✔                            ACCT ✔
                                                                              Open
@@ -58,14 +58,13 @@ Segregation                          Yes
   Rule 45                            Yes
   Vulnerable prisoner                Yes                 Vulnerable prisoner details
 Security                             Yes
-  Controlled unlock                  Yes                 More than 4 officers | Many people to hold the prisoner
+  Controlled unlock                  Yes                 Many people to hold the prisoner
   Cat A or potential Cat A           Yes
   High public interest               Yes                 High profile details
   PNC warnings                       Yes                 Pnc warning details
 Harassment and gangs                 Yes
-  Public harasser                    Yes                 Intimidation to public details
-  Prisoners harasser                 Yes                 Intimidation to other detainees details
-  Witnesses harasser                 Yes                 Intimidation to witnesses details
+  Intimidation Public                Yes                 Intimidation to public details
+  Intimidation Prisoners             Yes                 Intimidation to other detainees details
   Gang member                        Yes                 Violence gang member details
 Discrimination against others        Yes
   Violent to staff                   Yes                 Violent to staff details
@@ -81,61 +80,52 @@ Escape status/history                Yes
   needed
   Escape Pack needed                 Yes
 Hostage taker                        Yes
-  Staff hostage taker                Yes                 Last incident: 12/03/2010
-  Prisoner hostage taker             Yes                 Last incident: 24/05/2012
-  Public hostage taker               Yes                 Last incident: 02/09/2007
-W1234BY: McTest Testy                                                                            Page 2 of 3
+  Hostage Taker                      Yes                 Takes staff hostages. most recent: 01/01/1999
+Sex offender                         Yes
+  Sex offender                       Yes                 Mean to people. last offence: 01/01/2001
+Weapons, drugs or other items        Yes
+W1234BY: McTest Testy                                                                             Page 2 of 2
 
-Sex offender                       Yes
- Sex offender victim adult         Yes
- male
- Sex offender victim adult         Yes
- female
- Sex offender victim under 18      Yes
- Most recent sex offence           12/10/2008
-Weapons, drugs or other items      Yes
- Creates or uses weapons           Yes                  Created and used a 3d gun
- Conceals weapons                  Yes                  Conceals weapons details
- Conceals drugs                    Yes                  Conceals drugs details
- Conceals mobile phones            Yes
- Conceals SIM cards                Yes
- Conceals other items              Yes                  Conceals other items details
- Drug trafficking risk             Yes
-Arson                              Yes
- Arsonist                          Yes
-Return Instructions                Yes
- Must return to                    Yes                  Alcatraz | Some special reason
- Must not be sent to               Yes                  Alcatraz | Bad bad stuff happens there
-                                                        York castle prison | Does not like it
-Other risk information             Yes
- Other risk information            Yes                  Suspected terrorist
+ Creates or uses weapons            Yes                  Created and used a 3d gun
+ Conceals weapons                   Yes                  Conceals weapons details
+ Conceals drugs                     Yes                  Conceals drugs details
+ Conceals mobile phones             Yes
+ Conceals SIM cards                 Yes
+ Conceals other items               Yes                  Conceals other items details
+ Drug trafficking risk              Yes
+Arson                               Yes
+ Arsonist                           Yes
+Return Instructions                 Yes
+ Must return to                     Yes                  Alcatraz | Some special reason
+ Must not be sent to                Yes                  Alcatraz | Bad bad stuff happens there
+                                                         York castle prison | Does not like it
+Other risk information              Yes
+ Other risk information             Yes                  Suspected terrorist
 
-HEALTHCARE               Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
+HEALTHCARE                Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
 
-Physical health issues             Yes
- Physical health needs             Yes                  Physical issues details
-Mental health issues               Yes
- Mental health issues              Yes                  Mental illness details
-Special vehicles                   Yes
- Special vehicle required          Yes                  Mpv details
-Essential medication               Yes
- Essential medication              Yes                  Xanax | Every 4 hours | By mouth | Daily | Carried by:
-                                                        Escort
-                                                        Paracetamol | 2 days a week | By mouth | Daily |
-                                                        Carried by: Prisoner
-Dependencies                       Yes
- Dependencies                      Yes                  Dependencies details
-Allergies and intolerances         Yes
- Allergies and intolerances        Yes                  Allergies details
-Personal care                      Yes
- Personal care issues              Yes                  Personal care details
-W1234BY: McTest Testy                                                            Page 3 of 3
+Physical health issues              Yes
+ Physical health needs              Yes                  Physical issues details
+Mental health issues                Yes
+ Mental health issues               Yes                  Mental illness details
+Special vehicles                    Yes
+ Special vehicle required           Yes                  Mpv details
+Essential medication                Yes
+ Essential medication               Yes                  Xanax | Every 4 hours | By mouth | Daily | Carried by:
+                                                         Escort
+                                                         Paracetamol | 2 days a week | By mouth | Daily |
+                                                         Carried by: Prisoner
+Dependencies                        Yes
+ Dependencies                       Yes                  Dependencies details
+Allergies and intolerances          Yes
+ Allergies and intolerances         Yes                  Allergies details
 
-
-Medical contact details   Yes
- Medical contact          1-131-999-0232
+Personal care                       Yes
+ Personal care issues               Yes                  Personal care details
+Medical contact details             Yes
+ Medical contact                    1-131-999-0232
 
 OFFENCES
-Current offences          Yes              Burglary (LXAHTGNJQF) | Sex offence
-                                           (QDPREIBMSF)
+Current offences                    Yes                  Burglary (LXAHTGNJQF) | Sex offence
+                                                         (QDPREIBMSF)
 

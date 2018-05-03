@@ -155,13 +155,17 @@ module Page
     end
 
     def fill_in_intimidation
-      if @risk.intimidation == 'yes'
-        choose 'harassment_and_gangs_intimidation_yes'
-        fill_in_checkbox_with_details('Public', @risk, :intimidation_to_public)
-        fill_in_checkbox_with_details('Prisoners', @risk, :intimidation_to_other_detainees)
-        fill_in_checkbox_with_details('Witnesses', @risk, :intimidation_to_witnesses)
+      if @risk.intimidation_public == 'yes'
+        choose 'harassment_and_gangs_intimidation_public_yes'
+        fill_in 'harassment_and_gangs_intimidation_public_details', with: @risk.intimidation_public_details
       else
-        choose 'harassment_and_gangs_intimidation_no'
+        choose 'harassment_and_gangs_intimidation_public_no'
+      end
+      if @risk.intimidation_public == 'yes'
+        choose 'harassment_and_gangs_intimidation_prisoners_yes'
+        fill_in 'harassment_and_gangs_intimidation_prisoners_details', with: @risk.intimidation_prisoners_details
+      else
+        choose 'harassment_and_gangs_intimidation_prisoners_no'
       end
     end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_24_134244) do
+ActiveRecord::Schema.define(version: 2018_05_07_073324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,20 +160,7 @@ ActiveRecord::Schema.define(version: 2018_04_24_134244) do
     t.string "violence_to_staff"
     t.string "gang_member"
     t.text "gang_member_details"
-    t.text "intimidation"
-    t.boolean "intimidation_to_public"
-    t.text "intimidation_to_public_details"
-    t.boolean "intimidation_to_other_detainees"
-    t.text "intimidation_to_other_detainees_details"
-    t.boolean "intimidation_to_witnesses"
-    t.text "intimidation_to_witnesses_details"
     t.string "hostage_taker"
-    t.boolean "staff_hostage_taker"
-    t.boolean "prisoners_hostage_taker"
-    t.boolean "public_hostage_taker"
-    t.boolean "sex_offence_adult_male_victim"
-    t.boolean "sex_offence_adult_female_victim"
-    t.boolean "sex_offence_under18_victim"
     t.string "previous_escape_attempts"
     t.boolean "prison_escape_attempt"
     t.text "prison_escape_attempt_details"
@@ -193,7 +180,6 @@ ActiveRecord::Schema.define(version: 2018_04_24_134244) do
     t.boolean "conceals_other_items"
     t.text "conceals_other_items_details"
     t.string "controlled_unlock_required"
-    t.string "controlled_unlock"
     t.text "controlled_unlock_details"
     t.string "other_risk"
     t.text "other_risk_details"
@@ -214,14 +200,16 @@ ActiveRecord::Schema.define(version: 2018_04_24_134244) do
     t.text "previous_escape_attempts_details"
     t.string "self_harm"
     t.text "self_harm_details"
-    t.string "date_most_recent_sexual_offence"
     t.string "vulnerable_prisoner"
     t.text "vulnerable_prisoner_details"
     t.string "pnc_warnings"
     t.text "pnc_warnings_details"
-    t.string "date_most_recent_staff_hostage_taker_incident"
-    t.string "date_most_recent_prisoners_hostage_taker_incident"
-    t.string "date_most_recent_public_hostage_taker_incident"
+    t.string "intimidation_prisoners"
+    t.text "intimidation_prisoners_details"
+    t.string "intimidation_public"
+    t.text "intimidation_public_details"
+    t.text "hostage_taker_details"
+    t.text "sex_offences_details"
     t.index ["escort_id"], name: "index_risks_on_escort_id"
   end
 
