@@ -33,8 +33,8 @@ module Page
     end
 
     def check_intimidation(risk)
-      fields = %w[intimidation_to_public intimidation_to_other_detainees intimidation_to_witnesses]
-      if risk.intimidation == 'yes'
+      fields = %w[intimidation_public intimidation_prisoners]
+      if risk.intimidation_public == 'yes' || risk.intimidation_prisoners == 'yes'
         check_section(risk, 'harassment_and_gangs', fields)
       else
         check_section_is_all_no(risk, 'harassment_and_gangs', fields)
@@ -43,26 +43,19 @@ module Page
 
     def check_controlled_unlock_required(risk)
       if risk.controlled_unlock_required == 'yes'
-        check_section(risk, 'controlled_unlock', %w[two_officer_unlock three_officer_unlock four_officer_unlock more_than_four])
+        check_section(risk, 'security', %w[controlled_unlock])
       end
     end
 
     def check_hostage_taker_section(risk)
-      fields = %w[staff_hostage_taker prisoners_hostage_taker public_hostage_taker]
       if risk.hostage_taker == 'yes'
-        check_section(risk, 'hostage_taker', fields)
-      else
-        check_section_is_all_no(risk, 'hostage_taker', fields)
+        check_section(risk, 'hostage_taker', %w[hostage_taker])
       end
     end
 
     def check_sex_offences_section(risk)
-      fields = %w[sex_offence_adult_male_victim sex_offence_adult_female_victim
-                  sex_offence_under18_victim]
       if risk.sex_offence == 'yes'
-        check_section(risk, 'sex_offences', fields)
-      else
-        check_section_is_all_no(risk, 'sex_offences', fields)
+        check_section(risk, 'sex_offences', %w[sex_offences])
       end
     end
 
@@ -83,12 +76,8 @@ module Page
     end
 
     def check_conceals_mobile_phone_or_other_items(risk)
-      fields = %w[conceals_mobile_phones conceals_sim_cards
-                  conceals_other_items]
       if risk.conceals_mobile_phone_or_other_items == 'yes'
-        check_section(risk, 'concealed_weapons', fields)
-      else
-        check_section_is_all_no(risk, 'concealed_weapons', fields)
+        check_section(risk, 'concealed_weapons', %w[conceals_mobile_phone_or_other_items])
       end
     end
 
