@@ -89,9 +89,8 @@ Weapons, drugs or other items        Yes
  Creates or uses weapons            Yes                  Created and used a 3d gun
  Conceals weapons                   Yes                  Conceals weapons details
  Conceals drugs                     Yes                  Conceals drugs details
- Conceals mobile phones             Yes
- Conceals SIM cards                 Yes
- Conceals other items               Yes                  Conceals other items details
+ Conceals Mobile Phone Or           Yes                  Conceals other items details
+ Other Items
  Drug trafficking risk              Yes
 Arson                               Yes
  Arsonist                           Yes
@@ -119,8 +118,8 @@ Dependencies                        Yes
  Dependencies                       Yes                  Dependencies details
 Allergies and intolerances          Yes
  Allergies and intolerances         Yes                  Allergies details
-
 Personal care                       Yes
+
  Personal care issues               Yes                  Personal care details
 Medical contact details             Yes
  Medical contact                    1-131-999-0232

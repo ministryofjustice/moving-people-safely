@@ -682,35 +682,11 @@ assessment:
                 value: 'yes'
                 questions:
                   -
-                    name: conceals_mobile_phone_or_other_items_type
-                    type: group
+                    name: conceals_mobile_phone_or_other_items_details
+                    type: string
                     validators:
                       -
-                        name: 'Assessments::GroupValidator'
-                        options:
-                          at_least: true
-                    questions:
-                      -
-                        name: conceals_mobile_phones
-                        type: boolean
-                      -
-                        name: conceals_sim_cards
-                        type: boolean
-                      -
-                        name: conceals_other_items
-                        type: boolean
-                        answers:
-                          -
-                            value: false
-                          -
-                            value: true
-                            questions:
-                              -
-                                name: conceals_other_items_details
-                                type: string
-                                validators:
-                                  -
-                                    name: 'Assessments::PresenceValidator'
+                        name: 'Assessments::PresenceValidator'
               -
                 value: 'no'
           -

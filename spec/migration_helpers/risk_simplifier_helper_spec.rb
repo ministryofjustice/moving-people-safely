@@ -537,4 +537,156 @@ RSpec.describe RiskSimplifierHelper do
       end
     end
   end
+
+  describe '.simplify_conceals_mobile_phones' do
+    subject { TestClass.new.simplify_conceals_mobile_phones(risk) }
+
+    let(:risk) do
+      double('Risk',
+             conceals_mobile_phone_or_other_items: conceals,
+             conceals_mobile_phones: mobile_phones,
+             conceals_sim_cards: sim_cards,
+             conceals_other_items: other_items,
+             conceals_other_items_details: other_items_details
+            )
+    end
+
+    # Default not conceals. Override in examples.
+    let(:conceals) { 'no' }
+    let(:mobile_phones) { false }
+    let(:sim_cards) { false }
+    let(:other_items) { false }
+    let(:other_items_details) { nil }
+
+    context 'does not conceal' do
+      it 'returns nil' do
+        expect(subject).to eq(nil)
+      end
+    end
+
+    context 'conceals' do
+      let(:conceals) { 'yes' }
+
+      context 'just mobile phones' do
+        let(:mobile_phones) { true }
+
+        it 'Parses details' do
+          expect(subject).to eq(
+            {
+              conceals_mobile_phone_or_other_items_details: 'Conceals mobile phones'
+            }
+          )
+        end
+      end
+
+      context 'just SIM cards' do
+        let(:sim_cards) { true }
+
+        it 'Parses details' do
+          expect(subject).to eq(
+            {
+              conceals_mobile_phone_or_other_items_details: 'Conceals SIM cards'
+            }
+          )
+        end
+      end
+
+      context 'just other items' do
+        let(:other_items) { true }
+        let(:other_items_details) { 'Hid an elephant' }
+
+        it 'Parses details' do
+          expect(subject).to eq(
+            {
+              conceals_mobile_phone_or_other_items_details: 'Conceals other items: Hid an elephant'
+            }
+          )
+        end
+      end
+
+      context 'SIM cards & other items' do
+        let(:sim_cards) { true }
+        let(:other_items) { true }
+        let(:other_items_details) { 'Hid an elephant' }
+
+        it 'Parses details' do
+          expect(subject).to eq(
+            {
+              conceals_mobile_phone_or_other_items_details: 'Conceals SIM cards | Conceals other items: Hid an elephant'
+            }
+          )
+        end
+      end
+    end
+  end
+
+  describe '.complexify_conceals_mobile_phones' do
+    subject { TestClass.new.complexify_conceals_mobile_phones(risk) }
+
+    let(:risk) do
+      double('Risk',
+             conceals_mobile_phone_or_other_items: conceals,
+             conceals_mobile_phone_or_other_items_details: details
+            )
+    end
+
+    # Default does not conceal. Override in examples.
+    let(:conceals) { 'no' }
+    let(:details) { nil }
+
+    context 'no intimidation' do
+      it 'returns nil' do
+        expect(subject).to eq(nil)
+      end
+    end
+
+    context 'intimidation' do
+      let(:conceals) { 'yes' }
+
+      context 'just mobile phones' do
+        let(:details) { 'Conceals mobile phones' }
+
+        it 'Parses details into correct boolean' do
+          expect(subject).to eq(
+            {
+              conceals_mobile_phones: true,
+              conceals_sim_cards: false,
+              conceals_other_items: false,
+              conceals_other_items_details: nil
+            }
+          )
+        end
+      end
+
+      context 'just SIM cards' do
+        let(:details) { 'Conceals SIM cards' }
+
+        it 'Parses details into correct boolean' do
+          expect(subject).to eq(
+            {
+              conceals_mobile_phones: false,
+              conceals_sim_cards: true,
+              conceals_other_items: false,
+              conceals_other_items_details: nil
+            }
+          )
+        end
+      end
+
+      context 'just other items' do
+        let(:details) { 'Conceals other items: Hid an aardvark' }
+
+        it 'Parses details into correct boolean and details' do
+          expect(subject).to eq(
+            {
+              conceals_mobile_phones: false,
+              conceals_sim_cards: false,
+              conceals_other_items: true,
+              conceals_other_items_details: 'Hid an aardvark'
+            }
+          )
+        end
+      end
+    end
+  end
 end

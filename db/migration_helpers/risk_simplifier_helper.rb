@@ -203,4 +203,51 @@ module RiskSimplifierHelper
       date_most_recent_sexual_offence: last_date
     }
   end
+
+  # Conceals mobile phones or other items
+  CONCEALS_MOBILE_PHONES_TEXT = 'Conceals mobile phones'.freeze
+  CONCEALS_SIM_CARDS_TEXT = 'Conceals SIM cards'.freeze
+  CONCEALS_OTHER_PREFIX = 'Conceals other items:'.freeze
+
+  def simplify_conceals_mobile_phones(risk)
+    return nil unless risk.conceals_mobile_phone_or_other_items == 'yes'
+    details = []
+
+    details << CONCEALS_MOBILE_PHONES_TEXT if risk.conceals_mobile_phones
+    details << CONCEALS_SIM_CARDS_TEXT if risk.conceals_sim_cards
+
+    if risk.conceals_other_items
+      details << "#{CONCEALS_OTHER_PREFIX} #{risk.conceals_other_items_details}"
+    end
+
+    { conceals_mobile_phone_or_other_items_details: details.join(SEPARATOR) }
+  end
+
+  def complexify_conceals_mobile_phones(risk)
+    return nil unless risk.conceals_mobile_phone_or_other_items == 'yes'
+
+    mobile_phones = false
+    sim_cards = false
+    other = false
+    new_details = nil
+
+    risk.conceals_mobile_phone_or_other_items_details.split(SEPARATOR).each do |details|
+      case details
+      when /^#{CONCEALS_MOBILE_PHONES_TEXT}$/
+        mobile_phones = true
+      when /^#{CONCEALS_SIM_CARDS_TEXT}$/
+        sim_cards = true
+      when /^#{CONCEALS_OTHER_PREFIX} (.+)$/
+        other = true
+        new_details = $1
+      end
+    end
+
+    {
+      conceals_mobile_phones: mobile_phones,
+      conceals_sim_cards: sim_cards,
+      conceals_other_items: other,
+      conceals_other_items_details: new_details
+    }
+  end
 end

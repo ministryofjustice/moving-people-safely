@@ -255,7 +255,7 @@ en:
         conceals_drugs: 'Check Mercury for intelligence or NOMIS adjudications for details.'
         conceals_drugs_details: 'Give details of previous incidents:'
         conceals_mobile_phone_or_other_items: Check Mercury for intelligence or NOMIS adjudications for details.
-        conceals_other_items_details: Give details
+        conceals_mobile_phone_or_other_items_details: 'Give details of previous incidents:'
         substance_supply: Check Mercury for intelligence or NOMIS adjudications for past history of trafficking drugs.
         uses_weapons: Check Mercury for intelligence or NOMIS adjudications for details.
       dependencies:

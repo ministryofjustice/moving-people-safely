@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_07_073324) do
+ActiveRecord::Schema.define(version: 2018_05_09_065125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -175,10 +175,6 @@ ActiveRecord::Schema.define(version: 2018_05_07_073324) do
     t.string "conceals_drugs"
     t.text "conceals_drugs_details"
     t.text "conceals_mobile_phone_or_other_items"
-    t.boolean "conceals_mobile_phones"
-    t.boolean "conceals_sim_cards"
-    t.boolean "conceals_other_items"
-    t.text "conceals_other_items_details"
     t.string "controlled_unlock_required"
     t.text "controlled_unlock_details"
     t.string "other_risk"
@@ -210,6 +206,7 @@ ActiveRecord::Schema.define(version: 2018_05_07_073324) do
     t.text "intimidation_public_details"
     t.text "hostage_taker_details"
     t.text "sex_offences_details"
+    t.text "conceals_mobile_phone_or_other_items_details"
     t.index ["escort_id"], name: "index_risks_on_escort_id"
   end
 

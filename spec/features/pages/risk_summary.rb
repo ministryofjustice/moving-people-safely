@@ -76,12 +76,8 @@ module Page
     end
 
     def check_conceals_mobile_phone_or_other_items(risk)
-      fields = %w[conceals_mobile_phones conceals_sim_cards
-                  conceals_other_items]
       if risk.conceals_mobile_phone_or_other_items == 'yes'
-        check_section(risk, 'concealed_weapons', fields)
-      else
-        check_section_is_all_no(risk, 'concealed_weapons', fields)
+        check_section(risk, 'concealed_weapons', %w[conceals_mobile_phone_or_other_items])
       end
     end
 
