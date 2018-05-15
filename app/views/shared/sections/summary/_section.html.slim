@@ -1,0 +1,7 @@
+thead
+  tr
+    th.title colspan="2"
+      = t("summary.section.titles.#{section}")
+    th.edit
+      - if can? :update, assessment
+        = link_to 'Change', path

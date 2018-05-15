@@ -7,7 +7,7 @@ FactoryBot.define do
     rule_45 'no'
     vulnerable_prisoner 'no'
 
-    controlled_unlock_required 'no'
+    controlled_unlock 'no'
     category_a 'no'
     high_profile 'no'
     pnc_warnings 'no'
@@ -42,7 +42,7 @@ FactoryBot.define do
     arson 'no'
 
     must_return 'no'
-    must_not_return 'no'
+    has_must_not_return_details 'no'
 
     other_risk 'no'
 

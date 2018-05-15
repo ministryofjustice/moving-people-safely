@@ -18,13 +18,14 @@ module ApplicationHelper
     link_to(text, escort_print_path(escort), target: :_blank, class: styles)
   end
 
-  def select_values_for(field)
-    I18n.t("helpers.label.#{field}_choices").invert
-  end
-
-  def fieldset_title(section, field)
-    scope = %i[helpers fieldset]
-    default_title = I18n.t('default_title', scope: scope)
-    I18n.t("#{section}.#{field}", scope: scope, default: default_title)
+  def summary_answer(value)
+    case value
+    when nil
+      "<span class='text-error'>Missing</span>"
+    when 'no', 'none', 'standard'
+      value.capitalize
+    else
+      "<b>#{value.humanize.capitalize}</b>"
+    end
   end
 end

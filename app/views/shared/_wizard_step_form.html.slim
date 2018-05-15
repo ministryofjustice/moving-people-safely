@@ -3,7 +3,7 @@ header
 
 = form_for form, url: wizard_path, method: method, as: form.name do |f|
   = f.error_messages
-  = render partial: "shared/step", locals: { f: f, form: form }
+  = render partial: "#{scope}/forms/#{form.name}", locals: { f: f, form: form }
 
   .form-actions
     = f.submit 'Save and continue', class: 'button'

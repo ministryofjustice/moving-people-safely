@@ -1,7 +1,0 @@
-fieldset
-  span.form-hint
-    = fieldset_title(f.object.name, question.name)
-
-    - question.group_answers.each do |group_question|
-      = render partial: "shared/question",
-        locals: { f: f, question: QuestionPresenter.new(group_question) }

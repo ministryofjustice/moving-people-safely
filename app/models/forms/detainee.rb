@@ -16,7 +16,7 @@ module Forms
     property :language,             type: StrictString
     property :interpreter_required, type: StrictString
     property :diet,                 type: StrictString
-    optional_field :peep,           type: StrictString
+    optional_field :peep,           type: StrictString, allow_blank: true
     property :peep_details,         type: StrictString
     property :image_filename
     property :image

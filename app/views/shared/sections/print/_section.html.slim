@@ -1,0 +1,12 @@
+- relevant = assessment.section_relevant?(questions)
+
+tr.top-dotted
+  td.column-30-percent
+    .title
+      div class="#{ 'strong-text' if relevant }"
+        = t("print.section.titles.#{section}")
+  td.column-20-percent.indented
+    div class="#{ 'strong-text' if relevant }"
+      = relevant ? 'Yes' : 'No'
+  td.column-50-percent
+    | &nbsp;

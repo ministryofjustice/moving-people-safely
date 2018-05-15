@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_09_065125) do
+ActiveRecord::Schema.define(version: 2018_05_10_124014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,15 @@ ActiveRecord::Schema.define(version: 2018_05_09_065125) do
     t.index ["escort_id"], name: "index_healthcare_on_escort_id"
   end
 
+  create_table "medications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid "healthcare_id"
+    t.string "description"
+    t.string "administration"
+    t.string "dosage"
+    t.string "when_given"
+    t.string "carrier"
+  end
+
   create_table "moves", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "to"
     t.date "date"
@@ -110,6 +119,12 @@ ActiveRecord::Schema.define(version: 2018_05_09_065125) do
     t.uuid "from_establishment_id"
     t.string "to_type"
     t.index ["escort_id"], name: "index_moves_on_escort_id"
+  end
+
+  create_table "must_not_return_details", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid "risk_id"
+    t.string "establishment"
+    t.string "establishment_details"
   end
 
   create_table "offences", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -175,7 +190,7 @@ ActiveRecord::Schema.define(version: 2018_05_09_065125) do
     t.string "conceals_drugs"
     t.text "conceals_drugs_details"
     t.text "conceals_mobile_phone_or_other_items"
-    t.string "controlled_unlock_required"
+    t.string "controlled_unlock"
     t.text "controlled_unlock_details"
     t.string "other_risk"
     t.text "other_risk_details"
@@ -191,7 +206,7 @@ ActiveRecord::Schema.define(version: 2018_05_09_065125) do
     t.string "must_return"
     t.string "must_return_to"
     t.text "must_return_to_details"
-    t.string "must_not_return"
+    t.string "has_must_not_return_details"
     t.text "must_not_return_details"
     t.text "previous_escape_attempts_details"
     t.string "self_harm"
@@ -205,7 +220,7 @@ ActiveRecord::Schema.define(version: 2018_05_09_065125) do
     t.string "intimidation_public"
     t.text "intimidation_public_details"
     t.text "hostage_taker_details"
-    t.text "sex_offences_details"
+    t.text "sex_offence_details"
     t.text "conceals_mobile_phone_or_other_items_details"
     t.index ["escort_id"], name: "index_risks_on_escort_id"
   end

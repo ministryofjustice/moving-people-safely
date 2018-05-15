@@ -12,7 +12,7 @@ module Detainees
         rule_45: alert_value(ALERT_CODES[:rule_45]),
         vulnerable_prisoner: alert_value(ALERT_CODES[:vulnerable_prisoner]),
         vulnerable_prisoner_details: alert_comments(ALERT_CODES[:vulnerable_prisoner]),
-        controlled_unlock_required: alert_value(ALERT_CODES[:controlled_unlock_required]),
+        controlled_unlock: alert_value(ALERT_CODES[:controlled_unlock]),
         high_profile: alert_value(ALERT_CODES[:high_profile]),
         high_profile_details: alert_comments(ALERT_CODES[:high_profile]),
         intimidation: alert_value(ALERT_CODES[:intimidation]),
@@ -43,7 +43,7 @@ module Detainees
         arson: alert_value(ALERT_CODES[:arson]),
         must_return: alert_value(ALERT_CODES[:must_return]),
         must_return_to_details: alert_comments(ALERT_CODES[:must_return]),
-        must_not_return: alert_value(ALERT_CODES[:must_not_return]),
+        has_must_not_return_details: alert_value(ALERT_CODES[:has_must_not_return_details]),
         # must_not_return_details: alert_comments(ALERT_CODES[:must_not_return]),
         other_risk: alert_value(ALERT_CODES[:other_risk]),
         other_risk_details: alert_comments(ALERT_CODES[:other_risk])
@@ -58,7 +58,7 @@ module Detainees
       self_harm: %w[HC HS SH],
       rule_45: %w[V45 VOP],
       vulnerable_prisoner: %w[VI VIP VJOP VOP VU XYA],
-      controlled_unlock_required: %w[XCU],
+      controlled_unlock: %w[XCU],
       high_profile: %w[HPI XPOI],
       intimidation: %w[OHA OHCO ONCR OCVM XCH XB XVL RDV RSP RCS RKC RPB RPC RKS],
       intimidation_to_public: %w[OHA OHCO ONCR XCH RDV RSP RKC RPB RPC],
@@ -77,7 +77,7 @@ module Detainees
       sex_offence: %w[XSO SO SONR SOR SR PC1],
       arson: %w[XA],
       must_return: %w[TAH TAP TG TM TPR TSE],
-      must_not_return: %w[TCPA],
+      has_must_not_return_details: %w[TCPA],
       other_risk: %w[XTACT]
     }.freeze
 

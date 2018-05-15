@@ -1,0 +1,29 @@
+- questions = %w[violence_to_staff risk_to_females homophobic racist discrimination_to_other_religions other_violence_due_to_discrimination]
+
+- unless views == 'escort'
+  = render partial: "shared/sections/#{views}/section",
+    locals: { assessment: assessment, path: path, section: section, questions: questions }
+
+= render partial: "shared/sections/#{views}/question",
+  locals: { alternance: 'even', assessment: assessment, section: section, question: 'violence_to_staff',
+            value: assessment.violence_to_staff, details: assessment.violence_to_staff_details }
+
+= render partial: "shared/sections/#{views}/question",
+  locals: { alternance: 'odd', assessment: assessment, section: section, question: 'risk_to_females',
+            value: assessment.risk_to_females, details: assessment.risk_to_females_details }
+
+= render partial: "shared/sections/#{views}/question",
+  locals: { alternance: 'even', assessment: assessment, section: section, question: 'homophobic',
+            value: assessment.homophobic, details: assessment.homophobic_details }
+
+= render partial: "shared/sections/#{views}/question",
+  locals: { alternance: 'odd', assessment: assessment, section: section, question: 'racist',
+            value: assessment.racist, details: assessment.racist_details }
+
+= render partial: "shared/sections/#{views}/question",
+  locals: { alternance: 'even', assessment: assessment, section: section, question: 'discrimination_to_other_religions',
+            value: assessment.discrimination_to_other_religions, details: assessment.discrimination_to_other_religions_details }
+
+= render partial: "shared/sections/#{views}/question",
+  locals: { alternance: 'odd', assessment: assessment, section: section, question: 'other_violence_due_to_discrimination',
+            value: assessment.other_violence_due_to_discrimination, details: assessment.other_violence_due_to_discrimination_details }

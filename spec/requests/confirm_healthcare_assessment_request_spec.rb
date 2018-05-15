@@ -48,16 +48,6 @@ RSpec.describe 'Confirm healthcare assessment requests', type: :request do
       end
     end
 
-    context 'but there is no healthcare assessment to confirm' do
-      let(:escort) { create(:escort, detainee: detainee) }
-
-      it 'raises a record not found error' do
-        expect {
-          put "/escorts/#{escort.id}/healthcare/confirm"
-        }.to raise_error(ActiveRecord::RecordNotFound)
-      end
-    end
-
     context 'and the healthcare assessment is not yet complete' do
       let(:detainee) { create(:detainee) }
       let(:move) { create(:move) }

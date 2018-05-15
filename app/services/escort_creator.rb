@@ -24,8 +24,8 @@ class EscortCreator
 
   INCLUDE_GRAPH = [
     { detainee: [:offences] },
-    :risk,
-    :healthcare,
+    { risk: [:must_not_return_details] },
+    { healthcare: [:medications] },
     :offences_workflow
   ].freeze
 

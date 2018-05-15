@@ -24,7 +24,7 @@ module Page
 
     def check_security(risk)
       check_section(risk, 'security', %w[category_a high_profile pnc_warnings])
-      check_controlled_unlock_required(risk)
+      check_controlled_unlock(risk)
     end
 
     def check_harassment_and_gangs_section(risk)
@@ -41,8 +41,8 @@ module Page
       end
     end
 
-    def check_controlled_unlock_required(risk)
-      if risk.controlled_unlock_required == 'yes'
+    def check_controlled_unlock(risk)
+      if risk.controlled_unlock == 'yes'
         check_section(risk, 'security', %w[controlled_unlock])
       end
     end

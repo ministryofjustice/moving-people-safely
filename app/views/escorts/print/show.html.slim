@@ -31,18 +31,24 @@ html
             th colspan=3
               span.heading-large= 'RISK'
               span.timestamp= t('assessment.confirmed_timestamp', name: risk.reviewer.full_name, time: risk.reviewed_at.to_s(:humanized))
-          - risk.sections.each do |section|
-            = render partial: 'escorts/print/section',
-              locals: { section: Print::AssessmentSectionPresenter.new(section) }
+          - Risk::SECTIONS.each do |section|
+            = render partial: "risks/sections/#{section}",
+              locals: { views: 'print',
+                        section: section,
+                        path: nil,
+                        assessment: risk }
       div#healthcare-section.section
         table#healthcare-table.section-table
           tr
             th colspan=3
               span.heading-large= 'HEALTHCARE'
               span.timestamp= t('assessment.confirmed_timestamp', name: healthcare.reviewer.full_name, time: healthcare.reviewed_at.to_s(:humanized))
-          - healthcare.sections.each do |section|
-            = render partial: 'escorts/print/section',
-              locals: { section: Print::AssessmentSectionPresenter.new(section) }
+          - Healthcare::SECTIONS.each do |section|
+            = render partial: "healthcare/sections/#{section}",
+              locals: { views: 'print',
+                        section: section,
+                        path: nil,
+                        assessment: healthcare }
       div#offences-section.section
         table#offences-table.section-table
           tr

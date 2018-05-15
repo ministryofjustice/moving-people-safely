@@ -1,0 +1,25 @@
+- questions = %w[uses_weapons conceals_weapons conceals_drugs conceals_mobile_phone_or_other_items substance_supply]
+
+- unless views == 'escort'
+  = render partial: "shared/sections/#{views}/section",
+    locals: { assessment: assessment, path: path, section: section, questions: questions }
+
+= render partial: "shared/sections/#{views}/question",
+  locals: { alternance: 'even', assessment: assessment, section: section, question: 'uses_weapons',
+            value: assessment.uses_weapons, details: assessment.uses_weapons_details }
+
+= render partial: "shared/sections/#{views}/question",
+  locals: { alternance: 'odd', assessment: assessment, section: section, question: 'conceals_weapons',
+            value: assessment.conceals_weapons, details: assessment.conceals_weapons_details }
+
+= render partial: "shared/sections/#{views}/question",
+  locals: { alternance: 'even', assessment: assessment, section: section, question: 'conceals_drugs',
+            value: assessment.conceals_drugs, details: assessment.conceals_drugs_details }
+
+= render partial: "shared/sections/#{views}/question",
+  locals: { alternance: 'odd', assessment: assessment, section: section, question: 'conceals_mobile_phone_or_other_items',
+            value: assessment.conceals_mobile_phone_or_other_items, details: assessment.conceals_mobile_phone_or_other_items_details }
+
+= render partial: "shared/sections/#{views}/question",
+  locals: { alternance: 'even', assessment: assessment, section: section, question: 'substance_supply',
+            value: assessment.substance_supply, details: nil }

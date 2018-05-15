@@ -59,7 +59,7 @@ module Forms
 
         validates field_name,
           inclusion: { in: options.fetch(:options, TOGGLE_CHOICES) },
-          allow_blank: options.fetch(:allow_blank, true)
+          allow_blank: options.fetch(:allow_blank, false)
       end
 
       def optional_details_field(field_name, options = {})

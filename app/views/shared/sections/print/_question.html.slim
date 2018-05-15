@@ -1,0 +1,14 @@
+- if assessment.question_relevant?(question)
+  tr.top-dotted
+    td.indented.column-30-percent
+      .strong-text
+        = t("print.section.questions.#{section}.#{question}")
+    td.column-20-percent.indented
+      .strong-text
+        = value.humanize.capitalize
+    td.column-50-percent
+      - if details.is_a? String
+        = details.capitalize
+      - elsif details && multiples
+        - details.each do |multiple|
+          = render partial: "#{assessment.class.to_s.downcase.pluralize}/sections/#{partial}_print", locals: { multiple: multiple }

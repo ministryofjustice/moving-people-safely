@@ -1,0 +1,34 @@
+= f.radio_toggle :must_return,
+  legend_options: { class: 'form-label-assessment' },
+  inline_choices: true,
+  data: { 'toggle-field' => 'yes' } do
+  = f.text_field :must_return_to
+  = f.text_area :must_return_to_details
+
+.must_not_return_detail.multiple
+  = f.radio_toggle :has_must_not_return_details do
+    #must_not_return_details
+    #error_return_instructions_must_not_return_detail
+    = f.fields_for :must_not_return_details do |mf|
+      .multiple-wrapper
+        hr
+        .grid-row
+          .column-two-thirds
+            h2 Establishment
+            = mf.hidden_field :id
+            .multiple-field
+              = mf.text_field :establishment
+            .multiple-field
+              = mf.text_field :establishment_details
+          - if f.object.must_not_return_details.size > 1
+            .column-one-third
+              .remove-link
+                .form-group
+                  = mf.label :_delete, 'Remove'
+                  = mf.check_box :_delete
+
+    .multiple-add.form-group
+      hr
+      = f.button 'Add another establishment',
+        class: 'js-anchor-focus button button-add-another-vertical',
+        name: "return_instructions_add_must_not_return_details"

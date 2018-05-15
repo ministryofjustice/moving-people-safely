@@ -6,16 +6,18 @@
 
   .summary.per-section-page
     = render partial: 'summary/status',
-      locals: { workflow: Summary::EscortSectionStatusPresenter.new(risk, name: :risk) }
+      locals: { workflow: Summary::EscortSectionStatusPresenter.new(assessment, name: :risk) }
 
-    - risk.sections.each do |section|
-      = render partial: 'summary/section',
-        locals: { section: Summary::AssessmentSectionPresenter.new(section),
-                  path: edit_escort_risks_path(escort, step: section.name),
-                  assessment: risk }
+    - Risk::SECTIONS.each do |section|
+      table class="#{section}"
+        = render partial: "risks/sections/#{section}",
+          locals: { views: 'summary',
+                    section: section,
+                    path: edit_escort_risks_path(escort, step: section),
+                    assessment: assessment }
 
     = render partial: 'summary/call_to_action',
-      locals: { workflow: risk,
+      locals: { workflow: assessment,
                 confirm_path: confirm_escort_risks_path(escort) }
 
 .column-one-quarter.side-profile

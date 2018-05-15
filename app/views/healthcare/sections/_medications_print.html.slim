@@ -1,0 +1,11 @@
+b= multiple.description.capitalize
+= " | "
+b= multiple.administration.capitalize
+= " | "
+b= multiple.dosage.capitalize
+= " | "
+b= multiple.when_given.capitalize
+= " | "
+- carrier = multiple.carrier == 'escort' ? 'Escort' : 'Detainee'
+b= "Carried by: #{carrier}"
+br
