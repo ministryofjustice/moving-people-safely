@@ -118,7 +118,7 @@ en:
         aliases: Aliases
         language: Preferred language
       detainee_search:
-        prison_number: Enter a prisoner number. For example A1234AB
+        prison_number: Enter a prisoner number
       discrimination:
         discrimination_to_other_religions: Risk to other religions
         discrimination_to_other_religions_details: Risk to other religions details
@@ -263,6 +263,8 @@ en:
       detainee:
         date_of_birth: DD/MM/YYYY
         peep_details: Give details
+      detainee_search:
+        prison_number: For example A1234AB
       discrimination:
         discrimination_to_other_religions: In NOMIS, check the header section of the prisoner’s record for the Risk to people with religious views alert. Check alert comments and case notes for details.
         discrimination_to_other_religions_details: Give details
@@ -420,6 +422,8 @@ en:
       offences: Offences
       prison_number: Prison No.
       risk: Risk
+    pers_from: PERs from
+    undetermined_establishment: MoJ HQ
   summary: &summary
     alerts:
       last_updated_info: 'This information was last saved %{time_difference} ago.'
