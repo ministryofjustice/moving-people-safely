@@ -42,7 +42,7 @@ class Risk < ApplicationRecord
   end
 
   def acct_details
-    "Closed: #{date_of_most_recently_closed_acct}" if acct_status == 'closed'
+    "Closed on #{date_of_most_recently_closed_acct} | #{acct_status_details}" if acct_status == 'closed'
   end
 
   def must_return_details
