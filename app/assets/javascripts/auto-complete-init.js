@@ -18,3 +18,10 @@ if (document.querySelector('#prison')) {
     id: 'prison' // To match it to the existing <label>.
   });
 };
+
+if (document.querySelector('#police_custody')) {
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: document.querySelector('#police_custody'),
+    id: 'police_custody' // To match it to the existing <label>.
+  });
+};
