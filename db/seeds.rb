@@ -5,7 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Dir[File.join(File.dirname(__FILE__), 'seeds', '*.rb')].each { |file| require file }
+Dir[File.join(File.dirname(__FILE__), 'seeds', '*.rb')].sort.each { |file| require file }
 Seeds::PopulatePrisons.call(logger: Logger.new(STDOUT))
 Seeds::PopulateCourts.call(logger: Logger.new(STDOUT))
+Seeds::PopulatePoliceCustody.call(logger: Logger.new(STDOUT))
 Seeds::MapPrisonNomisToSSO.call(logger: Logger.new(STDOUT))
