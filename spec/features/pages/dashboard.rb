@@ -33,6 +33,7 @@ module Page
     element :create_new_escort, 'input[type="submit"][value="Start new PER"]'
 
     def search(prison_number)
+      click_link 'Start a PER'
       fill_in 'search_prison_number', with: prison_number
       click_button 'Search'
     end

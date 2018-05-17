@@ -364,3 +364,8 @@
   .issued { color: green; font-weight: bold; }
   .cancelled { color: red; font-weight: bold; margin-right: 10px; }
 }
+
+h1.shallow {
+  margin-top: 0;
+  margin-bottom: 0;
+}

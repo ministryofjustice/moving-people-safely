@@ -29,7 +29,9 @@ Rails.application.routes.draw do
   end
 
   resources :feedbacks, only: %i[new create]
-  post '/detainees/search', to: 'homepage#detainees'
   post '/escorts/search', to: 'homepage#escorts'
   root to: 'homepage#show'
+
+  get '/search', to: 'search#index'
+  post '/search', to: 'search#index'
 end

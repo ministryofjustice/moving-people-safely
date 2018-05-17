@@ -83,11 +83,13 @@ RSpec.feature 'searching for a prisoner', type: :feature do
   end
 
   def search_with_valid_prison_number(prison_number = 'A1234BC')
+    click_link 'Start a PER'
     fill_in 'search_prison_number', with: prison_number
     click_button 'Search'
   end
 
   def search_with_invalid_prison_number
+    click_link 'Start a PER'
     fill_in 'search_prison_number', with: 'invalid-prison-number'
     click_button 'Search'
   end

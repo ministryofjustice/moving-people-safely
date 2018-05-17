@@ -1,0 +1,24 @@
+header
+  h1 = t('homepage.titles.detainee_search')
+
+.form-wrapper
+  = form_for search_form, url: search_path, method: :post do |f|
+    = label_tag :search_prison_number, t('detainee_search.prison_number', scope: %i[helpers label]), class: 'form-label'
+    .search_input_wrapper
+      span.form-hint
+        = t('detainee_search.prison_number', scope: %i[helpers hint])
+      = f.search_text_field :prison_number, name: 'prison_number', class: (search_form.errors.empty? ? 'form-control' : 'form-control control-error')
+      = f.submit class: 'button-inline', value: 'Search'
+
+- if search_form.escort
+  .search-results
+    = render partial: 'result',
+      locals: { escort: search_form.escort, detainee: search_form.detainee, move: search_form.move }
+- elsif search_form.valid?
+  .search-results
+    = render partial: 'no_result',
+      locals: { prison_number: search_form.prison_number }
+- elsif search_form.prison_number
+  .search-error
+    = render partial: 'error',
+      locals: { prison_number: search_form.prison_number }

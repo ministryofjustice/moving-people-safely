@@ -29,34 +29,19 @@ RSpec.describe 'Homepage', type: :request do
     end
   end
 
-  describe "#detainees" do
-    before do
-      post "/detainees/search",
-        params: {
-          'prison_number' => 'XXX'
-        }
-    end
-
-    it "redirects to root path with the appropriate params" do
-      expect(response).to redirect_to "/?prison_number=XXX"
-    end
-  end
-
   describe "#escorts" do
     before do
       post "/escorts/search",
         params: {
-          prison_number: prison_number,
           escorts_due_on: date
         }
     end
 
-    let(:prison_number) { 'A1234AB' }
     let(:date) { '01/02/2003' }
 
     context "with a valid date" do
       it "redirects to root path with the appropriate params" do
-        expect(response).to redirect_to "/?prison_number=#{prison_number}"
+        expect(response).to redirect_to "/"
       end
 
       it "sets the escorts due on param in the session" do
