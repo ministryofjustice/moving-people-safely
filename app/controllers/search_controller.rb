@@ -1,33 +1,29 @@
 class SearchController < ApplicationController
-  before_action :validate_search
-  before_action :authorize_user_to_access_prisoner!, if: :valid_search?
+  before_action :authorize_user_to_access_prisoner!, only: :show
 
-  def index
-    render :index, locals: {
-      search_form: search_form,
-      prison_number: params[:prison_number]
-    }
+  def new
+    @form = Forms::Search.new
+    render :show
+  end
+
+  def show
+    @form = Forms::Search.new
+    @form.prison_number = prison_number
+
+    if @form.valid?
+      @escort = Escort.uncancelled.find_by(prison_number: prison_number)
+    else
+      flash.now[:error] = t('alerts.search.invalid_identifier', type: 'prison number', identifier: prison_number)
+    end
   end
 
   private
 
-  def search_form
-    @_search_form ||= Forms::Search.new
-  end
-
-  def validate_search
-    search_form.validate(search_params) if search_params.present?
-  end
-
   def search_params
-    params.permit(:prison_number).delete_if { |_key, value| value.blank? }
-  end
-
-  def valid_search?
-    search_params.present? && search_form.valid?
+    params.require(:forms_search).permit(:prison_number)
   end
 
   def prison_number
-    search_form.prison_number
+    search_params[:prison_number].upcase
   end
 end

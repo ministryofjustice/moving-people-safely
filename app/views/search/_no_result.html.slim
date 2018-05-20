@@ -1,9 +1,9 @@
 p
   | There are no previously created PER records on
   |  Moving People Safely for prison number
-  |  #{prison_number}
+  |  #{@form.prison_number}
 
-= form_for Escort.new(prison_number: prison_number), url: escorts_path, method: :post do |f|
+= form_for Escort.new(prison_number: @form.prison_number), url: escorts_path, method: :post do |f|
   = f.hidden_field :prison_number
   .form-actions
     = f.submit 'Start new PER', class: 'button'

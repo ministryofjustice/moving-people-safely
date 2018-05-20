@@ -30,8 +30,9 @@ Rails.application.routes.draw do
 
   resources :feedbacks, only: %i[new create]
   post '/escorts/search', to: 'homepage#escorts'
-  root to: 'homepage#show'
 
-  get '/search', to: 'search#index'
-  post '/search', to: 'search#index'
+  get '/search', to: 'search#new'
+  post '/search', to: 'search#show'
+
+  root to: 'homepage#show'
 end
