@@ -2,7 +2,7 @@
   h1.shallow
     span.heading-secondary= t('homepage.pers_from')
     = current_user.authorized_establishments.first&.name || t('homepage.undetermined_establishment')
-    = link_to t('homepage.titles.detainee_search'), search_path, class: 'button button-start button-inline'
+    = link_to t('search.show.title'), search_path, class: 'button button-start button-inline'
 
 .search-header
   .date-picker

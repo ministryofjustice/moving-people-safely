@@ -283,6 +283,8 @@ en:
         current_e_risk_details: Give details of the E-List category (standard, heightened or escort) if known
         previous_escape_attempts_html: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the Escape Risk alert. Check alert comments and case notes for details.'
         previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
+      forms_search:
+        prison_number: For example A1234AB
       forms_feedback:
         message: Describe the issue you are having, including what you were doing before it happened
         prisoner_number: For example, A1234BC
@@ -403,8 +405,6 @@ en:
         sex_offences: Sex offender
         violence: Risk to others
   homepage:
-    titles:
-      detainee_search: Start a PER
     gauges:
       detainees_due_to_move: Detainees due to move
       healthcare_complete: Healthcare complete
@@ -424,6 +424,9 @@ en:
       risk: Risk
     pers_from: PERs from
     undetermined_establishment: MoJ HQ
+  search:
+    show:
+      title: Start a PER
   summary: &summary
     alerts:
       last_updated_info: 'This information was last saved %{time_difference} ago.'
@@ -638,6 +641,8 @@ en:
       internal_error: Offences aren't available right now, please try again or fill in the offences below
       not_found: "Offences data could not be retrieved. Please fill in manually."
     unable_to_confirm_assessment: "%{assessment} assessment cannot be confirmed until all mandatory answers are filled"
+    search:
+      invalid_identifier: "The %{type} '%{identifier}' is not valid, please try again with a valid prison number"
   sessions:
     create:
       cannot_sign_in: You cannot be signed in

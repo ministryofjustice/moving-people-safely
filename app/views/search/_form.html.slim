@@ -1,0 +1,5 @@
+.form-wrapper
+  = form_for @form, url: search_path, method: :post do |f|
+    -# f.error_messages
+    = f.text_field :prison_number
+    = f.submit class: 'button', value: 'Search'
