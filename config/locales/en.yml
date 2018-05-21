@@ -425,8 +425,8 @@ en:
       detainee_name: Name
       health: Health
       issued: Issued
+      number: Number
       offences: Offences
-      prison_number: Prison No.
       risk: Risk
     pers_from: PERs from
     undetermined_establishment: MoJ HQ

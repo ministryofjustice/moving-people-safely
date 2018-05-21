@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   ADMIN_ORGANISATION = 'digital.noms.moj'.freeze
   COURT_ORGANISATION = 'courts.noms.moj'.freeze
+  POLICE_ORGANISATION = 'police.noms.moj'.freeze
+  PRISON_ORGANISATION = 'prisons.noms.moj'.freeze
   HEALTHCARE_ROLE = 'healthcare'.freeze
 
   serialize :permissions
@@ -39,10 +41,15 @@ class User < ApplicationRecord
   end
 
   def authorized_establishments
-    permissions.each_with_object([]) do |permission, locations|
+    @authorized_establishments ||= permissions.each_with_object([]) do |permission, locations|
       location = Establishment.find_by(sso_id: permission['organisation'])
       locations << location if location
     end
+  end
+
+  def establishment(session)
+    return authorized_establishments.first if prison_officer?
+    PoliceCustody.find(session[:police_station_id]) if police? && session[:police_station_id]
   end
 
   def can_access_escort?(escort)
@@ -58,6 +65,14 @@ class User < ApplicationRecord
 
   def court?
     permissions.any? { |permission| permission['organisation'] == COURT_ORGANISATION }
+  end
+
+  def police?
+    permissions.any? { |permission| permission['organisation'] == POLICE_ORGANISATION }
+  end
+
+  def prison_officer?
+    permissions.any? { |permission| permission['organisation'] =~ /#{PRISON_ORGANISATION}/ }
   end
 
   def healthcare?

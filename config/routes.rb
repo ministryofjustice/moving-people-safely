@@ -34,5 +34,7 @@ Rails.application.routes.draw do
   get '/search', to: 'search#new'
   post '/search', to: 'search#show'
 
+  get '/select_police_station', to: 'homepage#select_police_station'
+  post '/set_police_station', to: 'homepage#set_police_station'
   root to: 'homepage#show'
 end

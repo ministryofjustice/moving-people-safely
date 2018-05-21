@@ -1,14 +1,12 @@
 .phase-banner
   h1.shallow
     span.heading-secondary= t('homepage.pers_from')
-    = current_user.authorized_establishments.first&.name || t('homepage.undetermined_establishment')
+    = current_user.establishment(session)&.name || t('homepage.undetermined_establishment')
     = link_to t('search.show.title'), search_path, class: 'button button-start button-inline'
 
 .search-header
   .date-picker
     = form_tag(escorts_search_path) do
-      = hidden_field_tag "prison_number", @prison_number
-
       span.label Scheduled moves
       .date-picker-wrapper
         span.date-picker-field.input-group.date data-provide='datepicker'

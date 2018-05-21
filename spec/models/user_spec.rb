@@ -132,6 +132,30 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#police?' do
+    context 'when belongs to police custody' do
+      subject { described_class.new(permissions: [{"organisation"=>User::POLICE_ORGANISATION}])}
+      its(:police?) { is_expected.to be_truthy }
+    end
+
+    context 'when is not police custody' do
+      subject { described_class.new(permissions: []) }
+      its(:police?) { is_expected.to be_falsey }
+    end
+  end
+
+  describe '#prison_officer?' do
+    context 'when belongs to prison staff' do
+      subject { described_class.new(permissions: [{"organisation"=>'bedford.prisons.noms.moj'}])}
+      its(:prison_officer?) { is_expected.to be_truthy }
+    end
+
+    context 'when is not prison officer' do
+      subject { described_class.new(permissions: []) }
+      its(:prison_officer?) { is_expected.to be_falsey }
+    end
+  end
+
   describe '#healthcare?' do
     context 'when is healthcare' do
       subject { described_class.new(permissions: [{"roles"=>['healthcare']}])}
@@ -159,6 +183,42 @@ RSpec.describe User, type: :model do
       expect(subject.authorized_establishments).to eq [bedford, pentonville]
     end
   end
+
+  describe '#establishment' do
+    let!(:bedford) { create(:establishment, sso_id: 'bedford.prisons.noms.moj')}
+    let!(:pentonville) { create(:establishment, sso_id: 'pentonville.prisons.noms.moj')}
+    let!(:thorpe) { create(:police_custody, name: 'Thorpe Police Station')}
+
+    context 'when is prison_officer' do
+      let(:permissions) {
+        [
+          { 'organisation' => 'bedford.prisons.noms.moj' },
+          { 'organisation' => 'pentonville.prisons.noms.moj' }
+        ]
+      }
+
+      subject { described_class.new(permissions: permissions)}
+
+      it 'returns the first establishment' do
+        expect(subject.establishment({})).to eq bedford
+      end
+    end
+
+    context 'when is police' do
+      let(:permissions) {
+        [
+          { 'organisation' => 'police.noms.moj' }
+        ]
+      }
+
+      subject { described_class.new(permissions: permissions)}
+
+      it 'returns the police custody station' do
+        expect(subject.establishment(police_station_id: thorpe.id)).to eq PoliceCustody.find(thorpe.id)
+      end
+    end
+  end
+
 
   describe '#can_access_escort?' do
     let(:establishment_sso_id) { 'bedford.prisons.noms.moj' }

@@ -2,7 +2,7 @@
   table
     thead
       tr
-        th.prison_number= t('.prison_number')
+        th.number= t('.number')
         th.name= t('.detainee_name')
         th.destination= t('.destination')
         th= t('.risk')
@@ -11,7 +11,7 @@
         th
     - escorts.each do |escort|
       tr.move-row id="prison_number_#{escort.prison_number}"
-        td = link_to_unless escort.cancelled?, escort.prison_number, escort_path(escort)
+        td = link_to_unless escort.cancelled?, escort.number, escort_path(escort)
         td
           span.strong-text
             | #{escort.detainee_surname}
