@@ -2,11 +2,11 @@ class Risk < ApplicationRecord
   include Questionable
   include Reviewable
 
-  SECTIONS = %w[risk_to_self segregation security harassment_and_gangs discrimination escape
+  SECTIONS = %w[risk_to_self segregation security violent_or_dangerous harassment_and_gangs discrimination escape
                 hostage_taker sex_offences concealed_weapons arson return_instructions other_risk].freeze
   MANDATORY_QUESTIONS = %w[acct_status self_harm csra rule_45 vulnerable_prisoner controlled_unlock
                            category_a high_profile pnc_warnings intimidation_public intimidation_prisoners
-                           gang_member violence_to_staff risk_to_females homophobic racist
+                           violent_or_dangerous gang_member violence_to_staff risk_to_females homophobic racist
                            discrimination_to_other_religions other_violence_due_to_discrimination
                            current_e_risk previous_escape_attempts escape_pack escort_risk_assessment
                            hostage_taker sex_offence conceals_weapons uses_weapons conceals_drugs

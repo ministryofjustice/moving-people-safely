@@ -11,6 +11,7 @@ module Page
       fill_in_risk_to_self
       fill_in_segregation
       fill_in_security
+      fill_in_violence
       fill_in_harassment_and_gangs
       fill_in_discrimination
       fill_in_escape
@@ -40,6 +41,16 @@ module Page
       fill_in_category_a
       fill_in_optional_details('Are they of high public interest?', @risk, :high_profile)
       fill_in_optional_details('PNC warnings', @risk, :pnc_warnings)
+      save_and_continue
+    end
+
+    def fill_in_violence
+      if @risk.violent_or_dangerous == 'yes'
+        choose 'violent_or_dangerous_violent_or_dangerous_yes'
+        fill_in 'violent_or_dangerous_violent_or_dangerous_details', with: @risk.violent_or_dangerous_details
+      else
+        choose 'violent_or_dangerous_violent_or_dangerous_no'
+      end
       save_and_continue
     end
 

@@ -14,6 +14,7 @@ FactoryBot.define do
 
     intimidation_public 'no'
     intimidation_prisoners 'no'
+    violent_or_dangerous 'no'
     gang_member 'no'
 
     violence_to_staff 'no'

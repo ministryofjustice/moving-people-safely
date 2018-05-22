@@ -112,6 +112,8 @@ RSpec.feature 'printing a PER', type: :feature do
           vulnerable_prisoner_details: 'vulnerable prisoner details',
           pnc_warnings: 'yes',
           pnc_warnings_details: 'PNC warning details',
+          violent_or_dangerous: 'yes',
+          violent_or_dangerous_details: 'violent or dangerous',
           gang_member: 'yes',
           gang_member_details: 'violence gang member details',
           violence_to_staff: 'yes',
