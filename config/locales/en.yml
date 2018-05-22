@@ -83,6 +83,8 @@ en:
         personal_care: Will they need help with personal tasks while they are out of prison?
       transport:
         mpv: Do they need to travel in a special vehicle?
+      violent_or_dangerous:
+        violent_or_dangerous: Are they violent or dangerous?
     label:
       allergies:
         allergies: "Do they have any known allergies or intolerances?"
@@ -355,6 +357,8 @@ en:
       transport:
         mpv: This could be a specially-adapted prison van (for example, to accommodate wheelchairs) or a taxi.
         mpv_details: 'Please explain why you feel they need a special vehicle:'
+      violent_or_dangerous:
+        violent_or_dangerous: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for MAPPA, ViSOR, OASys alerts, or other alerts related to violence or dangerous behaviour. Check alert comments and case notes for details.'
   move:
     destination_types:
       labels:
@@ -404,6 +408,7 @@ en:
         segregation: Segregation
         sex_offences: Sex offender
         violence: Risk to others
+        violent_or_dangerous: Violence
   homepage:
     gauges:
       detainees_due_to_move: Detainees due to move
@@ -524,6 +529,8 @@ en:
           personal_care: Personal care issues
         transport:
           mpv: Special vehicle required
+        violent_or_dangerous:
+          violent_or_dangerous: Violent or dangerous
       titles:
         allergies: Allergies and intolerances
         arson: Arson
@@ -548,6 +555,7 @@ en:
         social: Personal care
         transport: Special vehicles
         violence_to_staff: Violent to staff
+        violent_or_dangerous: Violence
     status:
       confirmed:
         label: Complete

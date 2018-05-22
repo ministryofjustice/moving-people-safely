@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_10_124014) do
+ActiveRecord::Schema.define(version: 2018_05_17_142039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -222,6 +222,8 @@ ActiveRecord::Schema.define(version: 2018_05_10_124014) do
     t.text "hostage_taker_details"
     t.text "sex_offence_details"
     t.text "conceals_mobile_phone_or_other_items_details"
+    t.string "violent_or_dangerous"
+    t.text "violent_or_dangerous_details"
     t.index ["escort_id"], name: "index_risks_on_escort_id"
   end
 
