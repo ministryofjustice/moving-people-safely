@@ -28,4 +28,16 @@ module ApplicationHelper
       "<b>#{value.humanize.capitalize}</b>"
     end
   end
+
+  def highlighted_content(content)
+    content_tag(:div, content, class: 'strong-text')
+  end
+
+  def content_or_none(content)
+    content.present? ? content : 'None'
+  end
+
+  def answer_details(*answers)
+    answers.compact.map(&:capitalize).join(' | ')
+  end
 end

@@ -28,83 +28,83 @@ html
       div.grid.detainee
         div.grid-row.header-row
           hi
-            span#detainee-identifier.strong-text => detainee.identifier
-            = detainee.forenames
+            span#detainee-identifier.strong-text => identifier(escort.detainee)
+            = escort.detainee.forenames
         div.grid-row.indicators
           #not_for_release_alert.grid-column.column-one-half
-            = render partial: 'escorts/print/alert', locals: { alert_name: :not_for_release, on: alerts[:not_for_release] }
-            - if alerts[:not_for_release]
-              p.alert-text= move.not_for_release_text
+            = render partial: 'escorts/print/alert', locals: { alert_name: :not_for_release, on: escort.alerts[:not_for_release] }
+            - if escort.alerts[:not_for_release]
+              p.alert-text= not_for_release_text(escort.move)
           #e_list_alert.grid-column.column-one-half
-            = render partial: 'escorts/print/alert', locals: { alert_name: :current_e_risk, on: alerts[:current_e_risk] }
+            = render partial: 'escorts/print/alert', locals: { alert_name: :current_e_risk, on: escort.alerts[:current_e_risk] }
         div.grid-row.padded.top-dotted
           div.grid-column.column-one-half
             div.grid-row
               div.grid-column.column-one-third
                 div.title Prison number
-                div#prison-number.strong-text = detainee.prison_number
+                div#prison-number.strong-text = escort.detainee.prison_number
               div.grid-column.column-one-third
                 div.title CRO number
-                div#cro-number.strong-text = detainee.cro_number
+                div#cro-number.strong-text = content_or_none(escort.detainee.cro_number)
               div.grid-column.column-one-third
                 div.title PNC number
-                div#pnc-number.strong-text = detainee.pnc_number
+                div#pnc-number.strong-text = content_or_none(escort.detainee.pnc_number)
             div.grid-row.padded
               div.grid-column.column-one-third
                 div.title Date of birth
-                div#date-of-birth.strong-text = detainee.date_of_birth
+                div#date-of-birth.strong-text = date_of_birth(escort.detainee)
               div.grid-column.column-one-third
                 div.title Age
-                div#age.strong-text = detainee.age
+                div#age.strong-text = escort.detainee.age
               div.grid-column.column-one-third
                 div.title Gender
-                div#gender.strong-text = detainee.gender_code
+                div#gender.strong-text = gender_code(escort.detainee)
             div.grid-row.padded
               div.grid-column.column-one-third
                 div.title Nationality
-                - detainee.nationalities.each do |nationality|
+                - nationalities(escort.detainee).each do |nationality|
                   div.strong-text.nationality = nationality
               div.grid-column.column-one-third
                 div.title Religion
-                div#age.strong-text = detainee.religion
+                div#age.strong-text = content_or_none(escort.detainee.religion)
               div.grid-column.column-one-third
                 div.title Ethnicity
-                div#age.strong-text = detainee.ethnicity
+                div#age.strong-text = ethnicity(escort.detainee)
             div.grid-row.padded
               div.grid-column.column-one-third
                 div.title Preferred language
-                div.strong-text.language = detainee.language
+                div.strong-text.language = escort.detainee.language
               div.grid-column.column-one-third
                 div.title Interpreter
-                div#age.strong-text = detainee.expanded_interpreter_required
+                div#age.strong-text = expanded_interpreter_required(escort.detainee)
               div.grid-column.column-one-third
                 div.title Diet
-                div#age.strong-text = detainee.diet
-            - if detainee.peep == 'yes'
+                div#age.strong-text = escort.detainee.diet
+            - if escort.detainee.peep == 'yes'
               div.grid-row.padded
                 div.grid-column.column-full-length
                   div.title Personal Emergency Evacuation Plan
-                  div.strong-text.language = detainee.peep_details
+                  div.strong-text.language = escort.detainee.peep_details
 
           div.grid-column.column-one-quarter
             div.title Aliases
-            - detainee.aliases.each do |a|
+            - aliases(escort.detainee).each do |a|
               div.alias.strong-text = a
           div.grid-column.column-one-quarter
               .image
-                = detainee.image
+                = image(escort.detainee)
       div.grid.move
         div.grid-row.header-row.small = 'Move details'
         div.grid-row.padded.padded-bottom
           div.grid-column.column-one-third
             div.title Date of travel
-            div.strong-text.font-medium = move.date
+            div.strong-text.font-medium = date(escort.move)
           div.grid-column.column-one-third
             div.title From
-            div.strong-text = move.from
+            div.strong-text = from(escort.move)
           div.grid-column.column-one-third
             div.title To
-            div.strong-text = move.to
+            div.strong-text = escort.move.to
         div.grid-row.top-dotted.min-heighted
 
       div.grid.footer.moj-declaration

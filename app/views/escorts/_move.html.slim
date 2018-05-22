@@ -6,16 +6,16 @@ section#move
         = link_to 'Edit', edit_escort_move_path(escort)
   .tile-3
     h6 Date of travel
-    p= move.humanized_date
+    p= date(escort.move)
 
   .tile-3
     h6 From
-    p= move.from
+    p= from(escort.move)
 
   .tile-3
     h6 To
-    p= move.to
+    p= escort.move.to
 
   .tile-3
     h6 Release status
-    p= move.not_for_release_text
+    p= not_for_release_text(escort.move)

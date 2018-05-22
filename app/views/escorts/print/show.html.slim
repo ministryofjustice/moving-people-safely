@@ -8,47 +8,47 @@ html
     main.inner-page
       .grid-row.indicators.top-dotted
         .grid-column.column-one-third
-          = render partial: 'escorts/print/alert', locals: { alert_name: :not_for_release, on: alerts[:not_for_release] }
-          - if alerts[:not_for_release]
-            p.alert-text= move.not_for_release_text
+          = render partial: 'escorts/print/alert', locals: { alert_name: :not_for_release, on: escort.alerts[:not_for_release] }
+          - if escort.alerts[:not_for_release]
+            p.alert-text= not_for_release_text(escort.move)
         .grid-column.column-one-third
-          = render partial: 'escorts/print/alert', locals: { alert_name: :current_e_risk, on: alerts[:current_e_risk] }
+          = render partial: 'escorts/print/alert', locals: { alert_name: :current_e_risk, on: escort.alerts[:current_e_risk] }
         .grid-column.column-one-third
-          = render partial: 'escorts/print/alert', locals: { alert_name: :acct_status, on: alerts[:acct_status] }
-          p.alert-text= risk.acct_status_text
+          = render partial: 'escorts/print/alert', locals: { alert_name: :acct_status, on: escort.alerts[:acct_status] }
+          p.alert-text= acct_status_text(escort.risk)
       .grid-row.indicators
         .grid-column.column-one-quarter
-          = render partial: 'escorts/print/alert', locals: { alert_name: :self_harm, on: alerts[:self_harm] }
+          = render partial: 'escorts/print/alert', locals: { alert_name: :self_harm, on: escort.alerts[:self_harm] }
         .grid-column.column-one-quarter
-          = render partial: 'escorts/print/alert', locals: { alert_name: :rule_45, on: alerts[:rule_45] }
+          = render partial: 'escorts/print/alert', locals: { alert_name: :rule_45, on: escort.alerts[:rule_45] }
         .grid-column.column-one-quarter
-          = render partial: 'escorts/print/alert', locals: { alert_name: :csra, on: alerts[:csra] }
+          = render partial: 'escorts/print/alert', locals: { alert_name: :csra, on: escort.alerts[:csra] }
         .grid-column.column-one-quarter
-          = render partial: 'escorts/print/alert', locals: { alert_name: :category_a, on: alerts[:category_a] }
+          = render partial: 'escorts/print/alert', locals: { alert_name: :category_a, on: escort.alerts[:category_a] }
       div#risk-section.section
         table#risk-table.section-table
           tr
             th colspan=3
               span.heading-large= 'RISK'
-              span.timestamp= t('assessment.confirmed_timestamp', name: risk.reviewer.full_name, time: risk.reviewed_at.to_s(:humanized))
+              span.timestamp= t('assessment.confirmed_timestamp', name: escort.risk.reviewer.full_name, time: escort.risk.reviewed_at.to_s(:humanized))
           - Risk::SECTIONS.each do |section|
             = render partial: "risks/sections/#{section}",
               locals: { views: 'print',
                         section: section,
                         path: nil,
-                        assessment: risk }
+                        assessment: escort.risk }
       div#healthcare-section.section
         table#healthcare-table.section-table
           tr
             th colspan=3
               span.heading-large= 'HEALTHCARE'
-              span.timestamp= t('assessment.confirmed_timestamp', name: healthcare.reviewer.full_name, time: healthcare.reviewed_at.to_s(:humanized))
+              span.timestamp= t('assessment.confirmed_timestamp', name: escort.healthcare.reviewer.full_name, time: escort.healthcare.reviewed_at.to_s(:humanized))
           - Healthcare::SECTIONS.each do |section|
             = render partial: "healthcare/sections/#{section}",
               locals: { views: 'print',
                         section: section,
                         path: nil,
-                        assessment: healthcare }
+                        assessment: escort.healthcare }
       div#offences-section.section
         table#offences-table.section-table
           tr
@@ -56,8 +56,8 @@ html
               span.heading-large= 'OFFENCES'
           tr.top-dotted
             td.column-30-percent
-              = offences.label
+              = offences_label(escort.offences)
             td.column-20-percent.indented
-              = offences.relevant
+              = offences_relevant(escort.offences)
             td.column-50-percent
-              = offences.formatted_list
+              = formatted_offences_list(escort.offences)

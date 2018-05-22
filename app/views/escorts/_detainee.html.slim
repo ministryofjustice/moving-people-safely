@@ -7,44 +7,44 @@ section#detainee
   .data_container
     .tile-3
       h6 Prison Number
-      p= detainee.prison_number
+      p= escort.detainee.prison_number
     .tile-3
       h6 CRO number
-      p= detainee.cro_number
+      p= escort.detainee.cro_number
     .tile-3
       h6 PNC Number
-      p= detainee.pnc_number
+      p= escort.detainee.pnc_number
     .tile-3
       h6 Date of birth
-      p= detainee.humanized_date_of_birth
+      p= date_of_birth(escort.detainee)
     .tile-3
       h6 Age
-      p= detainee.age
+      p= escort.detainee.age
     .tile-3
       h6 Sex
-      p= detainee.short_gender
+      p= gender_code(escort.detainee)
     .tile-3
       h6 Nationality
-      p= detainee.nationalities
+      p= escort.detainee.nationalities
     .tile-3
       h6 Religion
-      p= detainee.religion
+      p= escort.detainee.religion
     .tile-3
       h6 Ethnicity
-      p= detainee.short_ethnicity
+      p= short_ethnicity(escort.detainee)
     .tile-3
       h6 Preferred language
-      p= detainee.language
+      p= escort.detainee.language
     .tile-3
       h6 Interpreter
-      p= detainee.expanded_interpreter_required
+      p= expanded_interpreter_required(escort.detainee)
     .tile-3
       h6 Diet
-      p= detainee.diet
-    - if detainee.peep == 'yes'
+      p= escort.detainee.diet
+    - if escort.detainee.peep == 'yes'
       .tile
         h6 Personal Emergency Evacuation Plan
-        p= detainee.peep_details
+        p= escort.detainee.peep_details
   .tile-3
     h6 Aliases
-    p= detainee.aliases
+    p= escort.detainee.aliases
