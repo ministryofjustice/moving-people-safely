@@ -359,6 +359,7 @@ en:
         mpv_details: 'Please explain why you feel they need a special vehicle:'
       violent_or_dangerous:
         violent_or_dangerous: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for MAPPA, ViSOR, OASys alerts, or other alerts related to violence or dangerous behaviour. Check alert comments and case notes for details.'
+        violent_or_dangerous_details: Give details
   move:
     destination_types:
       labels:
