@@ -3,5 +3,4 @@
     - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
     - breadcrumb 'Move information'
 
-= render partial: 'form', locals: { form: form, submit_path: escort_move_path(escort), method: :patch }
-
+= render 'form', submit_path: escort_move_path(escort), method: :patch

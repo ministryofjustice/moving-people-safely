@@ -1,40 +1,24 @@
 class MovesController < ApplicationController
   before_action :redirect_unless_document_editable
   before_action :redirect_if_move_already_exists, only: %i[new create]
-  helper_method :escort, :from_establishment
-
-  def new
-    form = Forms::Move.new(escort.build_move)
-    render locals: { form: form }
-  end
+  helper_method :escort, :form, :from_establishment
 
   def create
-    form = Forms::Move.new(escort.build_move)
-
     if form.validate(params[:move])
       form.save
       set_establishment
       redirect_to escort_path(escort)
     else
-      render :new, locals: { form: form }
+      render :new
     end
   end
 
-  def edit
-    form = Forms::Move.new(move)
-    form.prepopulate!
-    render locals: { form: form }
-  end
-
   def update
-    form = Forms::Move.new(move)
-    form.prepopulate!
-
     if form.validate(params[:move])
       form.save
       redirect_to escort_path(escort)
     else
-      render :edit, locals: { form: form }
+      render :edit
     end
   end
 
@@ -44,16 +28,16 @@ class MovesController < ApplicationController
     @escort ||= Escort.find(params[:escort_id])
   end
 
-  def move
-    escort.move || raise(ActiveRecord::RecordNotFound)
+  def form
+    @form ||= Forms::Move.new(escort.move || escort.build_move)
   end
 
   def set_establishment
-    move.update from_establishment: user_or_prisoner_establishment
+    escort.move.update from_establishment: user_or_prisoner_establishment
   end
 
   def from_establishment
-    move.from_establishment || user_or_prisoner_establishment
+    escort.move.from_establishment || user_or_prisoner_establishment
   end
 
   def user_or_prisoner_establishment

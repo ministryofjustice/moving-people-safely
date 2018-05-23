@@ -1,21 +1,21 @@
 - questions = %w[controlled_unlock category_a high_profile pnc_warnings]
 
 - unless views == 'escort'
-  = render partial: "shared/sections/#{views}/section",
-    locals: { assessment: assessment, path: path, section: section, questions: questions }
+  = render "shared/sections/#{views}/section",
+    assessment: assessment, path: path, section: section, questions: questions
 
-= render partial: "shared/sections/#{views}/question",
-  locals: { alternance: 'even', assessment: assessment, section: section, question: 'controlled_unlock',
-            value: assessment.controlled_unlock, details: assessment.controlled_unlock_details }
+= render "shared/sections/#{views}/question",
+  alternance: 'even', assessment: assessment, section: section, question: 'controlled_unlock',
+  value: assessment.controlled_unlock, details: assessment.controlled_unlock_details
 
-= render partial: "shared/sections/#{views}/question",
-  locals: { alternance: 'odd', assessment: assessment, section: section, question: 'category_a',
-            value: assessment.category_a, details: nil }
+= render "shared/sections/#{views}/question",
+  alternance: 'odd', assessment: assessment, section: section, question: 'category_a',
+  value: assessment.category_a, details: nil
 
-= render partial: "shared/sections/#{views}/question",
-  locals: { alternance: 'even', assessment: assessment, section: section, question: 'high_profile',
-            value: assessment.high_profile, details: assessment.high_profile_details }
+= render "shared/sections/#{views}/question",
+  alternance: 'even', assessment: assessment, section: section, question: 'high_profile',
+  value: assessment.high_profile, details: assessment.high_profile_details
 
-= render partial: "shared/sections/#{views}/question",
-  locals: { alternance: 'odd', assessment: assessment, section: section, question: 'pnc_warnings',
-            value: assessment.pnc_warnings, details: assessment.pnc_warnings_details }
+= render "shared/sections/#{views}/question",
+  alternance: 'odd', assessment: assessment, section: section, question: 'pnc_warnings',
+  value: assessment.pnc_warnings, details: assessment.pnc_warnings_details

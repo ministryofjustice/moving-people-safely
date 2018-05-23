@@ -2,11 +2,10 @@ section id=model.to_s.downcase
   .header
     span.section-title= model
 
-    = render partial: 'status',
-      locals: { workflow: assessment,
-                not_started_path: not_started_path,
-                summary_path: summary_path,
-                section: section }
+    = render 'status', workflow: assessment,
+                       not_started_path: not_started_path,
+                       summary_path: summary_path,
+                       section: section
 
     - if assessment&.reviewed?
       p.review
@@ -15,11 +14,11 @@ section id=model.to_s.downcase
   - if assessment&.relevant_questions&.any?
     table
       - model::SECTIONS.each do |section|
-        = render partial: "#{model.to_s.downcase.pluralize}/sections/#{section}",
-          locals: { views: 'escort',
-                    section: section,
-                    path: nil,
-                    assessment: assessment }
+        = render "#{model.to_s.downcase.pluralize}/sections/#{section}",
+          views: 'escort',
+          section: section,
+          path: nil,
+          assessment: assessment
 
   - else
     p.info

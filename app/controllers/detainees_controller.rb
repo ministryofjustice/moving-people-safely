@@ -1,36 +1,27 @@
 class DetaineesController < ApplicationController
   before_action :redirect_unless_document_editable
   before_action :redirect_if_detainee_already_exists, only: %i[new create]
-  helper_method :escort
+  helper_method :escort, :form
 
   def new
     flash.now[:warning] = t('alerts.detainee.details.unavailable')
-    form = Forms::Detainee.new(escort.build_detainee)
-    render locals: { form: form }
   end
 
   def create
-    form = Forms::Detainee.new(escort.build_detainee)
     if form.validate(params[:detainee])
       form.save
       redirect_to new_escort_move_path(escort)
     else
-      render :new, locals: { form: form }
+      render :new
     end
   end
 
-  def edit
-    form = Forms::Detainee.new(detainee)
-    render locals: { form: form }
-  end
-
   def update
-    form = Forms::Detainee.new(detainee)
     if form.validate(params[:detainee])
       form.save
       redirect_to_move_or_escort
     else
-      render :edit, locals: { form: form }
+      render :edit
     end
   end
 
@@ -40,8 +31,8 @@ class DetaineesController < ApplicationController
     @escort ||= Escort.find(params[:escort_id])
   end
 
-  def detainee
-    escort.detainee || raise(ActiveRecord::RecordNotFound)
+  def form
+    @form ||= Forms::Detainee.new(escort.detainee || escort.build_detainee)
   end
 
   def permitted_params(params)

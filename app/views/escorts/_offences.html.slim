@@ -2,11 +2,11 @@ section#offences
   .header
     span.section-title Offences
 
-    = render partial: 'status',
-      locals: { workflow: escort.offences_workflow,
-                not_started_path: escort_offences_path(escort),
-                summary_path: escort_offences_path(escort),
-                section: escort.offences_workflow || escort.build_offences_workflow }
+    = render 'status',
+      workflow: escort.offences_workflow,
+      not_started_path: escort_offences_path(escort),
+      summary_path: escort_offences_path(escort),
+      section: escort.offences_workflow || escort.build_offences_workflow
 
     - if workflow&.reviewed?
       p.review

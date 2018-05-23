@@ -92,16 +92,6 @@ RSpec.describe 'Offences', type: :request do
           expect(response).to redirect_to "/escorts/#{escort.id}"
         end
       end
-
-      context "posted data fails validation" do
-        let(:invalid_offence) { { "id"=>"", "offence"=>"" } }
-          let(:form_data) { { offences: { offences_attributes: { '0' => invalid_offence } } } }
-
-        it "redirects to #show" do
-          put "/escorts/#{escort.id}/offences", params: form_data
-          expect(response).to redirect_to "/escorts/#{escort.id}/offences"
-        end
-      end
     end
   end
 end

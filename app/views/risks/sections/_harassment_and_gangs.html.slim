@@ -1,17 +1,17 @@
 - questions = %w[intimidation_public intimidation_prisoners gang_member]
 
 - unless views == 'escort'
-  = render partial: "shared/sections/#{views}/section",
-    locals: { assessment: assessment, path: path, section: section, questions: questions }
+  = render "shared/sections/#{views}/section",
+    assessment: assessment, path: path, section: section, questions: questions
 
-= render partial: "shared/sections/#{views}/question",
-  locals: { alternance: 'even', assessment: assessment, section: section, question: 'intimidation_public',
-            value: assessment.intimidation_public, details: assessment.intimidation_public_details }
+= render "shared/sections/#{views}/question",
+  alternance: 'even', assessment: assessment, section: section, question: 'intimidation_public',
+  value: assessment.intimidation_public, details: assessment.intimidation_public_details
 
-= render partial: "shared/sections/#{views}/question",
-  locals: { alternance: 'odd', assessment: assessment, section: section, question: 'intimidation_prisoners',
-            value: assessment.intimidation_prisoners, details: assessment.intimidation_prisoners_details }
+= render "shared/sections/#{views}/question",
+  alternance: 'odd', assessment: assessment, section: section, question: 'intimidation_prisoners',
+  value: assessment.intimidation_prisoners, details: assessment.intimidation_prisoners_details
 
-= render partial: "shared/sections/#{views}/question",
-  locals: { alternance: 'even', assessment: assessment, section: section, question: 'gang_member',
-            value: assessment.gang_member, details: assessment.gang_member_details }
+= render "shared/sections/#{views}/question",
+  alternance: 'even', assessment: assessment, section: section, question: 'gang_member',
+  value: assessment.gang_member, details: assessment.gang_member_details

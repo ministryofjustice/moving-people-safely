@@ -20,7 +20,7 @@ module BreadcrumbsHelper
   end
 
   def render_breadcrumbs
-    render partial: 'shared/breadcrumbs', locals: { breadcrumbs: breadcrumbs }
+    render 'shared/breadcrumbs', breadcrumbs: breadcrumbs
   end
 
   def detainee_breadcrumb(detainee)

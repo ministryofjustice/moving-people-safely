@@ -5,11 +5,10 @@
     - breadcrumb t("healthcare.form.title.#{form.name}")
 
 .column-three-quarters
-  = render partial: 'shared/wizard_header'
+  = render 'shared/wizard_header'
 
   .healthcare
-    = render partial: 'shared/wizard_step_form',
-      locals: { scope: 'healthcare', form: form, method: :put }
+    = render 'shared/wizard_step_form', scope: 'healthcare', method: :put
 
 .column-one-quarter.side-profile
-  = render partial: 'shared/detainee_sidebar'
+  = render 'shared/detainee_sidebar'

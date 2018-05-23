@@ -1,9 +1,9 @@
 - questions = %w[hostage_taker]
 
 - unless views == 'escort'
-  = render partial: "shared/sections/#{views}/section",
-    locals: { assessment: assessment, path: path, section: section, questions: questions }
+  = render "shared/sections/#{views}/section",
+    assessment: assessment, path: path, section: section, questions: questions
 
-= render partial: "shared/sections/#{views}/question",
-  locals: { alternance: 'even', assessment: assessment, section: section, question: 'hostage_taker',
-            value: assessment.hostage_taker, details: assessment.hostage_taker_details }
+= render "shared/sections/#{views}/question",
+  alternance: 'even', assessment: assessment, section: section, question: 'hostage_taker',
+  value: assessment.hostage_taker, details: assessment.hostage_taker_details

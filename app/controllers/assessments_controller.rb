@@ -7,11 +7,10 @@ class AssessmentsController < ApplicationController
   before_action :redirect_unless_document_editable, except: :show
   before_action :add_multiples, only: %i[create update]
 
-  helper_method :escort, :assessment
+  helper_method :escort, :assessment, :form
 
   def new
     form.prepopulate!
-    render :new, locals: { form: form }
   end
 
   def create
@@ -21,13 +20,12 @@ class AssessmentsController < ApplicationController
       redirect_after_update
     else
       form.prepopulate!
-      render :new, locals: { form: form }
+      render :new
     end
   end
 
   def edit
     form.prepopulate!
-    render :edit, locals: { form: form }
   end
 
   def update
@@ -37,7 +35,7 @@ class AssessmentsController < ApplicationController
       redirect_after_update
     else
       form.prepopulate!
-      render :edit, locals: { form: form }
+      render :edit
     end
   end
 

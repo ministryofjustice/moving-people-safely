@@ -3,27 +3,27 @@
     - breadcrumb detainee_breadcrumb(escort.detainee)
 
 .escort.per-page.column-three-quarters
-  = render partial: 'header', locals: { detainee: escort.detainee }
+  = render 'header', detainee: escort.detainee
 
-  = render partial: 'move'
+  = render 'move'
 
-  = render partial: 'detainee'
+  = render 'detainee'
 
-  = render partial: 'offences', locals: { offences: escort.offences, workflow: escort.offences_workflow }
+  = render 'offences', offences: escort.offences, workflow: escort.offences_workflow
 
-  = render partial: 'assessment', locals: { assessment: escort.risk,
-                                            model: Risk,
-                                            not_started_path: new_escort_risks_path(escort),
-                                            summary_path: escort_risks_path(escort),
-                                            section: escort.risk || escort.build_risk }
+  = render 'assessment', assessment: escort.risk,
+                         model: Risk,
+                         not_started_path: new_escort_risks_path(escort),
+                         summary_path: escort_risks_path(escort),
+                         section: escort.risk || escort.build_risk
 
-  = render partial: 'assessment', locals: { assessment: escort.healthcare,
-                                            model: Healthcare,
-                                            not_started_path: intro_escort_healthcare_path(escort),
-                                            summary_path: escort_healthcare_path(escort),
-                                            section: escort.healthcare || escort.build_healthcare }
+  = render 'assessment', assessment: escort.healthcare,
+                         model: Healthcare,
+                         not_started_path: intro_escort_healthcare_path(escort),
+                         summary_path: escort_healthcare_path(escort),
+                         section: escort.healthcare || escort.build_healthcare
 
-  = render partial: 'actions'
+  = render 'actions'
 
 .column-one-quarter.side-profile
-  = render partial: 'shared/detainee_sidebar'
+  = render 'shared/detainee_sidebar'
