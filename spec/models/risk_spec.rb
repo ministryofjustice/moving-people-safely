@@ -10,23 +10,4 @@ RSpec.describe Risk, type: :model do
   subject { described_class.new }
 
   include_examples 'reviewable'
-
-  describe '#acct_status_text' do
-    context 'when acct_status equals closed' do
-      date_of_most_recently_closed_acct = 1.month.ago.to_date
-      subject { build(:risk, acct_status: 'closed', date_of_most_recently_closed_acct: date_of_most_recently_closed_acct) }
-      its(:acct_status_text) { is_expected.to eq "Closed: #{date_of_most_recently_closed_acct}" }
-    end
-
-    context 'when acct_status equals none' do
-      date_of_most_recently_closed_acct = 1.month.ago
-      subject { build(:risk, acct_status: 'none') }
-      its(:acct_status_text) { is_expected.to be_blank }
-    end
-
-    context 'when acct_status is not none or closed' do
-      subject { build(:risk, acct_status: 'open') }
-      its(:acct_status_text) { is_expected.to eq 'Open' }
-    end
-  end
 end

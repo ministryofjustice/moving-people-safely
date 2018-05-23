@@ -6,7 +6,7 @@
 
 = render partial: "shared/sections/#{views}/question",
   locals: { alternance: 'even', assessment: assessment, section: section, question: 'acct_status',
-            value: assessment.acct_status, details: assessment.acct_details }
+            value: assessment.acct_status, details: acct_details(assessment) }
 
 = render partial: "shared/sections/#{views}/question",
   locals: { alternance: 'odd', assessment: assessment, section: section, question: 'self_harm',

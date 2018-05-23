@@ -5,9 +5,9 @@
 .escort.per-page.column-three-quarters
   = render partial: 'header', locals: { detainee: escort.detainee }
 
-  = render partial: 'move', locals: { move: MovePresenter.new(escort.move) }
+  = render partial: 'move'
 
-  = render partial: 'detainee', locals: { detainee: DetaineePresenter.new(escort.detainee) }
+  = render partial: 'detainee'
 
   = render partial: 'offences', locals: { offences: escort.offences, workflow: escort.offences_workflow }
 
@@ -26,4 +26,4 @@
   = render partial: 'actions'
 
 .column-one-quarter.side-profile
-  = render partial: 'shared/detainee_sidebar', locals: { detainee: DetaineePresenter.new(escort.detainee), escort: escort, move: MovePresenter.new(escort.move) }
+  = render partial: 'shared/detainee_sidebar'

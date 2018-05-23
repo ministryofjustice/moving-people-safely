@@ -12,5 +12,4 @@
       locals: { scope: 'healthcare', form: form, method: :put }
 
 .column-one-quarter.side-profile
-  = render partial: 'shared/detainee_sidebar',
-    locals: { detainee: DetaineePresenter.new(escort.detainee), escort: escort, move: MovePresenter.new(escort.move) }
+  = render partial: 'shared/detainee_sidebar'

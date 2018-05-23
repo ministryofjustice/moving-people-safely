@@ -1,6 +1,8 @@
+require 'time_diff'
+
 module Summary
   class EscortSectionStatusPresenter
-    include PresenterHelpers
+    include ActionView::Helpers::TranslationHelper
 
     delegate :needs_review?, to: :section
 
@@ -58,6 +60,10 @@ module Summary
 
     def twig
       escort.twig
+    end
+
+    def time_diff(start_time, end_time)
+      TimeDiff.new(start_time, end_time).to_s
     end
   end
 end

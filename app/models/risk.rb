@@ -30,25 +30,6 @@ class Risk < ApplicationRecord
     }
   end
 
-  def acct_status_text
-    case acct_status
-    when 'closed'
-      "Closed: #{date_of_most_recently_closed_acct}"
-    when 'none', nil
-      nil
-    else
-      acct_status.humanize
-    end
-  end
-
-  def acct_details
-    "Closed on #{date_of_most_recently_closed_acct} | #{acct_status_details}" if acct_status == 'closed'
-  end
-
-  def must_return_details
-    answer_details(must_return_to, must_return_to_details)
-  end
-
   def relevant_questions
     @relevant_questions ||= MANDATORY_QUESTIONS.select do |question|
       RELEVANT_ANSWERS.include? public_send(question)

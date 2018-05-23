@@ -11,8 +11,4 @@ module Questionable
   def section_relevant?(questions)
     questions.any? { |question| relevant_questions.include? question }
   end
-
-  def answer_details(*answers)
-    answers.compact.map(&:capitalize).join(' | ')
-  end
 end
