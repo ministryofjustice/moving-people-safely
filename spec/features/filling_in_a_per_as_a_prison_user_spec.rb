@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'filling in a PER', type: :feature do
+RSpec.feature 'filling in a PER as a prison user', type: :feature do
   let(:offences_data) {
     {
       offences: [

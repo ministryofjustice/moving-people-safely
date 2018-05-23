@@ -19,7 +19,7 @@ class MovesController < ApplicationController
   end
 
   def form
-    @form ||= Forms::Move.new(escort)
+    @form ||= Forms::Move.form_for(escort)
   end
 
   def set_establishment
