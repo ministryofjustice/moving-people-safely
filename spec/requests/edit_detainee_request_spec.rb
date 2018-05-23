@@ -36,15 +36,5 @@ RSpec.describe 'Edit detainee requests', type: :request do
         expect(response).to have_http_status(302)
       end
     end
-
-    context 'when the detainee does not exist' do
-      let(:escort) { create(:escort, prison_number: prison_number) }
-
-      it 'raises a record not found error' do
-        expect {
-          get "/escorts/#{escort.id}/detainee/edit"
-        }.to raise_error(ActiveRecord::RecordNotFound)
-      end
-    end
   end
 end

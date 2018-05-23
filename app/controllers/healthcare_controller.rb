@@ -8,7 +8,7 @@ class HealthcareController < AssessmentsController
     form.deserialize form_params
     form.add_medication
     view = params[:action] == 'create' ? :new : :edit
-    render view, locals: { form: form }
+    render view
   end
 
   def assessment

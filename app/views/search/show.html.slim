@@ -1,11 +1,11 @@
 header
   h1 = t('.title')
 
-= render partial: 'form'
+= render 'form'
 
 - if @escort
   .search-results
-    = render partial: 'result'
+    = render 'result'
 
 - elsif @form.prison_number && @form.valid?
-  = render partial: 'no_result'
+  = render 'no_result'

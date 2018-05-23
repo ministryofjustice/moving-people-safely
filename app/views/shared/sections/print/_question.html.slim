@@ -11,4 +11,4 @@
         = details.capitalize
       - elsif details && multiples
         - details.each do |multiple|
-          = render partial: "#{assessment.class.to_s.downcase.pluralize}/sections/#{partial}_print", locals: { multiple: multiple }
+          = render "#{assessment.class.to_s.downcase.pluralize}/sections/#{partial}_print", multiple: multiple

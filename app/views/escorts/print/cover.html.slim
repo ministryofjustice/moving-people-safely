@@ -32,11 +32,11 @@ html
             = escort.detainee.forenames
         div.grid-row.indicators
           #not_for_release_alert.grid-column.column-one-half
-            = render partial: 'escorts/print/alert', locals: { alert_name: :not_for_release, on: escort.alerts[:not_for_release] }
+            = render 'escorts/print/alert', alert_name: :not_for_release, on: escort.alerts[:not_for_release]
             - if escort.alerts[:not_for_release]
               p.alert-text= not_for_release_text(escort.move)
           #e_list_alert.grid-column.column-one-half
-            = render partial: 'escorts/print/alert', locals: { alert_name: :current_e_risk, on: escort.alerts[:current_e_risk] }
+            = render 'escorts/print/alert', alert_name: :current_e_risk, on: escort.alerts[:current_e_risk]
         div.grid-row.padded.top-dotted
           div.grid-column.column-one-half
             div.grid-row

@@ -5,20 +5,18 @@
       - breadcrumb 'Risk summary'
 
   .summary.per-section-page
-    = render partial: 'summary/status',
-      locals: { workflow: Summary::EscortSectionStatusPresenter.new(assessment, name: :risk) }
+    = render 'summary/status',
+      workflow: Summary::EscortSectionStatusPresenter.new(assessment, name: :risk)
 
     - Risk::SECTIONS.each do |section|
       table class="#{section}"
-        = render partial: "risks/sections/#{section}",
-          locals: { views: 'summary',
-                    section: section,
-                    path: edit_escort_risks_path(escort, step: section),
-                    assessment: assessment }
+        = render "risks/sections/#{section}",
+          views: 'summary',
+          section: section,
+          path: edit_escort_risks_path(escort, step: section),
+          assessment: assessment
 
-    = render partial: 'summary/call_to_action',
-      locals: { workflow: assessment,
-                confirm_path: confirm_escort_risks_path(escort) }
+    = render 'summary/call_to_action', workflow: assessment, confirm_path: confirm_escort_risks_path(escort)
 
 .column-one-quarter.side-profile
-  = render partial: 'shared/detainee_sidebar'
+  = render 'shared/detainee_sidebar'

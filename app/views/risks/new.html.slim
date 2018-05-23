@@ -5,11 +5,10 @@
     - breadcrumb t("risks.form.title.#{form.name}")
 
 .column-three-quarters
-  = render partial: 'shared/wizard_header'
+  = render 'shared/wizard_header'
 
   .risk
-    = render partial: 'shared/wizard_step_form',
-      locals: { scope: 'risks', form: form, method: :post }
+    = render 'shared/wizard_step_form', scope: 'risks', method: :post
 
 .column-one-quarter.side-profile
-  = render partial: 'shared/detainee_sidebar'
+  = render 'shared/detainee_sidebar'

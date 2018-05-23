@@ -8,7 +8,7 @@ class RisksController < AssessmentsController
     form.deserialize form_params
     form.add_must_not_return_detail
     view = params[:action] == 'create' ? :new : :edit
-    render view, locals: { form: form }
+    render view
   end
 
   def assessment

@@ -8,23 +8,23 @@ html
     main.inner-page
       .grid-row.indicators.top-dotted
         .grid-column.column-one-third
-          = render partial: 'escorts/print/alert', locals: { alert_name: :not_for_release, on: escort.alerts[:not_for_release] }
+          = render 'escorts/print/alert', alert_name: :not_for_release, on: escort.alerts[:not_for_release]
           - if escort.alerts[:not_for_release]
             p.alert-text= not_for_release_text(escort.move)
         .grid-column.column-one-third
-          = render partial: 'escorts/print/alert', locals: { alert_name: :current_e_risk, on: escort.alerts[:current_e_risk] }
+          = render 'escorts/print/alert', alert_name: :current_e_risk, on: escort.alerts[:current_e_risk]
         .grid-column.column-one-third
-          = render partial: 'escorts/print/alert', locals: { alert_name: :acct_status, on: escort.alerts[:acct_status] }
+          = render 'escorts/print/alert', alert_name: :acct_status, on: escort.alerts[:acct_status]
           p.alert-text= acct_status_text(escort.risk)
       .grid-row.indicators
         .grid-column.column-one-quarter
-          = render partial: 'escorts/print/alert', locals: { alert_name: :self_harm, on: escort.alerts[:self_harm] }
+          = render 'escorts/print/alert', alert_name: :self_harm, on: escort.alerts[:self_harm]
         .grid-column.column-one-quarter
-          = render partial: 'escorts/print/alert', locals: { alert_name: :rule_45, on: escort.alerts[:rule_45] }
+          = render 'escorts/print/alert', alert_name: :rule_45, on: escort.alerts[:rule_45]
         .grid-column.column-one-quarter
-          = render partial: 'escorts/print/alert', locals: { alert_name: :csra, on: escort.alerts[:csra] }
+          = render 'escorts/print/alert', alert_name: :csra, on: escort.alerts[:csra]
         .grid-column.column-one-quarter
-          = render partial: 'escorts/print/alert', locals: { alert_name: :category_a, on: escort.alerts[:category_a] }
+          = render 'escorts/print/alert', alert_name: :category_a, on: escort.alerts[:category_a]
       div#risk-section.section
         table#risk-table.section-table
           tr
@@ -32,11 +32,11 @@ html
               span.heading-large= 'RISK'
               span.timestamp= t('assessment.confirmed_timestamp', name: escort.risk.reviewer.full_name, time: escort.risk.reviewed_at.to_s(:humanized))
           - Risk::SECTIONS.each do |section|
-            = render partial: "risks/sections/#{section}",
-              locals: { views: 'print',
-                        section: section,
-                        path: nil,
-                        assessment: escort.risk }
+            = render "risks/sections/#{section}",
+              views: 'print',
+              section: section,
+              path: nil,
+              assessment: escort.risk
       div#healthcare-section.section
         table#healthcare-table.section-table
           tr
@@ -44,11 +44,11 @@ html
               span.heading-large= 'HEALTHCARE'
               span.timestamp= t('assessment.confirmed_timestamp', name: escort.healthcare.reviewer.full_name, time: escort.healthcare.reviewed_at.to_s(:humanized))
           - Healthcare::SECTIONS.each do |section|
-            = render partial: "healthcare/sections/#{section}",
-              locals: { views: 'print',
-                        section: section,
-                        path: nil,
-                        assessment: escort.healthcare }
+            = render "healthcare/sections/#{section}",
+              views: 'print',
+              section: section,
+              path: nil,
+              assessment: escort.healthcare
       div#offences-section.section
         table#offences-table.section-table
           tr

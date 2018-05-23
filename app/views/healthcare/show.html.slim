@@ -5,18 +5,18 @@
       - breadcrumb 'Healthcare summary'
 
   .summary.per-section-page
-    = render partial: 'summary/status',
-      locals: { workflow: Summary::EscortSectionStatusPresenter.new(assessment, name: :healthcare) }
+    = render 'summary/status',
+      workflow: Summary::EscortSectionStatusPresenter.new(assessment, name: :healthcare)
 
     - Healthcare::SECTIONS.each do |section|
       table class="#{section}"
-        = render partial: "healthcare/sections/#{section}",
-          locals: { views: 'summary',
-                    section: section,
-                    path: edit_escort_healthcare_path(escort, step: section),
-                    assessment: assessment }
+        = render "healthcare/sections/#{section}",
+          views: 'summary',
+          section: section,
+          path: edit_escort_healthcare_path(escort, step: section),
+          assessment: assessment
 
-    = render partial: 'summary/call_to_action', locals: { workflow: assessment, confirm_path: confirm_escort_healthcare_path(escort) }
+    = render 'summary/call_to_action', workflow: assessment, confirm_path: confirm_escort_healthcare_path(escort)
 
 .column-one-quarter.side-profile
-  = render partial: 'shared/detainee_sidebar'
+  = render 'shared/detainee_sidebar'
