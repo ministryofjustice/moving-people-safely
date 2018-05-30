@@ -38,6 +38,12 @@ FactoryBot.define do
       association :healthcare, :incomplete
     end
 
+    offences { build_list :offence, rand(1..5) }
+
+    trait :with_no_offences do
+      offences { [] }
+    end
+
     trait :completed do
       association :detainee
       association :move

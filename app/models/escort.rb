@@ -4,12 +4,15 @@ class Escort < ApplicationRecord
 
   default_scope { order('escorts.cancelled_at desc, escorts.created_at desc') }
   default_scope { where(deleted_at: nil) }
+
   has_one :detainee, dependent: :destroy
   has_one :move, dependent: :destroy
   has_one :risk, dependent: :destroy
   has_one :healthcare, dependent: :destroy
+  has_many :offences, dependent: :destroy
   has_one :offences_workflow, dependent: :destroy
   has_one :clone, class_name: 'Escort', foreign_key: :cloned_id
+
   belongs_to :twig, class_name: 'Escort', foreign_key: :cloned_id
   belongs_to :canceller, class_name: 'User'
 
@@ -38,7 +41,6 @@ class Escort < ApplicationRecord
   scope :in_court, ->(court_name) { joins(:move).where('moves.to = ?', court_name) if court_name }
   scope :for_today, -> { joins(:move).where('moves.date = ?', Date.current) }
 
-  delegate :offences, :offences=, to: :detainee, allow_nil: true
   delegate :surname, :forenames, to: :detainee, prefix: true
   delegate :full_name, to: :canceller, prefix: true
   delegate :date, :from_establishment, to: :move, prefix: true

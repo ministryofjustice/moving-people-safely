@@ -14,6 +14,7 @@ RSpec.feature 'printing a PER', type: :feature do
       move: move,
       risk: risk,
       healthcare: healthcare,
+      offences: offences,
       offences_workflow: offences_workflow
     )
   }
@@ -48,8 +49,7 @@ RSpec.feature 'printing a PER', type: :feature do
       cro_number: '56TYY/UU',
       pnc_number: 'YI896668TT',
       peep: 'yes',
-      peep_details: 'Broken leg',
-      offences: offences
+      peep_details: 'Broken leg'
     )
   }
 

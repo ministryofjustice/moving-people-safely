@@ -117,10 +117,10 @@ RSpec.describe EscortCreator, type: :service do
   end
 
   def except_offences_attributes
-    %w(id detainee_id created_at updated_at)
+    %w(id escort_id created_at updated_at)
   end
 
   def except_current_offences_attributes
-    %w(id detainee_id created_at updated_at)
+    %w(id escort_id created_at updated_at)
   end
 end

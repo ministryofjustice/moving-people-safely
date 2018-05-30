@@ -16,7 +16,6 @@ RSpec.describe Escort do
   specify { is_expected.to have_one(:risk) }
   specify { is_expected.to have_one(:healthcare) }
 
-  it { is_expected.to delegate_method(:offences).to(:detainee) }
   it { is_expected.to delegate_method(:surname).to(:detainee).with_prefix(true) }
   it { is_expected.to delegate_method(:forenames).to(:detainee).with_prefix(true) }
   it { is_expected.to delegate_method(:full_name).to(:canceller).with_prefix(true) }
