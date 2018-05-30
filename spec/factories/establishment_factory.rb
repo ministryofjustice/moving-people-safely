@@ -16,4 +16,8 @@ FactoryBot.define do
   factory :prison, parent: :establishment do
     type 'Prison'
   end
+
+  factory :police_custody, parent: :establishment do
+    type 'PoliceCustody'
+  end
 end

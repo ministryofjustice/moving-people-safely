@@ -17,8 +17,8 @@ class Escort < ApplicationRecord
   validates_attachment_content_type :document, content_type: ['application/pdf']
 
   scope :for_date, ->(date) { eager_load(:move).where(moves: { date: date }) }
-  scope :for_user, lambda { |user|
-    joins(:move).where('moves.from_establishment_id IN (?)', user.authorized_establishments) unless user.admin?
+  scope :for_establishment, lambda { |establishment|
+    joins(:move).where('moves.from_establishment_id = (?)', establishment) if establishment
   }
   scope :with_unconfirmed_risk, -> { joins(:risk).merge(Risk.not_confirmed) }
   scope :with_unconfirmed_healthcare, -> { joins(:healthcare).merge(Healthcare.not_confirmed) }
@@ -109,5 +109,18 @@ class Escort < ApplicationRecord
 
   def active_alerts
     alerts.select { |_k, v| v == true }.keys
+  end
+
+  def from_prison?
+    move&.from_establishment&.type == 'Prison'
+  end
+
+  def from_police?
+    move&.from_establishment&.type == 'PoliceCustody'
+  end
+
+  def number
+    return prison_number if from_prison?
+    detainee&.pnc_number if from_police?
   end
 end

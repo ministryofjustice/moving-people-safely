@@ -32,6 +32,7 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Exclude:
     - 'app/form_builders/mps_form_builder.rb'
+    - 'app/models/escort.rb'
 
 Metrics/MethodLength:
   Max: 15

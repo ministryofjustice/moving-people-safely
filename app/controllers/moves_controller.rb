@@ -41,7 +41,8 @@ class MovesController < ApplicationController
   end
 
   def user_or_prisoner_establishment
-    return current_user.authorized_establishments.first if current_user.authorized_establishments.one?
+    establishment = current_user.establishment(session)
+    return establishment if establishment
     response = Detainees::LocationFetcher.new(escort.prison_number).call
     Establishment.find_by!(nomis_id: response.to_h[:code])
   end

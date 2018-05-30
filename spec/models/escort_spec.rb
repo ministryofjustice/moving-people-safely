@@ -228,4 +228,55 @@ RSpec.describe Escort do
       specify { expect(escort.needs_review?).to be_truthy }
     end
   end
+
+  describe '#from_prison?' do
+    let(:move) { create(:move, from_establishment: establishment) }
+    let(:escort) { create(:escort, move: move)}
+
+    context 'when created in prison' do
+      let(:establishment) { create(:prison) }
+
+      specify { expect(escort.from_prison?).to be_truthy }
+    end
+
+    context 'when not created in prison' do
+      let(:establishment) { create(:police_custody) }
+
+      specify { expect(escort.from_prison?).to be_falsey }
+    end
+  end
+
+  describe '#from_police?' do
+    let(:move) { create(:move, from_establishment: establishment) }
+    let(:escort) { create(:escort, move: move)}
+
+    context 'when created in police custody' do
+      let(:establishment) { create(:police_custody) }
+
+      specify { expect(escort.from_police?).to be_truthy }
+    end
+
+    context 'when not created in police custody' do
+      let(:establishment) { create(:prison) }
+
+      specify { expect(escort.from_police?).to be_falsey }
+    end
+  end
+
+  describe '#number' do
+    let(:move) { create(:move, from_establishment: establishment) }
+    let(:escort) { create(:escort, :with_detainee, move: move)}
+
+    context 'when created in prison' do
+      let(:establishment) { create(:prison) }
+
+      specify { expect(escort.number).to eq escort.prison_number }
+    end
+
+    context 'when created in police custody' do
+      let(:establishment) { create(:police_custody) }
+
+      specify { expect(escort.number).to eq escort.detainee.pnc_number }
+    end
+  end
 end

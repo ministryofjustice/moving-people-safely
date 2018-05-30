@@ -1,0 +1,12 @@
+header
+  h1 Where do you work?
+
+= form_for @form, url: set_police_station_path do |f|
+  .radio-concertina
+    .form-group
+      label.form-label for='police_custody_id'
+        = 'Police custody suite'
+      = f.select :police_custody_id, PoliceCustody.pluck(:name, :id), {include_blank: true}, { id: 'police_custody' }
+
+  .form-actions
+    = f.submit 'Save and continue', class: 'button'
