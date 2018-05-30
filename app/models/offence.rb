@@ -1,3 +1,3 @@
 class Offence < ApplicationRecord
-  belongs_to :detainee
+  belongs_to :escort
 end

@@ -18,11 +18,5 @@ FactoryBot.define do
       b = 4.times.map { (0..9).to_a.sample }
       [a[0],b[0],b[1],b[2],b[3],a[1],a[2]].join
     end
-
-    offences { build_list :offence, rand(1..5) }
-
-    trait :with_no_offences do
-      offences { [] }
-    end
   end
 end

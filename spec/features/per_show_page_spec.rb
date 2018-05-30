@@ -250,9 +250,9 @@ RSpec.feature 'PER show page', type: :feature do
     end
 
     let(:prison_number) { 'A3243AW' }
-    let(:detainee) { create(:detainee, :with_no_offences, prison_number: prison_number) }
+    let(:detainee) { create(:detainee, prison_number: prison_number) }
     let(:move) { create(:move) }
-    let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee, move: move) }
+    let(:escort) { create(:escort, :with_no_offences, prison_number: prison_number, detainee: detainee, move: move) }
 
     let(:offences_data) {
       [

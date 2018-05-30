@@ -1,6 +1,5 @@
 class Detainee < ApplicationRecord
   belongs_to :escort
-  has_many :offences, dependent: :destroy
 
   def age
     AgeCalculator.age(date_of_birth)

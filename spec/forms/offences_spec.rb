@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Forms::Offences, type: :form do
-  let(:model) { Detainee.new(offences: []) }
+  let(:model) { Escort.new(offences: []) }
   subject { described_class.new(model) }
 
   let(:form_data) do
@@ -33,7 +33,7 @@ RSpec.describe Forms::Offences, type: :form do
     end
 
     it { is_expected.to validate_prepopulated_collection :offences }
-  
+
     specify { expect(subject.validate(form_data)).to eq(true) }
   end
 

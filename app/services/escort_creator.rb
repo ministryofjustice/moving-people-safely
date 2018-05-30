@@ -23,9 +23,10 @@ class EscortCreator
   attr_reader :prison_number
 
   INCLUDE_GRAPH = [
-    { detainee: [:offences] },
+    :detainee,
     { risk: [:must_not_return_details] },
     { healthcare: [:medications] },
+    :offences,
     :offences_workflow
   ].freeze
 
