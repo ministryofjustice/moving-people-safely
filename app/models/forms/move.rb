@@ -51,5 +51,10 @@ module Forms
       self.to = send("to_#{to_type}")
       super
     end
+
+    def self.form_for(user, move)
+      return Forms::Police::Move.new(move) if user.police?
+      Forms::Prison::Move.new(move)
+    end
   end
 end
