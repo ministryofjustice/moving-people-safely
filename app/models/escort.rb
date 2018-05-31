@@ -121,11 +121,11 @@ class Escort < ApplicationRecord
   end
 
   def from_prison?
-    move&.from_establishment&.type == 'Prison'
+    move&.from_prison?
   end
 
   def from_police?
-    move&.from_establishment&.type == 'PoliceCustody'
+    move&.from_police?
   end
 
   def number

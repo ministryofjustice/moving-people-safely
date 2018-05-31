@@ -14,7 +14,7 @@ class EscortCompletionValidator < SimpleDelegator
   end
 
   def valid_move?
-    move && Forms::Move.form_for(self).prepopulate!.valid?
+    move && Forms::Move.form_for(move).prepopulate!.valid?
   end
 
   def valid_assessments?

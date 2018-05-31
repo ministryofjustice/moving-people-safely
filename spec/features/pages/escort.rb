@@ -62,11 +62,10 @@ module Page
 
     def confirm_detainee_details(detainee)
       within('#detainee') do
-        expect(page).to have_content detainee.prison_number
+        expect(page).to have_content (detainee.prison_number || detainee.pnc_number)
         expect(page).to have_content detainee.date_of_birth.strftime('%d %b %Y')
         expect(page).to have_content detainee.nationalities
         expect(page).to have_content detainee.gender[0].upcase
-        expect(page).to have_content detainee.pnc_number
         expect(page).to have_content detainee.cro_number
         expect(page).to have_content detainee.aliases
         expect(page).to have_content age(detainee.date_of_birth)

@@ -52,4 +52,8 @@ module ApplicationPageHelpers
   def healthcare_summary
     @_healthcare_summary ||= Page::HealthcareSummary.new
   end
+
+  def select_police_station
+    @_select_police_station ||= Page::SelectPoliceStation.new
+  end
 end
