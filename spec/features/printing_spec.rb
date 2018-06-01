@@ -10,30 +10,6 @@ RSpec.feature 'printing a PER', type: :feature do
   let(:escort) {
     create(
       :escort,
-      detainee: detainee,
-      move: move,
-      risk: risk,
-      healthcare: healthcare,
-      offences: offences,
-      offences_workflow: offences_workflow
-    )
-  }
-  let(:move) {
-    create(
-      :move,
-      from_establishment: bedford,
-      to: 'Luton Crown Court',
-      date: Date.civil(2099, 4, 22)
-    )
-  }
-
-  let(:offences_workflow) { create(:offences_workflow, :confirmed) }
-
-  let(:offences) { [] }
-
-  let(:detainee) {
-    create(
-      :detainee,
       prison_number: 'W1234BY',
       forenames: 'Testy',
       surname: 'McTest',
@@ -49,9 +25,20 @@ RSpec.feature 'printing a PER', type: :feature do
       cro_number: '56TYY/UU',
       pnc_number: 'YI896668TT',
       peep: 'yes',
-      peep_details: 'Broken leg'
+      peep_details: 'Broken leg',
+      from_establishment: bedford,
+      to: 'Luton Crown Court',
+      date: Date.civil(2099, 4, 22),
+      risk: risk,
+      healthcare: healthcare,
+      offences: offences,
+      offences_workflow: offences_workflow
     )
   }
+
+  let(:offences_workflow) { create(:offences_workflow, :confirmed) }
+
+  let(:offences) { [] }
 
   context 'when a PER is completed with all answers as no' do
     let(:risk) {

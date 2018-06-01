@@ -14,18 +14,17 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts")
     prison = create(:prison, name: 'HMP Bedford', nomis_id: establishment_nomis_id)
 
-    move_data = build(:move, date: 1.day.from_now)
+    move_data = build(:escort, date: 1.day.from_now)
     create(:magistrates_court, name: move_data.to)
 
     login
 
-    detainee = create(:detainee, prison_number: prison_number)
-    create(:escort, :issued, prison_number: prison_number, detainee: detainee)
+    escort = create(:escort, :issued, prison_number: prison_number)
 
-    dashboard.search(detainee.prison_number)
+    dashboard.search(escort.prison_number)
     dashboard.click_add_new_escort
 
-    detainee_details.complete_form(detainee)
+    detainee_details.complete_form(escort)
 
     move_details.complete_form(move_data)
 
@@ -55,10 +54,9 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
   scenario 'Editing a completed document' do
     login
     prison_number = 'A4321FD'
-    detainee = create(:detainee, prison_number: prison_number)
-    create(:escort, :completed, prison_number: prison_number, detainee: detainee)
+    escort = create(:escort, :completed, prison_number: prison_number)
 
-    dashboard.search(detainee.prison_number)
+    dashboard.search(escort.prison_number)
     dashboard.click_view_escort
     escort_page.confirm_healthcare_status('Complete')
     escort_page.click_edit_healthcare

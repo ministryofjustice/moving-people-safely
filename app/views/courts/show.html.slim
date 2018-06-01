@@ -21,18 +21,18 @@ table.court-dashboard
     tbody.tag-with-href-j data-href="#{escort_path(escort)}"
       tr
         td.detainee-photo rowspan="2"
-          - if escort.detainee.image.present?
+          - if escort.image.present?
             = image_tag escort_detainee_image_path(escort, format: :jpg), size: '86x108', class: 'person'
           - else
             .no-court-dashboard-image
               span = 'No photo'
         td= link_to escort.prison_number, escort_url(escort)
         td
-          span.surname= escort.detainee.surname
-          = escort.detainee.forenames
-        td= escort.move.from_establishment.name
-        td= escort.detainee.date_of_birth
-        td= escort.detainee.age
+          span.surname= escort.surname
+          = escort.forenames
+        td= escort.from_establishment.name
+        td= escort.date_of_birth
+        td= age(escort.date_of_birth)
 
       tr
         td colspan="6"

@@ -8,8 +8,6 @@ RSpec.describe EscortCreator, type: :service do
       expect(Escort.where(prison_number: prison_number).count).to eq(0)
       escort = described_class.call(prison_number: prison_number)
       expect(Escort.where(prison_number: prison_number).count).to eq(1)
-      expect(escort.detainee).to be_nil
-      expect(escort.move).to be_nil
     end
   end
 
@@ -21,11 +19,10 @@ RSpec.describe EscortCreator, type: :service do
         expect(Escort.where(prison_number: prison_number).count).to eq(1)
         escort = described_class.call(prison_number: prison_number)
         expect(Escort.where(prison_number: prison_number).count).to eq(2)
-        expect_detainee_to_be_cloned(existent_escort, escort)
+        expect_escort_to_be_cloned(existent_escort, escort)
         expect_risk_assessment_to_be_cloned(existent_escort, escort)
         expect_healthcare_assessment_to_be_cloned(existent_escort, escort)
         expect_offences_to_be_cloned(existent_escort, escort)
-        expect(escort.move).to be_nil
         expect(escort.twig).to eq(existent_escort)
       end
     end
@@ -37,8 +34,6 @@ RSpec.describe EscortCreator, type: :service do
         expect(Escort.where(prison_number: prison_number).count).to eq(1)
         escort = described_class.call(prison_number: prison_number)
         expect(Escort.where(prison_number: prison_number).count).to eq(2)
-        expect(escort.detainee).to be_nil
-        expect(escort.move).to be_nil
       end
     end
 
@@ -50,20 +45,19 @@ RSpec.describe EscortCreator, type: :service do
         expect(Escort.where(prison_number: prison_number).count).to eq(2)
         escort = described_class.call(prison_number: prison_number)
         expect(Escort.where(prison_number: prison_number).count).to eq(3)
-        expect_detainee_to_be_cloned(issued_escort, escort)
+        expect_escort_to_be_cloned(issued_escort, escort)
         expect_risk_assessment_to_be_cloned(issued_escort, escort)
         expect_healthcare_assessment_to_be_cloned(issued_escort, escort)
         expect_offences_to_be_cloned(issued_escort, escort)
-        expect(escort.move).to be_nil
         expect(escort.twig).to eq(issued_escort)
       end
     end
   end
 
-  def expect_detainee_to_be_cloned(existent_escort, new_escort)
-    detainee_attributes = existent_escort.detainee.attributes.except(*%w(id escort_id created_at updated_at))
-    expect(new_escort.detainee.id).not_to eq(existent_escort.detainee.id)
-    expect(new_escort.detainee).to have_attributes(detainee_attributes)
+  def expect_escort_to_be_cloned(existent_escort, new_escort)
+    escort_attributes = existent_escort.attributes.except(*%w(id cloned_id escort_id created_at updated_at issued_at document_updated_at date to from_establishment_id not_for_release not_for_release_reason not_for_release_reason_details))
+    expect(new_escort.id).not_to eq(existent_escort.id)
+    expect(new_escort).to have_attributes(escort_attributes)
   end
 
   def expect_risk_assessment_to_be_cloned(existent_escort, new_escort)

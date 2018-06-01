@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Detainee image requests', type: :request do
   let(:prison_number) { 'ABC123' }
-  let(:detainee) { create(:detainee, prison_number: prison_number) }
-  let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee) }
+  let(:escort) { create(:escort, prison_number: prison_number) }
 
   context 'when user is not authorized' do
     it 'redirects user to login page' do
@@ -38,8 +37,8 @@ RSpec.describe 'Detainee image requests', type: :request do
     context 'when the detainee exists' do
       context 'but there is no image for detainee' do
         before do
-          detainee.image = nil
-          detainee.save
+          escort.image = nil
+          escort.save
         end
 
         it 'render a 404' do
@@ -58,8 +57,8 @@ RSpec.describe 'Detainee image requests', type: :request do
 
       context 'and there is an image for detainee' do
         before do
-          detainee.image = 'some-base64-encoded-image'
-          detainee.save
+          escort.image = 'some-base64-encoded-image'
+          escort.save
         end
 
         it 'render a 200' do
