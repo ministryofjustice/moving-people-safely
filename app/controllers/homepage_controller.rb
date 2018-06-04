@@ -1,5 +1,7 @@
 class HomepageController < ApplicationController
-  before_action :redirect_to_court_view, if: :court_user?
+  skip_before_action :authenticate_user!, only: %i[help]
+
+  before_action :redirect_to_court_view, only: :show, if: :court_user?
   before_action :redirect_to_select_police_station, only: :show, if: :police_user_without_station?
 
   def show

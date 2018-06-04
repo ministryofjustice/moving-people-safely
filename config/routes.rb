@@ -36,5 +36,6 @@ Rails.application.routes.draw do
 
   get '/select_police_station', to: 'homepage#select_police_station'
   post '/set_police_station', to: 'homepage#set_police_station'
+  get '/help', to: 'homepage#help'
   root to: 'homepage#show'
 end
