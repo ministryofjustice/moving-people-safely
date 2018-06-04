@@ -27,6 +27,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}", status: 404)
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/image", status: 404)
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/charges", status: 404)
+    stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/alerts", status: 404)
     valid_body = { establishment: { code: establishment_nomis_id } }.to_json
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/location", body: valid_body)
 
