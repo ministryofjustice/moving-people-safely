@@ -2,9 +2,7 @@ require 'feature_helper'
 
 RSpec.feature 'PER show page', type: :feature do
   let(:prison_number) { 'A4534DF' }
-  let(:detainee) { create(:detainee, prison_number: prison_number) }
-  let(:move) { create(:move) }
-  let(:default_escort_options) { { prison_number: prison_number, detainee: detainee, move: move } }
+  let(:default_escort_options) { { prison_number: prison_number } }
   let(:escort) { create(:escort, default_escort_options) }
 
   context 'alerts section' do
@@ -15,11 +13,8 @@ RSpec.feature 'PER show page', type: :feature do
 
     context 'Not for release alert' do
       context 'when the unissued PER has move details' do
-        let(:options) { {} }
-        let(:move) { create(:move, options) }
-
         context 'when move has not for release set to no' do
-          let(:options) { { not_for_release: 'no' } }
+          let(:default_escort_options) { { not_for_release: 'no' } }
 
           scenario 'associated alert is displayed as inactive' do
             escort_page.confirm_alert_as_inactive(:not_for_release)
@@ -27,7 +22,7 @@ RSpec.feature 'PER show page', type: :feature do
         end
 
         context 'when move has not for release set to yes' do
-          let(:options) { { not_for_release: 'yes', not_for_release_reason: 'held_for_immigration' } }
+          let(:default_escort_options) { { not_for_release: 'yes', not_for_release_reason: 'held_for_immigration' } }
 
           scenario 'associated alert is displayed as active with associated reason displayed' do
             escort_page.confirm_alert_as_active(:not_for_release)
@@ -228,7 +223,7 @@ RSpec.feature 'PER show page', type: :feature do
         login
 
         visit escort_path(escort)
-        escort_page.confirm_move_info(escort.move)
+        escort_page.confirm_move_info(escort)
       end
     end
 
@@ -239,20 +234,18 @@ RSpec.feature 'PER show page', type: :feature do
         login
 
         visit escort_path(escort)
-        escort_page.confirm_move_info(escort.move)
+        escort_page.confirm_move_info(escort)
       end
     end
   end
 
   context 'offences section' do
     before do
-      stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/charges", status: 404)
+      stub_nomis_api_request(:get, "/offenders/#{escort.prison_number}/charges", status: 404)
     end
 
     let(:prison_number) { 'A3243AW' }
-    let(:detainee) { create(:detainee, prison_number: prison_number) }
-    let(:move) { create(:move) }
-    let(:escort) { create(:escort, :with_no_offences, prison_number: prison_number, detainee: detainee, move: move) }
+    let(:escort) { create(:escort, :with_no_offences, prison_number: prison_number) }
 
     let(:offences_data) {
       [

@@ -14,10 +14,10 @@
         td = link_to_unless escort.cancelled?, escort.number, escort_path(escort)
         td
           span.strong-text
-            | #{escort.detainee_surname}
+            | #{escort.surname}
           span
-            |  #{escort.detainee_forenames}
-        td = escort.move&.to
+            |  #{escort.forenames}
+        td = escort.to
         - if escort.cancelled?
           td colspan=4
             span.cancelled

@@ -16,18 +16,11 @@ RSpec.describe Escort do
   specify { is_expected.to have_one(:risk) }
   specify { is_expected.to have_one(:healthcare) }
 
-  it { is_expected.to delegate_method(:surname).to(:detainee).with_prefix(true) }
-  it { is_expected.to delegate_method(:forenames).to(:detainee).with_prefix(true) }
-  it { is_expected.to delegate_method(:full_name).to(:canceller).with_prefix(true) }
-  it { is_expected.to delegate_method(:date).to(:move).with_prefix(true) }
-
   describe '#completed?' do
     let(:risk) { create(:risk) }
     let(:healthcare) { create(:healthcare) }
     let(:offences_workflow) { create(:offences_workflow) }
-    let(:detainee) { create(:detainee) }
-    let(:move) { create(:move) }
-    let(:escort) { create(:escort, detainee: detainee, move: move, risk: risk, healthcare: healthcare, offences_workflow: offences_workflow) }
+    let(:escort) { create(:escort, risk: risk, healthcare: healthcare, offences_workflow: offences_workflow) }
 
     specify {
       escort = create(:escort, :completed)
@@ -35,12 +28,12 @@ RSpec.describe Escort do
     }
 
     context 'when detainee info is not complete' do
-      let(:detainee) { create(:detainee, surname: nil) }
+      let(:escort) { create(:escort, :completed, surname: nil) }
       specify { expect(escort).not_to be_completed }
     end
 
     context 'when move info is not complete' do
-      let(:move) { create(:move, date: nil) }
+      let(:escort) { create(:escort, :completed, date: nil) }
       specify { expect(escort).not_to be_completed }
     end
 
@@ -67,7 +60,7 @@ RSpec.describe Escort do
     end
 
     context 'when the escort has not expired' do
-      let(:escort) { create(:escort, :with_move) }
+      let(:escort) { create(:escort) }
       specify { expect(escort).to_not be_expired }
     end
   end
@@ -205,7 +198,7 @@ RSpec.describe Escort do
     let(:risk) { create(:risk) }
     let(:healthcare) { create(:healthcare) }
     let(:offences_workflow) { create(:offences_workflow) }
-    let(:escort) { create(:escort, detainee: detainee, risk: risk, healthcare: healthcare, offences_workflow: offences_workflow) }
+    let(:escort) { create(:escort, risk: risk, healthcare: healthcare, offences_workflow: offences_workflow) }
 
     specify { expect(escort.needs_review?).to be_falsey }
 
@@ -229,8 +222,7 @@ RSpec.describe Escort do
   end
 
   describe '#from_prison?' do
-    let(:move) { create(:move, from_establishment: establishment) }
-    let(:escort) { create(:escort, move: move)}
+    let(:escort) { create(:escort, from_establishment: establishment)}
 
     context 'when created in prison' do
       let(:establishment) { create(:prison) }
@@ -246,8 +238,7 @@ RSpec.describe Escort do
   end
 
   describe '#from_police?' do
-    let(:move) { create(:move, from_establishment: establishment) }
-    let(:escort) { create(:escort, move: move)}
+    let(:escort) { create(:escort, from_establishment: establishment)}
 
     context 'when created in police custody' do
       let(:establishment) { create(:police_custody) }
@@ -263,8 +254,7 @@ RSpec.describe Escort do
   end
 
   describe '#number' do
-    let(:move) { create(:move, from_establishment: establishment) }
-    let(:escort) { create(:escort, :with_detainee, move: move)}
+    let(:escort) { create(:escort, from_establishment: establishment)}
 
     context 'when created in prison' do
       let(:establishment) { create(:prison) }
@@ -275,7 +265,7 @@ RSpec.describe Escort do
     context 'when created in police custody' do
       let(:establishment) { create(:police_custody) }
 
-      specify { expect(escort.number).to eq escort.detainee.pnc_number }
+      specify { expect(escort.number).to eq escort.pnc_number }
     end
   end
 end

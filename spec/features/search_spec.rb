@@ -43,36 +43,31 @@ RSpec.feature 'searching for a prisoner', type: :feature do
 
     scenario 'prisoner present with an active escort' do
       prison_number = 'A1324BC'
-      detainee = create(:detainee, prison_number: prison_number)
-      move = create(:move)
-      escort = create(:escort, prison_number: prison_number, detainee: detainee, move: move)
+      escort = create(:escort, prison_number: prison_number)
 
       login
       search_with_valid_prison_number(prison_number)
       expect(page).to have_link('Continue PER', href: escort_path(escort))
-      expect_result_with_move(detainee, move)
+      expect_result_with_move(escort, escort)
     end
 
     scenario 'prisoner present with a previously issued escort' do
       prison_number = 'A1324BC'
-      detainee = create(:detainee, prison_number: prison_number)
-      move = create(:move)
-      create(:escort, :issued, prison_number: prison_number, detainee: detainee, move: move)
+      escort = create(:escort, :issued, prison_number: prison_number)
 
       login
       search_with_valid_prison_number(prison_number)
       expect(page).to have_button('Start new PER')
-      expect_result_with_move(detainee, move)
+      expect_result_with_move(escort, escort)
     end
 
     scenario 'prisoner present with no move' do
       prison_number = 'A1324BC'
-      detainee = create(:detainee, prison_number: prison_number)
-      create(:escort, prison_number: prison_number, detainee: detainee)
+      escort = create(:escort, prison_number: prison_number)
 
       login
       search_with_valid_prison_number(prison_number)
-      expect_result_with_no_move(detainee)
+      expect_result_with_no_move(escort)
     end
   end
 

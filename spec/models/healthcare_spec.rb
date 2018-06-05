@@ -18,8 +18,7 @@ RSpec.describe Healthcare, type: :model do
 
     context 'when there is an establishment set in the move' do
       let(:establishment) { create(:establishment, healthcare_contact_number: '111111') }
-      let(:move) { create(:move, from_establishment: establishment) }
-      let(:escort) { create(:escort, move: move) }
+      let(:escort) { create(:escort, from_establishment: establishment) }
 
       subject { described_class.new(escort: escort) }
 

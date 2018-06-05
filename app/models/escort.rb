@@ -14,14 +14,15 @@ class Escort < ApplicationRecord
   has_one :clone, class_name: 'Escort', foreign_key: :cloned_id
 
   belongs_to :twig, class_name: 'Escort', foreign_key: :cloned_id
+  belongs_to :from_establishment, class_name: 'Establishment'
   belongs_to :canceller, class_name: 'User'
 
   has_attached_file :document
   validates_attachment_content_type :document, content_type: ['application/pdf']
 
-  scope :for_date, ->(date) { eager_load(:move).where(moves: { date: date }) }
+  scope :for_date, ->(date) { where(date: date) }
   scope :for_establishment, lambda { |establishment|
-    joins(:move).where('moves.from_establishment_id = (?)', establishment) if establishment
+    where(from_establishment: establishment) if establishment
   }
   scope :with_unconfirmed_risk, -> { joins(:risk).merge(Risk.not_confirmed) }
   scope :with_unconfirmed_healthcare, -> { joins(:healthcare).merge(Healthcare.not_confirmed) }
@@ -33,24 +34,22 @@ class Escort < ApplicationRecord
   scope :uncancelled, -> { where(cancelled_at: nil) }
   scope :issued, -> { where.not(issued_at: nil) }
   scope :in_last_days, lambda { |num_days|
-    joins(:move).where('moves.date >= ? AND moves.date < ?', num_days.days.ago.to_date, Date.current)
+    where('date >= ? AND date < ?', num_days.days.ago.to_date, Date.current)
   }
   scope :in_month, lambda { |month, year|
-    joins(:move).where('extract(month from moves.date) = ? AND extract(year from moves.date) = ? ', month, year)
+    where('extract(month from date) = ? AND extract(year from date) = ? ', month, year)
   }
-  scope :in_court, ->(court_name) { joins(:move).where('moves.to = ?', court_name) if court_name }
-  scope :for_today, -> { joins(:move).where('moves.date = ?', Date.current) }
+  scope :in_court, ->(court_name) { where(to: court_name) if court_name }
+  scope :for_today, -> { where(date: Date.current) }
 
-  delegate :surname, :forenames, to: :detainee, prefix: true
   delegate :full_name, to: :canceller, prefix: true
-  delegate :date, :from_establishment, to: :move, prefix: true
 
   def completed?
     EscortCompletionValidator.call(self)
   end
 
   def expired?
-    move.date < Date.current
+    date < Date.current
   end
 
   def editable?
@@ -106,7 +105,8 @@ class Escort < ApplicationRecord
   end
 
   def alerts
-    move.alerts.merge(risk&.alerts || {})
+    move_alerts = { not_for_release: (not_for_release == 'yes') }
+    move_alerts.merge(risk&.alerts || {})
   end
 
   def active_alerts
@@ -114,15 +114,15 @@ class Escort < ApplicationRecord
   end
 
   def from_prison?
-    move&.from_establishment&.type == 'Prison'
+    from_establishment&.type == 'Prison'
   end
 
   def from_police?
-    move&.from_establishment&.type == 'PoliceCustody'
+    from_establishment&.type == 'PoliceCustody'
   end
 
   def number
-    return prison_number if from_prison?
-    detainee&.pnc_number if from_police?
+    return pnc_number if from_police?
+    prison_number
   end
 end

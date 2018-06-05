@@ -23,7 +23,6 @@ class EscortCreator
   attr_reader :prison_number
 
   INCLUDE_GRAPH = [
-    :detainee,
     { risk: [:must_not_return_details] },
     { healthcare: [:medications] },
     :offences,
@@ -32,6 +31,12 @@ class EscortCreator
 
   EXCEPT_GRAPH = [
     :issued_at,
+    :date,
+    :to,
+    :from_establishment_id,
+    :not_for_release,
+    :not_for_release_reason,
+    :not_for_release_reason_details,
     { risk: %i[reviewer_id reviewed_at] },
     { healthcare: %i[reviewer_id reviewed_at] },
     { offences_workflow: %i[reviewer_id reviewed_at] }
