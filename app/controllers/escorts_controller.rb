@@ -1,6 +1,6 @@
 class EscortsController < ApplicationController
   before_action :redirect_if_missing_data, only: :show
-  before_action :authorize_user_to_access_prisoner!, only: :create
+  before_action :authorize_prison_officer!, only: :create
   before_action :authorize_user_to_access_escort!, except: :create
 
   helper_method :escort
@@ -36,7 +36,7 @@ class EscortsController < ApplicationController
   end
 
   def escort_params
-    params.require(:escort).permit(:prison_number, :cancelling_reason)
+    params.require(:escort).permit(:prison_number, :pnc_number, :cancelling_reason)
   end
 
   def redirect_if_missing_data

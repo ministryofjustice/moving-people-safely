@@ -41,6 +41,8 @@ class Escort < ApplicationRecord
   }
   scope :in_court, ->(court_name) { where(to: court_name) if court_name }
   scope :for_today, -> { where(date: Date.current) }
+  scope :from_prison, -> { includes(:from_establishment).where(establishments: { type: 'Prison' }) }
+  scope :from_police, -> { includes(:from_establishment).where(establishments: { type: 'PoliceCustody' }) }
 
   delegate :full_name, to: :canceller, prefix: true
 

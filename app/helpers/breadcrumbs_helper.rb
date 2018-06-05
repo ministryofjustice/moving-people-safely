@@ -24,6 +24,6 @@ module BreadcrumbsHelper
   end
 
   def detainee_breadcrumb(escort)
-    "#{escort.prison_number}: #{escort.surname}, #{escort.forenames}"
+    "#{escort.number}: #{escort.surname}, #{escort.forenames}"
   end
 end

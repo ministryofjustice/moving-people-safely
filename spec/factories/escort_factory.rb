@@ -6,12 +6,17 @@ FactoryBot.define do
       [a[0],b[0],b[1],b[2],b[3],a[1],a[2]].join
     end
 
+    pnc_number do
+      a = 1.times.map { ('A'..'Z').to_a.sample }
+      b = 8.times.map { (0..9).to_a.sample }
+      [b[0],b[1],"/",b[2],b[3],b[4],b[5],b[6],a[0]].join
+    end
+
     forenames { Faker::Name.first_name }
     surname { Faker::Name.last_name }
     date_of_birth { Faker::Date.between(80.years.ago, 20.years.ago) }
     gender { %w[ male female ].sample }
     nationalities 'American'
-    pnc_number { rand(9999) }
     cro_number { rand(9999) }
     aliases { Faker::Name.name }
     interpreter_required { 'yes' }
