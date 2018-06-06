@@ -7,9 +7,12 @@ FactoryBot.define do
     end
 
     pnc_number do
-      a = 1.times.map { ('A'..'Z').to_a.sample }
-      b = 8.times.map { (0..9).to_a.sample }
-      [b[0],b[1],"/",b[2],b[3],b[4],b[5],b[6],a[0]].join
+      [
+        '%02d' % rand(99),
+        '/',
+        '%06d' % rand(999999),
+        ('A'..'Z').to_a.sample
+      ].join
     end
 
     forenames { Faker::Name.first_name }
@@ -96,6 +99,16 @@ FactoryBot.define do
     trait :expired do
       completed
       expired
+    end
+
+    trait :with_prison_not_for_release_reason do
+      not_for_release 'yes'
+      not_for_release_reason 'further_charges'
+    end
+
+    trait :with_police_not_for_release_reason do
+      not_for_release 'yes'
+      not_for_release_reason 'recall_to_prison'
     end
   end
 end

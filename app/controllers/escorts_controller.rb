@@ -7,7 +7,7 @@ class EscortsController < ApplicationController
 
   def create
     escort = EscortCreator.call(escort_params)
-    EscortPopulator.new(escort).call
+    EscortPopulator.new(escort).call unless current_user.police?
     redirect_to edit_escort_detainee_path(escort.id)
   end
 
@@ -41,7 +41,7 @@ class EscortsController < ApplicationController
 
   def redirect_if_missing_data
     valid_detainee = Forms::Detainee.new(escort).valid?
-    valid_move = Forms::Move.new(escort).prepopulate!.valid?
+    valid_move = Forms::Move.form_for(escort).prepopulate!.valid?
     redirect_to(edit_escort_detainee_path(escort)) && return unless valid_detainee
     redirect_to(edit_escort_move_path(escort)) && return unless valid_move
   end

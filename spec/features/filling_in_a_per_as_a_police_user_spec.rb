@@ -20,28 +20,21 @@ RSpec.feature 'filling in a PER as a police user', type: :feature do
 
     healthcare_data = build(:healthcare, :with_medications)
     risk_data = build(:risk, :with_high_csra)
-    detainee = build(:detainee)
-    move_data = build(:move, :with_police_not_for_release_reason,
+    escort_data = build(:escort, :with_police_not_for_release_reason,
                       from_establishment: police_custody)
-    create(:magistrates_court, name: move_data.to)
-
-    stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}", status: 404)
-    stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/image", status: 404)
-    stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/charges", status: 404)
-    valid_body = { establishment: { code: establishment_nomis_id } }.to_json
-    stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/location", body: valid_body)
+    create(:magistrates_court, name: escort_data.to)
 
     select_police_station.select_station('Brighton')
 
-    dashboard.search(detainee.prison_number)
+    dashboard.search_for_pnc_number(escort_data.pnc_number)
     dashboard.create_new_escort.click
 
-    detainee_details.complete_form(detainee)
+    detainee_details.complete_form(escort_data)
 
-    move_details.complete_form(move_data)
+    move_details.complete_form(escort_data)
 
-    escort_page.confirm_move_info(move_data)
-    escort_page.confirm_detainee_details(detainee)
+    escort_page.confirm_move_info(escort_data)
+    escort_page.confirm_detainee_details(escort_data)
     escort_page.click_edit_risk
 
     risk.complete_forms(risk_data)

@@ -52,9 +52,9 @@ module Forms
       super
     end
 
-    def self.form_for(user, move)
-      return Forms::Police::Move.new(move) if user.police?
-      Forms::Prison::Move.new(move)
+    def self.form_for(escort)
+      return Forms::Police::Move.new(escort) if escort.from_police?
+      Forms::Prison::Move.new(escort)
     end
   end
 end

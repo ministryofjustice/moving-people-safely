@@ -21,7 +21,7 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
 
     escort = create(:escort, :issued, prison_number: prison_number)
 
-    dashboard.search(escort.prison_number)
+    dashboard.search_for_prison_number(escort.prison_number)
     dashboard.click_add_new_escort
 
     detainee_details.complete_form(escort)
@@ -56,7 +56,7 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     prison_number = 'A4321FD'
     escort = create(:escort, :completed, prison_number: prison_number)
 
-    dashboard.search(escort.prison_number)
+    dashboard.search_for_prison_number(escort.prison_number)
     dashboard.click_view_escort
     escort_page.confirm_healthcare_status('Complete')
     escort_page.click_edit_healthcare

@@ -2,12 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Forms::Move, type: :form do
   describe '.form_for' do
-    subject { described_class.form_for(user, move) }
+    subject { described_class.form_for(escort) }
 
-    let(:user) { double('User', police?: police) }
-    let(:move) { double('Move').as_null_object }
+    let(:escort) { double('Escort', from_police?: police).as_null_object }
 
-    context 'police user' do
+    context 'police escort' do
       let(:police) { true }
 
       it 'returns police version of form' do
@@ -15,7 +14,7 @@ RSpec.describe Forms::Move, type: :form do
       end
     end
 
-    context 'non-police user' do
+    context 'non-police escort' do
       let(:police) { false }
 
       it 'returns prison version of form' do
