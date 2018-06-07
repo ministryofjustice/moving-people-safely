@@ -33,7 +33,7 @@ class HomepageController < ApplicationController
   private
 
   def court_user?
-    current_user.court?
+    current_user.court? && !current_user.admin?
   end
 
   def redirect_to_court_view
@@ -41,7 +41,7 @@ class HomepageController < ApplicationController
   end
 
   def police_user_without_station?
-    current_user.police? && session[:police_station_id].blank?
+    current_user.police? && session[:police_station_id].blank? && !current_user.admin?
   end
 
   def redirect_to_select_police_station
