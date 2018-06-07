@@ -79,6 +79,32 @@
               },
               "band": {
               }
+            },
+            {
+              "statute": {
+                "code": "TH68",
+                "desc": "Theft Act 1968"
+              },
+              "offence": {
+                "code": "TH69069",
+                "desc": "GROSS INDECENCY WITH A HORSE"
+              },
+              "most_serious": false,
+              "charge_active": false,
+              "severity_ranking": "86",
+              "result": {
+                "code": "1007",
+                "desc": "Detention"
+              },
+              "disposition": {
+                "code": "F",
+                "desc": "Final"
+              },
+              "convicted": true,
+              "imprisonment_status": {
+              },
+              "band": {
+              }
             }
           ]
         }
