@@ -1,10 +1,4 @@
 class User < ApplicationRecord
-  ADMIN_ORGANISATION = 'digital.noms.moj'.freeze
-  COURT_ORGANISATION = 'courts.noms.moj'.freeze
-  POLICE_ORGANISATION = 'police.noms.moj'.freeze
-  PRISON_ORGANISATION = 'prisons.noms.moj'.freeze
-  HEALTHCARE_ROLE = 'healthcare'.freeze
-
   serialize :permissions
 
   class << self
@@ -48,6 +42,7 @@ class User < ApplicationRecord
   end
 
   def establishment(session)
+    return nil if admin?
     return authorized_establishments.first if prison_officer?
     PoliceCustody.find(session[:police_station_id]) if police? && session[:police_station_id]
   end
@@ -58,6 +53,12 @@ class User < ApplicationRecord
     return true unless escort_establishment_sso_id
     authorized_establishments.any? { |establishment| establishment.sso_id == escort_establishment_sso_id }
   end
+
+  ADMIN_ORGANISATION = 'digital.noms.moj'.freeze
+  COURT_ORGANISATION = 'courts.noms.moj'.freeze
+  POLICE_ORGANISATION = 'police.noms.moj'.freeze
+  PRISON_ORGANISATION = 'prisons.noms.moj'.freeze
+  HEALTHCARE_ROLE = 'healthcare'.freeze
 
   def admin?
     permissions.any? { |permission| permission['organisation'] == ADMIN_ORGANISATION }
