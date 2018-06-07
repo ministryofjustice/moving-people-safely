@@ -25,6 +25,7 @@ module Detainees
           flat_map do |(case_ref, cases)|
             cases
               .flat_map { |c| c['charges'] }
+              .select { |c| c['charge_active'] }
               .map do |c|
                 offence = c['offence']
                 offence['offence'] = offence.delete('desc')
