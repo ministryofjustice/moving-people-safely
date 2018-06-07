@@ -63,3 +63,6 @@ Naming/MemoizedInstanceVariableName:
 Security/Open:
   Exclude:
     - 'app/controllers/escorts/print_controller.rb'
+
+Style/RegexpLiteral:
+  Enabled: false

@@ -1,6 +1,6 @@
 module EscortsHelper
   def identifier(escort)
-    "#{escort.prison_number}: #{escort.surname}"
+    "#{escort.number}: #{escort.surname}"
   end
 
   def age(date_of_birth)

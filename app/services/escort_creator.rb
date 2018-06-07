@@ -4,7 +4,8 @@ class EscortCreator
   end
 
   def initialize(escort_attrs)
-    @prison_number = escort_attrs.fetch(:prison_number)
+    @prison_number = escort_attrs[:prison_number]
+    @pnc_number = escort_attrs[:pnc_number]
   end
 
   def call
@@ -14,13 +15,13 @@ class EscortCreator
         clone.needs_review!
       end
     else
-      Escort.create(prison_number: prison_number)
+      Escort.create(prison_number: prison_number, pnc_number: pnc_number)
     end
   end
 
   private
 
-  attr_reader :prison_number
+  attr_reader :prison_number, :pnc_number
 
   INCLUDE_GRAPH = [
     { risk: [:must_not_return_details] },
@@ -33,6 +34,7 @@ class EscortCreator
     :issued_at,
     :date,
     :to,
+    :to_type,
     :from_establishment_id,
     :not_for_release,
     :not_for_release_reason,
@@ -43,7 +45,11 @@ class EscortCreator
   ].freeze
 
   def existent_escort
-    @existent_escort ||= Escort.uncancelled.find_by(prison_number: prison_number)
+    return @existent_escort if @existent_escort
+    @existent_escort = Escort.uncancelled
+    @existent_escort = @existent_escort.from_prison.find_by(prison_number: prison_number) if prison_number.present?
+    @existent_escort = @existent_escort.from_police.find_by(pnc_number: pnc_number) if pnc_number.present?
+    @existent_escort
   end
 
   def deep_clone_escort

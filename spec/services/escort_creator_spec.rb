@@ -2,60 +2,118 @@ require 'rails_helper'
 
 RSpec.describe EscortCreator, type: :service do
   let(:prison_number) { 'A1234BC' }
+  let(:pnc_number) { '14/293785A' }
 
-  context 'when there no escorts for the given prison number' do
-    it 'create a new escort' do
-      expect(Escort.where(prison_number: prison_number).count).to eq(0)
-      escort = described_class.call(prison_number: prison_number)
-      expect(Escort.where(prison_number: prison_number).count).to eq(1)
+  context 'from prison' do
+    context 'when there no escorts for the given prison number' do
+      it 'create a new escort' do
+        expect(Escort.where(prison_number: prison_number).count).to eq(0)
+        escort = described_class.call(prison_number: prison_number)
+        expect(Escort.where(prison_number: prison_number).count).to eq(1)
+      end
+    end
+
+    context 'when there are existing escorts for the given prison number' do
+      context 'and escort is not cancelled' do
+        let!(:existent_escort) { create(:escort, :completed, prison_number: prison_number) }
+
+        it 'creates a clone of the most recent escort' do
+          expect(Escort.where(prison_number: prison_number).count).to eq(1)
+          escort = described_class.call(prison_number: prison_number)
+          expect(Escort.where(prison_number: prison_number).count).to eq(2)
+          expect_escort_to_be_cloned(existent_escort, escort)
+          expect_risk_assessment_to_be_cloned(existent_escort, escort)
+          expect_healthcare_assessment_to_be_cloned(existent_escort, escort)
+          expect_offences_to_be_cloned(existent_escort, escort)
+          expect(escort.twig).to eq(existent_escort)
+        end
+      end
+
+      context 'and escort is cancelled' do
+        let!(:existent_escort) { create(:escort, :cancelled, prison_number: prison_number) }
+
+        it 'create a new escort' do
+          expect(Escort.where(prison_number: prison_number).count).to eq(1)
+          escort = described_class.call(prison_number: prison_number)
+          expect(Escort.where(prison_number: prison_number).count).to eq(2)
+        end
+      end
+
+      context 'and an escort is issued and another one is cancelled' do
+        let!(:cancelled_escort) { create(:escort, :cancelled, prison_number: prison_number) }
+        let!(:issued_escort) { create(:escort, :issued, prison_number: prison_number) }
+
+        it 'creates a clone of the issued escort' do
+          expect(Escort.where(prison_number: prison_number).count).to eq(2)
+          escort = described_class.call(prison_number: prison_number)
+          expect(Escort.where(prison_number: prison_number).count).to eq(3)
+          expect_escort_to_be_cloned(issued_escort, escort)
+          expect_risk_assessment_to_be_cloned(issued_escort, escort)
+          expect_healthcare_assessment_to_be_cloned(issued_escort, escort)
+          expect_offences_to_be_cloned(issued_escort, escort)
+          expect(escort.twig).to eq(issued_escort)
+        end
+      end
     end
   end
 
-  context 'when there are existing escorts for the given prison number' do
-    context 'and escort is not cancelled' do
-      let!(:existent_escort) { create(:escort, :completed, prison_number: prison_number) }
+  context 'from police' do
+    let!(:police_custody) { create(:police_custody, name: 'Banbury Police Station') }
 
-      it 'creates a clone of the most recent escort' do
-        expect(Escort.where(prison_number: prison_number).count).to eq(1)
-        escort = described_class.call(prison_number: prison_number)
-        expect(Escort.where(prison_number: prison_number).count).to eq(2)
-        expect_escort_to_be_cloned(existent_escort, escort)
-        expect_risk_assessment_to_be_cloned(existent_escort, escort)
-        expect_healthcare_assessment_to_be_cloned(existent_escort, escort)
-        expect_offences_to_be_cloned(existent_escort, escort)
-        expect(escort.twig).to eq(existent_escort)
-      end
-    end
-
-    context 'and escort is cancelled' do
-      let!(:existent_escort) { create(:escort, :cancelled, prison_number: prison_number) }
-
+    context 'when there no escorts for the given prison number' do
       it 'create a new escort' do
-        expect(Escort.where(prison_number: prison_number).count).to eq(1)
-        escort = described_class.call(prison_number: prison_number)
-        expect(Escort.where(prison_number: prison_number).count).to eq(2)
+        expect(Escort.where(pnc_number: pnc_number).count).to eq(0)
+        escort = described_class.call(pnc_number: pnc_number)
+        expect(Escort.where(pnc_number: pnc_number).count).to eq(1)
       end
     end
 
-    context 'and an escort is issued and another one is cancelled' do
-      let!(:cancelled_escort) { create(:escort, :cancelled, prison_number: prison_number) }
-      let!(:issued_escort) { create(:escort, :issued, prison_number: prison_number) }
+    context 'when there are existing escorts for the given prison number' do
+      context 'and escort is not cancelled' do
+        let!(:existent_escort) { create(:escort, :completed, pnc_number: pnc_number, from_establishment: police_custody) }
 
-      it 'creates a clone of the issued escort' do
-        expect(Escort.where(prison_number: prison_number).count).to eq(2)
-        escort = described_class.call(prison_number: prison_number)
-        expect(Escort.where(prison_number: prison_number).count).to eq(3)
-        expect_escort_to_be_cloned(issued_escort, escort)
-        expect_risk_assessment_to_be_cloned(issued_escort, escort)
-        expect_healthcare_assessment_to_be_cloned(issued_escort, escort)
-        expect_offences_to_be_cloned(issued_escort, escort)
-        expect(escort.twig).to eq(issued_escort)
+        it 'creates a clone of the most recent escort' do
+          expect(Escort.where(pnc_number: pnc_number).count).to eq(1)
+          escort = described_class.call(pnc_number: pnc_number)
+          expect(Escort.where(pnc_number: pnc_number).count).to eq(2)
+          expect_escort_to_be_cloned(existent_escort, escort)
+          expect_risk_assessment_to_be_cloned(existent_escort, escort)
+          expect_healthcare_assessment_to_be_cloned(existent_escort, escort)
+          expect_offences_to_be_cloned(existent_escort, escort)
+          expect(escort.twig).to eq(existent_escort)
+        end
+      end
+
+      context 'and escort is cancelled' do
+        let!(:existent_escort) { create(:escort, :cancelled, pnc_number: pnc_number, from_establishment: police_custody) }
+
+        it 'create a new escort' do
+          expect(Escort.where(pnc_number: pnc_number).count).to eq(1)
+          escort = described_class.call(pnc_number: pnc_number)
+          expect(Escort.where(pnc_number: pnc_number).count).to eq(2)
+        end
+      end
+
+      context 'and an escort is issued and another one is cancelled' do
+        let!(:cancelled_escort) { create(:escort, :cancelled, pnc_number: pnc_number, from_establishment: police_custody) }
+        let!(:issued_escort) { create(:escort, :issued, pnc_number: pnc_number, from_establishment: police_custody) }
+
+        it 'creates a clone of the issued escort' do
+          expect(Escort.where(pnc_number: pnc_number).count).to eq(2)
+          escort = described_class.call(pnc_number: pnc_number)
+          expect(Escort.where(pnc_number: pnc_number).count).to eq(3)
+          expect_escort_to_be_cloned(issued_escort, escort)
+          expect_risk_assessment_to_be_cloned(issued_escort, escort)
+          expect_healthcare_assessment_to_be_cloned(issued_escort, escort)
+          expect_offences_to_be_cloned(issued_escort, escort)
+          expect(escort.twig).to eq(issued_escort)
+        end
       end
     end
   end
 
   def expect_escort_to_be_cloned(existent_escort, new_escort)
-    escort_attributes = existent_escort.attributes.except(*%w(id cloned_id escort_id created_at updated_at issued_at document_updated_at date to from_establishment_id not_for_release not_for_release_reason not_for_release_reason_details))
+    escort_attributes = existent_escort.attributes.except(*%w(id cloned_id escort_id created_at updated_at issued_at document_updated_at date to to_type from_establishment_id not_for_release not_for_release_reason not_for_release_reason_details))
     expect(new_escort.id).not_to eq(existent_escort.id)
     expect(new_escort).to have_attributes(escort_attributes)
   end
