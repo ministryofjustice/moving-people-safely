@@ -275,7 +275,7 @@ RSpec.describe Escort do
     context 'when created in police custody' do
       let(:establishment) { create(:police_custody) }
 
-      specify { expect(escort.number).to eq escort.detainee.pnc_number }
+      specify { expect(escort.number).to eq escort.pnc_number }
     end
   end
 end

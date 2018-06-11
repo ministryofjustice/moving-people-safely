@@ -6,6 +6,15 @@ FactoryBot.define do
       [a[0],b[0],b[1],b[2],b[3],a[1],a[2]].join
     end
 
+    pnc_number do
+      [
+        '%02d' % rand(99),
+        '/',
+        '%06d' % rand(999999),
+        ('A'..'Z').to_a.sample
+      ].join
+    end
+
     trait :with_detainee do
       association :detainee
     end
@@ -16,6 +25,10 @@ FactoryBot.define do
 
     trait :with_expired_move do
       association :move, :expired
+    end
+
+    trait :from_police do
+      association :move, :from_police
     end
 
     trait :with_complete_risk_assessment do

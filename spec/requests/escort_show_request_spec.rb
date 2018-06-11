@@ -29,7 +29,8 @@ RSpec.describe 'PER page requests', type: :request do
       end
 
       context 'when the escort has no detainee details' do
-        let(:escort) { create(:escort) }
+        let(:move) { create(:move) }
+        let(:escort) { create(:escort, move: move) }
 
         it 'redirects to the new detainee page' do
           get "/escorts/#{escort.id}"
@@ -38,13 +39,14 @@ RSpec.describe 'PER page requests', type: :request do
         end
       end
 
-      context 'when the escort has no detainee details' do
-        let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee) }
+      context 'when the escort has no filled moved details' do
+        let(:move) { create(:move, to: '') }
+        let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee, move: move) }
 
         it 'redirects to the new move page' do
           get "/escorts/#{escort.id}"
           expect(response).to have_http_status(302)
-          expect(response).to redirect_to new_escort_move_path(escort)
+          expect(response).to redirect_to edit_escort_move_path(escort)
         end
       end
 

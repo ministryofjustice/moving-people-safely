@@ -6,17 +6,17 @@ RSpec.feature 'police dashboard', type: :feature do
     cardigan_police_station = create(:police_custody, name: 'Cardigan Police Station')
     croydon_custody_unit = create(:police_custody, name: 'Croydon Custody Unit')
 
-    escort_1 = create(:escort, :issued, :completed)
+    escort_1 = create(:escort, :issued, pnc_number: '67/123720F')
     escort_1.move.update(date: Date.today, from_establishment: banbury_police_station)
-    escort_1.detainee.update(forenames: 'FRANKIE', surname: 'LEE', pnc_number: '67/123720F')
+    escort_1.detainee.update(forenames: 'FRANKIE', surname: 'LEE')
 
-    escort_2 = create(:escort, :issued, :completed)
+    escort_2 = create(:escort, :issued, pnc_number: '23/723293D')
     escort_2.move.update(date: Date.today, from_establishment: cardigan_police_station)
-    escort_2.detainee.update(forenames: 'JUDAS', surname: 'PRIEST', pnc_number: '23/723293D')
+    escort_2.detainee.update(forenames: 'JUDAS', surname: 'PRIEST')
 
-    escort_3 = create(:escort, :completed)
+    escort_3 = create(:escort, :completed, pnc_number: '11/231581J')
     escort_3.move.update(date: Date.tomorrow, from_establishment: banbury_police_station)
-    escort_3.detainee.update(forenames: 'JOHN WESLEY', surname: 'HARDING', pnc_number: '11/231581J')
+    escort_3.detainee.update(forenames: 'JOHN WESLEY', surname: 'HARDING')
 
     login_options = { sso: { info: { permissions: [{'organisation' => User::POLICE_ORGANISATION}]}} }
     login(nil, login_options)

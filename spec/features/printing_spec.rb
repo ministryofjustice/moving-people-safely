@@ -10,6 +10,7 @@ RSpec.feature 'printing a PER', type: :feature do
   let(:escort) {
     create(
       :escort,
+      prison_number: 'W1234BY',
       detainee: detainee,
       move: move,
       risk: risk,

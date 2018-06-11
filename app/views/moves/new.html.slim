@@ -1,6 +1,0 @@
-= content_for :breadcrumbs do
-  - breadcrumbs_for_page root: true do
-    - breadcrumb detainee_breadcrumb(escort.detainee)
-    - breadcrumb 'Move information'
-
-= render 'form', submit_path: escort_move_path(escort), method: :post

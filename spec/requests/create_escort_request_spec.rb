@@ -14,7 +14,7 @@ RSpec.describe 'Create escort request', type: :request do
     stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts")
   end
 
-  context 'when the user is in an establishment different from the one of the given prisoner' do
+  context 'when the prison office is in an establishment different from the one of the given prisoner' do
     let(:brighton_sso_id) { 'brighton.prisons.noms.moj' }
     let(:brighton_name) { 'HMP Brighton' }
     let(:prison_code) { 'BDI' }
@@ -39,33 +39,48 @@ RSpec.describe 'Create escort request', type: :request do
     end
   end
 
-  context 'when there is no previous escort for given prison number' do
-    it 'creates a brand new escort record and redirects to the new detainee form' do
-      expect {
-        post '/escorts', params: { escort: { prison_number: prison_number } }
-      }.to change { Escort.where(prison_number: prison_number).count }.from(0).to(1)
+  context 'when the prison office is in the same establishment of the given prisoner' do
+    let(:bedford_sso_id) { 'bedford.prisons.noms.moj' }
+    let(:bedford_name) { 'HMP Bedford' }
+    let(:bedford_nomis_id) { 'BFI' }
+    let!(:prison) { create(:prison, nomis_id: bedford_nomis_id, sso_id: bedford_sso_id, name: bedford_name) }
+    let(:location_service) { double(Detainees::LocationFetcher) }
+    let(:location_response) { { code: bedford_nomis_id } }
+    let(:sso_config) { { info: { permissions: [{'organisation' => bedford_sso_id}] } } }
 
-      escort = Escort.where(prison_number: prison_number).first
-      expect(escort.detainee).to be_nil
-      expect(escort.move).to be_nil
-
-      expect(response).to redirect_to(new_escort_detainee_path(escort, prison_number: prison_number))
+    before do
+      allow(Detainees::LocationFetcher).to receive(:new).with(prison_number).and_return(location_service)
+      allow(location_service).to receive(:call).and_return(location_response)
     end
-  end
 
-  context 'when there is a previous escort for given prison number' do
-    let!(:existent_escort) { create(:escort, :completed, prison_number: prison_number) }
+    context 'when there is no previous escort for given prison number' do
+      it 'creates a brand new escort record and redirects to the new detainee form' do
+        expect {
+          post '/escorts', params: { escort: { prison_number: prison_number } }
+        }.to change { Escort.where(prison_number: prison_number).count }.from(0).to(1)
 
-    it 'creates a new escort record with the data from the existent escort and redirects to the edit detainee form' do
-      expect {
-        post '/escorts', params: { escort: { prison_number: prison_number } }
-      }.to change { Escort.where(prison_number: prison_number).count }.from(1).to(2)
+        escort = Escort.where(prison_number: prison_number).first
+        expect(escort.detainee).to be_nil
+        expect(escort.move.from_establishment.name).to eq(bedford_name)
 
-      escort = Escort.where(prison_number: prison_number).first
-      expect(escort.detainee).to be_an_instance_of(Detainee)
-      expect(escort.move).to be_nil
+        expect(response).to redirect_to(new_escort_detainee_path(escort, prison_number: prison_number))
+      end
+    end
 
-      expect(response).to redirect_to(edit_escort_detainee_path(escort))
+    context 'when there is a previous escort for given prison number' do
+      let!(:existent_escort) { create(:escort, :completed, prison_number: prison_number) }
+
+      it 'creates a new escort record with the data from the existent escort and redirects to the edit detainee form' do
+        expect {
+          post '/escorts', params: { escort: { prison_number: prison_number } }
+        }.to change { Escort.where(prison_number: prison_number).count }.from(1).to(2)
+
+        escort = Escort.where(prison_number: prison_number).first
+        expect(escort.detainee).to be_an_instance_of(Detainee)
+        expect(escort.move.from_establishment.name).to eq(bedford_name)
+
+        expect(response).to redirect_to(edit_escort_detainee_path(escort))
+      end
     end
   end
 end

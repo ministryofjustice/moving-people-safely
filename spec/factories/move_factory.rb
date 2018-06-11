@@ -20,5 +20,9 @@ FactoryBot.define do
       to nil
       to_magistrates_court 'My magistrates court'
     end
+
+    trait :from_police do
+      association :from_establishment, factory: :police_custody
+    end
   end
 end

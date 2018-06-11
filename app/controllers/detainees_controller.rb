@@ -10,7 +10,7 @@ class DetaineesController < ApplicationController
   def create
     if form.validate(params[:detainee])
       form.save
-      redirect_to new_escort_move_path(escort)
+      redirect_to escort_path(escort)
     else
       render :new
     end
@@ -19,7 +19,7 @@ class DetaineesController < ApplicationController
   def update
     if form.validate(params[:detainee])
       form.save
-      redirect_to_move_or_escort
+      redirect_to escort_path(escort)
     else
       render :edit
     end
@@ -41,13 +41,5 @@ class DetaineesController < ApplicationController
 
   def redirect_if_detainee_already_exists
     redirect_to new_escort_move_path(escort), alert: t('alerts.escort.detainee.exists') if escort.detainee
-  end
-
-  def redirect_to_move_or_escort(options = {})
-    if escort.move
-      redirect_to escort_path(escort), options
-    else
-      redirect_to new_escort_move_path(escort), options
-    end
   end
 end

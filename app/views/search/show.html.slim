@@ -7,5 +7,5 @@ header
   .search-results
     = render 'result'
 
-- elsif @form.prison_number && @form.valid?
+- elsif (@form.prison_number || @form.pnc_number) && @form.valid?
   = render 'no_result'
