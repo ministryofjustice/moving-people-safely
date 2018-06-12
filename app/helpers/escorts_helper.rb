@@ -1,65 +1,52 @@
 module EscortsHelper
-  def identifier(detainee)
-    "#{detainee.prison_number}: #{detainee.surname}"
+  def identifier(escort)
+    "#{escort.number}: #{escort.surname}"
   end
 
-  def ethnicity(detainee)
-    if detainee.ethnicity.present?
-      return 'White: British' if detainee.ethnicity == 'White: Eng./Welsh/Scot./N.Irish/British'
-      detainee.ethnicity
+  def age(date_of_birth)
+    AgeCalculator.age(date_of_birth)
+  end
+
+  def ethnicity(ethnicity)
+    if ethnicity.present?
+      return 'White: British' if ethnicity == 'White: Eng./Welsh/Scot./N.Irish/British'
+      ethnicity
     else
       'None'
     end
   end
 
-  def date_of_birth(detainee)
-    detainee.date_of_birth.to_s(:humanized)
+  def gender_code(gender)
+    gender == 'male' ? 'M' : 'F'
   end
 
-  def gender_code(detainee)
-    detainee.gender == 'male' ? 'M' : 'F'
+  def aliases(escort)
+    return %w[None] unless escort.aliases.present?
+    escort.aliases.split(',').map(&:strip)
   end
 
-  def short_ethnicity(detainee)
-    return 'White: British' if detainee.ethnicity == 'White: Eng./Welsh/Scot./N.Irish/British'
-    detainee.ethnicity
+  def nationalities(escort)
+    return %w[None] unless escort.nationalities.present?
+    escort.nationalities.split(',').map(&:strip)
   end
 
-  def aliases(detainee)
-    return %w[None] unless detainee.aliases.present?
-    detainee.aliases.split(',').map(&:strip)
+  def expanded_interpreter_required(interpreter_required)
+    return 'Not required' if interpreter_required == 'no'
+    interpreter_required&.capitalize
   end
 
-  def nationalities(detainee)
-    return %w[None] unless detainee.nationalities.present?
-    detainee.nationalities.split(',').map(&:strip)
-  end
-
-  def expanded_interpreter_required(detainee)
-    return 'Not required' if detainee.interpreter_required == 'no'
-    detainee.interpreter_required&.capitalize
-  end
-
-  def image(detainee)
-    if detainee.image.present?
-      image_tag("data:image;base64,#{detainee.image}")
+  def image(image)
+    if image.present?
+      image_tag("data:image;base64,#{image}")
     else
       wicked_pdf_image_tag('photo_unavailable.png')
     end
   end
 
-  def date(move)
-    move.date.to_s(:humanized)
-  end
-
-  def from(move)
-    move.from_establishment&.name
-  end
-
-  def not_for_release_text(move)
-    return 'Contact the prison to confirm release' if move.not_for_release == 'no'
-    return move.not_for_release_reason_details.humanize if move.not_for_release_reason == 'other'
-    move.not_for_release_reason.humanize
+  def not_for_release_text(escort)
+    return 'Contact the prison to confirm release' if escort.not_for_release == 'no'
+    return escort.not_for_release_reason_details.humanize if escort.not_for_release_reason == 'other'
+    escort.not_for_release_reason.humanize
   end
 
   def offences_label(offences)

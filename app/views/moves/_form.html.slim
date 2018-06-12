@@ -7,7 +7,7 @@
 
     .form-group
       label.form-label From
-      = from_establishment&.name
+      = escort.from_establishment&.name
 
     .radio-concertina
       .form-group
@@ -27,7 +27,7 @@
               - else
                 = f.select "to_#{option}", option.to_s.classify.constantize.pluck(:name), {include_blank: true}, { id: option }
 
-          - Forms::Move::FREE_FORM_DESTINATION_TYPES.each do |option|
+          - Forms::Prison::Move::FREE_FORM_DESTINATION_TYPES.each do |option|
             = f.radio_concertina_option(:to_type, option) do
               label.form-label for="#{option}-text"
                 = t(option, scope: 'move.destination_types.prompts')

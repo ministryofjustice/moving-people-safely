@@ -32,9 +32,15 @@ module Page
     element :search_escorts_due_button, '.search-header button.go'
     element :create_new_escort, 'input[type="submit"][value="Start new PER"]'
 
-    def search(prison_number)
+    def search_for_prison_number(prison_number)
       click_link 'Start a PER'
       fill_in 'forms_search_prison_number', with: prison_number
+      click_button 'Search'
+    end
+
+    def search_for_pnc_number(pnc_number)
+      click_link 'Start a PER'
+      fill_in 'forms_search_pnc_number', with: pnc_number
       click_button 'Search'
     end
 

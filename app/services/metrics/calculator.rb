@@ -93,11 +93,11 @@ module Metrics
     end
 
     def issued_in_last_number_of_days(num_days)
-      Escort.unscoped.issued.select('count(*) AS total, moves.date').in_last_days(num_days).group(:date).to_sql
+      Escort.unscoped.issued.select('count(*) AS total, date').in_last_days(num_days).group(:date).to_sql
     end
 
     def not_issued_in_last_number_of_days(num_days)
-      Escort.unscoped.active.select('count(*) AS total, moves.date').in_last_days(num_days).group(:date).to_sql
+      Escort.unscoped.active.select('count(*) AS total, date').in_last_days(num_days).group(:date).to_sql
     end
 
     def hours_saved_in_month(month, year)

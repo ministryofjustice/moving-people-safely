@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Edit detainee requests', type: :request do
   let(:prison_number) { 'ABC123' }
-  let(:detainee) { create(:detainee, prison_number: prison_number) }
-  let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee) }
-  let!(:move) { create(:move, escort: escort) }
+  let(:escort) { create(:escort, prison_number: prison_number) }
 
   context 'when user is not authorized' do
     it 'redirects user to login page' do

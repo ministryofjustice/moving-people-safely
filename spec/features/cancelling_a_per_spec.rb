@@ -4,7 +4,7 @@ RSpec.feature 'cancelling a PER', type: :feature do
   scenario 'Cancelling a non issued PER' do
     luton_court = create(:magistrates_court, name: 'Luton CC', nomis_id: 'luton')
     escort = create(:escort, :issued, prison_number: 'A9876XC')
-    escort.move.update(date: Date.today, to: luton_court.name)
+    escort.update(date: Date.today, to: luton_court.name)
 
     login
 

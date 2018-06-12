@@ -4,7 +4,7 @@ header
 = form_for @form, url: set_police_station_path do |f|
   .radio-concertina
     .form-group
-      label.form-label for='police_custody_id'
+      label.form-label for='police_custody'
         = 'Police custody suite'
       = f.select :police_custody_id, PoliceCustody.pluck(:name, :id), {include_blank: true}, { id: 'police_custody' }
 

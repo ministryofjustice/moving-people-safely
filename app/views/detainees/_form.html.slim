@@ -14,8 +14,8 @@
 
   .form-wrapper
     = form_for form, url: submit_path, method: method do |f|
-      label.form-label Prison number
-      p.prison_number = escort.prison_number
+      label.form-label Number
+      p.number = escort.number
       = f.hidden_field :prison_number, value: escort.prison_number
       = f.hidden_field :image_filename
       = f.hidden_field :image
