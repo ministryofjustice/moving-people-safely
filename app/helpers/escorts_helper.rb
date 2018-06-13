@@ -1,6 +1,6 @@
 module EscortsHelper
-  def identifier(detainee)
-    "#{detainee.prison_number}: #{detainee.surname}"
+  def identifier(escort)
+    "#{escort.number}: #{escort.detainee_surname}"
   end
 
   def ethnicity(detainee)

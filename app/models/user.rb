@@ -53,7 +53,7 @@ class User < ApplicationRecord
   end
 
   def can_access_escort?(escort)
-    return true if admin? || court?
+    return true if admin? || court? || police?
     escort_establishment_sso_id = escort.move&.from_establishment&.sso_id
     return true unless escort_establishment_sso_id
     authorized_establishments.any? { |establishment| establishment.sso_id == escort_establishment_sso_id }

@@ -41,6 +41,13 @@ class Escort < ApplicationRecord
   scope :in_court, ->(court_name) { joins(:move).where('moves.to = ?', court_name) if court_name }
   scope :for_today, -> { joins(:move).where('moves.date = ?', Date.current) }
 
+  scope :from_prison, lambda {
+    includes(move: :from_establishment).where(moves: { establishments: { type: 'Prison' } })
+  }
+  scope :from_police, lambda {
+    includes(move: :from_establishment).where(moves: { establishments: { type: 'PoliceCustody' } })
+  }
+
   delegate :surname, :forenames, to: :detainee, prefix: true
   delegate :full_name, to: :canceller, prefix: true
   delegate :date, :from_establishment, to: :move, prefix: true
@@ -122,7 +129,7 @@ class Escort < ApplicationRecord
   end
 
   def number
-    return prison_number if from_prison?
-    detainee&.pnc_number if from_police?
+    return pnc_number if from_police?
+    prison_number
   end
 end

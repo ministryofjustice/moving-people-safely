@@ -1,12 +1,12 @@
 = content_for :breadcrumbs do
   - breadcrumbs_for_page root: true do
-    - breadcrumb detainee_breadcrumb(@escort.detainee), escort_path(@escort)
+    - breadcrumb escort_breadcrumb(@escort), escort_path(@escort)
 
 .escort.per-page
   h1
     = t('.reprint_per_for')
     br
-    = "#{@escort.prison_number}: #{@escort.detainee_surname} #{@escort.detainee_forenames}"
+    = "#{identifier(@escort)} #{@escort.detainee_forenames}"
 
   p.font-large
     = @escort.move_date

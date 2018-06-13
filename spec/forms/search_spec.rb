@@ -1,14 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe Forms::Search, type: :form do
-  let(:params) { { 'prison_number': 'A1234BC' } }
+  subject { described_class.new(prison_number: prison_number, pnc_number: pnc_number) }
+  let(:prison_number) { nil }
+  let(:pnc_number) { nil }
 
   describe '#validate' do
-    it { is_expected.to validate_presence_of(:prison_number) }
+    context 'from prison' do
+      let(:prison_number) { 'A1234BC' }
 
-    it 'expects it to be in the format \A[a-z]\d{4}[a-z]{2}\z/' do
-      is_expected.to allow_value('A1234BC').for(:prison_number)
-      is_expected.not_to allow_value('not_a_prison_number').for(:prison_number)
+      it 'expects it to be in the format \A[a-z]\d{4}[a-z]{2}\z/' do
+        is_expected.to allow_value('A1234BC').for(:prison_number)
+        is_expected.not_to allow_value('not_a_prison_number').for(:prison_number)
+      end
+    end
+
+    context 'from police' do
+      let(:pnc_number) { '14/293785A' }
+
+      it 'expects it to be in the format \d{2}\/d{5}[a-z]\z/' do
+        is_expected.to allow_value('14/293785A').for(:pnc_number)
+        is_expected.not_to allow_value('not_a_pnc_number').for(:pnc_number)
+      end
     end
   end
 end

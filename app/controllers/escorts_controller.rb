@@ -2,16 +2,17 @@ class EscortsController < ApplicationController
   helper_method :escort
 
   before_action :redirect_if_missing_data, only: :show
-  before_action :authorize_user_to_access_prisoner!, only: :create
+  before_action :authorize_prison_officer!, only: :create
   before_action :authorize_user_to_access_escort!, except: :create
 
   def create
     escort = EscortCreator.call(escort_params)
-    EscortPopulator.new(escort).call
+    escort.create_move(from_establishment: current_user.establishment(session))
+    EscortPopulator.new(escort).call if escort.from_prison?
     if escort.detainee
-      redirect_to edit_escort_detainee_path(escort.id)
+      redirect_to edit_escort_detainee_path(escort)
     else
-      redirect_to new_escort_detainee_path(escort.id, escort_params)
+      redirect_to new_escort_detainee_path(escort, escort_params)
     end
   end
 
@@ -40,11 +41,12 @@ class EscortsController < ApplicationController
   end
 
   def escort_params
-    params.require(:escort).permit(:prison_number, :cancelling_reason)
+    params.require(:escort).permit(:prison_number, :pnc_number, :cancelling_reason)
   end
 
   def redirect_if_missing_data
+    valid_move = Forms::Move.new(escort.move).prepopulate!.valid?
     redirect_to(new_escort_detainee_path(escort)) && return unless escort.detainee
-    redirect_to(new_escort_move_path(escort)) && return unless escort.move
+    redirect_to(edit_escort_move_path(escort)) && return unless valid_move
   end
 end
