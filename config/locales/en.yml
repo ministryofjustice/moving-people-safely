@@ -74,7 +74,7 @@ en:
         vulnerable_prisoner: Are they a vulnerable prisoner?
       risk_to_self:
         acct_status: What is the prisoner's ACCT status?
-        self_harm: Is there any other risk of self harm on this journey?
+        self_harm: Is there a risk that they might self harm or attempt suicide?
       sex_offences:
         sex_offence: Are they a current or previous sex offender?
         sex_offence_type: 'Victim (select all that apply):'
@@ -515,7 +515,7 @@ en:
         risk_to_self:
           acct_status: ACCT status
           date_of_most_recently_closed_acct: 'Closed on '
-          self_harm: Risk of self harm
+          self_harm: Suicide/Self harm risk
           suicide: Risk of suicide or self-harm
         security:
           category_a: Cat A or potential Cat A
