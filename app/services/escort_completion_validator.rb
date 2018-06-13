@@ -10,11 +10,11 @@ class EscortCompletionValidator < SimpleDelegator
   private
 
   def valid_detainee?
-    detainee && Forms::Detainee.new(detainee).valid?
+    Forms::Detainee.new(self).valid?
   end
 
   def valid_move?
-    move && Forms::Move.new(move).prepopulate!.valid?
+    Forms::Move.new(self).prepopulate!.valid?
   end
 
   def valid_assessments?

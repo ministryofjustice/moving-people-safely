@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_30_110209) do
+ActiveRecord::Schema.define(version: 2018_05_30_145349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,30 @@ ActiveRecord::Schema.define(version: 2018_05_30_110209) do
     t.integer "canceller_id"
     t.datetime "cancelled_at"
     t.text "cancelling_reason"
+    t.date "date"
+    t.uuid "from_establishment_id"
+    t.string "to"
+    t.string "to_type"
+    t.string "forenames"
+    t.string "surname"
+    t.date "date_of_birth"
+    t.string "gender"
+    t.text "nationalities"
+    t.string "pnc_number"
+    t.string "cro_number"
+    t.text "aliases"
+    t.string "ethnicity"
+    t.string "religion"
+    t.string "language"
+    t.string "interpreter_required"
+    t.string "diet"
+    t.string "peep"
+    t.text "peep_details"
+    t.string "image_filename", default: ""
+    t.binary "image"
+    t.string "not_for_release"
+    t.string "not_for_release_reason"
+    t.text "not_for_release_reason_details"
     t.index ["cloned_id"], name: "index_escorts_on_cloned_id"
     t.index ["deleted_at"], name: "index_escorts_on_deleted_at"
     t.index ["prison_number"], name: "index_escorts_on_prison_number"

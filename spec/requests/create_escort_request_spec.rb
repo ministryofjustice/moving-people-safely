@@ -46,10 +46,8 @@ RSpec.describe 'Create escort request', type: :request do
       }.to change { Escort.where(prison_number: prison_number).count }.from(0).to(1)
 
       escort = Escort.where(prison_number: prison_number).first
-      expect(escort.detainee).to be_nil
-      expect(escort.move).to be_nil
 
-      expect(response).to redirect_to(new_escort_detainee_path(escort, prison_number: prison_number))
+      expect(response).to redirect_to(edit_escort_detainee_path(escort))
     end
   end
 
@@ -62,8 +60,6 @@ RSpec.describe 'Create escort request', type: :request do
       }.to change { Escort.where(prison_number: prison_number).count }.from(1).to(2)
 
       escort = Escort.where(prison_number: prison_number).first
-      expect(escort.detainee).to be_an_instance_of(Detainee)
-      expect(escort.move).to be_nil
 
       expect(response).to redirect_to(edit_escort_detainee_path(escort))
     end

@@ -20,25 +20,24 @@ RSpec.feature 'filling in a PER', type: :feature do
 
     healthcare_data = build(:healthcare, :with_medications)
     risk_data = build(:risk, :with_high_csra)
-    detainee = build(:detainee)
-    move_data = build(:move, from_establishment: prison)
-    create(:magistrates_court, name: move_data.to)
+    escort = build(:escort, from_establishment: prison)
+    create(:magistrates_court, name: escort.to)
 
-    stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}", status: 404)
-    stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/image", status: 404)
-    stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/charges", status: 404)
+    stub_nomis_api_request(:get, "/offenders/#{escort.prison_number}", status: 404)
+    stub_nomis_api_request(:get, "/offenders/#{escort.prison_number}/image", status: 404)
+    stub_nomis_api_request(:get, "/offenders/#{escort.prison_number}/charges", status: 404)
     valid_body = { establishment: { code: establishment_nomis_id } }.to_json
-    stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/location", body: valid_body)
+    stub_nomis_api_request(:get, "/offenders/#{escort.prison_number}/location", body: valid_body)
 
-    dashboard.search(detainee.prison_number)
+    dashboard.search(escort.prison_number)
     dashboard.create_new_escort.click
 
-    detainee_details.complete_form(detainee)
+    detainee_details.complete_form(escort)
 
-    move_details.complete_form(move_data)
+    move_details.complete_form(escort)
 
-    escort_page.confirm_move_info(move_data)
-    escort_page.confirm_detainee_details(detainee)
+    escort_page.confirm_move_info(escort)
+    escort_page.confirm_detainee_details(escort)
     escort_page.click_edit_risk
 
     risk.complete_forms(risk_data)
@@ -56,7 +55,7 @@ RSpec.feature 'filling in a PER', type: :feature do
     login_options = { sso: { info: { permissions: [{'organisation' => establishment_sso_id, 'roles' => ['healthcare']}]}} }
     login(nil, login_options)
 
-    dashboard.search(detainee.prison_number)
+    dashboard.search(escort.prison_number)
     dashboard.click_view_escort
 
     escort_page.click_edit_healthcare

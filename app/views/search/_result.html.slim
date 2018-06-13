@@ -1,3 +1,4 @@
+h2.heading-small Search result
 table
   tr
     th Prison number
@@ -6,28 +7,22 @@ table
     th Destination
     th Move date
   tr
-    td = link_to(@escort.prison_number, escort_path(@escort))
-    - if @escort.detainee
+    td = link_to(@escort.number, escort_path(@escort))
+    - if @escort
       td
         span.strong-text
-          | #{@escort.detainee.surname}
+          | #{@escort.surname}
         span
-          |  #{@escort.detainee.forenames}
-      td = @escort.detainee.date_of_birth&.to_s(:humanized)
+          |  #{@escort.forenames}
+      td = @escort.date_of_birth&.to_s(:humanized)
     - else
       td colspan=2
 
-    - if @escort.move
-      td = @escort.move.to
-      td = @escort.move.date&.to_s(:humanized)
-    - else
-      td colspan=2
+    td = @escort.to
+    td = @escort.date&.to_s(:humanized)
 
 .form-wrapper
   - if @escort.issued?
-    = form_for Escort.new(prison_number: @escort.detainee.prison_number), url: escorts_path, method: :post do |f|
-      = f.hidden_field :prison_number
-      .form-actions
-        = f.submit 'Start new PER', class: 'button'
+    = render 'new_escort_form'
   - else
     = link_to('Continue PER', escort_path(@escort), class: 'button')

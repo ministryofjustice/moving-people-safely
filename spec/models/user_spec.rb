@@ -223,8 +223,7 @@ RSpec.describe User, type: :model do
   describe '#can_access_escort?' do
     let(:establishment_sso_id) { 'bedford.prisons.noms.moj' }
     let(:prison) { create(:prison, sso_id: establishment_sso_id) }
-    let(:move) { create(:move, from_establishment: prison) }
-    let(:escort) { create(:escort, move: move)}
+    let(:escort) { create(:escort, from_establishment: prison)}
     let(:user) { described_class.new(permissions: []) }
 
     subject { user.can_access_escort?(escort)  }
@@ -241,7 +240,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'when the move has not an establishment set' do
-      let(:move) { nil }
+      let(:escort) { create(:escort, from_establishment: nil)}
 
       specify { is_expected.to be_truthy }
     end

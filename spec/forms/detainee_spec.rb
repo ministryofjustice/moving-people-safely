@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Forms::Detainee, type: :form do
-  let(:model) { Detainee.new }
+  let(:model) { Escort.new }
   subject { described_class.new(model) }
 
   let(:prison_number) { 'A1234Ab' }

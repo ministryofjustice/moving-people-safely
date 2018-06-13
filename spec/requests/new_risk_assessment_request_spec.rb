@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'New risk assessment requests', type: :request do
   let(:prison_number) { 'A1234BC' }
-  let(:detainee) { create(:detainee, prison_number: prison_number) }
-  let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee) }
+  let(:escort) { create(:escort, prison_number: prison_number) }
 
   context 'when user is not autenticated' do
     it 'redirects the user to the login page' do
@@ -24,19 +23,9 @@ RSpec.describe 'New risk assessment requests', type: :request do
       end
     end
 
-    context 'but there is no detainee details for the PER' do
-      let(:escort) { create(:escort) }
-
-      it 'redirects the user back to the escort page' do
-        get "/escorts/#{escort.id}/risk/new"
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to(escort_path(escort))
-      end
-    end
-
     context 'but there is already a risk assessment for the escort' do
       let(:risk) { create(:risk) }
-      let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee, risk: risk) }
+      let(:escort) { create(:escort, prison_number: prison_number, risk: risk) }
 
       it 'redirects the user back to the escort page' do
         get "/escorts/#{escort.id}/risk/new"

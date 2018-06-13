@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Offences', type: :request do
   let(:prison_number) { 'A1234BC' }
-  let(:detainee) { create(:detainee, prison_number: prison_number) }
-  let(:move) { create(:move) }
-  let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee, move: move) }
+  let(:escort) { create(:escort, prison_number: prison_number) }
   let(:offences) { escort.offences }
   let(:form_data) {
     {

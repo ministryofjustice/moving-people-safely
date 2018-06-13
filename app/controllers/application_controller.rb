@@ -7,10 +7,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def redirect_unless_detainee_exists
-    redirect_to escort_path(escort) unless escort.detainee.present?
-  end
-
   def redirect_unless_document_editable
     return if can? :update, escort
     redirect_back(fallback_location: root_path, alert: t('alerts.escort.edit.unauthorized'))
@@ -20,7 +16,7 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_path unless sso_identity
   end
 
-  def authorize_user_to_access_prisoner!
+  def authorize_prison_officer!
     return if AuthorizeUserToAccessPrisoner.call(current_user, prison_number)
     establishments = current_user.authorized_establishments.map(&:name).join(' or ')
     flash[:error] = t('alerts.detainee.access.unauthorized', establishments: establishments)

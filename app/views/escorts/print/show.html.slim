@@ -10,7 +10,7 @@ html
         .grid-column.column-one-third
           = render 'escorts/print/alert', alert_name: :not_for_release, on: escort.alerts[:not_for_release]
           - if escort.alerts[:not_for_release]
-            p.alert-text= not_for_release_text(escort.move)
+            p.alert-text= not_for_release_text(escort)
         .grid-column.column-one-third
           = render 'escorts/print/alert', alert_name: :current_e_risk, on: escort.alerts[:current_e_risk]
         .grid-column.column-one-third

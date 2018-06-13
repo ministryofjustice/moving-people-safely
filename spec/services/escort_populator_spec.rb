@@ -21,20 +21,10 @@ RSpec.describe EscortPopulator, type: :service do
     allow(data).to receive(:map).and_return(nomis_offences)
   end
 
-  context 'NOMIS API is down' do
-    let(:nomis_detainee_attrs) { {} }
-    let(:nomis_offences) { [] }
-
-    it 'does not create the detainee' do
-      subject.call
-      expect(escort.detainee).to be_nil
-    end
-  end
-
   context 'NOMIS API is working' do
     let(:nomis_detainee_attrs) {
       {
-        "prison_number"=>"A1234XY",
+        "prison_number"=>"A1234BC",
         "forenames"=>"BOB",
         "surname"=>"DYLAN",
         "date_of_birth"=>"24/05/1941",
@@ -59,8 +49,8 @@ RSpec.describe EscortPopulator, type: :service do
     it 'populates the detainee' do
       subject.call
 
-      expect(escort.detainee.attributes).to include nomis_detainee_attrs.except('date_of_birth')
-      expect(escort.detainee.date_of_birth).to eq Date.parse(nomis_detainee_attrs['date_of_birth'])
+      expect(escort.attributes).to include nomis_detainee_attrs.except('date_of_birth')
+      expect(escort.date_of_birth).to eq Date.parse(nomis_detainee_attrs['date_of_birth'])
     end
 
     it 'populates the offences' do

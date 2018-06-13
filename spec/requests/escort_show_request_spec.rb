@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'PER page requests', type: :request do
   let(:prison_number) { 'A45345HG' }
-  let(:detainee) { create(:detainee, prison_number: prison_number) }
-  let(:move) { create(:move) }
-  let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee, move: move) }
+  let(:escort) { create(:escort, prison_number: prison_number) }
 
   describe "#show" do
     context 'when user is not authorized' do
@@ -28,23 +26,23 @@ RSpec.describe 'PER page requests', type: :request do
         end
       end
 
-      context 'when the escort has no detainee details' do
-        let(:escort) { create(:escort) }
+      context 'when the escort has no valid detainee details' do
+        let(:escort) { create(:escort, surname: '') }
 
-        it 'redirects to the new detainee page' do
+        it 'redirects to the edit detainee page' do
           get "/escorts/#{escort.id}"
           expect(response).to have_http_status(302)
-          expect(response).to redirect_to new_escort_detainee_path(escort)
+          expect(response).to redirect_to edit_escort_detainee_path(escort)
         end
       end
 
-      context 'when the escort has no detainee details' do
-        let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee) }
+      context 'when the escort has no valid move information' do
+        let(:escort) { create(:escort, date: nil) }
 
         it 'redirects to the new move page' do
           get "/escorts/#{escort.id}"
           expect(response).to have_http_status(302)
-          expect(response).to redirect_to new_escort_move_path(escort)
+          expect(response).to redirect_to edit_escort_move_path(escort)
         end
       end
 
@@ -59,7 +57,7 @@ RSpec.describe 'PER page requests', type: :request do
         let(:bedford_sso_id) { 'bedford.prisons.noms.moj' }
         let(:bedford_nomis_id) { 'BDI' }
         let(:bedford) { create(:prison, name: 'HMP Bedford', sso_id: bedford_sso_id, nomis_id: bedford_nomis_id) }
-        let(:escort) { create(:escort, :completed, move: create(:move, from_establishment: bedford)) }
+        let(:escort) { create(:escort, :completed, from_establishment: bedford) }
 
         let(:permissions) { { sso: { info: { permissions: [{'organisation' => bedford_sso_id}]}} } }
 
@@ -74,7 +72,7 @@ RSpec.describe 'PER page requests', type: :request do
         let(:brixton_sso_id) { 'brixton.prisons.noms.moj' }
         let(:bedford_nomis_id) { 'BDI' }
         let(:bedford) { create(:prison, name: 'HMP Bedford', sso_id: bedford_sso_id, nomis_id: bedford_nomis_id) }
-        let(:escort) { create(:escort, :completed, move: create(:move, from_establishment: bedford)) }
+        let(:escort) { create(:escort, :completed, from_establishment: bedford) }
 
         let(:permissions) { { sso: { info: { permissions: [{'organisation' => brixton_sso_id}]}} } }
 

@@ -1,11 +1,11 @@
 = content_for :breadcrumbs do
   - breadcrumbs_for_page root: true do
-    - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
+    - breadcrumb detainee_breadcrumb(escort), escort_path(escort)
 
 h1
   = t('.title')
   br
-  = "#{escort.prison_number}: #{escort.detainee_surname} #{escort.detainee_forenames}"
+  = "#{escort.prison_number}: #{escort.surname} #{escort.forenames}"
 
 = form_for @form, url: cancel_escort_path(escort), method: :put do |f|
   = f.error_messages
