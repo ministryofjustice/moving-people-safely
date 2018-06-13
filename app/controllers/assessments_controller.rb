@@ -2,7 +2,6 @@ class AssessmentsController < ApplicationController
   include Wicked::Wizard
   include Wizardable
 
-  before_action :redirect_unless_detainee_exists
   before_action :redirect_if_assessment_already_exists, only: %i[new create]
   before_action :redirect_unless_document_editable, except: :show
   before_action :add_multiples, only: %i[create update]

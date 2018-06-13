@@ -52,7 +52,7 @@ RISK       Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
 
 Risk to self                         Yes
   ACCT status                        Open
-  Risk of self harm                  Yes                 Self harm details
+  Suicide/Self harm risk             Yes                 Self harm details
 Segregation                          Yes
   CSRA level                         High
   Rule 45                            Yes

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Forms::Move, type: :form do
-  let(:model) { Move.new }
+  let(:model) { Escort.new }
   subject(:form) { described_class.new(model) }
 
   let(:params) {

@@ -1,7 +1,7 @@
 .column-three-quarters
   = content_for :breadcrumbs do
     - breadcrumbs_for_page root: true do
-      - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
+      - breadcrumb detainee_breadcrumb(escort), escort_path(escort)
       - breadcrumb 'Risk summary'
 
   .summary.per-section-page

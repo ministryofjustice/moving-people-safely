@@ -25,7 +25,7 @@ module Page
 
     def fill_in_risk_to_self
       fill_in_optional_details("What is the prisoner's ACCT status?", @risk, :acct_status)
-      fill_in_optional_details("Is there any other risk of self harm on this journey?", @risk, :self_harm)
+      fill_in_optional_details("Is there a risk that they might self harm or attempt suicide?", @risk, :self_harm)
       save_and_continue
     end
 

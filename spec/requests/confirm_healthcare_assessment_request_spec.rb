@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Confirm healthcare assessment requests', type: :request do
   let(:prison_number) { 'A1234BC' }
-  let(:detainee) { create(:detainee, prison_number: prison_number) }
   let(:healthcare) { create(:healthcare) }
-  let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee, healthcare: healthcare) }
+  let(:escort) { create(:escort, prison_number: prison_number, healthcare: healthcare) }
 
   context 'when user is not autenticated' do
     it 'redirects the user to the login page' do
@@ -25,21 +24,11 @@ RSpec.describe 'Confirm healthcare assessment requests', type: :request do
       end
     end
 
-    context 'but there is no detainee details for the PER' do
-      let(:escort) { create(:escort) }
-
-      it 'redirects the user back to the escort page' do
-        put "/escorts/#{escort.id}/healthcare/confirm"
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to(escort_path(escort))
-      end
-    end
-
     context 'but the escort is no longer editable' do
       let(:healthcare) { create(:healthcare) }
       let(:move) { create(:move) }
       let(:detainee) { create(:detainee) }
-      let(:escort) { create(:escort, :issued, detainee: detainee, move: move, healthcare: healthcare) }
+      let(:escort) { create(:escort, :issued, healthcare: healthcare) }
 
       it 'redirects to the homepage displaying an appropriate error' do
         put "/escorts/#{escort.id}/healthcare/confirm"
@@ -51,7 +40,7 @@ RSpec.describe 'Confirm healthcare assessment requests', type: :request do
     context 'and the healthcare assessment is not yet complete' do
       let(:detainee) { create(:detainee) }
       let(:move) { create(:move) }
-      let(:escort) { create(:escort, :with_incomplete_healthcare_assessment, detainee: detainee, move: move) }
+      let(:escort) { create(:escort, :with_incomplete_healthcare_assessment) }
 
       it 'sets a flash error' do
         put "/escorts/#{escort.id}/healthcare/confirm"
@@ -68,7 +57,7 @@ RSpec.describe 'Confirm healthcare assessment requests', type: :request do
 
     context 'and the healthcare assessment is unconfirmed' do
       let(:healthcare) { create(:healthcare, :unconfirmed) }
-      let(:escort) { create(:escort, :with_detainee, :with_move, healthcare: healthcare) }
+      let(:escort) { create(:escort, healthcare: healthcare) }
 
       it 'redirects to the PER page' do
         put "/escorts/#{escort.id}/healthcare/confirm"

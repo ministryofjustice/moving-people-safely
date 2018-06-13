@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Confirm risk assessment requests', type: :request do
   let(:prison_number) { 'A1234BC' }
-  let(:detainee) { create(:detainee, prison_number: prison_number) }
   let(:risk) { create(:risk) }
-  let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee, risk: risk) }
+  let(:escort) { create(:escort, prison_number: prison_number, risk: risk) }
 
   context 'when user is not autenticated' do
     it 'redirects the user to the login page' do
@@ -25,16 +24,6 @@ RSpec.describe 'Confirm risk assessment requests', type: :request do
       end
     end
 
-    context 'but there is no detainee details for the PER' do
-      let(:escort) { create(:escort) }
-
-      it 'redirects the user back to the escort page' do
-        put "/escorts/#{escort.id}/risk/confirm"
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to(escort_path(escort))
-      end
-    end
-
     context 'but the escort is no longer editable' do
       let(:escort) { create(:escort, :issued) }
 
@@ -48,7 +37,7 @@ RSpec.describe 'Confirm risk assessment requests', type: :request do
     context 'and the risk assessment is not yet complete' do
       let(:detainee) { create(:detainee) }
       let(:move) { create(:move) }
-      let(:escort) { create(:escort, :with_incomplete_risk_assessment, detainee: detainee, move: move) }
+      let(:escort) { create(:escort, :with_incomplete_risk_assessment) }
 
       it 'sets a flash error' do
         put "/escorts/#{escort.id}/risk/confirm"
@@ -65,7 +54,7 @@ RSpec.describe 'Confirm risk assessment requests', type: :request do
 
     context 'and the risk assessment is unconfirmed' do
       let(:risk) { create(:risk, :unconfirmed) }
-      let(:escort) { create(:escort, :with_detainee, :with_move, risk: risk) }
+      let(:escort) { create(:escort, risk: risk) }
 
       it 'redirects to the PER page' do
         put "/escorts/#{escort.id}/risk/confirm"

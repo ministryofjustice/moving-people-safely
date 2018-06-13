@@ -74,7 +74,7 @@ en:
         vulnerable_prisoner: Are they a vulnerable prisoner?
       risk_to_self:
         acct_status: What is the prisoner's ACCT status?
-        self_harm: Is there any other risk of self harm on this journey?
+        self_harm: Is there a risk that they might self harm or attempt suicide?
       sex_offences:
         sex_offence: Are they a current or previous sex offender?
         sex_offence_type: 'Victim (select all that apply):'
@@ -143,6 +143,9 @@ en:
         escort_risk_assessment: "Has an Escort Risk Assessment been completed for this journey?"
         previous_escape_attempts: escape risk
         previous_escape_attempts_details: details for escape risk
+      forms_search:
+        prison_number: Prison number
+        pnc_number: PNC number
       forms_feedback:
         email: Your email address
         message: Your message
@@ -287,6 +290,7 @@ en:
         previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
       forms_search:
         prison_number: For example A1234AB
+        pnc_number: For example 12/345678A
       forms_feedback:
         message: Describe the issue you are having, including what you were doing before it happened
         prisoner_number: For example, A1234BC
@@ -431,6 +435,8 @@ en:
     pers_from: PERs from
     undetermined_establishment: MoJ HQ
   search:
+    no_result:
+      no_result: There are no previous ePERs for %{identifier}
     show:
       title: Start a PER
   summary: &summary
@@ -509,7 +515,7 @@ en:
         risk_to_self:
           acct_status: ACCT status
           date_of_most_recently_closed_acct: 'Closed on '
-          self_harm: Risk of self harm
+          self_harm: Suicide/Self harm risk
           suicide: Risk of suicide or self-harm
         security:
           category_a: Cat A or potential Cat A
@@ -651,7 +657,7 @@ en:
       not_found: "Offences data could not be retrieved. Please fill in manually."
     unable_to_confirm_assessment: "%{assessment} assessment cannot be confirmed until all mandatory answers are filled"
     search:
-      invalid_identifier: "The %{type} '%{identifier}' is not valid, please try again with a valid prison number"
+      invalid_identifier: "The %{type} '%{identifier}' is not valid, please try again with a valid %{type}"
   sessions:
     create:
       cannot_sign_in: You cannot be signed in
