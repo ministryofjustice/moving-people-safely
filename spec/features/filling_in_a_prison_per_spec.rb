@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'filling in a PER as a prison user', type: :feature do
+RSpec.feature 'filling in a PER from a prison', type: :feature do
   let(:offences_data) {
     {
       offences: [
@@ -14,14 +14,7 @@ RSpec.feature 'filling in a PER as a prison user', type: :feature do
     establishment_sso_id = 'bedford.prisons.noms.moj'
     establishment_nomis_id = 'BDI'
     prison = create(:prison, name: 'HMP Bedford', sso_id: establishment_sso_id, nomis_id: establishment_nomis_id)
-
-    login_options = {
-      sso: {
-        info: { 
-          permissions: [{'organisation' => establishment_sso_id}]
-        }
-      }
-    }
+    login_options = { sso: { info: { permissions: [{'organisation' => establishment_sso_id}]}} }
 
     login(nil, login_options)
 
@@ -37,8 +30,10 @@ RSpec.feature 'filling in a PER as a prison user', type: :feature do
     valid_body = { establishment: { code: establishment_nomis_id } }.to_json
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/location", body: valid_body)
 
-    dashboard.search_for_prison_number(detainee.prison_number)
-    dashboard.create_new_escort.click
+    dashboard.click_start_a_per
+
+    search.search_prison_number(detainee.prison_number)
+    search.click_start_new_per
 
     detainee_details.complete_form(detainee)
 
@@ -63,8 +58,10 @@ RSpec.feature 'filling in a PER as a prison user', type: :feature do
     login_options = { sso: { info: { permissions: [{'organisation' => establishment_sso_id, 'roles' => ['healthcare']}]}} }
     login(nil, login_options)
 
-    dashboard.search_for_prison_number(detainee.prison_number)
-    dashboard.click_view_escort
+    dashboard.click_start_a_per
+
+    search.search_prison_number(detainee.prison_number)
+    search.click_continue_per
 
     escort_page.click_edit_healthcare
 
