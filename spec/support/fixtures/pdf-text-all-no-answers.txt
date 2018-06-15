@@ -1,5 +1,5 @@
 Outbound vehicle
-Registration                     Cell number                       PECS Barcode
+Registration                     Cell number                        PECS Barcode
 
 
 
@@ -11,18 +11,21 @@ Registration                     Cell number
 
 
 W1234BY: McTest Testy
- Not for release ✘ No                                    Escape risk ✘ No
+ Not for release ✘ No                                       Escape risk ✘ No
 
-Prison number     CRO number         PNC number         Aliases
-W1234BY           56TYY/UU           YI896668TT         Terry Tibbs
-                                                        Mr T
+Prison number     CRO number         PNC number            Aliases
+W1234BY           56TYY/UU           YI896668TT            Terry Tibbs
+                                                           Mr T
 Date of birth     Age                Gender
-10 Dec 1970       47                 M
+10 Dec 1970       47                 Male
 Nationality       Religion           Ethnicity
 British           Baptist            European
-Preferred         Interpreter        Diet
-language          Not required       Gluten free
-English
+Preferred         Interpreter        Interpreter details
+language          Yes                English-
+English                              American
+                                     translator
+Diet
+Gluten free
 Personal Emergency Evacuation Plan
 Broken leg
 

@@ -4,7 +4,7 @@ class DetaineesController < ApplicationController
   helper_method :escort, :form
 
   def new
-    flash.now[:warning] = t('alerts.detainee.details.unavailable')
+    flash.now[:warning] = t('alerts.detainee.details.unavailable') if escort.from_prison?
   end
 
   def create

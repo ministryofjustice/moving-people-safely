@@ -267,6 +267,7 @@ en:
         dependencies_details: 'Please explain how these issues might affect the journey and how they should be managed:'
       detainee:
         date_of_birth: DD/MM/YYYY
+        interpreter_required_details: Enter contact details of booked interpreter
         peep_details: Give details
       detainee_search:
         prison_number: For example A1234AB

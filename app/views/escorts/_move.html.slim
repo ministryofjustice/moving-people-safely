@@ -6,7 +6,7 @@ section#move
         = link_to 'Edit', edit_escort_move_path(escort)
   .tile-3
     h6 Date of travel
-    p= date(escort.move)
+    p= escort.move.date&.to_s(:humanized)
 
   .tile-3
     h6 From

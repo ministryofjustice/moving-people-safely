@@ -12,14 +12,6 @@ module EscortsHelper
     end
   end
 
-  def date_of_birth(detainee)
-    detainee.date_of_birth.to_s(:humanized)
-  end
-
-  def gender_code(detainee)
-    detainee.gender == 'male' ? 'M' : 'F'
-  end
-
   def short_ethnicity(detainee)
     return 'White: British' if detainee.ethnicity == 'White: Eng./Welsh/Scot./N.Irish/British'
     detainee.ethnicity
@@ -46,10 +38,6 @@ module EscortsHelper
     else
       wicked_pdf_image_tag('photo_unavailable.png')
     end
-  end
-
-  def date(move)
-    move.date.to_s(:humanized)
   end
 
   def from(move)

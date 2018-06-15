@@ -14,11 +14,16 @@
 
   .form-wrapper
     = form_for form, url: submit_path, method: method do |f|
-      label.form-label Prison number
-      p.prison_number = escort.prison_number
-      = f.hidden_field :prison_number, value: escort.prison_number
       = f.hidden_field :image_filename
       = f.hidden_field :image
+
+      - if escort.from_prison?
+        label.form-label Prison number
+        p.prison_number = escort.prison_number
+        = f.hidden_field :prison_number, value: escort.prison_number
+      - elsif escort.from_police?
+        = f.text_field :pnc_number, value: escort.pnc_number
+
       = f.text_field :surname
       = f.text_field :forenames
       = f.text_field :date_of_birth
@@ -26,20 +31,26 @@
       .form-group
         = f.custom_radio_button_fieldset :gender,
           choices: form.genders,
-          inline: true,
           legend_options: { class: 'form-label' }
       = f.text_field :ethnicity
       = f.text_field :religion
-      = f.text_field :pnc_number
+      - if escort.from_prison?
+        = f.text_field :pnc_number
+      - elsif escort.from_police?
+        = f.text_field :prison_number
       = f.text_field :cro_number
       = f.text_area  :aliases
       = f.text_field :language
       #interpreter_required.form-group
-        = f.radio_button_fieldset :interpreter_required,
-          inline: true,
+        - if escort.from_prison?
+          = f.radio_toggle :interpreter_required,
+            legend_options: { class: 'form-label' }
+        - elsif escort.from_police?
+          = f.radio_toggle_with_textarea :interpreter_required,
+            legend_options: { class: 'form-label' }
+      - if escort.from_prison?
+        #peep= f.radio_toggle_with_textarea :peep,
           legend_options: { class: 'form-label' }
-      #peep= f.radio_toggle_with_textarea :peep,
-        legend_options: { class: 'form-label' }
       = f.text_field :diet
 
       .form-actions

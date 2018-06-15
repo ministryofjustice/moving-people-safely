@@ -30,13 +30,6 @@ module Page
     element :search_field, '.search_module input#forms_search_prison_number'
     element :search_button, '.search_module input.search_button'
     element :search_escorts_due_button, '.search-header button.go'
-    element :create_new_escort, 'input[type="submit"][value="Start new PER"]'
-
-    def search(prison_number)
-      click_link 'Start a PER'
-      fill_in 'forms_search_prison_number', with: prison_number
-      click_button 'Search'
-    end
 
     def search_escorts_due_on(date)
       begin
@@ -53,12 +46,8 @@ module Page
       end
     end
 
-    def click_view_escort
-      click_link 'Continue PER'
-    end
-
-    def click_add_new_escort
-      click_button 'Start new PER'
+    def click_start_a_per
+      click_link 'Start a PER'
     end
 
     def assert_no_escorts_due_gauges

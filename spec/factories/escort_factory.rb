@@ -27,6 +27,10 @@ FactoryBot.define do
       association :move, :expired
     end
 
+    trait :from_prison do
+      association :move, :from_prison
+    end
+
     trait :from_police do
       association :move, :from_police
     end

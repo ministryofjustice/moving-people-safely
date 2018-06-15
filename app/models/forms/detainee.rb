@@ -1,23 +1,24 @@
 module Forms
   class Detainee < Forms::Base
-    GENDERS = %w[male female].freeze
+    GENDERS = %w[male female unknown indeterminate].freeze
 
-    property :prison_number,        type: StrictString
-    property :surname,              type: StrictString
-    property :forenames,            type: StrictString
-    property :date_of_birth,        type: TextDate
-    property :nationalities,        type: StrictString
-    property :ethnicity,            type: StrictString
-    property :religion,             type: StrictString
-    property :gender,               type: StrictString
-    property :pnc_number,           type: StrictString
-    property :cro_number,           type: StrictString
-    property :aliases,              type: StrictString
-    property :language,             type: StrictString
-    property :interpreter_required, type: StrictString
-    property :diet,                 type: StrictString
-    optional_field :peep,           type: StrictString, allow_blank: true
-    property :peep_details,         type: StrictString
+    property :prison_number,                type: StrictString
+    property :surname,                      type: StrictString
+    property :forenames,                    type: StrictString
+    property :date_of_birth,                type: TextDate
+    property :nationalities,                type: StrictString
+    property :ethnicity,                    type: StrictString
+    property :religion,                     type: StrictString
+    property :gender,                       type: StrictString
+    property :pnc_number,                   type: StrictString
+    property :cro_number,                   type: StrictString
+    property :aliases,                      type: StrictString
+    property :language,                     type: StrictString
+    optional_field :interpreter_required,   type: StrictString, allow_blank: true
+    property :interpreter_required_details, type: StrictString
+    property :diet,                         type: StrictString
+    optional_field :peep,                   type: StrictString, allow_blank: true
+    property :peep_details,                 type: StrictString
     property :image_filename
     property :image
 

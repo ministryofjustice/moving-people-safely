@@ -16,13 +16,13 @@ section#detainee
       p= escort.detainee.pnc_number
     .tile-3
       h6 Date of birth
-      p= date_of_birth(escort.detainee)
+      p= escort.detainee.date_of_birth&.to_s(:humanized)
     .tile-3
       h6 Age
       p= escort.detainee.age
     .tile-3
       h6 Sex
-      p= gender_code(escort.detainee)
+      p= escort.detainee.gender&.capitalize
     .tile-3
       h6 Nationality
       p= escort.detainee.nationalities
@@ -39,6 +39,9 @@ section#detainee
       h6 Interpreter
       p= expanded_interpreter_required(escort.detainee)
     .tile-3
+      h6 Interpreter details
+      p= escort.detainee.interpreter_required_details
+    .tile
       h6 Diet
       p= escort.detainee.diet
     - if escort.detainee.peep == 'yes'
