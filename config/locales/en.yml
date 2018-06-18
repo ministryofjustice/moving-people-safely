@@ -374,10 +374,14 @@ en:
         hospital: Hospital
         other: A different destination
       prompts:
+        civil_court: Enter name of civil court
         crown_court: Start typing name of crown court or select from dropdown
-        magistrates_court: Start typing name of magistrates' court or select from dropdown
-        prison: Start typing name of prison or select from dropdown
         hospital: Enter name of hospital
+        immigration_removal_centre: Start typing name of immigration removal centre or select from dropdown
+        magistrates_court: Start typing name of magistrates' court or select from dropdown
+        police_custody: Start typing name of police station or custody suite or select from dropdown
+        prison: Start typing name of prison or select from dropdown
+        youth_secure_estate: Start typing name of youth secure estate or select from dropdown
         other: Enter name of destination
   healthcare:
     form:

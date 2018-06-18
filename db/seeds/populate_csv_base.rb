@@ -1,7 +1,7 @@
 require 'csv'
 
 module Seeds
-  class PopulateBase
+  class PopulateCsvBase
     def self.call(options = {})
       new(options).call
     end

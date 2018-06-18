@@ -49,7 +49,7 @@ module Forms
       REASON_WITH_DETAILS
     end
 
-    FREE_FORM_DESTINATION_TYPES = %i[hospital other].freeze
+    FREE_FORM_DESTINATION_TYPES = %i[civil_court hospital other].freeze
 
     property :to_type, validates: { presence: true }
 
@@ -76,6 +76,19 @@ module Forms
     def save
       self.to = send("to_#{to_type}")
       super
+    end
+
+    def sorted_destination_options
+      free_form = FREE_FORM_DESTINATION_TYPES.each_with_object({}) do |type, memo|
+        memo[type] = :free_form
+      end
+
+      auto = Establishment::ESTABLISHMENT_TYPES.each_with_object({}) do |type, memo|
+        memo[type] = :auto
+      end
+
+      free_form.delete(:other)
+      free_form.merge(auto).sort + [%i[other free_form]]
     end
   end
 end

@@ -22,25 +22,13 @@ module Page
     end
 
     def fill_in_destination_details(move)
-      case move.to_type
-      when 'crown_court'
-        choose 'crown_court_toggler'
-        select move.to, from: 'crown_court'
-      when 'magistrates_court'
-        choose 'magistrates_court_toggler'
-        select move.to, from: 'magistrates_court'
-      when 'prison'
-        choose 'prison_toggler'
-        select move.to, from: 'prison'
-      when 'police_custody'
-        choose 'police_custody_toggler'
-        select move.to, from: 'police_custody'
-      when 'hospital'
-        choose 'hospital_toggler'
-        fill_in 'hospital-text', with: move.to
-      when 'other'
-        choose 'other_toggler'
-        fill_in 'other-text', with: move.to
+      case
+      when Establishment::ESTABLISHMENT_TYPES.include?(move.to_type.to_sym)
+        choose "#{move.to_type}_toggler"
+        select move.to, from: move.to_type
+      when Forms::Move::FREE_FORM_DESTINATION_TYPES.include?(move.to_type.to_sym)
+        choose "#{move.to_type}_toggler"
+        fill_in "#{move.to_type}-text", with: move.to
       else
         raise "Unexpected value for 'move.to_type': #{move.to_type}"
       end

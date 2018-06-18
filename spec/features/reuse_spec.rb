@@ -17,8 +17,9 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     bedford_nomis_id = 'BDI'
     bedford = create(:prison, name: 'HMP Bedford', sso_id: bedford_sso_id, nomis_id: bedford_nomis_id)
 
-    move_data = build(:move, date: 1.day.from_now)
-    create(:magistrates_court, name: move_data.to)
+    move_data = build(:move, date: 1.day.from_now,
+      to: 'Bobbins Secure Youth Estate', to_type: 'youth_secure_estate')
+    create(:youth_secure_estate, name: move_data.to)
 
     login_options = { sso: { info: { permissions: [{'organisation' => bedford_sso_id}]}} }
 

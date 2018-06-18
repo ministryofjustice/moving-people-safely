@@ -1,27 +1,17 @@
-if (document.querySelector('#crown_court')) {
-  accessibleAutocomplete.enhanceSelectElement({
-    selectElement: document.querySelector('#crown_court'),
-    id: 'crown_court' // To match it to the existing <label>.
-  });
-};
+var autos = [
+  "crown_court",
+  "magistrates_court",
+  "prison",
+  "police_custody",
+  "immigration_removal_centre",
+  "youth_secure_estate"
+]
 
-if (document.querySelector('#magistrates_court')) {
-  accessibleAutocomplete.enhanceSelectElement({
-    selectElement: document.querySelector('#magistrates_court'),
-    id: 'magistrates_court' // To match it to the existing <label>.
-  });
-};
-
-if (document.querySelector('#prison')) {
-  accessibleAutocomplete.enhanceSelectElement({
-    selectElement: document.querySelector('#prison'),
-    id: 'prison' // To match it to the existing <label>.
-  });
-};
-
-if (document.querySelector('#police_custody')) {
-  accessibleAutocomplete.enhanceSelectElement({
-    selectElement: document.querySelector('#police_custody'),
-    id: 'police_custody' // To match it to the existing <label>.
-  });
-};
+for (i = 0, tot = autos.length; i < tot; i++) {
+  if (document.querySelector('#'+autos[i])) {
+    accessibleAutocomplete.enhanceSelectElement({
+      selectElement: document.querySelector('#'+autos[i]),
+      id: autos[i] // To match it to the existing <label>.
+    });
+  };
+}

@@ -20,4 +20,12 @@ FactoryBot.define do
   factory :police_custody, parent: :establishment do
     type 'PoliceCustody'
   end
+
+  factory :immigration_removal_centre, parent: :establishment do
+    type 'ImmigrationRemovalCentre'
+  end
+
+  factory :youth_secure_estate, parent: :establishment do
+    type 'YouthSecureEstate'
+  end
 end

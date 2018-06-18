@@ -15,23 +15,25 @@
           legend
             span.form-label-bold To
 
-          - Establishment::ESTABLISHMENT_TYPES.each do |option|
-            = f.radio_concertina_option(:to_type, option) do
-              label.form-label for=option
-                = t(option, scope: 'move.destination_types.prompts')
-              - if form.errors["to_#{option}"].any?
-                .error
-                  .span.error-message
-                    = form.errors["to_#{option}"].join(', ')
+          - form.sorted_destination_options.each do |option_details|
+            - option = option_details.first
+            - if option_details.last == :auto
+              = f.radio_concertina_option(:to_type, option) do
+                label.form-label for=option
+                  = t(option, scope: 'move.destination_types.prompts')
+                - if form.errors["to_#{option}"].any?
+                  .error
+                    .span.error-message
+                      = form.errors["to_#{option}"].join(', ')
+                    = f.select "to_#{option}", option.to_s.classify.constantize.pluck(:name), {include_blank: true}, { id: option }
+                - else
                   = f.select "to_#{option}", option.to_s.classify.constantize.pluck(:name), {include_blank: true}, { id: option }
-              - else
-                = f.select "to_#{option}", option.to_s.classify.constantize.pluck(:name), {include_blank: true}, { id: option }
 
-          - Forms::Move::FREE_FORM_DESTINATION_TYPES.each do |option|
-            = f.radio_concertina_option(:to_type, option) do
-              label.form-label for="#{option}-text"
-                = t(option, scope: 'move.destination_types.prompts')
-              = f.text_field_without_label "to_#{option}".to_sym, id: "#{option}-text"
+            - else
+              = f.radio_concertina_option(:to_type, option) do
+                label.form-label for="#{option}-text"
+                  = t(option, scope: 'move.destination_types.prompts')
+                = f.text_field_without_label "to_#{option}".to_sym, id: "#{option}-text"
 
     = f.date_picker_text_field :date
     = render 'shared/radio_date_picker', picker: RadioDatePickerPresenter.new('move[date]', form.date)
