@@ -92,5 +92,15 @@ FactoryBot.define do
       completed
       with_expired_move
     end
+
+    trait :with_prison_not_for_release_reason do
+      not_for_release 'yes'
+      not_for_release_reason 'further_charges'
+    end
+
+    trait :with_police_not_for_release_reason do
+      not_for_release 'yes'
+      not_for_release_reason 'recall_to_prison'
+    end
   end
 end

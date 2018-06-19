@@ -16,11 +16,6 @@ FactoryBot.define do
       date { 1.week.ago }
     end
 
-    trait :with_form_attributes do
-      to nil
-      to_magistrates_court 'My magistrates court'
-    end
-
     trait :from_police do
       association :from_establishment, factory: :police_custody
     end

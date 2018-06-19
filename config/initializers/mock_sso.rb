@@ -18,7 +18,7 @@ if ENV['MOCK_SSO'] == 'true'
         "email": "example@some.prison.com",
         "first_name": "Joe",
         "last_name": "Bloggs",
-        "permissions": [{"organisation"=>"digital.noms.moj"}],
+        "permissions": [{"organisation"=>(ENV['MOCK_SSO_ORGANISATION'] || "digital.noms.moj")}],
         "links": {
           "profile": "http://#{base_url}/profile",
           "logout": "http://#{base_url}/session/new"

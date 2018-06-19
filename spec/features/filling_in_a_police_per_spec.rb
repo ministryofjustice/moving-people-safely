@@ -16,7 +16,7 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
     healthcare_data = build(:healthcare, :with_medications)
     risk_data = build(:risk, :with_high_csra)
     detainee = build(:detainee)
-    move_data = build(:move, :from_police)
+    move_data = build(:move, from_establishment: banbury_police_station)
     create(:magistrates_court, name: move_data.to)
 
     dashboard.click_start_a_per
@@ -25,5 +25,10 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
     search.click_start_new_per
 
     detainee_details.complete_form(detainee, :police)
+
+    move_details.complete_form(move_data)
+
+    escort_page.confirm_move_info(move_data)
+    escort_page.confirm_detainee_details(detainee)
   end
 end

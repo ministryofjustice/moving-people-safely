@@ -31,6 +31,7 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/location", body: valid_body)
 
     dashboard.click_start_a_per
+
     search.search_prison_number(detainee.prison_number)
     search.click_start_new_per
 

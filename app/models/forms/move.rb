@@ -1,8 +1,9 @@
 module Forms
   class Move < Forms::Base
     REASON_WITH_DETAILS = 'other'.freeze
-    NOT_FOR_RELEASE_REASONS = %w[serving_sentence further_charges licence_revoke
-                                 held_for_immigration other].freeze
+    COMMON_NOT_FOR_RELEASE_REASONS = %w[held_for_immigration other].freeze
+    PRISON_NOT_FOR_RELEASE_REASONS = %w[serving_sentence further_charges licence_revoke].freeze
+    POLICE_NOT_FOR_RELEASE_REASONS = %w[prison_production recall_to_prison].freeze
 
     property :to
     property :date, type: TextDate
@@ -10,32 +11,38 @@ module Forms
     optional_field :not_for_release,
       options: TOGGLE_CHOICES,
       allow_blank: false
-    reset attributes: %i[not_for_release_reason not_for_release_reason_details],
-          if_falsey: :not_for_release
 
     optional_field :not_for_release_reason,
       type: StrictString,
-      options: NOT_FOR_RELEASE_REASONS,
+      options: -> { not_for_release_reasons },
       option_with_details: REASON_WITH_DETAILS do
-      validates :not_for_release_reason,
-        inclusion: { in: NOT_FOR_RELEASE_REASONS },
-        if: -> { not_for_release == 'yes' }
-    end
+        validates :not_for_release_reason,
+          inclusion: { in: :not_for_release_reasons },
+          if: -> { not_for_release == 'yes' }
+      end
+
+    reset attributes: %i[not_for_release_reason not_for_release_reason_details],
+          if_falsey: :not_for_release
+
+    reset attributes: [:not_for_release_reason_details],
+          if_falsey: :not_for_release_reason,
+          enabled_value: REASON_WITH_DETAILS
 
     property :not_for_release_reason_details, type: StrictString
     validates :not_for_release_reason_details,
       presence: true,
       if: -> { not_for_release == 'yes' && not_for_release_reason == REASON_WITH_DETAILS }
-    reset attributes: [:not_for_release_reason_details],
-          if_falsey: :not_for_release_reason,
-          enabled_value: REASON_WITH_DETAILS
 
     delegate :persisted?, to: :model
 
     validates :date, date: { not_in_the_past: true }
 
     def not_for_release_reasons
-      NOT_FOR_RELEASE_REASONS
+      if model.from_police?
+        POLICE_NOT_FOR_RELEASE_REASONS + COMMON_NOT_FOR_RELEASE_REASONS
+      else
+        PRISON_NOT_FOR_RELEASE_REASONS + COMMON_NOT_FOR_RELEASE_REASONS
+      end
     end
 
     def not_for_release_reason_with_details

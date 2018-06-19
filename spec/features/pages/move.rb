@@ -32,6 +32,9 @@ module Page
       when 'prison'
         choose 'prison_toggler'
         select move.to, from: 'prison'
+      when 'police_custody'
+        choose 'police_custody_toggler'
+        select move.to, from: 'police_custody'
       when 'hospital'
         choose 'hospital_toggler'
         fill_in 'hospital-text', with: move.to

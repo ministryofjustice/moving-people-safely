@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Forms::Move, type: :form do
-  let(:model) { Move.new }
+  let(:model) { build(:move, to: nil) }
+
   subject(:form) { described_class.new(model) }
 
   let(:params) {
@@ -27,7 +28,7 @@ RSpec.describe Forms::Move, type: :form do
       )
 
       form.validate(params)
-      expect(form.to_nested_hash).to eq coerced_params
+      expect(form.to_nested_hash).to match_array coerced_params
     end
 
     context "for not for release" do
@@ -89,12 +90,25 @@ RSpec.describe Forms::Move, type: :form do
         end
 
         context 'reason supplied is valid' do
-          before { form.not_for_release_reason = 'held_for_immigration' }
+          context 'from prison' do
+            before { form.not_for_release_reason = 'serving_sentence' }
 
-          specify {
-            form.valid?
-            expect(form.errors.keys).not_to include(:not_for_release_reason)
-          }
+            specify {
+              form.valid?
+              expect(form.errors.keys).not_to include(:not_for_release_reason)
+            }
+          end
+
+          context 'from police' do
+            let(:model) { build(:move, :from_police, to: nil) }
+
+            before { form.not_for_release_reason = 'prison_production' }
+
+            specify {
+              form.valid?
+              expect(form.errors.keys).not_to include(:not_for_release_reason)
+            }
+          end
         end
 
         context 'reason supplied requires extra details' do
@@ -174,6 +188,33 @@ RSpec.describe Forms::Move, type: :form do
         merge(to: form.to_nested_hash[:to_magistrates_court])
 
       expect(model.attributes).to include(model_attributes)
+    end
+  end
+
+  describe '#not_for_release_reasons' do
+    context 'from prison' do
+      it 'has correct list' do
+        expect(subject.not_for_release_reasons).to match_array(%w[
+          serving_sentence
+          further_charges
+          licence_revoke
+          held_for_immigration
+          other
+          ])
+      end
+    end
+
+    context 'from police' do
+      let(:model) { build(:move, :from_police, to: nil) }
+
+      it 'has correct list' do
+        expect(subject.not_for_release_reasons).to match_array(%w[
+          prison_production
+          recall_to_prison
+          held_for_immigration
+          other
+          ])
+      end
     end
   end
 end
