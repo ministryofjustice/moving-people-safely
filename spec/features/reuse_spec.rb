@@ -27,8 +27,10 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     detainee = create(:detainee, prison_number: prison_number)
     create(:escort, :issued, prison_number: prison_number, detainee: detainee)
 
-    dashboard.search(detainee.prison_number)
-    dashboard.click_add_new_escort
+    dashboard.click_start_a_per
+
+    search.search_prison_number(detainee.prison_number)
+    search.click_start_new_per
 
     detainee_details.complete_form(detainee)
 
@@ -52,8 +54,10 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     login_options = { sso: { info: { permissions: [{'organisation' => bedford_sso_id, 'roles' => ['healthcare']}]}} }
     login(nil, login_options)
 
-    dashboard.search(detainee.prison_number)
-    dashboard.click_view_escort
+    dashboard.click_start_a_per
+
+    search.search_prison_number(detainee.prison_number)
+    search.click_continue_per
 
     escort_page.confirm_healthcare_status('Review')
     escort_page.click_edit_healthcare
@@ -70,8 +74,11 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     detainee = create(:detainee, prison_number: prison_number)
     create(:escort, :completed, prison_number: prison_number, detainee: detainee)
 
-    dashboard.search(detainee.prison_number)
-    dashboard.click_view_escort
+    dashboard.click_start_a_per
+
+    search.search_prison_number(detainee.prison_number)
+    search.click_continue_per
+
     escort_page.confirm_healthcare_status('Complete')
     escort_page.click_edit_healthcare
 

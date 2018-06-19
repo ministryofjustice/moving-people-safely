@@ -9,6 +9,14 @@ module ApplicationPageHelpers
     @_dashboard ||= Page::Dashboard.new
   end
 
+  def search
+    @_search ||= Page::Search.new
+  end
+
+  def select_police_station
+    @_select_police_station ||= Page::SelectPoliceStation.new
+  end
+
   def detainee_details
     @_detainee_details ||= Page::Detainee.new
   end

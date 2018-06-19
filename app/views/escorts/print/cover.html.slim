@@ -52,13 +52,13 @@ html
             div.grid-row.padded
               div.grid-column.column-one-third
                 div.title Date of birth
-                div#date-of-birth.strong-text = date_of_birth(escort.detainee)
+                div#date-of-birth.strong-text = escort.detainee.date_of_birth&.to_s(:humanized)
               div.grid-column.column-one-third
                 div.title Age
                 div#age.strong-text = escort.detainee.age
               div.grid-column.column-one-third
                 div.title Gender
-                div#gender.strong-text = gender_code(escort.detainee)
+                div#gender.strong-text = escort.detainee.gender&.capitalize
             div.grid-row.padded
               div.grid-column.column-one-third
                 div.title Nationality
@@ -78,6 +78,10 @@ html
                 div.title Interpreter
                 div#age.strong-text = expanded_interpreter_required(escort.detainee)
               div.grid-column.column-one-third
+                div.title Interpreter details
+                div#age.strong-text = escort.detainee.interpreter_required_details
+            div.grid-row.padded
+              div.grid-column.column-full-length
                 div.title Diet
                 div#age.strong-text = escort.detainee.diet
             - if escort.detainee.peep == 'yes'
@@ -98,7 +102,7 @@ html
         div.grid-row.padded.padded-bottom
           div.grid-column.column-one-third
             div.title Date of travel
-            div.strong-text.font-medium = date(escort.move)
+            div.strong-text.font-medium = escort.move.date&.to_s(:humanized)
           div.grid-column.column-one-third
             div.title From
             div.strong-text = from(escort.move)

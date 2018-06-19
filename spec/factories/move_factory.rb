@@ -24,5 +24,9 @@ FactoryBot.define do
     trait :from_police do
       association :from_establishment, factory: :police_custody
     end
+
+    trait :from_prison do
+      association :from_establishment, factory: :prison
+    end
   end
 end

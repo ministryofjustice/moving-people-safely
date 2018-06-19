@@ -18,7 +18,7 @@
     p
       span.font-xsmall Date of travel
       br
-      span.side-profile__value = date(escort.move)
+      span.side-profile__value = escort.move.date&.to_s(:humanized)
 
     p
       span.font-xsmall From

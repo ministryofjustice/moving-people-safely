@@ -11,7 +11,8 @@ RSpec.feature 'searching for a prisoner', type: :feature do
 
       scenario 'prisoner not present in MPS' do
         login
-        search_with_valid_prison_number
+        dashboard.click_start_a_per
+        search.search_prison_number(prison_number)
         expect_no_results
       end
 
@@ -27,7 +28,8 @@ RSpec.feature 'searching for a prisoner', type: :feature do
         login_options = { sso: { info: { permissions: [{'organisation' => brighton_sso_id}]}} }
 
         login(nil, login_options)
-        search_with_valid_prison_number(prison_number)
+        dashboard.click_start_a_per
+        search.search_prison_number(prison_number)
         expect_prison_error_message("Enter a prisoner number for someone currently at #{brighton_name} to start a PER.")
       end
 
@@ -38,7 +40,8 @@ RSpec.feature 'searching for a prisoner', type: :feature do
         login_options = { sso: { info: { permissions: [{'organisation' => 'unauthorized.location.noms.moj'}]}} }
 
         login(nil, login_options)
-        search_with_valid_prison_number(prison_number)
+        dashboard.click_start_a_per
+        search.search_prison_number(prison_number)
         expect_no_results
       end
 
@@ -46,7 +49,8 @@ RSpec.feature 'searching for a prisoner', type: :feature do
         escort = create(:escort, :completed, prison_number: prison_number)
 
         login
-        search_with_valid_prison_number(prison_number)
+        dashboard.click_start_a_per
+        search.search_prison_number(prison_number)
         expect(page).to have_link('Continue PER', href: escort_path(escort))
         expect_result_with_move(escort)
       end
@@ -55,7 +59,8 @@ RSpec.feature 'searching for a prisoner', type: :feature do
         escort = create(:escort, :issued, prison_number: prison_number)
 
         login
-        search_with_valid_prison_number(prison_number)
+        dashboard.click_start_a_per
+        search.search_prison_number(prison_number)
         expect(page).to have_button('Start new PER')
         expect_result_with_move(escort)
       end
@@ -63,7 +68,8 @@ RSpec.feature 'searching for a prisoner', type: :feature do
 
     scenario 'with an invalid prison number' do
       login
-      search_with_invalid_prison_number
+      dashboard.click_start_a_per
+      search.search_prison_number('invalid-prison-number')
       expect_prison_error_message
     end
   end
@@ -75,22 +81,23 @@ RSpec.feature 'searching for a prisoner', type: :feature do
       login_options = { sso: { info: { permissions: [{'organisation' => User::POLICE_ORGANISATION}]}} }
       login(nil, login_options)
 
-      select 'Banbury Police Station', from: 'police_custody'
-      click_button 'Save and continue'
+      select_police_station.select_station('Banbury Police Station')
+
+      dashboard.click_start_a_per
     end
 
     context 'with a valid pnc number' do
       let(:pnc_number) { '14/293785A' }
 
       scenario 'prisoner not present in MPS' do
-        search_with_valid_pnc_number
+        search.search_pnc_number(pnc_number)
         expect_no_results
       end
 
       scenario 'prisoner present with an active escort' do
         escort = create(:escort, :completed, :from_police, pnc_number: pnc_number)
 
-        search_with_valid_pnc_number(pnc_number)
+        search.search_pnc_number(pnc_number)
         expect(page).to have_link('Continue PER', href: escort_path(escort))
         expect_result_with_move(escort)
       end
@@ -98,40 +105,16 @@ RSpec.feature 'searching for a prisoner', type: :feature do
       scenario 'prisoner present with a previously issued escort' do
         escort = create(:escort, :issued, :from_police, pnc_number: pnc_number)
 
-        search_with_valid_pnc_number(pnc_number)
+        search.search_pnc_number(pnc_number)
         expect(page).to have_button('Start new PER')
         expect_result_with_move(escort)
       end
     end
 
     scenario 'with an invalid pnc number' do
-      search_with_invalid_pnc_number
+      search.search_pnc_number('invalid-pnc-number')
       expect_police_error_message
     end
-  end
-
-  def search_with_valid_prison_number(prison_number = 'A1234BC')
-    click_link 'Start a PER'
-    fill_in 'forms_search_prison_number', with: prison_number
-    click_button 'Search'
-  end
-
-  def search_with_valid_pnc_number(pnc_number = '14/293785A')
-    click_link 'Start a PER'
-    fill_in 'forms_search_pnc_number', with: pnc_number
-    click_button 'Search'
-  end
-
-  def search_with_invalid_prison_number
-    click_link 'Start a PER'
-    fill_in 'forms_search_prison_number', with: 'invalid-prison-number'
-    click_button 'Search'
-  end
-
-  def search_with_invalid_pnc_number
-    click_link 'Start a PER'
-    fill_in 'forms_search_pnc_number', with: 'invalid-pnc-number'
-    click_button 'Search'
   end
 
   def expect_no_results
