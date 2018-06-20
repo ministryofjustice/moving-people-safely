@@ -13,7 +13,7 @@ section id=model.to_s.downcase
 
   - if assessment&.relevant_questions&.any?
     table
-      - model::SECTIONS.each do |section|
+      - model.sections(escort.location).each do |section|
         = render "#{model.to_s.downcase.pluralize}/sections/#{section}",
           views: 'escort',
           section: section,

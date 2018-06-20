@@ -8,7 +8,7 @@
     = render 'summary/status',
       workflow: Summary::EscortSectionStatusPresenter.new(assessment, name: :healthcare)
 
-    - Healthcare::SECTIONS.each do |section|
+    - Healthcare.sections(escort.location).each do |section|
       table class="#{section}"
         = render "healthcare/sections/#{section}",
           views: 'summary',

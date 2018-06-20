@@ -1,5 +1,5 @@
 class RisksController < AssessmentsController
-  steps(*Risk::SECTIONS)
+  steps(*Risk.sections('prison'))
 
   private
 

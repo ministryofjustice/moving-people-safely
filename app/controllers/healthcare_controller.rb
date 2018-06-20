@@ -1,5 +1,5 @@
 class HealthcareController < AssessmentsController
-  steps(*Healthcare::SECTIONS)
+  steps(*Healthcare.sections('prison'))
 
   private
 

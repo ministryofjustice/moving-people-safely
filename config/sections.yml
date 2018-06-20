@@ -1,0 +1,122 @@
+prison:
+  healthcare:
+    physical:
+      - physical_issues
+    mental:
+      - mental_illness
+    transport:
+      - mpv
+    needs:
+      - has_medications
+    dependencies:
+      - dependencies
+    allergies:
+      - allergies
+    social:
+      - personal_care
+    contact:
+      - contact_number
+  risk:
+    risk_to_self:
+      - acct_status
+      - self_harm
+    segregation:
+      - csra
+      - rule_45
+      - vulnerable_prisoner
+    security:
+      - controlled_unlock
+      - category_a
+      - high_profile
+      - pnc_warnings
+    violent_or_dangerous:
+      - violent_or_dangerous
+    harassment_and_gangs:
+      - intimidation_public
+      - intimidation_prisoners
+      - gang_member
+    discrimination:
+      - violence_to_staff
+      - risk_to_females
+      - homophobic
+      - racist
+      - discrimination_to_other_religions
+      - other_violence_due_to_discrimination
+    escape:
+      - current_e_risk
+      - previous_escape_attempts
+      - escape_pack
+      - escort_risk_assessment
+    hostage_taker:
+      - hostage_taker
+    sex_offences:
+      - sex_offence
+    concealed_weapons:
+      - conceals_weapons
+      - uses_weapons
+      - conceals_drugs
+      - conceals_mobile_phone_or_other_items
+      - substance_supply
+    arson:
+      - arson
+    return_instructions:
+      - must_return
+      - has_must_not_return_details
+    other_risk:
+      - other_risk
+police:
+  healthcare:
+    physical:
+      - physical_issues
+    mental:
+      - mental_illness
+    transport:
+      - mpv
+    needs:
+      - has_medications
+    dependencies:
+      - dependencies
+    allergies:
+      - allergies
+    social:
+      - personal_care
+    contact:
+      - contact_number
+  risk:
+    risk_to_self:
+      - self_harm
+    segregation:
+      - csra
+      - vulnerable_prisoner
+    security:
+      - controlled_unlock
+      - high_profile
+      - pnc_warnings
+    violent_or_dangerous:
+      - violent_or_dangerous
+    harassment_and_gangs:
+      - intimidation_public
+      - gang_member
+    discrimination:
+      - violence_to_staff
+      - risk_to_females
+      - homophobic
+      - racist
+      - discrimination_to_other_religions
+      - other_violence_due_to_discrimination
+    escape:
+      - previous_escape_attempts
+    hostage_taker:
+      - hostage_taker
+    sex_offences:
+      - sex_offence
+    concealed_weapons:
+      - conceals_weapons
+      - uses_weapons
+      - conceals_drugs
+      - conceals_mobile_phone_or_other_items
+      - substance_supply
+    arson:
+      - arson
+    other_risk:
+      - other_risk

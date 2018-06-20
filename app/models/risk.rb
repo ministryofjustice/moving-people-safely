@@ -2,22 +2,12 @@ class Risk < ApplicationRecord
   include Questionable
   include Reviewable
 
-  SECTIONS = %w[risk_to_self segregation security violent_or_dangerous harassment_and_gangs discrimination escape
-                hostage_taker sex_offences concealed_weapons arson return_instructions other_risk].freeze
-  MANDATORY_QUESTIONS = %w[acct_status self_harm csra rule_45 vulnerable_prisoner controlled_unlock
-                           category_a high_profile pnc_warnings intimidation_public intimidation_prisoners
-                           violent_or_dangerous gang_member violence_to_staff risk_to_females homophobic racist
-                           discrimination_to_other_religions other_violence_due_to_discrimination
-                           current_e_risk previous_escape_attempts escape_pack escort_risk_assessment
-                           hostage_taker sex_offence conceals_weapons uses_weapons conceals_drugs
-                           conceals_mobile_phone_or_other_items substance_supply arson must_return
-                           has_must_not_return_details other_risk].freeze
   RELEVANT_ANSWERS = %w[yes open post_closure closed high].freeze
 
   belongs_to :escort
   has_many :must_not_return_details, dependent: :destroy
 
-  delegate :editable?, to: :escort
+  delegate :editable?, :location, to: :escort
 
   def alerts
     {
@@ -31,7 +21,7 @@ class Risk < ApplicationRecord
   end
 
   def relevant_questions
-    @relevant_questions ||= MANDATORY_QUESTIONS.select do |question|
+    Risk.mandatory_questions(location).select do |question|
       RELEVANT_ANSWERS.include? public_send(question)
     end
   end

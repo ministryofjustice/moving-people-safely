@@ -8,7 +8,7 @@ class Ability
     can :update, Escort do |escort|
       escort.editable? && user.can_access_escort?(escort)
     end
-    if user.admin?
+    if user.admin? || user.police?
       can :manage, Healthcare, editable?: true
       can :manage, Risk, editable?: true
       can :manage, OffencesWorkflow, editable?: true

@@ -132,4 +132,9 @@ class Escort < ApplicationRecord
     return pnc_number if from_police?
     prison_number
   end
+
+  def location
+    return 'police' if from_police?
+    'prison'
+  end
 end
