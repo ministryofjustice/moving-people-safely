@@ -1,5 +1,5 @@
 module Seeds
-  class PopulatePoliceCustody < PopulateBase
+  class PopulatePoliceCustody < PopulateCsvBase
     private
 
     def data_file_name

@@ -1,5 +1,5 @@
 module Seeds
-  class PopulateCourts < PopulateBase
+  class PopulateCourts < PopulateCsvBase
     private
 
     def data_file_name
