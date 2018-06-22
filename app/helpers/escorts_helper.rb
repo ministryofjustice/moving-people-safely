@@ -63,9 +63,16 @@ module EscortsHelper
     return if offences.empty?
     safe_join(offences.map do |item|
       array = [item.offence]
-      array << "(#{item.case_reference})" if item.respond_to?(:case_reference) && item.case_reference.present?
+      array << offence_reference(item) if item.respond_to?(:case_reference) && item.case_reference.present?
       array.join(' ')
     end, ' | ')
+  end
+
+  def offence_reference(offence)
+    police_label = "#{I18n.t('helpers.label.offence.case_reference.police')}: "
+    prison_summary_label = "#{I18n.t('helpers.label.offence.case_reference.prison_summary')}: "
+    prefix = offence.escort.from_police? ? police_label : prison_summary_label
+    "(#{prefix}#{offence.case_reference})"
   end
 
   def acct_status_text(risk)

@@ -11,7 +11,8 @@
           .multiple-field
             = mf.text_area :offence, class: 'multiple-field'
           .multiple-field
-            = mf.text_field :case_reference, class: 'multiple-field'
+            = mf.text_field_for_role :case_reference, 
+                role: escort.from_police? ? :police : :prison
         .column-one-third
           .remove-link
             .form-group

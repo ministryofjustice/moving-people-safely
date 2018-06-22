@@ -1,7 +1,7 @@
 module Page
   class Offences < Base
-    def complete_form(options)
-      fill_offences(options[:offences])
+    def complete_form(data, role=:prison)
+      fill_offences(data[:offences], role)
 
       save_and_continue
     end
@@ -35,21 +35,27 @@ module Page
 
     private
 
-    def insert_into_row(row, description, case_reference)
+    def insert_into_row(row, description, case_reference, role=:prison)
       within row do
         page.fill_in "Offence", with: description
-        page.fill_in "Case reference", with: case_reference
+
+        if role == :police
+          page.fill_in "Unique reference number", with: case_reference
+        else
+          page.fill_in "Case reference", with: case_reference
+        end
       end
     end
 
-    def fill_offences(offences)
-      return unless offences && !offences.empty?
+    def fill_offences(offences, role)
+      return unless offences && offences.any?
+
       offences.each_with_index do |offence, index|
-        field_prefix = 'offences_offences_attributes'
-        fill_in "#{field_prefix}_#{index}_offence", with: offence.fetch(:name)
-        if offence[:case_reference]
-          fill_in "#{field_prefix}_#{index}_case_reference", with: offence[:case_reference]
-        end
+        offence_row = all(".multiple-wrapper").last
+
+        insert_into_row(offence_row, offence.fetch(:name),
+          offence.fetch(:case_reference), role)
+
         click_button 'Add another' unless index >= offences.size - 1
       end
     end

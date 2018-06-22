@@ -91,10 +91,11 @@ module Page
       end
     end
 
-    def confirm_offence_details(offences_data)
+    def confirm_offence_details(offences_data, role=:prison)
       within('#offences') do
         offences_data[:offences].each do |offence|
           expect(page).to have_content(offence.fetch(:name))
+          expect(page).to have_content('Unique reference number:') if role == :police
         end
       end
     end
