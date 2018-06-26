@@ -1,22 +1,16 @@
 class HealthcareController < AssessmentsController
-  steps(*Healthcare.sections('prison'))
-
   private
 
-  def add_multiples
-    return unless params.key? 'needs_add_medication'
-    form.deserialize form_params
-    form.add_medication
-    view = params[:action] == 'create' ? :new : :edit
-    render view
+  def model
+    Healthcare
   end
 
   def assessment
     escort.healthcare || escort.build_healthcare
   end
 
-  def model
-    Healthcare
+  def multiples
+    { section: 'needs', field: 'medication' }
   end
 
   def show_page
