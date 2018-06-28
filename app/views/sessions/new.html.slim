@@ -1,22 +1,27 @@
 .column-two-thirds
   h1.heading-xlarge Create or view a Person Escort Record (PER)
 
-  h3.heading-medium If you work in a prison
+  h3.heading-medium If you work in a prison or police custody suite
 
-  p Use this service to create or complete an electronic PER for people moving from prison to:
+  p Use this service to create a PER for people moving to:
 
   ul.list.list-bullet
-    li Crown or Magistrates' Court
+    li Crown or Magistrates' or Civil Court
+    li an Immigration Removal Centre
     li hospital
-    li another prison
+    li another prison or police custody suite
     li any other destination (for example, on a compassionate visit)
-
-  .panel.panel-border-wide
-    p You will need to complete a paper PER for any other moves.
 
   h3.heading-medium If you work in a court
 
   p Use this service to see the PERs for people moving to your court today.
+
+  h3.heading-medium The ePER pilot programme
+
+  p
+    = "You must be part of the ePER pilot programme to use this service. "
+    = link_to 'Contact us', new_feedback_path
+    |  if you are interested in joining the pilot.
 
   p= link_to 'Start now', sso_path, class: 'button button-start'
 
@@ -26,8 +31,7 @@
 
   ul.list.list-bullet
     li a Ministry of Justice Sign On account
-    li to be part of the ePER pilot programme
-    li access to a printer to print the ePER once completed (if you are in a prison)
+    li access to a printer to print the completed ePER (if you are in a prison or police custody suite)
 
   h3.heading-medium Help with this service
   p
