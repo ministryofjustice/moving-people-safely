@@ -131,6 +131,6 @@ Medical contact details             Yes
  Medical contact                    1-131-999-0232
 
 OFFENCES
-Current offences                    Yes                  Burglary (LXAHTGNJQF) | Sex offence
-                                                         (QDPREIBMSF)
+Current offences                    Yes                  Burglary (Court case: LXAHTGNJQF) | Sex offence
+                                                         (Court case: QDPREIBMSF)
 

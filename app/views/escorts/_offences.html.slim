@@ -20,4 +20,4 @@ section#offences
         td.answer
           - offences.each do |offence|
             p
-              b #{offence.offence} (#{offence.case_reference})
+              b #{offence.offence} #{offence_reference(offence)}

@@ -105,7 +105,33 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     ])
   end
 
+  def text_field_for_role(attribute, options = {})
+    object_sym = object.name.underscore.to_sym
+    label_scope = [:helpers, :label, object_sym, attribute]
+    hint_scope = [:helpers, :hint, object_sym, attribute]
+    role = options.fetch(:role, :prison)
+    label_text = GovukElementsFormBuilder::FormBuilder.translate(role, '', label_scope)
+    hint_text = GovukElementsFormBuilder::FormBuilder.translate(role, '', hint_scope)
+
+    content_tag :div, class: form_group_classes(attribute.to_sym),
+                      id: form_group_id(attribute) do
+      text_field_for_role_tags(attribute, label_text, hint_text, options)
+    end
+  end
+
   private
+
+  def text_field_for_role_tags(attribute, label_text, hint_text, options)
+    [
+      label(attribute, label_text, class: 'form-label'),
+      (content_tag(:span, hint_text, class: 'form-hint') if hint_text.present?),
+      (error_message_tag_for_attr(attribute) if error_for?(attribute)),
+      ActionView::Helpers::Tags::TextField.new(
+        object_name, attribute, self,
+        { value: object.public_send(attribute), class: 'form-control' }.merge(options)
+      ).render
+    ].compact.join.html_safe
+  end
 
   def custom_text_field(attribute, options = {})
     ActionView::Helpers::Tags::TextField.new(

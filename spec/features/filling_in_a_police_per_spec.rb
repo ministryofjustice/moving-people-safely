@@ -1,6 +1,15 @@
 require 'feature_helper'
 
 RSpec.feature 'filling in a PER from a police station', type: :feature do
+  let(:offences_data) {
+    {
+      offences: [
+        { name: 'Burglary', case_reference: 'Ref 3064' },
+        { name: 'Attempted murder', case_reference: 'Ref 7291' }
+      ]
+    }
+  }
+
   scenario 'adding a new escort and filling it in' do
     banbury_police_station = create(:police_custody, name: 'Banbury Police Station')
 
@@ -30,5 +39,12 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
 
     escort_page.confirm_move_info(move_data)
     escort_page.confirm_detainee_details(detainee)
+
+    # Put risk filling here later
+
+    escort_page.click_edit_offences
+
+    offences.complete_form(offences_data, :police)
+    escort_page.confirm_offence_details(offences_data, :police)
   end
 end

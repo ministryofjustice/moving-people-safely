@@ -193,6 +193,11 @@ en:
       offences:
         offences:
           offence: Offence name
+      offence:
+        case_reference:
+          prison: Case reference
+          prison_summary: Court case
+          police: Unique reference number
       other_risk:
         other_risk: "Is there any other information related to risk on this journey you would like to include?"
         other_risk_details: "Other information related to risk on this journey"
@@ -318,6 +323,9 @@ en:
         mental_illness_details: 'Please explain how these issues might affect the journey and how they should be managed. Do not give details of medical conditions:'
       needs:
         has_medications: This is any regular medication that will need to be administered while they are out of prison. Full medication history can be given in a sealed envelope to be opened by a healthcare professional in case of an emergency.
+      offence:
+        case_reference:
+          police: This is used to associate the detainee to their case
       other_risk:
         other_risk: Include relevant adjudications or case notes not already included
         other_risk_details: Give details

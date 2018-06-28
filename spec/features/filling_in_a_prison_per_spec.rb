@@ -35,7 +35,7 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
     search.search_prison_number(detainee.prison_number)
     search.click_start_new_per
 
-    detainee_details.complete_form(detainee)
+    detainee_details.complete_form(detainee, :prison)
 
     move_details.complete_form(move_data)
 
@@ -49,9 +49,8 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
 
     escort_page.click_edit_offences
 
-    offences.complete_form(offences_data)
-
-    escort_page.confirm_offence_details(offences_data)
+    offences.complete_form(offences_data, :prison)
+    escort_page.confirm_offence_details(offences_data, :prison)
 
     click_button 'Sign out'
 
