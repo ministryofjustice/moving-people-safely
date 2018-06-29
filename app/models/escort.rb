@@ -48,7 +48,7 @@ class Escort < ApplicationRecord
     includes(move: :from_establishment).where(moves: { establishments: { type: 'PoliceCustody' } })
   }
 
-  delegate :surname, :forenames, to: :detainee, prefix: true
+  delegate :surname, :forenames, :gender, to: :detainee, prefix: true
   delegate :full_name, to: :canceller, prefix: true
   delegate :date, :from_establishment, to: :move, prefix: true
 

@@ -1,14 +1,16 @@
 module Forms
   module Risk
     class Segregation < Forms::Base
-      CSRA_CHOICES = %w[high standard].freeze
+      PRISON_CSRA_CHOICES = %w[high standard].freeze
+      POLICE_CSRA_CHOICES = %w[yes no].freeze
 
-      optional_field :csra, options: CSRA_CHOICES
-      optional_field :rule_45
-      optional_details_field :vulnerable_prisoner
+      options_field :csra, options: :csra_choices
+      options_field :rule_45, if: :from_prison?
+      options_field_with_details :vulnerable_prisoner
 
       def csra_choices
-        CSRA_CHOICES
+        return PRISON_CSRA_CHOICES if from_prison?
+        POLICE_CSRA_CHOICES
       end
     end
   end

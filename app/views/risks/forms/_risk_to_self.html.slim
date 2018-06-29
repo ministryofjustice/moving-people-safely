@@ -1,9 +1,10 @@
-= f.radio_toggle :acct_status,
-  choices: f.object.acct_statuses,
-  inline_choices: false,
-  legend_options: { class: 'form-label-assessment' },
-  data: { 'toggle-field' => f.object.acct_status_with_details } do
-  = f.text_field :date_of_most_recently_closed_acct
-  = f.text_area :acct_status_details
+- if escort.from_prison?
+  = f.radio_toggle :acct_status,
+    choices: f.object.acct_statuses,
+    inline_choices: false,
+    legend_options: { class: 'form-label-assessment' },
+    data: { 'toggle-field' => f.object.acct_status_with_details } do
+      = f.text_field :date_of_most_recently_closed_acct
+      = f.text_area :acct_status_details
 
 = f.radio_toggle_with_textarea :self_harm, legend_options: { class: 'form-label-assessment' }

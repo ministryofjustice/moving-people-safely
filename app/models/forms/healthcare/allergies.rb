@@ -1,7 +1,7 @@
 module Forms
   module Healthcare
     class Allergies < Forms::Base
-      optional_details_field :allergies
+      options_field_with_details :allergies
     end
   end
 end

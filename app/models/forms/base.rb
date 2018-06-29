@@ -51,64 +51,28 @@ module Forms
         instance_methods.include?(method_name)
       end
 
-      def optional_field(field_name, options = {})
-        _define_attribute_is_on(field_name, options.fetch(:option_with_details, TOGGLE_YES))
-        property_options = { type: options.fetch(:type, String), default: options[:default] }
+      def options_field(field_name, options = {})
+        property_options = { type: options.fetch(:type, StrictString), default: options[:default] }
         property(field_name, property_options)
-        yield and return if block_given?
 
         validates field_name,
           inclusion: { in: options.fetch(:options, TOGGLE_CHOICES) },
+          if: options.fetch(:if, -> { true }),
           allow_blank: options.fetch(:allow_blank, false)
       end
 
-      def optional_details_field(field_name, options = {})
-        optional_field(field_name, options)
+      def options_field_with_details(field_name, options = {})
+        options_field(field_name, options)
         property("#{field_name}_details", type: StrictString)
         validates "#{field_name}_details",
           presence: true,
-          if: -> { public_send(field_name) == TOGGLE_YES }
+          if: -> { public_send(field_name) == TOGGLE_YES },
+          allow_blank: options.fetch(:allow_blank, false)
         reset attributes: ["#{field_name}_details"], if_falsey: field_name
-      end
-
-      def property_with_details(field_name, options = {}, &block)
-        optional_field(field_name, options, &block)
-        property("#{field_name}_details", type: StrictString)
-        option_with_details = options.fetch(:option_with_details, TOGGLE_YES)
-        validates "#{field_name}_details",
-          presence: true,
-          if: -> { public_send(field_name) == option_with_details }
-        reset attributes: ["#{field_name}_details"],
-          if_falsey: field_name,
-          enabled_value: option_with_details
-      end
-
-      def optional_checkbox(field_name)
-        _define_attribute_is_on(field_name, true)
-        property field_name, type: Axiom::Types::Boolean, default: false
-      end
-
-      def optional_checkbox_with_details(field_name, toggle = nil)
-        _define_attribute_is_on(field_name, true)
-        property field_name, type: Axiom::Types::Boolean, default: false
-        property "#{field_name}_details", type: StrictString
-        validates "#{field_name}_details",
-          presence: true,
-          if: -> {
-            (public_send(field_name) && toggle.nil?) ||
-              (public_send(field_name) && public_send(toggle) == TOGGLE_YES)
-          }
-        reset attributes: [:"#{field_name}_details"], if_falsey: field_name, enabled_value: true
       end
 
       def singularize(field_name)
         field_name.to_s.singularize
-      end
-
-      def _define_attribute_is_on(field_name, on_attr)
-        define_method "#{field_name}_on?" do
-          public_send(field_name) == on_attr
-        end
       end
 
       def _define_add_singularized_field_name(field_name)
@@ -201,6 +165,18 @@ module Forms
 
     def model_class_name
       model.class.name.downcase
+    end
+
+    def from_prison?
+      model.location == 'prison'
+    end
+
+    def from_police?
+      model.location == 'police'
+    end
+
+    def female_from_police?
+      model.location == 'police' && model.escort.detainee.gender == 'female'
     end
   end
 end

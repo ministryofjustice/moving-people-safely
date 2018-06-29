@@ -1,7 +1,7 @@
 module Forms
   module Risk
     class OtherRisk < Forms::Base
-      optional_details_field :other_risk
+      options_field_with_details :other_risk
     end
   end
 end

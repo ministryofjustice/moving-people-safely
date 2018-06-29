@@ -1,2 +1,5 @@
 = f.radio_toggle_with_textarea :personal_care,
   legend_options: { class: 'form-label-assessment' }
+- if escort.from_police? && escort.detainee_gender == 'female'
+  = f.radio_toggle_with_textarea :female_hygiene_kit,
+    legend_options: { class: 'form-label-assessment' }

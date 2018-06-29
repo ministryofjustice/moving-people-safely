@@ -1,7 +1,8 @@
 module Forms
   module Healthcare
     class Physical < Forms::Base
-      optional_details_field :physical_issues
+      options_field_with_details :pregnant, if: :female_from_police?
+      options_field_with_details :physical_issues
     end
   end
 end

@@ -9,41 +9,45 @@ module Page
     def complete_forms(healthcare)
       @hc = healthcare
       continue_from_intro
-      fill_in_physical_healthcare
-      fill_in_mental_healthcare
+      fill_in_physical
+      fill_in_mental
       fill_in_transport
-      fill_in_healthcare_needs
+      fill_in_needs
       fill_in_dependencies
       fill_in_allergies
-      fill_in_social_healthcare
-      fill_in_medical_contact
+      fill_in_social
+      fill_in_contact
     end
 
     def continue_from_intro
       click_link 'Continue'
     end
 
-    def fill_in_physical_healthcare
-      fill_in_optional_details('Do they have physical health needs that might affect them while they are out of prison?', @hc, :physical_issues)
+    def fill_in_physical
+      if @hc.location == 'prison'
+        fill_in_optional_details('Do they have physical health needs that might affect them while they are out of prison?', @hc, :physical_issues)
+      elsif @hc.location == 'police'
+        fill_in_optional_details('Are they pregnant?', @hc, :pregnant)
+        fill_in_optional_details('Do they have any physical health needs that might affect them on this journey?', @hc, :physical_issues)
+      end
       click_button 'Save and continue'
     end
 
-    def fill_in_mental_healthcare
-      fill_in_optional_details('Do they have mental health needs that might affect them while they are out of prison?', @hc, :mental_illness)
+    def fill_in_mental
+      if @hc.location == 'prison'
+        fill_in_optional_details('Do they have mental health needs that might affect them while they are out of prison?', @hc, :mental_illness)
+      elsif @hc.location == 'police'
+        fill_in_optional_details('Do they have mental health needs that might affect them on this journey?', @hc, :mental_illness)
+      end
       click_button 'Save and continue'
     end
 
-    def fill_in_social_healthcare
-      fill_in_optional_details('Will they need help with personal tasks while they are out of prison?', @hc, :personal_care)
+    def fill_in_transport
+      fill_in_optional_details('Do they need to travel in a special vehicle?', @hc, :mpv)
       click_button 'Save and continue'
     end
 
-    def fill_in_allergies
-      fill_in_optional_details('Do they have any known allergies or intolerances?', @hc, :allergies)
-      click_button 'Save and continue'
-    end
-
-    def fill_in_healthcare_needs
+    def fill_in_needs
       if @hc.has_medications == 'yes'
         choose 'needs_has_medications_yes'
         @hc.medications.each_with_index do |med, i|
@@ -57,8 +61,28 @@ module Page
     end
 
     def fill_in_dependencies
-      fill_in_optional_details('Do they have any addictions or dependencies that might affect them while they are out of prison?', @hc, :dependencies)
+      if @hc.location == 'prison'
+        fill_in_optional_details('Do they have any addictions or dependencies that might affect them while they are out of prison?', @hc, :dependencies)
+      elsif @hc.location == 'police'
+        fill_in_optional_details('Are they experiencing or at risk of alcohol withdrawal?', @hc, :alcohol_withdrawal)
+        fill_in_optional_details('Do they have any addictions or dependencies that might affect them when they leave police custody?', @hc, :dependencies)
+      end
       save_and_continue
+    end
+
+    def fill_in_social
+      if @hc.location == 'prison'
+        fill_in_optional_details('Will they need help with personal tasks while they are out of prison?', @hc, :personal_care)
+      elsif @hc.location == 'police'
+        fill_in_optional_details('Will they need help with personal tasks when they leave police custody?', @hc, :personal_care)
+        fill_in_optional_details('Do they need a female hygiene kit?', @hc, :female_hygiene_kit)
+      end
+      click_button 'Save and continue'
+    end
+
+    def fill_in_allergies
+      fill_in_optional_details('Do they have any known allergies or intolerances?', @hc, :allergies)
+      click_button 'Save and continue'
     end
 
     def add_medication
@@ -78,13 +102,8 @@ module Page
       end
     end
 
-    def fill_in_transport
-      fill_in_optional_details('Do they need to travel in a special vehicle?', @hc, :mpv)
-      click_button 'Save and continue'
-    end
-
-    def fill_in_medical_contact
-      fill_in 'Medical contact', with: @hc.contact_number
+    def fill_in_contact
+      fill_in 'contact[contact_number]', with: @hc.contact_number
       click_button 'Save and continue'
     end
   end

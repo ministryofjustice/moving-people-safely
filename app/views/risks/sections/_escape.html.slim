@@ -4,18 +4,20 @@
   = render "shared/sections/#{views}/section",
     assessment: assessment, path: path, section: section, questions: questions
 
-= render "shared/sections/#{views}/question",
-  alternance: 'even', assessment: assessment, section: section, question: 'current_e_risk',
-  value: assessment.current_e_risk, details: assessment.current_e_risk_details
+- if assessment.escort.from_prison?
+  = render "shared/sections/#{views}/question",
+    alternance: 'even', assessment: assessment, section: section, question: 'current_e_risk',
+    value: assessment.current_e_risk, details: assessment.current_e_risk_details
 
 = render "shared/sections/#{views}/question",
   alternance: 'odd', assessment: assessment, section: section, question: 'previous_escape_attempts',
   value: assessment.previous_escape_attempts, details: assessment.previous_escape_attempts_details
 
-= render "shared/sections/#{views}/question",
-  alternance: 'even', assessment: assessment, section: section, question: 'escort_risk_assessment',
-  value: assessment.escort_risk_assessment, details: nil
+- if assessment.escort.from_prison?
+  = render "shared/sections/#{views}/question",
+    alternance: 'even', assessment: assessment, section: section, question: 'escort_risk_assessment',
+    value: assessment.escort_risk_assessment, details: nil
 
-= render "shared/sections/#{views}/question",
-  alternance: 'odd', assessment: assessment, section: section, question: 'escape_pack',
-  value: assessment.escape_pack, details: nil
+  = render "shared/sections/#{views}/question",
+    alternance: 'odd', assessment: assessment, section: section, question: 'escape_pack',
+    value: assessment.escape_pack, details: nil

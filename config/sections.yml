@@ -76,6 +76,7 @@ police:
       - has_medications
     dependencies:
       - dependencies
+      - alcohol_withdrawal
     allergies:
       - allergies
     social:

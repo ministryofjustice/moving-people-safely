@@ -8,9 +8,10 @@
   alternance: 'even', assessment: assessment, section: section, question: 'controlled_unlock',
   value: assessment.controlled_unlock, details: assessment.controlled_unlock_details
 
-= render "shared/sections/#{views}/question",
-  alternance: 'odd', assessment: assessment, section: section, question: 'category_a',
-  value: assessment.category_a, details: nil
+- if assessment.escort.from_prison?
+  = render "shared/sections/#{views}/question",
+    alternance: 'odd', assessment: assessment, section: section, question: 'category_a',
+    value: assessment.category_a, details: nil
 
 = render "shared/sections/#{views}/question",
   alternance: 'even', assessment: assessment, section: section, question: 'high_profile',

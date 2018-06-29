@@ -1,9 +1,12 @@
 FactoryBot.define do
   factory :healthcare do
     allergies 'no'
+    pregnant 'no'
     physical_issues 'no'
     mental_illness 'no'
     personal_care 'no'
+    female_hygiene_kit 'no'
+    alcohol_withdrawal 'no'
     dependencies 'no'
     mpv 'no'
     has_medications 'no'

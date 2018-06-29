@@ -53,6 +53,10 @@ FactoryBot.define do
       csra 'high'
     end
 
+    trait :from_police do
+      csra 'no'
+    end
+
     trait :incomplete do
       rule_45 nil
       conceals_weapons nil

@@ -12,6 +12,7 @@ AllCops:
     - 'config/**/*'
     - 'app/models/forms/base.rb' # this is just too horrible
     - 'app/services/detainees/risk_mapper.rb'
+    - 'app/form_builders/mps_form_builder.rb'
 
 # Prefer sensible naming to comments everywhere.
 Documentation:
@@ -31,7 +32,6 @@ Metrics/AbcSize:
 
 Metrics/ClassLength:
   Exclude:
-    - 'app/form_builders/mps_form_builder.rb'
     - 'app/models/escort.rb'
 
 Metrics/MethodLength:

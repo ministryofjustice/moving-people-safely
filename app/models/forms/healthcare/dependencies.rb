@@ -1,7 +1,8 @@
 module Forms
   module Healthcare
     class Dependencies < Forms::Base
-      optional_details_field :dependencies
+      options_field_with_details :alcohol_withdrawal, if: :from_police?
+      options_field_with_details :dependencies
     end
   end
 end

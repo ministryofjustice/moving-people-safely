@@ -14,6 +14,24 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
       as: object_name)
   end
 
+  def assessment_text_field(attribute, options = {})
+    content_tag :div,
+      class: form_group_classes(attribute),
+      id: form_group_id(attribute) do
+      content_tag :fieldset, fieldset_options(attribute, options) do
+        fieldset_legend(attribute, options) +
+          custom_text_field(attribute)
+      end
+    end
+  end
+
+  def location_text_field(attribute, options = {})
+    label = label(attribute, location_text(localized_label(attribute)))
+    hint = content_tag(:span, location_text(hint_text(attribute)), class: 'form-hint')
+    text_field(attribute)
+    (label + hint + custom_text_field(attribute)).html_safe
+  end
+
   def custom_radio_button_fieldset(attribute, options = {})
     content_tag :div,
       class: form_group_classes(attribute),
@@ -79,14 +97,6 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
       end
   end
 
-  def search_text_field(attribute, options = {})
-    ActionView::Helpers::Tags::TextField.new(
-      object.class.name, attribute, self,
-      { value: object.public_send(attribute),
-        class: 'form-control' }.merge(options)
-    ).render
-  end
-
   def text_area_without_label(attribute)
     field_without_label ActionView::Helpers::Tags::TextArea, attribute
   end
@@ -109,7 +119,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
 
   def custom_text_field(attribute, options = {})
     ActionView::Helpers::Tags::TextField.new(
-      object.class.name, attribute, self,
+      object_name, attribute, self,
       { value: object.public_send(attribute),
         class: 'form-control' }.merge(options)
     ).render
@@ -122,19 +132,26 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
       if options.fetch(:legend, true)
         tags << content_tag(
           :span,
-          fieldset_text(attribute),
+          location_text(fieldset_text(attribute)),
           class: legend_options.fetch(:class, 'form-label-bold')
         )
       end
 
       tags << error_message_tag_for_attr(attribute) if error_for?(attribute)
 
-      hint = hint_text attribute
+      hint = location_text(hint_text(attribute))
       tags << content_tag(:span, hint, class: 'form-hint') if hint
 
       safe_join tags
     end
     legend.html_safe
+  end
+
+  def location_text(text)
+    return unless text
+    return text if text.is_a?(String)
+    location = object.model&.location&.to_sym
+    text[location] || text[:"#{location}_html"].html_safe
   end
 
   def radio_inputs(attribute, options)
@@ -169,7 +186,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
     content_tag :div,
       class: form_group_classes(attribute.to_sym),
       id: form_group_id(attribute) do
-      tags = [content_tag(:span, hint_text(attribute), class: 'form-hint')]
+      tags = [content_tag(:span, location_text(hint_text(attribute)), class: 'form-hint')]
       tags << error_message_tag_for_attr(attribute) if error_for?(attribute)
       tags <<
         field_type.new(
@@ -182,8 +199,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
   end
 
   def style_for_radio_block(attribute, options = {})
-    style = 'optional-section-wrapper'
-    style << ' mps-hide' unless object.public_send("#{attribute}_on?")
+    style = 'optional-section-wrapper mps-hide'
     style << error_style_for_attr(options[:details_attr])
   end
 
