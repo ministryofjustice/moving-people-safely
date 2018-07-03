@@ -2,6 +2,10 @@ class MovesController < ApplicationController
   before_action :redirect_unless_document_editable
   helper_method :escort, :form
 
+  def edit
+    form.prepopulate!
+  end
+
   def update
     if form.validate(params[:move])
       form.save
