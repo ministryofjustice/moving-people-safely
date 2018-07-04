@@ -55,11 +55,15 @@ For local integration with SSO refer to [SSO Integration](docs/sso_integration.m
   ```bash
   bundle exec rails s
   ```
-  If you don't have a local MoJ SSO running & instead wish to mock SSO you can do so with the following:
+  If you don't have a local MoJ SSO running & instead wish to mock SSO you can do so with any of the following:
 
   ```bash
   MOCK_SSO=true bundle exec rails s
+  MOCK_SSO=true MOCK_SSO_ORGANISATION=my.example.org.moj bundle exec rails s
+  MOCK_SSO=true MOCK_SSO_ORGANISATION=my.example.org.moj MOCK_SSO_ROLES=healthcare,for,example bundle exec rails s
   ```
+
+  Multiple values may be specified for `MOCK_SSO_ROLES`, comma separated.
 
   It is also possible to use the filesystem storage (instead of the default AWS S3) for the PER documents by running the server like the following:
 

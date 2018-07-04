@@ -8,6 +8,12 @@ if ENV['MOCK_SSO'] == 'true'
     base_url = 'localhost:3000'
   end
 
+  permission = {
+    'organisation' => ENV.fetch('MOCK_SSO_ORGANISATION', 'digital.noms.moj')
+  }
+
+  permission['roles'] = ENV['MOCK_SSO_ROLES'].split(',') if ENV['MOCK_SSO_ROLES']
+
   OmniAuth.config.add_mock(
     :mojsso,
     {
@@ -18,7 +24,7 @@ if ENV['MOCK_SSO'] == 'true'
         "email": "example@some.prison.com",
         "first_name": "Joe",
         "last_name": "Bloggs",
-        "permissions": [{"organisation"=>(ENV['MOCK_SSO_ORGANISATION'] || "digital.noms.moj")}],
+        "permissions": [permission],
         "links": {
           "profile": "http://#{base_url}/profile",
           "logout": "http://#{base_url}/session/new"

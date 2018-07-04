@@ -12,7 +12,8 @@ module Seeds
       end
 
       def to_h
-        { name: name, end_date: end_date, nomis_id: nomis_id }
+        { name: name, end_date: end_date, nomis_id: nomis_id,
+          healthcare_contact_number: healthcare_contact_number }
       end
 
       private
@@ -29,6 +30,10 @@ module Seeds
 
       def end_date
         item['end-date']
+      end
+
+      def healthcare_contact_number
+        item['healthcare_contact_number']
       end
     end
   end
