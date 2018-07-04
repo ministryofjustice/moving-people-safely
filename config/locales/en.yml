@@ -727,6 +727,14 @@ en:
             <<: *blank_destination_error
           to_other:
             <<: *blank_destination_error
+      harassment_and_gangs:
+        attributes:
+          intimidation_public_details:
+            blank: "^Please fill in public harassment details"
+          intimidation_prisoners_details:
+            blank: "^Please fill in prisoner intimidation details"
+          gang_member_details:
+            blank: "^Please fill in gang member details"
   activerecord:
     errors:
       <<: *errors
