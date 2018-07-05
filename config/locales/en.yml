@@ -277,7 +277,7 @@ en:
         allergies_details: 'Please give details:'
       arson:
         arson:
-          prison: In NOMIS, check the header section of the prisoner’s record for the Arsonist alert.
+          prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Arsonist</i> alert.
           police: ''
       contact:
         contact_number:
@@ -321,11 +321,11 @@ en:
         prison_number: For example A1234AB
       discrimination:
         discrimination_to_other_religions:
-          prison: In NOMIS, check the header section of the prisoner’s record for the Risk to people with religious views alert. Check alert comments and case notes for details.
+          prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Risk to people with religious views</i> alert. Check alert comments and case notes for details.
           police: ''
         discrimination_to_other_religions_details: Give details
         homophobic:
-          prison: In NOMIS, check the header section of the prisoner’s record for the Risk to lesbian/gay/bisexual people or Risk to transgender people alert. Check alert comments and case notes for details.
+          prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Risk to lesbian/gay/bisexual people</i> or <i>Risk to transgender people</i> alert. Check alert comments and case notes for details.
           police: ''
         homophobic_details: Give details
         other_violence_due_to_discrimination:
@@ -333,11 +333,11 @@ en:
           police: ''
         other_violence_due_to_discrimination_details: Give details
         racist:
-          prison: In NOMIS, check the header section of the prisoner’s record for the Racist or Risk to certain ethnic groups alerts. Check alert comments and case notes for details.
-          police: In the arrest record, check for the Racial motivation warning marker.
+          prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Racist</i> or <i>Risk to certain ethnic groups</i> alerts. Check alert comments and case notes for details.
+          police_html: In the arrest record, check for the <i>Racial motivation warning</i> marker.
         racist_details: Give details
         risk_to_females:
-          prison: In NOMIS, check the header section of the prisoner’s record for the Risk to Females alert. Check alert comments and case notes for details.
+          prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Risk to Females</i> alert. Check alert comments and case notes for details.
           police: ''
         risk_to_females_details: Give details
         violence_to_staff:
@@ -345,7 +345,7 @@ en:
           police_html: 'This includes police, escort, court or medical staff. In the arrest record, check for the Potentially dangerous offender warning marker.'
         violence_to_staff_details: Give details
       escape:
-        current_e_risk: Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the E-List alert. Check alert comments and case notes for details.
+        current_e_risk_html: Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the <i>E-List</i> alert. Check alert comments and case notes for details.
         current_e_risk_details: Give details of the E-List category (standard, heightened or escort) if known
         escort_risk_assessment:
           prison: ''
@@ -354,7 +354,7 @@ en:
           prison: ''
           police: ''
         previous_escape_attempts:
-          prison_html: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the Escape Risk alert. Check alert comments and case notes for details.'
+          prison_html: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the <i>Escape Risk</i> alert. Check alert comments and case notes for details.'
           police_html: 'Check PNC warnings for the <i>Escaper</i> marker and any other relevant escape risk information.'
         previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
       forms_search:
@@ -367,7 +367,7 @@ en:
         cancelling_reason: Give details of why this PER is being cancelled
       harassment_and_gangs:
         gang_member:
-          prison: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and <i>Security > Non-association</i> for known risks to named prisoners.'
+          prison_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and <i>Security > Non-association</i> for known risks to named prisoners.'
           police: In the arrest record, check for the Organised crime group warning marker. Include details of anyone they should not come into contact with (for example, at court or prison).
         gang_member_details: Give details
         intimidation_public:
@@ -385,7 +385,7 @@ en:
           police: 'Give details:'
       move:
         date: DD/MM/YYYY
-        not_for_release: In NOMIS, check the header section of the prisoner’s record for the Not For Release alert.
+        not_for_release_html: In NOMIS, check the header section of the prisoner’s record for the <i>Not For Release</i> alert.
         not_for_release_reason_details: Give details of why the detainee is not for release
       mental:
         mental_illness:
@@ -424,14 +424,14 @@ en:
           police: ''
         must_return_to_details: 'Give details of why they must return here:'
       risk_to_self:
-        acct_status: In NOMIS, check the header section of the prisoner’s record for the ACCT status alert.
+        acct_status_html: In NOMIS, check the header section of the prisoner’s record for the <i>ACCT status</i> alert.
         acct_status_details: Give details of methods and triggers recorded on NOMIS if entered
         date_of_most_recently_closed_acct: DD/MM/YYYY
         open_acct: |
           If an ACCT is open, the ACCT plan should be present and there
           should be a relevant alert on NOMIS
         self_harm:
-          prison: In NOMIS, check the header section of the prisoner’s record for the Self Harm and Vulnerability alerts.
+          prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Self Harm</i> and <i>Vulnerability</i> alerts.
           police: In the arrest record, check the pre-release assessment for relevant comments.
         self_harm_details: Give details
         suicide: |
@@ -441,13 +441,13 @@ en:
       security:
         category_a: In NOMIS, check the header section of the prisoner’s record for category information.
         controlled_unlock:
-          prison: In NOMIS, check the header section of the prisoner’s record for the Controlled Unlock alert.
+          prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Controlled Unlock</i> alert.
           police: ''
         controlled_unlock_details:
           prison: 'Give details of number of officers required and any personal protection equipment (PPE) required:'
           police: 'Give details of number of people and any equipment required:'
         high_profile:
-          prison: In NOMIS, check the header section of the prisoner’s record for the High public interest alert and case notes for details.
+          prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>High public interest</i> alert and case notes for details.
           police: For example, if they are a public figure or involved in a high profile case.
         high_profile_details: Give details
         pnc_warnings:
@@ -456,12 +456,12 @@ en:
         pnc_warnings_details: Give details
       segregation:
         csra:
-          prison: In NOMIS, check the header section of the prisoner’s record for the CSRA risk level.
+          prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>CSRA risk</i> level.
           police: For example, if they need to share a cell at court or prison.
         csra_details: Give details
-        rule_45: In NOMIS, check the header section of the prisoner’s record for the Rule 45 alert.
+        rule_45_html: In NOMIS, check the header section of the prisoner’s record for the <i>Rule 45</i> alert.
         vulnerable_prisoner:
-          prison: In NOMIS, check the header section of the prisoner’s record for the Rule 46, Rule 49, Victim, Isolated prisoner or Poor Coper alerts. Include any other reasons you think they may be vulnerable (for example, transgender prisoners or young adults in an adult establishment).
+          prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Rule 46</i>, <i>Rule 49</i>, <i>Victim,</i> <i>Isolated prisoner</i> or <i>Poor Coper</i> alerts. Include any other reasons you think they may be vulnerable (for example, transgender prisoners or young adults in an adult establishment).
           police: Check the Vulnerable/At risk detainee alert. In the arrest record, check for the Vulnerable person flag or any information under Risk of attack by others.
         vulnerable_prisoner_details: Give details
       sex_offences:
@@ -480,7 +480,7 @@ en:
         mpv_details: 'Please explain why you feel they need a special vehicle:'
       violent_or_dangerous:
         violent_or_dangerous:
-          prison: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for MAPPA, ViSOR, OASys alerts, or other alerts related to violence or dangerous behaviour. Check alert comments and case notes for details.'
+          prison_html: Check Mercury for intelligence or in NOMIS, check the prisoner’s record for <i>MAPPA</i>, <i>ViSOR</i>, <i>OASys</i> alerts, or other alerts related to violence or dangerous behaviour. Check alert comments and case notes for details.'
           police: In the arrest record, check for the Violent or Potentially dangerous offender warning markers.
         violent_or_dangerous_details: Give details
   move:
