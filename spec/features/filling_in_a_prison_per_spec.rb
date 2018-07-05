@@ -18,10 +18,11 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
 
     login(nil, login_options)
 
-    healthcare_data = build(:healthcare, :with_medications)
-    risk_data = build(:risk, :with_high_csra)
-    detainee = build(:detainee)
     move_data = build(:move, from_establishment: prison)
+    escort = build(:escort, move: move_data)
+    healthcare_data = build(:healthcare, :with_medications, escort: escort)
+    risk_data = build(:risk, :with_high_csra, escort: escort)
+    detainee = build(:detainee)
     create(:magistrates_court, name: move_data.to)
 
     stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}", status: 404)
@@ -66,6 +67,7 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
     escort_page.click_edit_healthcare
 
     healthcare.complete_forms(healthcare_data)
+    healthcare_summary.confirm_healthcare_details(healthcare_data)
     healthcare_summary.confirm_and_save
 
     escort_page.confirm_offences_action_link('View')

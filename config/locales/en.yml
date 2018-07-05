@@ -2,9 +2,6 @@ en:
   html_title: Person Escort Record
   global_header_text: Create or view a PER
   helpers:
-    complex_attributes:
-      needs: Medication
-      return_instructions: Establishment
     fieldset:
       default_title: 'Select all that apply:'
       allergies:
@@ -17,14 +14,21 @@ en:
         conceals_weapons: Have they concealed weapons in custody?
         substance_supply: Is there a risk that they might traffic drugs on this journey?
         uses_weapons: Have they created or used weapons in custody?
+      contact:
+        contact_number:
+          prison: Medical contact
+          police: Custody suite contact details
       dependencies:
-        dependencies: Do they have any addictions or dependencies that might affect them while they are out of prison?
+        alcohol_withdrawal: Are they experiencing or at risk of alcohol withdrawal?
+        dependencies:
+          prison: Do they have any addictions or dependencies that might affect them while they are out of prison?
+          police: Do they have any addictions or dependencies that might affect them when they leave police custody?
       detainee:
         peep: Do they have a Personal Emergency Evacuation Plan?
         interpreter_required: Do they require an interpreter?
       discrimination:
         discrimination_to_other_religions: 'Are they a risk to other religions?'
-        homophobic: 'Are they a risk to lesbian, gay, bisexual, transgender or transexual (LGBT) people?'
+        homophobic: Are they a risk to lesbian, gay, bisexual, transgender, transexual or queer (LGBTQ) people?
         other_violence_due_to_discrimination: 'Are they a risk to any other groups?'
         racist: 'Are they a risk to other races?'
         risk_to_females: 'Are they a risk to females?'
@@ -38,17 +42,22 @@ en:
         previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
       harassment_and_gangs:
         gang_member: Are they a gang member or involved in organised crime?
-        intimidation_public: Are they a known public harasser or witness intimidator?
+        intimidation_public:
+          prison: Are they a known public harasser or witness intimidator?
+          police: Are they a known harasser or intimidator?
         intimidation_prisoners: Do they bully or intimidate other prisoners?
       hostage_taker:
-        hostage_taker: Do they have a history of taking hostages?
-        hostage_taker_type: 'Group involved (select all that apply):'
+        hostage_taker: Are they a hostage taker?
       move:
         not_for_release: Is there a reason they should not be released?
       mental:
-        mental_illness: Do they have mental health needs that might affect them while they are out of prison?
+        mental_illness:
+          prison: Do they have mental health needs that might affect them while they are out of prison?
+          police: Do they have mental health needs that might affect them on this journey?
       needs:
-        has_medications: Will they need to be given medication while they are out of prison?
+        has_medications:
+          prison: Will they need to be given medication while they are out of prison?
+          police: Will they need to be given medication when they leave police custody?
         medications:
           description: Medicine name
           administration: How is it given?
@@ -58,20 +67,31 @@ en:
       other_risk:
         other_risk: Is there any other information related to risk on this journey you would like to include?
       physical:
-        physical_issues: Do they have physical health needs that might affect them while they are out of prison?
+        physical_issues:
+          prison: Do they have physical health needs that might affect them while they are out of prison?
+          police: Do they have any physical health needs that might affect them on this journey?
+        pregnant: Are they pregnant?
       return_instructions:
         has_must_not_return_details: Is there any establishment they must not be sent to at the end of this journey?
         must_return: Must they return to a specific prison at the end of this journey?
       security:
         category_a: Are they Category A, potential Category A or Restricted Status?
         controlled_unlock: Number of officers required
-        controlled_unlock: Are they on a controlled unlock?
+        controlled_unlock:
+          prison: Are they on a controlled unlock?
+          police: Do they need to be escorted by more than one person?
         high_profile: Are they of high public interest?
-        pnc_warnings: PNC warnings
+        pnc_warnings:
+          prison: PNC warnings
+          police: Do they have PNC warnings?
       segregation:
-        csra: 'What is their Cell Sharing Risk Assessment (CSRA) risk level?'
+        csra:
+          prison: What is their Cell Sharing Risk Assessment (CSRA) risk level?
+          police: Is there any reason they should not share a cell with another person?
         rule_45: Are they held under Rule 45?
-        vulnerable_prisoner: Are they a vulnerable prisoner?
+        vulnerable_prisoner:
+          prison: Are they a vulnerable prisoner?
+          police: Are they at risk from other people?
       risk_to_self:
         acct_status: What is the prisoner's ACCT status?
         self_harm: Is there a risk that they might self harm or attempt suicide?
@@ -80,7 +100,10 @@ en:
         sex_offence_type: 'Victim (select all that apply):'
         date_most_recent_sexual_offence: Date of most recent sexual offence
       social:
-        personal_care: Will they need help with personal tasks while they are out of prison?
+        female_hygiene_kit: Do they need a female hygiene kit?
+        personal_care:
+          prison: Will they need help with personal tasks while they are out of prison?
+          police: Will they need help with personal tasks when they leave police custody?
       transport:
         mpv: Do they need to travel in a special vehicle?
       violent_or_dangerous:
@@ -193,6 +216,9 @@ en:
       offences:
         offences:
           offence: Offence name
+          case_reference:
+            prison: Case reference
+            police: Unique reference number
       other_risk:
         other_risk: "Is there any other information related to risk on this journey you would like to include?"
         other_risk_details: "Other information related to risk on this journey"
@@ -250,21 +276,42 @@ en:
         allergies: "For example, dietary, medical or environmental allergies"
         allergies_details: 'Please give details:'
       arson:
-        arson: In NOMIS, check the header section of the prisoner’s record for the Arsonist alert.
+        arson:
+          prison: In NOMIS, check the header section of the prisoner’s record for the Arsonist alert.
+          police: ''
       contact:
-        contact_number: "This is the default contact number for Healthcare at this prison. To use a different number, enter it below:"
+        contact_number:
+          prison: 'This is the default contact number for Healthcare at this prison. To use a different number, enter it below:'
+          police: 'Enter the contact number for this custody suite:'
       concealed_weapons:
-        uses_weapons_details: 'Give details of previous incidents:'
-        conceals_weapons: Check Mercury for intelligence or NOMIS adjudications for details.
+        conceals_weapons:
+          prison: Check Mercury for intelligence or NOMIS adjudications for details.
+          police_html: 'In the arrest record, check for the <i>Conceals items</i> warning marker.'
         conceals_weapons_details: 'Give details of previous incidents:'
-        conceals_drugs: 'Check Mercury for intelligence or NOMIS adjudications for details.'
+        conceals_drugs:
+          prison: 'Check Mercury for intelligence or NOMIS adjudications for details.'
+          police_html: 'In the arrest record, check for the <i>Conceals items</i>, <i>Drugs</i> and <i>May try and bring drugs</i> into custody warning markers.'
         conceals_drugs_details: 'Give details of previous incidents:'
-        conceals_mobile_phone_or_other_items: Check Mercury for intelligence or NOMIS adjudications for details.
+        conceals_mobile_phone_or_other_items:
+          prison: Check Mercury for intelligence or NOMIS adjudications for details.
+          police_html: 'In the arrest record, check for the <i>Conceals items</i> warning marker.'
         conceals_mobile_phone_or_other_items_details: 'Give details of previous incidents:'
-        substance_supply: Check Mercury for intelligence or NOMIS adjudications for past history of trafficking drugs.
-        uses_weapons: Check Mercury for intelligence or NOMIS adjudications for details.
+        substance_supply:
+          prison: Check Mercury for intelligence or NOMIS adjudications for past history of trafficking drugs.
+          police_html: 'In the arrest record, check for the <i>Conceals items</i>, <i>Drugs</i> and <i>May try and bring drugs</i> into custody warning markers.'
+        uses_weapons:
+          prison: Check Mercury for intelligence or NOMIS adjudications for details.
+          police: ''
+        uses_weapons_details: 'Give details of previous incidents:'
       dependencies:
-        dependencies_details: 'Please explain how these issues might affect the journey and how they should be managed:'
+        alcohol_withdrawal: 'In the arrest record, check the pre-release assessment and detainee section for relevant comments.'
+        alcohol_withdrawal_details: 'Give details of any symptoms and treatment given:'
+        dependencies:
+          prison: ''
+          police: In the arrest record, check the pre-release assessment and detainee section for relevant comments.
+        dependencies_details:
+          prison: 'Please explain how these issues might affect the journey and how they should be managed:'
+          police: 'Give details:'
       detainee:
         date_of_birth: DD/MM/YYYY
         interpreter_required_details: Enter contact details of booked interpreter
@@ -272,22 +319,42 @@ en:
       detainee_search:
         prison_number: For example A1234AB
       discrimination:
-        discrimination_to_other_religions: In NOMIS, check the header section of the prisoner’s record for the Risk to people with religious views alert. Check alert comments and case notes for details.
+        discrimination_to_other_religions:
+          prison: In NOMIS, check the header section of the prisoner’s record for the Risk to people with religious views alert. Check alert comments and case notes for details.
+          police: ''
         discrimination_to_other_religions_details: Give details
-        homophobic: In NOMIS, check the header section of the prisoner’s record for the Risk to lesbian/gay/bisexual people or Risk to transgender people alert. Check alert comments and case notes for details.
+        homophobic:
+          prison: In NOMIS, check the header section of the prisoner’s record for the Risk to lesbian/gay/bisexual people or Risk to transgender people alert. Check alert comments and case notes for details.
+          police: ''
         homophobic_details: Give details
-        other_violence_due_to_discrimination: In NOMIS, check the header section of the prisoner’s record for any other relevant alerts. Check alert comments and case notes for details.
+        other_violence_due_to_discrimination:
+          prison: In NOMIS, check the header section of the prisoner’s record for any other relevant alerts. Check alert comments and case notes for details.
+          police: ''
         other_violence_due_to_discrimination_details: Give details
-        racist: In NOMIS, check the header section of the prisoner’s record for the Racist or Risk to certain ethnic groups alerts. Check alert comments and case notes for details.
+        racist:
+          prison: In NOMIS, check the header section of the prisoner’s record for the Racist or Risk to certain ethnic groups alerts. Check alert comments and case notes for details.
+          police: In the arrest record, check for the Racial motivation warning marker.
         racist_details: Give details
-        risk_to_females: In NOMIS, check the header section of the prisoner’s record for the Risk to Females alert. Check alert comments and case notes for details.
+        risk_to_females:
+          prison: In NOMIS, check the header section of the prisoner’s record for the Risk to Females alert. Check alert comments and case notes for details.
+          police: ''
         risk_to_females_details: Give details
-        violence_to_staff_html: '<p>This includes prison, escort, court or hospital staff.</p><p>In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments, adjudications and case notes for details.</p>'
+        violence_to_staff:
+          prison_html: '<p>This includes prison, escort, court or hospital staff.</p><p>In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments, adjudications and case notes for details.</p>'
+          police_html: 'This includes police, escort, court or medical staff. In the arrest record, check for the Potentially dangerous offender warning marker.'
         violence_to_staff_details: Give details
       escape:
         current_e_risk: Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the E-List alert. Check alert comments and case notes for details.
         current_e_risk_details: Give details of the E-List category (standard, heightened or escort) if known
-        previous_escape_attempts_html: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the Escape Risk alert. Check alert comments and case notes for details.'
+        escort_risk_assessment:
+          prison: ''
+          police: ''
+        escape_pack:
+          prison: ''
+          police: ''
+        previous_escape_attempts:
+          prison_html: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the Escape Risk alert. Check alert comments and case notes for details.'
+          police_html: 'Check PNC warnings for the <i>Escaper</i> marker and any other relevant escape risk information.'
         previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
       forms_search:
         prison_number: For example A1234AB
@@ -298,33 +365,62 @@ en:
       escort:
         cancelling_reason: Give details of why this PER is being cancelled
       harassment_and_gangs:
-        gang_member_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and <i>Security > Non-association</i> for known risks to named prisoners.'
+        gang_member:
+          prison: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and <i>Security > Non-association</i> for known risks to named prisoners.'
+          police: In the arrest record, check for the Organised crime group warning marker. Include details of anyone they should not come into contact with (for example, at court or prison).
         gang_member_details: Give details
-        intimidation_public_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details.'
+        intimidation_public:
+          prison: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details.'
+          police: ''
         intimidation_prisoners_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and <i>Security > Non-association</i> for known risks to named prisoners.'
         intimidation_public_details: Give details of targets, including any relevant court orders
         intimidation_prisoners_details: Give details of targets, including any relevant court orders
       hostage_taker:
-        date_most_recent_staff_hostage_taker_incident: DD/MM/YYYY
-        date_most_recent_prisoners_hostage_taker_incident: DD/MM/YYYY
-        date_most_recent_public_hostage_taker_incident: DD/MM/YYYY
-        hostage_taker_details: Give details of people involved (for example, public, staff or prisoners) and the date of the most recent incident if known
+        hostage_taker:
+          prison: ''
+          police_html: 'In the arrest record, check for the <i>Hostage taker</i> warning marker.'
+        hostage_taker_details:
+          prison: Give details of people involved (for example, public, staff or prisoners) and the date of the most recent incident if known
+          police: 'Give details:'
       move:
         date: DD/MM/YYYY
         not_for_release: In NOMIS, check the header section of the prisoner’s record for the Not For Release alert.
         not_for_release_reason_details: Give details of why the detainee is not for release
       mental:
-        mental_illness: For example, if they become anxious in certain situations.
+        mental_illness:
+          prison: For example, if they become anxious in certain situations.
+          police_html: '<p>In the arrest record, check the risk assessment, pre-release assessment and care plan for relevant comments.</p><p>For example, if they become anxious in certain situations.</p>'
         mental_illness_details: 'Please explain how these issues might affect the journey and how they should be managed. Do not give details of medical conditions:'
       needs:
-        has_medications: This is any regular medication that will need to be administered while they are out of prison. Full medication history can be given in a sealed envelope to be opened by a healthcare professional in case of an emergency.
+        has_medications:
+          prison: This is any regular medication that will need to be administered while they are out of prison. Full medication history can be given in a sealed envelope to be opened by a healthcare professional in case of an emergency.
+          police: This is any regular medication that will need to be administered when they leave police custody. Full medication history can be given in a sealed envelope to be opened by a healthcare professional in case of an emergency.
+      offences:
+        offences:
+          case_reference:
+            prison: ''
+            police: This is used to associate the detainee to their case.
       other_risk:
-        other_risk: Include relevant adjudications or case notes not already included
+        other_risk:
+          prison: Include relevant adjudications or case notes not already included
+          police: ''
         other_risk_details: Give details
       physical:
-        physical_issues_html: "<p>For example, issues that mean they can’t: <ul class='list list-bullet'><li>be handcuffed</li><li>travel in a standard van cell</li><li>sit for long periods of time</li></ul></p>"
-        physical_issues_details: 'Please explain how these issues might affect the journey and how they should be managed:'
+        physical_issues:
+          prison_html: "<p>For example, issues that mean they can’t: <ul class='list list-bullet'><li>be handcuffed</li><li>travel in a standard van cell</li><li>sit for long periods of time</li></ul></p>"
+          police_html: "<p>In the arrest record, check the risk assessment, pre-release assessment and care plan for relevant comments.</p><p>For example, issues that mean they can’t: <ul class='list list-bullet'><li>be handcuffed</li><li>travel in a standard van cell</li><li>sit for long periods of time</li></ul></p>"
+        physical_issues_details:
+          prison: 'Please explain how these issues might affect the journey and how they should be managed:'
+          police: 'Give details:'
+        pregnant: In the arrest record, check the risk assessment, pre-release assessment and care plan for relevant comments.
+        pregnant_details: 'Give details:'
       return_instructions:
+        must_return:
+          prison: ''
+          police: ''
+        has_must_not_return_details:
+          prison: ''
+          police: ''
         must_return_to_details: 'Give details of why they must return here:'
       risk_to_self:
         acct_status: In NOMIS, check the header section of the prisoner’s record for the ACCT status alert.
@@ -333,7 +429,9 @@ en:
         open_acct: |
           If an ACCT is open, the ACCT plan should be present and there
           should be a relevant alert on NOMIS
-        self_harm: In NOMIS, check the header section of the prisoner’s record for the Self Harm and Vulnerability alerts.
+        self_harm:
+          prison: In NOMIS, check the header section of the prisoner’s record for the Self Harm and Vulnerability alerts.
+          police: In the arrest record, check the pre-release assessment for relevant comments.
         self_harm_details: Give details
         suicide: |
           Give details of recent suicide or self-harm attempts and
@@ -341,29 +439,47 @@ en:
         suicide_details: Give details
       security:
         category_a: In NOMIS, check the header section of the prisoner’s record for category information.
-        controlled_unlock: In NOMIS, check the header section of the prisoner’s record for the Controlled Unlock alert.
-        controlled_unlock_details: 'Give details of number of officers required and any personal protection equipment (PPE) required:'
-        high_profile: In NOMIS, check the header section of the prisoner’s record for the High public interest alert and case notes for details.
+        controlled_unlock:
+          prison: In NOMIS, check the header section of the prisoner’s record for the Controlled Unlock alert.
+          police: ''
+        controlled_unlock_details:
+          prison: 'Give details of number of officers required and any personal protection equipment (PPE) required:'
+          police: 'Give details of number of people and any equipment required:'
+        high_profile:
+          prison: In NOMIS, check the header section of the prisoner’s record for the High public interest alert and case notes for details.
+          police: For example, if they are a public figure or involved in a high profile case.
         high_profile_details: Give details
-        pnc_warnings: Do they have PNC warnings that you think are relevant to risk on this journey?
+        pnc_warnings:
+          prison: Do they have PNC warnings that you think are relevant to risk on this journey?
+          police: ''
         pnc_warnings_details: Give details
       segregation:
-        csra: In NOMIS, check the header section of the prisoner’s record for the CSRA risk level.
+        csra:
+          prison: In NOMIS, check the header section of the prisoner’s record for the CSRA risk level.
+          police: For example, if they need to share a cell at court or prison.
         rule_45: In NOMIS, check the header section of the prisoner’s record for the Rule 45 alert.
-        vulnerable_prisoner: In NOMIS, check the header section of the prisoner’s record for the Rule 46, Rule 49, Victim, Isolated prisoner or Poor Coper alerts. Include any other reasons you think they may be vulnerable (for example, transgender prisoners or young adults in an adult establishment).
+        vulnerable_prisoner:
+          prison: In NOMIS, check the header section of the prisoner’s record for the Rule 46, Rule 49, Victim, Isolated prisoner or Poor Coper alerts. Include any other reasons you think they may be vulnerable (for example, transgender prisoners or young adults in an adult establishment).
+          police: Check the Vulnerable/At risk detainee alert. In the arrest record, check for the Vulnerable person flag or any information under Risk of attack by others.
         vulnerable_prisoner_details: Give details
       sex_offences:
         sex_offence_details: Give details of victim group (for example, adult male, adult female or under 18) and the date of the most recent incident if known
-        sex_offence_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and <i>Legal cases > Court cases > Offences</i> for details.'
+        sex_offence:
+          prison_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and <i>Legal cases > Court cases > Offences</i> for details.'
+          police_html: 'In the arrest record, check for the <i>Sex offender</i> warning marker.'
         date_most_recent_sexual_offence: DD/MM/YYYY
       social:
+        female_hygiene_kit: In the arrest record, check the pre-release assessment and detainee section for relevant comments.
+        female_hygiene_kit_details: 'Give details:'
         personal_care: For example, going to the toilet, eating or drinking
         personal_care_details: 'Please explain what they may need help with:'
       transport:
         mpv: This could be a specially-adapted prison van (for example, to accommodate wheelchairs) or a taxi.
         mpv_details: 'Please explain why you feel they need a special vehicle:'
       violent_or_dangerous:
-        violent_or_dangerous: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for MAPPA, ViSOR, OASys alerts, or other alerts related to violence or dangerous behaviour. Check alert comments and case notes for details.'
+        violent_or_dangerous:
+          prison: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for MAPPA, ViSOR, OASys alerts, or other alerts related to violence or dangerous behaviour. Check alert comments and case notes for details.'
+          police: In the arrest record, check for the Violent or Potentially dangerous offender warning markers.
         violent_or_dangerous_details: Give details
   move:
     destination_types:

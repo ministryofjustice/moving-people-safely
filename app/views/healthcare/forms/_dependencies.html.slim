@@ -1,2 +1,5 @@
+- if escort.from_police?
+  = f.radio_toggle_with_textarea :alcohol_withdrawal,
+    legend_options: { class: 'form-label-assessment' }
 = f.radio_toggle_with_textarea :dependencies,
   legend_options: { class: 'form-label-assessment' }

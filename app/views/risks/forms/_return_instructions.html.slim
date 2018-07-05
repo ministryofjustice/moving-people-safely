@@ -6,7 +6,8 @@
   = f.text_area :must_return_to_details
 
 .must_not_return_detail.multiple
-  = f.radio_toggle :has_must_not_return_details do
+  = f.radio_toggle :has_must_not_return_details,
+    legend_options: { class: 'form-label-assessment' } do
     #must_not_return_details
     #error_return_instructions_must_not_return_detail
     = f.fields_for :must_not_return_details do |mf|

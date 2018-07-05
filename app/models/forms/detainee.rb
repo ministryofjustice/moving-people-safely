@@ -14,11 +14,9 @@ module Forms
     property :cro_number,                   type: StrictString
     property :aliases,                      type: StrictString
     property :language,                     type: StrictString
-    optional_field :interpreter_required,   type: StrictString, allow_blank: true
-    property :interpreter_required_details, type: StrictString
     property :diet,                         type: StrictString
-    optional_field :peep,                   type: StrictString, allow_blank: true
-    property :peep_details,                 type: StrictString
+    options_field_with_details :interpreter_required, allow_blank: true
+    options_field_with_details :peep, allow_blank: true
     property :image_filename
     property :image
 

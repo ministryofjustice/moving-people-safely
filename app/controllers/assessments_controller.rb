@@ -1,4 +1,6 @@
 class AssessmentsController < ApplicationController
+  before_action :set_steps
+
   include Wicked::Wizard
   include Wizardable
 
@@ -51,6 +53,10 @@ class AssessmentsController < ApplicationController
 
   private
 
+  def set_steps
+    self.steps = model.sections(escort.location)
+  end
+
   def escort
     @escort ||= Escort.find(params[:escort_id])
   end
@@ -86,5 +92,13 @@ class AssessmentsController < ApplicationController
     else
       redirect_to next_wizard_path(action: :edit)
     end
+  end
+
+  def add_multiples
+    return unless params.key? "#{multiples[:section]}_add_#{multiples[:field]}"
+    form.deserialize form_params
+    form.public_send("add_#{multiples[:field]}")
+    view = params[:action] == 'create' ? :new : :edit
+    render view
   end
 end

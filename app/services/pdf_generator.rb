@@ -29,7 +29,7 @@ class PdfGenerator
   end
 
   def filename
-    "#{escort.detainee.prison_number}_#{Time.current.strftime('%Y%m%d%H%M')}"
+    "#{escort.number}_#{Time.current.strftime('%Y%m%d%H%M')}"
   end
 
   def header_content

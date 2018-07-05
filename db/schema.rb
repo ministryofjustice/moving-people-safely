@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_18_103457) do
+ActiveRecord::Schema.define(version: 2018_07_03_101446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,12 @@ ActiveRecord::Schema.define(version: 2018_06_18_103457) do
     t.integer "reviewer_id"
     t.datetime "reviewed_at"
     t.text "medications"
+    t.string "pregnant"
+    t.text "pregnant_details"
+    t.string "alcohol_withdrawal"
+    t.text "alcohol_withdrawal_details"
+    t.string "female_hygiene_kit"
+    t.text "female_hygiene_kit_details"
     t.index ["escort_id"], name: "index_healthcare_on_escort_id"
   end
 

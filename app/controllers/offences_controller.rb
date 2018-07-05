@@ -5,7 +5,7 @@ class OffencesController < ApplicationController
   helper_method :escort, :form, :offences, :offences_workflow
 
   def show
-    flash.now[:warning] = t('alerts.offences.not_found') unless escort.offences.any?
+    flash.now[:warning] = t('alerts.offences.not_found') if escort.from_prison? && escort.offences.none?
     form.prepopulate!
   end
 

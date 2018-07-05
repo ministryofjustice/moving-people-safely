@@ -4,6 +4,11 @@
   = render "shared/sections/#{views}/section",
     assessment: assessment, path: path, section: section, questions: questions
 
+- if assessment.escort.from_police?
+  = render "shared/sections/#{views}/question",
+    alternance: 'even', assessment: assessment, section: section, question: 'alcohol_withdrawal',
+    value: assessment.alcohol_withdrawal, details: assessment.alcohol_withdrawal_details
+
 = render "shared/sections/#{views}/question",
   alternance: 'even', assessment: assessment, section: section, question: 'dependencies',
   value: assessment.dependencies, details: assessment.dependencies_details

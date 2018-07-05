@@ -1,7 +1,7 @@
 module Forms
   module Healthcare
     class Transport < Forms::Base
-      optional_details_field :mpv
+      options_field_with_details :mpv
     end
   end
 end

@@ -1,12 +1,12 @@
 module Forms
   module Risk
     class Discrimination < Forms::Base
-      optional_details_field :violence_to_staff
-      optional_details_field :risk_to_females
-      optional_details_field :homophobic
-      optional_details_field :racist
-      optional_details_field :discrimination_to_other_religions
-      optional_details_field :other_violence_due_to_discrimination
+      options_field_with_details :violence_to_staff
+      options_field_with_details :risk_to_females
+      options_field_with_details :homophobic
+      options_field_with_details :racist
+      options_field_with_details :discrimination_to_other_religions
+      options_field_with_details :other_violence_due_to_discrimination
     end
   end
 end

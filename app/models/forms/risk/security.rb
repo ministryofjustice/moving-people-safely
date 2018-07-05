@@ -1,10 +1,10 @@
 module Forms
   module Risk
     class Security < Forms::Base
-      optional_details_field :controlled_unlock
-      optional_field :category_a
-      optional_details_field :high_profile
-      optional_details_field :pnc_warnings
+      options_field_with_details :controlled_unlock
+      options_field :category_a, if: :from_prison?
+      options_field_with_details :high_profile
+      options_field_with_details :pnc_warnings
     end
   end
 end

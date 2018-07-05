@@ -77,7 +77,7 @@ RSpec.describe MpsFormBuilder do
               </fieldset>
             </div>
           </div>
-          <div class="optional-section-wrapper panel panel-border-narrow">
+          <div class="optional-section-wrapper mps-hide panel panel-border-narrow">
             #{block_content}
           </div>
         </div>
@@ -167,7 +167,7 @@ RSpec.describe MpsFormBuilder do
   describe '#radio_toggle_with_textarea' do
     let(:object) do
       double('My Object', my_attribute: attribute_value,
-        my_attribute_on?: true, toggle_field: 'my_toggle_field',
+        toggle_field: 'my_toggle_field',
         toggle_choices: [:bish, :bosh], name: 'my_name',
         my_attribute_details: 'My details')
     end
@@ -194,7 +194,7 @@ RSpec.describe MpsFormBuilder do
               </fieldset>
             </div>
           </div>
-          <div class="optional-section-wrapper panel panel-border-narrow">
+          <div class="optional-section-wrapper mps-hide panel panel-border-narrow">
             <div class="form-group">
               <span class="form-hint"></span>
               <textarea class="form-control" name="my_name[my_attribute_details]" id="my_name_my_attribute_details">
@@ -222,19 +222,6 @@ RSpec.describe MpsFormBuilder do
             <span class="no-script calendar-icon input-group-addon"></span>
           </span>
         </div>
-      HTML
-    end
-
-    it_behaves_like :correctly_renders
-  end
-
-  describe '#search_text_field' do
-    let(:object) { double('My Object', my_attribute: attribute_value, class: object_class) }
-    let(:rendering) { subject.search_text_field(:my_attribute) }
-
-    let(:html) do
-      <<-HTML
-        <input value="#{attribute_value}" class="form-control" type="text" name="#{object_name}[my_attribute]" id="#{object_name}_my_attribute" />
       HTML
     end
 
