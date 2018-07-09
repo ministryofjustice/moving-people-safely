@@ -15,7 +15,8 @@ module Forms
     property :aliases,                      type: StrictString
     property :language,                     type: StrictString
     property :diet,                         type: StrictString
-    options_field_with_details :interpreter_required, allow_blank: true
+    options_field :interpreter_required, allow_blank: true
+    property :interpreter_required_details, type: StrictString
     options_field_with_details :peep, allow_blank: true
     property :image_filename
     property :image
@@ -26,6 +27,11 @@ module Forms
       inclusion: { in: GENDERS }
 
     validates :date_of_birth, date: { not_in_the_future: true }
+
+    validates :interpreter_required_details, presence: true, if: -> { interpreter_required == 'yes' && from_police? }
+
+    reset attributes: %i[interpreter_required_details],
+          if_falsey: :interpreter_required
 
     def prison_number=(value)
       value && super(value.upcase)
