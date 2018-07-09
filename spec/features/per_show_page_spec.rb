@@ -183,9 +183,7 @@ RSpec.feature 'PER show page', type: :feature do
           let(:risk) { Risk.new(csra: 'standard') }
 
           scenario 'associated alert is displayed as inactive' do
-            within(".flag-inactive#csra-inactive") do
-              expect(page).to have_content I18n.t("escort.inactive_alerts.csra")
-            end
+            escort_page.confirm_alert_as_inactive(:csra)
           end
         end
       end

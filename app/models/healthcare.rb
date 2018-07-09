@@ -15,6 +15,13 @@ class Healthcare < ApplicationRecord
     write_attribute(:contact_number, escort.move_from_establishment.healthcare_contact_number)
   end
 
+  def alerts
+    {
+      pregnant: (pregnant == 'yes'),
+      alcohol_withdrawal: (alcohol_withdrawal == 'yes')
+    }
+  end
+
   def relevant_questions
     Healthcare.mandatory_questions(location).select do |question|
       answer = public_send(question)

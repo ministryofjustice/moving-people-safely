@@ -29,6 +29,7 @@ Metrics/AbcSize:
   Max: 20
   Exclude:
     - 'spec/**/*'
+    - 'app/models/risk.rb'
 
 Metrics/ClassLength:
   Exclude:
