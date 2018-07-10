@@ -148,6 +148,7 @@ RSpec.feature 'printing a PER', type: :feature do
           escort_risk_assessment: 'yes',
           escape_pack: 'yes',
           substance_supply: 'yes',
+          substance_supply_details: 'substance supply details',
           conceals_weapons: 'yes',
           conceals_weapons_details: 'conceals weapons details',
           conceals_drugs: 'yes',

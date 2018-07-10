@@ -96,7 +96,7 @@ Weapons, drugs or other items       Yes
  Conceals drugs                     Yes                  Conceals drugs details
  Conceals Mobile Phone Or           Yes                  Conceals other items details
  Other Items
- Drug trafficking risk              Yes
+ Drug trafficking risk              Yes                  Substance supply details
 Arson                               Yes
  Arsonist                           Yes
 Return Instructions                 Yes
