@@ -39,6 +39,10 @@
   &:hover {
     cursor: pointer;
   }
+
+  .header-wrapper & {
+    color: $white;
+  }
 }
 
 // Javascript helper - makes it slightly easier to include non-JS specific styles
