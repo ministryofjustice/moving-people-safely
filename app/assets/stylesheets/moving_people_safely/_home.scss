@@ -146,13 +146,12 @@
         position: relative;
         float: left;
         display: table-cell;
-        font-family: "Helvetica Neue";
         height: 45px;
         width: 100%;
         z-index: 2;
         font-size: 30px;
         font-weight: bold;
-        padding-top: 0px;
+        padding-top: 7px;
         vertical-align: middle;
         display: inline-block;
         margin-bottom: 0;
@@ -204,8 +203,7 @@
       cursor: pointer;
     }
   }
-  label {
-    font-family: "Helvetica Neue";
+  label.date-picker-label {
     font-size: 24px;
     font-weight: bold;
     margin-right: 10px;
