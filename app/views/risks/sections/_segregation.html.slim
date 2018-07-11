@@ -6,7 +6,7 @@
 
 = render "shared/sections/#{views}/question",
   alternance: 'even', assessment: assessment, section: section, question: 'csra',
-  value: assessment.csra, details: nil
+  value: assessment.csra, details: assessment.csra_details
 
 - if assessment.escort.from_prison?
   = render "shared/sections/#{views}/question",
