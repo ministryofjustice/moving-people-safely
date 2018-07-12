@@ -457,6 +457,7 @@ en:
         csra:
           prison: In NOMIS, check the header section of the prisoner’s record for the CSRA risk level.
           police: For example, if they need to share a cell at court or prison.
+        csra_details: Give details
         rule_45: In NOMIS, check the header section of the prisoner’s record for the Rule 45 alert.
         vulnerable_prisoner:
           prison: In NOMIS, check the header section of the prisoner’s record for the Rule 46, Rule 49, Victim, Isolated prisoner or Poor Coper alerts. Include any other reasons you think they may be vulnerable (for example, transgender prisoners or young adults in an adult establishment).
