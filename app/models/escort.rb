@@ -113,7 +113,7 @@ class Escort < ApplicationRecord
   end
 
   def alerts
-    move.alerts.merge(risk&.alerts || {})
+    move.alerts.merge(risk&.alerts || {}).merge(healthcare&.alerts || {})
   end
 
   def active_alerts

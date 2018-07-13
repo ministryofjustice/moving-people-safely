@@ -19,19 +19,18 @@ module Page
 
     def confirm_alert_as_inactive(attr)
       within(".flag-inactive##{attr}") do
-        expect(page).to have_content I18n.t("escort.inactive_alerts.#{attr}")
+        expect(page).to have_content I18n.t("escort.alerts.#{attr}")
       end
     end
 
     def confirm_alert_as_active(attr)
       within(".flag-active##{attr}") do
-        expect(page).to have_content I18n.t("escort.active_alerts.#{attr}")
+        expect(page).to have_content I18n.t("escort.alerts.#{attr}")
       end
     end
 
     def confirm_alert_not_present(attr)
-      expect(page).to_not have_content I18n.t("escort.inactive_alerts.#{attr}")
-      expect(page).to_not have_content I18n.t("escort.active_alerts.#{attr}")
+      expect(page).to_not have_content I18n.t("escort.alerts.#{attr}")
     end
 
     def confirm_move_info(move, options = {})

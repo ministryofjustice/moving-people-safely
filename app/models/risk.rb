@@ -13,10 +13,12 @@ class Risk < ApplicationRecord
     {
       acct_status: acct_status_alert_on?,
       self_harm: (self_harm == 'yes' || acct_status_alert_on?),
+      csra: (csra == 'high' || csra == 'yes'),
       rule_45: (rule_45 == 'yes'),
+      category_a: (category_a == 'yes'),
+      violent: (violent_or_dangerous == 'yes'),
       current_e_risk: (current_e_risk == 'yes' || previous_escape_attempts == 'yes'),
-      csra: (csra == 'high'),
-      category_a: (category_a == 'yes')
+      sex_offender: (sex_offence == 'yes')
     }
   end
 

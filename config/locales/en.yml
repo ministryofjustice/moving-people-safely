@@ -53,7 +53,7 @@ en:
       mental:
         mental_illness:
           prison: Do they have mental health needs that might affect them while they are out of prison?
-          police: Do they have mental health needs that might affect them on this journey?
+          police: Do they have mental health needs that might affect them when they leave police custody?
       needs:
         has_medications:
           prison: Will they need to be given medication while they are out of prison?
@@ -69,7 +69,7 @@ en:
       physical:
         physical_issues:
           prison: Do they have physical health needs that might affect them while they are out of prison?
-          police: Do they have any physical health needs that might affect them on this journey?
+          police: Do they have any physical health needs that might affect them when they leave police custody?
         pregnant: Are they pregnant?
       return_instructions:
         has_must_not_return_details: Is there any establishment they must not be sent to at the end of this journey?
@@ -570,18 +570,6 @@ en:
     risk:
       title: Risk
     section:
-      answers:
-        escape:
-          e_list_escort: E-List-Escort
-          e_list_heightened: E-List-Heightened
-          e_list_standard: E-List-Standard
-        risk_to_self:
-          closed: Closed
-        security:
-          two_officer_unlock: '2 officer unlock'
-          three_officer_unlock: '3 officer unlock'
-          four_officer_unlock: '4 officer unlock'
-          more_than_four: 'More than 4 officers'
       questions:
         allergies:
           allergies: Allergies and intolerances
@@ -597,6 +585,9 @@ en:
           uses_weapons: Creates or uses weapons
         contact:
           contact_number: Medical contact
+        dependencies:
+          dependencies: Dependencies
+          alcohol_withdrawal: Alcohol withdrawal
         discrimination:
           discrimination_to_other_religions: Risk to other religions
           homophobic: Risk to LGBT people
@@ -611,50 +602,40 @@ en:
           previous_escape_attempts: 'Escape risk'
         harassment_and_gangs:
           gang_member: Gang member
-          intimidation_to_public: Public harasser
-          intimidation_to_other_detainees: Prisoners harasser
-          intimidation_to_witnesses: Witnesses harasser
+          intimidation_public: Public harasser
+          intimidation_prisoners: Prisoners harasser
         hostage_taker:
           staff_hostage_taker: Staff hostage taker
           prisoners_hostage_taker: Prisoner hostage taker
           public_hostage_taker: Public hostage taker
-          date_most_recent_staff_hostage_taker_incident: 'Last incident: '
-          date_most_recent_prisoners_hostage_taker_incident: 'Last incident: '
-          date_most_recent_public_hostage_taker_incident: 'Last incident: '
         mental:
           mental_illness: Mental health issues
         needs:
           has_medications: Essential medication
-          medications_collection:
-            carrier: 'Carried by: '
         other_risk:
           other_risk: Other risk information
         physical:
           physical_issues: Physical health needs
+          pregnant: Pregnant
         return_instructions:
           must_return: Must return to
           has_must_not_return_details: Must not be sent to
         risk_to_self:
           acct_status: ACCT status
-          date_of_most_recently_closed_acct: 'Closed on '
-          self_harm: Suicide/Self harm risk
-          suicide: Risk of suicide or self-harm
+          self_harm: Suicide or self harm risk
         security:
           category_a: Cat A or potential Cat A
-          controlled_unlock: Controlled unlock
+          controlled_unlock: Multiple officer unlock/escort
           high_profile: High public interest
           pnc_warnings: PNC warnings
         segregation:
-          csra: CSRA level
+          csra: Cell share risk
           rule_45: Rule 45
           vulnerable_prisoner: Vulnerable prisoner
         sex_offences:
           sex_offence: Sex offender
-          sex_offence_adult_male_victim: Sex offender victim adult male
-          sex_offence_adult_female_victim: Sex offender victim adult female
-          sex_offence_under18_victim: Sex offender victim under 18
-          date_most_recent_sexual_offence: Most recent sex offence
         social:
+          female_hygiene_kit: Female hygiene kit
           personal_care: Personal care issues
         transport:
           mpv: Special vehicle required
@@ -698,18 +679,16 @@ en:
   escort: &escort
     alerts: &alerts
       acct_status: ACCT
+      alcohol_withdrawal: Alcohol withdrawal
       category_a: Cat A
+      csra: Cell share risk
       current_e_risk: Escape risk
-      current_e_risk_html: Escape&nbsp;risk
       not_for_release: Not for release
+      pregnant: Pregnant
       rule_45: Rule 45
-      self_harm: Self harm
-    active_alerts:
-      <<: *alerts
-      csra: CSRA High
-    inactive_alerts:
-      <<: *alerts
-      csra: CSRA
+      self_harm: Suicide / Self harm
+      sex_offender: Sex offender
+      violent: Violent
   escorts:
     confirm_cancel:
       title: Cancelling PER for

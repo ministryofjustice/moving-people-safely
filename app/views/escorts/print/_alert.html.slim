@@ -1,3 +1,3 @@
 - status = on ? 'active' : 'inactive'
-li class="flag-#{status}" id=('csra-inactive' if status == 'inactive' && alert_name == :csra)
-  = t("escort.#{status}_alerts.#{alert_name}")
+li class="flag-#{status}"
+  = t("escort.alerts.#{alert_name}")

@@ -7,5 +7,5 @@ header
 - escort.alerts.each do |alert, on|
   - status = on ? 'active' : 'inactive'
 
-  li class="flag-#{status}" id="#{alert}#{'-inactive' if status == 'inactive' && alert == :csra}"
-    = t("escort.#{status}_alerts.#{alert}")
+  li class="flag-#{status}" id=alert
+    = t("escort.alerts.#{alert}")

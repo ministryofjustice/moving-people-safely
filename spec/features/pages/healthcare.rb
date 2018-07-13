@@ -28,7 +28,7 @@ module Page
         fill_in_optional_details('Do they have physical health needs that might affect them while they are out of prison?', @hc, :physical_issues)
       elsif @hc.location == 'police'
         fill_in_optional_details('Are they pregnant?', @hc, :pregnant)
-        fill_in_optional_details('Do they have any physical health needs that might affect them on this journey?', @hc, :physical_issues)
+        fill_in_optional_details('Do they have any physical health needs that might affect them when they leave police custody?', @hc, :physical_issues)
       end
       click_button 'Save and continue'
     end
@@ -37,7 +37,7 @@ module Page
       if @hc.location == 'prison'
         fill_in_optional_details('Do they have mental health needs that might affect them while they are out of prison?', @hc, :mental_illness)
       elsif @hc.location == 'police'
-        fill_in_optional_details('Do they have mental health needs that might affect them on this journey?', @hc, :mental_illness)
+        fill_in_optional_details('Do they have mental health needs that might affect them when they leave police custody?', @hc, :mental_illness)
       end
       click_button 'Save and continue'
     end
