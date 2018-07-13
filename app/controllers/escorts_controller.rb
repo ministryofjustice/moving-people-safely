@@ -45,6 +45,7 @@ class EscortsController < ApplicationController
   end
 
   def redirect_if_missing_data
+    return unless escort.editable?
     valid_move = Forms::Move.new(escort.move).prepopulate!.valid?
     redirect_to(new_escort_detainee_path(escort)) && return unless escort.detainee
     redirect_to(edit_escort_move_path(escort)) && return unless valid_move
