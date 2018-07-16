@@ -299,6 +299,7 @@ en:
         substance_supply:
           prison: Check Mercury for intelligence or NOMIS adjudications for past history of trafficking drugs.
           police_html: 'In the arrest record, check for the <i>Conceals items</i>, <i>Drugs</i> and <i>May try and bring drugs</i> into custody warning markers.'
+        substance_supply_details: 'Give details of previous incidents:'
         uses_weapons:
           prison: Check Mercury for intelligence or NOMIS adjudications for details.
           police: ''
@@ -831,6 +832,10 @@ en:
             blank: "^Please fill in prisoner intimidation details"
           gang_member_details:
             blank: "^Please fill in gang member details"
+      concealed_weapons:
+        attributes:
+          substance_supply_details:
+            blank: "^Please fill in drug trafficing details"
   activerecord:
     errors:
       <<: *errors
