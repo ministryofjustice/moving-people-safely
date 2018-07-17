@@ -123,11 +123,11 @@ en:
         conceals_other_items: Other
         conceals_other_items_details: "Details for other concealed items"
         conceals_sim_cards: SIM cards
-        conceals_weapons: "Have they concealed weapons in custody?"
-        conceals_weapons_details: "Details for concealed weapons in custody"
-        substance_supply: "Is there a risk that they might traffic drugs on this journey?"
-        uses_weapons: "Have they created or used weapons in custody?"
-        uses_weapons_details: "Details for created or used weapons in custody"
+        conceals_weapons: "the concealed weapons in custody question"
+        conceals_weapons_details: "details of weapons concealed in custody"
+        substance_supply: "the drug trafficking risk question"
+        uses_weapons: "the weapons in custody question"
+        uses_weapons_details: "details of weapons created or used in custody"
       contact:
         contact_number: a contact number
       dependencies:
@@ -235,7 +235,7 @@ en:
           establishment_details: 'Give details of why they must not be sent here:'
         must_return: "the must return question"
         must_return_to: 'Prison name:'
-        must_return_to_details: Details for returning to a specific prison
+        must_return_to_details: details for returning to a specific prison
       security:
         category_a: Cat A or potential Cat A
         controlled_unlock: Controlled unlock
