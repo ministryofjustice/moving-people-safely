@@ -632,7 +632,7 @@ en:
         segregation:
           csra: Cell share risk
           rule_45: Rule 45
-          vulnerable_prisoner: Vulnerable prisoner
+          vulnerable_prisoner: Vulnerable person
         sex_offences:
           sex_offence: Sex offender
         social:
@@ -720,29 +720,29 @@ en:
               inclusion: question must be answered
   errors:
     summary:
-      title: There were problems saving this form
+      title: Please fix the errors on this page to continue
     messages:
       minimum_collection_size: At least one item needs to be provided
     attributes:
       base:
-        minimum_current_offence: 'At least one current offence needs to be provided'
-        minimum_one_option: 'At least one option (%{options}) needs to be provided'
+        minimum_current_offence: 'Enter at least one current offence'
+        minimum_one_option: 'Enter at least one option (%{options})'
   alerts:
     detainee_already_exists: "Detainee already exists. You've been redirected to the next relevant form"
     detainee:
       access:
         unauthorized: "Enter a prisoner number for someone currently at %{establishments} to start a PER."
       details:
-        unavailable: "Look-Up function is not currently available. Please enter person details manually"
-        not_found: "No record for that prison reference exists. Please check the reference used or enter the details manually"
+        unavailable: "We can't automatically complete detainee details right now. Please fill them in manually."
+        not_found: "No record for that prisoner number exists. Check the number used or enter the details manually."
         invalid_input: The provided prison number is not valid, please try again with a valid prison number
       image:
         unavailable: "Image Look-Up function is not currently available. Please try again later"
         not_found: "Look-Up function for photograph returned no image. Either try again later or attach photograph manually to print out"
-        invalid_input: The provided prison number is not valid, please try again with a valid prison number
+        invalid_input: The prisoner number is not valid, please try again with a valid number
     escort:
       access:
-        unauthorized: "The PER you are trying to access has not been created from your prison"
+        unauthorized: "The PER you are trying to access has not been created at your prison"
       edit:
         unauthorized: "The PER can no longer be changed."
       detainee:
@@ -750,13 +750,13 @@ en:
       move:
         exists: "Move details for the PER already exist."
       print:
-        unauthorized: "PER is not in a status that can be printed"
+        unauthorized: "PER is not in a status that can be printed. Make sure the PER is complete before printing."
     feedback:
       created: Your message has been sent
     offences:
       api_error: Offences aren't available right now, please try again or fill in the offences below
       internal_error: Offences aren't available right now, please try again or fill in the offences below
-      not_found: "Offences data could not be retrieved. Please fill in manually."
+      not_found: "We can't automatically complete offences details right now. Please fill them in manually."
     unable_to_confirm_assessment: "%{assessment} assessment cannot be confirmed until all mandatory answers are filled"
     search:
       invalid_identifier: "The %{type} '%{identifier}' is not valid, please try again with a valid %{type}"
@@ -801,19 +801,19 @@ en:
           gender:
             inclusion: "^Choose a gender"
           surname:
-            blank: "^Enter a surname"
+            blank: "^Enter a last name"
       move:
         attributes:
           from:
             blank: "^Enter start point"
           not_for_release:
-            inclusion: "^Select one of the options not for release"
+            inclusion: "^Answer the release status question"
           not_for_release_reason:
-            inclusion: "^Select a reason not for release"
+            inclusion: "^Choose a reason why they must not be released"
           not_for_release_reason_details:
             blank: "^Please provide details why the detainee is not for release"
           to: &blank_destination_error
-            blank: "^Enter destination"
+            blank: "^Enter destination name"
           to_magistrates_court:
             <<: *blank_destination_error
           to_crown_court:
@@ -831,11 +831,11 @@ en:
           intimidation_prisoners_details:
             blank: "^Please fill in prisoner intimidation details"
           gang_member_details:
-            blank: "^Please fill in gang member details"
+            blank: "^Enter gang or organised crime details"
       concealed_weapons:
         attributes:
           substance_supply_details:
-            blank: "^Please fill in drug trafficing details"
+            blank: "^Enter details of drug trafficking risk"
   activerecord:
     errors:
       <<: *errors
