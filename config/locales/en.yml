@@ -239,7 +239,7 @@ en:
       security:
         category_a: Cat A or potential Cat A
         controlled_unlock: Controlled unlock
-        controlled_unlock: Number of officers
+        controlled_unlock: the controlled unlock question
         controlled_unlock_choices:
           two_officer_unlock: '2 officer unlock'
           three_officer_unlock: '3 officer unlock'
