@@ -1,5 +1,5 @@
 header
-  h1.heading-secondary = t("#{scope}.form.title.#{form.name}")
+  h1.heading-secondary = location_text(t("#{scope}.form.title.#{form.name}"), escort.location)
 
 = form_for form, url: wizard_path, method: method, as: form.name do |f|
   = f.error_messages

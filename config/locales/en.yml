@@ -511,7 +511,9 @@ en:
         allergies: Allergies and intolerances
         needs: Essential medication
         transport: Special vehicles
-        contact: Medical contact details
+        contact:
+          prison: Medical contact details
+          police: Custody suite contact details
     intro:
       breadcrumb: Health
       content: |
@@ -587,7 +589,9 @@ en:
           substance_supply: Drug trafficking risk
           uses_weapons: Creates or uses weapons
         contact:
-          contact_number: Medical contact
+          contact_number:
+            prison: Medical contact
+            police: Custody suite contact
         dependencies:
           dependencies: Dependencies
           alcohol_withdrawal: Alcohol withdrawal
@@ -648,7 +652,9 @@ en:
         allergies: Allergies and intolerances
         arson: Arson
         concealed_weapons: Weapons, drugs or other items
-        contact: Medical contact details
+        contact:
+          prison: Medical contact details
+          police: Custody suite contact details
         discrimination: Discrimination against others
         escape_status: Escape status and history
         escort_details: Further security information

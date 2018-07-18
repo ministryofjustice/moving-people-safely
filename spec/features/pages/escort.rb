@@ -78,6 +78,16 @@ module Page
       end
     end
 
+    def confirm_healthcare_labels(location = :prison)
+      labels = ['Medical contact', 'Custody suite contact']
+      labels.reverse! unless location == :prison
+
+      within('#healthcare') do
+        expect(page).to have_content(labels.first)
+        expect(page).not_to have_content(labels.last)
+      end
+    end
+
     def confirm_risk_status(expected_status='Complete')
       within('#risk') do
         expect(page).to have_content(expected_status)

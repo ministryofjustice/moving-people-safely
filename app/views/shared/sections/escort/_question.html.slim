@@ -1,6 +1,6 @@
 - if assessment.question_relevant?(question)
   tr
-    td.question= t("summary.section.questions.#{section}.#{question}")
+    td.question= location_text(t("summary.section.questions.#{section}.#{question}"), assessment.location)
     td.answer
       - if details&.is_a? String
         b= details.capitalize
