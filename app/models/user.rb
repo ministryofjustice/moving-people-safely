@@ -4,6 +4,7 @@ class User < ApplicationRecord
   POLICE_ORGANISATION = 'police.noms.moj'.freeze
   PRISON_ORGANISATION = 'prisons.noms.moj'.freeze
   HEALTHCARE_ROLE = 'healthcare'.freeze
+  SERGEANT_ROLE = 'sergeant'.freeze
 
   serialize :permissions
 
@@ -68,7 +69,11 @@ class User < ApplicationRecord
   end
 
   def police?
-    permissions.any? { |permission| permission['organisation'] == POLICE_ORGANISATION }
+    permissions.any? { |permission| permission['organisation'] =~ /#{POLICE_ORGANISATION}/ }
+  end
+
+  def sergeant?
+    police? && permissions.any? { |permission| permission['roles']&.include? SERGEANT_ROLE }
   end
 
   def prison_officer?
@@ -76,6 +81,6 @@ class User < ApplicationRecord
   end
 
   def healthcare?
-    permissions.any? { |permission| permission['roles']&.include? HEALTHCARE_ROLE }
+    prison_officer? && permissions.any? { |permission| permission['roles']&.include? HEALTHCARE_ROLE }
   end
 end

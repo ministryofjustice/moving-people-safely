@@ -144,6 +144,18 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#sergeant?' do
+    context 'when is sergeant' do
+      subject { described_class.new(permissions: [{"organisation"=>User::POLICE_ORGANISATION}, {"roles"=>['sergeant']}])}
+      its(:sergeant?) { is_expected.to be_truthy }
+    end
+
+    context 'when is not sergeant' do
+      subject { described_class.new(permissions: []) }
+      its(:sergeant?) { is_expected.to be_falsey }
+    end
+  end
+
   describe '#prison_officer?' do
     context 'when belongs to prison staff' do
       subject { described_class.new(permissions: [{"organisation"=>'bedford.prisons.noms.moj'}])}
@@ -158,7 +170,7 @@ RSpec.describe User, type: :model do
 
   describe '#healthcare?' do
     context 'when is healthcare' do
-      subject { described_class.new(permissions: [{"roles"=>['healthcare']}])}
+      subject { described_class.new(permissions: [{"organisation"=>'bedford.prisons.noms.moj'}, {"roles"=>['healthcare']}])}
       its(:healthcare?) { is_expected.to be_truthy }
     end
 
