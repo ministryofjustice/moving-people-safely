@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_10_142013) do
+ActiveRecord::Schema.define(version: 2018_07_18_142011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "datafix_log", force: :cascade do |t|
+    t.string "direction"
+    t.string "script"
+    t.datetime "timestamp"
+  end
 
   create_table "detainees", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "forenames"
