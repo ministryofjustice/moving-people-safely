@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :escorts, only: %i[show new create] do
     get :confirm_cancel, on: :member
     put :cancel, on: :member
+    get :confirm_approve, on: :member
+    put :approve, on: :member
     resource :detainee do
       resource :image, only: %i[show], controller: 'detainees/images', constraints: { format: 'jpg' }
     end

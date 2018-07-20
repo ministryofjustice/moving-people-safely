@@ -1,6 +1,7 @@
 class Escort < ApplicationRecord
   AlreadyIssuedError = Class.new(StandardError)
   AlreadyCancelledError = Class.new(StandardError)
+  AlreadyApprovedError = Class.new(StandardError)
 
   default_scope { order('escorts.cancelled_at desc, escorts.created_at desc') }
   default_scope { where(deleted_at: nil) }
@@ -15,6 +16,7 @@ class Escort < ApplicationRecord
 
   belongs_to :twig, class_name: 'Escort', foreign_key: :cloned_id
   belongs_to :canceller, class_name: 'User'
+  belongs_to :approver, class_name: 'User'
 
   has_attached_file :document
   validates_attachment_content_type :document, content_type: ['application/pdf']
@@ -50,6 +52,7 @@ class Escort < ApplicationRecord
 
   delegate :surname, :forenames, :gender, to: :detainee, prefix: true
   delegate :full_name, to: :canceller, prefix: true
+  delegate :full_name, to: :approver, prefix: true
   delegate :date, :from_establishment, to: :move, prefix: true
 
   def completed?
@@ -61,7 +64,7 @@ class Escort < ApplicationRecord
   end
 
   def editable?
-    !(issued? || cancelled?)
+    !(issued? || cancelled? || approved?)
   end
 
   def cancelled?
@@ -71,6 +74,15 @@ class Escort < ApplicationRecord
   def cancel!(user, reason)
     raise AlreadyCancelledError if cancelled?
     update_attributes!(canceller_id: user.id, cancelling_reason: reason, cancelled_at: Time.now.utc)
+  end
+
+  def approved?
+    approved_at.present?
+  end
+
+  def approve!(user)
+    raise AlreadyApprovedError if approved?
+    update_attributes!(approver_id: user.id, approved_at: Time.now.utc)
   end
 
   def issued?
@@ -131,6 +143,10 @@ class Escort < ApplicationRecord
   def number
     return pnc_number if from_police?
     prison_number
+  end
+
+  def id_number
+    number&.gsub(/\W+/, '')
   end
 
   def location

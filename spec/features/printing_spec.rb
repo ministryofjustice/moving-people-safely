@@ -5,7 +5,7 @@ RSpec.feature 'printing a PER', type: :feature do
     create(:user, first_name: 'Nelle', last_name: 'Bailey')
   }
   let(:bedford) {
-    create(:prison, name: 'HMP Bedford')
+    create(:prison, name: 'HMP Bedford', sso_id: 'bedford.prisons.noms.moj', nomis_id: 'BDI')
   }
   let(:escort) {
     create(
@@ -72,7 +72,8 @@ RSpec.feature 'printing a PER', type: :feature do
     }
 
     scenario 'user prints the PER' do
-      login
+      login_options = { sso: { info: { permissions: [{'organisation' => bedford.sso_id}]}} }
+      login(nil, login_options)
       visit escort_path(escort)
       escort_page.click_print
 
@@ -194,7 +195,9 @@ RSpec.feature 'printing a PER', type: :feature do
     }
 
     scenario 'user prints the PER' do
-      login
+      login_options = { sso: { info: { permissions: [{'organisation' => bedford.sso_id}]}} }
+      login(nil, login_options)
+
       visit escort_path(escort)
       escort_page.click_print
 

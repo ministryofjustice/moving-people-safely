@@ -10,7 +10,7 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
     }
   }
 
-  scenario 'adding a new escort and filling it in' do
+  scenario 'adding a new escort, filling it in and approve it' do
     banbury_police_station = create(:police_custody, name: 'Banbury Police Station')
 
     login_options = { sso: { info: { permissions: [{'organisation' => User::POLICE_ORGANISATION}]}} }
@@ -58,5 +58,25 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
 
     escort_page.confirm_offence_details(offences_data)
 
+    escort = Escort.first
+    visit(root_path)
+    dashboard.confirm_awaiting_approval(escort.id_number)
+
+    click_button 'Sign out'
+
+    login_options = { sso: { info: { permissions: [{'organisation' => User::POLICE_ORGANISATION, 'roles' => ['sergeant']}]}} }
+    login(nil, login_options)
+
+    expect(current_path).to eq select_police_station_path
+
+    select_police_station.select_station('Banbury Police Station')
+
+    expect(current_path).to eq root_path
+
+    dashboard.approve(escort.id_number)
+
+    escort_page.click_approve
+
+    confirm_approve.approve
   end
 end

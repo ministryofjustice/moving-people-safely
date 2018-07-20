@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 2018_07_18_142011) do
     t.datetime "cancelled_at"
     t.text "cancelling_reason"
     t.string "pnc_number"
+    t.datetime "approved_at"
+    t.integer "approver_id"
     t.index ["cloned_id"], name: "index_escorts_on_cloned_id"
     t.index ["deleted_at"], name: "index_escorts_on_deleted_at"
     t.index ["pnc_number"], name: "index_escorts_on_pnc_number"

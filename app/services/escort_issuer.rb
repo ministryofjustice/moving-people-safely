@@ -1,6 +1,7 @@
 class EscortIssuer
   EscortNotEditableError = Class.new(StandardError)
   EscortNotReadyForIssueError = Class.new(StandardError)
+  EscortNotApprovedError = Class.new(StandardError)
 
   def self.call(escort)
     new(escort).call
@@ -11,7 +12,8 @@ class EscortIssuer
   end
 
   def call
-    raise EscortNotEditableError unless escort.editable?
+    raise EscortNotEditableError if !escort.editable? && escort.from_prison?
+    raise EscortNotApprovedError if !escort.approved? && escort.from_police?
     raise EscortNotReadyForIssueError unless escort.completed?
     issue_per
   end

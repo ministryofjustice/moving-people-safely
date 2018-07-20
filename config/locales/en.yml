@@ -547,6 +547,8 @@ en:
       risk_complete: Risk complete
       risk_incomplete: Risk incomplete
     escorts:
+      approve: Approve
+      approved: Approved
       cancelled: Cancelled
       destination: Destination
       detainee_name: Name
@@ -691,6 +693,11 @@ en:
       sex_offender: Sex offender
       violent: Violent
   escorts:
+    confirm_approve:
+      approve_per: Approve PER
+      cannot_edit: 'Please note: you cannot edit a PER once it has been approved.'
+      go_back: Go back
+      title: Approving PER for
     confirm_cancel:
       title: Cancelling PER for
       cancel_this_per: Cancel this PER
