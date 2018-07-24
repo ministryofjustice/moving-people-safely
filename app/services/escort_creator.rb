@@ -33,6 +33,8 @@ class EscortCreator
 
   EXCEPT_GRAPH = [
     :issued_at,
+    :approved_at,
+    :approver_id,
     { risk: %i[reviewer_id reviewed_at] },
     { healthcare: %i[reviewer_id reviewed_at] },
     { offences_workflow: %i[reviewer_id reviewed_at] }

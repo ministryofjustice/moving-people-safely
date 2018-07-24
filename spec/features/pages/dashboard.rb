@@ -92,5 +92,17 @@ module Page
         expect(page.find('.value').text).to eq("✔")
       end
     end
+
+    def confirm_awaiting_approval(id_number)
+      within "#number_#{id_number}" do
+        expect(page).to have_text('Awaiting approval')
+      end
+    end
+
+    def approve(id_number)
+      within "#number_#{id_number}" do
+        click_link 'Approve'
+      end
+    end
   end
 end

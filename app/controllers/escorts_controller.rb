@@ -30,6 +30,11 @@ class EscortsController < ApplicationController
     end
   end
 
+  def approve
+    escort.approve!(current_user) if current_user.sergeant?
+    redirect_to root_path
+  end
+
   private
 
   def prison_number

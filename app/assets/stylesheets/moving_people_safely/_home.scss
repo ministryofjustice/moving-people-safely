@@ -361,6 +361,8 @@
 
   .issued { color: green; font-weight: bold; }
   .cancelled { color: red; font-weight: bold; margin-right: 10px; }
+  .approved { color: black; font-weight: bold; margin-right: 10px; }
+  .awaiting_approval { color: grey; }
 }
 
 h1.shallow {

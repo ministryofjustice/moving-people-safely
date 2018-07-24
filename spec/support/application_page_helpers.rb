@@ -52,4 +52,8 @@ module ApplicationPageHelpers
   def healthcare_summary
     @_healthcare_summary ||= Page::HealthcareSummary.new
   end
+
+  def confirm_approve
+    @_confirm_approve ||= Page::ConfirmApprove.new
+  end
 end

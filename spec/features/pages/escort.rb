@@ -136,6 +136,10 @@ module Page
       click_link 'Cancel PER'
     end
 
+    def click_approve
+      click_link 'Approve PER'
+    end
+
     def confirm_healthcare_action_link(name)
       confirm_per_section_action_link(:healthcare, name)
     end

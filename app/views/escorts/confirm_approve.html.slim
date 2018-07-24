@@ -1,0 +1,24 @@
+= content_for :breadcrumbs do
+  - breadcrumbs_for_page root: true do
+    - breadcrumb escort_breadcrumb(escort), escort_path(escort)
+
+h1
+  = t('.title')
+  br
+  = "#{identifier(escort)} #{escort.detainee_forenames}"
+
+label= t('date_of_travel')
+p.lede
+  = escort.move_date
+
+.notice
+  i.icon.icon-important
+    span.visually-hidden
+      | Warning
+  strong.bold-small
+    = t('.cannot_edit')
+
+= form_for escort, url: approve_escort_path(escort), method: :put do |f|
+  .form-actions
+    = f.submit t('.approve_per'), class: 'button'
+    = link_to t('.go_back'), escort_path(escort), class: 'button button-secondary'

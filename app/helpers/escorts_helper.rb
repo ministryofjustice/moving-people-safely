@@ -47,7 +47,7 @@ module EscortsHelper
   def not_for_release_text(move)
     return 'Contact the prison to confirm release' if move.not_for_release == 'no'
     return move.not_for_release_reason_details.humanize if move.not_for_release_reason == 'other'
-    move.not_for_release_reason.humanize
+    move.not_for_release_reason&.humanize
   end
 
   def offences_label(offences)
