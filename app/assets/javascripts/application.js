@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap-datepicker/dist/js/bootstrap-datepicker.min
 //= require_tree .
+//= require stickyfill.min
 //= stub 'accessible-autocomplete.min'
 //= stub 'auto-complete-init'
