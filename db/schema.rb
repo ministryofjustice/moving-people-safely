@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_18_142011) do
+ActiveRecord::Schema.define(version: 2018_07_25_141313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2018_07_18_142011) do
     t.string "peep"
     t.text "peep_details"
     t.text "interpreter_required_details"
+    t.string "security_category"
     t.index ["escort_id"], name: "index_detainees_on_escort_id"
     t.index ["prison_number"], name: "index_detainees_on_prison_number"
   end

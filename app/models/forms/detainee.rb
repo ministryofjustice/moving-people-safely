@@ -14,6 +14,7 @@ module Forms
     property :cro_number,                   type: StrictString
     property :aliases,                      type: StrictString
     property :language,                     type: StrictString
+    property :security_category,            type: StrictString
     property :diet,                         type: StrictString
     options_field :interpreter_required, allow_blank: true
     property :interpreter_required_details, type: StrictString

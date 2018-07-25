@@ -1,95 +1,101 @@
-Outbound vehicle
-Registration                     Cell number                        PECS Barcode
+————— Staple to card
+
+                       Outbound vehicle
+                       Registration                    Cell number                       PECS Barcode
 
 
 
 
-Return vehicle
-Registration                     Cell number
+                       Return vehicle
+                       Registration                    Cell number
 
 
 
 
-W1234BY: McTest Testy
- Not for release ✘ No                                       Escape risk ✔
+                       W1234BY: McTest Testy
 
-Prison number     CRO number         PNC number            Aliases
-W1234BY           56TYY/UU           YI896668TT            Terry Tibbs
-                                                           Mr T
-Date of birth     Age                Gender
-10 Dec 1970       47                 Male
-Nationality       Religion           Ethnicity
-British           Baptist            European
-Preferred         Interpreter        Interpreter details
-language          Yes                English-
-English                              American
-                                     translator
-Diet
-Gluten free
-Personal Emergency Evacuation Plan
-Broken leg
+                         Not for release ✘ No      Escape risk ✔
 
+                       Move details
+                       Date of travel                     From                                To
+                       22 Apr 2099                        HMP Bedford                         Luton Crown Court
 
-Move details
-Date of travel                       From                                   To
-22 Apr 2099                          HMP Bedford                            Luton Crown Court
-
-
-
-
-About this Person Escort Record
-
-This ePER was produced by the Ministry of Justice ePER service, currently in pilot at HMP
-Bedford. This ePER is approved by HMPPS - please treat it as a fully valid and official record.
-Please send any feedback or questions to: eper@digital.justice.gov.uk
-W1234BY: McTest Testy                                                                               Page 1 of 2
-
- Not for release ✘ No                  Escape risk ✔                            ACCT ✔
-                                                                              Open
+                       Release status
+                       Contact the prison to
+                       confirm release
+                       Personal details
+                       Prison number    CRO number        PNC number            Aliases
+                       W1234BY          56TYY/UU          YI896668TT            Terry Tibbs
+                                                                                Mr T
+                       Date of birth    Age               Gender
+                       10 Dec 1970      47                Male
+                       Nationality      Religion          Ethnicity
+                       British          Baptist           European
+                       Preferred        Interpreter       Interpreter details
+                       language         Yes               English-
+                       English                            American
+                                                          translator
+                       Category         Diet
+                       Cat A            Gluten free
+                       Personal Emergency Evacuation Plan
+                       Broken leg
 
 
- Suicide / Self harm ✔        Rule 45 ✔                   Cell share risk ✔               Cat A ✔
+
+                       About this Person Escort Record
+Staple to card —————
 
 
-RISK       Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
 
-Risk to self                         Yes
-  ACCT status                        Open
-  Suicide or self harm risk          Yes                 Self harm details
-Segregation                          Yes
-  Cell share risk                    High
-  Rule 45                            Yes
-  Vulnerable person                  Yes                 Vulnerable prisoner details
-Security                             Yes
-  Multiple officer unlock/escort Yes                     Many people to hold the prisoner
-  Cat A or potential Cat A           Yes
-  High public interest               Yes                 High profile details
-  PNC warnings                       Yes                 Pnc warning details
-Violence                             Yes
-  Violent or dangerous               Yes                 Violent or dangerous
-Harassment and gangs                 Yes
-  Public harasser                    Yes                 Intimidation to public details
-  Prisoners harasser                 Yes                 Intimidation to other detainees details
-  Gang member                        Yes                 Violence gang member details
-Discrimination against others        Yes
-  Violent to staff                   Yes                 Violent to staff details
-  Risk to females                    Yes                 Risk to females details
-  Risk to LGBT people                Yes                 Lgtb details
-  Racist                             Yes                 Violence racist details
-  Risk to other religions            Yes                 Discrimination to other religion details
-  Risk to other groups               Yes                 Other violence due to discrimination details
-Escape status/history                Yes
-  Currently on E list                Yes                 E-list escort
-  Escape risk                        Yes                 Escape attempt details
-  Escort Risk Assessment             Yes
+
+                       This ePER was produced by the Ministry of Justice ePER service, currently in pilot. This ePER
+                       is approved by HMPPS - please treat it as a fully valid and official record. Please send any
+                       feedback or questions to: eper@digital.justice.gov.uk
+W1234BY: McTest Testy                                                                              Page 1 of 2
+
+ Not for release ✘ No       ACCT ✔       Suicide / Self harm ✔    Cell share risk ✔      Rule 45 ✔     Cat A ✔
+ Violent ✔      Escape risk ✔    Sex offender ✔       Pregnant ✘ No         Alcohol withdrawal ✘ No
+
+
+Risk    Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
+
+Risk to self                       Yes
+  ACCT status                      Open
+  Suicide or self harm risk        Yes                  Self harm details
+Segregation                        Yes
+  Cell share risk                  High
+  Rule 45                          Yes
+  Vulnerable person                Yes                  Vulnerable prisoner details
+Security                           Yes
+  Multiple officer unlock/escort Yes                    Many people to hold the prisoner
+  Cat A or potential Cat A         Yes
+  High public interest             Yes                  High profile details
+  PNC warnings                     Yes                  Pnc warning details
+Violence                           Yes
+  Violent or dangerous             Yes                  Violent or dangerous
+Harassment and gangs               Yes
+  Public harasser                  Yes                  Intimidation to public details
+  Prisoners harasser               Yes                  Intimidation to other detainees details
+  Gang member                      Yes                  Violence gang member details
+Discrimination against others      Yes
+  Violent to staff                 Yes                  Violent to staff details
+  Risk to females                  Yes                  Risk to females details
+  Risk to LGBT people              Yes                  Lgtb details
+  Racist                           Yes                  Violence racist details
+  Risk to other religions          Yes                  Discrimination to other religion details
+  Risk to other groups             Yes                  Other violence due to discrimination details
+Escape status/history              Yes
+  Currently on E list              Yes                  E-list escort
+  Escape risk                      Yes                  Escape attempt details
+  Escort Risk Assessment           Yes
   needed
-  Escape Pack needed                 Yes
-Hostage taker                        Yes
-  Hostage Taker                      Yes                 Takes staff hostages. most recent: 01/01/1999
-Sex offender                         Yes
+  Escape Pack needed               Yes
+Hostage taker                      Yes
+  Hostage Taker                    Yes                  Takes staff hostages. most recent: 01/01/1999
+Sex offender                       Yes
+  Sex offender                     Yes                  Mean to people. last offence: 01/01/2001
 W1234BY: McTest Testy                                                                             Page 2 of 2
 
- Sex offender                       Yes                  Mean to people. last offence: 01/01/2001
 Weapons, drugs or other items       Yes
  Creates or uses weapons            Yes                  Created and used a 3d gun
  Conceals weapons                   Yes                  Conceals weapons details
@@ -99,14 +105,10 @@ Weapons, drugs or other items       Yes
  Drug trafficking risk              Yes                  Substance supply details
 Arson                               Yes
  Arsonist                           Yes
-Return Instructions                 Yes
- Must return to                     Yes                  Alcatraz | some special reason
- Must not be sent to                Yes                  Alcatraz | Bad bad stuff happens there
-                                                         York castle prison | Does not like it
 Other risk information              Yes
  Other risk information             Yes                  Suspected terrorist
 
-HEALTHCARE                Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
+Healthcare         Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
 
 Physical health issues              Yes
  Physical health needs              Yes                  Physical issues details
@@ -128,7 +130,15 @@ Personal care                       Yes
 Medical contact details             Yes
  Medical contact                    1-131-999-0232
 
-OFFENCES
+
+Offences         Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
+
 Current offences                    Yes                  Burglary (LXAHTGNJQF) | Sex offence
                                                          (QDPREIBMSF)
+
+Return instructions              Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
+
+Must return to                    Alcatraz | some special reason
+Must not be sent to               Alcatraz | Bad bad stuff happens there
+                                  York castle prison | Does not like it
 

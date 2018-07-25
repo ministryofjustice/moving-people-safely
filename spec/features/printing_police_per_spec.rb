@@ -2,7 +2,10 @@ require 'feature_helper'
 
 RSpec.feature 'printing a police PER', type: :feature do
   let(:reviewer) {
-    create(:user, first_name: 'Nelle', last_name: 'Bailey')
+    create(:user, first_name: 'Nel', last_name: 'Bee')
+  }
+  let(:approver) {
+    create(:user, first_name: 'Ned', last_name: 'Nok')
   }
   let(:police_custody) {
     create(:police_custody, name: 'My Jolly Police Custody Suite')
@@ -12,7 +15,6 @@ RSpec.feature 'printing a police PER', type: :feature do
   let(:escort) {
     create(
       :escort,
-      :approved,
       pnc_number: pnc_number,
       prison_number: prison_number,
       detainee: detainee,
@@ -20,7 +22,9 @@ RSpec.feature 'printing a police PER', type: :feature do
       risk: risk,
       healthcare: healthcare,
       offences: offences,
-      offences_workflow: offences_workflow
+      offences_workflow: offences_workflow,
+      approver: approver,
+      approved_at: DateTime.civil(2016, 3, 10, 12, 30)
     )
   }
   let(:move) {
@@ -32,7 +36,13 @@ RSpec.feature 'printing a police PER', type: :feature do
     )
   }
 
-  let(:offences_workflow) { create(:offences_workflow, :confirmed) }
+  let(:offences_workflow) {
+    create(:offences_workflow,
+      status: :confirmed,
+      reviewer: reviewer,
+      reviewed_at: DateTime.civil(2016, 3, 10, 12, 30)
+    )
+  }
 
   let(:offences) { [] }
 

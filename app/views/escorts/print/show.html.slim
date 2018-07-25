@@ -7,53 +7,48 @@ html
   body
     main.inner-page
       .grid-row.indicators.top-dotted
-        .grid-column.column-one-third
-          = render 'escorts/print/alert', alert_name: :not_for_release, on: escort.alerts[:not_for_release]
-          - if escort.alerts[:not_for_release]
-            p.alert-text= not_for_release_text(escort.move)
-        .grid-column.column-one-third
-          = render 'escorts/print/alert', alert_name: :current_e_risk, on: escort.alerts[:current_e_risk]
-        .grid-column.column-one-third
-          = render 'escorts/print/alert', alert_name: :acct_status, on: escort.alerts[:acct_status]
-          p.alert-text= acct_status_text(escort.risk)
-      .grid-row.indicators
-        .grid-column.column-one-quarter
-          = render 'escorts/print/alert', alert_name: :self_harm, on: escort.alerts[:self_harm]
-        .grid-column.column-one-quarter
-          = render 'escorts/print/alert', alert_name: :rule_45, on: escort.alerts[:rule_45]
-        .grid-column.column-one-quarter
-          = render 'escorts/print/alert', alert_name: :csra, on: escort.alerts[:csra]
-        .grid-column.column-one-quarter
-          = render 'escorts/print/alert', alert_name: :category_a, on: escort.alerts[:category_a]
+        - escort.alerts.each do |alert_name, on|
+          .flag
+            = render 'escorts/print/alert', alert_name: alert_name, on: on
+
       div#risk-section.section
         table#risk-table.section-table
           tr
             th colspan=3
-              span.heading-large= 'RISK'
+              span.heading-large= 'Risk'
               span.timestamp= t('assessment.confirmed_timestamp', name: escort.risk.reviewer.full_name, time: escort.risk.reviewed_at.to_s(:humanized))
-          - Risk.sections(escort.location).each do |section|
+              - if escort.from_police?
+                span.timestamp= t('assessment.approved_timestamp', name: escort.approver.full_name, time: escort.approved_at.to_s(:humanized))
+          - Risk.sections(escort.location).reject { |s| s == 'return_instructions' }.each do |section|
             = render "risks/sections/#{section}",
               views: 'print',
               section: section,
               path: nil,
               assessment: escort.risk
+
       div#healthcare-section.section
         table#healthcare-table.section-table
           tr
             th colspan=3
-              span.heading-large= 'HEALTHCARE'
+              span.heading-large= 'Healthcare'
               span.timestamp= t('assessment.confirmed_timestamp', name: escort.healthcare.reviewer.full_name, time: escort.healthcare.reviewed_at.to_s(:humanized))
+              - if escort.from_police?
+                span.timestamp= t('assessment.approved_timestamp', name: escort.approver.full_name, time: escort.approved_at.to_s(:humanized))
           - Healthcare.sections(escort.location).each do |section|
             = render "healthcare/sections/#{section}",
               views: 'print',
               section: section,
               path: nil,
               assessment: escort.healthcare
+
       div#offences-section.section
         table#offences-table.section-table
           tr
             th colspan=3
-              span.heading-large= 'OFFENCES'
+              span.heading-large= 'Offences'
+              span.timestamp= t('assessment.confirmed_timestamp', name: escort.offences_workflow.reviewer.full_name, time: escort.offences_workflow.reviewed_at.to_s(:humanized))
+              - if escort.from_police?
+                span.timestamp= t('assessment.approved_timestamp', name: escort.approver.full_name, time: escort.approved_at.to_s(:humanized))
           tr.top-dotted
             td.column-30-percent
               = offences_label(escort.offences)
@@ -61,3 +56,19 @@ html
               = offences_relevant(escort.offences)
             td.column-50-percent
               = formatted_offences_list(escort.offences)
+
+      - if escort.from_prison?
+        div#return-section.section
+          table#return-table.section-table
+            tr
+              th colspan=3
+                span.heading-large= 'Return instructions'
+                span.timestamp= t('assessment.confirmed_timestamp', name: escort.risk.reviewer.full_name, time: escort.risk.reviewed_at.to_s(:humanized))
+            = render "shared/sections/print/question_standalone",
+              alternance: 'even', assessment: escort.risk, section: 'return_instructions', question: 'must_return',
+              value: escort.risk.must_return, details: must_return_details(escort.risk)
+
+            = render "shared/sections/print/question_standalone",
+              alternance: 'odd', assessment: escort.risk, section: 'return_instructions', question: 'has_must_not_return_details',
+              value: escort.risk.has_must_not_return_details, details: escort.risk.must_not_return_details,
+              partial: 'must_not_return_details', multiples: true

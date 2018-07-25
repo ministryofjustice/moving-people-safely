@@ -28,7 +28,14 @@ RSpec.feature 'printing a prison PER', type: :feature do
     )
   }
 
-  let(:offences_workflow) { create(:offences_workflow, :confirmed) }
+  let(:offences_workflow) {
+    create(:offences_workflow,
+      status: :confirmed,
+      reviewer: reviewer,
+      reviewed_at: DateTime.civil(2016, 3, 10, 12, 30)
+    )
+  }
+
 
   let(:offences) { [] }
 
@@ -51,7 +58,8 @@ RSpec.feature 'printing a prison PER', type: :feature do
       cro_number: '56TYY/UU',
       pnc_number: 'YI896668TT',
       peep: 'yes',
-      peep_details: 'Broken leg'
+      peep_details: 'Broken leg',
+      security_category: 'Cat A'
     )
   }
 
