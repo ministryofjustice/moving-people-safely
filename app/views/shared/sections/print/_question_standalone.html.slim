@@ -1,0 +1,13 @@
+tr.top-dotted
+  td.column-30-percent
+    .strong-text
+      = t("print.section.questions.#{section}.#{question}")
+  td.column-70-percent
+    - if assessment.question_relevant?(question)
+      - if details.is_a? String
+        = details.capitalize
+      - elsif details && multiples
+        - details.each do |multiple|
+          = render "#{assessment.class.to_s.downcase.pluralize}/sections/#{partial}_print", multiple: multiple
+    - else
+      | None

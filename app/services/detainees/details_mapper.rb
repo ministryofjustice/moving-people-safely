@@ -22,7 +22,8 @@ module Detainees
         diet: diet,
         language: language,
         interpreter_required: interpreter_required,
-        aliases: mapped_aliases
+        aliases: mapped_aliases,
+        security_category: security_category
       }.with_indifferent_access
     end
 
@@ -92,6 +93,10 @@ module Detainees
 
     def aliases
       details[:aliases] || []
+    end
+
+    def security_category
+      details.dig(:security_category, :desc)
     end
 
     def mapped_aliases

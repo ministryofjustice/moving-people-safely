@@ -26,7 +26,6 @@ prison:
       - vulnerable_prisoner
     security:
       - controlled_unlock
-      - category_a
       - high_profile
       - pnc_warnings
     violent_or_dangerous:

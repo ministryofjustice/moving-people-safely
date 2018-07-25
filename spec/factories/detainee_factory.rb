@@ -26,6 +26,7 @@ FactoryBot.define do
     interpreter_required_details { 'English-American translator' }
     peep { 'yes' }
     peep_details { 'Prisoner has a broken leg' }
+    security_category 'Cat A'
     diet { %w[ gluten_free vegan ].sample.humanize }
     language { %w[ english italian spanish ].sample.humanize }
   end

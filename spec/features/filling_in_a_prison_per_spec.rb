@@ -55,6 +55,7 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
     offences.complete_form(offences_data)
 
     escort_page.confirm_offence_details(offences_data)
+    escort_page.confirm_detainee_details(detainee)
 
     click_button 'Sign out'
 

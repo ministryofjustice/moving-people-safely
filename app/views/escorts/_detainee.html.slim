@@ -41,7 +41,11 @@ section#detainee
     .tile-3
       h6 Interpreter details
       p= escort.detainee.interpreter_required_details
-    .tile
+    - if escort.from_prison?
+      .tile-3
+        h6 Category
+        p= escort.detainee.security_category
+    .tile-2
       h6 Diet
       p= escort.detainee.diet
     - if escort.detainee.peep == 'yes'

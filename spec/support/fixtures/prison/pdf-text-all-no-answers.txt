@@ -1,83 +1,97 @@
-Outbound vehicle
-Registration                     Cell number                        PECS Barcode
+————— Staple to card
+
+                       Outbound vehicle
+                       Registration                    Cell number                       PECS Barcode
 
 
 
 
-Return vehicle
-Registration                     Cell number
+                       Return vehicle
+                       Registration                    Cell number
 
 
 
 
-W1234BY: McTest Testy
- Not for release ✘ No                                       Escape risk ✘ No
+                       W1234BY: McTest Testy
 
-Prison number     CRO number         PNC number            Aliases
-W1234BY           56TYY/UU           YI896668TT            Terry Tibbs
-                                                           Mr T
-Date of birth     Age                Gender
-10 Dec 1970       47                 Male
-Nationality       Religion           Ethnicity
-British           Baptist            European
-Preferred         Interpreter        Interpreter details
-language          Yes                English-
-English                              American
-                                     translator
-Diet
-Gluten free
-Personal Emergency Evacuation Plan
-Broken leg
+                         Not for release ✘ No      Escape risk ✘ No
 
+                       Move details
+                       Date of travel                     From                                To
+                       22 Apr 2099                        HMP Bedford                         Luton Crown Court
 
-Move details
-Date of travel                       From                                  To
-22 Apr 2099                          HMP Bedford                           Luton Crown Court
-
-
-
-
-About this Person Escort Record
-
-This ePER was produced by the Ministry of Justice ePER service, currently in pilot at HMP
-Bedford. This ePER is approved by HMPPS - please treat it as a fully valid and official record.
-Please send any feedback or questions to: eper@digital.justice.gov.uk
-W1234BY: McTest Testy                                                                        Page 1 of 1
-
- Not for release ✘ No                  Escape risk ✘ No                       ACCT ✘ No
+                       Release status
+                       Contact the prison to
+                       confirm release
+                       Personal details
+                       Prison number    CRO number        PNC number            Aliases
+                       W1234BY          56TYY/UU          YI896668TT            Terry Tibbs
+                                                                                Mr T
+                       Date of birth    Age               Gender
+                       10 Dec 1970      47                Male
+                       Nationality      Religion          Ethnicity
+                       British          Baptist           European
+                       Preferred        Interpreter       Interpreter details
+                       language         Yes               English-
+                       English                            American
+                                                          translator
+                       Category         Diet
+                       Cat A            Gluten free
+                       Personal Emergency Evacuation Plan
+                       Broken leg
 
 
- Suicide / Self harm ✘ No       Rule 45 ✘ No              Cell share risk ✘ No      Cat A ✘ No
+
+                       About this Person Escort Record
+Staple to card —————
 
 
-RISK       Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
 
-Risk to self                         No
-Segregation                          No
-Security                             No
-Violence                             No
-Harassment and gangs                 No
-Discrimination against others        No
-Escape status/history                No
-Hostage taker                        No
-Sex offender                         No
-Weapons, drugs or other items        No
-Arson                                No
-Return Instructions                  No
-Other risk information               No
 
-HEALTHCARE                Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
+                       This ePER was produced by the Ministry of Justice ePER service, currently in pilot. This ePER
+                       is approved by HMPPS - please treat it as a fully valid and official record. Please send any
+                       feedback or questions to: eper@digital.justice.gov.uk
+W1234BY: McTest Testy                                                                             Page 1 of 1
 
-Physical health issues               No
-Mental health issues                 No
-Special vehicles                     No
-Essential medication                 No
-Dependencies                         No
-Allergies and intolerances           No
-Personal care                        No
-Medical contact details              Yes
-  Medical contact                    1-131-999-0232
+  Not for release ✘ No       ACCT ✘ No       Suicide / Self harm ✘ No      Cell share risk ✘ No
+  Rule 45 ✘ No        Violent ✘ No     Escape risk ✘ No         Sex offender ✘ No   Pregnant ✘ No
 
-OFFENCES
-Current offences                     None
+  Alcohol withdrawal ✘ No
+
+
+Risk       Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
+
+Risk to self                          No
+Segregation                           No
+Security                              No
+Violence                              No
+Harassment and gangs                  No
+Discrimination against others         No
+Escape status/history                 No
+Hostage taker                         No
+Sex offender                          No
+Weapons, drugs or other items         No
+Arson                                 No
+Other risk information                No
+
+Healthcare           Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
+
+Physical health issues                No
+Mental health issues                  No
+Special vehicles                      No
+Essential medication                  No
+Dependencies                          No
+Allergies and intolerances            No
+Personal care                         No
+Medical contact details               Yes
+  Medical contact                     1-131-999-0232
+
+Offences          Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
+
+Current offences                      None
+
+Return instructions               Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
+
+Must return to                       None
+Must not be sent to                  None
 

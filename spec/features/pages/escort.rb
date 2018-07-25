@@ -11,7 +11,7 @@ module Page
 
     def confirm_all_alerts_as_inactive
       within('.alerts-table') do
-        %i[not_for_release acct_status rule_45 e_list csra category_a].each do |alert|
+        %i[not_for_release acct_status rule_45 e_list csra].each do |alert|
           expect(page).to have_css("##{alert}_header.alert-off")
         end
       end
@@ -30,7 +30,9 @@ module Page
     end
 
     def confirm_alert_not_present(attr)
-      expect(page).to_not have_content I18n.t("escort.alerts.#{attr}")
+      within('.flag') do
+        expect(page).to_not have_content I18n.t("escort.alerts.#{attr}")
+      end
     end
 
     def confirm_move_info(move, options = {})
@@ -59,7 +61,7 @@ module Page
       end
     end
 
-    def confirm_detainee_details(detainee)
+    def confirm_detainee_details(detainee, location = :prison)
       within('#detainee') do
         expect(page).to have_content detainee.prison_number
         expect(page).to have_content detainee.date_of_birth.strftime('%d %b %Y')
@@ -69,6 +71,7 @@ module Page
         expect(page).to have_content detainee.cro_number
         expect(page).to have_content detainee.aliases
         expect(page).to have_content age(detainee.date_of_birth)
+        expect(page).to have_content detainee.security_category if location == :prison
       end
     end
 

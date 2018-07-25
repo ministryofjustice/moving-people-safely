@@ -14,6 +14,7 @@ RSpec.describe Detainees::DetailsMapper do
   let(:diet) { { 'code' => 'GLU', 'desc' => 'Medical - Gluten Free Diet' } }
   let(:pnc_number) { '12344' }
   let(:cro_number) { '54321' }
+  let(:security_category) { { 'code' => 'A', 'desc' => 'Category A' } }
   let(:aliases) {
     [
       { 'given_name' => 'James', 'surname' => 'Bond', 'date_of_birth' => '1969-01-24' },
@@ -35,7 +36,8 @@ RSpec.describe Detainees::DetailsMapper do
       'diet' => diet,
       'pnc_number' => pnc_number,
       'cro_number' => cro_number,
-      'aliases' => aliases
+      'aliases' => aliases,
+      'security_category' => security_category
     }
   }
   let(:expected_result) {
@@ -53,7 +55,8 @@ RSpec.describe Detainees::DetailsMapper do
       diet: 'Medical - Gluten Free Diet',
       pnc_number: '12344',
       cro_number: '54321',
-      aliases: 'JAMES BOND, TOM FORD'
+      aliases: 'JAMES BOND, TOM FORD',
+      security_category: 'Category A'
     }.with_indifferent_access
   }
 

@@ -4,6 +4,8 @@ FactoryBot.define do
 
     trait :confirmed do
       status { :confirmed }
+      association { :reviewer }, factory: :user
+      reviewed_at { 1.day.ago }
     end
 
     trait :needs_review do

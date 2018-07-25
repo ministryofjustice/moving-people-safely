@@ -1,57 +1,61 @@
-Outbound vehicle
-Registration                     Cell number                        PECS Barcode
+————— Staple to card
+
+                       Outbound vehicle
+                       Registration                    Cell number                       PECS Barcode
 
 
 
 
-Return vehicle
-Registration                     Cell number
+                       Return vehicle
+                       Registration                    Cell number
 
 
 
 
-W1234BY: McTest Testy
- Not for release ✘ No                                       Escape risk ✔
+                       W1234BY: McTest Testy
 
-Prison number     CRO number         PNC number            Aliases
-W1234BY           56TYY/UU           YI896668TT            Terry Tibbs
-                                                           Mr T
-Date of birth     Age                Gender
-10 Dec 1970       47                 Male
-Nationality       Religion           Ethnicity
-British           Baptist            European
-Preferred         Interpreter        Interpreter details
-language          Yes                English-
-English                              American
-                                     translator
-Diet
-Gluten free
-Personal Emergency Evacuation Plan
-Broken leg
+                         Not for release ✘ No      Escape risk ✔
 
+                       Move details
+                       Date of travel                     From                                To
+                       22 Apr 2099                        HMP Bedford                         Luton Crown Court
 
-Move details
-Date of travel                       From                                   To
-22 Apr 2099                          HMP Bedford                            Luton Crown Court
-
-
-
-
-About this Person Escort Record
-
-This ePER was produced by the Ministry of Justice ePER service, currently in pilot at HMP
-Bedford. This ePER is approved by HMPPS - please treat it as a fully valid and official record.
-Please send any feedback or questions to: eper@digital.justice.gov.uk
-W1234BY: McTest Testy                                                                               Page 1 of 2
-
- Not for release ✘ No                  Escape risk ✔                            ACCT ✔
-                                                                              Open
+                       Release status
+                       Contact the prison to
+                       confirm release
+                       Personal details
+                       Prison number    CRO number        PNC number            Aliases
+                       W1234BY          56TYY/UU          YI896668TT            Terry Tibbs
+                                                                                Mr T
+                       Date of birth    Age               Gender
+                       10 Dec 1970      47                Male
+                       Nationality      Religion          Ethnicity
+                       British          Baptist           European
+                       Preferred        Interpreter       Interpreter details
+                       language         Yes               English-
+                       English                            American
+                                                          translator
+                       Category         Diet
+                       Cat A            Gluten free
+                       Personal Emergency Evacuation Plan
+                       Broken leg
 
 
- Suicide / Self harm ✔        Rule 45 ✔                   Cell share risk ✔               Cat A ✔
+
+                       About this Person Escort Record
+Staple to card —————
 
 
-RISK       Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
+
+
+                       This ePER was produced by the Ministry of Justice ePER service, currently in pilot. This ePER
+                       is approved by HMPPS - please treat it as a fully valid and official record. Please send any
+                       feedback or questions to: eper@digital.justice.gov.uk
+W1234BY: McTest Testy                                                                              Page 1 of 2
+
+ Not for release ✘ No       ACCT ✔       Suicide / Self harm ✔    Cell share risk ✔      Rule 45 ✔
+ Violent ✔      Escape risk ✔    Sex offender ✔       Pregnant ✘ No         Alcohol withdrawal ✘ No
+
 
 Risk to self                         Yes
   ACCT status                        Open
@@ -62,7 +66,6 @@ Segregation                          Yes
   At risk from others                Yes                 Vulnerable prisoner details
 Security                             Yes
   Multiple officer unlock/escort Yes                     Many people to hold the prisoner
-  Cat A or potential Cat A           Yes
   High public interest               Yes                 High profile details
   PNC warnings                       Yes                 Pnc warning details
 Violence                             Yes
@@ -89,8 +92,6 @@ Hostage taker                        Yes
 Sex offender                         Yes
 W1234BY: McTest Testy                                                                             Page 2 of 2
 
- Sex offender                       Yes                  Mean to people. last offence: 01/01/2001
-Weapons, drugs or other items       Yes
  Creates or uses weapons            Yes                  Created and used a 3d gun
  Conceals weapons                   Yes                  Conceals weapons details
  Conceals drugs                     Yes                  Conceals drugs details
@@ -99,14 +100,10 @@ Weapons, drugs or other items       Yes
  Drug trafficking risk              Yes                  Substance supply details
 Arson                               Yes
  Arsonist                           Yes
-Return Instructions                 Yes
- Must return to                     Yes                  Alcatraz | some special reason
- Must not be sent to                Yes                  Alcatraz | Bad bad stuff happens there
-                                                         York castle prison | Does not like it
 Other risk information              Yes
  Other risk information             Yes                  Suspected terrorist
 
-HEALTHCARE                Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016
+Healthcare         Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
 
 Physical health issues              Yes
  Physical health needs              Yes                  Physical issues details
@@ -128,7 +125,14 @@ Personal care                       Yes
 Medical contact details             Yes
  Medical contact                    1-131-999-0232
 
-OFFENCES
+Offences         Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
+
 Current offences                    Yes                  Burglary (LXAHTGNJQF) | Sex offence
                                                          (QDPREIBMSF)
+
+Return instructions              Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
+
+Must return to                    Alcatraz | some special reason
+Must not be sent to               Alcatraz | Bad bad stuff happens there
+                                  York castle prison | Does not like it
 

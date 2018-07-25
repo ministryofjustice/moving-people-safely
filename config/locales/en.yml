@@ -83,7 +83,6 @@ en:
         has_must_not_return_details: Is there any establishment they must not be sent to at the end of this journey?
         must_return: Must they return to a specific prison at the end of this journey?
       security:
-        category_a: Are they Category A, potential Category A or Restricted Status?
         controlled_unlock: Number of officers required
         controlled_unlock:
           prison: Are they on a controlled unlock?
@@ -245,7 +244,6 @@ en:
         must_return_to: 'Prison name:'
         must_return_to_details: details for returning to a specific prison
       security:
-        category_a: Cat A or potential Cat A
         controlled_unlock: Controlled unlock
         controlled_unlock: the controlled unlock question
         controlled_unlock_choices:
@@ -455,7 +453,6 @@ en:
           previous ACCTs
         suicide_details: Give details
       security:
-        category_a: In NOMIS, check the header section of the prisoner’s record for category information.
         controlled_unlock:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Controlled Unlock</i> alert.
         controlled_unlock_details:
@@ -666,7 +663,6 @@ en:
           acct_status: ACCT status
           self_harm: Suicide or self harm risk
         security:
-          category_a: Cat A or potential Cat A
           controlled_unlock: Multiple officer unlock/escort
           previous_escape_attempts: Escape risk
           gang_member: Gang member
@@ -729,7 +725,6 @@ en:
     alerts: &alerts
       acct_status: ACCT
       alcohol_withdrawal: Alcohol withdrawal
-      category_a: Cat A
       csra: Cell share risk
       current_e_risk: Escape risk
       not_for_release: Not for release
@@ -754,7 +749,8 @@ en:
         reprint_this_per: Reprint this PER
         do_not_reprint_per: Do not reprint this PER
   assessment:
-    confirmed_timestamp: "Last confirmed: %{name}, %{time}"
+    confirmed_timestamp: "Last confirmed: %{name}, %{time}."
+    approved_timestamp: "Approved: %{name}, %{time}."
     no_filled_answers: None known
     risk:
       no_filled_answers: No known risks

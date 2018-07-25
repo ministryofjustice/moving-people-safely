@@ -38,7 +38,7 @@ module Page
 
     def check_security(risk)
       if risk.location == 'prison'
-        check_section(risk, 'security', %w[controlled_unlock category_a high_profile pnc_warnings])
+        check_section(risk, 'security', %w[controlled_unlock high_profile pnc_warnings])
       elsif risk.location == 'police'
         check_section(risk, 'security', %w[high_profile violent_or_dangerous gang_member previous_escape_attempts])
       end
