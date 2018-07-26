@@ -197,7 +197,7 @@ RSpec.describe MpsFormBuilder do
           <div class="optional-section-wrapper mps-hide panel panel-border-narrow">
             <div class="form-group">
               <span class="form-hint"></span>
-              <textarea class="form-control" name="my_name[my_attribute_details]" id="my_name_my_attribute_details">
+              <textarea class="form-control form-control-3-4" name="my_name[my_attribute_details]" id="my_name_my_attribute_details">
                 My details
               </textarea>
             </div>

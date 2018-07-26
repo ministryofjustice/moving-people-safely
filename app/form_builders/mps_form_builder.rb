@@ -73,7 +73,7 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
   def radio_toggle_with_textarea(attribute, options = {})
     details_attr = options.fetch(:details_attr) { :"#{attribute}_details" }
     radio_toggle(attribute, options.merge(details_attr: details_attr)) do
-      text_area_without_label details_attr
+      text_area_without_label details_attr, options.merge(class: 'form-control form-control-3-4')
     end
   end
 
@@ -97,8 +97,8 @@ class MpsFormBuilder < GovukElementsFormBuilder::FormBuilder
       end
   end
 
-  def text_area_without_label(attribute)
-    field_without_label ActionView::Helpers::Tags::TextArea, attribute
+  def text_area_without_label(attribute, options = {})
+    field_without_label ActionView::Helpers::Tags::TextArea, attribute, options
   end
 
   def text_field_without_label(attribute, options = {})
