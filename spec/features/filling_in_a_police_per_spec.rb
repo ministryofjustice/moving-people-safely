@@ -51,6 +51,7 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
     healthcare.complete_forms(healthcare_data)
     healthcare_summary.confirm_healthcare_details(healthcare_data)
     healthcare_summary.confirm_and_save
+    escort_page.confirm_healthcare_labels(:police)
 
     escort_page.click_edit_offences
 

@@ -2,7 +2,7 @@
   tr.top-dotted
     td.indented.column-30-percent
       .strong-text
-        = t("print.section.questions.#{section}.#{question}")
+        = location_text(t("print.section.questions.#{section}.#{question}"), assessment.location)
     td.column-20-percent.indented
       .strong-text
         = value.humanize.capitalize

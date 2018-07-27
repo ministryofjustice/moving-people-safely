@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'printing a PER', type: :feature do
+RSpec.feature 'printing a prison PER', type: :feature do
   let(:reviewer) {
     create(:user, first_name: 'Nelle', last_name: 'Bailey')
   }
@@ -78,7 +78,7 @@ RSpec.feature 'printing a PER', type: :feature do
       escort_page.click_print
 
       expect(page.body).
-        to validate_as_pdf_that_contains_text('pdf-text-all-no-answers.txt')
+        to validate_as_pdf_that_contains_text('prison/pdf-text-all-no-answers.txt')
     end
   end
 
@@ -202,7 +202,7 @@ RSpec.feature 'printing a PER', type: :feature do
       escort_page.click_print
 
       expect(page.body).
-        to validate_as_pdf_that_contains_text('pdf-text-all-yes-answers.txt')
+        to validate_as_pdf_that_contains_text('prison/pdf-text-all-yes-answers.txt')
     end
   end
 end

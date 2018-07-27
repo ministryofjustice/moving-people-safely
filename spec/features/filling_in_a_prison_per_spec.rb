@@ -72,5 +72,6 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
 
     escort_page.confirm_offences_action_link('View')
     escort_page.confirm_risk_action_link('View')
+    escort_page.confirm_healthcare_labels(:prison)
   end
 end

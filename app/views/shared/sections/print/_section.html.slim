@@ -4,7 +4,7 @@ tr.top-dotted
   td.column-30-percent
     .title
       div class="#{ 'strong-text' if relevant }"
-        = t("print.section.titles.#{section}")
+        = location_text(t("print.section.titles.#{section}"), assessment.location)
   td.column-20-percent.indented
     div class="#{ 'strong-text' if relevant }"
       = relevant ? 'Yes' : 'No'

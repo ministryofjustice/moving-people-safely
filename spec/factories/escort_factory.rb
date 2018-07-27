@@ -77,6 +77,11 @@ FactoryBot.define do
       association :healthcare, :needs_review
     end
 
+    trait :approved do
+      association :approver, factory: :user
+      approved_at 1.day.ago.utc
+    end
+
     trait :issued do
       completed
       issued_at 1.day.ago.utc

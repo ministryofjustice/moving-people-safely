@@ -2,7 +2,7 @@
   - breadcrumbs_for_page root: true do
     - breadcrumb escort_breadcrumb(escort), escort_path(escort)
     - breadcrumb 'Healthcare'
-    - breadcrumb t("healthcare.form.title.#{form.name}")
+    - breadcrumb location_text(t("healthcare.form.title.#{form.name}"), escort.location)
 
 .column-three-quarters
   = render 'shared/wizard_header'

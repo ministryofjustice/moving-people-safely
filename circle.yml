@@ -16,4 +16,4 @@ dependencies:
 
 test:
   override:
-    - bundle exec rake SPEC_OPTS="--format documentation --exclude-pattern spec/features/printing_spec.rb"
+    - bundle exec rake SPEC_OPTS="--format documentation --exclude-pattern spec/features/printing_*.rb"

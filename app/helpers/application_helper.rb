@@ -40,4 +40,10 @@ module ApplicationHelper
   def answer_details(*answers)
     answers.compact.map(&:capitalize).join(' | ')
   end
+
+  def location_text(text, location)
+    return unless text
+    return text if text.is_a?(String)
+    text[location.to_sym] || text[:"#{location}_html"].html_safe
+  end
 end
