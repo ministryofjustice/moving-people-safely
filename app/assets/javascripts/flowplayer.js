@@ -10,12 +10,5 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require bootstrap-datepicker/dist/js/bootstrap-datepicker.min
-//= require_tree .
-//= require stickyfill.min
-//= stub 'accessible-autocomplete.min'
-//= stub 'auto-complete-init'
-//= stub 'flowplayer-3.2.13.min'
-//= stub 'flowplayer-init'
+//= require flowplayer-3.2.13.min
+//= require 'flowplayer-init'

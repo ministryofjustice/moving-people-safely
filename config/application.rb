@@ -20,6 +20,7 @@ module MovingPeopleSafely
     config.product_type = 'service'
     config.feedback_url = 'https://www.surveymonkey.co.uk/r/eperfeedback'
     config.assets.paths << Rails.root.join('node_modules')
+    config.assets.paths << Rails.root.join('app', 'assets', 'flash')
     config.time_zone = 'London'
 
     require "#{config.root}/app/form_builders/govuk_elements_errors_helper"

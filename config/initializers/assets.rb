@@ -25,4 +25,6 @@ Rails.application.config.assets.precompile += %w(
     print
     accessible-autocomplete.min.css
     auto-complete.js
+    flowplayer.js
+    flowplayer-3.2.13.min.js
 )
