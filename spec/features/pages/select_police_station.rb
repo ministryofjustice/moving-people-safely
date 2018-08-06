@@ -4,5 +4,9 @@ module Page
       select name, from: 'Police custody suite'
       save_and_continue
     end
+
+    def expect_error_message
+      expect(page).to have_content 'Please select a police custody suite'
+    end
   end
 end

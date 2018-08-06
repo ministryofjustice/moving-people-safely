@@ -1,23 +1,25 @@
 require 'feature_helper'
 
 RSpec.feature 'filling in a PER from a police station', type: :feature do
-  let(:offences_data) {
+  let(:offences_data) do
     {
       offences: [
         { name: 'Burglary', case_reference: 'Ref 3064' },
         { name: 'Attempted murder', case_reference: 'Ref 7291' }
       ]
     }
-  }
+  end
 
   scenario 'adding a new escort, filling it in and approve it' do
     banbury_police_station = create(:police_custody, name: 'Banbury Police Station')
 
-    login_options = { sso: { info: { permissions: [{'organisation' => User::POLICE_ORGANISATION}]}} }
+    login_options = { sso: { info: { permissions: [{ 'organisation' => User::POLICE_ORGANISATION }] } } }
     login(nil, login_options)
 
     expect(current_path).to eq select_police_station_path
 
+    select_police_station.select_station('')
+    select_police_station.expect_error_message
     select_police_station.select_station('Banbury Police Station')
 
     expect(current_path).to eq root_path

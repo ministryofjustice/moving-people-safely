@@ -18,15 +18,17 @@ class HomepageController < ApplicationController
   end
 
   def select_police_station
-    @form = Forms::PoliceStationSelector.new(PoliceCustody.new)
+    @form = Forms::PoliceStationSelector.new
   end
 
   def set_police_station
-    if params[:police_station_selector][:police_custody_id]
-      session[:police_station_id] = params[:police_station_selector][:police_custody_id]
+    @form = Forms::PoliceStationSelector.new(police_params)
+
+    if @form.valid?
+      session[:police_station_id] = police_params[:police_custody_id]
       redirect_to root_path
     else
-      redirect_to select_police_station_path
+      render :select_police_station
     end
   end
 
@@ -46,5 +48,9 @@ class HomepageController < ApplicationController
 
   def redirect_to_select_police_station
     redirect_to select_police_station_path
+  end
+
+  def police_params
+    params.require(:forms_police_station_selector).permit(:police_custody_id)
   end
 end

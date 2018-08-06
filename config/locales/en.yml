@@ -786,6 +786,10 @@ en:
       date_is_in_the_past: "must not be in the past"
       date_is_in_the_future: "must not be in the future"
     models:
+      forms/police_station_selector:
+        attributes:
+          police_custody_id:
+            blank: "^Please select a police custody suite"
       forms/assessments/section: &assessment_form
         attributes:
           acct_status_details:
