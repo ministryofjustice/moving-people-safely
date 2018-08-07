@@ -110,29 +110,29 @@ en:
         violent_or_dangerous: Are they violent or dangerous?
     label:
       allergies:
-        allergies: "Do they have any known allergies or intolerances?"
-        allergies_details: "Details for any known allergies or intolerances"
+        allergies: "the allergies or intolerances question"
+        allergies_details: "details of known allergies or intolerances"
       arson:
-        arson: "Are they an arsonist?"
+        arson: "the arsonist question"
       concealed_weapons:
-        conceals_drugs: "Have they concealed drugs in custody?"
-        conceals_drugs_details: "Details for concealed drugs in custody"
+        conceals_drugs: "the drugs in custody question"
+        conceals_drugs_details: "details of drugs in custody"
         conceals_mobile_phones: Mobile phones
-        conceals_mobile_phone_or_other_items: "Have they concealed mobile phones, SIMs or other items in custody?"
-        conceals_mobile_phone_or_other_items_type: "Concealed mobile phones, SIMs or other items in custody"
+        conceals_mobile_phone_or_other_items: "the mobile phones in custody question"
+        conceals_mobile_phone_or_other_items_type: "details of mobile phones or other items concealed in custody"
         conceals_other_items: Other
         conceals_other_items_details: "Details for other concealed items"
         conceals_sim_cards: SIM cards
-        conceals_weapons: "Have they concealed weapons in custody?"
-        conceals_weapons_details: "Details for concealed weapons in custody"
-        substance_supply: "Is there a risk that they might traffic drugs on this journey?"
-        uses_weapons: "Have they created or used weapons in custody?"
-        uses_weapons_details: "Details for created or used weapons in custody"
+        conceals_weapons: "the concealed weapons in custody question"
+        conceals_weapons_details: "details of weapons concealed in custody"
+        substance_supply: "the drug trafficking risk question"
+        uses_weapons: "the weapons in custody question"
+        uses_weapons_details: "details of weapons created or used in custody"
       contact:
-        contact_number: Medical contact
+        contact_number: a contact number
       dependencies:
-        dependencies: "Do they have any addictions or dependencies that might affect them while they are out of prison?"
-        dependencies_details: Details for addictions or dependencies
+        dependencies: "the addictions or dependencies question"
+        dependencies_details: details of addictions or dependencies
       detainee:
         surname: Surname
         forenames: First name(s)
@@ -145,27 +145,27 @@ en:
       detainee_search:
         prison_number: Enter a prisoner number
       discrimination:
-        discrimination_to_other_religions: Risk to other religions
-        discrimination_to_other_religions_details: Risk to other religions details
-        homophobic: Risk to LGBT people
-        homophobic_details: Risk to LGBT people details
-        other_violence_due_to_discrimination: Risk to other groups
-        other_violence_due_to_discrimination_details: Risk to other groups details
-        racist: Risk to other races
-        racist_details: Risk to other races details
-        violence_to_staff: Violent to staff
-        violence_to_staff_details: Violent to staff details
+        discrimination_to_other_religions: the risk to other religions question
+        discrimination_to_other_religions_details: details of risks posed to people of other religions
+        homophobic: the risk to LGBTQ people question
+        homophobic_details: details of risks posed to LGBTQ people
+        other_violence_due_to_discrimination: the risk to other groups question
+        other_violence_due_to_discrimination_details: details of risks posed to other groups
+        racist: the risk to other races question
+        racist_details: details of risks posed to people of other races
+        violence_to_staff: the risk to staff question
+        violence_to_staff_details: details of risks posed to staff
       escape:
-        current_e_risk: "Are they on the Escape List (E-List)?"
-        current_e_risk_details: E-List category
+        current_e_risk: "the E-List question"
+        current_e_risk_details: E-List details
         current_e_risk_details_choices:
           e_list_standard: E-List-Standard
           e_list_escort: E-List-Escort
           e_list_heightened: E-List-Heightened
-        escape_pack: "Has an Escape Pack been created for this journey?"
-        escort_risk_assessment: "Has an Escort Risk Assessment been completed for this journey?"
-        previous_escape_attempts: escape risk
-        previous_escape_attempts_details: details for escape risk
+        escape_pack: "the Escape Pack question"
+        escort_risk_assessment: "the Escort Risk Assessment question"
+        previous_escape_attempts: the escape risk question
+        previous_escape_attempts_details: escape risk reasons
       forms_search:
         prison_number: Prison number
         pnc_number: PNC number
@@ -173,9 +173,9 @@ en:
         email: Your email address
         message: Your message
       harassment_and_gangs:
-        gang_member: Gang member
-        gang_member_details: Gang member details
-        intimidation: Known harasser, intimidator or bully
+        gang_member: the gang member question
+        gang_member_details: gang or organised crime details
+        intimidation: the harassment question
         intimidation_type: Targets of harassment, intimidation or bullying
         intimidation_to_public: Public
         intimidation_to_public_details: Public details
@@ -184,7 +184,7 @@ en:
         intimidation_to_witnesses: Witnesses
         intimidation_to_witnesses_details: Witnesses details
       hostage_taker:
-        hostage_taker: History of taking hostages
+        hostage_taker: the hostage taker question
         hostage_taker_type: Group involved in hostage taking
         staff_hostage_taker: Staff
         public_hostage_taker: Public
@@ -197,13 +197,13 @@ en:
         to: To
         date: Date of travel
       mental:
-        mental_illness: "Do they have mental health needs that might affect them while they are out of prison?"
-        mental_illness_details: Details for mental health issues
+        mental_illness: "the mental health needs question"
+        mental_illness_details: details of mental health needs
       needs:
         actions:
           medications:
             add_multiple: Add another medicine
-        has_medications: "Will they need to be given medication while they are out of prison?"
+        has_medications: "the medication question"
         medications:
           description: Medicine name
           administration: How is it given?
@@ -220,57 +220,57 @@ en:
             prison: Case reference
             police: Unique reference number
       other_risk:
-        other_risk: "Is there any other information related to risk on this journey you would like to include?"
-        other_risk_details: "Other information related to risk on this journey"
+        other_risk: "the other risk question"
+        other_risk_details: "information related to risk on this journey"
       physical:
-        physical_issues: "Do they have physical health needs that might affect them while they are out of prison?"
-        physical_issues_details: "Details for physical health issues"
+        physical_issues: "the physical health needs question"
+        physical_issues_details: "details of physical health needs"
       return_instructions:
         actions:
           must_not_return_details:
             add_multiple: Add another establishment
-        has_must_not_return_details: "Is there any establishment they must not be sent to at the end of this journey?"
+        has_must_not_return_details: "the must not return question"
         must_not_return_details:
           establishment: Establishment name
           establishment_details: 'Give details of why they must not be sent here:'
-        must_return: "Must they return to a specific prison at the end of this journey?"
+        must_return: "the must return question"
         must_return_to: 'Prison name:'
-        must_return_to_details: Details for returning to a specific prison
+        must_return_to_details: details for returning to a specific prison
       security:
         category_a: Cat A or potential Cat A
         controlled_unlock: Controlled unlock
-        controlled_unlock: Number of officers
+        controlled_unlock: the controlled unlock question
         controlled_unlock_choices:
           two_officer_unlock: '2 officer unlock'
           three_officer_unlock: '3 officer unlock'
           four_officer_unlock: '4 officer unlock'
           more_than_four: 'More than 4 officers'
-        high_profile: High public interest
-        high_profile_details: Details of high public interest
+        high_profile: the high public interest question
+        high_profile_details: high public interest details
       segregation:
-        csra: CSRA risk level
+        csra: the CSRA question
       risk_to_self:
-        acct_status: ACCT status
+        acct_status: the ACCT status question
         acct_status_choices:
           open: Open
           post_closure: Post Closure
           closed: Closed
           none: No ACCT history
-        acct_status_details: Give details of methods and triggers recorded on NOMIS if entered
-        date_of_most_recently_closed_acct: Date of most recently closed ACCT
+        acct_status_details: ACCT details if known
+        date_of_most_recently_closed_acct: the date the ACCT was closed
       sex_offences:
-        sex_offence: Are they a current or previous sex offender?
+        sex_offence: the sex offender question
         sex_offence_adult_male_victim: Adult male
         sex_offence_adult_female_victim: Adult female
         sex_offence_type: Victims of sex offences
         sex_offence_under18_victim: Under 18
         date_most_recent_sexual_offence: Date of most recent sexual offence
       social:
-        personal_care: "Will they need help with personal tasks while they are out of prison?"
-        personal_care_details: Details for help needs with personal tasks on this journey
+        personal_care: "the personal tasks question"
+        personal_care_details: details of personal tasks they may need help with
       transport:
-        mpv: "Do they need to travel in a special vehicle?"
-        mpv_details: Details for need of a special vehicle
+        mpv: "the special vehicle question"
+        mpv_details: reasons a special vehicle is needed
     hint:
       allergies:
         allergies: "For example, dietary, medical or environmental allergies"
@@ -638,7 +638,7 @@ en:
         segregation:
           csra: Cell share risk
           rule_45: Rule 45
-          vulnerable_prisoner: Vulnerable prisoner
+          vulnerable_prisoner: Vulnerable person
         sex_offences:
           sex_offence: Sex offender
         social:
@@ -733,29 +733,29 @@ en:
               inclusion: question must be answered
   errors:
     summary:
-      title: There were problems saving this form
+      title: Please fix the errors on this page to continue
     messages:
       minimum_collection_size: At least one item needs to be provided
     attributes:
       base:
-        minimum_current_offence: 'At least one current offence needs to be provided'
-        minimum_one_option: 'At least one option (%{options}) needs to be provided'
+        minimum_current_offence: 'Enter at least one current offence'
+        minimum_one_option: 'Enter at least one option (%{options})'
   alerts:
     detainee_already_exists: "Detainee already exists. You've been redirected to the next relevant form"
     detainee:
       access:
         unauthorized: "Enter a prisoner number for someone currently at %{establishments} to start a PER."
       details:
-        unavailable: "Look-Up function is not currently available. Please enter person details manually"
-        not_found: "No record for that prison reference exists. Please check the reference used or enter the details manually"
+        unavailable: "We can't automatically complete detainee details right now. Please fill them in manually."
+        not_found: "No record for that prisoner number exists. Check the number used or enter the details manually."
         invalid_input: The provided prison number is not valid, please try again with a valid prison number
       image:
         unavailable: "Image Look-Up function is not currently available. Please try again later"
         not_found: "Look-Up function for photograph returned no image. Either try again later or attach photograph manually to print out"
-        invalid_input: The provided prison number is not valid, please try again with a valid prison number
+        invalid_input: The prisoner number is not valid, please try again with a valid number
     escort:
       access:
-        unauthorized: "The PER you are trying to access has not been created from your prison"
+        unauthorized: "The PER you are trying to access has not been created at your prison"
       edit:
         unauthorized: "The PER can no longer be changed."
       detainee:
@@ -763,13 +763,13 @@ en:
       move:
         exists: "Move details for the PER already exist."
       print:
-        unauthorized: "PER is not in a status that can be printed"
+        unauthorized: "PER is not in a status that can be printed. Make sure the PER is complete before printing."
     feedback:
       created: Your message has been sent
     offences:
       api_error: Offences aren't available right now, please try again or fill in the offences below
       internal_error: Offences aren't available right now, please try again or fill in the offences below
-      not_found: "Offences data could not be retrieved. Please fill in manually."
+      not_found: "We can't automatically complete offences details right now. Please fill them in manually."
     unable_to_confirm_assessment: "%{assessment} assessment cannot be confirmed until all mandatory answers are filled"
     search:
       invalid_identifier: "The %{type} '%{identifier}' is not valid, please try again with a valid %{type}"
@@ -780,8 +780,8 @@ en:
     summary:
       title: "There were errors saving this form"
     messages:
-      inclusion: "^Please answer %{attribute}"
-      blank: "^Please fill in %{attribute}"
+      inclusion: "^Answer %{attribute}"
+      blank: "^Enter %{attribute}"
       date_not_valid: "^Enter a valid %{attribute}"
       date_is_in_the_past: "must not be in the past"
       date_is_in_the_future: "must not be in the future"
@@ -814,19 +814,19 @@ en:
           gender:
             inclusion: "^Choose a gender"
           surname:
-            blank: "^Enter a surname"
+            blank: "^Enter a last name"
       move:
         attributes:
           from:
             blank: "^Enter start point"
           not_for_release:
-            inclusion: "^Select one of the options not for release"
+            inclusion: "^Answer the release status question"
           not_for_release_reason:
-            inclusion: "^Select a reason not for release"
+            inclusion: "^Choose a reason why they must not be released"
           not_for_release_reason_details:
             blank: "^Please provide details why the detainee is not for release"
           to: &blank_destination_error
-            blank: "^Enter destination"
+            blank: "^Enter destination name"
           to_magistrates_court:
             <<: *blank_destination_error
           to_crown_court:
@@ -844,11 +844,11 @@ en:
           intimidation_prisoners_details:
             blank: "^Please fill in prisoner intimidation details"
           gang_member_details:
-            blank: "^Please fill in gang member details"
+            blank: "^Enter gang or organised crime details"
       concealed_weapons:
         attributes:
           substance_supply_details:
-            blank: "^Please fill in drug trafficing details"
+            blank: "^Enter details of drug trafficking risk"
   activerecord:
     errors:
       <<: *errors
