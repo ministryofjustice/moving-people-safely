@@ -19,7 +19,7 @@ $(function () {
   ];
 
   for (var id in videoIds) {
-    var $el = 'a#' + videoIds[id];
+    var $el = $('a#' + videoIds[id]);
     if($el.length) {
       $($el).empty();
 
