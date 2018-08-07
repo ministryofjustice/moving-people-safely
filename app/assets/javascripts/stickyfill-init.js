@@ -7,5 +7,7 @@ $(function () {
    * https://github.com/wilddeer/stickyfill
    */
 
-  Stickyfill.add($('.side-profile'));
+  if (typeof Stickyfill !== 'undefined') {
+    Stickyfill.add($('.side-profile'));
+  }
 });

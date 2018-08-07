@@ -1,0 +1,34 @@
+'use strict';
+
+$(function () {
+
+  /**
+   * Initialise Flowplayer
+   */
+
+  var swfpath = '<%= asset_path("flowplayer-3.2.18.swf") %>';
+  var videoIds = [
+    'help-video-register',
+    'help-video-create-a-per',
+    'help-video-risk',
+    'help-video-healthcare',
+    'help-video-print-a-per',
+    'help-video-reprint-a-per',
+    'help-video-cancel-a-per',
+    'help-video-managing-user-accounts'
+  ];
+
+  for (var id in videoIds) {
+    var $el = 'a#' + videoIds[id];
+    if($el.length) {
+      $($el).empty();
+
+      flowplayer(videoIds[id], swfpath, {
+        clip: {
+          autoPlay: false
+        }
+      });
+    }
+  }
+
+});

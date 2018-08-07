@@ -26,6 +26,9 @@
     | <!--[if (gte IE 9)|!(IE)]<!-->
     = javascript_include_tag "auto-complete.js"
     | <!--<![endif]-->
+    | <!--[if IE]<!-->
+    = javascript_include_tag "flowplayer.js"
+    | <!--<![endif]-->
 
 = content_for :homepage_url
   = root_path
