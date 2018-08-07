@@ -75,7 +75,7 @@ RSpec.describe Forms::Move, type: :form do
           it 'an inclusion error is added to the error list' do
             expect(form).not_to be_valid
             expect(form.errors.keys).to include(:not_for_release_reason)
-            expect(form.errors[:not_for_release_reason]).to match_array(['^Select a reason not for release'])
+            expect(form.errors[:not_for_release_reason]).to match_array(['^Choose a reason why they must not be released'])
           end
         end
 
