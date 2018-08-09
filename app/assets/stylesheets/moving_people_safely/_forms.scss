@@ -193,3 +193,18 @@ form {
     display: block;
   }
 }
+
+.search-wrapper {
+  .form-group {
+    margin-bottom: 0;
+    display: inline;
+
+    .form-control {
+      margin-right: 5px;
+    }
+
+    &:after {
+      display: inline;
+    }
+  }
+}
