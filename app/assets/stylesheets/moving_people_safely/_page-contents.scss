@@ -1,0 +1,31 @@
+.page_contents_list {
+  &__items {
+    li {
+      @include core-16;
+      list-style: none;
+      margin-left: $gutter-half;
+      margin-bottom: $gutter-half;
+      padding-right: $gutter-half;
+
+      &:before {
+        content: '–';
+        float: left;
+        display: block;
+        width: $gutter-half;
+        margin-left: -$gutter-half;
+      }
+    }
+
+    a {
+      text-decoration: none;
+
+      &:hover, &:focus, &:active {
+        text-decoration: underline;
+      }
+    }
+
+    .active {
+      font-weight: bold;
+    }
+  }
+}
