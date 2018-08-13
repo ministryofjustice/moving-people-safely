@@ -51,7 +51,7 @@ RSpec.describe 'New detainee requests', type: :request do
       context 'when detainee details cannot be prepopulated' do
         it 'sets a flash error message indicating the details could not be prefetched' do
           get "/escorts/#{escort.id}/detainee/new"
-          expect(flash[:warning]).to eq('Look-Up function is not currently available. Please enter person details manually')
+          expect(flash[:warning]).to eq("We can't automatically complete detainee details right now. Please fill them in manually.")
         end
       end
     end

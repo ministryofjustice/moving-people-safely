@@ -59,7 +59,7 @@ Risk to self                         Yes
 Segregation                          Yes
   Cell share risk                    High
   Rule 45                            Yes
-  Vulnerable prisoner                Yes                 Vulnerable prisoner details
+  Vulnerable person                  Yes                 Vulnerable prisoner details
 Security                             Yes
   Multiple officer unlock/escort Yes                     Many people to hold the prisoner
   Cat A or potential Cat A           Yes
