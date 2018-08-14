@@ -1,11 +1,65 @@
-.court-dashboard-indicators.column-one-third
-  span.data-item.bold-large= Date.today
-  span.data-item.bold-small= @court.name
-  = link_to 'Change court', select_court_path
+.grid-row.court-dashboard-indicators
+  .column-one-third
+    span.data-item.bold-large= Date.today
+    span.data-item.bold-small= @court.name
+    = link_to 'Change court', select_court_path
 
-.court-dashboard-indicators.column-one-third
-  span.data-item.bold-large= @escorts.count
-  span.data-item.bold-small Total custodies
+.court-dashboard-indicators.custodies-radiator
+  .column-two-fifths.custodies.total-custodies
+    .total
+      span.data-item.bold-xlarge 4
+      span.data-item.bold-medium Total custodies
+    .sources
+      .source.police
+          span.data-item.bold-large 2
+          span.data-item.bold-small From Police
+      .source.prison
+        span.data-item.bold-large 2
+        span.data-item.bold-small From Prison
+  .column-one-fifth.custodies.juveniles
+    h2 Juveniles
+    ul
+      li
+        span.data-item.bold-small 0
+        span.data-item.bold-small Male
+      li
+        span.data-item.bold-small 0
+        span.data-item.bold-small Female
+      li
+        span.data-item.bold-small 0
+        span.data-item.bold-small Unknown
+  .column-one-fifth.custodies
+    h2 Young Offenders
+    ul
+      li
+        span.data-item.bold-small 1
+        span.data-item.bold-small Male
+      li
+        span.data-item.bold-small 0
+        span.data-item.bold-small Female
+      li
+        span.data-item.bold-small 0
+        span.data-item.bold-small Unknown
+  .column-one-fifth.custodies
+    h2 Adults
+    ul
+      li
+        span.data-item.bold-small 1
+        span.data-item.bold-small Male
+      li
+        span.data-item.bold-small 2
+        span.data-item.bold-small Female
+      li
+        span.data-item.bold-small 0
+        span.data-item.bold-small Unknown
+
+
+
+
+.grid-row.court-dashboard-indicators
+  .column-one-third
+    span.data-item.bold-large= @escorts.count
+    span.data-item.bold-small Total custodies
 
 table.court-dashboard
   thead

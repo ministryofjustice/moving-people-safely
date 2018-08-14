@@ -70,3 +70,65 @@ table.court-dashboard {
   text-align: center;
   font-size: 12px;
 }
+
+.custodies-radiator {
+  @include clearfix;
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 40px;
+
+  .custodies {
+    background-color: $grey-3;
+    box-sizing: border-box;
+    padding: 10px;
+    border-left: 3px solid #fff;
+
+    &:first-child {
+      border-left: none;
+    }
+
+    li {
+      list-style-type: none;
+      margin: 10px 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .total-custodies {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    .total, .sources {
+      height: 50%;
+    }
+
+    .total {
+      padding: 10px;
+    }
+
+    .sources {
+      display: flex;
+      align-items: stretch;
+
+      .source {
+        color: $white;
+        float: left;
+        width: 50%;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      .police {
+        background-color: $govuk-blue;
+      }
+      .prison {
+        background-color: $black;
+      }
+    }
+  }
+}
+
