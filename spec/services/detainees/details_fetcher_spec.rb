@@ -110,6 +110,7 @@ RSpec.describe Detainees::DetailsFetcher do
     let(:diet) { { 'code' => 'GLU', 'desc' => 'Medical - Gluten Free Diet' } }
     let(:pnc_number) { '12344' }
     let(:cro_number) { '54321' }
+    let(:security_category) { { 'code' => 'A', 'desc' => 'Category A' } }
     let(:valid_body) {
       {
         given_name: given_name,
@@ -124,7 +125,8 @@ RSpec.describe Detainees::DetailsFetcher do
         diet: diet,
         pnc_number: pnc_number,
         cro_number: cro_number,
-        aliases: []
+        aliases: [],
+        security_category: security_category
       }.to_json
     }
 
@@ -149,7 +151,8 @@ RSpec.describe Detainees::DetailsFetcher do
         diet: 'Medical - Gluten Free Diet',
         pnc_number: '12344',
         cro_number: '54321',
-        aliases: nil
+        aliases: nil,
+        security_category: 'Category A'
       }.with_indifferent_access
       response = fetcher.call
       expect(response.to_h).to eq(expected_response)

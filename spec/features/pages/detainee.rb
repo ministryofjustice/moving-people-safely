@@ -24,6 +24,7 @@ module Page
           choose detainee.peep.humanize
           fill_in 'detainee_peep_details', with: detainee.peep_details
         end
+        fill_in 'Security category', with: detainee.security_category
       end
       fill_in 'Diet', with: detainee.diet
 

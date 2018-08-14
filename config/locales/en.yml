@@ -714,7 +714,8 @@ en:
         reprint_this_per: Reprint this PER
         do_not_reprint_per: Do not reprint this PER
   assessment:
-    confirmed_timestamp: "Last confirmed: %{name}, %{time}"
+    confirmed_timestamp: "Last confirmed: %{name}, %{time}."
+    approved_timestamp: "Approved: %{name}, %{time}."
     no_filled_answers: None known
     risk:
       no_filled_answers: No known risks

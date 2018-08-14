@@ -52,6 +52,10 @@ $is-print: true;
     width: (100% / 3);
   }
 
+  .column-two-thirds {
+    width: 66%;
+  }
+
   .column-one-sixth {
     width: (100% / 6);
   }
@@ -66,6 +70,13 @@ main {
   margin: 0;
   position: relative;
   @extend .font-xsmall;
+}
+
+.page-one {
+  position: absolute;
+  top: 0;
+  left: 40px;
+  width: 95%;
 }
 
 table {
@@ -219,10 +230,6 @@ table {
   padding: 10px 0;
 }
 
-.move {
-  margin-top: 30px;
-}
-
 table.vehicles {
   tr.header-row {
     height: 30px;
@@ -310,4 +317,20 @@ table.about {
 .flag {
   @extend .flag;
   margin: 0;
+}
+
+.staple-instruction {
+  -webkit-transform: rotate(90deg);
+  position: absolute;
+  left: -56px;
+  text-align: top;
+  font-size: 11px;
+}
+
+.staple-instruction-top {
+  top: 50px;
+}
+
+.staple-instruction-bottom {
+  top: 1080px;
 }
