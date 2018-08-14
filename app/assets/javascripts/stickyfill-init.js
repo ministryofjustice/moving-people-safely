@@ -8,6 +8,6 @@ $(function () {
    */
 
   if (typeof Stickyfill !== 'undefined') {
-    Stickyfill.add($('.side-profile'));
+    Stickyfill.add($('.sticky'));
   }
 });
