@@ -2,18 +2,17 @@
   header
     h1 Detainee information
 
-  = GovukElementsErrorsHelper.error_summary form,
-    'There were problems saving this form', ''
-
-  - if form.image.present?
-    .detainee-image
-      = image_tag "data:image/jpeg;base64,#{form.image}", size: '128x180'
-  - else
-    .no-image
-      span = 'Photo unavailable'
-
   .form-wrapper
     = form_for form, url: submit_path, method: method do |f|
+      = f.error_messages
+
+      - if form.image.present?
+        .detainee-image
+          = image_tag "data:image/jpeg;base64,#{form.image}", size: '128x180'
+      - else
+        .no-image
+          span = 'Photo unavailable'
+
       = f.hidden_field :image_filename
       = f.hidden_field :image
 

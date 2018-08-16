@@ -778,7 +778,7 @@ en:
       cannot_sign_in: You cannot be signed in
   errors: &errors
     summary:
-      title: "There were errors saving this form"
+      title: Please fix the errors on this page to continue
     messages:
       inclusion: "^Answer %{attribute}"
       blank: "^Enter %{attribute}"
@@ -827,28 +827,114 @@ en:
             blank: "^Please provide details why the detainee is not for release"
           to: &blank_destination_error
             blank: "^Enter destination name"
+          to_civil_court:
+            <<: *blank_destination_error
           to_magistrates_court:
             <<: *blank_destination_error
           to_crown_court:
             <<: *blank_destination_error
           to_prison:
             <<: *blank_destination_error
+          to_police_custody:
+            <<: *blank_destination_error
           to_hospital:
+            <<: *blank_destination_error
+          to_immigration_removal_centre:
+            <<: *blank_destination_error
+          to_youth_secure_estate:
             <<: *blank_destination_error
           to_other:
             <<: *blank_destination_error
+          to_type:
+            blank: ^Choose a destination
+          date:
+            date_is_in_the_past: ^Enter a date from today onwards
+      risk_to_self:
+        attributes:
+          date_of_most_recently_closed_acct:
+            date_not_valid: ^Enter the date of the most recently closed ACCT
+          acct_status_details:
+            blank: ^Enter ACCT details
+          self_harm:
+            inclusion: ^Answer the self harm question
+      segregation:
+        attributes:
+          rule_45:
+            inclusion: ^Answer the Rule 45 question
+          vulnerable_prisoner:
+            inclusion: ^Answer the vulnerable person question
+          vulnerable_prisoner_details:
+            blank: ^Enter vulnerable person details
+      security:
+        attributes:
+          category_a:
+            inclusion: ^Answer the prisoner category question
+          pnc_warnings:
+            inclusion: ^Answer the PNC warnings question
+          pnc_warnings_details:
+            blank: ^Enter PNC warnings
+      violent_or_dangerous:
+        attributes:
+          violent_or_dangerous:
+            inclusion: ^Answer the violent or dangerous behaviour question
+          violent_or_dangerous_details:
+            blank: ^Enter details of violent or dangerous behaviour
       harassment_and_gangs:
         attributes:
+          intimidation_public:
+            inclusion: ^Answer the harassment question
           intimidation_public_details:
-            blank: "^Please fill in public harassment details"
+            blank: ^Enter details of public harassment or witness intimidation
+          intimidation_prisoners:
+            inclusion: ^Answer the prisoner bullying or intimidation question
           intimidation_prisoners_details:
-            blank: "^Please fill in prisoner intimidation details"
+            blank: ^Enter details of prisoner bullying or intimidation
           gang_member_details:
             blank: "^Enter gang or organised crime details"
+      discrimination:
+        attributes:
+          risk_to_females:
+            inclusion: ^Answer the risk to females question
+          risk_to_females_details:
+            blank: ^Enter details of risks posed to females
+      hostage_taker:
+        attributes:
+          hostage_taker_details:
+            blank: ^Enter details of previous hostage taker attempts
+      sex_offences:
+        attributes:
+          sex_offence_details:
+            blank: ^Enter details of sex offence victims and incidents
       concealed_weapons:
         attributes:
+          conceals_mobile_phone_or_other_items_details:
+            blank: ^Enter details of mobile phones or other items concealed in custody
           substance_supply_details:
             blank: "^Enter details of drug trafficking risk"
+      arson:
+        attributes:
+          arson:
+            inclusion: ^Answer the arsonist question
+      transport:
+        attributes:
+          mpv_details:
+            blank: ^Enter reasons for special vehicle
+      medication:
+        attributes:
+          description:
+            blank: ^Enter medicine name
+          administration:
+            blank: ^Enter details of how medicine should be given
+          dosage:
+            blank: ^Enter medicine dosage
+          when_given:
+            blank: ^Enter details of when medicine should be given
+      dependencies:
+        attributes:
+          alcohol_withdrawal:
+            inclusion: ^Answer the alcohol withdrawal question
+          alcohol_withdrawal_details:
+            blank: ^Enter details of alcohol withdrawal
   activerecord:
     errors:
       <<: *errors

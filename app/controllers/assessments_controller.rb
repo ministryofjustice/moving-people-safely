@@ -70,7 +70,7 @@ class AssessmentsController < ApplicationController
   end
 
   def form_params
-    return unless params[step]
+    return {} unless params[step]
     params[step].permit!
   end
 

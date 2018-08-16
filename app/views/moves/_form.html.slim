@@ -24,7 +24,7 @@
                 - if form.errors["to_#{option}"].any?
                   .error
                     .span.error-message
-                      = form.errors["to_#{option}"].join(', ')
+                      = form.errors.full_messages_for("to_#{option}").join(', ')
                     = f.select "to_#{option}", option.to_s.classify.constantize.pluck(:name), {include_blank: true}, { id: option }
                 - else
                   = f.select "to_#{option}", option.to_s.classify.constantize.pluck(:name), {include_blank: true}, { id: option }
