@@ -84,7 +84,12 @@ table.court-dashboard
         td
           span.surname= escort.detainee.surname
           = escort.detainee.forenames
-        td= escort.move.from_establishment.name
+        td
+          span.flag.source-tag.prison
+            | Prison
+          / span.flag.source-tag.police
+          /   | Police
+          = escort.move.from_establishment.name
         td= escort.detainee.date_of_birth
         td= escort.detainee.age
 

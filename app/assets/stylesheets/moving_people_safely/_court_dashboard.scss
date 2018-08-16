@@ -132,3 +132,13 @@ table.court-dashboard {
   }
 }
 
+.source-tag {
+  color: $white;
+
+  &.police {
+    background-color: $govuk-blue;
+  }
+  &.prison {
+    background-color: $black;
+  }
+}
