@@ -861,6 +861,8 @@ en:
         attributes:
           rule_45:
             inclusion: ^Answer the Rule 45 question
+          csra_details:
+            blank: ^Enter CSRA details
           vulnerable_prisoner:
             inclusion: ^Answer the vulnerable person question
           vulnerable_prisoner_details:
