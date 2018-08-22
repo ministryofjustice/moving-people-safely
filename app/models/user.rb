@@ -6,6 +6,8 @@ class User < ApplicationRecord
   HEALTHCARE_ROLE = 'healthcare'.freeze
   SERGEANT_ROLE = 'sergeant'.freeze
 
+  has_many :audits
+
   serialize :permissions
 
   class << self

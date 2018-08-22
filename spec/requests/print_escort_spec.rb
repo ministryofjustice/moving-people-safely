@@ -32,6 +32,12 @@ RSpec.describe 'Escorts::PrintController', type: :request do
           }.to change { escort.reload.issued? }.from(false).to(true)
         end
 
+        it "creates an audit" do
+          expect {
+            get "/escorts/#{escort.id}/print"
+          }.to change { escort.reload.audits.count }.from(0).to(1)
+        end
+
         specify {
           get "/escorts/#{escort.id}/print"
           expect(response).to have_http_status(200)
@@ -45,6 +51,12 @@ RSpec.describe 'Escorts::PrintController', type: :request do
             expect {
               get "/escorts/#{escort.id}/print"
             }.not_to change { escort.reload.issued? }.from(true)
+          end
+
+          it "creates an audit" do
+            expect {
+              get "/escorts/#{escort.id}/print"
+            }.to change { escort.reload.audits.count }.from(0).to(1)
           end
 
           specify {

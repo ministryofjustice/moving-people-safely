@@ -51,9 +51,22 @@ RSpec.describe 'PER page requests', type: :request do
       end
 
       context "with a valid escort ID" do
+        before { get "/escorts/#{escort.id}" }
+
         it "responds with 200" do
-          get "/escorts/#{escort.id}"
           expect(response).to have_http_status(200)
+        end
+
+        it 'no audit created' do
+          expect(escort.audits.count).to eq(0)
+        end
+
+        context 'for an issued escort' do
+          let(:escort) { create(:escort, :issued, prison_number: prison_number, detainee: detainee, move: move) }
+
+          it 'audit created' do
+            expect(escort.audits.count).to eq(1)
+          end
         end
       end
 
