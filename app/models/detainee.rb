@@ -6,4 +6,8 @@ class Detainee < ApplicationRecord
   def age
     AgeCalculator.age(date_of_birth)
   end
+
+  def female?
+    gender == 'female'
+  end
 end
