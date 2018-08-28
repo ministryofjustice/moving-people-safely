@@ -1,19 +1,72 @@
-machine:
-  node:
-    version: 7.4.0
-  pre:
-    # Install PhantomJS - required for JS testing
-    - sudo curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1
-    - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-    - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-  ruby:
-    version:
-      2.5.1
+version: 2
+jobs:
+  build:
+    parallelism: 1
+    working_directory: ~/app
+    docker:
+      - image: circleci/ruby:2.5.1-node-browsers # browsers will make capybara work
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: db-user
+          PGPASSWORD: db-password
+          RAILS_ENV: test
+          DATABASE_URL: 'postgres://db-user:db-password@127.0.0.1:5432/db-name'
+          CAPYBARA_HEADLESS_CHROME: true
+      - image: circleci/postgres:10-alpine # 10
+        environment:
+          POSTGRES_USER: db-user
+          POSTGRES_DB: db-name
+          POSTGRES_PASSWORD: db-password
+    steps:
+      - checkout # magic
 
-dependencies:
-  pre:
-    - sudo apt-get update && sudo apt-get install -y yarn
+      - run:
+          name: Which bundler?
+          command: bundle -v
 
-test:
-  override:
-    - bundle exec rake SPEC_OPTS="--format documentation --exclude-pattern spec/features/printing_*.rb"
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - app-bundle-v2-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Bundle Install
+          command: bundle install --path vendor/bundle --jobs=4
+
+      # Only necessary if app uses webpacker or yarn in some other way
+      - restore_cache:
+          keys:
+            - rails-demo-yarn-{{ checksum "yarn.lock" }}
+            - rails-demo-yarn-
+
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+
+      # Store yarn / webpacker cache
+      - save_cache:
+          key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      # Store bundle cache
+      - save_cache:
+          key: app-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: bin/rails db:schema:load --trace
+
+      - run:
+          name: Run rspec
+          command: bundle exec rspec --format documentation --exclude-pattern "spec/features/printing_*.rb"
+
+      - run:
+          name: Run rubocop
+          command: bundle exec rubocop
