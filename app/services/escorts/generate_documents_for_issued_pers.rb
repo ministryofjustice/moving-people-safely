@@ -1,5 +1,7 @@
 module Escorts
   module GenerateDocumentsForIssuedPers
+    module_function
+
     def call(options = {})
       logger = options.fetch(:logger, Rails.logger)
       escorts = Escort.arel_table
@@ -7,7 +9,6 @@ module Escorts
       logger.info "#{records.count} escorts require a PER document to be generated and stored"
       records.each { |record| DocumentGenerator.new(record, logger: logger).call }
     end
-    module_function :call
 
     class DocumentGenerator
       def initialize(escort, options = {})

@@ -79,18 +79,18 @@ FactoryBot.define do
 
     trait :approved do
       association :approver, factory: :user
-      approved_at 1.day.ago.utc
+      approved_at { 1.day.ago.utc }
     end
 
     trait :issued do
       completed
-      issued_at 1.day.ago.utc
+      issued_at { 1.day.ago.utc }
       document { File.new("#{Rails.root}/spec/support/fixtures/pdf-per-document.pdf") }
     end
 
     trait :cancelled do
       completed
-      cancelled_at 1.day.ago.utc
+      cancelled_at { 1.day.ago.utc }
     end
 
     trait :expired do
@@ -99,13 +99,13 @@ FactoryBot.define do
     end
 
     trait :with_prison_not_for_release_reason do
-      not_for_release 'yes'
-      not_for_release_reason 'further_charges'
+      not_for_release { 'yes' }
+      not_for_release_reason { 'further_charges' }
     end
 
     trait :with_police_not_for_release_reason do
-      not_for_release 'yes'
-      not_for_release_reason 'recall_to_prison'
+      not_for_release { 'yes' }
+      not_for_release_reason { 'recall_to_prison' }
     end
   end
 end

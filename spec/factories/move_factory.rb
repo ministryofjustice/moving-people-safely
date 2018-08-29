@@ -4,9 +4,9 @@ FactoryBot.define do
   factory :move do
     association :from_establishment, factory: :prison
     to { FixtureData.county_court }
-    to_type 'magistrates_court'
+    to_type { 'magistrates_court' }
     date { Date.current }
-    not_for_release 'no'
+    not_for_release { 'no' }
 
     trait :active do
       date { 1.week.from_now }

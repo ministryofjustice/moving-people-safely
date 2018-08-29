@@ -6,26 +6,26 @@ FactoryBot.define do
   end
 
   factory :crown_court, parent: :establishment do
-    type 'CrownCourt'
+    type { 'CrownCourt' }
   end
 
   factory :magistrates_court, parent: :establishment do
-    type 'MagistratesCourt'
+    type { 'MagistratesCourt' }
   end
 
   factory :prison, parent: :establishment do
-    type 'Prison'
+    type { 'Prison' }
   end
 
   factory :police_custody, parent: :establishment do
-    type 'PoliceCustody'
+    type { 'PoliceCustody' }
   end
 
   factory :immigration_removal_centre, parent: :establishment do
-    type 'ImmigrationRemovalCentre'
+    type { 'ImmigrationRemovalCentre' }
   end
 
   factory :youth_secure_estate, parent: :establishment do
-    type 'YouthSecureEstate'
+    type { 'YouthSecureEstate' }
   end
 end
