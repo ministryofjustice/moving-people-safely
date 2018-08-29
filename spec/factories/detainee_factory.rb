@@ -19,7 +19,7 @@ FactoryBot.define do
     surname { Faker::Name.last_name }
     date_of_birth { Faker::Date.between(80.years.ago, 20.years.ago) }
     gender { %w[ male female ].sample }
-    nationalities 'American'
+    nationalities { 'American' }
     cro_number { rand(9999) }
     aliases { Faker::Name.name }
     interpreter_required { 'yes' }

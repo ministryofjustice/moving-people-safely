@@ -1,13 +1,13 @@
 FactoryBot.define do
   factory :offences_workflow do
-    status :incomplete
+    status { :incomplete }
 
     trait :confirmed do
-      status :confirmed
+      status { :confirmed }
     end
 
     trait :needs_review do
-      status :needs_review
+      status { :needs_review }
     end
   end
 end
