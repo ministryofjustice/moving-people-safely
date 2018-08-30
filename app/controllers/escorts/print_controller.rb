@@ -1,5 +1,7 @@
 module Escorts
   class PrintController < ApplicationController
+    include Auditable
+
     def new
       escort
     end
@@ -18,7 +20,16 @@ module Escorts
     end
 
     def issue_escort_unless_issued!
-      EscortIssuer.call(escort) unless escort.issued?
+      if escort.issued?
+        audit_print('re-print')
+      else
+        EscortIssuer.call(escort)
+        audit_print('print')
+      end
+    end
+
+    def audit_print(action)
+      audit(escort, current_user, action)
     end
 
     def printable_escort?
@@ -26,6 +37,7 @@ module Escorts
     end
 
     def error_redirect(message = t('alerts.escort.print.unauthorized'))
+      audit(escort, current_user, 'attempted print but not printable')
       redirect_back(fallback_location: root_path, alert: message)
     end
   end

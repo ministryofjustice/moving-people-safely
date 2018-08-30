@@ -1,9 +1,15 @@
 class EscortsController < ApplicationController
   helper_method :escort
 
+  include Auditable
+
   before_action :redirect_if_missing_data, only: :show
   before_action :authorize_prison_officer!, only: :create
   before_action :authorize_user_to_access_escort!, except: :create
+
+  def show
+    audit(escort, current_user, 'view')
+  end
 
   def create
     escort = EscortCreator.call(escort_params)

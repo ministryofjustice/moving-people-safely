@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_18_142011) do
+ActiveRecord::Schema.define(version: 2018_08_22_073352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "audits", force: :cascade do |t|
+    t.uuid "escort_id"
+    t.integer "user_id"
+    t.string "action"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "datafix_log", force: :cascade do |t|
     t.string "direction"
@@ -45,6 +53,7 @@ ActiveRecord::Schema.define(version: 2018_07_18_142011) do
     t.string "peep"
     t.text "peep_details"
     t.text "interpreter_required_details"
+    t.string "security_category"
     t.index ["escort_id"], name: "index_detainees_on_escort_id"
     t.index ["prison_number"], name: "index_detainees_on_prison_number"
   end

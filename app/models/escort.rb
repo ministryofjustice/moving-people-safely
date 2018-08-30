@@ -18,6 +18,8 @@ class Escort < ApplicationRecord
   belongs_to :canceller, class_name: 'User'
   belongs_to :approver, class_name: 'User'
 
+  has_many :audits
+
   has_attached_file :document
   validates_attachment_content_type :document, content_type: ['application/pdf']
 
