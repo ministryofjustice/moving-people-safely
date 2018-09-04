@@ -278,4 +278,52 @@ RSpec.describe Escort do
       specify { expect(escort.number).to eq escort.pnc_number }
     end
   end
+
+  describe '#non_applicable_alerts' do
+    subject { escort.non_applicable_alerts }
+
+    let(:move) { create(:move, from_establishment: establishment) }
+    let(:escort) { create(:escort, detainee: detainee , move: move)}
+    let(:detainee) { create(:detainee, gender: gender) }
+
+    context 'detainee male' do
+      let(:gender) { 'male' }
+
+      context 'prison escort' do
+        let(:establishment) { create(:prison) }
+
+        specify {
+          expect(subject).to eq %i[pregnant alcohol_withdrawal]
+        }
+      end
+
+      context 'police escort' do
+        let(:establishment) { create(:police_custody) }
+
+        specify {
+          expect(subject).to eq %i[pregnant acct_status rule_45 category_a]
+        }
+      end
+    end
+
+    context 'detainee female' do
+      let(:gender) { 'female' }
+
+      context 'prison escort' do
+        let(:establishment) { create(:prison) }
+
+        specify {
+          expect(subject).to eq %i[pregnant alcohol_withdrawal]
+        }
+      end
+
+      context 'police escort' do
+        let(:establishment) { create(:police_custody) }
+
+        specify {
+          expect(subject).to eq %i[acct_status rule_45 category_a]
+        }
+      end
+    end
+  end
 end

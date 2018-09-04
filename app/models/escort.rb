@@ -127,7 +127,18 @@ class Escort < ApplicationRecord
   end
 
   def alerts
-    move.alerts.merge(risk&.alerts || {}).merge(healthcare&.alerts || {})
+    move.alerts.merge(risk&.alerts || {})
+        .merge(healthcare&.alerts || {})
+        .except(*non_applicable_alerts)
+  end
+
+  def non_applicable_alerts
+    [].tap do |list|
+      list << :pregnant unless detainee&.female?
+      list.concat(%i[pregnant alcohol_withdrawal]) if from_prison?
+      list.concat(%i[acct_status rule_45 category_a]) if from_police?
+      list.uniq!
+    end
   end
 
   def active_alerts
