@@ -13,6 +13,7 @@ AllCops:
     - 'app/models/forms/base.rb' # this is just too horrible
     - 'app/services/detainees/risk_mapper.rb'
     - 'app/form_builders/mps_form_builder.rb'
+    - 'app/form_builders/errors_helper.rb'
 
 # Prefer sensible naming to comments everywhere.
 Documentation:

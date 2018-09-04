@@ -1,4 +1,9 @@
-module GovukElementsErrorsHelper
+module ErrorsHelper
+  class << self
+    include ActionView::Context
+    include ActionView::Helpers::TagHelper
+  end
+
   def self.error_summary(object, heading, description, options = {})
     return unless errors_exist? object
     error_summary_div do
@@ -6,6 +11,29 @@ module GovukElementsErrorsHelper
         error_summary_description(description) +
         error_summary_list(object, options)
     end
+  end
+
+  def self.attributes object, parent_object=nil
+    return [] if object == parent_object
+    parent_object ||= object
+
+    child_objects = attribute_objects object
+    nested_child_objects = child_objects.map { |o| attributes(o, parent_object) }
+    (child_objects + nested_child_objects).flatten - [object]
+  end
+
+  def self.attribute_objects object
+    object.
+      instance_variables.
+      map { |var| instance_variable(object, var) }.
+      compact
+  end
+
+  def self.error_summary_heading text
+    content_tag :h1,
+      text,
+      id: 'error-summary-heading',
+      class: 'heading-medium error-summary-heading'
   end
 
   def self.error_summary_list(object, options = {})
@@ -70,5 +98,73 @@ module GovukElementsErrorsHelper
     I18n.t(key,
       default: default_label(attribute),
       scope: 'helpers.label').presence
+  end
+
+  def self.instance_variable object, var
+    field = var.to_s.sub('@','').to_sym
+    if object.respond_to?(field)
+      child = object.send(field)
+      if respond_to_errors?(child) || child.is_a?(Array)
+        child
+      else
+        nil
+      end
+    end
+  end
+
+  def self.error_summary_div &block
+    content_tag(:div,
+        class: 'error-summary',
+        role: 'group',
+        aria: {
+          labelledby: 'error-summary-heading'
+        },
+        tabindex: '-1') do
+      yield block
+    end
+  end
+
+  def self.errors_exist? object
+    errors_present?(object) || child_errors_present?(object)
+  end
+
+  def self.errors_present? object
+    respond_to_errors?(object) && object.errors.present?
+  end
+
+  def self.respond_to_errors? object
+    object && object.respond_to?(:errors)
+  end
+
+  def self.child_errors_present? object
+    attributes(object).any? { |child| errors_exist?(child) }
+  end
+
+  def self.error_summary_description text
+    content_tag :p, text
+  end
+
+  def self.child_to_parent object, child_to_parents={}, parent_object=nil
+    return child_to_parents if object == parent_object
+    parent_object ||= object
+
+    attribute_objects(object).each do |child|
+      if child.is_a?(Array)
+        array_to_parent(child, object, child_to_parents, parent_object)
+      else
+        child_to_parents[child] = object
+        child_to_parent child, child_to_parents, parent_object
+      end
+    end
+
+    child_to_parents
+  end
+
+  def self.default_label attribute
+    attribute.to_s.humanize.capitalize
+  end
+
+  def self.children_with_errors object
+    attributes(object).select { |child| errors_present?(child) }
   end
 end
