@@ -1,29 +1,42 @@
 doctype html
 html lang="en"
   head
-    meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
     meta charset="utf-8"
     title= t(:html_title)
 
-    = stylesheet_link_tag "govuk-template.css", integrity: true, crossorigin: "anonymous"
+    /![if gt IE 8]
+      = stylesheet_link_tag "govuk-template.css", integrity: true, crossorigin: "anonymous"
+
+    /![if IE 6]
+      = stylesheet_link_tag "govuk-template-ie6.css"
+
+    /![if IE 7]
+      = stylesheet_link_tag "govuk-template-ie7.css"
+
+    /![if IE 8]
+      = stylesheet_link_tag "govuk-template-ie8.css"
+
     = stylesheet_link_tag "govuk-template-print.css", media: "print", integrity: true, crossorigin: "anonymous"
+
+    /![if IE 8]
+      = stylesheet_link_tag "fonts-ie8.css", media: "all"
+
     = stylesheet_link_tag "fonts.css", media: "all", integrity: true, crossorigin: "anonymous"
 
-    /[if IE 8]
-      = stylesheet_link_tag "govuk-template-ie8.css"
-      = stylesheet_link_tag "fonts-ie8.css", media: "all"
+    /![if lt IE 9]
       = javascript_include_tag "ie.js", integrity: true, crossorigin: "anonymous"
 
-    link href="favicon.ico" rel="shortcut icon" type="image/x-icon"
-    link color="#0b0c0c" href="#{asset_path 'gov.uk_logotype_crown.svg'}" rel="mask-icon"
-    link href="#{asset_path "apple-touch-icon-180x180.png"}" rel="apple-touch-icon" sizes="180x180"
-    link href="#{asset_path "apple-touch-icon-167x167.png"}" rel="apple-touch-icon" sizes="167x167"
-    link href="#{asset_path "apple-touch-icon-152x152.png"}" rel="apple-touch-icon" sizes="152x152"
-    link href="#{asset_path "apple-touch-icon.png"}" rel="apple-touch-icon"
+    link href=("#{asset_path 'favicon.ico'}") rel=("shortcut icon") type="image/x-icon"
+    link color="#0b0c0c" href=("#{asset_path 'gov.uk_logotype_crown.svg'}") rel="mask-icon"
+    link href=("#{asset_path "apple-touch-icon-180x180.png"}") rel="apple-touch-icon" sizes="180x180"
+    link href=("#{asset_path "apple-touch-icon-167x167.png"}") rel="apple-touch-icon" sizes="167x167"
+    link href=("#{asset_path "apple-touch-icon-152x152.png"}") rel="apple-touch-icon" sizes="152x152"
+    link href=("#{asset_path "apple-touch-icon.png"}") rel="apple-touch-icon"
 
     meta content="#0b0c0c" name="theme-color"
     meta content="width=device-width, initial-scale=1" name="viewport"
-    meta content="#{asset_path "opengraph-image.png"}" property="og:image"
+    meta content=("#{asset_path "opengraph-image.png"}") property="og:image"
 
     / Google Tag Manager
     javascript:
@@ -33,18 +46,22 @@ html lang="en"
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-N4GRLDJ');
 
-    = stylesheet_link_tag "main.css"
-
-    /[if IE 8]
+    /![if (gte IE 9)|!(IE)]
+      = stylesheet_link_tag "main.css"
+    /![if IE 8]
       = stylesheet_link_tag "main-ie8.css"
 
   body
     javascript:
-      document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+      | document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
 
     / Google Tag Manager (noscript)
     noscript
       iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4GRLDJ" height="0" width="0" style="display:none;visibility:hidden"
+
+    #skiplink-container
+      div
+        a.skiplink href="#content" = content_for?(:skip_link_message) ? yield(:skip_link_message) : "Skip to main content"
 
     #global-cookie-message
       p
@@ -56,7 +73,7 @@ html lang="en"
         .header-global
           .header-logo
             a#logo.content href="#{root_path}" title="#{t(:global_header_text)}"
-              img alt="" height="32" src="#{asset_path 'gov.uk_logotype_crown_invert_trans.png'}" width="36"
+              img alt="" height="32" src=("#{asset_path 'gov.uk_logotype_crown_invert_trans.png'}") width="36" /
               = t(:global_header_text)
 
         .header-proposition
@@ -74,7 +91,7 @@ html lang="en"
     main id="wrapper" role="main"
       .container
         section class="content inner cf" id="content" role="main"
-          .phase-banner class="#{current_phase}-banner"
+          .phase-banner class=("#{current_phase}-banner")
             .phase-banner-inner
               p
                 strong.phase-tag = current_phase.upcase
@@ -111,10 +128,10 @@ html lang="en"
     .javascript
       = javascript_include_tag "application.js"
 
-      /[if (gte IE 9)|!(IE)]
-      = javascript_include_tag "auto-complete.js"
+      /![if (gte IE 9)|!(IE)]
+        = javascript_include_tag "auto-complete.js"
 
-      /[if IE]
+      /![if IE]
         = javascript_include_tag "flowplayer.js"
 
     javascript:
