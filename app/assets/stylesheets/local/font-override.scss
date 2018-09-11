@@ -1,0 +1,57 @@
+html,
+body,
+button,
+input,
+table,
+td,
+th,
+main,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+.govuk-header__link--homepage,
+.govuk-header__link--service-name,
+.govuk-phase-banner__content,
+.govuk-tag,
+.govuk-body,
+.govuk-link,
+.govuk-list,
+.govuk-breadcrumbs,
+.govuk-breadcrumbs__link,
+.govuk-heading-xl,
+.govuk-heading-l,
+.govuk-heading-m,
+.govuk-heading-s,
+.govuk-label,
+.govuk-hint,
+.govuk-fieldset__legend,
+.govuk-input,
+.govuk-select,
+.govuk-textarea,
+.govuk-button,
+.govuk-footer,
+h1 {
+  font-family: Arial, arial, sans-serif;
+}
+
+// @media (min-width: 769px) {
+//  #global-header .header-proposition #proposition-link a, #global-header .header-proposition #proposition-links a {
+//    font-family: Arial, arial, sans-serif;
+//  }
+// }
+
+
+// Width adjustments because using Arial in the footer makes the license statement have a linebreak...
+@media (min-width: 641px) {
+  #footer .footer-meta .footer-meta-inner {
+    width: 77%;
+  }
+  #footer .footer-meta .copyright {
+    width: 23%;
+  }
+}

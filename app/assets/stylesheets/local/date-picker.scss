@@ -1,0 +1,195 @@
+.date-picker-wrapper {
+  line-height: 45px;
+
+  span.date-picker-field {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    float: left;
+
+    input.date-field {
+      position: relative;
+      float: left;
+      display: table-cell;
+      height: 45px;
+      width: 100%;
+      z-index: 2;
+      vertical-align: middle;
+      display: inline-block;
+      margin-bottom: 0;
+      border-right: 0;
+
+      &.no-script {
+        border-right: 2px solid #6f777b;
+      }
+    }
+
+    span.calendar-icon {
+
+      &.no-script {
+        display:none;
+      }
+
+      cursor: pointer;
+      display: table-cell;
+      z-index: 999;
+      border-width: 2px 2px 2px 0;
+      border-style: solid;
+      border-color: govuk-colour('black');
+      vertical-align: middle;
+      width: 45px;
+      background-image: image-url('ic_calendar.png');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: transparent;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &.error {
+    span.date-picker-field {
+      input.date-field {
+        &.no-script {
+          border-right: 4px solid #b10e1e;
+        }
+      }
+
+      span.calendar-icon {
+        border-width: 4px 4px 4px 0;
+        border-color: #b10e1e;
+      }
+    }
+  }
+}
+
+.date-radios {
+  margin-top: -20px;
+}
+
+.date-picker {
+  > input {
+    float: left;
+  }
+
+  position: relative;
+  float: left;
+  width: 320px;
+  margin-top: 20px;
+  padding-right: 20px;
+
+  div.date-picker-wrapper {
+    line-height: 45px;
+
+    span.date-picker-field {
+      position: relative;
+      display: table;
+      border-collapse: separate;
+      float: left;
+      width: 220px;
+
+      input.date-field {
+        position: relative;
+        float: left;
+        display: table-cell;
+        height: 45px;
+        width: 100%;
+        z-index: 2;
+        font-size: 30px;
+        font-weight: bold;
+        padding-top: 7px;
+        vertical-align: middle;
+        display: inline-block;
+        margin-bottom: 0;
+        border-right: 0;
+
+        &.no-script {
+          border-right: 2px solid #6f777b;
+        }
+      }
+      span.calendar-icon {
+
+        &.no-script {
+          display:none;
+        }
+
+        cursor: pointer;
+        display: table-cell;
+        z-index: 999;
+        border-width: 2px 2px 2px 0;
+        border-style: solid;
+        border-color: #6f777b;
+        vertical-align: middle;
+        width: 45px;
+        background-image: image-url('ic_calendar.png');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+    button.go {
+      position: relative;
+      float: left;
+      font-size: 19px;
+      font-weight: bold;
+      color: #FFFFFF;
+      background-color: green;
+      color: white;
+      border: none;
+      margin-left: 5px;
+      text-align: center;
+      height: 45px;
+      width: 45px;
+      padding-top: 0px;
+      vertical-align: middle;
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+  label.date-picker-label {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  .form-group {
+    @include govuk-media-query(desktop) {
+      display: inline-block;
+      width: 18em;
+      float: none;
+      margin-top: 10px;
+      margin-bottom: none;
+    }
+
+    .block-label {
+      padding-top: 5px;
+      padding-bottom: 5px;
+
+     input[type='radio'] {
+       top: 0;
+       vertical-align: baseline;
+     }
+    }
+  }
+  .nav-group input {
+    background-color: #EFF0F1;
+    border-color: #AEAEAE;
+    border-width: 1px;
+    border-style: solid;
+    color: #3D7EB4;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .nav-group input[value='today'] {
+    text-decoration: underline;
+    border-left-width: 0px;
+    border-right-width: 0px;
+  }
+  input[type='submit'] { cursor: pointer; }
+}

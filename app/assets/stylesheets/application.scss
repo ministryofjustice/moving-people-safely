@@ -1,55 +1,22 @@
-@import "elements/reset";
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
 
-// Bootstrap date picker
+$govuk-global-styles: true;
+
+@import 'govuk-frontend/all';
+
+@import "accessible-autocomplete.min";
 @import "bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.min";
 
-// GOV.UK front end toolkit
-@import "colours";
-@import "conditionals";
-@import "grid_layout";
-@import "measurements";
-@import "typography";
-@import "design-patterns/breadcrumbs";
-@import "design-patterns/buttons";
-@import "design-patterns/alpha-beta";
-
-// GOV.UK elements
-@import "elements/helpers";
-@import "elements/buttons";
-@import "elements/elements-typography";
-@import "elements/forms";
-@import "elements/forms/form-multiple-choice";
-@import "elements/forms/form-validation";
-@import "elements/icons";
-@import "elements/layout";
-@import "elements/panels";
-@import "elements/tables";
-@import "elements/breadcrumbs";
-@import "elements/phase-banner";
-@import "accessible-autocomplete.min";
-
-// Application
-@import "variables";
-@import "moving_people_safely/helper_classes";
-@import "moving_people_safely/layout";
-@import "moving_people_safely/alerts";
-@import "moving_people_safely/nomis_alerts";
-@import "moving_people_safely/authentication";
-@import "moving_people_safely/buttons";
-@import "moving_people_safely/forms";
-@import "moving_people_safely/date_picker";
-@import "moving_people_safely/home";
-@import "moving_people_safely/help";
-@import "moving_people_safely/labels";
-@import "moving_people_safely/escort";
-@import "moving_people_safely/summary";
-@import "moving_people_safely/errors";
-@import "moving_people_safely/images";
-@import "moving_people_safely/phase_banner";
-@import "moving_people_safely/side_profile";
-@import "moving_people_safely/text";
-@import "moving_people_safely/court_dashboard";
-@import "moving_people_safely/global_header";
-@import "moving_people_safely/font_override";
-@import "moving_people_safely/flowplayer";
-@import "moving_people_safely/page-contents";
+@import 'local/**/*';

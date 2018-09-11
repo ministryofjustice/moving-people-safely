@@ -1,0 +1,27 @@
+form {
+  input.form-control,
+  input.autocomplete__input,
+  .autocomplete__wrapper,
+  .autocomplete__menu,
+  .autocomplete__option {
+    @include govuk-media-query(desktop) {
+      max-width: 16em;
+    }
+  }
+}
+
+.govuk-form-group {
+  @include govuk-clearfix;
+}
+
+.govuk-fieldset__legend {
+  font-weight: bold;
+}
+
+.govuk-label {
+  font-weight: bold;
+}
+
+.govuk-radios__label {
+  font-weight: normal;
+}

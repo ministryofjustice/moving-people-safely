@@ -11,8 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require govuk/details.polyfill
 //= require bootstrap-datepicker/dist/js/bootstrap-datepicker.min
 //= require_tree .
 //= require stickyfill.min
@@ -21,4 +19,3 @@
 //= stub 'flowplayer-3.2.13.min'
 //= stub 'flowplayer-init'
 
-GOVUK.details.init();

@@ -13,8 +13,6 @@ gem 'deep_cloneable'
 gem 'excon'
 gem 'faraday'
 gem 'geckoboard-ruby'
-gem 'govuk_elements_rails'
-gem 'govuk_frontend_toolkit'
 gem 'jquery-rails'
 gem 'logstasher'
 gem 'omniauth-oauth2', '~> 1.3.1' # do not remove version

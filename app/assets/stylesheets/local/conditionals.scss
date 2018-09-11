@@ -1,0 +1,17 @@
+.govuk-radios--inline {
+  .govuk-radios__conditional {
+    clear: both;
+  }
+}
+
+.govuk-radios > .govuk-radios__item {
+  float: none;
+  clear: both;
+  margin-right: 0;
+}
+
+.govuk-radios--inline > .govuk-radios__item {
+  float: left;
+  clear: none;
+  margin-right: 20px;
+}
