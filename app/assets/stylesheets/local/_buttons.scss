@@ -1,0 +1,19 @@
+.button-inline {
+  margin-left: 10px;
+}
+
+.styled-as-link {
+  color: $govuk-link-colour;
+  text-decoration: underline;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  font-size: inherit;
+  &:hover {
+    cursor: pointer;
+  }
+
+  .govuk-header & {
+    color: govuk-colour("white");
+  }
+}

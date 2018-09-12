@@ -1,0 +1,23 @@
+.govuk-grid-column-one-fifth,
+.govuk-grid-column-two-fifths,
+.govuk-grid-column-three-fifths,
+.govuk-grid-column-four-fifths {
+  float: left;
+  width: 100%;
+}
+
+@include govuk-media-query(desktop) {
+  .govuk-grid-column-one-fifth {
+    width: 20%;
+  }
+  .govuk-grid-column-two-fifths {
+    width: 40%;
+  }
+  .govuk-grid-column-three-fifths {
+    width: 60%;
+  }
+  .govuk-grid-column-four-fifths {
+    width: 80%;
+  }
+}
+

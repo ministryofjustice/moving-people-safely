@@ -44,10 +44,7 @@ class User < ApplicationRecord
   end
 
   def authorized_establishments
-    @authorized_establishments ||= permissions.each_with_object([]) do |permission, locations|
-      location = Establishment.find_by(sso_id: permission['organisation'])
-      locations << location if location
-    end
+    Prison # CHANGED
   end
 
   def establishment(session)
@@ -64,6 +61,7 @@ class User < ApplicationRecord
 
   def admin?
     permissions.any? { |permission| permission['organisation'] == ADMIN_ORGANISATION }
+    false # CHANGED
   end
 
   def court?
@@ -80,6 +78,7 @@ class User < ApplicationRecord
 
   def prison_officer?
     permissions.any? { |permission| permission['organisation'] =~ /#{PRISON_ORGANISATION}/ }
+    true # CHANGED
   end
 
   def healthcare?

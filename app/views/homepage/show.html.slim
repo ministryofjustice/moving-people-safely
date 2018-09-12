@@ -1,27 +1,30 @@
-.phase-banner
-  h1.shallow
-    span.heading-secondary= t('homepage.pers_from')
-    = current_user.establishment(session)&.name || t('homepage.undetermined_establishment')
-    = link_to t('search.show.title'), search_path, class: 'button button-start button-inline'
+h1.govuk-heading-l
+  span.govuk-caption-l= t('homepage.pers_from')
+  = current_user.establishment(session)&.name || t('homepage.undetermined_establishment')
+  = link_to t('search.show.title'), search_path, class: 'govuk-button govuk-button--start button-inline'
 
-.search-header
-  .date-picker
-    = form_tag(escorts_search_path) do
-      label.date-picker-label for='escorts_due_on' Scheduled moves
-      .date-picker-wrapper
-        span.date-picker-field.input-group.date data-provide='datepicker'
-          = text_field_tag 'escorts_due_on', @date_picker, class: 'no-script form-control date-field'
-          span.no-script.calendar-icon.input-group-addon
-        button.go type='submit' name='commit' Go
+hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
 
-      = render 'shared/radio_date_picker', picker: RadioDatePickerPresenter.new('escorts_due_on', @date_picker)
+.govuk-grid-row
+  .govuk-grid-column-two-fifths
 
-  - if @dashboard.escorts.empty?
+    .date-picker
+      = form_tag(escorts_search_path) do
+        label.govuk-label.date-picker-label for='escorts_due_on' Scheduled moves
+        .date-picker-wrapper
+          span.date-picker-field.input-group.date data-provide='datepicker'
+            = text_field_tag 'escorts_due_on', @date_picker, class: 'no-script govuk-input date-field'
+            span.no-script.calendar-icon.input-group-addon
+          button.go type='submit' name='commit' Go
+
+        = render 'shared/radio_date_picker', picker: RadioDatePickerPresenter.new('escorts_due_on', @date_picker)
+
+  .govuk-grid-column-three-fifths
     #escorts_gauges.escorts-gauges
+    - if @dashboard.escorts.empty?
       dl.status_gauges
         == @dashboard.render_no_moves_indicator
-  - else
-    #escorts_gauges.escorts-gauges
+    - else
       dl.status_gauges
         == @dashboard.render_detainees_indicator
         == @dashboard.render_risk_indicator
