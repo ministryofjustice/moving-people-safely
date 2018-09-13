@@ -1,51 +1,52 @@
 .escorts
-  table
-    thead
-      tr
-        th.number= t('.number')
-        th.name= t('.detainee_name')
-        th.destination= t('.destination')
-        th= t('.risk')
-        th= t('.health')
-        th= t('.offences')
+  table.govuk-table
+    thead.govuk-table__head
+      tr.govuk-table__row
+        th.govuk-table__header.number= t('.number')
+        th.govuk-table__header.name= t('.detainee_name')
+        th.govuk-table__header.destination= t('.destination')
+        th.govuk-table__header= t('.risk')
+        th.govuk-table__header= t('.health')
+        th.govuk-table__header= t('.offences')
         th
-    - escorts.each do |escort|
-      tr.move-row id="number_#{escort.id_number}"
-        td = link_to_unless escort.cancelled?, escort.number, escort_path(escort)
-        td
-          span.strong-text
-            | #{escort.detainee_surname}
-          span
-            |  #{escort.detainee_forenames}
-        td = escort.move&.to
-        - if escort.cancelled?
-          td colspan=4
-            span.cancelled
-              = t('.cancelled')
-            | By: #{escort.canceller_full_name}. #{escort.cancelling_reason}
-        - elsif escort.issued?
-          td colspan=4
-            span.issued= t('.issued')
-        - elsif escort.approved?
-          td colspan=3
-            span.approved
-              = t('.approved')
-            | By: #{escort.approver_full_name}
-          td.issued colspan=1
-            = link_to_print_in_new_window(escort)
-        - else
-          td.completion-status
-            span class="#{escort.risk_complete? ? true : false}"
-          td.completion-status
-            span class="#{escort.healthcare_complete? ? true : false}"
-          td.completion-status
-            span class="#{escort.offences_complete? ? true : false}"
-          td.print
-            - if escort.completed?
-              - if current_user.prison_officer?
-                = link_to_print_in_new_window(escort)
-              - elsif current_user.police?
-                - if current_user.sergeant?
-                  = link_to t('.approve'), escort_path(escort)
-                - else
-                  span.awaiting_approval= 'Awaiting approval'
+    tbody.govuk-table__body
+      - escorts.each do |escort|
+        tr.govuk-table__row.move-row id="number_#{escort.id_number}"
+          td.govuk-table__cell = link_to_unless escort.cancelled?, escort.number, escort_path(escort)
+          td.govuk-table__cell
+            span.strong-text
+              | #{escort.detainee_surname}
+            span
+              |  #{escort.detainee_forenames}
+          td.govuk-table__cell = escort.move&.to
+          - if escort.cancelled?
+            td.govuk-table__cell colspan=4
+              span.cancelled
+                = t('.cancelled')
+              | By: #{escort.canceller_full_name}. #{escort.cancelling_reason}
+          - elsif escort.issued?
+            td.govuk-table__cell colspan=4
+              span.issued= t('.issued')
+          - elsif escort.approved?
+            td.govuk-table__cell colspan=3
+              span.approved
+                = t('.approved')
+              | By: #{escort.approver_full_name}
+            td.govuk-table__cell.issued colspan=1
+              = link_to_print_in_new_window(escort)
+          - else
+            td.govuk-table__cell.completion-status
+              span class="#{escort.risk_complete? ? true : false}"
+            td.govuk-table__cell.completion-status
+              span class="#{escort.healthcare_complete? ? true : false}"
+            td.govuk-table__cell.completion-status
+              span class="#{escort.offences_complete? ? true : false}"
+            td.govuk-table__cell.print
+              - if escort.completed?
+                - if current_user.prison_officer?
+                  = link_to_print_in_new_window(escort)
+                - elsif current_user.police?
+                  - if current_user.sergeant?
+                    = link_to t('.approve'), escort_path(escort)
+                  - else
+                    span.awaiting_approval= 'Awaiting approval'

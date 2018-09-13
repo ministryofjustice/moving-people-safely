@@ -1,0 +1,60 @@
+.escorts-gauges {
+  margin-top: 10px;
+}
+
+.gauge_wrapper {
+  float: left;
+  margin-right: 10px;
+  width: 132px;
+
+  .title {
+    float: left;
+    word-wrap: break-word;
+    font-size: 19px;
+  }
+
+  .value {
+    font-size: 80px;
+    font-weight: bold;
+  }
+
+  .gauge {
+    float: left;
+    clear: left;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-radius: 50%;
+    border-width: 2px;
+    border-style: solid;
+    margin-top: 5px;
+    position: relative;
+  }
+}
+
+.gauge_wrapper.detainees {
+  .title { color: black; }
+  .value {
+    background-color: white;
+    color: black;
+  }
+}
+
+.gauge_wrapper.incomplete {
+  .title { color: #B10E1E; }
+  .value {
+    background-color: white;
+    color: #B10E1E;
+  }
+}
+
+.gauge_wrapper.complete {
+  .title { color: green; }
+  .value {
+    background-color: white;
+    color: green;
+  }
+}

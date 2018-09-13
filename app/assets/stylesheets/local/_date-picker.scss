@@ -64,10 +64,6 @@
   }
 }
 
-.date-radios {
-  margin-top: -20px;
-}
-
 .date-picker {
   > input {
     float: left;
@@ -81,6 +77,8 @@
 
   div.date-picker-wrapper {
     line-height: 45px;
+    margin-bottom: 10px;
+    @include govuk-clearfix;
 
     span.date-picker-field {
       position: relative;

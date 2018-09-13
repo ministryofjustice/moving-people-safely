@@ -94,14 +94,13 @@ html.govuk-template lang="en"
 
     = javascript_include_tag "govuk-template.js", integrity: true, crossorigin: "anonymous"
 
-    .javascript
-      = javascript_include_tag "application.js"
+    = javascript_include_tag "application.js"
 
-      /[if (gte IE 9)|!(IE)]
-      = javascript_include_tag "auto-complete.js"
+    /[if (gte IE 9)|!(IE)]
+    = javascript_include_tag "auto-complete.js"
 
-      /[if IE]
-        = javascript_include_tag "flowplayer.js"
+    /[if IE]
+      = javascript_include_tag "flowplayer.js"
 
     javascript:
       if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');

@@ -3,7 +3,7 @@ h1.govuk-heading-l
   = current_user.establishment(session)&.name || t('homepage.undetermined_establishment')
   = link_to t('search.show.title'), search_path, class: 'govuk-button govuk-button--start button-inline'
 
-hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
+hr.govuk-section-break.govuk-section-break--m.govuk-section-break--visible
 
 .govuk-grid-row
   .govuk-grid-column-two-fifths
@@ -20,18 +20,22 @@ hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
         = render 'shared/radio_date_picker', picker: RadioDatePickerPresenter.new('escorts_due_on', @date_picker)
 
   .govuk-grid-column-three-fifths
-    #escorts_gauges.escorts-gauges
-    - if @dashboard.escorts.empty?
-      dl.status_gauges
-        == @dashboard.render_no_moves_indicator
-    - else
-      dl.status_gauges
-        == @dashboard.render_detainees_indicator
-        == @dashboard.render_risk_indicator
-        == @dashboard.render_health_indicator
-        == @dashboard.render_offences_indicator
+    #escorts_gauges.escorts-gauges.govuk-grid-row
+      - if @dashboard.escorts.empty?
+        .govuk-grid-column-full
+          == @dashboard.render_no_moves_indicator
+      - else
+        .govuk-grid-column-one-quarter
+          == @dashboard.render_detainees_indicator
+        .govuk-grid-column-one-quarter
+          == @dashboard.render_risk_indicator
+        .govuk-grid-column-one-quarter
+          == @dashboard.render_health_indicator
+        .govuk-grid-column-one-quarter
+          == @dashboard.render_offences_indicator
+
+hr.govuk-section-break.govuk-section-break--l.govuk-section-break--visible
 
 .search-results
-  hr
   - unless @dashboard.escorts.empty?
     = render 'escorts', escorts: @dashboard.escorts

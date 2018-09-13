@@ -1,0 +1,30 @@
+span.true {
+  background-color: #108245;
+  border-color: #108245;
+}
+
+span.false {
+  background-color: white;
+  border-color: #DF464D;
+}
+
+.completion-status span {
+  display: inline-block;
+  width: 3em;
+  height: 13px;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.issued {
+  color: green; font-weight: bold;
+}
+.cancelled {
+  color: red; font-weight: bold; margin-right: 10px;
+}
+.approved {
+  color: black; font-weight: bold; margin-right: 10px;
+}
+.awaiting_approval {
+  color: grey;
+}
