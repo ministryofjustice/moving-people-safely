@@ -1,9 +1,9 @@
-.form-wrapper
-  = form_for @form, url: search_path, method: :post do |f|
-    -# f.error_messages
-    .search-wrapper.form-group
-      - if current_user.police?
-        = f.text_field :pnc_number
-      - else
-        = f.text_field :prison_number
-      = f.submit class: 'button', value: 'Search'
+= form_for @form, url: search_path, method: :post do |f|
+  -# f.error_messages
+  .govuk-form-group.search-wrapper
+    - if current_user.police?
+      = f.text_field :pnc_number
+    - else
+      = f.text_field :prison_number
+
+    = f.submit class: 'govuk-button', value: 'Search'

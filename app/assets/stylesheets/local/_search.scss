@@ -1,0 +1,14 @@
+.search-wrapper {
+  .govuk-form-group {
+    margin-bottom: 0;
+    display: inline;
+
+    .govuk-input {
+      margin-right: 5px;
+    }
+
+    &:after {
+      display: inline;
+    }
+  }
+}

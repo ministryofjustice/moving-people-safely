@@ -68,7 +68,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
 
   def location_text_field(attribute, options = {})
     label = label(attribute, location_text(localized_label(attribute)))
-    hint = content_tag(:span, location_text(hint_text(attribute)), class: 'form-hint')
+    hint = content_tag(:span, location_text(hint_text(attribute)), class: 'govuk-hint')
     text_field(attribute)
     (label + hint + custom_text_field(attribute)).html_safe
   end
@@ -87,7 +87,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def custom_check_box_fieldset(attribute)
-    content_tag :div, class: 'form-group' do
+    content_tag :div, class: 'govuk-form-group' do
       content_tag :div, class: 'multiple-choice' do
         check_box(attribute) +
           label(attribute) { localized_label(attribute) }
@@ -114,7 +114,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   def radio_toggle_with_textarea(attribute, options = {})
     details_attr = options.fetch(:details_attr) { :"#{attribute}_details" }
     radio_toggle(attribute, options.merge(details_attr: details_attr)) do
-      text_area_without_label details_attr, options.merge(class: 'form-control form-control-3-4')
+      text_area_without_label details_attr, options.merge(class: 'govuk-input form-control-3-4')
     end
   end
 
@@ -124,13 +124,13 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
       id: form_group_id(attribute) do
         set_field_classes! options, attribute
 
-        label_tag = label(attribute, class: 'form-label')
+        label_tag = label(attribute, class: 'govuk-label')
         add_hint :label, label_tag, attribute
 
         date_picker_tag = content_tag :span,
           class: 'date-picker-field input-group date',
           data: { provide: 'datepicker' } do
-            date_text_field_tag = custom_text_field(attribute, class: 'no-script form-control date-field')
+            date_text_field_tag = custom_text_field(attribute, class: 'no-script govuk-input date-field')
             calendar_icon_tag = content_tag :span, nil, class: 'no-script calendar-icon input-group-addon'
             (date_text_field_tag + calendar_icon_tag).html_safe
           end
@@ -169,7 +169,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     ActionView::Helpers::Tags::TextField.new(
       object_name, attribute, self,
       { value: object.public_send(attribute),
-        class: 'form-control' }.merge(options)
+        class: 'govuk-input' }.merge(options)
     ).render
   end
 
@@ -188,7 +188,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
       tags << error_message_tag_for_attr(attribute) if error_for?(attribute)
 
       hint = location_text(hint_text(attribute))
-      tags << content_tag(:span, hint, class: 'form-hint') if hint
+      tags << content_tag(:span, hint, class: 'govuk-hint') if hint
 
       safe_join tags
     end
@@ -199,13 +199,13 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     content_tag :div,
       class: form_group_classes(attribute.to_sym),
       id: form_group_id(attribute) do
-      tags = [content_tag(:span, location_text(hint_text(attribute)), class: 'form-hint')]
+      tags = [content_tag(:span, location_text(hint_text(attribute)), class: 'govuk-hint')]
       tags << error_message_tag_for_attr(attribute) if error_for?(attribute)
       tags <<
         field_type.new(
           object.name, attribute, self,
           { value: object.public_send(attribute),
-            class: 'form-control' }.merge(options)
+            class: 'govuk-input govuk-!-width-one-quarter' }.merge(options)
         ).render
       tags.join.html_safe
     end
@@ -275,7 +275,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
 
   def form_group_classes attributes
     attributes = [attributes] if !attributes.respond_to? :count
-    classes = 'form-group'
+    classes = 'govuk-form-group'
     classes += ' form-group-error' if attributes.find { |a| error_for? a }
     classes
   end
@@ -329,7 +329,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     options ||= {}
     options[:label_options] ||= {}
     options[:label_options].merge!(
-      merge_attributes(options[:label_options], default: {class: 'form-label'})
+      merge_attributes(options[:label_options], default: {class: 'govuk-label'})
     )
   end
 
@@ -347,7 +347,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def set_field_classes! options, attribute
-    default_classes = ['form-control']
+    default_classes = ['govuk-input govuk-!-width-one-quarter']
     default_classes << 'form-control-error' if error_for?(attribute)
 
     options ||= {}
@@ -358,7 +358,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
 
   def add_hint tag, element, name
     if hint = hint_text(name)
-      hint_span = content_tag(:span, hint, class: 'form-hint')
+      hint_span = content_tag(:span, hint, class: 'govuk-hint')
       element.sub!("</#{tag}>", "#{hint_span}</#{tag}>".html_safe)
     end
   end
