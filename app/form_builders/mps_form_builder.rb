@@ -99,7 +99,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     style = style_for_radio_block(attribute, options)
     data = options[:data] || { 'toggle-field' => object.toggle_field }
     choices = options.fetch(:choices) { object.toggle_choices }
-    content_tag(:div, class: 'form-group js-show-hide') do
+    content_tag(:div, class: 'govuk-form-group js-show-hide') do
       safe_join([
         content_tag(:div, class: 'controls-optional-section', data: data) do
           custom_radio_button_fieldset attribute,
@@ -148,9 +148,8 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
 
   def radio_concertina_option(attribute, option)
     safe_join([
-      radio_inputs(attribute, choices: [option], id_postfix: '_toggler'),
-      content_tag(:div, class: 'panel panel-border-narrow',
-                        data: { toggled_by: "#{option}_toggler" }) do
+      radio_inputs(attribute, choices: [option], id_postfix: ''),
+      content_tag(:div, id: "conditional-#{option}", class: 'govuk-radios__conditional govuk-radios__conditional--hidden') do
         yield
       end
     ])
@@ -223,7 +222,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
         localized_label("#{attribute}_choices.#{choice}")
       end
 
-      content_tag :div, class: 'multiple-choice' do
+      content_tag :div, class: 'govuk-radios__item' do
         input + label
       end
     end
@@ -294,11 +293,11 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def radio_options(choice, id_postfix)
-    id_postfix ? { id: choice.to_s + id_postfix.to_s } : {}
+    id_postfix ? { id: choice.to_s + id_postfix.to_s, class: 'govuk-radios__input', data: {aria_controls: 'conditional-' + choice.to_s + id_postfix.to_s} } : { class: 'govuk-radios__input', data: {aria_controls: 'conditional-' + choice.to_s + id_postfix.to_s} }
   end
 
   def label_options(value, choice, id_postfix)
-    { value: value }.tap do |options|
+    { value: value, class: 'govuk-label govuk-radios__label' }.tap do |options|
       options.merge!(for: choice.to_s + id_postfix.to_s) if id_postfix
     end
   end

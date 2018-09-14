@@ -1,7 +1,8 @@
-.breadcrumbs
-  ol
+.govuk-breadcrumbs
+  ol.govuk-breadcrumbs__list
     - breadcrumbs.each do |breadcrumb|
-      - if breadcrumb.url
-        li = link_to breadcrumb.title, breadcrumb.url
-      - else
-        li = breadcrumb.title
+      li.govuk-breadcrumbs__list-item
+        - if breadcrumb.url
+          = link_to breadcrumb.title, breadcrumb.url, class: 'govuk-breadcrumbs__link'
+        - else
+          = breadcrumb.title

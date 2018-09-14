@@ -19,3 +19,4 @@
 //= stub 'flowplayer-3.2.13.min'
 //= stub 'flowplayer-init'
 
+window.GOVUKFrontend.initAll();
