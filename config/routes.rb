@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     end
     resource :risks, except: :destroy, path: 'risk' do
       get :automation, on: :member
+      get :intro, on: :collection
       put :confirm, on: :collection
     end
     resource :offences, only: %i[show update]
