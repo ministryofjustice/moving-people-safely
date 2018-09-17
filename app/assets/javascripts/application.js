@@ -12,10 +12,15 @@
 //
 //= require jquery
 //= require bootstrap-datepicker/dist/js/bootstrap-datepicker.min
-//= require_tree .
+//= require accessible-autocomplete.min
 //= require stickyfill.min
-//= stub 'accessible-autocomplete.min'
-//= stub 'auto-complete-init'
+//= require no-script
+
+//= require date-picker
+//= require auto-complete-init
+//= require stickyfill-init
+
+
 //= stub 'flowplayer-3.2.13.min'
 //= stub 'flowplayer-init'
 

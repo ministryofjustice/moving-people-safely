@@ -9,12 +9,11 @@ var autos = [
 ]
 
 for (i = 0, tot = autos.length; i < tot; i++) {
-  if (document.querySelector('#'+autos[i])) {
+  var auto = autos[i];
+  if (document.querySelector('#' + auto)) {
     accessibleAutocomplete.enhanceSelectElement({
-      selectElement: document.querySelector('#'+autos[i]),
-      id: autos[i] // To match it to the existing <label>.
+      selectElement: document.querySelector('#'+auto),
+      id: auto // To match it to the existing <label>.
     });
   };
 }
-
-//TODO: WORK OUT WHY THIS IS GIVING ERRORS

@@ -148,8 +148,8 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
 
   def radio_concertina_option(attribute, option)
     safe_join([
-      radio_inputs(attribute, choices: [option], id_postfix: ''),
-      content_tag(:div, id: "conditional-#{option}", class: 'govuk-radios__conditional govuk-radios__conditional--hidden') do
+      radio_inputs(attribute, choices: [option], id_postfix: '-radio'),
+      content_tag(:div, id: "conditional-#{option}-radio", class: 'govuk-radios__conditional govuk-radios__conditional--hidden') do
         yield
       end
     ])
