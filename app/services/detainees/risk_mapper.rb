@@ -15,11 +15,10 @@ module Detainees
         controlled_unlock: alert_value(ALERT_CODES[:controlled_unlock]),
         high_profile: alert_value(ALERT_CODES[:high_profile]),
         high_profile_details: alert_comments(ALERT_CODES[:high_profile]),
-        intimidation: alert_value(ALERT_CODES[:intimidation]),
-        intimidation_to_public: alert_value(ALERT_CODES[:intimidation_to_public], return_type: :boolean),
-        intimidation_to_public_details: alert_comments(ALERT_CODES[:intimidation_to_public]),
-        intimidation_to_other_detainees: alert_value(ALERT_CODES[:intimidation_to_other_detainees], return_type: :boolean),
-        intimidation_to_other_detainees_details: alert_comments(ALERT_CODES[:intimidation_to_other_detainees]),
+        intimidation_public: alert_value(ALERT_CODES[:intimidation_public]),
+        intimidation_public_details: alert_comments(ALERT_CODES[:intimidation_public]),
+        intimidation_prisoners: alert_value(ALERT_CODES[:intimidation_prisoners]),
+        intimidation_prisoners_details: alert_comments(ALERT_CODES[:intimidation_prisoners]),
         gang_member: alert_value(ALERT_CODES[:gang_member]),
         gang_member_details: alert_comments(ALERT_CODES[:gang_member]),
         violence_to_staff: alert_value(ALERT_CODES[:violence_to_staff]),
@@ -39,6 +38,7 @@ module Detainees
         previous_escape_attempts: alert_value(ALERT_CODES[:previous_escape_attempts]),
         previous_escape_attempts_details: alert_comments(ALERT_CODES[:previous_escape_attempts]),
         hostage_taker: alert_value(ALERT_CODES[:hostage_taker]),
+        hostage_taker_details: alert_comments(ALERT_CODES[:hostage_taker]),
         sex_offence: alert_value(ALERT_CODES[:sex_offence]),
         arson: alert_value(ALERT_CODES[:arson]),
         must_return: alert_value(ALERT_CODES[:must_return]),
@@ -46,7 +46,9 @@ module Detainees
         has_must_not_return_details: alert_value(ALERT_CODES[:has_must_not_return_details]),
         # must_not_return_details: alert_comments(ALERT_CODES[:must_not_return]),
         other_risk: alert_value(ALERT_CODES[:other_risk]),
-        other_risk_details: alert_comments(ALERT_CODES[:other_risk])
+        other_risk_details: alert_comments(ALERT_CODES[:other_risk]),
+        violent_or_dangerous: alert_value(ALERT_CODES[:violent_or_dangerous]),
+        violent_or_dangerous_details: alert_comments(ALERT_CODES[:violent_or_dangerous])
       }.select { |_k, v| v.present? || v == false }.with_indifferent_access
     end
 
@@ -60,17 +62,18 @@ module Detainees
       vulnerable_prisoner: %w[VI VIP VJOP VOP VU XYA],
       controlled_unlock: %w[XCU],
       high_profile: %w[HPI XPOI],
-      intimidation: %w[OHA OHCO ONCR OCVM XCH XB XVL RDV RSP RCS RKC RPB RPC RKS],
-      intimidation_to_public: %w[OHA OHCO ONCR XCH RDV RSP RKC RPB RPC],
-      intimidation_to_other_detainees: %w[OCVM XB XVL RKS],
+      intimidation_public: %w[OHA OHCO XCH ONCR RSP RCS RKC RPB RPC RKS OHA RPB
+                              RPC OHCO RDV ONCR RSP RKC XCH],
+      intimidation_prisoners: %w[XB OCVM RKS],
       gang_member: %w[XGANG XOCGN],
       violence_to_staff: %w[RSS RST XSA SA],
       risk_to_females: %w[XRF],
       homophobic: %w[RLG RTP],
       racist: %w[XR],
       discrimination_to_other_religions: %w[RRV REG],
-      other_violence_due_to_discrimination: %w[C1 C2 C3 C4 CC1 CC2 CC3 CC4 RCC RCS RDP ROP RYP SC XCC CPRC P0 P1
-                                               P2 P3 PC2 PC3 CPC PL1 PL2 PL3 PVN RVR SE SSHO ROM ROH ROV XEBM],
+      other_violence_due_to_discrimination: %w[C1 C2 C3 C4 CC1 CC2 CC3 CC4 RCC
+                                               RCS RDP ROP RYP SC XCC CPRC CPC
+                                               SE SSHO XEBM],
       current_e_risk: %w[XEL],
       previous_escape_attempts: %w[XER XC],
       hostage_taker: %w[XHT],
@@ -78,7 +81,9 @@ module Detainees
       arson: %w[XA],
       must_return: %w[TAH TAP TG TM TPR TSE],
       has_must_not_return_details: %w[TCPA],
-      other_risk: %w[XTACT]
+      other_risk: %w[XTACT],
+      violent_or_dangerous: %w[OCVM RDV XVL P0 P1 P2 P3 PC2 PC3 PL1 PL2 PL3 PVN
+                               RVR ROM ROH ROV]
     }.freeze
 
     def alert_value(codes, return_type: :string, set_negative: true)

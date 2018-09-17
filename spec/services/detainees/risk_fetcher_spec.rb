@@ -149,9 +149,8 @@ RSpec.describe Detainees::RiskFetcher do
         vulnerable_prisoner: "no",
         controlled_unlock: "no",
         high_profile: "no",
-        intimidation: "yes",
-        intimidation_to_public: false,
-        intimidation_to_other_detainees: true,
+        intimidation_public: "yes",
+        intimidation_prisoners: "yes",
         gang_member: "no",
         violence_to_staff: "no",
         risk_to_females: "no",
@@ -167,6 +166,7 @@ RSpec.describe Detainees::RiskFetcher do
         must_return: "no",
         has_must_not_return_details: "no",
         other_risk: "no",
+        violent_or_dangerous: "no"
       }.with_indifferent_access
       response = fetcher.call
       expect(response.to_h).to eq(expected_response)
