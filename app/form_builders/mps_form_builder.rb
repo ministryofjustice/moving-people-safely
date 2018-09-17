@@ -47,10 +47,13 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
                 class: form_group_classes(attribute),
                 id: form_group_id(attribute) do
       content_tag :fieldset, fieldset_options(attribute, options) do
-        safe_join([
-                    fieldset_legend(attribute, options),
-                    block_given? ? capture(self, &block) : radio_inputs(attribute, options)
-                  ], "\n")
+        content_tag :div,
+                class: 'govuk-radios' do
+          safe_join([
+                      fieldset_legend(attribute, options),
+                      block_given? ? capture(self, &block) : radio_inputs(attribute, options)
+                    ], "\n")
+        end
       end
     end
   end
@@ -77,11 +80,13 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     content_tag :div,
       class: form_group_classes(attribute),
       id: form_group_id(attribute) do
-      content_tag :fieldset, fieldset_options(attribute, options) do
-        safe_join([
-                    fieldset_legend(attribute, options),
-                    radio_inputs(attribute, options)
-                  ], "\n")
+        content_tag :fieldset, fieldset_options(attribute, options) do
+          safe_join([
+            fieldset_legend(attribute, options),
+            content_tag(:div, class: 'govuk-radios') do
+              safe_join([radio_inputs(attribute, options)], "\n")
+            end
+          ])
       end
     end
   end
@@ -175,7 +180,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   def fieldset_legend(attribute, options = {})
     tags = []
     legend_options = options.fetch(:legend_options, {})
-    legend = content_tag(:legend) do
+    legend = content_tag(:legend, class: 'govuk-fieldset__legend') do
       if options.fetch(:legend, true)
         tags << content_tag(
           :span,
@@ -303,7 +308,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def style_for_radio_block(attribute, options = {})
-    style = 'optional-section-wrapper mps-hide'
+    style = 'govuk-radios__conditional govuk-radios__conditional--hidden'
     style << error_style_for_attr(options[:details_attr])
   end
 
@@ -341,7 +346,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     self.current_fieldset_attribute = attribute
 
     fieldset_options = {}
-    fieldset_options[:class] = 'inline' if options[:inline] == true
+    fieldset_options[:class] = 'govuk-fieldset'
     fieldset_options
   end
 

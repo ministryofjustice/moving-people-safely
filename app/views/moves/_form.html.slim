@@ -34,9 +34,10 @@ header
               label.form-label for="#{option}-text"
                 = t(option, scope: 'move.destination_types.prompts')
               = f.text_field_without_label "to_#{option}".to_sym, id: "#{option}-text"
-
-  = f.date_picker_text_field :date
-  = render 'shared/radio_date_picker', picker: RadioDatePickerPresenter.new('move[date]', form.date)
+  .govuk-form-group
+    .date-picker
+      = f.date_picker_text_field :date
+      = render 'shared/radio_date_picker', picker: RadioDatePickerPresenter.new('move[date]', form.date)
 
   = f.radio_toggle :not_for_release,
     choices: f.object.toggle_choices do
@@ -55,7 +56,6 @@ header
     legend_options: { class: 'form-label-bold' },
     inline_choices: false,
     toggle_options: ['yes']
-
 
   .form-actions
     = f.submit 'Save and continue', class: 'govuk-button'
