@@ -84,7 +84,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
           safe_join([
             fieldset_legend(attribute, options),
             content_tag(:div, class: 'govuk-radios') do
-              safe_join([radio_inputs(attribute, options)], "\n")
+              radio_inputs(attribute, options).join.html_safe
             end
           ])
       end
