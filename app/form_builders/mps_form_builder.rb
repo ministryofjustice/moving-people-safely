@@ -83,7 +83,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
         content_tag :fieldset, fieldset_options(attribute, options) do
           safe_join([
             fieldset_legend(attribute, options),
-            content_tag(:div, class: 'govuk-radios') do
+            content_tag(:div, class: 'govuk-radios', data: {module: 'radios'}) do
               radio_inputs(attribute, options).join.html_safe
             end
           ])
@@ -104,16 +104,14 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     style = style_for_radio_block(attribute, options)
     data = options[:data] || { 'toggle-field' => object.toggle_field }
     choices = options.fetch(:choices) { object.toggle_choices }
-    content_tag(:div, class: 'govuk-form-group js-show-hide') do
-      safe_join([
-        content_tag(:div, class: 'controls-optional-section', data: data) do
-          custom_radio_button_fieldset attribute,
-            options.merge(choices: choices,
-                          inline: options.fetch(:inline_choices, true))
-        end,
-        (content_tag(:div, class: style) { yield } if block_given?)
-      ])
-    end
+    fieldset_options = options.merge(
+      choices: choices,
+      inline: options.fetch(:inline_choices, true)
+    )
+    safe_join([
+      custom_radio_button_fieldset(attribute, fieldset_options),
+      (content_tag(:div, class: style, id: "conditional-#{attribute}-yes") { yield } if block_given?)
+    ])
   end
 
   def radio_toggle_with_textarea(attribute, options = {})
@@ -154,7 +152,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   def radio_concertina_option(attribute, option)
     safe_join([
       radio_inputs(attribute, choices: [option], id_postfix: '-radio'),
-      content_tag(:div, id: "conditional-#{option}-radio", class: 'govuk-radios__conditional govuk-radios__conditional--hidden') do
+      content_tag(:div, id: "conditional-#{attribute}-#{option}-radio", class: 'govuk-radios__conditional govuk-radios__conditional--hidden') do
         yield
       end
     ])
@@ -221,7 +219,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
 
     choices.map do |choice|
       value = choice.send(options[:value_method] || :to_s)
-      input = radio_button(attribute, choice, radio_options(choice, id_postfix))
+      input = radio_button(attribute, choice, radio_options(attribute, choice, id_postfix))
 
       label = label(attribute, label_options(value, choice, id_postfix)) do
         localized_label("#{attribute}_choices.#{choice}")
@@ -297,8 +295,14 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     text[location] || text[:"#{location}_html"].html_safe
   end
 
-  def radio_options(choice, id_postfix)
-    id_postfix ? { id: choice.to_s + id_postfix.to_s, class: 'govuk-radios__input', data: {aria_controls: 'conditional-' + choice.to_s + id_postfix.to_s} } : { class: 'govuk-radios__input', data: {aria_controls: 'conditional-' + choice.to_s + id_postfix.to_s} }
+  def radio_options(attribute, choice, id_postfix)
+    conditional = 'conditional-' + attribute.to_s + '-' + choice.to_s
+    {
+      class: 'govuk-radios__input',
+      data: { aria_controls: conditional, spudge: 'mmm' }
+    }.tap do |options|
+      options.merge!(id: choice.to_s + id_postfix.to_s, data: {aria_controls: conditional + id_postfix.to_s, spudge: 'no'}) if id_postfix
+    end
   end
 
   def label_options(value, choice, id_postfix)
@@ -314,7 +318,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
 
   def error_style_for_attr(attribute)
     return ' toggle_with_error' if attribute && error_for?(attribute)
-    ' panel panel-border-narrow'
+    ''
   end
 
   def error_message_tag_for_attr(attribute)
