@@ -1,0 +1,43 @@
+.column-three-quarters
+  = content_for :breadcrumbs do
+    - breadcrumbs_for_page root: true do
+      - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
+      - breadcrumb 'Risk automation report'
+
+  .summary.per-section-page
+    h1 NOMIS Alerts
+    - @nomis_alerts['alerts'].each do |alert|
+      p
+        span Type: #{alert['alert_type']['code']} - #{alert['alert_type']['desc']}
+        br
+        span Sub-type: #{alert['alert_sub_type']['code']} - #{alert['alert_sub_type']['desc']}
+        br
+        span Date: #{alert['alert_date']}-
+        - if alert['expiry_date']
+          span Expiry date: #{alert['expiry_date']}-
+        span Status: #{alert['status']}
+        br
+        span Comment: #{alert['comment']}
+
+    h1 User input
+    - risk.slice(@automated_risk.keys).each do |question, answer|
+      p
+        span #{question}: #{answer}
+
+    h1 Automation logic
+    - @automated_risk.each do |question, answer|
+      p
+        span #{question}: #{answer}
+
+    h1 Differences
+    - risk.attributes = @automated_risk
+    - risk.changes.each do |field, values|
+      p
+        span Field: #{field}
+        br
+        span User input: #{values.first}
+        br
+        span Automation input: #{values.second}
+
+.column-one-quarter.side-profile
+  = render partial: 'shared/detainee_sidebar', locals: { detainee: escort.detainee, escort: escort, move: escort.move }
