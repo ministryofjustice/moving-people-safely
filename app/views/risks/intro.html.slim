@@ -10,9 +10,11 @@
     p = paragraph
 
   - if t('.note').present?
-    .panel.panel-border-wide
-      - t('.note').each_line do |paragraph|
-        p = paragraph
+    ul.list.list-bullet
+      - t('.list_items').each_line do |item|
+        li = item
+
+  p = t('.ending_paragraph')
 
   .form-group
     p

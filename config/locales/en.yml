@@ -539,6 +539,19 @@ en:
         sex_offences: Sex offender
         violence: Risk to others
         violent_or_dangerous: Violence
+    intro:
+      breadcrumb: Risks
+      content: |
+        These questions are designed to ensure the safety of the detainee and anyone they come into contact with when they leave police custody.
+
+        You should base your answers on the detainee’s:
+      list_items: |
+        PNC warnings
+        risk assessment
+        behaviour and demeanour while in custody
+      ending_paragraph: |
+        If you have access to any other relevant risk information about the detainee (including previous offences), please include it.
+      title: Before you start
   homepage:
     gauges:
       detainees_due_to_move: Detainees due to move

@@ -8,6 +8,7 @@ module Page
 
     def complete_forms(risk)
       @risk = risk
+      continue_from_intro if @risk.location == 'police'
       fill_in_risk_to_self
       fill_in_segregation
       fill_in_security
@@ -21,6 +22,10 @@ module Page
       fill_in_arson
       fill_in_return_instructions if @risk.location == 'prison'
       fill_in_other_risk
+    end
+
+    def continue_from_intro
+      click_link 'Continue'
     end
 
     def fill_in_risk_to_self
