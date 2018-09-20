@@ -46,11 +46,20 @@ class Escort < ApplicationRecord
   scope :for_today, -> { joins(:move).where('moves.date = ?', Date.current) }
 
   scope :from_prison, lambda {
-    includes(move: :from_establishment).where(moves: { establishments: { type: 'Prison' } })
+    joins(move: :from_establishment).where(moves: { establishments: { type: 'Prison' } })
   }
   scope :from_police, lambda {
-    includes(move: :from_establishment).where(moves: { establishments: { type: 'PoliceCustody' } })
+    joins(move: :from_establishment).where(moves: { establishments: { type: 'PoliceCustody' } })
   }
+  scope :gender_male, -> { joins(:detainee).where(detainees: { gender: 'male' }) }
+  scope :gender_female, -> { joins(:detainee).where(detainees: { gender: 'female' }) }
+  scope :gender_unknown, -> { joins(:detainee).where(detainees: { gender: %w[unknown indeterminate] }) }
+  scope :juvenile, -> { joins(:detainee).where('detainees.date_of_birth > ?', 16.years.ago.to_date) }
+  scope :young_adult, lambda {
+    joins(:detainee)
+      .where('detainees.date_of_birth <= ? AND detainees.date_of_birth > ?', 16.years.ago.to_date, 22.years.ago.to_date)
+  }
+  scope :adult, -> { joins(:detainee).where('detainees.date_of_birth <= ?', 22.years.ago.to_date) }
 
   delegate :surname, :forenames, :gender, to: :detainee, prefix: true
   delegate :full_name, to: :canceller, prefix: true
