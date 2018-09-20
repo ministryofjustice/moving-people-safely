@@ -5,6 +5,9 @@
       - breadcrumb 'Risk summary'
 
   .summary.per-section-page
+    - if current_user.admin?
+      p= link_to 'Automation Report', automation_escort_risks_path(escort)
+
     = render 'summary/status',
       workflow: Summary::EscortSectionStatusPresenter.new(assessment, name: :risk)
 
