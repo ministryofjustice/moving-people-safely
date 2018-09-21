@@ -19,15 +19,16 @@ header
           - option = option_details.first
           - if option_details.last == :auto
             = f.radio_concertina_option(:to_type, option) do
+              - select_tag = f.select "to_#{option}", option.to_s.classify.constantize.pluck(:name), {include_blank: true}, { id: option, class: 'govuk-select mps-autocomplete govuk-!-width-one-third' }
               label.govuk-label for=option
                 = t(option, scope: 'move.destination_types.prompts')
               - if form.errors["to_#{option}"].any?
                 .error
                   .span.error-message
                     = form.errors.full_messages_for("to_#{option}").join(', ')
-                  = f.select "to_#{option}", option.to_s.classify.constantize.pluck(:name), {include_blank: true}, { id: option, class: 'govuk-select mps-autocomplete govuk-!-width-one-third' }
+                  = select_tag
               - else
-                = f.select "to_#{option}", option.to_s.classify.constantize.pluck(:name), {include_blank: true}, { id: option , class: 'govuk-select mps-autocomplete govuk-!-width-one-third'}
+                = select_tag
 
           - else
             = f.radio_concertina_option(:to_type, option) do
@@ -41,7 +42,8 @@ header
 
   = f.radio_toggle :not_for_release,
     choices: f.object.toggle_choices,
-    inline_choices: true do
+    inline_choices: true,
+    toggle_options: ['yes'] do
     = f.radio_toggle_with_textarea :not_for_release_reason,
       legend: false,
       choices: f.object.not_for_release_reasons,

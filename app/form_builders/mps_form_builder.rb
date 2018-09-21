@@ -77,13 +77,16 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def custom_radio_button_fieldset(attribute, options = {})
+    # options needs to include information on what div to toggle so it can render alongside the radio
+    wrapper_class = 'govuk-radios'
+    wrapper_class += ' govuk-radios--inline' if options[:inline]
     content_tag :div,
       class: form_group_classes(attribute),
       id: form_group_id(attribute) do
         content_tag :fieldset, fieldset_options(attribute, options) do
           safe_join([
             fieldset_legend(attribute, options),
-            content_tag(:div, class: 'govuk-radios', data: {module: 'radios'}) do
+            content_tag(:div, class: wrapper_class, data: {module: 'radios'}) do
               radio_inputs(attribute, options).join.html_safe
             end
           ])
@@ -108,6 +111,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
       choices: choices,
       inline: options.fetch(:inline_choices, true)
     )
+    # custom_radio_button_fieldset needs to generate the conditional divs
     safe_join([
       custom_radio_button_fieldset(attribute, fieldset_options),
       (content_tag(:div, class: style, id: "conditional-#{attribute}-yes") { yield } if block_given?)
@@ -214,6 +218,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def radio_inputs(attribute, options)
+    # options here needs to know about toggleable divs per choice
     choices = options[:choices] || %i[yes no]
     id_postfix = options[:id_postfix]
 
@@ -228,6 +233,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
       content_tag :div, class: 'govuk-radios__item' do
         input + label
       end
+      # need to output not just the radios__item, but also the conditional if there is one as a subsequent sibling
     end
   end
 
