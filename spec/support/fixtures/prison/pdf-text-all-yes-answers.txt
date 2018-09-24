@@ -54,7 +54,7 @@ Staple to card —————
 W1234BY: McTest Testy                                                                              Page 1 of 2
 
  Not for release ✘ No       ACCT ✔       Suicide / Self harm ✔    Cell share risk ✔      Rule 45 ✔
- Violent ✔      Escape risk ✔    Sex offender ✔       Pregnant ✘ No         Alcohol withdrawal ✘ No
+ Violent ✔      Escape risk ✔    Sex offender ✔
 
 
 Risk to self                         Yes
