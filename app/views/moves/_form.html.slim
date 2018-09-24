@@ -42,7 +42,7 @@ header
 
   = f.radio_toggle :not_for_release,
     choices: f.object.toggle_choices,
-    inline_choices: true,
+    inline_choices: false,
     toggle_options: ['yes'] do
     = f.radio_toggle_with_textarea :not_for_release_reason,
       legend: false,
