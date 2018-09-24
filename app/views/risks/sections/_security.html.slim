@@ -4,19 +4,36 @@
   = render "shared/sections/#{views}/section",
     assessment: assessment, path: path, section: section, questions: questions
 
-= render "shared/sections/#{views}/question",
-  alternance: 'even', assessment: assessment, section: section, question: 'controlled_unlock',
-  value: assessment.controlled_unlock, details: assessment.controlled_unlock_details
-
 - if assessment.escort.from_prison?
+  = render "shared/sections/#{views}/question",
+    alternance: 'even', assessment: assessment, section: section, question: 'controlled_unlock',
+    value: assessment.controlled_unlock, details: assessment.controlled_unlock_details
+
   = render "shared/sections/#{views}/question",
     alternance: 'odd', assessment: assessment, section: section, question: 'category_a',
     value: assessment.category_a, details: nil
 
-= render "shared/sections/#{views}/question",
-  alternance: 'even', assessment: assessment, section: section, question: 'high_profile',
-  value: assessment.high_profile, details: assessment.high_profile_details
+  = render "shared/sections/#{views}/question",
+    alternance: 'even', assessment: assessment, section: section, question: 'high_profile',
+    value: assessment.high_profile, details: assessment.high_profile_details
 
-= render "shared/sections/#{views}/question",
-  alternance: 'odd', assessment: assessment, section: section, question: 'pnc_warnings',
-  value: assessment.pnc_warnings, details: assessment.pnc_warnings_details
+  = render "shared/sections/#{views}/question",
+    alternance: 'odd', assessment: assessment, section: section, question: 'pnc_warnings',
+    value: assessment.pnc_warnings, details: assessment.pnc_warnings_details
+
+- if assessment.escort.from_police?
+  = render "shared/sections/#{views}/question",
+    alternance: 'even', assessment: assessment, section: section, question: 'high_profile',
+    value: assessment.high_profile, details: assessment.high_profile_details
+
+  = render "shared/sections/#{views}/question",
+    alternance: 'even', assessment: assessment, section: section, question: 'violent_or_dangerous',
+    value: assessment.violent_or_dangerous, details: assessment.violent_or_dangerous_details
+
+  = render "shared/sections/#{views}/question",
+    alternance: 'even', assessment: assessment, section: section, question: 'gang_member',
+    value: assessment.gang_member, details: assessment.gang_member_details
+
+  = render "shared/sections/#{views}/question",
+    alternance: 'odd', assessment: assessment, section: section, question: 'previous_escape_attempts',
+    value: assessment.previous_escape_attempts, details: assessment.previous_escape_attempts_details

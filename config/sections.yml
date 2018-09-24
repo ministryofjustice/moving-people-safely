@@ -90,14 +90,10 @@ police:
       - csra
       - vulnerable_prisoner
     security:
-      - controlled_unlock
       - high_profile
-      - pnc_warnings
-    violent_or_dangerous:
       - violent_or_dangerous
-    harassment_and_gangs:
-      - intimidation_public
       - gang_member
+      - previous_escape_attempts
     discrimination:
       - violence_to_staff
       - risk_to_females
@@ -105,19 +101,15 @@ police:
       - racist
       - discrimination_to_other_religions
       - other_violence_due_to_discrimination
-    escape:
-      - previous_escape_attempts
     hostage_taker:
       - hostage_taker
-    sex_offences:
       - sex_offence
+      - arson
     concealed_weapons:
       - conceals_weapons
       - uses_weapons
       - conceals_drugs
       - conceals_mobile_phone_or_other_items
-      - substance_supply
-    arson:
-      - arson
     other_risk:
+      - pnc_warnings
       - other_risk

@@ -29,7 +29,9 @@ en:
       discrimination:
         discrimination_to_other_religions: 'Are they a risk to other religions?'
         homophobic: Are they a risk to lesbian, gay, bisexual, transgender, transexual or queer (LGBTQ) people?
-        other_violence_due_to_discrimination: 'Are they a risk to any other groups?'
+        other_violence_due_to_discrimination:
+          prison: 'Are they a risk to any other groups?'
+          police: 'Are they a risk to any other group that has not already been mentioned?'
         racist: 'Are they a risk to other races?'
         risk_to_females: 'Are they a risk to females?'
         violence_to_staff: 'Are they a risk to staff?'
@@ -47,7 +49,9 @@ en:
           police: Are they a known harasser or intimidator?
         intimidation_prisoners: Do they bully or intimidate other prisoners?
       hostage_taker:
+        arson: Are they an arsonist?
         hostage_taker: Are they a hostage taker?
+        sex_offence: Are they a current or previous sex offender?
       move:
         not_for_release: Is there a reason they should not be released?
       mental:
@@ -66,6 +70,8 @@ en:
           carrier: Who will carry the medicine?
       other_risk:
         other_risk: Is there any other information related to risk on this journey you would like to include?
+        pnc_warnings:
+          police: Do they have PNC warnings that haven’t been covered by the questions asked?
       physical:
         physical_issues:
           prison: Do they have physical health needs that might affect them while they are out of prison?
@@ -81,9 +87,11 @@ en:
           prison: Are they on a controlled unlock?
           police: Do they need to be escorted by more than one person?
         high_profile: Are they of high public interest?
+        gang_member: Are they a gang member or involved in organised crime?
         pnc_warnings:
           prison: PNC warnings
-          police: Do they have PNC warnings?
+        previous_escape_attempts: Are they an escape risk?
+        violent_or_dangerous: Are they violent or dangerous?
       segregation:
         csra:
           prison: What is their Cell Sharing Risk Assessment (CSRA) risk level?
@@ -97,8 +105,6 @@ en:
         self_harm: Is there a risk that they might self harm or attempt suicide?
       sex_offences:
         sex_offence: Are they a current or previous sex offender?
-        sex_offence_type: 'Victim (select all that apply):'
-        date_most_recent_sexual_offence: Date of most recent sexual offence
       social:
         female_hygiene_kit: Do they need a female hygiene kit?
         personal_care:
@@ -342,7 +348,7 @@ en:
         risk_to_females_details: Give details
         violence_to_staff:
           prison_html: '<p>This includes prison, escort, court or hospital staff.</p><p>In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments, adjudications and case notes for details.</p>'
-          police_html: 'This includes police, escort, court or medical staff. In the arrest record, check for the Potentially dangerous offender warning marker.'
+          police_html: 'This includes police, escort, court or medical staff. In the arrest record, check for the <i>Potentially dangerous offender</i> warning marker.'
         violence_to_staff_details: Give details
       escape:
         current_e_risk_html: Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the <i>E-List</i> alert. Check alert comments and case notes for details.
@@ -355,7 +361,6 @@ en:
           police: ''
         previous_escape_attempts:
           prison_html: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the <i>Escape Risk</i> alert. Check alert comments and case notes for details.'
-          police_html: 'Check PNC warnings for the <i>Escaper</i> marker and any other relevant escape risk information.'
         previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
       forms_search:
         prison_number: For example A1234AB
@@ -368,7 +373,6 @@ en:
       harassment_and_gangs:
         gang_member:
           prison_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and <i>Security > Non-association</i> for known risks to named prisoners.'
-          police: In the arrest record, check for the Organised crime group warning marker. Include details of anyone they should not come into contact with (for example, at court or prison).
         gang_member_details: Give details
         intimidation_public:
           prison: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details.'
@@ -377,12 +381,16 @@ en:
         intimidation_public_details: Give details of targets, including any relevant court orders
         intimidation_prisoners_details: Give details of targets, including any relevant court orders
       hostage_taker:
+        arson:
+          police: ''
         hostage_taker:
           prison: ''
           police_html: 'In the arrest record, check for the <i>Hostage taker</i> warning marker.'
         hostage_taker_details:
           prison: Give details of people involved (for example, public, staff or prisoners) and the date of the most recent incident if known
           police: 'Give details:'
+        sex_offence:
+          police_html: 'In the arrest record, check for the <i>Sex offender</i> warning marker.'
       move:
         date: DD/MM/YYYY
         not_for_release_html: In NOMIS, check the header section of the prisoner’s record for the <i>Not For Release</i> alert.
@@ -406,6 +414,9 @@ en:
           prison: Include relevant adjudications or case notes not already included
           police: ''
         other_risk_details: Give details
+        pnc_warnings:
+          police: ''
+        pnc_warnings_details: Give details
       physical:
         physical_issues:
           prison_html: "<p>For example, issues that mean they can’t: <ul class='list list-bullet'><li>be handcuffed</li><li>travel in a standard van cell</li><li>sit for long periods of time</li></ul></p>"
@@ -442,18 +453,23 @@ en:
         category_a: In NOMIS, check the header section of the prisoner’s record for category information.
         controlled_unlock:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Controlled Unlock</i> alert.
-          police: ''
         controlled_unlock_details:
           prison: 'Give details of number of officers required and any personal protection equipment (PPE) required:'
-          police: 'Give details of number of people and any equipment required:'
+        gang_member:
+          police_html: In the arrest record, check for the <i>Organised crime group</i> warning marker. Include details of anyone they should not come into contact with (for example, at court or prison).
+        gang_member_details: Give details
         high_profile:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>High public interest</i> alert and case notes for details.
           police: For example, if they are a public figure or involved in a high profile case.
         high_profile_details: Give details
         pnc_warnings:
           prison: Do they have PNC warnings that you think are relevant to risk on this journey?
-          police: ''
         pnc_warnings_details: Give details
+        previous_escape_attempts:
+          police_html: 'Check PNC warnings for the <i>Escaper</i> marker and any other relevant escape risk information.'
+        violent_or_dangerous:
+          police_html: In the arrest record, check for the <i>Violent or Potentially dangerous offender</i> warning markers.
+        violent_or_dangerous_details: Give details
       segregation:
         csra:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>CSRA risk</i> level.
@@ -462,13 +478,12 @@ en:
         rule_45_html: In NOMIS, check the header section of the prisoner’s record for the <i>Rule 45</i> alert.
         vulnerable_prisoner:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Rule 46</i>, <i>Rule 49</i>, <i>Victim,</i> <i>Isolated prisoner</i> or <i>Poor Coper</i> alerts. Include any other reasons you think they may be vulnerable (for example, transgender prisoners or young adults in an adult establishment).
-          police: Check the Vulnerable/At risk detainee alert. In the arrest record, check for the Vulnerable person flag or any information under Risk of attack by others.
+          police_html: Check the <i>Vulnerable/At risk detainee alert</i>. In the arrest record, check for the Vulnerable person flag or any information under <i>Risk of attack by others</i>.
         vulnerable_prisoner_details: Give details
       sex_offences:
         sex_offence_details: Give details of victim group (for example, adult male, adult female or under 18) and the date of the most recent incident if known
         sex_offence:
           prison_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and <i>Legal cases > Court cases > Offences</i> for details.'
-          police_html: 'In the arrest record, check for the <i>Sex offender</i> warning marker.'
         date_most_recent_sexual_offence: DD/MM/YYYY
       social:
         female_hygiene_kit: In the arrest record, check the pre-release assessment and detainee section for relevant comments.
@@ -481,7 +496,6 @@ en:
       violent_or_dangerous:
         violent_or_dangerous:
           prison_html: Check Mercury for intelligence or in NOMIS, check the prisoner’s record for <i>MAPPA</i>, <i>ViSOR</i>, <i>OASys</i> alerts, or other alerts related to violence or dangerous behaviour. Check alert comments and case notes for details.'
-          police: In the arrest record, check for the Violent or Potentially dangerous offender warning markers.
         violent_or_dangerous_details: Give details
   move:
     destination_types:
@@ -531,7 +545,9 @@ en:
         discrimination: Discrimination against others
         escape: Escape status and history
         harassment_and_gangs: Harassment and gangs
-        hostage_taker: Hostage taker
+        hostage_taker:
+          prison: Hostage taker
+          police: Offence history
         other_risk: Other risk on this journey
         risk_to_self: Risk to self
         security: Security
@@ -596,7 +612,7 @@ en:
         concealed_weapons:
           conceals_weapons: Conceals weapons
           conceals_drugs: Conceals drugs
-          conceals_mobile_phones: Conceals mobile phones
+          conceals_mobile_phone_or_other_items: Conceals mobile phones, SIM cards or other items
           conceals_sim_cards: Conceals SIM cards
           conceals_other_items: Conceals other items
           substance_supply: Drug trafficking risk
@@ -619,21 +635,22 @@ en:
           current_e_risk: Currently on E list
           escape_pack: Escape Pack needed
           escort_risk_assessment: Escort Risk Assessment needed
-          previous_escape_attempts: 'Escape risk'
+          previous_escape_attempts: Escape risk
         harassment_and_gangs:
           gang_member: Gang member
           intimidation_public: Public harasser
           intimidation_prisoners: Prisoners harasser
         hostage_taker:
-          staff_hostage_taker: Staff hostage taker
-          prisoners_hostage_taker: Prisoner hostage taker
-          public_hostage_taker: Public hostage taker
+          arson: Arsonist
+          hostage_taker: Hostage taker
+          sex_offence: Sex offender
         mental:
           mental_illness: Mental health issues
         needs:
           has_medications: Essential medication
         other_risk:
           other_risk: Other risk information
+          pnc_warnings: PNC warnings
         physical:
           physical_issues: Physical health needs
           pregnant: Pregnant
@@ -646,12 +663,15 @@ en:
         security:
           category_a: Cat A or potential Cat A
           controlled_unlock: Multiple officer unlock/escort
+          previous_escape_attempts: Escape risk
+          gang_member: Gang member
           high_profile: High public interest
           pnc_warnings: PNC warnings
+          violent_or_dangerous: Violent or dangerous
         segregation:
           csra: Cell share risk
           rule_45: Rule 45
-          vulnerable_prisoner: Vulnerable person
+          vulnerable_prisoner: At risk from others
         sex_offences:
           sex_offence: Sex offender
         social:
@@ -672,7 +692,9 @@ en:
         escape_status: Escape status and history
         escort_details: Further security information
         harassment_and_gangs: Harassment and gangs
-        hostage_taker: "Hostage taker"
+        hostage_taker:
+          prison: Hostage taker
+          police: Offence history
         intimidation: Harassment and bullying
         mental: Mental health issues
         needs: Essential medication
@@ -714,7 +736,7 @@ en:
   escorts:
     confirm_approve:
       approve_per: Approve PER
-      cannot_edit: 'Please note: you cannot edit a PER once it has been approved.'
+      cannot_edit: 'Please note: you cannot edit a PER once it has been approved. If an incident occurrs between approval and leaving custody, record the incident in the PER record of events.'
       go_back: Go back
       title: Approving PER for
     confirm_cancel:

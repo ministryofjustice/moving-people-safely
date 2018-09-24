@@ -7,3 +7,12 @@
 = render "shared/sections/#{views}/question",
   alternance: 'even', assessment: assessment, section: section, question: 'hostage_taker',
   value: assessment.hostage_taker, details: assessment.hostage_taker_details
+
+- if assessment.escort.from_police?
+  = render "shared/sections/#{views}/question",
+    alternance: 'even', assessment: assessment, section: section, question: 'sex_offence',
+    value: assessment.sex_offence, details: assessment.sex_offence_details
+
+  = render "shared/sections/#{views}/question",
+    alternance: 'even', assessment: assessment, section: section, question: 'arson',
+    value: assessment.arson, details: nil

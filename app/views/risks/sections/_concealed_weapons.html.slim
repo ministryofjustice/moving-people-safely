@@ -20,6 +20,7 @@
   alternance: 'odd', assessment: assessment, section: section, question: 'conceals_mobile_phone_or_other_items',
   value: assessment.conceals_mobile_phone_or_other_items, details: assessment.conceals_mobile_phone_or_other_items_details
 
-= render "shared/sections/#{views}/question",
-  alternance: 'even', assessment: assessment, section: section, question: 'substance_supply',
-  value: assessment.substance_supply, details: assessment.substance_supply_details
+- if assessment.escort.from_prison?
+  = render "shared/sections/#{views}/question",
+    alternance: 'even', assessment: assessment, section: section, question: 'substance_supply',
+    value: assessment.substance_supply, details: assessment.substance_supply_details

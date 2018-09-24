@@ -12,14 +12,14 @@ module Page
       fill_in_risk_to_self
       fill_in_segregation
       fill_in_security
-      fill_in_violence
-      fill_in_harassment_and_gangs
+      fill_in_violence if @risk.location == 'prison'
+      fill_in_harassment_and_gangs if @risk.location == 'prison'
       fill_in_discrimination
-      fill_in_escape
+      fill_in_escape if @risk.location == 'prison'
       fill_in_hostage_taker
-      fill_in_sex_offences
+      fill_in_sex_offences if @risk.location == 'prison'
       fill_in_concealed_weapons
-      fill_in_arson
+      fill_in_arson if @risk.location == 'prison'
       fill_in_return_instructions if @risk.location == 'prison'
       fill_in_other_risk
     end
@@ -53,9 +53,10 @@ module Page
         fill_in_optional_details('Are they of high public interest?', @risk, :high_profile)
         fill_in_optional_details('PNC warnings', @risk, :pnc_warnings)
       elsif @risk.location == 'police'
-        fill_in_optional_details('Do they need to be escorted by more than one person?', @risk, :controlled_unlock)
         fill_in_optional_details('Are they of high public interest?', @risk, :high_profile)
-        fill_in_optional_details('Do they have PNC warnings?', @risk, :pnc_warnings)
+        fill_in_optional_details('Are they violent or dangerous?', @risk, :violent_or_dangerous)
+        fill_in_optional_details('Are they a gang member or involved in organised crime?', @risk, :gang_member)
+        fill_in_optional_details('Are they an escape risk?', @risk, :previous_escape_attempts)
       end
       save_and_continue
     end
@@ -83,24 +84,30 @@ module Page
       fill_in_optional_details('Are they a risk to lesbian, gay, bisexual, transgender, transexual or queer (LGBTQ) people?', @risk, :homophobic)
       fill_in_optional_details('Are they a risk to other races?', @risk, :racist)
       fill_in_optional_details('Are they a risk to other religions?', @risk, :discrimination_to_other_religions)
-      fill_in_optional_details('Are they a risk to any other groups?', @risk, :other_violence_due_to_discrimination)
-      save_and_continue
-    end
-
-    def fill_in_escape
       if @risk.location == 'prison'
-        fill_in_optional_details('Are they on the Escape List (E-List)?', @risk, :current_e_risk)
-        fill_in_optional_details('Are they an escape risk?', @risk, :previous_escape_attempts)
-        fill_in_optional_details('Is an Escort Risk Assessment needed for this journey?', @risk, :escort_risk_assessment)
-        fill_in_optional_details('Is an Escape Pack needed for this journey?', @risk, :escape_pack)
+        fill_in_optional_details('Are they a risk to any other groups?', @risk, :other_violence_due_to_discrimination)
       elsif @risk.location == 'police'
-        fill_in_optional_details('Are they an escape risk?', @risk, :previous_escape_attempts)
+        fill_in_optional_details('Are they a risk to any other group that has not already been mentioned?', @risk, :other_violence_due_to_discrimination)
       end
       save_and_continue
     end
 
+    def fill_in_escape
+      fill_in_optional_details('Are they on the Escape List (E-List)?', @risk, :current_e_risk)
+      fill_in_optional_details('Are they an escape risk?', @risk, :previous_escape_attempts)
+      fill_in_optional_details('Is an Escort Risk Assessment needed for this journey?', @risk, :escort_risk_assessment)
+      fill_in_optional_details('Is an Escape Pack needed for this journey?', @risk, :escape_pack)
+      save_and_continue
+    end
+
     def fill_in_hostage_taker
-      fill_in_optional_details('Are they a hostage taker?', @risk, :hostage_taker)
+      if @risk.location == 'prison'
+        fill_in_optional_details('Are they a hostage taker?', @risk, :hostage_taker)
+      elsif @risk.location == 'police'
+        fill_in_optional_details('Are they a hostage taker?', @risk, :hostage_taker)
+        fill_in_optional_details('Are they a current or previous sex offender?', @risk, :sex_offence)
+        fill_in_optional_details('Are they an arsonist?', @risk, :arson)
+      end
       save_and_continue
     end
 
@@ -114,7 +121,7 @@ module Page
       fill_in_optional_details('Have they concealed weapons in custody?', @risk, :conceals_weapons)
       fill_in_optional_details('Have they concealed drugs in custody?', @risk, :conceals_drugs)
       fill_in_optional_details('Have they concealed mobile phones, SIMs or other items in custody?', @risk, :conceals_mobile_phone_or_other_items)
-      fill_in_optional_details('Is there a risk that they might traffic drugs on this journey?', @risk, :substance_supply)
+      fill_in_optional_details('Is there a risk that they might traffic drugs on this journey?', @risk, :substance_supply) if @risk.location == 'prison'
       save_and_continue
     end
 
@@ -130,6 +137,7 @@ module Page
     end
 
     def fill_in_other_risk
+      fill_in_optional_details('Do they have PNC warnings that haven’t been covered by the questions asked?', @risk, :pnc_warnings) if @risk.location == 'police'
       fill_in_optional_details('Is there any other information related to risk on this journey you would like to include?', @risk, :other_risk)
       save_and_continue
     end
