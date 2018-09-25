@@ -56,27 +56,15 @@ Staple to card —————
   Not for release ✘ No       Suicide / Self harm ✘ No   Cell share risk ✘ No   Violent ✘ No
   Escape risk ✘ No       Sex offender ✘ No      Alcohol withdrawal ✘ No
 
-Risk to self                         No
-Segregation                          No
-Security                             No
-Discrimination against others        No
-Offence history                      No
-Weapons, drugs or other items        No
-Other risk information               No
 
 Risk       Last confirmed: Nel Bee, 12:30 | 10 Mar 2016. Approved: Ned Nok, 12:30 | 10 Mar 2016.
 
 Risk to self                         No
 Segregation                          No
 Security                             No
-Violence                             No
-Harassment and gangs                 No
 Discrimination against others        No
-Escape status/history                No
-Hostage taker                        No
-Sex offender                         No
+Offence history                      No
 Weapons, drugs or other items        No
-Arson                                No
 Other risk information               No
 
 Healthcare          Last confirmed: Nel Bee, 12:30 | 10 Mar 2016. Approved: Ned Nok, 12:30 | 10 Mar 2016.
