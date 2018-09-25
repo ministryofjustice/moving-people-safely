@@ -1,2 +1,3 @@
-= f.radio_toggle_with_textarea :violent_or_dangerous,
-  legend_options: { class: 'form-label-assessment' }
+- if escort.from_prison?
+  = f.radio_toggle_with_textarea :violent_or_dangerous,
+    legend_options: { class: 'form-label-assessment' }

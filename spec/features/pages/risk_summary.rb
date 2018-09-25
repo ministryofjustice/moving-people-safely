@@ -6,15 +6,16 @@ module Page
       check_risk_to_self(risk)
       check_segregation(risk)
       check_security(risk)
-      check_violent_or_dangerous(risk)
-      check_harassment_and_gangs_section(risk)
+      check_violent_or_dangerous(risk) if risk.location == 'prison'
+      check_harassment_and_gangs_section(risk) if risk.location == 'prison'
       check_discrimination(risk)
-      check_escape(risk)
+      check_escape(risk) if risk.location == 'prison'
       check_hostage_taker(risk)
-      check_sex_offences(risk)
+      check_sex_offences(risk) if risk.location == 'prison'
       check_concealed_weapons(risk)
-      check_arson(risk)
+      check_arson(risk) if risk.location == 'prison'
       check_return_instructions(risk)
+      check_other_risk(risk)
     end
 
     private
@@ -39,7 +40,7 @@ module Page
       if risk.location == 'prison'
         check_section(risk, 'security', %w[controlled_unlock category_a high_profile pnc_warnings])
       elsif risk.location == 'police'
-        check_section(risk, 'security', %w[controlled_unlock high_profile pnc_warnings])
+        check_section(risk, 'security', %w[high_profile violent_or_dangerous gang_member previous_escape_attempts])
       end
     end
 
@@ -48,11 +49,7 @@ module Page
     end
 
     def check_harassment_and_gangs_section(risk)
-      if risk.location == 'prison'
-        check_section(risk, 'harassment_and_gangs', %w[intimidation_public intimidation_prisoners gang_member])
-      elsif risk.location == 'police'
-        check_section(risk, 'harassment_and_gangs', %w[intimidation_public gang_member])
-      end
+      check_section(risk, 'harassment_and_gangs', %w[intimidation_public intimidation_prisoners gang_member])
     end
 
     def check_discrimination(risk)
@@ -60,15 +57,15 @@ module Page
     end
 
     def check_escape(risk)
-      if risk.location == 'prison'
-        check_section(risk, 'escape', %w[current_e_risk previous_escape_attempts escort_risk_assessment escape_pack])
-      elsif risk.location == 'police'
-        check_section(risk, 'escape', %w[previous_escape_attempts])
-      end
+      check_section(risk, 'escape', %w[current_e_risk previous_escape_attempts escort_risk_assessment escape_pack])
     end
 
     def check_hostage_taker(risk)
-      check_section(risk, 'hostage_taker', %w[hostage_taker])
+      if risk.location == 'prison'
+        check_section(risk, 'hostage_taker', %w[hostage_taker])
+      elsif risk.location == 'police'
+        check_section(risk, 'hostage_taker', %w[hostage_taker sex_offence arson])
+      end
     end
 
     def check_sex_offences(risk)
@@ -76,7 +73,11 @@ module Page
     end
 
     def check_concealed_weapons(risk)
-      check_section(risk, 'concealed_weapons', %w[uses_weapons conceals_weapons conceals_drugs conceals_mobile_phone_or_other_items substance_supply])
+      if risk.location == 'prison'
+        check_section(risk, 'concealed_weapons', %w[uses_weapons conceals_weapons conceals_drugs conceals_mobile_phone_or_other_items substance_supply])
+      elsif risk.location == 'police'
+        check_section(risk, 'concealed_weapons', %w[uses_weapons conceals_weapons conceals_drugs conceals_mobile_phone_or_other_items])
+      end
     end
 
     def check_arson(risk)
@@ -87,6 +88,14 @@ module Page
       if risk.violence_to_staff == 'yes'
         check_question(risk, 'return_instructions', 'must_return_to')
         check_question(risk, 'return_instructions', 'must_return_to_details')
+      end
+    end
+
+    def check_other_risk(risk)
+      if risk.location == 'prison'
+        check_section(risk, 'other_risk', %w[other_risk])
+      elsif risk.location == 'police'
+        check_section(risk, 'other_risk', %w[pnc_warnings other_risk])
       end
     end
   end

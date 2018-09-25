@@ -59,7 +59,7 @@ Risk to self                         Yes
 Segregation                          Yes
   Cell share risk                    High
   Rule 45                            Yes
-  Vulnerable person                  Yes                 Vulnerable prisoner details
+  At risk from others                Yes                 Vulnerable prisoner details
 Security                             Yes
   Multiple officer unlock/escort Yes                     Many people to hold the prisoner
   Cat A or potential Cat A           Yes
@@ -85,7 +85,7 @@ Escape status/history                Yes
   needed
   Escape Pack needed                 Yes
 Hostage taker                        Yes
-  Hostage Taker                      Yes                 Takes staff hostages. most recent: 01/01/1999
+  Hostage taker                      Yes                 Takes staff hostages. most recent: 01/01/1999
 Sex offender                         Yes
 W1234BY: McTest Testy                                                                             Page 2 of 2
 
@@ -94,8 +94,8 @@ Weapons, drugs or other items       Yes
  Creates or uses weapons            Yes                  Created and used a 3d gun
  Conceals weapons                   Yes                  Conceals weapons details
  Conceals drugs                     Yes                  Conceals drugs details
- Conceals Mobile Phone Or           Yes                  Conceals other items details
- Other Items
+ Conceals mobile phones,            Yes                  Conceals other items details
+ SIM cards or other items
  Drug trafficking risk              Yes                  Substance supply details
 Arson                               Yes
  Arsonist                           Yes
