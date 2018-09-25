@@ -1,0 +1,32 @@
+@mixin status-label-colour($colour: $govuk-text-colour) {
+  color: $colour;
+  border: 2px solid $colour;
+}
+
+.status-label {
+  @include status-label-colour;
+  display: inline-block;
+  font-weight: bold;
+  padding: .250em .5em;
+  text-align: center;
+}
+
+.status-label--complete {
+  @include status-label-colour(green);
+}
+
+.status-label--incomplete {
+  @include status-label-colour(red);
+}
+
+.per-page {
+  .status-label {
+    margin-right: 10px;
+  }
+}
+
+.per-section-page {
+  .status-label {
+    margin-left: 10px;
+  }
+}

@@ -1,21 +1,21 @@
 section#move
   .header
-    span.section-title Move informationnn
+    h2.govuk-heading-m Move information
     .float-right
       - if escort.editable?
         = link_to 'Edit', edit_escort_move_path(escort)
   .tile-3
-    h6 Date of travel
+    h3.govuk-heading-s.heading-light Date of travel
     p= escort.move.date&.to_s(:humanized)
 
   .tile-3
-    h6 From
+    h3.govuk-heading-s.heading-light From
     p= from(escort.move)
 
   .tile-3
-    h6 To
+    h3.govuk-heading-s.heading-light To
     p= escort.move.to
 
   .tile-3
-    h6 Release status
+    h3.govuk-heading-s.heading-light Release status
     p= not_for_release_text(escort.move)

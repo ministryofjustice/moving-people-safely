@@ -1,11 +1,12 @@
 header
-  h1
+  h1.govuk-heading-l
     = identifier(escort)
     span.heading-light<
       = detainee.forenames
 
-- escort.alerts.each do |alert, on|
-  - status = on ? 'active' : 'inactive'
-
-  li.flag class="flag-#{status}" id=alert
-    = t("escort.alerts.#{alert}")
+- if escort.alerts.count
+  ul.flags
+    - escort.alerts.each do |alert, on|
+      - status = on ? 'active' : 'inactive'
+      li class="flag-#{status}" id=alert
+        = t("escort.alerts.#{alert}")

@@ -1,58 +1,58 @@
 section#detainee
   .header
-    span.section-title Personal details
+    h2.govuk-heading-m Personal details
     .float-right
       - if escort.editable?
         = link_to 'Edit', edit_escort_detainee_path(escort)
   .data_container
     .tile-3
-      h6 Prison Number
+      h3.govuk-heading-s.heading-light Prison Number
       p= escort.detainee.prison_number
     .tile-3
-      h6 CRO number
+      h3.govuk-heading-s.heading-light CRO number
       p= escort.detainee.cro_number
     .tile-3
-      h6 PNC Number
+      h3.govuk-heading-s.heading-light PNC Number
       p= escort.detainee.pnc_number
     .tile-3
-      h6 Date of birth
+      h3.govuk-heading-s.heading-light Date of birth
       p= escort.detainee.date_of_birth&.to_s(:humanized)
     .tile-3
-      h6 Age
+      h3.govuk-heading-s.heading-light Age
       p= escort.detainee.age
     .tile-3
-      h6 Gender
+      h3.govuk-heading-s.heading-light Gender
       p= escort.detainee.gender&.capitalize
     .tile-3
-      h6 Nationality
+      h3.govuk-heading-s.heading-light Nationality
       p= escort.detainee.nationalities
     - if escort.from_prison?
       .tile-3
-        h6 Religion
+        h3.govuk-heading-s.heading-light Religion
         p= escort.detainee.religion
     .tile-3
-      h6 Ethnicity
+      h3.govuk-heading-s.heading-light Ethnicity
       p= short_ethnicity(escort.detainee)
     .tile-3
-      h6 Preferred language
+      h3.govuk-heading-s.heading-light Preferred language
       p= escort.detainee.language
     .tile-3
-      h6 Interpreter
+      h3.govuk-heading-s.heading-light Interpreter
       p= expanded_interpreter_required(escort.detainee)
     .tile-3
-      h6 Interpreter details
+      h3.govuk-heading-s.heading-light Interpreter details
       p= escort.detainee.interpreter_required_details
     - if escort.from_prison?
       .tile-3
-        h6 Category
+        h3.govuk-heading-s.heading-light Category
         p= escort.detainee.security_category
     .tile-2
-      h6 Diet
+      h3.govuk-heading-s.heading-light Diet
       p= escort.detainee.diet
     - if escort.detainee.peep == 'yes'
       .tile
-        h6 Personal Emergency Evacuation Plan
+        h3.govuk-heading-s.heading-light Personal Emergency Evacuation Plan
         p= escort.detainee.peep_details
   .tile-3
-    h6 Aliases
+    h3.govuk-heading-s.heading-light Aliases
     p= escort.detainee.aliases

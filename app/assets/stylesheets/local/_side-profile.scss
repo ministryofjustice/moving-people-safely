@@ -1,0 +1,15 @@
+.side-profile {
+  position: sticky;
+  top: 10px;
+  box-sizing: border-box;
+  border-left: 5px solid govuk-colour('grey-2');
+  padding: 15px;
+}
+
+.escort-image-wrapper {
+  margin-bottom: 15px;
+}
+
+.side-profile__value {
+  font-weight: bold;
+}

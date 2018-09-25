@@ -1,0 +1,21 @@
+.escort {
+  .header {
+    .govuk-heading-m {
+      display: inline;
+    }
+
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid govuk-colour('black');
+  }
+
+  .tile-3 {
+    h3 {
+      margin-bottom: 0;
+    }
+    p {
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+}

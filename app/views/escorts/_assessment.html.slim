@@ -1,6 +1,6 @@
 section id=model.to_s.downcase
   .header
-    span.section-title= model
+    h2.govuk-heading-m= model
 
     = render 'status', workflow: assessment,
                        not_started_path: not_started_path,
