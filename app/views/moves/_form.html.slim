@@ -48,7 +48,7 @@ header
       legend: false,
       choices: f.object.not_for_release_reasons,
       inline_choices: false,
-      toggle_options: f.object.not_for_release_reason_with_details
+      toggle_options: [f.object.not_for_release_reason_with_details]
 
   = f.radio_toggle_with_textarea :require_special_vehicle,
     legend_options: { class: 'form-label-bold' },

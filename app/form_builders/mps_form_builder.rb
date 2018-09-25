@@ -77,17 +77,13 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def custom_radio_button_fieldset(attribute, options = {}, &_blk)
-    # options needs to include information on what div to toggle so it can render alongside the radio
     wrapper_class = 'govuk-radios'
     wrapper_class += ' govuk-radios--inline' if options[:inline]
-
-# puts options
 
     content_tag :div,
       class: form_group_classes(attribute),
       id: form_group_id(attribute) do
         content_tag :fieldset, fieldset_options(attribute, options) do
-          # puts 'that' + options.to_s
           safe_join([
             fieldset_legend(attribute, options),
             content_tag(:div, class: wrapper_class, data: {module: 'radios'}) do
@@ -118,17 +114,16 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
       toggle_options: toggle_options
     )
 
-    # custom_radio_button_fieldset needs to generate the conditional divs
     safe_join([
       custom_radio_button_fieldset(attribute, fieldset_options, &_blk)
-      # (content_tag(:div, class: style, id: "conditional-#{attribute}-yes") { yield } if block_given?)
     ])
   end
 
   def radio_toggle_with_textarea(attribute, options = {})
+    # binding.pry
     details_attr = options.fetch(:details_attr) { :"#{attribute}_details" }
     radio_toggle(attribute, options.merge(details_attr: details_attr)) do
-      text_area_without_label details_attr, options.merge(class: 'govuk-input form-control-3-4')
+      text_area_without_label details_attr, options.merge(class: 'govuk-textarea govuk-!-width-one-half')
     end
   end
 
@@ -323,9 +318,9 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     conditional = 'conditional-' + attribute.to_s + '-' + choice.to_s
     {
       class: 'govuk-radios__input',
-      data: { aria_controls: conditional, spudge: 'mmm' }
+      data: { aria_controls: conditional }
     }.tap do |options|
-      options.merge!(id: choice.to_s + id_postfix.to_s, data: {aria_controls: conditional + id_postfix.to_s, spudge: 'no'}) if id_postfix
+      options.merge!(id: choice.to_s + id_postfix.to_s, data: {aria_controls: conditional + id_postfix.to_s}) if id_postfix
     end
   end
 
