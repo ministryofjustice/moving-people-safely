@@ -79,7 +79,7 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
 
   scenario 'completing a PER with a blank detainee (bug fix)' do
     # Emulate what happens in EscortsController#create with NOMIS down
-    create(:escort,
+    escort = create(:escort,
       :with_no_offences,
       prison_number: detainee.prison_number,
       move: Move.new(from_establishment: prison),
@@ -100,10 +100,13 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
     # 2. throw an error after Save and continue was clicked due to
     #    AgeCalculator being passed nil date as show escort tried to display
     #    detainee partial.
+    expect(page.current_path).to eq "/escorts/#{escort.id}/detainee/edit"
     detainee_details.complete_form(detainee)
 
+    expect(page.current_path).to eq "/escorts/#{escort.id}/move/edit"
     move_details.complete_form(move_data)
 
+    expect(page.current_path).to eq "/escorts/#{escort.id}"
     escort_page.confirm_move_info(move_data)
     escort_page.confirm_detainee_details(detainee)
     escort_page.click_edit_risk
