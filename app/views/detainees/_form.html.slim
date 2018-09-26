@@ -31,7 +31,11 @@
         = f.custom_radio_button_fieldset :gender,
           choices: form.genders,
           legend_options: { class: 'form-label' }
-      = f.text_field :ethnicity
+
+      .form-group
+        label.form-label for='auto_ethnicity' Ethnicity
+        = f.select :ethnicity, Detainee::ETHNICITY_CODES, {include_blank: true}, {id: 'auto_ethnicity'}
+
       = f.text_field :religion
       - if escort.from_prison?
         = f.text_field :pnc_number

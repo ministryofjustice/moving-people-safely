@@ -4,7 +4,8 @@ var autos = [
   "prison",
   "police_custody",
   "immigration_removal_centre",
-  "youth_secure_estate"
+  "youth_secure_estate",
+  "auto_ethnicity"
 ]
 
 for (i = 0, tot = autos.length; i < tot; i++) {
