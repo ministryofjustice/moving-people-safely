@@ -13,14 +13,14 @@
 # When all is done exit back out to local machine and you have the output file
 module CompareAutoAlerts
   class Compare
-    RISK_CACHE = Rails.root.join('tmp', 'risk_cache.json').to_s.freeze
+    RISK_CACHE = Rails.root.join('tmp', 'risk_cache.json').freeze
     PAUSE_BETWEEN_API_CALLS = 3
 
     def self.as_hash(ids, pause: PAUSE_BETWEEN_API_CALLS, quiet: false)
-      cached_risks = File.exist?(RISK_CACHE) ? JSON.parse(File.read(RISK_CACHE)) : {}
+      cached_risks = RISK_CACHE.exist? ? JSON.parse(RISK_CACHE.read) : {}
 
       compare_escorts(ids, cached_risks, pause, quiet: quiet).tap do
-        File.open(RISK_CACHE, 'w') { |f| f.write(cached_risks.to_json) }
+        RISK_CACHE.open('w') { |f| f.write(cached_risks.to_json) }
       end
     end
 
