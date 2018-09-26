@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CompareAutoAlerts::Compare do
-  subject { described_class.as_hash([escort.id], pause: 0) }
+  subject { described_class.as_hash([escort.id], pause: 0, quiet: true) }
 
   let!(:escort) do
     create(:escort, :issued, :with_move, :with_complete_risk_assessment)

@@ -16,10 +16,10 @@ module CompareAutoAlerts
     RISK_CACHE = 'risk_cache.json'.freeze
     PAUSE_BETWEEN_API_CALLS = 3
 
-    def self.as_hash(ids, pause: PAUSE_BETWEEN_API_CALLS)
+    def self.as_hash(ids, pause: PAUSE_BETWEEN_API_CALLS, quiet: false)
       cached_risks = File.exist?(RISK_CACHE) ? JSON.parse(File.read(RISK_CACHE)) : {}
 
-      compare_escorts(ids, cached_risks, pause).tap do
+      compare_escorts(ids, cached_risks, pause, quiet: quiet).tap do
         File.open(RISK_CACHE, 'w') { |f| f.write(cached_risks.to_json) }
       end
     end
@@ -32,9 +32,9 @@ module CompareAutoAlerts
       Escort.find(ids)
     end
 
-    def self.compare_escorts(ids, cached_risks, pause)
+    def self.compare_escorts(ids, cached_risks, pause, quiet: false)
       escorts(ids).each_with_object({}).with_index do |(escort, comparisons), i|
-        report(escort, i + 1, ids.size)
+        report(escort, i + 1, ids.size) unless quiet
         cached_risks[escort.prison_number] ||= fetch_mapped_risks(escort)
 
         comparisons[escort.prison_number] = escort_details(
