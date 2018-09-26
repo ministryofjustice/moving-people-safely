@@ -470,7 +470,7 @@ DEPENDENCIES
   sentry-raven
   shoulda-matchers!
   simplecov
-  site_prism
+  site_prism (>= 2.16)
   slim-rails
   spring
   spring-watcher-listen

@@ -66,6 +66,6 @@ group :test do
   # TODO: update to 4.x once issue resolved https://github.com/thoughtbot/shoulda-matchers/issues/1146
   gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers', ref: '43f4252'
   gem 'simplecov', require: false
-  gem 'site_prism'
+  gem 'site_prism', '>= 2.16'
   gem 'webmock'
 end
