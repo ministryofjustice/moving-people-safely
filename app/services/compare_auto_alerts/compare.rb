@@ -13,7 +13,7 @@
 # When all is done exit back out to local machine and you have the output file
 module CompareAutoAlerts
   class Compare
-    RISK_CACHE = 'risk_cache.json'.freeze
+    RISK_CACHE = Rails.root.join('tmp', 'risk_cache.json').to_s.freeze
     PAUSE_BETWEEN_API_CALLS = 3
 
     def self.as_hash(ids, pause: PAUSE_BETWEEN_API_CALLS, quiet: false)
