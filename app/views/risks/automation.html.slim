@@ -20,7 +20,7 @@
         span Comment: #{alert['comment']}
 
     h1 User input
-    - risk.slice(@automated_risk.keys).each do |question, answer|
+    - assessment.slice(@automated_risk.keys).each do |question, answer|
       p
         span #{question}: #{answer}
 
@@ -30,8 +30,8 @@
         span #{question}: #{answer}
 
     h1 Differences
-    - risk.attributes = @automated_risk
-    - risk.changes.each do |field, values|
+    - assessment.attributes = @automated_risk
+    - assessment.changes.each do |field, values|
       p
         span Field: #{field}
         br
