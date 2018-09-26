@@ -464,7 +464,7 @@ DEPENDENCIES
   reform-rails
   rspec-its
   rspec-rails
-  rubocop
+  rubocop (~> 0.58.2)
   sass-rails
   selenium-webdriver
   sentry-raven

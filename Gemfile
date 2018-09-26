@@ -47,7 +47,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'listen'
   gem 'meta_request'
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.58.2', require: false
   gem 'spring'
   gem 'spring-watcher-listen'
 end
