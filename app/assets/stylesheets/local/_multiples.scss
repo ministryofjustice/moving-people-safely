@@ -1,0 +1,105 @@
+.multiple {
+  position: relative;
+  margin-bottom: 20px;
+  float: left;
+}
+
+.multiple-wrapper {
+  float: left;
+  clear: left;
+  width: 100%;
+  padding-top: 30px;
+
+  h2 {
+    margin: 0 0 10px 0;
+  }
+
+  .remove-link {
+    label {
+      @extend .styled-as-link;
+    }
+
+    input[type='checkbox'] {
+      position: absolute;
+      left: -2000px;
+    }
+  }
+
+  &.multiple-not-first {
+    @include govuk-media-query(desktop) {
+      label.form-label {
+        display: none;
+      }
+
+      .form-control, select {
+        margin-top: 0 !important;
+      }
+
+      .remove-link {
+        margin-top: 5px !important;
+      }
+    }
+  }
+
+  .multiple-field {
+    float: left;
+    clear: left;
+    width: 100%;
+    margin-bottom: 20px;
+
+    .form-group {
+      margin-bottom: 0;
+    }
+
+    &.inline {
+      @include govuk-media-query(desktop) {
+        clear: none;
+        width: auto;
+        margin-right: 28px;
+        position: relative;
+
+        .form-control {
+          width: 100%;
+          margin-top: 30px;
+        }
+
+        select {
+          margin-top: 30px;
+        }
+
+        .form-label {
+          position: absolute;
+        }
+
+        &.remove-link {
+          margin-top: 35px;
+          margin-right: 0;
+        }
+      }
+    }
+
+    &.wide {
+      @include govuk-media-query(desktop) {
+        width: 30em;
+      }
+    }
+
+    &.clear {
+      @include govuk-media-query(tablet) {
+        clear: both;
+      }
+    }
+
+    label {
+      font-weight: normal;
+    }
+  }
+}
+
+.multiple-add {
+  padding-top: 30px;
+
+  input {
+    @extend .styled-as-link;
+  }
+}

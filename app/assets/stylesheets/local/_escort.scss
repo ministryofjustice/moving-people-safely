@@ -19,3 +19,23 @@
     }
   }
 }
+
+#offences,
+#risk,
+#healthcare {
+  table {
+    tr {
+      vertical-align: top;
+    }
+  }
+
+  .question {
+    font-weight: normal;
+  }
+  .answer {
+    p {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+  }
+}

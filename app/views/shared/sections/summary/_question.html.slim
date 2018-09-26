@@ -1,10 +1,10 @@
-tbody
-  tr class="#{alternance} #{question}"
-    td.first-column
+tbody.govuk-table__body
+  tr class="govuk-table__row #{alternance} #{question}"
+    td.govuk-table__cell.first-column
       = location_text(t("summary.section.questions.#{section}.#{question}"), escort.location)
-    td.second-column
+    td.govuk-table__cell.second-column
       == summary_answer(value)
-    td.third-column
+    td.govuk-table__cell.third-column
       - if details.is_a? String
         = details.capitalize
       - elsif details && multiples

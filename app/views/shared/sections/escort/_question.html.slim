@@ -1,7 +1,8 @@
 - if assessment.question_relevant?(question)
-  tr
-    td.question= location_text(t("summary.section.questions.#{section}.#{question}"), assessment.location)
-    td.answer
+  tr.govuk-table__row
+    th.govuk-table__header.question scope="row"
+      = location_text(t("summary.section.questions.#{section}.#{question}"), assessment.location)
+    td.govuk-table__cell.answer
       - if details&.is_a? String
         b= details.capitalize
       - elsif details && multiples
