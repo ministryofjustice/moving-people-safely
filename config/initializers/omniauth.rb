@@ -16,6 +16,7 @@ def initialize_omniauth
     )
   end
   OmniAuth.config.on_failure = SessionsController.action(:new)
+  OmniAuth.config.logger = Rails.logger
 end
 
 initialize_omniauth unless ENV.fetch('SKIP_OPTIONAL_INITIALIZERS', false)
