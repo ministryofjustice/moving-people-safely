@@ -444,7 +444,7 @@ en:
         self_harm:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Self Harm</i> and <i>Vulnerability</i> alerts.
           police: In the arrest record, check the pre-release assessment for relevant comments.
-        self_harm_details: Give details
+        self_harm_details: 'Give details, including observation level:'
         suicide: |
           Give details of recent suicide or self-harm attempts and
           previous ACCTs
@@ -736,7 +736,7 @@ en:
   escorts:
     confirm_approve:
       approve_per: Approve PER
-      cannot_edit: 'Please note: you cannot edit a PER once it has been approved. If an incident occurrs between approval and leaving custody, record the incident in the PER record of events.'
+      cannot_edit: 'Please note: you cannot edit a PER once it has been approved. If an incident occurs between approval and leaving custody, record the incident in the PER record of events.'
       go_back: Go back
       title: Approving PER for
     confirm_cancel:
