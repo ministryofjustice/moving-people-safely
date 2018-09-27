@@ -6,7 +6,7 @@ class AssessmentsController < ApplicationController
 
   before_action :redirect_unless_detainee_exists
   before_action :redirect_if_assessment_already_exists, only: %i[new create]
-  before_action :redirect_unless_document_editable, except: :show
+  before_action :redirect_unless_document_editable, except: %i[show automation]
   before_action :add_multiples, only: %i[create update]
 
   helper_method :escort, :assessment, :form

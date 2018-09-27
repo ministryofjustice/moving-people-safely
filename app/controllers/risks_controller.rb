@@ -1,6 +1,4 @@
 class RisksController < AssessmentsController
-  helper_method :escort, :risk
-
   def automation
     api_client = Nomis::Api.instance
     @nomis_alerts = api_client.get("/offenders/#{escort.prison_number}/alerts?include_inactive=true")
@@ -23,17 +21,5 @@ class RisksController < AssessmentsController
 
   def show_page
     escort_risks_path(escort)
-  end
-
-  def escort
-    @escort ||= Escort.find(params[:escort_id])
-  end
-
-  def risk
-    @risk ||= if %w[new create].include?(params[:action])
-                escort.build_risk
-              else
-                escort.risk || raise(ActiveRecord::RecordNotFound)
-              end
   end
 end
