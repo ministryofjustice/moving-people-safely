@@ -19,6 +19,7 @@
 //= require date-picker
 //= require auto-complete-init
 //= require stickyfill-init
+//= require multiples
 
 
 //= stub 'flowplayer-3.2.13.min'

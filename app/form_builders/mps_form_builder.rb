@@ -31,13 +31,13 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
         options = args.extract_options!
 
         set_label_classes! options
-        set_field_classes! options, attribute
+        set_field_classes! options, attribute, method_name
 
         label = label(attribute, options[:label_options])
 
-        add_hint :label, label, attribute
+        hint = add_hint :label, label, attribute
 
-        (label + super(attribute, options.except(:label, :label_options))).html_safe
+        (label + hint + super(attribute, options.except(:label, :label_options))).html_safe
       end
     end
   end
@@ -70,8 +70,11 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def location_text_field(attribute, options = {})
-    label = label(attribute, location_text(localized_label(attribute)))
-    hint = content_tag(:span, location_text(hint_text(attribute)), class: 'govuk-hint')
+    label = label(attribute, location_text(localized_label(attribute)), class: 'govuk-label')
+    hint = ''
+    if !location_text(hint_text(attribute)).empty?
+      hint = content_tag(:span, location_text(hint_text(attribute)), class: 'govuk-hint')
+    end
     text_field(attribute)
     (label + hint + custom_text_field(attribute)).html_safe
   end
@@ -120,7 +123,6 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def radio_toggle_with_textarea(attribute, options = {})
-    # binding.pry
     details_attr = options.fetch(:details_attr) { :"#{attribute}_details" }
     radio_toggle(attribute, options.merge(details_attr: details_attr)) do
       text_area_without_label details_attr, options.merge(class: 'govuk-textarea govuk-!-width-one-half')
@@ -134,7 +136,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
         set_field_classes! options, attribute
 
         label_tag = label(attribute, class: 'govuk-label')
-        add_hint :label, label_tag, attribute
+        hint = add_hint :label, label_tag, attribute
 
         date_picker_tag = content_tag :span,
           class: 'date-picker-field input-group date',
@@ -143,7 +145,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
             calendar_icon_tag = content_tag :span, nil, class: 'no-script calendar-icon input-group-addon'
             (date_text_field_tag + calendar_icon_tag).html_safe
           end
-        (label_tag + date_picker_tag).html_safe
+        (label_tag + hint + date_picker_tag).html_safe
       end
   end
 
@@ -177,7 +179,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     ActionView::Helpers::Tags::TextField.new(
       object_name, attribute, self,
       { value: object.public_send(attribute),
-        class: 'govuk-input' }.merge(options)
+        class: 'govuk-input govuk-!-width-one-half' }.merge(options)
     ).render
   end
 
@@ -207,7 +209,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     content_tag :div,
       class: form_group_classes(attribute.to_sym),
       id: form_group_id(attribute) do
-      tags = [content_tag(:span, location_text(hint_text(attribute)), class: 'govuk-hint')]
+      tags = [content_tag(:label, location_text(hint_text(attribute)), for: "#{object.name}_#{attribute}", class: 'govuk-hint')]
       tags << error_message_tag_for_attr(attribute) if error_for?(attribute)
       tags <<
         field_type.new(
@@ -220,7 +222,6 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def radio_inputs(attribute, options, &_blk)
-    # options here needs to know about toggleable divs per choice
     choices = options[:choices] || %i[yes no]
     id_postfix = options[:id_postfix]
 
@@ -235,7 +236,6 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
       radio_html = content_tag :div, class: 'govuk-radios__item' do
         input + label
       end
-      # need to output not just the radios__item, but also the conditional if there is one as a subsequent sibling
 
       conditional_html = ''
       if options[:toggle_options] && options[:toggle_options].include?(choice)
@@ -373,8 +373,12 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     fieldset_options
   end
 
-  def set_field_classes! options, attribute
-    default_classes = ['govuk-input govuk-!-width-one-quarter']
+  def set_field_classes! options, attribute, method_name = 'text_field'
+    if method_name.to_s.strip == "text_area"
+      default_classes = ['govuk-textarea', options[:width_option] || 'govuk-!-width-one-half']
+    else
+      default_classes = ['govuk-input', options[:width_option] || 'govuk-!-width-one-quarter']
+    end
     default_classes << 'form-control-error' if error_for?(attribute)
 
     options ||= {}
@@ -385,8 +389,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
 
   def add_hint tag, element, name
     if hint = hint_text(name)
-      hint_span = content_tag(:span, hint, class: 'govuk-hint')
-      element.sub!("</#{tag}>", "#{hint_span}</#{tag}>".html_safe)
+      content_tag(:span, hint, class: 'govuk-hint')
     end
   end
 

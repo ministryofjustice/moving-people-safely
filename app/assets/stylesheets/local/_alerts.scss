@@ -1,0 +1,34 @@
+@mixin alert-variant($border, $bg) {
+  border: 1px solid $border;
+  background-color: $bg;
+}
+
+.alert {
+  @extend .padded;
+
+  b {
+    font-weight: bold;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+}
+
+.alert--notice {
+  @include alert-variant(#F4D188, #FAF2C5)
+}
+
+.alert--warning {
+  background-color: #FAF1C5;
+}
+
+.alert--alert {
+  @include alert-variant(#F4D188, #FAF1C5)
+}
+
+.alert--error {
+  border: 5px solid #B10E1E;
+  color: #B10E1E;
+  font-weight: bold;
+}

@@ -16,7 +16,8 @@ $govuk-global-styles: true;
 
 @import 'govuk-frontend/all';
 
-@import "accessible-autocomplete.min";
-@import "bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.min";
+@import 'accessible-autocomplete.min';
+@import 'bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.min';
 
+@import 'variables';
 @import 'local/**/*';

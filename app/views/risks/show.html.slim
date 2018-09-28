@@ -1,8 +1,9 @@
-.column-three-quarters
-  = content_for :breadcrumbs do
-    - breadcrumbs_for_page root: true do
-      - breadcrumb escort_breadcrumb(escort), escort_path(escort)
-      - breadcrumb 'Risk summary'
+.govuk-grid-row
+  .govuk-grid-column-three-quarters
+    = content_for :breadcrumbs do
+      - breadcrumbs_for_page root: true do
+        - breadcrumb escort_breadcrumb(escort), escort_path(escort)
+        - breadcrumb 'Risk summary'
 
   .summary.per-section-page
     - if current_user.admin?
@@ -11,15 +12,15 @@
     = render 'summary/status',
       workflow: Summary::EscortSectionStatusPresenter.new(assessment, name: :risk)
 
-    - Risk.sections(escort.location).each do |section|
-      table class="#{section}"
-        = render "risks/sections/#{section}",
-          views: 'summary',
-          section: section,
-          path: edit_escort_risks_path(escort, step: section),
-          assessment: assessment
+      - Risk.sections(escort.location).each do |section|
+        table class="#{section}"
+          = render "risks/sections/#{section}",
+            views: 'summary',
+            section: section,
+            path: edit_escort_risks_path(escort, step: section),
+            assessment: assessment
 
-    = render 'summary/call_to_action', workflow: assessment, confirm_path: confirm_escort_risks_path(escort)
+      = render 'summary/call_to_action', workflow: assessment, confirm_path: confirm_escort_risks_path(escort)
 
-.column-one-quarter.side-profile.sticky
-  = render 'shared/detainee_sidebar'
+  .govuk-grid-column-one-quarter.side-profile.sticky
+    = render 'shared/detainee_sidebar'

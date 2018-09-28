@@ -25,3 +25,11 @@ form {
 .govuk-radios__label {
   font-weight: normal;
 }
+
+.form-actions {
+  clear: both;
+
+  button, input {
+    margin-right: $padding-unit;
+  }
+}

@@ -4,11 +4,12 @@
     - breadcrumb 'Risk summary', escort_risks_path(escort)
     - breadcrumb t("risks.form.title.#{form.name}")
 
-.column-three-quarters
-  = render 'shared/wizard_header'
+.govuk-grid-row
+  .govuk-grid-column-three-quarters
+    = render 'shared/wizard_header'
 
-  .risk
-    = render 'shared/wizard_step_form', scope: 'risks', method: :put
+    .risk
+      = render 'shared/wizard_step_form', scope: 'risks', method: :put
 
-.column-one-quarter.side-profile.sticky
-  = render 'shared/detainee_sidebar'
+  .govuk-grid-column-one-quarter.side-profile.sticky
+    = render 'shared/detainee_sidebar'
