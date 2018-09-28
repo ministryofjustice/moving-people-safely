@@ -4,7 +4,7 @@ RSpec::Matchers.define :validate_as_pdf_that_contains_text do |file_name, option
     overwrite_with_actual_content(file_name) if options[:overwrite]
     @expected_text = File.open(expected_text_file_path(file_name)).read
 
-    @pdf_text == @expected_text
+    compare_texts(@pdf_text, @expected_text)
   end
 
   failure_message do
@@ -36,8 +36,22 @@ RSpec::Matchers.define :validate_as_pdf_that_contains_text do |file_name, option
     Rails.root.join("spec", "support", "fixtures", file_name)
   end
 
+  def canonicalise(text)
+    # ensure any small prefix is exactly 2
+    # and treat any other text gap the same
+    text.gsub(/^ {1,4}/, '  ').gsub(/ {4,}/, '    ')
+  end
+
+  def compare_texts(expected, actual)
+    canonicalise(expected) == canonicalise(actual)
+  end
+
   def text_difference
-    Diffy::Diff.new(@pdf_text, @expected_text, context: 1).to_s(:text)
+    Diffy::Diff.new(
+      canonicalise(@pdf_text),
+      canonicalise(@expected_text),
+      context: 1
+    ).to_s(:text)
   end
 
   def overwrite_with_actual_content(file_name)
