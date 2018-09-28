@@ -21,6 +21,13 @@ jobs:
       - checkout # magic
 
       - run:
+          name: Install packages
+          command: |
+            sudo apt-get update -yqq && \
+            sudo apt-get install -yqq \
+              poppler-utils
+
+      - run:
           name: Which bundler?
           command: bundle -v
 
