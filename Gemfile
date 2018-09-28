@@ -29,7 +29,7 @@ gem 'uglifier'
 gem 'virtus'
 gem 'wicked'
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary', '0.12.3.1' # XXX: changing this may break pdf tests
 gem 'zendesk_api'
 
 group :development, :test do

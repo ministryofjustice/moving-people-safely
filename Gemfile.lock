@@ -479,7 +479,7 @@ DEPENDENCIES
   webmock
   wicked
   wicked_pdf
-  wkhtmltopdf-binary
+  wkhtmltopdf-binary (= 0.12.3.1)
   zendesk_api
 
 BUNDLED WITH
