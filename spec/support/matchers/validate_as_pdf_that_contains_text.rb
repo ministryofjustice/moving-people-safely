@@ -1,6 +1,7 @@
 RSpec::Matchers.define :validate_as_pdf_that_contains_text do |file_name, options = {}|
   match do |pdf_content|
     @pdf_text = extract_pdf_text(pdf_content)
+    store_pdf(pdf_content, file_name)
     overwrite_with_actual_content(file_name) if options[:overwrite]
     @expected_text = File.open(expected_text_file_path(file_name)).read
 
@@ -30,6 +31,15 @@ RSpec::Matchers.define :validate_as_pdf_that_contains_text do |file_name, option
     end
 
     Pdftotext.text(file.path)
+  end
+
+  def store_pdf(pdf_content, file_name)
+    path = Rails.root.join('tmp', 'pdf-test', file_name)
+    FileUtils.mkdir_p path.dirname
+    path.open('w') do |f|
+      f.binmode
+      f << pdf_content
+    end
   end
 
   def expected_text_file_path(file_name)
