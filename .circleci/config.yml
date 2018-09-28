@@ -12,6 +12,8 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: 'postgres://db-user:db-password@127.0.0.1:5432/db-name'
           CAPYBARA_HEADLESS_CHROME: true
+          MOJSSO_ID: ssoid
+          MOJSSO_SECRET: ssosecret
       - image: circleci/postgres:10-alpine # 10
         environment:
           POSTGRES_USER: db-user
