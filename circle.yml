@@ -28,6 +28,13 @@ jobs:
               poppler-utils
 
       - run:
+          name: Install fonts
+          command: |
+            sudo cp -r app/assets/fonts /usr/local/share/fonts && \
+            sudo fc-cache -fv /usr/local/share/fonts &&  \
+            fc-cache -fv /usr/local/share/fonts
+
+      - run:
           name: Which bundler?
           command: bundle -v
 
