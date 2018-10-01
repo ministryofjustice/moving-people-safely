@@ -1,0 +1,22 @@
+.summary {
+  .first-column {
+    width: 30%;
+  }
+
+  .second-column {
+    width: 20%;
+  }
+
+  .third-column {
+    width: 50%;
+
+    b {
+      font-weight: normal;
+    }
+  }
+
+  th.edit {
+    font-weight: normal;
+    text-align: right;
+  }
+}

@@ -209,7 +209,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     content_tag :div,
       class: form_group_classes(attribute.to_sym),
       id: form_group_id(attribute) do
-      tags = [content_tag(:label, location_text(hint_text(attribute)), for: "#{object.name}_#{attribute}", class: 'govuk-hint')]
+      tags = [content_tag(:label, location_text(hint_text(attribute)), for: "#{object.name}_#{attribute}", class: 'govuk-hint govuk-label')]
       tags << error_message_tag_for_attr(attribute) if error_for?(attribute)
       tags <<
         field_type.new(

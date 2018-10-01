@@ -13,7 +13,7 @@
       workflow: Summary::EscortSectionStatusPresenter.new(assessment, name: :risk)
 
       - Risk.sections(escort.location).each do |section|
-        table class="#{section}"
+        table class="govuk-table #{section}"
           = render "risks/sections/#{section}",
             views: 'summary',
             section: section,

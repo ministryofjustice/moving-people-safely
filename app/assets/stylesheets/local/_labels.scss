@@ -30,3 +30,16 @@
     margin-left: 10px;
   }
 }
+
+.govuk-label {
+  &.govuk-hint {
+    font-weight: normal;
+    color: $govuk-secondary-text-colour;
+  }
+}
+
+.govuk-hint {
+  p {
+    color: $govuk-secondary-text-colour;
+  }
+}

@@ -1,14 +1,12 @@
 - if escort.from_prison?
   = f.custom_radio_button_fieldset :csra, choices: f.object.csra_choices,
-    legend_options: { class: 'form-label-assessment' }, inline: true
+    legend_options: { class: 'form-label-assessment' }
 - if escort.from_police?
   = f.radio_toggle_with_textarea :csra,
-    legend_options: { class: 'form-label-assessment' },
-  inline_choices: false,
-  toggle_options: ['yes']
+    legend_options: { class: 'form-label-assessment' }
 - if escort.from_prison?
   = f.custom_radio_button_fieldset :rule_45,
-    legend_options: { class: 'form-label-assessment' }, inline: true
+    legend_options: { class: 'form-label-assessment' }
 = f.radio_toggle_with_textarea :vulnerable_prisoner,
   legend_options: { class: 'form-label-assessment' },
   inline_choices: false,

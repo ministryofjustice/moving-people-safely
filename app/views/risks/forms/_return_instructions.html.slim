@@ -1,35 +1,37 @@
 = f.radio_toggle :must_return,
   legend_options: { class: 'form-label-assessment' },
-  inline_choices: true,
-  data: { 'toggle-field' => 'yes' } do
-  = f.text_field :must_return_to
-  = f.text_area :must_return_to_details
+  inline_choices: false,
+  toggle_options: ['yes'] do
+    = f.text_field :must_return_to
+    = f.text_area :must_return_to_details
 
 .must_not_return_detail.multiple
   = f.radio_toggle :has_must_not_return_details,
-    legend_options: { class: 'form-label-assessment' } do
+    inline_choices: false,
+    legend_options: { class: 'form-label-assessment' },
+    toggle_options: ['yes'] do
     #must_not_return_details
     #error_return_instructions_must_not_return_detail
     = f.fields_for :must_not_return_details do |mf|
       .multiple-wrapper
-        hr
-        .grid-row
-          .column-two-thirds
-            h2 Establishment
+        hr.govuk-section-break.govuk-section-break--m.govuk-section-break--visible.mps-section-break
+        .govuk-grid-row
+          .govuk-grid-column-two-thirds
+            h2.govuk-heading-s Establishment
             = mf.hidden_field :id
-            .multiple-field
-              = mf.text_field :establishment
-            .multiple-field
-              = mf.text_field :establishment_details
+            .multiple-field.govuk-form-group
+              = mf.text_field :establishment, width_option: 'govuk-!-width-one-half'
+            .multiple-field.govuk-form-group
+              = mf.text_field :establishment_details, width_option: 'govuk-!-width-full'
           - if f.object.must_not_return_details.size > 1
-            .column-one-third
+            .govuk-grid-column-one-third
               .remove-link
-                .form-group
+                .govuk-form-group
                   = mf.label :_delete, 'Remove'
                   = mf.check_box :_delete
 
-    .multiple-add.form-group
-      hr
+    .multiple-add.govuk-form-group
+      hr.govuk-section-break.govuk-section-break--m.govuk-section-break--visible.mps-section-break
       = f.button 'Add another establishment',
-        class: 'js-anchor-focus button button-add-another-vertical',
+        class: 'js-anchor-focus govuk-button button-add-another-vertical',
         name: "return_instructions_add_must_not_return_details"

@@ -1,8 +1,12 @@
 - if escort.from_prison?
   = f.radio_toggle_with_textarea :current_e_risk,
-    legend_options: { class: 'form-label-assessment' }
+    legend_options: { class: 'form-label-assessment' },
+    inline_choices: false,
+    toggle_options: ['yes']
   = f.radio_toggle_with_textarea :previous_escape_attempts,
-    legend_options: { class: 'form-label-assessment' }
+    legend_options: { class: 'form-label-assessment' },
+    inline_choices: false,
+    toggle_options: ['yes']
   = f.custom_radio_button_fieldset :escort_risk_assessment,
     inline: true, legend_options: { class: 'form-label-assessment' }
   = f.custom_radio_button_fieldset :escape_pack,
