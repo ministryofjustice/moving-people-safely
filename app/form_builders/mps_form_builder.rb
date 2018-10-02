@@ -206,6 +206,11 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def field_without_label(field_type, attribute, options = {})
+    if field_type.to_s.include? 'TextArea'
+      default_input_classes = 'govuk-textarea govuk-!-width-one-half'
+    else
+      default_input_classes = 'govuk-input govuk-!-width-one-quarter'
+    end
     content_tag :div,
       class: form_group_classes(attribute.to_sym),
       id: form_group_id(attribute) do
@@ -215,7 +220,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
         field_type.new(
           object.name, attribute, self,
           { value: object.public_send(attribute),
-            class: 'govuk-input govuk-!-width-one-quarter' }.merge(options)
+            class: default_input_classes }.merge(options)
         ).render
       tags.join.html_safe
     end

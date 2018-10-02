@@ -9,13 +9,13 @@
     .offences.per-section-page
       - if offences_workflow.needs_review?
         header
-          h1 Review before you save and continue
+          h1.govuk-heading-l Review before you save and continue
           p#offences-status
             ' Status
             span.status-label.status-label--incomplete Review
       - else
         header
-          h1 Current offences
+          h1.govuk-heading-l Current offences
 
       - if can? :update, offences_workflow
         = render 'form'
