@@ -1,6 +1,8 @@
 - if escort.from_police? && escort.detainee_gender == 'female'
   = f.radio_toggle_with_textarea :pregnant,
-    legend_options: { class: 'form-label-assessment' }
+    legend_options: { class: 'form-label-assessment' },
+    toggle_options: ['yes']
 
 = f.radio_toggle_with_textarea :physical_issues,
-  legend_options: { class: 'form-label-assessment' }
+  legend_options: { class: 'form-label-assessment' },
+  toggle_options: ['yes']

@@ -9,3 +9,11 @@
 .heading-bold {
   font-weight: bold;
 }
+
+.govuk-hint {
+  .govuk-list {
+    li {
+      color: $govuk-secondary-text-colour;
+    }
+  }
+}

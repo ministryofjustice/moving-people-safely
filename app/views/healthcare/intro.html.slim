@@ -3,17 +3,17 @@
     - breadcrumb escort_breadcrumb(escort), escort_path(escort)
     - breadcrumb t('.breadcrumb')
 
-.column-two-thirds
-  h1 = t('.title')
+.govuk-grid-row
+  .govuk-grid-column-two-thirds
+    h1.govuk-heading-l = t('.title')
 
-  - t('.content').each_line do |paragraph|
-    p = paragraph
+    - t('.content').each_line do |paragraph|
+      p.govuk-body = paragraph
 
-  - if t('.note').present?
-    .panel.panel-border-wide
-      - t('.note').each_line do |paragraph|
-        p = paragraph
+    - if t('.note').present?
+      .govuk-inset-text
+        - t('healthcare.intro.note').each_line do |paragraph|
+          p.govuk-body = paragraph
 
-  .form-group
-    p
-      = link_to 'Continue', assessment_wizard_path(assessment), class: 'button'
+    .govuk-form-group
+      = link_to 'Continue', assessment_wizard_path(assessment), class: 'govuk-button'

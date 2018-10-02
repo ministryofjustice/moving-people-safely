@@ -1,36 +1,38 @@
 .medication.multiple
-  = f.radio_toggle :has_medications, legend_options: { class: 'form-label-assessment' } do
+  = f.radio_toggle :has_medications,
+  legend_options: { class: 'form-label-assessment' },
+  toggle_options: ['yes'] do
     #medications
     #error_needs_medications
     = f.fields_for :medications do |mf|
       .multiple-wrapper
         hr
-        .grid-row
-          .column-two-thirds
-            h2 Medication
+        .govuk-grid-row
+          .govuk-grid-column-two-thirds
+            h2.govuk-heading-m Medication
             = mf.hidden_field :id
-            .multiple-field
-              = mf.text_field :description
-            .multiple-field
-              = mf.text_field :administration
-            .multiple-field
-              = mf.text_field :dosage
-            .multiple-field
-              = mf.text_field :when_given
-            .multiple-field
+            .multiple-field.govuk-form-group
+              = mf.text_field :description, width_option: 'govuk-!-width-one-half'
+            .multiple-field.govuk-form-group
+              = mf.text_field :administration, width_option: 'govuk-!-width-one-half'
+            .multiple-field.govuk-form-group
+              = mf.text_field :dosage, width_option: 'govuk-!-width-one-half'
+            .multiple-field.govuk-form-group
+              = mf.text_field :when_given, width_option: 'govuk-!-width-one-half'
+            .multiple-field.govuk-form-group
               = mf.radio_button_fieldset :carrier,
                 choices: %w[escort prisoner],
                 legend_options: { class: 'form-label' },
                 inline: true
           - if f.object.medications.size > 1
-            .column-one-third
+            .govuk-grid-column-one-third
               .remove-link
-                .form-group
+                .govuk-form-group
                   = mf.label :_delete, 'Remove'
                   = mf.check_box :_delete
 
-    .multiple-add.form-group
+    .multiple-add.govuk-form-group
       hr
       = f.button 'Add another medicine',
-        class: 'js-anchor-focus button button-add-another-vertical',
+        class: 'js-anchor-focus govuk-button button-add-another-vertical',
         name: "needs_add_medication"

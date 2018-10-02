@@ -1,10 +1,18 @@
 .summary {
+  tr {
+    vertical-align: top;
+  }
+
   .first-column {
     width: 30%;
   }
 
   .second-column {
     width: 20%;
+  }
+
+  .first-two-columns {
+    width: 50%;
   }
 
   .third-column {

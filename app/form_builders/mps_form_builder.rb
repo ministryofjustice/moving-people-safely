@@ -113,7 +113,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     toggle_options = options[:toggle_options] || []
     fieldset_options = options.merge(
       choices: choices,
-      inline: options.fetch(:inline_choices, true),
+      inline: options.fetch(:inline_choices, false),
       toggle_options: toggle_options
     )
 
