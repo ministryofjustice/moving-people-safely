@@ -8,7 +8,7 @@
         th.govuk-table__header= t('.risk')
         th.govuk-table__header= t('.health')
         th.govuk-table__header= t('.offences')
-        th
+        th.govuk-table__header
     tbody.govuk-table__body
       - escorts.each do |escort|
         tr.govuk-table__row.move-row id="number_#{escort.id_number}"

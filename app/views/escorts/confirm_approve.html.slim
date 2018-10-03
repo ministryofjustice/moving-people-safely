@@ -2,23 +2,22 @@
   - breadcrumbs_for_page root: true do
     - breadcrumb escort_breadcrumb(escort), escort_path(escort)
 
-h1
+h1.govuk-heading-l
   = t('.title')
   br
   = "#{identifier(escort)} #{escort.detainee_forenames}"
 
 label= t('date_of_travel')
-p.lede
+p.govuk-body-l
   = escort.move_date
 
-.notice
-  i.icon.icon-important
-    span.visually-hidden
-      | Warning
-  strong.bold-small
+.govuk-warning-text
+  span.govuk-warning-text__icon aria-hidden="true"  !
+  strong.govuk-warning-text__text
+    span.govuk-warning-text__assistive Warning
     = t('.cannot_edit')
 
 = form_for escort, url: approve_escort_path(escort), method: :put do |f|
   .form-actions
-    = f.submit t('.approve_per'), class: 'button'
-    = link_to t('.go_back'), escort_path(escort), class: 'button button-secondary'
+    = f.submit t('.approve_per'), class: 'govuk-button'
+    = link_to t('.go_back'), escort_path(escort), class: 'govuk-button button-secondary'

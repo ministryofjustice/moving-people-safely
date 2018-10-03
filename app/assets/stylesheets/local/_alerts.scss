@@ -32,3 +32,27 @@
   color: #B10E1E;
   font-weight: bold;
 }
+
+.alert--warning {
+  @extend .govuk-body;
+
+  .summary & {
+    padding: 20px;
+    margin: 20px 0px;
+    min-height: 50px;
+  }
+
+  .govuk-warning-text {
+    margin-bottom: 0;
+    padding: 0;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  input[type="button"],
+  input[type="submit"] {
+    margin-bottom: 0;
+  }
+}
