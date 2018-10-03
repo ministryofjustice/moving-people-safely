@@ -1,0 +1,73 @@
+table.court-dashboard {
+  thead {
+    tr {
+      border-top: 1px solid #6F777B;
+
+      th {
+        font-size: 16px;
+      }
+    }
+  }
+
+  tbody {
+    &.clickable {
+      &:hover {
+        cursor: pointer;
+        background-color: #FFFFD4;
+      }
+    }
+
+    tr {
+      &:nth-child(odd) {
+        border-top: 1px solid #6F777B;
+      }
+
+      td {
+        border: none;
+
+        span.surname {
+          font-weight: bold;
+          margin-right: 5px;
+        }
+
+        img.person {
+          display: block;
+          width: 86px;
+          height: 108px;
+          padding: 2px 0 2px 2px;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+.court-dashboard-indicators {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.prisoner-image {
+  width: 80px;
+}
+
+.prisoner-number {
+  width: 90px;
+}
+
+.detainee-photo {
+  height: 112px;
+}
+
+.no-court-dashboard-image {
+  margin-left: 4px;
+  border: 1px solid #6F777B;
+  width: 80px;
+  height: 108px;
+  line-height: 108px;
+  background-image: image-url('photo_unavailable.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-align: center;
+  font-size: 12px;
+}

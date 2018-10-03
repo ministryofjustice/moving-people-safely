@@ -1,44 +1,45 @@
-.court-dashboard-indicators.column-one-third
+.court-dashboard-indicators
   span.data-item.bold-large= Date.today
   span.data-item.bold-small= @court.name
   = link_to 'Change court', select_court_path
 
-.court-dashboard-indicators.column-one-third
+.court-dashboard-indicators
   span.data-item.bold-large= @escorts.count
   span.data-item.bold-small Total custodies
 
-table.court-dashboard
-  thead
-    tr
-      th.prisoner-image
-      th.prisoner-number Prisoner no
-      th Name
-      th From
-      th Date of birth
-      th Age
+- if @escorts.count > 0
+  table.govuk-table.court-dashboard
+    thead.govuk-table__head
+      tr.govuk-table__row
+        th.govuk-table__header.prisoner-image
+        th.govuk-table__header.prisoner-number Prisoner no
+        th.govuk-table__header Name
+        th.govuk-table__header From
+        th.govuk-table__header Date of birth
+        th.govuk-table__header Age
 
-  - @escorts.each do |escort|
-    tbody.tag-with-href-j data-href="#{escort_path(escort)}"
-      tr
-        td.detainee-photo rowspan="2"
-          - if escort.detainee.image.present?
-            = image_tag escort_detainee_image_path(escort, format: :jpg), size: '86x108', class: 'person'
-          - else
-            .no-court-dashboard-image
-              span = 'No photo'
-        td= link_to escort.prison_number, escort_url(escort)
-        td
-          span.surname= escort.detainee.surname
-          = escort.detainee.forenames
-        td= escort.move.from_establishment.name
-        td= escort.detainee.date_of_birth
-        td= escort.detainee.age
+    - @escorts.each do |escort|
+      tbody.govuk-table__body.tag-with-href-j data-href="#{escort_path(escort)}"
+        tr.govuk-table__row
+          td.govuk-table__cell.detainee-photo rowspan="2"
+            - if escort.detainee.image.present?
+              = image_tag escort_detainee_image_path(escort, format: :jpg), size: '86x108', class: 'person'
+            - else
+              .no-court-dashboard-image
+                span = 'No photo'
+          td.govuk-table__cell= link_to escort.prison_number, escort_url(escort)
+          td.govuk-table__cell
+            span.surname= escort.detainee.surname
+            = escort.detainee.forenames
+          td.govuk-table__cell= escort.move.from_establishment.name
+          td.govuk-table__cell= escort.detainee.date_of_birth
+          td.govuk-table__cell= escort.detainee.age
 
-      tr
-        td colspan="6"
-          - if escort.cancelled?
-            span.govkuk-error-message Cancelled
-            |  by: #{escort.canceller.full_name}, at #{escort.cancelled_at.to_s(:timestamped)}. #{escort.cancelling_reason}.
-          - else
-            - escort.active_alerts.each do |alert|
-              li.flag-active= t("escort.active_alerts.#{alert}")
+        tr.govuk-table__row
+          td.govuk-table__cell colspan="6"
+            - if escort.cancelled?
+              span.govkuk-error-message Cancelled
+              |  by: #{escort.canceller.full_name}, at #{escort.cancelled_at.to_s(:timestamped)}. #{escort.cancelling_reason}.
+            - else
+              - escort.active_alerts.each do |alert|
+                li.flag-active= t("escort.active_alerts.#{alert}")

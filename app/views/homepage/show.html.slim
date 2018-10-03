@@ -1,7 +1,8 @@
 h1.govuk-heading-l
   span.govuk-caption-l= t('homepage.pers_from')
   = current_user.establishment(session)&.name || t('homepage.undetermined_establishment')
-  = link_to t('search.show.title'), search_path, class: 'govuk-button govuk-button--start button-inline'
+
+= link_to t('search.show.title'), search_path, class: 'govuk-button govuk-button--start'
 
 hr.govuk-section-break.govuk-section-break--m.govuk-section-break--visible
 

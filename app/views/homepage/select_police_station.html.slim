@@ -1,20 +1,19 @@
 header
-  h1 Where do you work?
+  h1.gouk-heading-l Where do you work?
 
 = form_for @form, url: set_police_station_path do |f|
   = f.error_messages
 
-  .radio-concertina
-    .form-group
-      label.form-label for='police_custody'
-        = 'Police custody suite'
-      - if @form.errors['police_custody_id'].any?
-        .error
-          .span.error-message
-            = @form.errors.full_messages_for(:police_custody_id).join(', ')
-          = f.select :police_custody_id, PoliceCustody.pluck(:name, :id), {include_blank: true}, { id: 'police_custody' }
-      - else
+  .govuk-form-group
+    label.form-label for='police_custody'
+      = 'Police custody suite'
+    - if @form.errors['police_custody_id'].any?
+      .error
+        .span.error-message
+          = @form.errors.full_messages_for(:police_custody_id).join(', ')
         = f.select :police_custody_id, PoliceCustody.pluck(:name, :id), {include_blank: true}, { id: 'police_custody' }
+    - else
+      = f.select :police_custody_id, PoliceCustody.pluck(:name, :id), {include_blank: true}, { id: 'police_custody' }
 
   .form-actions
-    = f.submit 'Save and continue', class: 'button'
+    = f.submit 'Save and continue', class: 'govuk-button'
