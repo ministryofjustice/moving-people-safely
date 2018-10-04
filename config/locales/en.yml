@@ -54,6 +54,8 @@ en:
         sex_offence: Are they a current or previous sex offender?
       move:
         not_for_release: Is there a reason they should not be released?
+        require_special_vehicle: Do they require a special vehicle? (Optional)
+        other_transport_requirements: Do they have any other special transport requirements? (Optional)
       mental:
         mental_illness:
           prison: Do they have mental health needs that might affect them while they are out of prison?
@@ -395,6 +397,9 @@ en:
         date: DD/MM/YYYY
         not_for_release_html: In NOMIS, check the header section of the prisoner’s record for the <i>Not For Release</i> alert.
         not_for_release_reason_details: Give details of why the detainee is not for release
+        require_special_vehicle: This could be a specially-adapted prison van (for example, to accommodate wheelchairs) or a taxi
+        require_special_vehicle_details: Please explain why they need a special vehicle
+        other_transport_requirements_details: Give details
       mental:
         mental_illness:
           prison: For example, if they become anxious in certain situations.

@@ -23,5 +23,12 @@ FactoryBot.define do
     trait :from_prison do
       association :from_establishment, factory: :prison
     end
+
+    trait :with_special_vehicle_details do
+      require_special_vehicle { 'yes' }
+      require_special_vehicle_details { 'special van' }
+      other_transport_requirements { 'yes' }
+      other_transport_requirements_details { 'other vehicle requirements' }
+    end
   end
 end

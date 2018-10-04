@@ -7,6 +7,11 @@ module Page
       save_and_continue
     end
 
+    def confirm_special_vehicle_values(move)
+      expect(page).to have_content move.require_special_vehicle_details
+      expect(page).to have_content move.other_transport_requirements_details
+    end
+
     private
 
     def fill_in_not_for_release_details(move)

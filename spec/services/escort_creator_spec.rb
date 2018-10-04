@@ -3,28 +3,42 @@ require 'rails_helper'
 RSpec.describe EscortCreator, type: :service do
   let(:prison_number) { 'A1234BC' }
   let(:pnc_number) { '14/293785A' }
+  let(:from_establishment) { create(:establishment) }
+
+  subject(:escort) do
+    described_class.call(escort_attrs, from_establishment)
+  end
 
   context 'from prison' do
+    let(:escort_attrs) do
+      { prison_number: prison_number }
+    end
+
     context 'when there no escorts for the given prison number' do
       it 'create a new escort' do
         expect(Escort.where(prison_number: prison_number).count).to eq(0)
-        escort = described_class.call(prison_number: prison_number)
+        escort
         expect(Escort.where(prison_number: prison_number).count).to eq(1)
       end
     end
 
     context 'when there are existing escorts for the given prison number' do
       context 'and escort is not cancelled' do
-        let!(:existent_escort) { create(:escort, :completed, prison_number: prison_number) }
+        let(:move) { create(:move, :with_special_vehicle_details) }
+
+        let!(:existent_escort) do
+          create(:escort, :completed, prison_number: prison_number, move: move)
+        end
 
         it 'creates a clone of the most recent escort' do
           expect(Escort.where(prison_number: prison_number).count).to eq(1)
-          escort = described_class.call(prison_number: prison_number)
+          escort
           expect(Escort.where(prison_number: prison_number).count).to eq(2)
           expect_detainee_to_be_cloned(existent_escort, escort)
           expect_risk_assessment_to_be_cloned(existent_escort, escort)
           expect_healthcare_assessment_to_be_cloned(existent_escort, escort)
           expect_offences_to_be_cloned(existent_escort, escort)
+          expect_move_to_be_cloned(existent_escort, escort)
           expect(escort.twig).to eq(existent_escort)
         end
       end
@@ -34,7 +48,7 @@ RSpec.describe EscortCreator, type: :service do
 
         it 'create a new escort' do
           expect(Escort.where(prison_number: prison_number).count).to eq(1)
-          escort = described_class.call(prison_number: prison_number)
+          escort
           expect(Escort.where(prison_number: prison_number).count).to eq(2)
         end
       end
@@ -45,7 +59,7 @@ RSpec.describe EscortCreator, type: :service do
 
         it 'creates a clone of the issued escort' do
           expect(Escort.where(prison_number: prison_number).count).to eq(2)
-          escort = described_class.call(prison_number: prison_number)
+          escort
           expect(Escort.where(prison_number: prison_number).count).to eq(3)
           expect_detainee_to_be_cloned(issued_escort, escort)
           expect_risk_assessment_to_be_cloned(issued_escort, escort)
@@ -58,10 +72,14 @@ RSpec.describe EscortCreator, type: :service do
   end
 
   context 'from police' do
+    let(:escort_attrs) do
+      { pnc_number: pnc_number }
+    end
+
     context 'when there no escorts for the given prison number' do
       it 'create a new escort' do
         expect(Escort.where(pnc_number: pnc_number).count).to eq(0)
-        escort = described_class.call(pnc_number: pnc_number)
+        escort
         expect(Escort.where(pnc_number: pnc_number).count).to eq(1)
       end
     end
@@ -72,7 +90,7 @@ RSpec.describe EscortCreator, type: :service do
 
         it 'creates a clone of the most recent escort' do
           expect(Escort.where(pnc_number: pnc_number).count).to eq(1)
-          escort = described_class.call(pnc_number: pnc_number)
+          escort
           expect(Escort.where(pnc_number: pnc_number).count).to eq(2)
           expect_detainee_to_be_cloned(existent_escort, escort)
           expect_risk_assessment_to_be_cloned(existent_escort, escort)
@@ -87,7 +105,7 @@ RSpec.describe EscortCreator, type: :service do
 
         it 'create a new escort' do
           expect(Escort.where(pnc_number: pnc_number).count).to eq(1)
-          escort = described_class.call(pnc_number: pnc_number)
+          escort
           expect(Escort.where(pnc_number: pnc_number).count).to eq(2)
         end
       end
@@ -98,7 +116,7 @@ RSpec.describe EscortCreator, type: :service do
 
         it 'creates a clone of the issued escort' do
           expect(Escort.where(pnc_number: pnc_number).count).to eq(2)
-          escort = described_class.call(pnc_number: pnc_number)
+          escort
           expect(Escort.where(pnc_number: pnc_number).count).to eq(3)
           expect_detainee_to_be_cloned(issued_escort, escort)
           expect_risk_assessment_to_be_cloned(issued_escort, escort)
@@ -146,12 +164,20 @@ RSpec.describe EscortCreator, type: :service do
     expect(offences_attributes).to match_array(expected_offences_attributes)
   end
 
+  def expect_move_to_be_cloned(existent_escort, cloned_escort)
+    existing_attributes = existent_escort.move.attributes.except(*except_move_attributes)
+    cloned_attributes = cloned_escort.move.attributes.except(*except_move_attributes)
+    expect(existing_attributes).to match_array(cloned_attributes)
+  end
+
   def except_attributes
     %w(id escort_id created_at updated_at)
   end
 
   def except_move_attributes
-    %w(id escort_id date created_at updated_at)
+    %w(id escort_id date created_at updated_at to to_type date not_for_release
+       not_for_release_reason not_for_release_reason_details
+       from_establishment_id)
   end
 
   def except_assessment_attributes

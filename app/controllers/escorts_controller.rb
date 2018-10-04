@@ -12,8 +12,7 @@ class EscortsController < ApplicationController
   end
 
   def create
-    escort = EscortCreator.call(escort_params)
-    escort.create_move(from_establishment: current_user.establishment(session))
+    escort = EscortCreator.call(escort_params, current_user.establishment(session))
     EscortPopulator.new(escort).call if escort.from_prison?
     if escort.detainee
       redirect_to edit_escort_detainee_path(escort)

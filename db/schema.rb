@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_20_152343) do
+ActiveRecord::Schema.define(version: 2018_10_03_085856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,6 +143,10 @@ ActiveRecord::Schema.define(version: 2018_09_20_152343) do
     t.uuid "escort_id"
     t.uuid "from_establishment_id"
     t.string "to_type"
+    t.string "require_special_vehicle"
+    t.text "require_special_vehicle_details"
+    t.string "other_transport_requirements"
+    t.text "other_transport_requirements_details"
     t.index ["escort_id"], name: "index_moves_on_escort_id"
   end
 
