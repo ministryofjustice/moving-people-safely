@@ -38,7 +38,7 @@ RSpec.describe EscortCreator, type: :service do
           expect_risk_assessment_to_be_cloned(existent_escort, escort)
           expect_healthcare_assessment_to_be_cloned(existent_escort, escort)
           expect_offences_to_be_cloned(existent_escort, escort)
-          expect_move_special_vehicle_details_to_be_cloned(existent_escort, escort)
+          expect_move_to_be_cloned(existent_escort, escort)
           expect(escort.twig).to eq(existent_escort)
         end
       end
@@ -164,13 +164,10 @@ RSpec.describe EscortCreator, type: :service do
     expect(offences_attributes).to match_array(expected_offences_attributes)
   end
 
-  def expect_move_special_vehicle_details_to_be_cloned(existent_escort, new_escort)
-    %i[require_special_vehicle require_special_vehicle_details
-       other_transport_requirements
-       other_transport_requirements_details].each do |attribute|
-      expect(new_escort.move.send(attribute)).to eq(
-        existent_escort.move.send(attribute))
-    end
+  def expect_move_to_be_cloned(existent_escort, cloned_escort)
+    existing_attributes = existent_escort.move.attributes.except(*except_move_attributes)
+    cloned_attributes = cloned_escort.move.attributes.except(*except_move_attributes)
+    expect(existing_attributes).to match_array(cloned_attributes)
   end
 
   def except_attributes
@@ -178,7 +175,9 @@ RSpec.describe EscortCreator, type: :service do
   end
 
   def except_move_attributes
-    %w(id escort_id date created_at updated_at)
+    %w(id escort_id date created_at updated_at to to_type date not_for_release
+       not_for_release_reason not_for_release_reason_details
+       from_establishment_id)
   end
 
   def except_assessment_attributes
