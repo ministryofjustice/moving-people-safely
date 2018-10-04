@@ -12,8 +12,8 @@ class EscortCreator
   def call
     if existent_escort
       deep_clone_escort.tap do |clone|
-        build_move_with_special_vehicle_details(clone)
         clone.twig = existent_escort
+        clone.move.from_establishment = from_establishment
         clone.needs_review!
       end
     else
@@ -29,6 +29,7 @@ class EscortCreator
 
   INCLUDE_GRAPH = [
     :detainee,
+    :move,
     { risk: [:must_not_return_details] },
     { healthcare: [:medications] },
     :offences,
@@ -39,6 +40,8 @@ class EscortCreator
     :issued_at,
     :approved_at,
     :approver_id,
+    { move: %i[to to_type date not_for_release not_for_release_reason
+               not_for_release_reason_details from_establishment_id] },
     { risk: %i[reviewer_id reviewed_at] },
     { healthcare: %i[reviewer_id reviewed_at] },
     { offences_workflow: %i[reviewer_id reviewed_at] }
@@ -56,16 +59,6 @@ class EscortCreator
     existent_escort.deep_clone(
       include: INCLUDE_GRAPH,
       except: EXCEPT_GRAPH
-    )
-  end
-
-  def build_move_with_special_vehicle_details(escort)
-    escort.build_move(
-      from_establishment: from_establishment,
-      require_special_vehicle: existent_escort.move.require_special_vehicle,
-      require_special_vehicle_details: existent_escort.move.require_special_vehicle_details,
-      other_transport_requirements: existent_escort.move.other_transport_requirements,
-      other_transport_requirements_details: existent_escort.move.other_transport_requirements_details
     )
   end
 end
