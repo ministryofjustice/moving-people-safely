@@ -1,93 +1,130 @@
 require 'feature_helper'
 
 RSpec.feature 'Reuse of previously entered PER data', type: :feature do
-  scenario 'Reviewing the data of a reused PER' do
-    fixture_json_file_path = Rails.root.join('spec', 'support', 'fixtures', 'valid-nomis-charges.json')
-    valid_json = File.read(fixture_json_file_path)
-    prison_number = 'A4321FD'
-    establishment_nomis_id = 'BDI'
-    valid_body = { establishment: { code: establishment_nomis_id } }.to_json
-    stub_nomis_api_request(:get, "/offenders/#{prison_number}/location", body: valid_body)
-    stub_nomis_api_request(:get, "/offenders/#{prison_number}/image")
-    stub_nomis_api_request(:get, "/offenders/#{prison_number}")
-    stub_nomis_api_request(:get, "/offenders/#{prison_number}/charges", body: valid_json)
-    stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts")
+  context 'an issued PER that will be be reused' do
+    let(:valid_json) { File.read(fixture_json_file_path) }
+    let(:prison_number) { 'A4321FD' }
+    let(:establishment_nomis_id) { 'BDI' }
+    let(:bedford_sso_id) { 'bedford.prisons.noms.moj' }
+    let(:bedford_nomis_id) { 'BDI' }
+    let(:detainee) { create(:detainee, prison_number: prison_number) }
 
-    bedford_sso_id = 'bedford.prisons.noms.moj'
-    bedford_nomis_id = 'BDI'
-    bedford = create(:prison, name: 'HMP Bedford', sso_id: bedford_sso_id, nomis_id: bedford_nomis_id)
+    let(:move) { create(:move, :with_special_vehicle_details) }
 
-    move_data = build(:move, date: 1.day.from_now,
-      to: 'Bobbins Secure Youth Estate', to_type: 'youth_secure_estate')
-    create(:youth_secure_estate, name: move_data.to)
+    let(:fixture_json_file_path) do
+      Rails.root.join('spec', 'support', 'fixtures', 'valid-nomis-charges.json')
+    end
 
-    login_options = { sso: { info: { permissions: [{'organisation' => bedford_sso_id}]}} }
+    let(:login_options) do
+      { sso: { info: { permissions: [{'organisation' => bedford_sso_id}]}} }
+    end
 
-    login(nil, login_options)
+    let(:healthcare_login_options) do
+      { sso: { info: { permissions: [{'organisation' => bedford_sso_id,
+        'roles' => ['healthcare']}]}} }
+    end
 
-    detainee = create(:detainee, prison_number: prison_number)
-    create(:escort, :issued, prison_number: prison_number, detainee: detainee)
+    let(:valid_body) do
+      { establishment: { code: establishment_nomis_id } }.to_json
+    end
 
-    dashboard.click_start_a_per
+    let!(:bedford) do
+      create(:prison, name: 'HMP Bedford', sso_id: bedford_sso_id,
+        nomis_id: bedford_nomis_id)
+    end
 
-    search.search_prison_number(detainee.prison_number)
-    search.click_start_new_per
+    let(:move_data) do
+      build(:move, date: 1.day.from_now,
+        to: 'Bobbins Secure Youth Estate', to_type: 'youth_secure_estate')
+    end
 
-    detainee_details.complete_form(detainee)
+    let!(:reused_escort) do
+      create(:escort, :issued, prison_number: prison_number, detainee: detainee,
+        move: move)
+    end
 
-    move_details.complete_form(move_data)
+    before do
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/location",
+        body: valid_body)
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/image")
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}")
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/charges",
+        body: valid_json)
+      stub_nomis_api_request(:get, "/offenders/#{prison_number}/alerts")
 
-    escort_page.confirm_risk_status('Review')
-    escort_page.click_edit_risk
-    risk_summary.confirm_status('Review')
-    risk_summary.confirm_review_warning
-    risk_summary.confirm_and_save
-    escort_page.confirm_risk_status('Complete')
+      create(:youth_secure_estate, name: move_data.to)
+    end
 
-    escort_page.confirm_offences_status('Review')
-    escort_page.click_edit_offences
-    offences.confirm_status('Review')
-    offences.save_and_continue
-    escort_page.confirm_offences_status('Complete')
+    scenario 'reviewing the data and reusing' do
+      login(nil, login_options)
 
-    click_button 'Sign out'
+      dashboard.click_start_a_per
 
-    login_options = { sso: { info: { permissions: [{'organisation' => bedford_sso_id, 'roles' => ['healthcare']}]}} }
-    login(nil, login_options)
+      search.search_prison_number(detainee.prison_number)
+      search.click_start_new_per
 
-    dashboard.click_start_a_per
+      detainee_details.complete_form(detainee)
 
-    search.search_prison_number(detainee.prison_number)
-    search.click_continue_per
+      # save_and_open_page
+      move_details.confirm_special_vehicle_values(reused_escort.move)
+      move_details.complete_form(move_data)
 
-    escort_page.confirm_healthcare_status('Review')
-    escort_page.click_edit_healthcare
-    healthcare_summary.confirm_status('Review')
-    healthcare_summary.confirm_review_warning
-    healthcare_summary.confirm_and_save
-    escort_page.confirm_healthcare_status('Complete')
-    escort_page.click_print
+      escort_page.confirm_risk_status('Review')
+      escort_page.click_edit_risk
+      risk_summary.confirm_status('Review')
+      risk_summary.confirm_review_warning
+      risk_summary.confirm_and_save
+      escort_page.confirm_risk_status('Complete')
+
+      escort_page.confirm_offences_status('Review')
+      escort_page.click_edit_offences
+      offences.confirm_status('Review')
+      offences.save_and_continue
+      escort_page.confirm_offences_status('Complete')
+
+      click_button 'Sign out'
+
+      login(nil, healthcare_login_options)
+
+      dashboard.click_start_a_per
+
+      search.search_prison_number(detainee.prison_number)
+      search.click_continue_per
+
+      escort_page.confirm_healthcare_status('Review')
+      escort_page.click_edit_healthcare
+      healthcare_summary.confirm_status('Review')
+      healthcare_summary.confirm_review_warning
+      healthcare_summary.confirm_and_save
+      escort_page.confirm_healthcare_status('Complete')
+      escort_page.click_print
+    end
   end
 
-  scenario 'Editing a completed document' do
-    login
-    prison_number = 'A4321FD'
-    detainee = create(:detainee, prison_number: prison_number)
-    create(:escort, :completed, prison_number: prison_number, detainee: detainee)
+  context 'a completed document' do
+    let(:prison_number) { 'A4321FD' }
+    let(:detainee) { create(:detainee, prison_number: prison_number) }
 
-    dashboard.click_start_a_per
+    before do
+      create(:escort, :completed, prison_number: prison_number, detainee: detainee)
+    end
 
-    search.search_prison_number(detainee.prison_number)
-    search.click_continue_per
+    scenario 'editing the document' do
+      login
+      dashboard.click_start_a_per
 
-    escort_page.confirm_healthcare_status('Complete')
-    escort_page.click_edit_healthcare
+      search.search_prison_number(detainee.prison_number)
+      search.click_continue_per
 
-    find("a", :text => /\AChange\z/, match: :first).click
-    choose 'Yes'
-    fill_in 'physical[physical_issues_details]', with: 'Some details'
-    click_button 'Save and view summary'
-    healthcare_summary.confirm_and_save
-    escort_page.confirm_healthcare_status('Complete')
+      escort_page.confirm_healthcare_status('Complete')
+      escort_page.click_edit_healthcare
+
+      find("a", :text => /\AChange\z/, match: :first).click
+      choose 'Yes'
+      fill_in 'physical[physical_issues_details]', with: 'Some details'
+      click_button 'Save and view summary'
+      healthcare_summary.confirm_and_save
+      escort_page.confirm_healthcare_status('Complete')
+    end
   end
 end

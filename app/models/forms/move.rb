@@ -25,6 +25,9 @@ module Forms
       presence: true,
       if: -> { not_for_release == 'yes' && not_for_release_reason == REASON_WITH_DETAILS }
 
+    options_field_with_details :require_special_vehicle, allow_blank: true
+    options_field_with_details :other_transport_requirements, allow_blank: true
+
     def not_for_release_reasons
       if model.from_police?
         POLICE_NOT_FOR_RELEASE_REASONS + COMMON_NOT_FOR_RELEASE_REASONS

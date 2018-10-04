@@ -46,5 +46,11 @@
         inline_choices: false,
         data: { 'toggle-field' => f.object.not_for_release_reason_with_details }
 
+    = f.radio_toggle_with_textarea :require_special_vehicle,
+      legend_options: { class: 'form-label-bold' }
+
+    = f.radio_toggle_with_textarea :other_transport_requirements,
+      legend_options: { class: 'form-label-bold' }
+
     .form-actions
       = f.submit 'Save and continue', class: 'button'
