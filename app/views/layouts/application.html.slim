@@ -20,6 +20,9 @@ html.govuk-template lang="en"
     = stylesheet_link_tag 'main', media: 'all'
     = javascript_include_tag 'html5shiv'
 
+    /![if lt IE 9]
+      = javascript_include_tag "ie.js", integrity: true, crossorigin: "anonymous"
+
   body.govuk-template__body
     javascript:
       document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
@@ -91,8 +94,6 @@ html.govuk-template lang="en"
               | © Crown copyright
 
     #global-app-error.app-error.hidden
-
-    / = javascript_include_tag "govuk-template.js", integrity: true, crossorigin: "anonymous"
 
     = javascript_include_tag "govuk-frontend/all.js"
     = javascript_include_tag "application.js"

@@ -1,0 +1,31 @@
+.page_contents_list {
+  &__items {
+    li {
+      @include govuk-font(16);
+      list-style: none;
+      margin-left: $govuk-gutter-half;
+      margin-bottom: $govuk-gutter-half;
+      padding-right: $govuk-gutter-half;
+
+      &:before {
+        content: '–';
+        float: left;
+        display: block;
+        width: $govuk-gutter-half;
+        margin-left: -$govuk-gutter-half;
+      }
+    }
+
+    a {
+      text-decoration: none;
+
+      &:hover, &:focus, &:active {
+        text-decoration: underline;
+      }
+    }
+
+    .active {
+      font-weight: bold;
+    }
+  }
+}

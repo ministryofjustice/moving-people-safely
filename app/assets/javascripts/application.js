@@ -21,9 +21,13 @@
 //= require stickyfill-init
 //= require multiples
 //= require clickable-tbody
+//= require anchor-focus
+//= require no-script
+//= require page-contents
 
 
 //= stub 'flowplayer-3.2.13.min'
 //= stub 'flowplayer-init'
+//= stub 'ie'
 
 window.GOVUKFrontend.initAll();
