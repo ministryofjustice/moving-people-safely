@@ -38,7 +38,7 @@ RSpec.describe Forms::Detainee, type: :form do
 
     it do
       is_expected.to validate_inclusion_of(:gender).
-        in_array(%w[ male female ])
+        in_array(Forms::Detainee::GENDERS)
     end
 
     context 'date_of_birth' do

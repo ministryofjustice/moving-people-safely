@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
+
 gem 'aws-sdk-s3'
 gem 'bootsnap', require: false
 gem 'cancancan'
@@ -65,7 +67,8 @@ group :test do
   gem 'rspec-its'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
-  gem 'shoulda-matchers'
+  # TODO: update to 4.x once issue resolved https://github.com/thoughtbot/shoulda-matchers/issues/1146
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers', ref: '43f4252'
   gem 'simplecov', require: false
   gem 'site_prism'
   gem 'webmock'
