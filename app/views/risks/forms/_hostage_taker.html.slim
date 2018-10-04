@@ -5,9 +5,9 @@
 
 - if escort.from_police?
   = f.radio_toggle_with_textarea :sex_offence,
-    legend_options: { class: 'form-label-assessment' }
-  inline_choices: false,
-  toggle_options: ['yes']
+    legend_options: { class: 'form-label-assessment' },
+    inline_choices: false,
+    toggle_options: ['yes']
 
   = f.custom_radio_button_fieldset :arson,
     inline: true, legend_options: { class: 'form-label-assessment' }
