@@ -5,12 +5,12 @@
         - breadcrumb escort_breadcrumb(escort), escort_path(escort)
         - breadcrumb 'Risk summary'
 
-  .summary.per-section-page
-    - if current_user.admin?
-      p= link_to 'Automation Report', automation_escort_risks_path(escort)
+    .summary.per-section-page
+      - if current_user.admin?
+        p= link_to 'Automation Report', automation_escort_risks_path(escort)
 
-    = render 'summary/status',
-      workflow: Summary::EscortSectionStatusPresenter.new(assessment, name: :risk)
+      = render 'summary/status',
+        workflow: Summary::EscortSectionStatusPresenter.new(assessment, name: :risk)
 
       - Risk.sections(escort.location).each do |section|
         table class="govuk-table #{section}"

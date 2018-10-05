@@ -22,7 +22,7 @@
 
     = render 'assessment', assessment: escort.risk,
                            model: Risk,
-                           not_started_path: new_escort_risks_path(escort),
+                           not_started_path: (escort.from_prison? ? new_escort_risks_path(escort) : intro_escort_risks_path(escort)),
                            summary_path: escort_risks_path(escort),
                            section: escort.risk || escort.build_risk
 
