@@ -17,7 +17,7 @@ class Datafixes::PopulateDetaineeSecurityCategory < Datafix
 
   def self.update_category(detainee)
     if detainee.security_category.blank?
-      detainee.update_column(security_category: 'A')
+      detainee.update_column(:security_category, 'A')
     end
   end
 end
