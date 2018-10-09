@@ -12,7 +12,21 @@
 
 
 
-                       99/000000Z: McTest Testy
+Prison number     CRO number         PNC number            Aliases
+W1234BY           56TYY/UU           99/000000Z            Terry Tibbs
+                                                           Mr T
+Date of birth     Age                Gender
+10 Dec 1970       47                 Male
+Nationality       Ethnicity
+British           European
+Preferred         Interpreter        Interpreter details
+language          Yes                English-
+English                              American
+                                     translator
+Diet
+Gluten free
+Personal Emergency Evacuation Plan
+Broken leg
 
                          Not for release ✘ No      Escape risk ✘ No
 

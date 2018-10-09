@@ -36,8 +36,8 @@
         label.form-label for='auto_ethnicity' Ethnicity
         = f.select :ethnicity, Detainee::ETHNICITY_CODES, {include_blank: true}, {id: 'auto_ethnicity'}
 
-      = f.text_field :religion
       - if escort.from_prison?
+        = f.text_field :religion
         = f.text_field :pnc_number
       - elsif escort.from_police?
         = f.text_field :prison_number

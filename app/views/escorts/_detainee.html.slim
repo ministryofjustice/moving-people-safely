@@ -26,9 +26,10 @@ section#detainee
     .tile-3
       h6 Nationality
       p= escort.detainee.nationalities
-    .tile-3
-      h6 Religion
-      p= escort.detainee.religion
+    - if escort.from_prison?
+      .tile-3
+        h6 Religion
+        p= escort.detainee.religion
     .tile-3
       h6 Ethnicity
       p= short_ethnicity(escort.detainee)
