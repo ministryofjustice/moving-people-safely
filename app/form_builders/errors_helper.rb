@@ -30,22 +30,24 @@ module ErrorsHelper
   end
 
   def self.error_summary_heading text
-    content_tag :h1,
+    content_tag :h2,
       text,
-      id: 'error-summary-heading',
-      class: 'heading-medium error-summary-heading'
+      id: 'error-summary-title',
+      class: 'govuk-error-summary__title'
   end
 
   def self.error_summary_list(object, options = {})
-    content_tag(:ul, class: 'error-summary-list') do
-      child_to_parents = child_to_parent(object)
-      messages = error_summary_messages(object, child_to_parents, options)
+    content_tag(:div, class: 'govuk-error-summary__body') do
+      content_tag(:ul, class: 'govuk-list govuk-error-summary__list') do
+        child_to_parents = child_to_parent(object)
+        messages = error_summary_messages(object, child_to_parents, options)
 
-      messages << children_with_errors(object).map do |child|
-        error_summary_messages(child, child_to_parents, options)
+        messages << children_with_errors(object).map do |child|
+          error_summary_messages(child, child_to_parents, options)
+        end
+
+        messages.flatten.join('').html_safe
       end
-
-      messages.flatten.join('').html_safe
     end
   end
 
@@ -114,10 +116,13 @@ module ErrorsHelper
 
   def self.error_summary_div &block
     content_tag(:div,
-        class: 'error-summary',
-        role: 'group',
+        class: 'govuk-error-summary',
+        role: 'alert',
         aria: {
-          labelledby: 'error-summary-heading'
+          labelledby: 'govuk-error-summary__title'
+        },
+        data: {
+          module: 'error-summary'
         },
         tabindex: '-1') do
       yield block
