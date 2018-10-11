@@ -54,6 +54,8 @@
       - if escort.from_prison?
         #peep= f.radio_toggle_with_textarea :peep,
           legend_options: { class: 'form-label' }
+      - if escort.from_prison?
+        = f.text_field :security_category
       = f.text_field :diet
 
       .form-actions

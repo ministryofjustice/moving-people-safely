@@ -8,7 +8,6 @@ FactoryBot.define do
     vulnerable_prisoner { 'no' }
 
     controlled_unlock { 'no' }
-    category_a { 'no' }
     high_profile { 'no' }
     pnc_warnings { 'no' }
 

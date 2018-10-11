@@ -41,7 +41,7 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
     move_details.complete_form(move_data)
 
     escort_page.confirm_move_info(move_data)
-    escort_page.confirm_detainee_details(detainee)
+    escort_page.confirm_detainee_details(detainee, :police)
     escort_page.click_edit_risk
 
     risk.complete_forms(risk_data)

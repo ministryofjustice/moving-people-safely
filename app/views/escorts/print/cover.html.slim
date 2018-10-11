@@ -5,6 +5,7 @@ html
     = wicked_pdf_stylesheet_link_tag "print.css", media: 'all'
 
   body
+    .staple-instruction.staple-instruction-top &mdash;&mdash;&mdash;&mdash;&mdash; Staple to card
     main.page-one
       table.vehicles
         tr.header-row
@@ -18,25 +19,43 @@ html
             div.title PECS Barcode
         tr.header-row
           th colspan=2 Return vehicle
-          tth.empty
+          th.empty
         tr
           td
             div.title Registration
           td
             div.title Cell number
           td.empty
-      div.grid.detainee
+
+      div.grid.move
         div.grid-row.header-row
-          hi
+          h1
             span#detainee-identifier.strong-text => identifier(escort)
             = escort.detainee_forenames
         div.grid-row.indicators
-          #not_for_release_alert.grid-column.column-one-half
-            = render 'escorts/print/alert', alert_name: :not_for_release, on: escort.alerts[:not_for_release]
-            - if escort.alerts[:not_for_release]
-              p.alert-text= not_for_release_text(escort.move)
-          #e_list_alert.grid-column.column-one-half
-            = render 'escorts/print/alert', alert_name: :current_e_risk, on: escort.alerts[:current_e_risk]
+          div.grid-column.column-full-length
+            #not_for_release_alert.flag
+              = render 'escorts/print/alert', alert_name: :not_for_release, on: escort.alerts[:not_for_release]
+            #e_list_alert.flag
+              = render 'escorts/print/alert', alert_name: :current_e_risk, on: escort.alerts[:current_e_risk]
+        div.grid-row.header-row.small = 'Move details'
+        div.grid-row.padded.padded-bottom
+          div.grid-column.column-one-third
+            div.title Date of travel
+            div.strong-text.font-medium = escort.move.date&.to_s(:humanized)
+          div.grid-column.column-one-third
+            div.title From
+            div.strong-text = from(escort.move)
+          div.grid-column.column-one-third
+            div.title To
+            div.strong-text = escort.move.to
+        div.grid-row.padded.padded-bottom
+          div.grid-column.column-one-third
+            div.title Release status
+            div.strong-text.font-medium = not_for_release_text(escort.move)
+
+      div.grid.detainee
+        div.grid-row.header-row.small = 'Personal details'
         div.grid-row.padded.top-dotted
           div.grid-column.column-one-half
             div.grid-row
@@ -73,17 +92,20 @@ html
             div.grid-row.padded
               div.grid-column.column-one-third
                 div.title Preferred language
-                div.strong-text.language = escort.detainee.language
+                div.strong-text.language = content_or_dash(escort.detainee.language)
               div.grid-column.column-one-third
                 div.title Interpreter
-                div#age.strong-text = expanded_interpreter_required(escort.detainee)
+                div#age.strong-text = content_or_dash(expanded_interpreter_required(escort.detainee))
               div.grid-column.column-one-third
                 div.title Interpreter details
-                div#age.strong-text = escort.detainee.interpreter_required_details
+                div#age.strong-text = content_or_dash(escort.detainee.interpreter_required_details)
             div.grid-row.padded
-              div.grid-column.column-full-length
+              div.grid-column.column-one-third
+                div.title Category
+                div#age.strong-text = escort.from_police? ? '&ndash;'.html_safe : content_or_dash(escort.detainee.security_category)
+              div.grid-column.column-two-thirds
                 div.title Diet
-                div#age.strong-text = escort.detainee.diet
+                div#age.strong-text = content_or_dash(escort.detainee.diet)
             - if escort.detainee.peep == 'yes'
               div.grid-row.padded
                 div.grid-column.column-full-length
@@ -97,25 +119,14 @@ html
           div.grid-column.column-one-quarter
               .image
                 = image(escort.detainee)
-      div.grid.move
-        div.grid-row.header-row.small = 'Move details'
-        div.grid-row.padded.padded-bottom
-          div.grid-column.column-one-third
-            div.title Date of travel
-            div.strong-text.font-medium = escort.move.date&.to_s(:humanized)
-          div.grid-column.column-one-third
-            div.title From
-            div.strong-text = from(escort.move)
-          div.grid-column.column-one-third
-            div.title To
-            div.strong-text = escort.move.to
-        div.grid-row.top-dotted.min-heighted
 
       div.grid.footer.moj-declaration
         div.grid-row
           div.grid-column.legend
             .title About this Person Escort Record
             p
-              | This ePER was produced by the Ministry of Justice ePER service, currently in pilot at HMP Bedford. This ePER is approved by HMPPS - please treat it as a fully valid and official record. Please send any feedback or questions to: eper@digital.justice.gov.uk
+              | This ePER was produced by the Ministry of Justice ePER service, currently in pilot. This ePER is approved by HMPPS - please treat it as a fully valid and official record. Please send any feedback or questions to: eper@digital.justice.gov.uk
           div.grid-column.logo
             = wicked_pdf_image_tag('moj_logo.png')
+
+    .staple-instruction.staple-instruction-bottom Staple to card &mdash;&mdash;&mdash;&mdash;&mdash;

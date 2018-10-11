@@ -1,4 +1,4 @@
-- questions = %w[controlled_unlock category_a high_profile pnc_warnings]
+- questions = %w[controlled_unlock high_profile pnc_warnings]
 
 - unless views == 'escort'
   = render "shared/sections/#{views}/section",
@@ -8,10 +8,6 @@
   = render "shared/sections/#{views}/question",
     alternance: 'even', assessment: assessment, section: section, question: 'controlled_unlock',
     value: assessment.controlled_unlock, details: assessment.controlled_unlock_details
-
-  = render "shared/sections/#{views}/question",
-    alternance: 'odd', assessment: assessment, section: section, question: 'category_a',
-    value: assessment.category_a, details: nil
 
   = render "shared/sections/#{views}/question",
     alternance: 'even', assessment: assessment, section: section, question: 'high_profile',

@@ -49,7 +49,6 @@ module Page
     def fill_in_security
       if @risk.location == 'prison'
         fill_in_optional_details('Are they on a controlled unlock?', @risk, :controlled_unlock)
-        fill_in_optional_details('Are they Category A, potential Category A or Restricted Status?', @risk, :category_a)
         fill_in_optional_details('Are they of high public interest?', @risk, :high_profile)
         fill_in_optional_details('PNC warnings', @risk, :pnc_warnings)
       elsif @risk.location == 'police'

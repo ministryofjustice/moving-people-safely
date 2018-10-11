@@ -188,34 +188,6 @@ RSpec.feature 'PER show page', type: :feature do
         end
       end
     end
-
-    context 'Category A' do
-      context 'when PER has no yet a risk assessment' do
-        scenario 'associated alert is not displayed' do
-          escort_page.confirm_alert_not_present(:category_a)
-        end
-      end
-
-      context 'when PER has a risk assessment' do
-        let(:escort) { create(:escort, default_escort_options.merge(risk: risk)) }
-
-        context 'when detainee has Category A as yes' do
-          let(:risk) { Risk.new(category_a: 'yes') }
-
-          scenario 'associated alert is displayed as active' do
-            escort_page.confirm_alert_as_active(:category_a)
-          end
-        end
-
-        context 'when detainee has Category A as no' do
-          let(:risk) { Risk.new(category_a: 'no') }
-
-          scenario 'associated alert is displayed as inactive' do
-            escort_page.confirm_alert_as_inactive(:category_a)
-          end
-        end
-      end
-    end
   end
 
   context 'move information' do
