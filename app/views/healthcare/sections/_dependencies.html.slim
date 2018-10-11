@@ -1,4 +1,5 @@
 - questions = %w[dependencies]
+- questions.unshift('alcohol_withdrawal') if assessment.escort.from_police?
 
 - unless views == 'escort'
   = render "shared/sections/#{views}/section",
