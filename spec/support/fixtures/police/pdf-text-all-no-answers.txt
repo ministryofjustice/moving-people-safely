@@ -1,54 +1,40 @@
 ————— Staple to card
 
                        Outbound vehicle
-                       Registration                    Cell number                       PECS Barcode
+                       Registration                   Cell number                       PECS Barcode
 
 
 
 
                        Return vehicle
-                       Registration                    Cell number
+                       Registration                   Cell number
 
 
 
 
-Prison number     CRO number         PNC number            Aliases
-W1234BY           56TYY/UU           99/000000Z            Terry Tibbs
-                                                           Mr T
-Date of birth     Age                Gender
-10 Dec 1970       47                 Male
-Nationality       Ethnicity
-British           European
-Preferred         Interpreter        Interpreter details
-language          Yes                English-
-English                              American
-                                     translator
-Diet
-Gluten free
-Personal Emergency Evacuation Plan
-Broken leg
+                       99/000000Z: McTest Testy
 
-                         Not for release ✘ No      Escape risk ✘ No
+                         Not for release ✘ No    Escape risk ✘ No
 
                        Move details
-                       Date of travel                     From                                To
-                       22 Apr 2099                        My Jolly Police Custody Suite       Luton Crown Court
+                       Date of travel                    From                                To
+                       22 Apr 2099                       My Jolly Police Custody Suite       Luton Crown Court
 
                        Release status
                        Contact the prison to
                        confirm release
                        Personal details
-                       Prison number    CRO number        PNC number            Aliases
-                       W1234BY          56TYY/UU          99/000000Z            Terry Tibbs
-                                                                                Mr T
-                       Date of birth    Age               Gender
-                       10 Dec 1970      47                Male
-                       Nationality      Religion          Ethnicity
-                       British          Baptist           European
-                       Preferred        Interpreter       Interpreter details
-                       language         Yes               English-
-                       English                            American
-                                                          translator
+                       Prison number    CRO number       PNC number            Aliases
+                       W1234BY          56TYY/UU         99/000000Z            Terry Tibbs
+                                                                               Mr T
+                       Date of birth    Age              Gender
+                       10 Dec 1970      47               Male
+                       Nationality      Ethnicity
+                       British          European
+                       Preferred        Interpreter      Interpreter details
+                       language         Yes              English-
+                       English                           American
+                                                         translator
                        Category         Diet
                        –                Gluten free
                        Personal Emergency Evacuation Plan
