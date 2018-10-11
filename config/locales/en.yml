@@ -783,12 +783,12 @@ en:
         unauthorized: "Enter a prisoner number for someone currently at %{establishments} to start a PER."
       details:
         unavailable: "We can't automatically complete detainee details right now. Please fill them in manually."
-        not_found: "No record for that prisoner number exists. Check the number used or enter the details manually."
-        invalid_input: The provided prison number is not valid, please try again with a valid prison number
+        not_found: "That prisoner number does not exist in NOMIS. Check the number and try again or enter the detainee’s details manually."
+        invalid_input: "That prisoner number is not valid. Enter a valid prisoner number in this format: A1234BC."
       image:
-        unavailable: "Image Look-Up function is not currently available. Please try again later"
-        not_found: "Look-Up function for photograph returned no image. Either try again later or attach photograph manually to print out"
-        invalid_input: The prisoner number is not valid, please try again with a valid number
+        unavailable: "We can't show the prisoner image right now. Try again later or attach a photograph to the printed PER."
+        not_found: "No image exists for that prisoner number. Enter a valid number or attach a photograph to the printed PER."
+        invalid_input: "No image exists for that prisoner number. Enter a valid number or attach a photograph to the printed PER."
     escort:
       access:
         unauthorized: "The PER you are trying to access has not been created at your prison"
