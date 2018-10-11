@@ -9,7 +9,7 @@ module Page
       fill_in 'Date of birth', with: detainee.date_of_birth
       fill_in 'Nationalities', with: detainee.nationalities
       choose detainee.gender.titlecase
-      fill_in 'Religion', with: detainee.religion
+      fill_in 'Religion', with: detainee.religion if origin == :prison
       select 'W1', from: 'auto_ethnicity'
       fill_in 'PNC number', with: detainee.pnc_number
       fill_in 'CRO number', with: detainee.cro_number

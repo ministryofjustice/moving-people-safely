@@ -83,9 +83,10 @@ html
                 div.title Nationality
                 - nationalities(escort.detainee).each do |nationality|
                   div.strong-text.nationality = nationality
-              div.grid-column.column-one-third
-                div.title Religion
-                div#age.strong-text = content_or_none(escort.detainee.religion)
+              - if escort.from_prison?
+                div.grid-column.column-one-third
+                  div.title Religion
+                  div#age.strong-text = content_or_none(escort.detainee.religion)
               div.grid-column.column-one-third
                 div.title Ethnicity
                 div#age.strong-text = ethnicity(escort.detainee)
