@@ -1,15 +1,20 @@
 ul.flags {
   margin: 0;
   padding-left: 0;
+
+  li {
+    @include govuk-font(19);
+    list-style-type: none;
+    padding: 2px 6px;
+    display: inline-block;
+    margin: 5px 5px 0 0;
+    font-family: 'arial narrow', sans-serif !important;
+  }
 }
 
 .flag {
   box-sizing: border-box;
-  font-family: 'arial narrow', sans-serif;
-  display: inline-block;
-  padding: 2px 6px;
-  margin-right: 5px;
-  margin-top: 5px;
+  display: block;
   white-space: nowrap;
 }
 
@@ -46,6 +51,9 @@ ul.flags {
   }
 }
 
-p.alert-text {
-  margin: 5px 0;
+
+span.flag-detail {
+  margin-top: 2px;
+  padding-left: 6px;
+  display: none;
 }

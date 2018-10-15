@@ -1,3 +1,7 @@
 - status = on ? 'active' : 'inactive'
-li class="flag-#{status}"
-  = t("escort.alerts.#{alert_name}")
+
+li
+  span class="flag-#{status}"
+    = t("escort.alerts.#{alert_name}")
+  - if (defined? extra_text)
+    span.flag-detail= extra_text

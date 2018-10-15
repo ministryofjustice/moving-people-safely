@@ -20,7 +20,6 @@ Rails.application.config.assets.precompile += %w(
     gov.uk_logotype_crown.png
     main-ie8
     main
-    nomis_alerts
     print
     accessible-autocomplete.min.css
     auto-complete.js
@@ -28,8 +27,6 @@ Rails.application.config.assets.precompile += %w(
     flowplayer-3.2.13.min.js
     govuk-template*.css
     fonts*.css
-    govuk-template.js
-    ie.js
     apple-touch-icon-180x180.png
     apple-touch-icon-167x167.png
     apple-touch-icon-152x152.png
