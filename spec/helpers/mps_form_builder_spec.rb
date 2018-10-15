@@ -26,18 +26,20 @@ RSpec.describe MpsFormBuilder do
 
     let(:html) do
       <<-HTML
-        <div class="form-group">
-          <fieldset>
-            <legend>
-              <span class="form-label-bold">My attribute</span>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend">
+              <span class="govuk-label">My attribute</span>
             </legend>
-            <div class="multiple-choice">
-              <input type="radio" value="yes" name="#{object_name}[my_attribute]" id="#{object_name}_my_attribute_yes" />
-              <label for="#{object_name}_my_attribute_yes">Yes</label>
-            </div>
-            <div class="multiple-choice">
-              <input type="radio" value="no" name="#{object_name}[my_attribute]" id="#{object_name}_my_attribute_no" />
-              <label for="#{object_name}_my_attribute_no">No</label>
+            <div class="govuk-radios" data-module="radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" data-aria-controls="conditional-my_attribute-yes" type="radio" value="yes" name="#{object_name}[my_attribute]" id="#{object_name}_my_attribute_yes" />
+                <label for="#{object_name}_my_attribute_yes">Yes</label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" data-aria-controls="conditional-my_attribute-no" type="radio" value="no" name="#{object_name}[my_attribute]" id="#{object_name}_my_attribute_no" />
+                <label for="#{object_name}_my_attribute_no">No</label>
+              </div>
             </div>
           </fieldset>
         </div>
@@ -59,9 +61,9 @@ RSpec.describe MpsFormBuilder do
 
     let(:html) do
       <<-HTML
-        <div class="form-group js-show-hide">
+        <div class="govuk-form-group js-show-hide">
           <div class="controls-optional-section" data-toggle-field="my_toggle_field">
-            <div class="form-group">
+            <div class="govuk-form-group">
               <fieldset class="inline">
                 <legend>
                   <span class="form-label-bold">My attribute</span>
@@ -119,7 +121,7 @@ RSpec.describe MpsFormBuilder do
 
     let(:html) do
       <<-HTML
-        <div class="form-group">
+        <div class="govuk-form-group">
           <div class="multiple-choice">
             <input name="#{object_name}[my_attribute]" type="hidden" value="0" />
             <input type="checkbox" value="1" name="#{object_name}[my_attribute]" id="#{object_name}_my_attribute" />
@@ -176,9 +178,9 @@ RSpec.describe MpsFormBuilder do
 
     let(:html) do
       <<-HTML
-        <div class="form-group js-show-hide">
+        <div class="govuk-form-group js-show-hide">
           <div class="controls-optional-section" data-toggle-field="my_toggle_field">
-            <div class="form-group">
+            <div class="govuk-form-group">
               <fieldset class="inline">
                 <legend>
                   <span class="form-label-bold">My attribute</span>
@@ -195,8 +197,8 @@ RSpec.describe MpsFormBuilder do
             </div>
           </div>
           <div class="optional-section-wrapper mps-hide panel panel-border-narrow">
-            <div class="form-group">
-              <span class="form-hint"></span>
+            <div class="govuk-form-group">
+              <span class="govuk-hint"></span>
               <textarea class="form-control form-control-3-4" name="my_name[my_attribute_details]" id="my_name_my_attribute_details">
                 My details
               </textarea>
@@ -215,7 +217,7 @@ RSpec.describe MpsFormBuilder do
 
     let(:html) do
       <<-HTML
-        <div class="form-group date-picker-wrapper">
+        <div class="govuk-form-group date-picker-wrapper">
           <label class="form-label" for="an_obj_my_attribute">My attribute</label>
           <span class="date-picker-field input-group date" data-provide="datepicker">
             <input value="#{attribute_value}" class="no-script form-control date-field" type="text" name="#{object_name}[my_attribute]" id="#{object_name}_my_attribute" />
@@ -237,9 +239,9 @@ RSpec.describe MpsFormBuilder do
 
     let(:html) do
       <<-HTML
-        <div class="form-group">
-          <span class="form-hint"></span>
-          <textarea class="form-control" name="my_name[my_attribute]" id="my_name_my_attribute">
+        <div class="govuk-form-group">
+          <label for="my_name_my_attribute" class="govuk-hint govuk-label"></label>
+          <textarea class="govuk-textarea govuk-!-width-one-half" name="my_name[my_attribute]" id="my_name_my_attribute">
             #{attribute_value}
           </textarea>
         </div>
@@ -258,9 +260,9 @@ RSpec.describe MpsFormBuilder do
 
     let(:html) do
       <<-HTML
-        <div class="form-group">
-          <span class="form-hint"></span>
-          <input value="#{attribute_value}" class="form-control" type="text" name="my_name[my_attribute]" id="my_name_my_attribute" />
+        <div class="govuk-form-group">
+          <label for="my_name_my_attribute" class="govuk-hint govuk-label"></label>
+          <input value="#{attribute_value}" class="govuk-input govuk-!-width-one-quarter" type="text" name="my_name[my_attribute]" id="my_name_my_attribute" />
         </div>
       HTML
     end
