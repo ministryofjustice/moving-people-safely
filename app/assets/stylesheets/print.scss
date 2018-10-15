@@ -369,3 +369,26 @@ ul.alerts {
   @extend .flag;
   margin: 0;
 }
+
+.page-one {
+  position: absolute;
+  top: 0;
+  left: 40px;
+  width: 95%;
+}
+
+.staple-instruction {
+  -webkit-transform: rotate(90deg);
+  position: absolute;
+  left: -56px;
+  text-align: top;
+  font-size: 11px;
+}
+
+.staple-instruction-top {
+  top: 50px;
+}
+
+.staple-instruction-bottom {
+  top: 1080px;
+}

@@ -41,26 +41,26 @@ html
               = render 'escorts/print/alert', alert_name: :current_e_risk, on: escort.alerts[:current_e_risk]
         div.govuk-grid-row.header-row.small = 'Move details'
         div.govuk-grid-row.padded.padded-bottom
-          div.govuk-grid-column.govuk-column-one-third
+          div.govuk-grid-column.govuk-grid-column-one-third
             div.title Date of travel
             div.strong-text.font-medium = escort.move.date&.to_s(:humanized)
-          div.govuk-grid-column.govuk-column-one-third
+          div.govuk-grid-column.govuk-grid-column-one-third
             div.title From
             div.strong-text = from(escort.move)
-          div.govuk-grid-column.govuk-column-one-third
+          div.govuk-grid-column.govuk-grid-column-one-third
             div.title To
             div.strong-text = escort.move.to
         div.govuk-grid-row.padded.padded-bottom
-          div.govuk-grid-column.govuk-column-one-third
+          div.govuk-grid-column.govuk-grid-column-one-third
             div.title Release status
             div.strong-text.font-medium = not_for_release_text(escort.move)
 
       div.grid.detainee
         div.govuk-grid-row.header-row.small = 'Personal details'
         div.govuk-grid-row.padded.top-dotted
-          div.govuk-grid-column.govuk-column-one-half
+          div.govuk-grid-column.govuk-grid-column-three-fifths
             div.govuk-grid-row
-              div.govuk-grid-column.govuk-column-one-third
+              div.govuk-grid-column.govuk-grid-column-one-third
                 div.title Prison number
                 div#prison-number.strong-text = escort.detainee.prison_number
               div.govuk-grid-column.govuk-grid-column-one-third
@@ -85,34 +85,29 @@ html
                 - nationalities(escort.detainee).each do |nationality|
                   div.strong-text.nationality = nationality
               - if escort.from_prison?
-                div.govuk-grid-column.govuk-column-one-third
+                div.govuk-grid-column.govuk-grid-column-one-third
                   div.title Religion
                   div#age.strong-text = content_or_none(escort.detainee.religion)
-              div.govuk-grid-column.govuk-column-one-third
+              div.govuk-grid-column.govuk-grid-column-one-third
                 div.title Ethnicity
                 div#age.strong-text = ethnicity(escort.detainee)
             div.govuk-grid-row.padded
               div.govuk-grid-column.govuk-grid-column-one-third
                 div.title Preferred language
                 div.strong-text.language = content_or_dash(escort.detainee.language)
-              div.govuk-grid-column.govuk-column-one-third
+              div.govuk-grid-column.govuk-grid-column-one-third
                 div.title Interpreter
                 div#age.strong-text = content_or_dash(expanded_interpreter_required(escort.detainee))
-              div.govuk-grid-column.govuk-column-one-third
+              div.govuk-grid-column.govuk-grid-column-one-third
                 div.title Interpreter details
                 div#age.strong-text = content_or_dash(escort.detainee.interpreter_required_details)
             div.govuk-grid-row.padded
-              div.govuk-grid-column.govuk-column-one-third
+              div.govuk-grid-column.govuk-grid-column-one-third
                 div.title Category
                 div#age.strong-text = escort.from_police? ? '&ndash;'.html_safe : content_or_dash(escort.detainee.security_category)
-              div.govuk-grid-column.govuk-column-two-thirds
+              div.govuk-grid-column.govuk-grid-column-two-thirds
                 div.title Diet
                 div#age.strong-text = content_or_dash(escort.detainee.diet)
-            - if escort.detainee.peep == 'yes'
-              div.govuk-grid-row.padded
-                div.govuk-grid-column.govuk-grid-column-full
-                  div.title Personal Emergency Evacuation Plan
-                  div.strong-text.language = escort.detainee.peep_details
           div.govuk-grid-column.govuk-grid-column-one-fifth
             div.title Aliases
             - aliases(escort.detainee).each do |a|
@@ -120,6 +115,11 @@ html
           div.govuk-grid-column.govuk-grid-column-one-fifth
               .image
                 = image(escort.detainee)
+        - if escort.detainee.peep == 'yes'
+          div.govuk-grid-row.padded
+            div.govuk-grid-column.govuk-grid-column-full
+              div.title Personal Emergency Evacuation Plan
+              div.strong-text.language = escort.detainee.peep_details
 
       div.grid.footer.moj-declaration
         div.govuk-grid-row
