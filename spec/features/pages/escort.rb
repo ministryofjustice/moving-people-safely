@@ -30,7 +30,7 @@ module Page
     end
 
     def confirm_alert_not_present(attr)
-      within('.flag') do
+      within('.flags') do
         expect(page).to_not have_content I18n.t("escort.alerts.#{attr}")
       end
     end
