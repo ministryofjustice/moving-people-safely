@@ -1,15 +1,729 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2018-10-11
+<!-- Merged PRs since last release:
+   PR   Merge date   Commit    Author                Branch
+ --------------------------------------------------------------------------------
+  564   2018-10-11   9d4ed87   Andy White            remove-religion-from-police
+  534   2018-10-11   e27d55b   Andy White            remove-cat-a-question
+  562   2018-10-04   843bb7f   Andy White            special-move-reqs-questions
+  563   2018-10-04   65a6166   Matthew Rudy Jacobs   fix-should-matchas
+  561   2018-10-02   a13d896   Matthew Rudy Jacobs   circleci-local
+  552   2018-09-27   c1f63c6   Matthew Rudy Jacobs   spec-add-path-assertions
+  551   2018-09-27   d5a93ed   Matthew Rudy Jacobs   risk-cache-in-tmp
+  557   2018-09-27   4fda395   Matthew Rudy Jacobs   add-licence
+  554   2018-09-27   1821b30   Matthew Rudy Jacobs   omniauth-log-to-rails-logger
+  553   2018-09-27   45f7634   Matthew Rudy Jacobs   quiet-compare-spec
+-->
+### Changed
+* Detainee religion field removed for police PER. <!-- PR 564 -->
+* Security category moved from risks to detainee section for prison PER. <!-- pr 534 -->
+* Security category populated from NOMIS if available. <!-- PR 534 -->
+* Changes to PDF printout for police PER. <!-- PR 534 -->
+* Add special vehicle details to move section. <!-- PR 562 -->
+* Improvements to internal quality and testing systems. <!-- PRs 551, 552, 553, 561, 563 -->
+
+### Fixed
+* Fix bug where Dependencies where not bold in the PDF printout. <!-- PR 534 -->
+
+
+## 2018-09-27
+<!-- Merged PRs since last release:
+   PR   Merge date   Commit    Author                Branch
+ -----------------------------------------------------------------------------
+  560   2018-09-27   0261766   Cesidio Di Landa      copy-changes
+  555   2018-09-27   aed7011   Andy White            ethnic-codes-type-ahead
+  559   2018-09-27   cbe1df5   Andy White            add-medway-police-station
+  558   2018-09-27   a91bfcf   Andy White            fix-automation-report
+  541   2018-09-25   cb92e46   Andy White            nomis-down-detainee-bug
+-->
+### Changed
+* Improved field hints for Self harm details and Approve confirmation. <!-- PR 560 -->
+* Replace detainee ethnicity field with a type-ahead using standard 16+1 ethnicity list. <!-- PR 555 -->
+* Medway Police Station added to list of Police custody suites. <!-- 559 -->
+
+### Fixed
+* Fix a bug where an error was presented if detainee was left incomplete. <!-- PR 541 -->
+* Fix a bug with internal reporting. <!-- PR 558 -->
+
+
+## 2018-09-25
+<!-- Merged PRs since last release:
+   PR   Merge date   Commit    Author                Branch
+ --------------------------------------------------------------------------------------
+  549   2018-09-25   fa5bd6e   Cesidio Di Landa      amend-police-questions
+  548   2018-09-20   7c21e16   Andy White            remove-detainee-security-category
+  547   2018-09-20   acb5051   Andy White            automated-risk-v2-automation-view
+  545   2018-09-20   ef1b375   Cesidio Di Landa      risk-before-start
+  546   2018-09-20   3bdd948   Andy White            update-rubyzip-gem
+  544   2018-09-20   c590c94   Andy White            automated-risk-v2
+  539   2018-09-04   fd66dde   Andy White            conditional-alert-tags
+  538   2018-08-30   82c3eb4   Andy White            audit-events
+  542   2018-08-29   44bdaf0   Cesidio Di Landa      update-gems
+  540   2018-08-29   1433dff   Cesidio Di Landa      circle2
+  524   2018-08-28   9e02bc3   Andy White            police-custardy-suite-validation
+-->
+### Changed
+* Enhancements to police ePER risk questions. <!-- PR 549 -->
+* Add intro to police ePER risks assessment section. <!-- PR 545 -->
+* Improve display of alerts so that only relevant ones are displayed. <!-- PR 539 -->
+* Introduce auditing of PER views and printing to enhance security. <!-- PR 538 -->
+* Improve internal reporting system. <!-- PR 544 -->
+* Internal security updates. <!-- PR 542, 540, 546 -->
+
+### Fixed
+* Fixed bug where police custody suite could be left blank for police users. <!-- PR 524 -->
+
+
+## 2018-08-21
+<!-- Merged PRs prior to this release:
+   PR   Merge date   Author         Details
+ ------------------------------------------------------------------------------
+  536   2018-08-20   Andy White     new-error-content-v3
+  533   2018-08-14   Clive Murray   Make sticky js class generic and add it to help menu
+  532   2018-08-13   Andy White     rename-west-cumbria
+  526   2018-08-13   Andy White     update-sex-field
+  525   2018-08-13   Andy White     new-error-content-v2
+  531   2018-08-10   Andy White     improve-help-page
+  530   2018-08-09   Clive Murray   CSS hackery to get the search button inline with the search field
+  529   2018-08-08   Clive Murray   Flowplayer videos for all browsers
+  527   2018-08-07   Clive Murray   Fix bug that causes JS errors on other pages than help
+  528   2018-08-07   Clive Murray   Trigger GOV.UK details.polyfill for IE
+  523   2018-08-07   Clive Murray   Flowplayer videos
+-->
+### Changed
+* Improvements to form elements and layout. <!-- PR 527, 528, 533 -->
+* Renamed West Cumbria Magistrates Court. <!-- PR 532 -->
+* Improvements to labels and helper text. <!-- PR 525, 526 -->
+* Improvements to functionality and display of help screen. <!-- PR 523, 529, 531 -->
+* Improvements to positioning of ePER search button. <!-- PR 530 -->
+
+### Fixed
+* Fix missing and incorrect error message across various forms. <!-- PR 536 -->
+
+
+## 2018-07
+<!-- Assumed release of all PRs merged in this calendar month:
+   PR   Merge date   Commit    Author                Branch
+ -----------------------------------------------------------------------------------------------
+  522   2018-07-31   eaccdf8   Andy White            rename-salfords-2
+  517   2018-07-27   b06c3a7   Andy White            police-medical-contact-lables
+  513   2018-07-26   4868e72   Andy White            bigger-pnc-textarea
+  519   2018-07-24   9a8e2a1   Cesidio Di Landa      sergeant-role
+  515   2018-07-18   67afeff   Andy White            add-copy-lane-and-salfords-to-police-list
+  516   2018-07-18   d35dbe3   Cesidio Di Landa      sergeant
+  500   2018-07-16   47429cd   Andy White            italicised-alerts-in-hint-text-bug
+  507   2018-07-16   0b71b03   Andy White            traffic-drugs-details
+  509   2018-07-13   bceeb12   Cesidio Di Landa      align-prison-police-alerts
+  511   2018-07-13   549c23f   Cesidio Di Landa      show-issued-escorts
+  504   2018-07-11   925be62   Cesidio Di Landa      mandatory-details-interpreter
+  505   2018-07-11   e233456   Cesidio Di Landa      csra-details-police
+  502   2018-07-10   13b6728   Clive Murray          header-link-colour
+  501   2018-07-10   7ffd36e   Clive Murray          real-label-for-datepicker
+  493   2018-07-05   757934b   Cesidio Di Landa      sections-config
+  498   2018-07-04   05b0d2e   Andy White            add-medical-phone-number-altcourse
+  497   2018-07-04   6155ec3   Andy White            harasser-intimidator-error-message
+  499   2018-07-03   89bbe5e   Andy White            move-destination-prefill-bug
+  495   2018-07-03   980f128   Andy White            landing-page-police-welcome
+  496   2018-07-02   b5868ac   Andy White            update-sprockets
+-->
+
+<!-- commit c03ed8436ca7b4d52bf3c40ec33fca2f3d4c1e45 -->
+<!-- Date:   Tue Jul 31 09:00:30 2018 +0100 -->
+
+    Rename Salfords Police Custody
+
+<!-- commit cd870f32558e738b90137532f2470930a7358874 -->
+<!-- Date:   Wed Jul 18 13:58:00 2018 +0100 -->
+
+    Change police medical contact labels
+
+<!-- commit 092a3f77726ee161d2693efc1a695f6a37b3552a -->
+<!-- Date:   Tue Jul 17 10:23:35 2018 +0100 -->
+
+    Increase textarea rows for PNC warnings
+
+<!-- commit 7829416b2ae650fe45e921f03c0ef9616b3e5a0c -->
+<!-- Date:   Thu Jul 26 13:44:04 2018 +0100 -->
+
+    JS polyfill for sticky sidebar in IE9+ (#520)
+
+<!-- commit 62583dc3707e64bdbcdfcd1d7a26adaf4a2c9a09 -->
+<!-- Date:   Fri Jul 20 15:57:06 2018 +0100 -->
+
+    Add sergeant approval process
+
+<!-- commit bae7e60aaec8e3effdcc66df67eb6863035198a6 -->
+<!-- Date:   Tue Jul 24 12:11:38 2018 +0100 -->
+
+    Found an even better favicon which will look nice on all devices (#518)
+
+<!-- commit 2f5d38bfb7f22c384e0e25eda20b7752f3db3ebc -->
+<!-- Date:   Wed Jul 18 14:33:13 2018 +0100 -->
+
+    Add Salfords and Copy Lane Police establishments
+
+<!-- commit 2e4d075f73591a3a36528c52ed6fe18673c39062 -->
+<!-- Date:   Wed Jul 18 15:20:50 2018 +0100 -->
+
+    Add custody sergeant user role
+
+<!-- commit f03f3a686046dce7e9bd81c8e84070e916b21f6e -->
+<!-- Date:   Thu Jul 5 14:05:07 2018 +0100 -->
+
+    Make mentions of alerts in hints italicised
+
+<!-- commit 376fafab7b5b36961f74aea99645725c4f1701d3 -->
+<!-- Date:   Tue Jul 10 16:19:15 2018 +0100 -->
+
+    Add substance supply details
+
+<!-- commit fed1d9b4e473cfd36cfa36b941d937bac090e008 -->
+<!-- Date:   Fri Jul 13 15:59:34 2018 +0100 -->
+
+    MOJ crest favicon replaces GOV.UK crest favicon (#512)
+
+<!-- commit 3fcf15e72425f1269bf01a79a70a890fde45c9d6 -->
+<!-- Date:   Mon Jul 9 16:33:25 2018 +0100 -->
+
+    Align prison and police alerts
+
+<!-- commit a2cc54b75fe9113b2aef51cfa50ceb20cef80977 -->
+<!-- Date:   Fri Jul 13 09:55:27 2018 +0100 -->
+
+    Allow to see issued escorts
+
+<!-- commit cf6b22cfa48f9de6a4588eb3e6fe48d24dca627a -->
+<!-- Date:   Thu Jul 12 15:04:42 2018 +0100 -->
+
+    Remove ga.js and replace with google tag manager (#510)
+
+<!-- commit 126e05aa43271c839a8c04c709749837cb51fcdb -->
+<!-- Date:   Thu Jul 12 13:43:13 2018 +0100 -->
+
+    Override NTA font throughout with Arial... ugh (#508)
+
+<!-- commit e833de79292386169d073733780860f0722ba9d5 -->
+<!-- Date:   Mon Jul 9 16:59:48 2018 +0100 -->
+
+    Make mandatory interpreter_required details in police
+
+<!-- commit 532746e31d1b3471478d315b7b2a40e78c6762bb -->
+<!-- Date:   Mon Jul 9 17:54:52 2018 +0100 -->
+
+    Align prison and police alerts
+
+<!-- commit 963f2318bb44bd326a572f4de29d977604e781be -->
+<!-- Date:   Tue Jul 10 16:49:33 2018 +0100 -->
+
+    Fix datepicker radio label alignment (#506)
+
+<!-- commit bc7da3d99f12f167abdbc4d2934cd9e4a8fc6781 -->
+<!-- Date:   Tue Jul 10 11:38:06 2018 +0100 -->
+
+    apply usual styling to datepicker radios (#503)
+
+<!-- commit d7997ce42bb0005c34ba8bfd70cf25a2934a54d5 -->
+<!-- Date:   Mon Jul 9 11:33:07 2018 +0100 -->
+
+    Make header signout link white to avoid low contrast
+
+<!-- commit 1e8e011a389808dd2ee319132a8c1ba29a947a08 -->
+<!-- Date:   Mon Jul 9 10:26:41 2018 +0100 -->
+
+    Use real label tag for datepicker
+
+<!-- commit 0d6e399dbf11c0ba78595e6d7ab83ea88d5fd2a8 -->
+<!-- Date:   Fri Jun 29 12:27:28 2018 +0300 -->
+
+    Change healthcare risks and offences sections for police
+
+<!-- commit 84452602d810f841e2df9e8b9b1bfbb7e1c5037c -->
+<!-- Date:   Tue Jun 26 16:10:09 2018 +0100 -->
+
+    Set assessment controller steps from model
+
+<!-- commit 19305037d1911b0bc7858ef53250796c2215ed43 -->
+<!-- Date:   Wed Jun 20 16:19:30 2018 +0100 -->
+
+    Move sections and questions in YAML file
+
+<!-- commit f9ca9953656eae4d9746d33dc643ebacc36530ed -->
+<!-- Date:   Mon Jul 2 14:17:00 2018 +0100 -->
+
+    Change harassment & gangs error messages
+
+<!-- commit ec5b3994575c7d8572215af64730ceebe50187d6 -->
+<!-- Date:   Tue Jul 3 08:35:09 2018 +0100 -->
+
+    Set default medical contact number for Altcourse
+
+<!-- commit df6e88a5138439e9d34fd4f6627ae9208214360f -->
+<!-- Date:   Tue Jul 3 15:26:54 2018 +0100 -->
+
+    Prepopulate move form on edit
+
+<!-- commit e24920dc80a1bf1ac608efe3a8c9733e691f194c -->
+<!-- Date:   Thu Jun 28 11:38:56 2018 +0100 -->
+
+    Landing page police welcome
+
+<!-- commit f1c872bf41ce89efc511db293c03888b0f8dc306 -->
+<!-- Date:   Mon Jul 2 14:31:02 2018 +0100 -->
+
+    Update sprockets
+
+## 2018-06
+<!-- Assumed release of all PRs merged in this calendar month:
+   PR   Merge date   Commit    Author                Branch
+ -----------------------------------------------------------------------------------------------
+  492   2018-06-20   8503de5   Andy White            common-destination-list
+  488   2018-06-19   4f6d369   Andy White            police-not-for-release-reason-list-v2
+  491   2018-06-19   fcfb46b   Cesidio Di Landa      police-detainee-form
+  490   2018-06-13   d8617c2   Andy White            update-self-harm-question-v2
+  489   2018-06-13   b228a07   Andy White            add-brighton-crown-court-v2
+  487   2018-06-13   97857ce   Cesidio Di Landa      police-search-new
+  486   2018-06-11   d91e281   Cesidio Di Landa      filter-charges-NEW
+  480   2018-06-04   f8ba2d9   Cesidio Di Landa      help-videos-page
+-->
+<!-- commit 72b4ecc490a4a0ed0f820010694491c7e0cab180 -->
+<!-- Date:   Mon Jun 18 11:44:17 2018 +0100 -->
+
+    Shared destination establishments
+
+<!-- commit 394310e6a85ee396b653e3a2545aae9e638ddfa4 -->
+<!-- Date:   Thu Jun 14 11:00:13 2018 +0100 -->
+
+    Remove inheritance for move form
+
+<!-- commit d3de00178d2453888983207ceb84786bfeab002a -->
+<!-- Date:   Thu May 31 09:31:26 2018 +0100 -->
+
+    Integrate with Police dashboard
+
+<!-- commit 5b94a423c1b2b52737b455a65be119ca2dadf538 -->
+<!-- Date:   Wed May 23 13:07:26 2018 +0100 -->
+
+    Separate prison and police move form functionality
+
+<!-- commit c5c661619318b8ebc9d0dc7330733c5fd6fbd0f0 -->
+<!-- Date:   Fri Jun 15 17:55:49 2018 +0100 -->
+
+    Customise detainee form for police custody
+
+<!-- commit d3a42bb102256340cac471a3d86f9fcd3a154718 -->
+<!-- Date:   Wed Jun 6 15:08:36 2018 +0100 -->
+
+    Update text of self harm question
+
+<!-- commit 1fed3d1a0161cd450110cf85b99edb4c3d3fed99 -->
+<!-- Date:   Mon Jun 11 14:25:51 2018 +0100 -->
+
+    Add Brighton Crown Court
+
+<!-- commit 0056b6ef3a90d50c5f13f575cf242250eb21ab1f -->
+<!-- Date:   Mon Jun 11 17:02:21 2018 +0100 -->
+
+    Allow search from police
+
+<!-- commit 7db4e9653f7cbda54a21736e55537d7490c1f5fc -->
+<!-- Date:   Thu Jun 7 17:49:36 2018 +0100 -->
+
+    Filter offences by charge_active value
+
+<!-- commit 2d9377d385896d660169ce99642e07f9266427f8 -->
+<!-- Date:   Sat Jun 2 13:44:22 2018 +0100 -->
+
+    Add help page with videos
+
+## 2018-05
+<!-- Assumed release of all PRs merged in this calendar month:
+   PR   Merge date   Commit    Author                Branch
+ -----------------------------------------------------------------------------------------------
+  478   2018-05-30   31720e4   Cesidio Di Landa      offences-under-escorts
+  476   2018-05-30   f23b882   Cesidio Di Landa      prison-dashboard
+  475   2018-05-23   39511f1   Cesidio Di Landa      refactor-views
+  474   2018-05-23   e722335   Andy White            add-missing-violent-description-hint
+  473   2018-05-23   d8dea49   Cesidio Di Landa      refactor-presenters
+  472   2018-05-22   a39c344   Andy White            add-violence-section
+  471   2018-05-21   219c75a   Cesidio Di Landa      fix-search-error-messages
+  468   2018-05-17   0fb8b7f   Andy White            new-search-bar
+  470   2018-05-17   35986c5   Andy White            police-custody-seeds
+  469   2018-05-16   6d16733   Cesidio Di Landa      fix-acct-status-text
+  467   2018-05-15   d323cdd   Cesidio Di Landa      remove-schema-forms
+  466   2018-05-09   3946db4   Cesidio Di Landa      simplify-risk-questions
+  465   2018-05-01   c698682   Cesidio Di Landa      add_peep
+  462   2018-05-01   00a3d18   Cesidio Di Landa      forbid-cancel-per-court
+-->
+<!-- commit a84eced73a5bbee828d62c5d9e3cf01c2d3217a5 -->
+<!-- Date:   Wed May 30 14:26:33 2018 +0100 -->
+
+    Make offences belong to escort instead of detainee
+
+<!-- commit 9b2470f9fd3c11d2c8937b66fa7b47b0b5ee8d39 -->
+<!-- Date:   Mon May 21 16:26:05 2018 +0100 -->
+
+    Police dashboard
+
+<!-- commit 93b37cde63456c1e3b8cb6e0a97391f072d7dfa7 -->
+<!-- Date:   Wed May 23 15:33:14 2018 +0100 -->
+
+    Cleanup controllers and views
+
+<!-- commit 05576e43cc452d027a552dbd1658f8ad6393a41e -->
+<!-- Date:   Wed May 23 13:18:53 2018 +0100 -->
+
+    Add missing violent or dangerous hint on description
+
+<!-- commit 52248673b214ec40f319c5e681e08cd4b4e0ff46 -->
+<!-- Date:   Tue May 22 15:39:15 2018 +0100 -->
+
+    Remove presenters layer and use vanilla rails helpers
+
+<!-- commit c8159b749efdb100822e0d88a771ecbefbd9fac9 -->
+<!-- Date:   Tue May 22 08:53:32 2018 +0100 -->
+
+    Add violence section
+
+<!-- commit 9650250833fe3d2d1a96a543042d39d511f477ae -->
+<!-- Date:   Sun May 20 12:07:14 2018 +0100 -->
+
+    Improve search page
+
+<!-- commit f7af2998ab76ea068d7e59a9ff8e9f39be500595 -->
+<!-- Date:   Tue May 15 16:10:01 2018 +0100 -->
+
+    Separate search bar
+
+<!-- commit 2aec1c3af0e2f80859bda9e81b8616e17f931f2d -->
+<!-- Date:   Wed May 16 14:01:57 2018 +0100 -->
+
+    Import Police Stations & Custody Suites
+
+<!-- commit 06fadcad044d2d6979a792c1a5c85547308f1946 -->
+<!-- Date:   Wed May 16 13:30:55 2018 +0100 -->
+
+    Fix ACCT status text
+
+<!-- commit 080e74b80fb108e753c70df250ce1f1f6b0c3086 -->
+<!-- Date:   Tue May 1 11:36:01 2018 +0100 -->
+
+    Remove Assessment schema and use a more Rails way
+
+<!-- commit f376361684d2775243a3654438f834d78c19c2fc -->
+<!-- Date:   Wed May 9 08:36:13 2018 +0100 -->
+
+    Simplify conceals mobile phones
+
+<!-- commit bf24340fe6b186b77c7a6ed6f6f0316e1449bed7 -->
+<!-- Date:   Thu May 3 15:34:52 2018 +0100 -->
+
+    Simplification of selected risk section questions
+
+<!-- commit db456d840f65d6fdffd32eac332e1d65aa255877 -->
+<!-- Date:   Thu Apr 26 10:34:12 2018 +0100 -->
+
+    Add Personal Emergency Evacuation Plan to detainee
+
+<!-- commit 67a3b161961c8e80ad4f731ac468454ffdd277df -->
+<!-- Date:   Wed Apr 18 15:53:36 2018 +0100 -->
+
+    Hide cancel PER button from court users
+
+## 2018-04
+<!-- Assumed release of all PRs merged in this calendar month:
+   PR   Merge date   Commit    Author                Branch
+ -----------------------------------------------------------------------------------------------
+  463   2018-04-23   b4dec3e   Andy White            upd-changelog-2018-04
+  461   2018-04-17   44a7f3c   Cesidio Di Landa      remove-papertrail
+  458   2018-04-17   bfbaf32   Cesidio Di Landa      upgrade-rails
+  457   2018-04-16   85d886a   Cesidio Di Landa      fix-leading-dot
+  460   2018-04-16   76d3002   Andy White            remove-comparisons-code
+  459   2018-04-16   0098d24   Andy White            form-builder-refactor
+-->
+<!-- commit 5f451b7c927d396e8d8bd17c66e97814545bdc7b -->
+<!-- Date:   Mon Apr 23 14:23:36 2018 +0100 -->
+
+    Update changelog
+
+<!-- commit 2b1ed65d6d21b5e3b0e7e0535d2d0e616ccbb60d -->
+<!-- Date:   Tue Apr 17 14:21:24 2018 +0100 -->
+
+    Remove paper_trail
+
+<!-- commit 3a2e6c5a830f5c419e9ed3664b60608609ca3aeb -->
+<!-- Date:   Mon Apr 16 17:49:37 2018 +0100 -->
+
+    Use aws-sdk-s3 gem instead of aws-sdk
+
+<!-- commit dd89c12fde096d343bc6fe6964d4adbf6994e479 -->
+<!-- Date:   Mon Apr 16 16:26:12 2018 +0100 -->
+
+    Upgrade ruby to 2.5.1
+
+<!-- commit 0b52f69e62bd5074c45ed620b5f5b9a1f278f634 -->
+<!-- Date:   Wed Apr 11 16:09:08 2018 +0200 -->
+
+    Upgrade rails to 5.2 and several gems including rubocop
+
+<!-- commit 6cc5700663a0a0e7fba3ee0e0a0633222ff276f7 -->
+<!-- Date:   Mon Apr 9 15:31:35 2018 +0100 -->
+
+    Do not fail translations when a leading dot is in field
+
+<!-- commit db9a168cc7f5ada796a05e29e8ed99e6182213f7 -->
+<!-- Date:   Mon Apr 16 11:48:38 2018 +0100 -->
+
+    Remove comparisons code
+
+<!-- commit 9fdf08b46e7b1f775e7477ba81771a150a0b2561 -->
+<!-- Date:   Wed Apr 11 11:23:09 2018 +0100 -->
+
+    Refactor form builder
+
+<!-- commit 50873c7c54cb81dc8e5d43661bcd36cb712d8ae9 -->
+<!-- Date:   Wed Apr 4 11:07:11 2018 +0100 -->
+
+    Fix radio concertina for new style
+
+<!-- commit a502c58dc021e8e341153ee894b5df9f3598ee9d -->
+<!-- Date:   Tue Jun 20 10:29:39 2017 +0100 -->
+
+    Update GOV.UK gems
+
+## 2018-03
+<!-- Assumed release of all PRs merged in this calendar month:
+   PR   Merge date   Commit    Author                Branch
+ -----------------------------------------------------------------------------------------------
+  452   2018-03-28   e81d90c   Cesidio Di Landa      fix-empty-dates
+  454   2018-03-26   4732c68   Andy White            compare-auto-alerts-by-id-refactor
+  453   2018-03-26   7addae4   Andy White            compare-auto-alerts-by-id
+  424   2018-03-20   62f1056   Andy White            optional-hostage-taker-date
+  450   2018-03-20   0174461   Andy White            compare-auto-alerts-enhanced
+  449   2018-03-15   c702d59   Cesidio Di Landa      include-inactive-alerts
+  448   2018-03-14   ca251fc   Andy White            detect-false-negatives
+  446   2018-03-13   10f52e4   Cesidio Di Landa      compare-actual-with-automated-alerts-v2
+  443   2018-03-13   e24661c   Cesidio Di Landa      fix-error-on-fetcher
+  444   2018-03-13   937d4bb   Cesidio Di Landa      revert-442-automate-risk
+  442   2018-03-13   d3d9671   Cesidio Di Landa      automate-risk
+  432   2018-03-08   8e44e90   Andy White            compare-actual-with-automated-alerts
+  435   2018-03-08   93e5eff   Cesidio Di Landa      fetch-risks
+-->
+<!-- commit 228f3d7a4bad2727dda30e68e10114b7981d887c -->
+<!-- Date:   Wed Mar 21 17:48:33 2018 +0000 -->
+
+    Show no date available when date fields are blank
+
+    On the risk summary and print pages we allow some date fields
+    to be blank and before we where showing an empty test. Now we
+    show no date available instead.
+
+<!-- commit 42184bfa5786f4d88bd89faf79dcf504fd9b635a -->
+<!-- Date:   Mon Mar 26 15:49:00 2018 +0100 -->
+
+    Bug fixes and refactor
+
+<!-- commit 2def447d74048598a0de2ff186a3ca2eeb81a545 -->
+<!-- Date:   Thu Mar 22 15:28:01 2018 +0000 -->
+
+    Allow comparison via a list of escort IDs
+
+<!-- commit 06cf00fdab4f82aac65d499ece510cdcae25d9ef -->
+<!-- Date:   Mon Jan 15 10:30:16 2018 +0000 -->
+
+    Make hostage taker last incident dates optional
+
+<!-- commit c77387aae9b23bea3595bf535a263a394ffeb575 -->
+<!-- Date:   Mon Mar 19 16:08:20 2018 +0000 -->
+
+    Refactor using existing risk fetcher and mapper
+
+<!-- commit 830c308b34ac3c8a2b574c5bff205fc7ca43fa92 -->
+<!-- Date:   Thu Mar 15 11:45:22 2018 +0000 -->
+
+    Include inactive alerts from NOMIS
+
+<!-- commit 82c1bc56aaa1b9747c761f6ba819729df47e3da5 -->
+<!-- Date:   Tue Mar 13 16:47:33 2018 +0000 -->
+
+    Detect false negatives
+
+<!-- commit 6408725f2f85e81bcf32c93c03dd2db8a94896dd -->
+<!-- Date:   Tue Mar 13 10:53:55 2018 +0000 -->
+
+    Refactor comparison classes out of rake file
+
+<!-- commit cea4bcf815abdd81e0ad805cba7eef7b7c5e7430 -->
+<!-- Date:   Tue Mar 13 11:15:43 2018 +0000 -->
+
+    Fix risk fetcher spec
+
+<!-- commit 3b23a872f1c2fc9780a9cc94f0585123fcd939fb -->
+<!-- Date:   Tue Mar 13 11:24:53 2018 +0000 -->
+
+    Revert "Populate risk from NOMIS at escort creation or reuse"
+
+<!-- commit fc741f9181ebaac00ad636db7cbcfce422c0ebd2 -->
+<!-- Date:   Thu Mar 8 14:15:20 2018 +0000 -->
+
+    Populate risk from NOMIS at escort creation or reuse
+
+<!-- commit dd1f189a9bfd0c40a49e057f0f6e22aed94287d8 -->
+<!-- Date:   Mon Feb 5 10:51:43 2018 +0000 -->
+
+    Harness to check automated risks with inputted risks
+
+<!-- commit 4b70d6029504c8504e29e9f374ce8529f85a6d31 -->
+<!-- Date:   Tue Feb 13 17:44:14 2018 +0000 -->
+
+    Fetch NOMIS alerts and map to risk data
+
+## 2018-02
+<!-- Assumed release of all PRs merged in this calendar month:
+   PR   Merge date   Commit    Author                Branch
+ -----------------------------------------------------------------------------------------------
+  441   2018-02-23   86dd9af   Cesidio Di Landa      add-details
+  440   2018-02-21   422e9e6   Cesidio Di Landa      not-for-release
+  439   2018-02-15   c18d065   Cesidio Di Landa      update-rails
+  438   2018-02-15   67ffd00   Cesidio Di Landa      remove-unused-code
+  436   2018-02-14   16147cb   Cesidio Di Landa      update-gems
+  433   2018-02-06   2599015   Cesidio Di Landa      store-changes
+  434   2018-02-06   b71692d   Cesidio Di Landa      update-migrations-and-schema
+  431   2018-02-01   6bf54e2   Cesidio Di Landa      central-update
+-->
+<!-- commit a084fa44a081ee21e5510f36d7125b00756b319d -->
+<!-- Date:   Thu Feb 22 21:19:50 2018 +0000 -->
+
+    Add language and diet requirements to detainee
+
+<!-- commit 300a40eae0af875a8cea96215015b53d1a1ef732 -->
+<!-- Date:   Tue Feb 20 17:53:27 2018 +0000 -->
+
+    Change not for release text on escort and print
+
+<!-- commit 79a501e9db72406264c1b222509284a938fe6a63 -->
+<!-- Date:   Thu Feb 15 16:15:51 2018 +0000 -->
+
+    Update rails to version 5.1.5
+
+<!-- commit 3d76ef4873c69adf6cad2fc0316e5397bc6195f1 -->
+<!-- Date:   Wed Feb 14 17:53:06 2018 +0000 -->
+
+    Remove unused code
+
+<!-- commit bfcb1c12dfeaa6de9561043ea51afd19b287a917 -->
+<!-- Date:   Wed Feb 14 15:44:41 2018 +0000 -->
+
+    Update rubocop and other gems
+
+<!-- commit c8c47ca92278ca3dc799b49b2b5bad39ab95519c -->
+<!-- Date:   Mon Feb 5 16:37:39 2018 +0000 -->
+
+    Add paper_trail to track changes in detainees and offences
+
+<!-- commit d513ddbd859962b32ebf1e945e2d80254f8f1b17 -->
+<!-- Date:   Tue Feb 6 10:32:22 2018 +0000 -->
+
+    Update migrations and schema to rails 5.1
+
+<!-- commit 2bb60d4f58912d578371028f7b8f21b3a14ee398 -->
+<!-- Date:   Tue Jan 30 15:59:05 2018 +0000 -->
+
+    Populate escort data from NOMIS at creation time
+
+## 2018-01
+<!-- commit 3e8dae94fd259bc5e52390bda753b6d1e33e4c77 -->
+<!-- Date:   Thu Jan 25 14:39:01 2018 +0000 -->
+
+    Change check on prisoner location
+
+    The reason to introduce this check is that when NOMIS API
+    is down, we have an empty hash and now that we have courts
+    which do not have a nomis_id field set, find_by returns
+    the first establishment that finds, which is a court.
+
+<!-- commit 3ee035abc61b960896d464aaa283edafad372804 -->
+<!-- Date:   Fri Jan 26 13:10:38 2018 +0100 -->
+
+    Update paperclip gem
+
+<!-- commit 060ff8ac77feb931af1f303261c1cac11b67e1c8 -->
+<!-- Date:   Wed Jan 24 16:38:26 2018 +0000 -->
+
+    Fix nomis alerts on court receiver view
+
+<!-- commit 90a77b9d029189d77802d0303966734b6dd41977 -->
+<!-- Date:   Tue Jan 23 11:52:56 2018 +0000 -->
+
+    Update rails to version 5.1.4
+
+<!-- commit b4361bdbb997b653cf18dfcd42f40ed26fb7d95f -->
+<!-- Date:   Tue Jan 16 14:33:21 2018 +0000 -->
+
+    Bundle update uglifier
+
+<!-- commit a3dc895d3767885c8351364ee47d444c161e9fbb -->
+<!-- Date:   Tue Jan 2 11:58:42 2018 +0100 -->
+
+    Consistent alerts
+
+<!-- commit 3d281ab0b69a6353723e5cba859426d691e96084 -->
+<!-- Date:   Mon Jan 8 12:01:43 2018 +0000 -->
+
+    Make summary page multiples non bold
+
+<!-- commit f407782ec023cada9a2c22e3ef555336d7c1d874 -->
+<!-- Date:   Mon Jan 8 13:41:05 2018 +0000 -->
+
+    Change default order of escorts
+
+<!-- commit cb3bc6d38534a3f0ea67ac275a868969075a937e -->
+<!-- Date:   Mon Jan 8 15:20:19 2018 +0000 -->
+
+    Copy changes for risk and healthcare questions
+
+<!-- commit 70017e1c33f2c94d9163197c39fff852627f04c9 -->
+<!-- Date:   Wed Jan 3 14:19:00 2018 +0000 -->
+
+    Change time saved in PERs reuse
+
+<!-- commit 94565f1e3007e632d9c72a84ae3cab199e7822f9 -->
+<!-- Date:   Thu Dec 28 16:12:33 2017 +0100 -->
+
+    Shorten ethnicity to prevent running it into aliases
+
+<!-- commit 7d908fd165801371d639f4ad12753ff71d791443 -->
+<!-- Date:   Fri Dec 29 12:31:53 2017 +0100 -->
+
+    Better use of &nbsp;
+
+<!-- commit 23a0ff5555a0ad223f6c7c2127d13fb5b281b6c1 -->
+<!-- Date:   Tue Jan 2 16:29:25 2018 +0000 -->
+
+    Make bold multiples answers displayed on ePER
+
+<!-- commit 1c8f758664731a076ef1ef4ae7d66a682ebc3223 -->
+<!-- Date:   Mon Dec 18 13:14:00 2017 +0000 -->
+
+    Add SSO to healthcheck
+
+<!-- commit 2d5f701ec2ddacb734ecab50d92d025ba7d23d71 -->
+<!-- Date:   Tue Jan 2 14:33:58 2018 +0000 -->
+
+    Update changelog
+
+
 ## 2018-02
 ### Changed
 - Improved Release Status text and easier editing
 - Better defaults for prisoner location if NOMIS API is down
-- Better wording for information on journies
+- Better wording for information on journeys
 - Improved wording and usability in gangs section
-- Improved display of alerts in court reciever view
+- Improved display of alerts in court receiver view
 - All cancelled PERs now appear together at the bottom of the list
-- Improved saved time calculations in Geckobaord reporting
+- Improved saved time calculations in Geckoboard reporting
+- Improved service monitoring information
 
 ### Added
 - The Personal details sections has added fields:
@@ -18,7 +732,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Fixed a bug which had stopped logging to Google Analytics
-- Fixed a bug where long ethnicity information was spilling onto other page componens
+- Fixed a bug where long ethnicity information was spilling onto other page components
 - Fixed a bug where long prisoner names were not wrapping correctly in the sidebar
 
 
@@ -32,7 +746,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Added the wording _No known risks_ to sections with no risks to avoid ambiguity.
-- Information on Single Signon added to healthcare endpoint
+- Information on Single Sign-on added to healthcare endpoint
 
 ### Fixed
 - No longer lists prisons that have ended in list of prisons in destination section.
