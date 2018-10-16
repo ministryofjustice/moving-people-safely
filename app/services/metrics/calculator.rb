@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Metrics
   class Calculator
     TIME_SAVED_WITH_REUSE_OF_PER = 15.minutes

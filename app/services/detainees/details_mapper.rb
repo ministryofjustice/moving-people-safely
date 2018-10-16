@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Detainees
   class DetailsMapper
     attr_reader :prison_number, :details

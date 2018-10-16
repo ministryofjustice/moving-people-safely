@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Forms
   class Offences < Forms::Base
     prepopulated_collection :offences

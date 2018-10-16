@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OffencesController < ApplicationController
   before_action :redirect_unless_document_editable, except: :show
   before_action :add_offence, only: [:update]

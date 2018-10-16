@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Escort < ApplicationRecord
   AlreadyIssuedError = Class.new(StandardError)
   AlreadyCancelledError = Class.new(StandardError)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Offence < ApplicationRecord
   belongs_to :escort
 

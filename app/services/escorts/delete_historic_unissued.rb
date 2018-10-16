@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Escorts
   module DeleteHistoricUnissued
     module_function

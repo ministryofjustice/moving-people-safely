@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GovukElementsErrorsHelper
   def self.error_summary(object, heading, description, options = {})
     return unless errors_exist? object

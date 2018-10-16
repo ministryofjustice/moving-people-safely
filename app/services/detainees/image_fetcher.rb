@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Detainees
   class ImageFetcher < BaseFetcher
     def call

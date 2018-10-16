@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EscortsController < ApplicationController
   helper_method :escort
 

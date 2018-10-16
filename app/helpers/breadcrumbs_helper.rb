@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Breadcrumb = Struct.new(:title, :url)
 
 module BreadcrumbsHelper

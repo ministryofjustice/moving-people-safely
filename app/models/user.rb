@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
-  ADMIN_ORGANISATION = 'digital.noms.moj'.freeze
-  COURT_ORGANISATION = 'courts.noms.moj'.freeze
-  POLICE_ORGANISATION = 'police.noms.moj'.freeze
-  PRISON_ORGANISATION = 'prisons.noms.moj'.freeze
-  HEALTHCARE_ROLE = 'healthcare'.freeze
-  SERGEANT_ROLE = 'sergeant'.freeze
+  ADMIN_ORGANISATION = 'digital.noms.moj'
+  COURT_ORGANISATION = 'courts.noms.moj'
+  POLICE_ORGANISATION = 'police.noms.moj'
+  PRISON_ORGANISATION = 'prisons.noms.moj'
+  HEALTHCARE_ROLE = 'healthcare'
+  SERGEANT_ROLE = 'sergeant'
 
   has_many :audits
 

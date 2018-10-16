@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class DatePicker
-  DEFAULT_FORMAT = '%d/%m/%Y'.freeze
+  DEFAULT_FORMAT = '%d/%m/%Y'
   SUPPORTED_FORMATS = ['%d/%m/%Y', '%d-%m-%Y', '%d %m %Y'].freeze
 
   include Comparable

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Escorts
   module GenerateDocumentsForIssuedPers
     module_function

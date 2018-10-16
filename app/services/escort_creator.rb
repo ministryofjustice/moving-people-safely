@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EscortCreator
   def self.call(escort_attrs, from_establishment)
     new(escort_attrs, from_establishment).call

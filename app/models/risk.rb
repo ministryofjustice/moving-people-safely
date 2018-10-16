@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Risk < ApplicationRecord
   include Questionable
   include Reviewable
