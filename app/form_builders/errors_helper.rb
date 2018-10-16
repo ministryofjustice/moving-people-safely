@@ -119,12 +119,12 @@ module ErrorsHelper
         class: 'govuk-error-summary',
         role: 'alert',
         aria: {
-          labelledby: 'govuk-error-summary__title'
+          labelledby: 'error-summary-title'
         },
+        tabindex: '-1',
         data: {
           module: 'error-summary'
-        },
-        tabindex: '-1') do
+        }) do
       yield block
     end
   end
