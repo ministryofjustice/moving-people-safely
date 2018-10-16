@@ -105,174 +105,49 @@ All notable changes to this project will be documented in this file.
 
 ## 2018-07
 <!-- Assumed release of all PRs merged in this calendar month:
-   PR   Merge date   Commit    Author                Branch
- -----------------------------------------------------------------------------------------------
-  522   2018-07-31   eaccdf8   Andy White            rename-salfords-2
-  517   2018-07-27   b06c3a7   Andy White            police-medical-contact-lables
-  513   2018-07-26   4868e72   Andy White            bigger-pnc-textarea
-  519   2018-07-24   9a8e2a1   Cesidio Di Landa      sergeant-role
-  515   2018-07-18   67afeff   Andy White            add-copy-lane-and-salfords-to-police-list
-  516   2018-07-18   d35dbe3   Cesidio Di Landa      sergeant
-  500   2018-07-16   47429cd   Andy White            italicised-alerts-in-hint-text-bug
-  507   2018-07-16   0b71b03   Andy White            traffic-drugs-details
-  509   2018-07-13   bceeb12   Cesidio Di Landa      align-prison-police-alerts
-  511   2018-07-13   549c23f   Cesidio Di Landa      show-issued-escorts
-  504   2018-07-11   925be62   Cesidio Di Landa      mandatory-details-interpreter
-  505   2018-07-11   e233456   Cesidio Di Landa      csra-details-police
-  502   2018-07-10   13b6728   Clive Murray          header-link-colour
-  501   2018-07-10   7ffd36e   Clive Murray          real-label-for-datepicker
-  493   2018-07-05   757934b   Cesidio Di Landa      sections-config
-  498   2018-07-04   05b0d2e   Andy White            add-medical-phone-number-altcourse
-  497   2018-07-04   6155ec3   Andy White            harasser-intimidator-error-message
-  499   2018-07-03   89bbe5e   Andy White            move-destination-prefill-bug
-  495   2018-07-03   980f128   Andy White            landing-page-police-welcome
-  496   2018-07-02   b5868ac   Andy White            update-sprockets
+   PR   Merge date   Author                Details
+ -------------------------------------------------------------------------------------
+  522   2018-07-31   Andy White            rename-salfords-2
+  517   2018-07-27   Andy White            police-medical-contact-lables
+  513   2018-07-26   Andy White            bigger-pnc-textarea
+  520   2018-07-26   Clive Murray          JS polyfill for sticky sidebar in IE9+
+  519   2018-07-24   Cesidio Di Landa      sergeant-role
+  518   2018-07-24   Clive Murray          Found an even better favicon which will look nice on all devices
+  515   2018-07-18   Andy White            add-copy-lane-and-salfords-to-police-list
+  516   2018-07-18   Cesidio Di Landa      sergeant
+  500   2018-07-16   Andy White            italicised-alerts-in-hint-text-bug
+  507   2018-07-16   Andy White            traffic-drugs-details
+  512   2018-07-13   Clive Murray          MOJ crest favicon replaces GOV.UK crest favicon
+  509   2018-07-13   Cesidio Di Landa      align-prison-police-alerts
+  511   2018-07-13   Cesidio Di Landa      show-issued-escorts
+  510   2018-07-12   Clive Murray          Remove ga.js and replace with google tag manager
+  508   2018-07-12   Clive Murray          Override NTA font throughout with Arial... ugh
+  504   2018-07-11   Cesidio Di Landa      mandatory-details-interpreter
+  505   2018-07-11   Cesidio Di Landa      csra-details-police
+  502   2018-07-10   Clive Murray          header-link-colour
+  501   2018-07-10   Clive Murray          real-label-for-datepicker
+  506   2018-07-10   Clive Murray          Fix datepicker radio label alignment
+  503   2018-07-10   Clive Murray          Apply usual styling to datepicker radios
+  493   2018-07-05   Cesidio Di Landa      sections-config
+  498   2018-07-04   Andy White            add-medical-phone-number-altcourse
+  497   2018-07-04   Andy White            harasser-intimidator-error-message
+  499   2018-07-03   Andy White            move-destination-prefill-bug
+  495   2018-07-03   Andy White            landing-page-police-welcome
+  496   2018-07-02   Andy White            update-sprockets
 -->
+### New
+* Add sergeant approval process to police ePER workflow. <!-- PR 519, 516 -->
 
-<!-- commit c03ed8436ca7b4d52bf3c40ec33fca2f3d4c1e45 -->
-<!-- Date:   Tue Jul 31 09:00:30 2018 +0100 -->
+### Changed
+* Improvements to police ePER workflow: new and updated questions, new police landing page <!-- PR 493 504 507 495 -->
+* Improve harassment & gangs error messages. <!-- PR 497 -->
+* Improve visibility of issued ePERs. <!-- PR 511 -->
+* Improve MoJ crest favicon. <!-- PR 512, 518 -->
+* Layout improvements on field labels, field sizes, hint text, & alerts <!-- PR 517 513 500 508 509 501 506 505 503 520 -->
+* Better analytics monitoring to improve data for future enhancements. <!-- PR 510 -->
+* Update code libraries to increase security. <!-- PR 496 -->
+* Update police custody and prison establishment lists. <!-- PR 522 515 497 -->
 
-    Rename Salfords Police Custody
-
-<!-- commit cd870f32558e738b90137532f2470930a7358874 -->
-<!-- Date:   Wed Jul 18 13:58:00 2018 +0100 -->
-
-    Change police medical contact labels
-
-<!-- commit 092a3f77726ee161d2693efc1a695f6a37b3552a -->
-<!-- Date:   Tue Jul 17 10:23:35 2018 +0100 -->
-
-    Increase textarea rows for PNC warnings
-
-<!-- commit 7829416b2ae650fe45e921f03c0ef9616b3e5a0c -->
-<!-- Date:   Thu Jul 26 13:44:04 2018 +0100 -->
-
-    JS polyfill for sticky sidebar in IE9+ (#520)
-
-<!-- commit 62583dc3707e64bdbcdfcd1d7a26adaf4a2c9a09 -->
-<!-- Date:   Fri Jul 20 15:57:06 2018 +0100 -->
-
-    Add sergeant approval process
-
-<!-- commit bae7e60aaec8e3effdcc66df67eb6863035198a6 -->
-<!-- Date:   Tue Jul 24 12:11:38 2018 +0100 -->
-
-    Found an even better favicon which will look nice on all devices (#518)
-
-<!-- commit 2f5d38bfb7f22c384e0e25eda20b7752f3db3ebc -->
-<!-- Date:   Wed Jul 18 14:33:13 2018 +0100 -->
-
-    Add Salfords and Copy Lane Police establishments
-
-<!-- commit 2e4d075f73591a3a36528c52ed6fe18673c39062 -->
-<!-- Date:   Wed Jul 18 15:20:50 2018 +0100 -->
-
-    Add custody sergeant user role
-
-<!-- commit f03f3a686046dce7e9bd81c8e84070e916b21f6e -->
-<!-- Date:   Thu Jul 5 14:05:07 2018 +0100 -->
-
-    Make mentions of alerts in hints italicised
-
-<!-- commit 376fafab7b5b36961f74aea99645725c4f1701d3 -->
-<!-- Date:   Tue Jul 10 16:19:15 2018 +0100 -->
-
-    Add substance supply details
-
-<!-- commit fed1d9b4e473cfd36cfa36b941d937bac090e008 -->
-<!-- Date:   Fri Jul 13 15:59:34 2018 +0100 -->
-
-    MOJ crest favicon replaces GOV.UK crest favicon (#512)
-
-<!-- commit 3fcf15e72425f1269bf01a79a70a890fde45c9d6 -->
-<!-- Date:   Mon Jul 9 16:33:25 2018 +0100 -->
-
-    Align prison and police alerts
-
-<!-- commit a2cc54b75fe9113b2aef51cfa50ceb20cef80977 -->
-<!-- Date:   Fri Jul 13 09:55:27 2018 +0100 -->
-
-    Allow to see issued escorts
-
-<!-- commit cf6b22cfa48f9de6a4588eb3e6fe48d24dca627a -->
-<!-- Date:   Thu Jul 12 15:04:42 2018 +0100 -->
-
-    Remove ga.js and replace with google tag manager (#510)
-
-<!-- commit 126e05aa43271c839a8c04c709749837cb51fcdb -->
-<!-- Date:   Thu Jul 12 13:43:13 2018 +0100 -->
-
-    Override NTA font throughout with Arial... ugh (#508)
-
-<!-- commit e833de79292386169d073733780860f0722ba9d5 -->
-<!-- Date:   Mon Jul 9 16:59:48 2018 +0100 -->
-
-    Make mandatory interpreter_required details in police
-
-<!-- commit 532746e31d1b3471478d315b7b2a40e78c6762bb -->
-<!-- Date:   Mon Jul 9 17:54:52 2018 +0100 -->
-
-    Align prison and police alerts
-
-<!-- commit 963f2318bb44bd326a572f4de29d977604e781be -->
-<!-- Date:   Tue Jul 10 16:49:33 2018 +0100 -->
-
-    Fix datepicker radio label alignment (#506)
-
-<!-- commit bc7da3d99f12f167abdbc4d2934cd9e4a8fc6781 -->
-<!-- Date:   Tue Jul 10 11:38:06 2018 +0100 -->
-
-    apply usual styling to datepicker radios (#503)
-
-<!-- commit d7997ce42bb0005c34ba8bfd70cf25a2934a54d5 -->
-<!-- Date:   Mon Jul 9 11:33:07 2018 +0100 -->
-
-    Make header signout link white to avoid low contrast
-
-<!-- commit 1e8e011a389808dd2ee319132a8c1ba29a947a08 -->
-<!-- Date:   Mon Jul 9 10:26:41 2018 +0100 -->
-
-    Use real label tag for datepicker
-
-<!-- commit 0d6e399dbf11c0ba78595e6d7ab83ea88d5fd2a8 -->
-<!-- Date:   Fri Jun 29 12:27:28 2018 +0300 -->
-
-    Change healthcare risks and offences sections for police
-
-<!-- commit 84452602d810f841e2df9e8b9b1bfbb7e1c5037c -->
-<!-- Date:   Tue Jun 26 16:10:09 2018 +0100 -->
-
-    Set assessment controller steps from model
-
-<!-- commit 19305037d1911b0bc7858ef53250796c2215ed43 -->
-<!-- Date:   Wed Jun 20 16:19:30 2018 +0100 -->
-
-    Move sections and questions in YAML file
-
-<!-- commit f9ca9953656eae4d9746d33dc643ebacc36530ed -->
-<!-- Date:   Mon Jul 2 14:17:00 2018 +0100 -->
-
-    Change harassment & gangs error messages
-
-<!-- commit ec5b3994575c7d8572215af64730ceebe50187d6 -->
-<!-- Date:   Tue Jul 3 08:35:09 2018 +0100 -->
-
-    Set default medical contact number for Altcourse
-
-<!-- commit df6e88a5138439e9d34fd4f6627ae9208214360f -->
-<!-- Date:   Tue Jul 3 15:26:54 2018 +0100 -->
-
-    Prepopulate move form on edit
-
-<!-- commit e24920dc80a1bf1ac608efe3a8c9733e691f194c -->
-<!-- Date:   Thu Jun 28 11:38:56 2018 +0100 -->
-
-    Landing page police welcome
-
-<!-- commit f1c872bf41ce89efc511db293c03888b0f8dc306 -->
-<!-- Date:   Mon Jul 2 14:31:02 2018 +0100 -->
-
-    Update sprockets
 
 ## 2018-06
 <!-- Assumed release of all PRs merged in this calendar month:
