@@ -175,7 +175,7 @@ All notable changes to this project will be documented in this file.
 * Additions to destination list. <!-- PR 498 -->
 
 
-## 2018-05
+## 2018-05-30
 <!-- Inferred release of all PRs merged in this calendar month:
    PR   Merge date   Commit    Author                Branch
  -----------------------------------------------------------------------------------------------
@@ -194,80 +194,16 @@ All notable changes to this project will be documented in this file.
   465   2018-05-01   c698682   Cesidio Di Landa      add_peep
   462   2018-05-01   00a3d18   Cesidio Di Landa      forbid-cancel-per-court
 -->
-<!-- commit a84eced73a5bbee828d62c5d9e3cf01c2d3217a5 -->
-<!-- Date:   Wed May 30 14:26:33 2018 +0100 -->
+### New
+* Introduction of dedicated dashboard for police users. <!-- PR 476 -->
+* New violence or dangerous risk section. <!-- PR 472 -->
+* New Personal Emergency Evacuation Plan field to detainee. <!-- PR 465 -->
 
-    Make offences belong to escort instead of detainee
+### Changed
+* Improvements to search page. <!-- PR 471 468 -->
+* Enhancements to wording of hints, question and stati. <!-- PR 474 466 469 466 -->
+* Improved workflow for court users. <!-- PR 462 -->
 
-<!-- commit 9b2470f9fd3c11d2c8937b66fa7b47b0b5ee8d39 -->
-<!-- Date:   Mon May 21 16:26:05 2018 +0100 -->
-
-    Police dashboard
-
-<!-- commit 93b37cde63456c1e3b8cb6e0a97391f072d7dfa7 -->
-<!-- Date:   Wed May 23 15:33:14 2018 +0100 -->
-
-    Cleanup controllers and views
-
-<!-- commit 05576e43cc452d027a552dbd1658f8ad6393a41e -->
-<!-- Date:   Wed May 23 13:18:53 2018 +0100 -->
-
-    Add missing violent or dangerous hint on description
-
-<!-- commit 52248673b214ec40f319c5e681e08cd4b4e0ff46 -->
-<!-- Date:   Tue May 22 15:39:15 2018 +0100 -->
-
-    Remove presenters layer and use vanilla rails helpers
-
-<!-- commit c8159b749efdb100822e0d88a771ecbefbd9fac9 -->
-<!-- Date:   Tue May 22 08:53:32 2018 +0100 -->
-
-    Add violence section
-
-<!-- commit 9650250833fe3d2d1a96a543042d39d511f477ae -->
-<!-- Date:   Sun May 20 12:07:14 2018 +0100 -->
-
-    Improve search page
-
-<!-- commit f7af2998ab76ea068d7e59a9ff8e9f39be500595 -->
-<!-- Date:   Tue May 15 16:10:01 2018 +0100 -->
-
-    Separate search bar
-
-<!-- commit 2aec1c3af0e2f80859bda9e81b8616e17f931f2d -->
-<!-- Date:   Wed May 16 14:01:57 2018 +0100 -->
-
-    Import Police Stations & Custody Suites
-
-<!-- commit 06fadcad044d2d6979a792c1a5c85547308f1946 -->
-<!-- Date:   Wed May 16 13:30:55 2018 +0100 -->
-
-    Fix ACCT status text
-
-<!-- commit 080e74b80fb108e753c70df250ce1f1f6b0c3086 -->
-<!-- Date:   Tue May 1 11:36:01 2018 +0100 -->
-
-    Remove Assessment schema and use a more Rails way
-
-<!-- commit f376361684d2775243a3654438f834d78c19c2fc -->
-<!-- Date:   Wed May 9 08:36:13 2018 +0100 -->
-
-    Simplify conceals mobile phones
-
-<!-- commit bf24340fe6b186b77c7a6ed6f6f0316e1449bed7 -->
-<!-- Date:   Thu May 3 15:34:52 2018 +0100 -->
-
-    Simplification of selected risk section questions
-
-<!-- commit db456d840f65d6fdffd32eac332e1d65aa255877 -->
-<!-- Date:   Thu Apr 26 10:34:12 2018 +0100 -->
-
-    Add Personal Emergency Evacuation Plan to detainee
-
-<!-- commit 67a3b161961c8e80ad4f731ac468454ffdd277df -->
-<!-- Date:   Wed Apr 18 15:53:36 2018 +0100 -->
-
-    Hide cancel PER button from court users
 
 ## 2018-04
 <!-- Inferred release of all PRs merged in this calendar month:
