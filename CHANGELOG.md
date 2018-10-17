@@ -103,8 +103,8 @@ All notable changes to this project will be documented in this file.
 * Fix missing and incorrect error message across various forms. <!-- PR 536 -->
 
 
-## 2018-07
-<!-- Assumed release of all PRs merged in this calendar month:
+## 2018-07-31
+<!-- Inferred release of all PRs merged in this calendar month:
    PR   Merge date   Author                Details
  -------------------------------------------------------------------------------------
   522   2018-07-31   Andy White            rename-salfords-2
@@ -149,8 +149,8 @@ All notable changes to this project will be documented in this file.
 * Update police custody and prison establishment lists. <!-- PR 522 515 497 -->
 
 
-## 2018-06
-<!-- Assumed release of all PRs merged in this calendar month:
+## 2018-06-20
+<!-- Inferred release of all PRs merged in this calendar month:
    PR   Merge date   Commit    Author                Branch
  -----------------------------------------------------------------------------------------------
   492   2018-06-20   8503de5   Andy White            common-destination-list
@@ -162,58 +162,21 @@ All notable changes to this project will be documented in this file.
   486   2018-06-11   d91e281   Cesidio Di Landa      filter-charges-NEW
   480   2018-06-04   f8ba2d9   Cesidio Di Landa      help-videos-page
 -->
-<!-- commit 72b4ecc490a4a0ed0f820010694491c7e0cab180 -->
-<!-- Date:   Mon Jun 18 11:44:17 2018 +0100 -->
+### New
+* Added youth secure estates, police custody suites and immigration removal centres to move destinations. <!-- PR 492 -->
+* Added search functionality for police users. <!-- PR 487 -->
+* Added help pages with videos to assist users. <!-- PR 480 -->
 
-    Shared destination establishments
+### Changed
+* Customise detainee form to provide dedicated functionality for police and prison. <!-- PR 491 -->
+* Separated not for release reason lists for police and prison. <!-- PR 488 -->
+* Improved filtering of offences from NOMIS API. <!-- PR 486 -->
+* Improved text for self harm question. <!-- PR 490 -->
+* Additions to destination list. <!-- PR 498 -->
 
-<!-- commit 394310e6a85ee396b653e3a2545aae9e638ddfa4 -->
-<!-- Date:   Thu Jun 14 11:00:13 2018 +0100 -->
-
-    Remove inheritance for move form
-
-<!-- commit d3de00178d2453888983207ceb84786bfeab002a -->
-<!-- Date:   Thu May 31 09:31:26 2018 +0100 -->
-
-    Integrate with Police dashboard
-
-<!-- commit 5b94a423c1b2b52737b455a65be119ca2dadf538 -->
-<!-- Date:   Wed May 23 13:07:26 2018 +0100 -->
-
-    Separate prison and police move form functionality
-
-<!-- commit c5c661619318b8ebc9d0dc7330733c5fd6fbd0f0 -->
-<!-- Date:   Fri Jun 15 17:55:49 2018 +0100 -->
-
-    Customise detainee form for police custody
-
-<!-- commit d3a42bb102256340cac471a3d86f9fcd3a154718 -->
-<!-- Date:   Wed Jun 6 15:08:36 2018 +0100 -->
-
-    Update text of self harm question
-
-<!-- commit 1fed3d1a0161cd450110cf85b99edb4c3d3fed99 -->
-<!-- Date:   Mon Jun 11 14:25:51 2018 +0100 -->
-
-    Add Brighton Crown Court
-
-<!-- commit 0056b6ef3a90d50c5f13f575cf242250eb21ab1f -->
-<!-- Date:   Mon Jun 11 17:02:21 2018 +0100 -->
-
-    Allow search from police
-
-<!-- commit 7db4e9653f7cbda54a21736e55537d7490c1f5fc -->
-<!-- Date:   Thu Jun 7 17:49:36 2018 +0100 -->
-
-    Filter offences by charge_active value
-
-<!-- commit 2d9377d385896d660169ce99642e07f9266427f8 -->
-<!-- Date:   Sat Jun 2 13:44:22 2018 +0100 -->
-
-    Add help page with videos
 
 ## 2018-05
-<!-- Assumed release of all PRs merged in this calendar month:
+<!-- Inferred release of all PRs merged in this calendar month:
    PR   Merge date   Commit    Author                Branch
  -----------------------------------------------------------------------------------------------
   478   2018-05-30   31720e4   Cesidio Di Landa      offences-under-escorts
@@ -307,7 +270,7 @@ All notable changes to this project will be documented in this file.
     Hide cancel PER button from court users
 
 ## 2018-04
-<!-- Assumed release of all PRs merged in this calendar month:
+<!-- Inferred release of all PRs merged in this calendar month:
    PR   Merge date   Commit    Author                Branch
  -----------------------------------------------------------------------------------------------
   463   2018-04-23   b4dec3e   Andy White            upd-changelog-2018-04
@@ -368,7 +331,7 @@ All notable changes to this project will be documented in this file.
     Update GOV.UK gems
 
 ## 2018-03
-<!-- Assumed release of all PRs merged in this calendar month:
+<!-- Inferred release of all PRs merged in this calendar month:
    PR   Merge date   Commit    Author                Branch
  -----------------------------------------------------------------------------------------------
   452   2018-03-28   e81d90c   Cesidio Di Landa      fix-empty-dates
@@ -455,7 +418,7 @@ All notable changes to this project will be documented in this file.
     Fetch NOMIS alerts and map to risk data
 
 ## 2018-02
-<!-- Assumed release of all PRs merged in this calendar month:
+<!-- Inferred release of all PRs merged in this calendar month:
    PR   Merge date   Commit    Author                Branch
  -----------------------------------------------------------------------------------------------
   441   2018-02-23   86dd9af   Cesidio Di Landa      add-details
