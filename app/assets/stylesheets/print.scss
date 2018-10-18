@@ -34,7 +34,8 @@ $govuk-global-styles: true;
     width: (100% / 4);
   }
 
-  .govuk-grid-column-one-third {
+  .govuk-grid-column-one-third,
+  .column-one-third {
     width: (100% / 3);
   }
 
@@ -181,6 +182,27 @@ table {
 .govuk-grid-column-four-fifths {
   @extend .govuk-grid-column-one-third;
   width: 80%;
+}
+
+.column-one-sixth {
+  @extend .column-one-third;
+  width: (100% / 6);
+}
+
+.column-20-percent {
+  width: 20%;
+}
+
+.column-30-percent {
+  width: 30%;
+}
+
+.column-50-percent {
+  width: 50%;
+}
+
+.column-70-percent {
+  width: 70%;
 }
 
 .section {
