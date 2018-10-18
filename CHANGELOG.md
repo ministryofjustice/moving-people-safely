@@ -205,7 +205,7 @@ All notable changes to this project will be documented in this file.
 * Improved workflow for court users. <!-- PR 462 -->
 
 
-## 2018-04
+## 2018-04-23
 <!-- Inferred release of all PRs merged in this calendar month:
    PR   Merge date   Commit    Author                Branch
  -----------------------------------------------------------------------------------------------
@@ -216,55 +216,13 @@ All notable changes to this project will be documented in this file.
   460   2018-04-16   76d3002   Andy White            remove-comparisons-code
   459   2018-04-16   0098d24   Andy White            form-builder-refactor
 -->
-<!-- commit 5f451b7c927d396e8d8bd17c66e97814545bdc7b -->
-<!-- Date:   Mon Apr 23 14:23:36 2018 +0100 -->
+### Changed
+* Upgrades to internal libraries to improve security and performance. <!-- PR 458 -->
+* Improvements to internal logging mechanism. <!-- PR 461 -->
 
-    Update changelog
+### Fixed
+* Fixed a bug where some labels were displaying incorrectly. <!-- PR 457 -->
 
-<!-- commit 2b1ed65d6d21b5e3b0e7e0535d2d0e616ccbb60d -->
-<!-- Date:   Tue Apr 17 14:21:24 2018 +0100 -->
-
-    Remove paper_trail
-
-<!-- commit 3a2e6c5a830f5c419e9ed3664b60608609ca3aeb -->
-<!-- Date:   Mon Apr 16 17:49:37 2018 +0100 -->
-
-    Use aws-sdk-s3 gem instead of aws-sdk
-
-<!-- commit dd89c12fde096d343bc6fe6964d4adbf6994e479 -->
-<!-- Date:   Mon Apr 16 16:26:12 2018 +0100 -->
-
-    Upgrade ruby to 2.5.1
-
-<!-- commit 0b52f69e62bd5074c45ed620b5f5b9a1f278f634 -->
-<!-- Date:   Wed Apr 11 16:09:08 2018 +0200 -->
-
-    Upgrade rails to 5.2 and several gems including rubocop
-
-<!-- commit 6cc5700663a0a0e7fba3ee0e0a0633222ff276f7 -->
-<!-- Date:   Mon Apr 9 15:31:35 2018 +0100 -->
-
-    Do not fail translations when a leading dot is in field
-
-<!-- commit db9a168cc7f5ada796a05e29e8ed99e6182213f7 -->
-<!-- Date:   Mon Apr 16 11:48:38 2018 +0100 -->
-
-    Remove comparisons code
-
-<!-- commit 9fdf08b46e7b1f775e7477ba81771a150a0b2561 -->
-<!-- Date:   Wed Apr 11 11:23:09 2018 +0100 -->
-
-    Refactor form builder
-
-<!-- commit 50873c7c54cb81dc8e5d43661bcd36cb712d8ae9 -->
-<!-- Date:   Wed Apr 4 11:07:11 2018 +0100 -->
-
-    Fix radio concertina for new style
-
-<!-- commit a502c58dc021e8e341153ee894b5df9f3598ee9d -->
-<!-- Date:   Tue Jun 20 10:29:39 2017 +0100 -->
-
-    Update GOV.UK gems
 
 ## 2018-03
 <!-- Inferred release of all PRs merged in this calendar month:
