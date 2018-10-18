@@ -14,8 +14,14 @@ ul.flags {
 
 .flag {
   box-sizing: border-box;
-  display: block;
+  display: inline-block;
   white-space: nowrap;
+
+  .court-dashboard & {
+    @include govuk-font(16);
+    margin-right: 5px;
+    padding: 1px 3px;
+  }
 }
 
 .flag-active {
