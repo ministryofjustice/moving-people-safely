@@ -398,7 +398,9 @@ en:
           police_html: 'In the arrest record, check for the <i>Sex offender</i> warning marker.'
       move:
         date: DD/MM/YYYY
-        not_for_release_html: In NOMIS, check the header section of the prisoner’s record for the <i>Not For Release</i> alert.
+        not_for_release:
+          prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Not For Release</i> alert.
+          police: ''
         not_for_release_reason_details: Give details of why the detainee is not for release
         require_special_vehicle: This could be a specially-adapted prison van (for example, to accommodate wheelchairs) or a taxi
         require_special_vehicle_details: Please explain why they need a special vehicle
