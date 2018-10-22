@@ -12,7 +12,6 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules/govuk-fro
 Rails.application.config.assets.paths << Rails.root.join('node_modules/govuk-frontend/assets')
 Rails.application.config.assets.paths << Rails.root.join('node_modules/govuk-frontend/assets/images')
 Rails.application.config.assets.paths << Rails.root.join('node_modules/govuk-frontend/assets/fonts')
-Rails.application.config.assets.paths << Rails.root.join('node_modules/html5shiv/dist')
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
@@ -25,8 +24,6 @@ Rails.application.config.assets.precompile += %w(
     auto-complete.js
     flowplayer.js
     flowplayer-3.2.13.min.js
-    govuk-template*.css
-    fonts*.css
     apple-touch-icon-180x180.png
     apple-touch-icon-167x167.png
     apple-touch-icon-152x152.png
@@ -36,10 +33,8 @@ Rails.application.config.assets.precompile += %w(
     gov.uk_logotype_crown.svg
     opengraph-image.png
     icon-pointer.png
-
     moj_crest.png
     govuk-logotype-crown.png
-    application_ie8.css
     html5shiv.js
     all.js
 )

@@ -50,40 +50,40 @@ Staple to card —————
                        This ePER was produced by the Ministry of Justice ePER service, currently in pilot. This ePER
                        is approved by HMPPS - please treat it as a fully valid and official record. Please send any
                        feedback or questions to: eper@digital.justice.gov.uk
-W1234BY: McTest Testy                                                                   Page 1 of 1
+W1234BY: McTest Testy                                                    Page 1 of 1
 
 Not for release ✘ No ACCT ✘ No Suicide / Self harm ✘ No Cell share risk ✘ No
 Rule 45 ✘ No Violent ✘ No Escape risk ✘ No Sex offender ✘ No
 
 Risk Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
-Risk to self                                                                            No
-Segregation                                                                             No
-Security                                                                                No
-Violence                                                                                No
-Harassment and gangs                                                                    No
-Discrimination against others                                                           No
-Escape status/history                                                                   No
-Hostage taker                                                                           No
-Sex offender                                                                            No
-Weapons, drugs or other items                                                           No
-Arson                                                                                   No
-Other risk information                                                                  No
+Risk to self                      No
+Segregation                       No
+Security                          No
+Violence                          No
+Harassment and gangs              No
+Discrimination against others     No
+Escape status/history             No
+Hostage taker                     No
+Sex offender                      No
+Weapons, drugs or other items     No
+Arson                             No
+Other risk information            No
 
 Healthcare Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
-Physical health issues                                          No
-Mental health issues                                            No
-Special vehicles                                                No
-Essential medication                                            No
-Dependencies                                                    No
-Allergies and intolerances                                      No
-Personal care                                                   No
-Medical contact details                                         Yes
-  Medical contact                                               1-131-999-0232
+Physical health issues            No
+Mental health issues              No
+Special vehicles                  No
+Essential medication              No
+Dependencies                      No
+Allergies and intolerances        No
+Personal care                     No
+Medical contact details           Yes
+  Medical contact                 1-131-999-0232
 
 Offences Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
 Current offences                  None
 
 Return instructions Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
-Must return to                                                                   None
-Must not be sent to                                                              None
+Must return to                  None
+Must not be sent to             None
 

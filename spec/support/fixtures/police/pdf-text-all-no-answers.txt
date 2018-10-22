@@ -57,24 +57,24 @@ Not for release ✘ No Suicide / Self harm ✘ No Cell share risk ✘ No Violent
 Escape risk ✘ No Sex offender ✘ No Alcohol withdrawal ✘ No
 
 Risk Last confirmed: Nel Bee, 12:30 | 10 Mar 2016. Approved: Ned Nok, 12:30 | 10 Mar 2016.
-Risk to self                                                                                 No
-Segregation                                                                                  No
-Security                                                                                     No
-Discrimination against others                                                                No
-Offence history                                                                              No
-Weapons, drugs or other items                                                                No
-Other risk information                                                                       No
+Risk to self                     No
+Segregation                      No
+Security                         No
+Discrimination against others    No
+Offence history                  No
+Weapons, drugs or other items    No
+Other risk information           No
 
 Healthcare Last confirmed: Nel Bee, 12:30 | 10 Mar 2016. Approved: Ned Nok, 12:30 | 10 Mar 2016.
-Physical health issues                                             No
-Mental health issues                                               No
-Special vehicles                                                   No
-Essential medication                                               No
-Dependencies                                                       No
-Allergies and intolerances                                         No
-Personal care                                                      No
-Custody suite contact details                                      Yes
-  Custody suite contact                                            1-131-999-0232
+Physical health issues           No
+Mental health issues             No
+Special vehicles                 No
+Essential medication             No
+Dependencies                     No
+Allergies and intolerances       No
+Personal care                    No
+Custody suite contact details    Yes
+  Custody suite contact          1-131-999-0232
 
 Offences Last confirmed: Nel Bee, 12:30 | 10 Mar 2016. Approved: Ned Nok, 12:30 | 10 Mar 2016.
 Current offences                 None

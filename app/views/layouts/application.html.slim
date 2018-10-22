@@ -17,11 +17,16 @@ html.govuk-template lang="en"
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-N4GRLDJ');
 
-    = stylesheet_link_tag 'main', media: 'all'
-    = javascript_include_tag 'html5shiv'
+    /[if lte IE 8]
+      = stylesheet_link_tag 'main-ie8', media: 'all'
 
-    /![if lt IE 9]
-      = javascript_include_tag "ie.js", integrity: true, crossorigin: "anonymous"
+    /[if gt IE 8]
+      |<!-->
+      = stylesheet_link_tag 'main', media: 'all'
+      |<!--
+
+    /[if lt IE 9]
+      = javascript_include_tag 'html5shiv/dist/html5shiv'
 
   body.govuk-template__body
     javascript:
@@ -100,4 +105,7 @@ html.govuk-template lang="en"
 
     /[if IE]
       = javascript_include_tag "flowplayer.js"
-
+    /[if gt IE 8]
+      |<!-->
+      = javascript_include_tag 'auto-complete.js'
+      |<!--

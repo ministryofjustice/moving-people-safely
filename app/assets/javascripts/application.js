@@ -12,22 +12,15 @@
 //
 //= require jquery
 //= require bootstrap-datepicker/dist/js/bootstrap-datepicker.min
-//= require accessible-autocomplete.min
 //= require stickyfill.min
 //= require no-script
 
 //= require date-picker
-//= require auto-complete-init
 //= require stickyfill-init
 //= require multiples
 //= require clickable-tbody
 //= require anchor-focus
 //= require no-script
 //= require page-contents
-
-
-//= stub 'flowplayer-3.2.13.min'
-//= stub 'flowplayer-init'
-//= stub 'ie'
 
 window.GOVUKFrontend.initAll();
