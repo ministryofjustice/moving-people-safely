@@ -242,74 +242,12 @@ All notable changes to this project will be documented in this file.
   432   2018-03-08   8e44e90   Andy White            compare-actual-with-automated-alerts
   435   2018-03-08   93e5eff   Cesidio Di Landa      fetch-risks
 -->
-<!-- commit 228f3d7a4bad2727dda30e68e10114b7981d887c -->
-<!-- Date:   Wed Mar 21 17:48:33 2018 +0000 -->
+### Changed
+* Improved presentation of dates on ePER print. <!-- PR 452 -->
+* Change hostage taker last incident dates to make them optional. <!-- PR 424 -->
+* Change presentation of ePER to inactive alerts from NOMIS. <!-- PR 449 -->
+* Improvements to internal reporting which is used to inform future features. <!-- PR 454 453 450 448 446 432 435 -->
 
-    Show no date available when date fields are blank
-
-    On the risk summary and print pages we allow some date fields
-    to be blank and before we where showing an empty test. Now we
-    show no date available instead.
-
-<!-- commit 42184bfa5786f4d88bd89faf79dcf504fd9b635a -->
-<!-- Date:   Mon Mar 26 15:49:00 2018 +0100 -->
-
-    Bug fixes and refactor
-
-<!-- commit 2def447d74048598a0de2ff186a3ca2eeb81a545 -->
-<!-- Date:   Thu Mar 22 15:28:01 2018 +0000 -->
-
-    Allow comparison via a list of escort IDs
-
-<!-- commit 06cf00fdab4f82aac65d499ece510cdcae25d9ef -->
-<!-- Date:   Mon Jan 15 10:30:16 2018 +0000 -->
-
-    Make hostage taker last incident dates optional
-
-<!-- commit c77387aae9b23bea3595bf535a263a394ffeb575 -->
-<!-- Date:   Mon Mar 19 16:08:20 2018 +0000 -->
-
-    Refactor using existing risk fetcher and mapper
-
-<!-- commit 830c308b34ac3c8a2b574c5bff205fc7ca43fa92 -->
-<!-- Date:   Thu Mar 15 11:45:22 2018 +0000 -->
-
-    Include inactive alerts from NOMIS
-
-<!-- commit 82c1bc56aaa1b9747c761f6ba819729df47e3da5 -->
-<!-- Date:   Tue Mar 13 16:47:33 2018 +0000 -->
-
-    Detect false negatives
-
-<!-- commit 6408725f2f85e81bcf32c93c03dd2db8a94896dd -->
-<!-- Date:   Tue Mar 13 10:53:55 2018 +0000 -->
-
-    Refactor comparison classes out of rake file
-
-<!-- commit cea4bcf815abdd81e0ad805cba7eef7b7c5e7430 -->
-<!-- Date:   Tue Mar 13 11:15:43 2018 +0000 -->
-
-    Fix risk fetcher spec
-
-<!-- commit 3b23a872f1c2fc9780a9cc94f0585123fcd939fb -->
-<!-- Date:   Tue Mar 13 11:24:53 2018 +0000 -->
-
-    Revert "Populate risk from NOMIS at escort creation or reuse"
-
-<!-- commit fc741f9181ebaac00ad636db7cbcfce422c0ebd2 -->
-<!-- Date:   Thu Mar 8 14:15:20 2018 +0000 -->
-
-    Populate risk from NOMIS at escort creation or reuse
-
-<!-- commit dd1f189a9bfd0c40a49e057f0f6e22aed94287d8 -->
-<!-- Date:   Mon Feb 5 10:51:43 2018 +0000 -->
-
-    Harness to check automated risks with inputted risks
-
-<!-- commit 4b70d6029504c8504e29e9f374ce8529f85a6d31 -->
-<!-- Date:   Tue Feb 13 17:44:14 2018 +0000 -->
-
-    Fetch NOMIS alerts and map to risk data
 
 ## 2018-02
 <!-- Inferred release of all PRs merged in this calendar month:
@@ -324,6 +262,27 @@ All notable changes to this project will be documented in this file.
   434   2018-02-06   b71692d   Cesidio Di Landa      update-migrations-and-schema
   431   2018-02-01   6bf54e2   Cesidio Di Landa      central-update
 -->
+### Changed
+- Improved Release Status text and easier editing
+- Better defaults for prisoner location if NOMIS API is down
+- Better wording for information on journeys
+- Improved wording and usability in gangs section
+- Improved display of alerts in court receiver view
+- All cancelled PERs now appear together at the bottom of the list
+- Improved saved time calculations in Geckoboard reporting
+- Improved service monitoring information
+
+### Added
+- The Personal details sections has added fields:
+  - Preferred language
+  - Dietary requirements
+
+### Fixed
+- Fixed a bug which had stopped logging to Google Analytics
+- Fixed a bug where long ethnicity information was spilling onto other page components
+- Fixed a bug where long prisoner names were not wrapping correctly in the sidebar
+
+
 <!-- commit a084fa44a081ee21e5510f36d7125b00756b319d -->
 <!-- Date:   Thu Feb 22 21:19:50 2018 +0000 -->
 
@@ -444,28 +403,6 @@ All notable changes to this project will be documented in this file.
 <!-- Date:   Tue Jan 2 14:33:58 2018 +0000 -->
 
     Update changelog
-
-
-## 2018-02
-### Changed
-- Improved Release Status text and easier editing
-- Better defaults for prisoner location if NOMIS API is down
-- Better wording for information on journeys
-- Improved wording and usability in gangs section
-- Improved display of alerts in court receiver view
-- All cancelled PERs now appear together at the bottom of the list
-- Improved saved time calculations in Geckoboard reporting
-- Improved service monitoring information
-
-### Added
-- The Personal details sections has added fields:
-  - Preferred language
-  - Dietary requirements
-
-### Fixed
-- Fixed a bug which had stopped logging to Google Analytics
-- Fixed a bug where long ethnicity information was spilling onto other page components
-- Fixed a bug where long prisoner names were not wrapping correctly in the sidebar
 
 
 ## 2018-01-02
