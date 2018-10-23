@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## Upcoming
+<!-- Merged PRs since last release:
+   PR   Merge date   Author                Branch
+ ----------------------------------------------------------------------
+  565   2018-10-16   Andy White            distinct-nomis-error-messages
+  566   2018-10-16   Andy White            fix-pregnant-not-displaying
+-->
+### Changed
+- Improved consistency of error messages from NOMIS. <!-- PR 565 -->
+
+### Fixed
+- Fixed a bug where pregnancy details were not displayed correctly. <!-- PR 566 -->
+
+
 ## 2018-10-11
 <!-- Merged PRs since last release:
    PR   Merge date   Commit    Author                Branch
@@ -249,7 +263,7 @@ All notable changes to this project will be documented in this file.
 * Improvements to internal reporting which is used to inform future features. <!-- PR 454 453 450 448 446 432 435 -->
 
 
-## 2018-02
+## 2018-02-23
 <!-- Inferred release of all PRs merged in this calendar month:
    PR   Merge date   Commit    Author                Branch
  -----------------------------------------------------------------------------------------------
@@ -281,128 +295,6 @@ All notable changes to this project will be documented in this file.
 - Fixed a bug which had stopped logging to Google Analytics
 - Fixed a bug where long ethnicity information was spilling onto other page components
 - Fixed a bug where long prisoner names were not wrapping correctly in the sidebar
-
-
-<!-- commit a084fa44a081ee21e5510f36d7125b00756b319d -->
-<!-- Date:   Thu Feb 22 21:19:50 2018 +0000 -->
-
-    Add language and diet requirements to detainee
-
-<!-- commit 300a40eae0af875a8cea96215015b53d1a1ef732 -->
-<!-- Date:   Tue Feb 20 17:53:27 2018 +0000 -->
-
-    Change not for release text on escort and print
-
-<!-- commit 79a501e9db72406264c1b222509284a938fe6a63 -->
-<!-- Date:   Thu Feb 15 16:15:51 2018 +0000 -->
-
-    Update rails to version 5.1.5
-
-<!-- commit 3d76ef4873c69adf6cad2fc0316e5397bc6195f1 -->
-<!-- Date:   Wed Feb 14 17:53:06 2018 +0000 -->
-
-    Remove unused code
-
-<!-- commit bfcb1c12dfeaa6de9561043ea51afd19b287a917 -->
-<!-- Date:   Wed Feb 14 15:44:41 2018 +0000 -->
-
-    Update rubocop and other gems
-
-<!-- commit c8c47ca92278ca3dc799b49b2b5bad39ab95519c -->
-<!-- Date:   Mon Feb 5 16:37:39 2018 +0000 -->
-
-    Add paper_trail to track changes in detainees and offences
-
-<!-- commit d513ddbd859962b32ebf1e945e2d80254f8f1b17 -->
-<!-- Date:   Tue Feb 6 10:32:22 2018 +0000 -->
-
-    Update migrations and schema to rails 5.1
-
-<!-- commit 2bb60d4f58912d578371028f7b8f21b3a14ee398 -->
-<!-- Date:   Tue Jan 30 15:59:05 2018 +0000 -->
-
-    Populate escort data from NOMIS at creation time
-
-## 2018-01
-<!-- commit 3e8dae94fd259bc5e52390bda753b6d1e33e4c77 -->
-<!-- Date:   Thu Jan 25 14:39:01 2018 +0000 -->
-
-    Change check on prisoner location
-
-    The reason to introduce this check is that when NOMIS API
-    is down, we have an empty hash and now that we have courts
-    which do not have a nomis_id field set, find_by returns
-    the first establishment that finds, which is a court.
-
-<!-- commit 3ee035abc61b960896d464aaa283edafad372804 -->
-<!-- Date:   Fri Jan 26 13:10:38 2018 +0100 -->
-
-    Update paperclip gem
-
-<!-- commit 060ff8ac77feb931af1f303261c1cac11b67e1c8 -->
-<!-- Date:   Wed Jan 24 16:38:26 2018 +0000 -->
-
-    Fix nomis alerts on court receiver view
-
-<!-- commit 90a77b9d029189d77802d0303966734b6dd41977 -->
-<!-- Date:   Tue Jan 23 11:52:56 2018 +0000 -->
-
-    Update rails to version 5.1.4
-
-<!-- commit b4361bdbb997b653cf18dfcd42f40ed26fb7d95f -->
-<!-- Date:   Tue Jan 16 14:33:21 2018 +0000 -->
-
-    Bundle update uglifier
-
-<!-- commit a3dc895d3767885c8351364ee47d444c161e9fbb -->
-<!-- Date:   Tue Jan 2 11:58:42 2018 +0100 -->
-
-    Consistent alerts
-
-<!-- commit 3d281ab0b69a6353723e5cba859426d691e96084 -->
-<!-- Date:   Mon Jan 8 12:01:43 2018 +0000 -->
-
-    Make summary page multiples non bold
-
-<!-- commit f407782ec023cada9a2c22e3ef555336d7c1d874 -->
-<!-- Date:   Mon Jan 8 13:41:05 2018 +0000 -->
-
-    Change default order of escorts
-
-<!-- commit cb3bc6d38534a3f0ea67ac275a868969075a937e -->
-<!-- Date:   Mon Jan 8 15:20:19 2018 +0000 -->
-
-    Copy changes for risk and healthcare questions
-
-<!-- commit 70017e1c33f2c94d9163197c39fff852627f04c9 -->
-<!-- Date:   Wed Jan 3 14:19:00 2018 +0000 -->
-
-    Change time saved in PERs reuse
-
-<!-- commit 94565f1e3007e632d9c72a84ae3cab199e7822f9 -->
-<!-- Date:   Thu Dec 28 16:12:33 2017 +0100 -->
-
-    Shorten ethnicity to prevent running it into aliases
-
-<!-- commit 7d908fd165801371d639f4ad12753ff71d791443 -->
-<!-- Date:   Fri Dec 29 12:31:53 2017 +0100 -->
-
-    Better use of &nbsp;
-
-<!-- commit 23a0ff5555a0ad223f6c7c2127d13fb5b281b6c1 -->
-<!-- Date:   Tue Jan 2 16:29:25 2018 +0000 -->
-
-    Make bold multiples answers displayed on ePER
-
-<!-- commit 1c8f758664731a076ef1ef4ae7d66a682ebc3223 -->
-<!-- Date:   Mon Dec 18 13:14:00 2017 +0000 -->
-
-    Add SSO to healthcheck
-
-<!-- commit 2d5f701ec2ddacb734ecab50d92d025ba7d23d71 -->
-<!-- Date:   Tue Jan 2 14:33:58 2018 +0000 -->
-
-    Update changelog
 
 
 ## 2018-01-02
