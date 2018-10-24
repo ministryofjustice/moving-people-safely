@@ -1,6 +1,4 @@
 - questions = %w[physical_issues]
-- if assessment.escort.from_police? && assessment.escort.detainee.female?
-    - questions << 'pregnant'
 
 - unless views == 'escort'
   = render "shared/sections/#{views}/section",

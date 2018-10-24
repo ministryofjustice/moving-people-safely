@@ -66,7 +66,6 @@ prison:
 police:
   healthcare:
     physical:
-      - pregnant
       - physical_issues
     mental:
       - mental_illness
@@ -81,7 +80,6 @@ police:
       - allergies
     social:
       - personal_care
-      - female_hygiene_kit
     contact:
       - contact_number
   risk:

@@ -1,6 +1,4 @@
 - questions = %w[personal_care]
-- if assessment.escort.from_police? && assessment.escort.detainee.female?
-    - questions << 'female_hygiene_kit'
 
 - unless views == 'escort'
   = render "shared/sections/#{views}/section",
