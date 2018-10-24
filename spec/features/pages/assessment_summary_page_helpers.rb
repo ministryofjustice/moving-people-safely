@@ -1,7 +1,7 @@
 module Page
   module AssessmentSummaryPageHelpers
     def confirm_status(expected_status)
-      within('header h3') do
+      within('header h2') do
         expect(page).to have_content(expected_status)
       end
     end

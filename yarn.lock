@@ -3,11 +3,23 @@
 
 
 bootstrap-datepicker@^1.6.4:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/bootstrap-datepicker/-/bootstrap-datepicker-1.7.1.tgz#4ee7faf34888dbec7834fbf9dbe7c4277e01ddaf"
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/bootstrap-datepicker/-/bootstrap-datepicker-1.8.0.tgz#c63513931e6f09f16ae9f11b62f32d950df3958e"
+  integrity sha512-213St/G8KT3mjs4qu4qwww74KWysMaIeqgq5OhrboZjIjemIpyuxlSo9FNNI5+KzpkkxkRRba+oewiRGV42B1A==
   dependencies:
     jquery ">=1.7.1 <4.0.0"
 
-"jquery@>=1.7.1 <4.0.0":
+govuk-frontend@^2.0.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-2.2.0.tgz#ef14463f8c0b4b628d5a498f8aa4f3bf6833315e"
+  integrity sha512-vNiUIp8EQACARNTyOwmE110HcQd+zJvkgbKv+gmY28QxqQGGd2DEJ35nblnjElsRJpSgbxwa85iqlNtbR3Q5tA==
+
+html5shiv@^3.7.3:
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/html5shiv/-/html5shiv-3.7.3.tgz#d78a84a367bcb9a710100d57802c387b084631d2"
+  integrity sha1-14qEo2e8uacQEA1XgCw4ewhGMdI=
+
+"jquery@>=1.7.1 <4.0.0", jquery@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+  integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==

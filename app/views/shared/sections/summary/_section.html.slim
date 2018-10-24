@@ -1,7 +1,7 @@
-thead
-  tr
-    th.title colspan="2"
+thead.govuk-table__head
+  tr.govuk-table__row
+    th.govuk-table__header.title.first-two-columns colspan="2"
       = location_text(t("summary.section.titles.#{section}"), escort.location)
-    th.edit
+    th.govuk-table__header.edit.third-column
       - if can? :update, assessment
         = link_to 'Change', path

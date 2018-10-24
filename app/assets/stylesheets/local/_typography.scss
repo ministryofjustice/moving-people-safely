@@ -1,0 +1,31 @@
+.govuk-header__link--homepage {
+  font-size: govuk-px-to-rem(24);
+}
+
+.heading-light {
+  font-weight: normal;
+}
+
+.heading-bold {
+  font-weight: bold;
+}
+
+.govuk-hint {
+  .govuk-list {
+    li {
+      color: $govuk-secondary-text-colour;
+    }
+  }
+}
+
+p.review {
+  font-size: govuk-px-to-rem(16);
+  margin: 0px 0px 15px;
+}
+
+.bold-large {
+  @include govuk-font(36, $weight: bold);
+}
+.bold-small {
+  @include govuk-font(19, $weight: bold);
+}

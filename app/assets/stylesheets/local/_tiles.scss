@@ -1,0 +1,34 @@
+.tile {
+
+  // p {
+  //   font-weight: bold;
+  //   font-size: 19px;
+  //   margin: 0px 0px;
+  // }
+
+  // h6 {
+  //   font-size: 16px;
+  // }
+
+  display: table-cell;
+  vertical-align: top;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 10px 0px 15px 0px;
+  width: 100%;
+}
+
+.tile-2 {
+  @extend .tile;
+  width: (100% / 2);
+}
+
+.tile-3 {
+  @extend .tile;
+  width: (100% / 3);
+}
+
+.tile-4 {
+  @extend .tile;
+  width: (100% / 4);
+}

@@ -1,0 +1,30 @@
+.summary {
+  tr {
+    vertical-align: top;
+  }
+
+  .first-column {
+    width: 30%;
+  }
+
+  .second-column {
+    width: 20%;
+  }
+
+  .first-two-columns {
+    width: 50%;
+  }
+
+  .third-column {
+    width: 50%;
+
+    b {
+      font-weight: normal;
+    }
+  }
+
+  th.edit {
+    font-weight: normal;
+    text-align: right;
+  }
+}

@@ -422,8 +422,8 @@ en:
         pnc_warnings_details: Give details
       physical:
         physical_issues:
-          prison_html: "<p>For example, issues that mean they can’t: <ul class='list list-bullet'><li>be handcuffed</li><li>travel in a standard van cell</li><li>sit for long periods of time</li></ul></p>"
-          police_html: "<p>In the arrest record, check the risk assessment, pre-release assessment and care plan for relevant comments.</p><p>For example, issues that mean they can’t: <ul class='list list-bullet'><li>be handcuffed</li><li>travel in a standard van cell</li><li>sit for long periods of time</li></ul></p>"
+          prison_html: "<p>For example, issues that mean they can’t: <ul class='govuk-list govuk-list--bullet'><li>be handcuffed</li><li>travel in a standard van cell</li><li>sit for long periods of time</li></ul></p>"
+          police_html: "<p>In the arrest record, check the risk assessment, pre-release assessment and care plan for relevant comments.</p><p>For example, issues that mean they can’t: <ul class='govuk-list govuk-list--bullet'><li>be handcuffed</li><li>travel in a standard van cell</li><li>sit for long periods of time</li></ul></p>"
         physical_issues_details:
           prison: 'Please explain how these issues might affect the journey and how they should be managed:'
           police: 'Give details:'

@@ -1,17 +1,32 @@
 - if escort.from_prison?
   = f.radio_toggle_with_textarea :controlled_unlock,
-    legend_options: { class: 'form-label-assessment' }
+    legend_options: { class: 'form-label-assessment' },
+    inline_choices: false,
+    toggle_options: ['yes']
   = f.radio_toggle_with_textarea :high_profile,
-    legend_options: { class: 'form-label-assessment' }
+    legend_options: { class: 'form-label-assessment' },
+    inline_choices: false,
+    toggle_options: ['yes']
   = f.radio_toggle_with_textarea :pnc_warnings,
-    legend_options: { class: 'form-label-assessment' }, rows: 9
+    legend_options: { class: 'form-label-assessment' },
+    rows: 9,
+    inline_choices: false,
+    toggle_options: ['yes']
 
 - if escort.from_police?
   = f.radio_toggle_with_textarea :high_profile,
-    legend_options: { class: 'form-label-assessment' }
+    legend_options: { class: 'form-label-assessment' },
+    inline_choices: false,
+    toggle_options: ['yes']
   = f.radio_toggle_with_textarea :violent_or_dangerous,
-    legend_options: { class: 'form-label-assessment' }
+    legend_options: { class: 'form-label-assessment' },
+    inline_choices: false,
+    toggle_options: ['yes']
   = f.radio_toggle_with_textarea :gang_member,
-    legend_options: { class: 'form-label-assessment' }
+    legend_options: { class: 'form-label-assessment' },
+    inline_choices: false,
+    toggle_options: ['yes']
   = f.radio_toggle_with_textarea :previous_escape_attempts,
-    legend_options: { class: 'form-label-assessment' }
+    legend_options: { class: 'form-label-assessment' },
+    inline_choices: false,
+    toggle_options: ['yes']

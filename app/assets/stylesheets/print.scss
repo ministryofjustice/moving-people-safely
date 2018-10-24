@@ -1,18 +1,8 @@
-$is-print: true;
+$govuk-global-styles: true;
 
-@import "elements/reset";
 
-@import "grid_layout";
-@import "colours";
-@import "elements/helpers";
-
-@import "colours";
-@import "typography";
-@import "measurements";
-@import "shims";
-@import "elements/elements-typography";
-@import "elements/layout";
-@import "moving_people_safely/nomis_alerts";
+@import 'govuk-frontend/all';
+@import 'local/nomis_alerts';
 
 * {
   font-family: "Liberation Sans" !important;
@@ -24,11 +14,11 @@ $is-print: true;
     height: 297mm;
   }
 
-  .grid-row {
+  .govuk-grid-row {
     display: block;
   }
 
-  .grid-column {
+  .govkuk-grid-column {
     float: left;
   }
 
@@ -36,27 +26,20 @@ $is-print: true;
     border-bottom: 1px dotted black;
   }
 
-  .column-full-length {
-    width: 100%;
-  }
-
-  .column-one-half {
+  .govuk-grid-column-one-half {
     width: 50%;
   }
 
-  .column-one-quarter {
+  .govuk-grid-column-one-quarter {
     width: (100% / 4);
   }
 
+  .govuk-grid-column-one-third,
   .column-one-third {
     width: (100% / 3);
   }
 
-  .column-two-thirds {
-    width: 66%;
-  }
-
-  .column-one-sixth {
+  .govuk-grid-column-one-sixth {
     width: (100% / 6);
   }
 }
@@ -69,14 +52,7 @@ main {
   text-align: left;
   margin: 0;
   position: relative;
-  @extend .font-xsmall;
-}
-
-.page-one {
-  position: absolute;
-  top: 0;
-  left: 40px;
-  width: 95%;
+  @extend .govuk-body-s;
 }
 
 table {
@@ -87,16 +63,33 @@ table {
   font-weight: bold;
 }
 
+.print-name {
+  @include govuk-font(19);
+}
+
 .title {
   font-weight: lighter;
 }
 
-.grid {
-  margin-left: 5px;
+.detainee {
+  .title {
+    @include govuk-font(14);
+  }
+  .strong-text {
+    @include govuk-font(14, $weight: bold);
+  }
 }
 
-.grid-row {
+.grid {
+  margin-left: 0;
+}
+
+.govuk-grid-row {
   margin: 0;
+  clear: both;
+  padding-right: 0;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
 
   &.padded {
     padding-top: 10px;
@@ -106,10 +99,26 @@ table {
   &.padded-bottom {
     padding-bottom: 10px;
   }
+
+  .govuk-grid-column:first-child,
+  .govuk-grid-column-full:first-child,
+  .govuk-grid-column-one-half:first-child,
+  .govuk-grid-column-one-third:first-child,
+  .govuk-grid-column-two-thirds:first-child,
+  .govuk-grid-column-one-quarter:first-child,
+  .govuk-grid-column-three-quarters:first-child,
+  .govuk-grid-column-one-fifth:first-child,
+  .govuk-grid-column-two-fifths:first-child,
+  .govuk-grid-column-three-fifths:first-child {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+
 }
 
-.grid-column {
+.govuk-grid-column {
   padding: 0;
+  float: left;
 
   .image {
     text-align: right;
@@ -131,6 +140,48 @@ table {
       height: auto;
     }
   }
+}
+
+.govuk-grid-column-one-sixth {
+  @extend .govuk-grid-column-one-third;
+  width: (100% / 6);
+}
+
+.govuk-grid-column-20-percent,
+.govuk-grid-column-one-fifth {
+  @extend .govuk-grid-column-one-third;
+  width: 20%;
+}
+
+
+.govuk-grid-column-30-percent {
+  @extend .govuk-grid-column-one-third;
+  width: 30%;
+}
+
+.govuk-grid-column-two-fifths {
+  @extend .govuk-grid-column-one-third;
+  width: 40%;
+}
+
+.govuk-grid-column-50-percent {
+  @extend .govuk-grid-column-one-third;
+  width: 50%;
+}
+
+.govuk-grid-column-three-fifths {
+  @extend .govuk-grid-column-one-third;
+  width: 60%;
+}
+
+.govuk-grid-column-70-percent {
+  @extend .govuk-grid-column-one-third;
+  width: 70%;
+}
+
+.govuk-grid-column-four-fifths {
+  @extend .govuk-grid-column-one-third;
+  width: 80%;
 }
 
 .column-one-sixth {
@@ -176,10 +227,10 @@ table {
   }
 
   td {
-    font-weight: lighter;
     padding: 0.3em 0;
     vertical-align: top;
     text-align: left;
+    @include govuk-font(14);
   }
 
   td.indented {
@@ -191,13 +242,13 @@ table {
   border-top: 2px solid black;
   border-bottom: 1px dotted black;
   font-weight: normal;
-  @extend .font-medium;
+  @include govuk-font(24);
   padding: 5px 0;
   height: auto;
 
   &.small {
     font-weight: bold;
-    @extend .font-small;
+    @include govuk-font(19);
   }
 }
 
@@ -220,6 +271,7 @@ table {
 
 .timestamp {
   margin-left: 10px;
+  @include govuk-font(14);
 }
 
 .footer {
@@ -228,6 +280,10 @@ table {
 
 .indicators {
   padding: 10px 0;
+}
+
+.move {
+  margin-top: 30px;
 }
 
 table.vehicles {
@@ -272,7 +328,7 @@ table.about {
   border-top: 1px solid black;
 
   th {
-    @extend .font-small;
+    @include govuk-font(19);
     padding: 5px 0 20px 0;
   }
 
@@ -302,9 +358,13 @@ table.about {
     width: 85%;
 
     .title {
-      font-weight: bold;
       padding-bottom: 10px;
+      @include govuk-font(14, $weight: bold);
     }
+  }
+
+  p {
+    @include govuk-font(14);
   }
 
   .logo {
@@ -314,9 +374,30 @@ table.about {
   }
 }
 
+ul.alerts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  @include govuk-clearfix;
+
+  li {
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+}
+
 .flag {
   @extend .flag;
   margin: 0;
+  padding: 1px 3px;
+}
+
+.page-one {
+  position: absolute;
+  top: 0;
+  left: 40px;
+  width: 95%;
 }
 
 .staple-instruction {

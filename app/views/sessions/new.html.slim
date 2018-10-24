@@ -1,41 +1,43 @@
-.column-two-thirds
-  h1.heading-xlarge Create or view a Person Escort Record (PER)
+.govuk-grid-row
+  .govuk-grid-column-two-thirds
 
-  h3.heading-medium If you work in a prison or police custody suite
+    h1.govuk-heading-xl Create or view a Person Escort Record (PER)
 
-  p Use this service to create a PER for people moving to:
+    h2.govuk-heading-m If you work in a prison or police custody suite
 
-  ul.list.list-bullet
-    li Crown or Magistrates' or Civil Court
-    li an Immigration Removal Centre
-    li hospital
-    li another prison or police custody suite
-    li any other destination (for example, on a compassionate visit)
+    p.govuk-body Use this service to create a PER for people moving to:
 
-  h3.heading-medium If you work in a court
+    ul.govuk-list.govuk-list--bullet
+      li Crown or Magistrates' or Civil Court
+      li an Immigration Removal Centre
+      li hospital
+      li another prison or police custody suite
+      li any other destination (for example, on a compassionate visit)
 
-  p Use this service to see the PERs for people moving to your court today.
+    h2.govuk-heading-m If you work in a court
 
-  h3.heading-medium The ePER pilot programme
+    p.govuk-body Use this service to see the PERs for people moving to your court today.
 
-  p
-    = "You must be part of the ePER pilot programme to use this service. "
-    = link_to 'Contact us', new_feedback_path
-    |  if you are interested in joining the pilot.
+    h2.govuk-heading-m The ePER pilot programme
 
-  p= link_to 'Start now', sso_path, class: 'button button-start'
+    p.govuk-body
+      = "You must be part of the ePER pilot programme to use this service. "
+      = link_to 'Contact us', new_feedback_path, class: 'govuk-link'
+      |  if you are interested in joining the pilot.
 
-  h3.heading-medium Before you start
+    p.govuk-body= link_to 'Start now', sso_path, class: 'govuk-button govuk-button--start'
 
-  p To use this service you’ll need:
+    h2.govuk-heading-m Before you start
 
-  ul.list.list-bullet
-    li a Ministry of Justice Sign On account
-    li access to a printer to print the completed ePER (if you are in a prison or police custody suite)
+    p.govuk-body To use this service you’ll need:
 
-  h3.heading-medium Help with this service
-  p
-    = link_to 'Contact us', new_feedback_path
-    = " or "
-    = link_to 'watch our video guides', help_path
-    |  if you need help using this service.
+    ul.govuk-list.govuk-list--bullet
+      li a Ministry of Justice Sign On account
+      li access to a printer to print the completed ePER (if you are in a prison or police custody suite)
+
+    h2.govuk-heading-m Help with this service
+    p.govuk-body
+      = link_to 'Contact us', new_feedback_path, class: 'govuk-link'
+      = " or "
+      = link_to 'watch our video guides', help_path, class: 'govuk-link'
+      |  if you need help using this service.

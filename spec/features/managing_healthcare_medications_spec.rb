@@ -40,7 +40,7 @@ RSpec.describe 'managing healthcare medications', type: :feature do
       within_medication(position) do
         expect(find_field('Medicine').value).to eq text_for(:description, position)
         expect(find_field('How is it given').value).to eq text_for(:administration, position)
-        within_fieldset('Who will carry the medicine?') do
+        within('.govuk-fieldset') do
           expect(find(:radio_button, checked: true).value).to eq('escort')
         end
       end
@@ -77,7 +77,7 @@ RSpec.describe 'managing healthcare medications', type: :feature do
       fill_in 'How is it given', with: text_for(:administration, position)
       fill_in 'Dosage', with: text_for(:dosage, position)
       fill_in 'When is it given?', with: text_for(:when_given, position)
-      within_fieldset('Who will carry the medicine?') do
+      within('.govuk-fieldset') do
         choose 'Escort'
       end
     end

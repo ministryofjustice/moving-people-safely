@@ -3,26 +3,28 @@
 
   = f.fields_for :offences do |mf|
     .multiple-wrapper
-      hr
-      .grid-row
-        .column-two-thirds
-          h2 Offence
+      hr.govuk-section-break.govuk-section-break--l.govuk-section-break--visible.mps-section-break
+
+      .govuk-grid-row
+        .govuk-grid-column-two-thirds
+          h2.govuk-heading-m Offence
           = mf.hidden_field :id
           .multiple-field
-            = mf.text_area :offence, class: 'multiple-field'
+            = mf.text_area :offence, class: 'govuk-textarea', width_option: 'govuk-!-width-full'
           .multiple-field
-            = mf.location_text_field :case_reference, class: 'multiple-field'
-        .column-one-third
+            = mf.location_text_field :case_reference
+        .govuk-grid-column-one-third
           .remove-link
-            .form-group
+            .govuk-form-group
               = mf.label :_delete, 'Remove'
               = mf.check_box :_delete
 
-  .multiple-add.form-group
-    hr
+  hr.govuk-section-break.govuk-section-break--l.govuk-section-break--visible.mps-section-break
+
+  .form-actions
     =f.button 'Add another',
-      class: 'js-anchor-focus button button-add-another-vertical',
+      class: 'js-anchor-focus govuk-button button-add-another',
       name: "offences_add_offence"
 
   .form-actions
-    = f.submit 'Save and continue', class: 'button'
+    = f.submit 'Save and continue', class: 'govuk-button'

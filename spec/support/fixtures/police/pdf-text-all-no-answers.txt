@@ -1,48 +1,48 @@
 ————— Staple to card
 
                        Outbound vehicle
-                       Registration                   Cell number                       PECS Barcode
+                       Registration                     Cell number                    PECS Barcode
 
 
 
 
                        Return vehicle
-                       Registration                   Cell number
+                       Registration                     Cell number
 
 
 
 
                        99/000000Z: McTest Testy
 
-                         Not for release ✘ No    Escape risk ✘ No
+                       Not for release ✘ No Escape risk ✘ No
 
                        Move details
-                       Date of travel                    From                                To
-                       22 Apr 2099                       My Jolly Police Custody Suite       Luton Crown Court
+                       Date of travel                     From                               To
+                       22 Apr 2099                        My Jolly Police Custody            Luton Crown Court
+                                                          Suite
 
                        Release status
                        Contact the prison to
                        confirm release
+
                        Personal details
-                       Prison number    CRO number       PNC number            Aliases
-                       W1234BY          56TYY/UU         99/000000Z            Terry Tibbs
-                                                                               Mr T
-                       Date of birth    Age              Gender
-                       10 Dec 1970      47               Male
-                       Nationality      Ethnicity
-                       British          European
-                       Preferred        Interpreter      Interpreter details
-                       language         Yes              English-
-                       English                           American
-                                                         translator
-                       Category         Diet
-                       –                Gluten free
+                       Prison number        CRO number           PNC number            Aliases
+                       W1234BY              56TYY/UU             99/000000Z            Terry Tibbs
+                                                                                       Mr T
+                       Date of birth        Age                  Gender
+                       10 Dec 1970          47                   Male
+                       Nationality          Ethnicity
+                       British              European
+                       Preferred language Interpreter            Interpreter details
+                       English            Yes                    English-American
+                                                                 translator
+                       Category
+                       –
+                       Diet
+                       Gluten free
                        Personal Emergency Evacuation Plan
-                       Broken leg
-
-
-
-                       About this Person Escort Record
+                       Broken leg Person Escort Record
+                       About this
 Staple to card —————
 
 
@@ -51,35 +51,31 @@ Staple to card —————
                        This ePER was produced by the Ministry of Justice ePER service, currently in pilot. This ePER
                        is approved by HMPPS - please treat it as a fully valid and official record. Please send any
                        feedback or questions to: eper@digital.justice.gov.uk
-99/000000Z: McTest Testy                                                                       Page 1 of 1
+99/000000Z: McTest Testy                                                                     Page 1 of 1
 
-  Not for release ✘ No       Suicide / Self harm ✘ No   Cell share risk ✘ No   Violent ✘ No
-  Escape risk ✘ No       Sex offender ✘ No      Alcohol withdrawal ✘ No
+Not for release ✘ No Suicide / Self harm ✘ No Cell share risk ✘ No Violent ✘ No
+Escape risk ✘ No Sex offender ✘ No Alcohol withdrawal ✘ No
 
+Risk Last confirmed: Nel Bee, 12:30 | 10 Mar 2016. Approved: Ned Nok, 12:30 | 10 Mar 2016.
+Risk to self                     No
+Segregation                      No
+Security                         No
+Discrimination against others    No
+Offence history                  No
+Weapons, drugs or other items    No
+Other risk information           No
 
-Risk       Last confirmed: Nel Bee, 12:30 | 10 Mar 2016. Approved: Ned Nok, 12:30 | 10 Mar 2016.
+Healthcare Last confirmed: Nel Bee, 12:30 | 10 Mar 2016. Approved: Ned Nok, 12:30 | 10 Mar 2016.
+Physical health issues           No
+Mental health issues             No
+Special vehicles                 No
+Essential medication             No
+Dependencies                     No
+Allergies and intolerances       No
+Personal care                    No
+Custody suite contact details    Yes
+  Custody suite contact          1-131-999-0232
 
-Risk to self                         No
-Segregation                          No
-Security                             No
-Discrimination against others        No
-Offence history                      No
-Weapons, drugs or other items        No
-Other risk information               No
-
-Healthcare          Last confirmed: Nel Bee, 12:30 | 10 Mar 2016. Approved: Ned Nok, 12:30 | 10 Mar 2016.
-
-Physical health issues               No
-Mental health issues                 No
-Special vehicles                     No
-Essential medication                 No
-Dependencies                         No
-Allergies and intolerances           No
-Personal care                        No
-Custody suite contact details        Yes
-  Custody suite contact              1-131-999-0232
-
-Offences          Last confirmed: Nel Bee, 12:30 | 10 Mar 2016. Approved: Ned Nok, 12:30 | 10 Mar 2016.
-
-Current offences                     None
+Offences Last confirmed: Nel Bee, 12:30 | 10 Mar 2016. Approved: Ned Nok, 12:30 | 10 Mar 2016.
+Current offences                 None
 

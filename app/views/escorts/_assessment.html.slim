@@ -1,6 +1,6 @@
 section id=model.to_s.downcase
   .header
-    span.section-title= model
+    h2.govuk-heading-m= model
 
     = render 'status', workflow: assessment,
                        not_started_path: not_started_path,
@@ -12,13 +12,14 @@ section id=model.to_s.downcase
         = t('assessment.confirmed_timestamp', name: assessment.reviewer.full_name, time: assessment.reviewed_at.to_s(:humanized))
 
   - if assessment&.relevant_questions&.any?
-    table
-      - model.sections(escort.location).each do |section|
-        = render "#{model.to_s.downcase.pluralize}/sections/#{section}",
-          views: 'escort',
-          section: section,
-          path: nil,
-          assessment: assessment
+    table.govuk-table
+      tbody.govuk-table__body
+        - model.sections(escort.location).each do |section|
+          = render "#{model.to_s.downcase.pluralize}/sections/#{section}",
+            views: 'escort',
+            section: section,
+            path: nil,
+            assessment: assessment
 
   - else
     p.info

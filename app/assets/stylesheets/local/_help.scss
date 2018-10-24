@@ -1,0 +1,86 @@
+#help {
+  details summary {
+    display: inline-block;
+    color: #005ea5;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 0.26316em;
+  }
+
+  .list-number {
+    list-style-type: decimal;
+    padding-left: 20px;
+  }
+
+  .list {
+    margin-bottom: 20px;
+
+    li {
+      margin-bottom: 5px;
+    }
+  }
+
+  details .summary {
+    text-decoration: underline;
+  }
+
+  .page_contents_list {
+    position: sticky;
+    top: 0;
+    padding-top: 25px;
+    @include govuk-font(16);
+
+    h2 {
+      font-weight: bold;
+      padding-bottom: 0.5em;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    li {
+      list-style-type: none;
+      line-height: 1.5em;
+      text-decoration: none;
+    }
+
+    li:before {
+      content: "–";
+      float: left;
+      display: block;
+      width: 15px;
+      color: black;
+    }
+  }
+
+  .help-content {
+    padding-top: 25px;
+  }
+}
+
+.icon {
+  margin-left: 20px;
+}
+
+.blueprint {
+  width: 100%;
+  margin-bottom: -5px;
+}
+
+.blueprint-steps {
+  display: inline-block;
+  vertical-align: top;
+  @include govuk-font(16);
+
+  &.step1 {
+    width: 50%;
+  }
+  &.step2 {
+    width: 25%;
+  }
+  &.step3 {
+    width: 20%;
+    float: right;
+  }
+}

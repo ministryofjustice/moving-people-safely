@@ -3,7 +3,7 @@
     p
       b
         | Click 'Confirm and save' to confirm that, to the best of your knowledge, all information in this section is correct.
-    = button_to('Confirm and save', confirm_path, method: :put, class: 'button')
+    = button_to('Confirm and save', confirm_path, method: :put, class: 'govuk-button')
 - else
   p
-    = link_to 'View PER', escort_path(escort), class: 'button'
+    = link_to 'View PER', escort_path(escort), class: 'govuk-button'

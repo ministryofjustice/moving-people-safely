@@ -1,6 +1,6 @@
 section#offences
   .header
-    span.section-title Offences
+    h2.govuk-heading-m Offences
 
     = render 'status',
       workflow: escort.offences_workflow,
@@ -13,11 +13,11 @@ section#offences
         = t('assessment.confirmed_timestamp', name: workflow.reviewer.full_name, time: workflow.reviewed_at.to_s(:humanized))
 
   - if offences.any?
-    table
-      tr
-        td.question
-          | Current offences
-        td.answer
-          - offences.each do |offence|
-            p
-              b #{offence.offence} (#{offence.case_reference})
+    table.govuk-table
+      tbody.govuk-table__body
+        tr.govuk-table__row
+          th.govuk-table__header.question scope="row"
+            | Current offences
+          td.govuk-table__cell.answer
+            - offences.each do |offence|
+              p #{offence.offence} (#{offence.case_reference})

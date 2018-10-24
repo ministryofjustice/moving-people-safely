@@ -1,18 +1,21 @@
-.column-three-quarters
-  header
-    h1.heading-xlarge Contact us
-    h2.heading-small Get in touch if you need help using the service.
+.govuk-grid-row
+  .govuk-grid-column-three-quarters
+    header
+      h1.govuk-heading-l Contact us
+      h2.govuk-heading-s Get in touch if you need help using the service.
 
-  = GovukElementsErrorsHelper.error_summary @form,
-    'There were problems saving this form', ''
+    = ErrorsHelper.error_summary @form,
+      'There were problems saving this form', ''
 
-  .form-wrapper
-    = form_for @form, url: feedbacks_path do |f|
-      - if user_signed_in?
-        = f.text_field :prisoner_number
-      - else
-        = f.text_field :email
-      = f.text_area :message
+    hr.govuk-section-break.govuk-section-break--l
 
-      .form-actions
-        = f.submit 'Send', class: 'button'
+    .form-wrapper
+      = form_for @form, url: feedbacks_path do |f|
+        - if user_signed_in?
+          = f.text_field :prisoner_number
+        - else
+          = f.text_field :email
+        = f.text_area :message
+
+        .form-actions
+          = f.submit 'Send', class: 'govuk-button'

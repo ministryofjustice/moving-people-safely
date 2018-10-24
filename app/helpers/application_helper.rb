@@ -21,7 +21,7 @@ module ApplicationHelper
   def summary_answer(value)
     case value
     when nil
-      "<span class='text-error'>Missing</span>"
+      "<span class='govuk-error-message'>Missing</span>"
     when 'no', 'none', 'standard'
       value.capitalize
     else

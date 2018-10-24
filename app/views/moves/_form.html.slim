@@ -1,56 +1,64 @@
-.move
-  header
-    h1 Move information
+header
+  h1.govuk-heading-l Move information
 
-  = form_for form, url: submit_path, method: method do |f|
-    = f.error_messages
+= form_for form, url: submit_path, method: method do |f|
+  = f.error_messages
 
-    .form-group
-      label.form-label From
-      = escort.move.from_establishment.name
+  .govuk-form-group
+    label.govuk-label From
+    = escort.move&.from_establishment&.name
 
-    .radio-concertina
-      .form-group
-        fieldset
-          legend
-            span.form-label-bold To
 
-          - form.sorted_destination_options.each do |option_details|
-            - option = option_details.first
-            - if option_details.last == :auto
-              = f.radio_concertina_option(:to_type, option) do
-                label.form-label for=option
-                  = t(option, scope: 'move.destination_types.prompts')
-                - if form.errors["to_#{option}"].any?
-                  .error
-                    .span.error-message
-                      = form.errors.full_messages_for("to_#{option}").join(', ')
-                    = f.select "to_#{option}", option.to_s.classify.constantize.pluck(:name), {include_blank: true}, { id: option }
-                - else
-                  = f.select "to_#{option}", option.to_s.classify.constantize.pluck(:name), {include_blank: true}, { id: option }
+  .govuk-form-group
+    fieldset.govuk-fieldset
+      legend.govuk-fieldset__legend
+        | To
 
-            - else
-              = f.radio_concertina_option(:to_type, option) do
-                label.form-label for="#{option}-text"
-                  = t(option, scope: 'move.destination_types.prompts')
-                = f.text_field_without_label "to_#{option}".to_sym, id: "#{option}-text"
+      .govuk-radios data-module="radios"
+        - form.sorted_destination_options.each do |option_details|
+          - option = option_details.first
+          - if option_details.last == :auto
+            = f.radio_concertina_option(:to_type, option) do
+              - select_tag = f.select "to_#{option}", option.to_s.classify.constantize.pluck(:name), {include_blank: true}, { id: option, class: 'govuk-select mps-autocomplete govuk-!-width-one-third' }
+              label.govuk-label for=option
+                = t(option, scope: 'move.destination_types.prompts')
+              - if form.errors["to_#{option}"].any?
+                .error
+                  .span.error-message
+                    = form.errors.full_messages_for("to_#{option}").join(', ')
+                  = select_tag
+              - else
+                = select_tag
 
-    = f.date_picker_text_field :date
-    = render 'shared/radio_date_picker', picker: RadioDatePickerPresenter.new('move[date]', form.date)
+          - else
+            = f.radio_concertina_option(:to_type, option) do
+              label.form-label for="#{option}-text"
+                = t(option, scope: 'move.destination_types.prompts')
+              = f.text_field_without_label "to_#{option}".to_sym, id: "#{option}-text"
+  .govuk-form-group
+    .date-picker
+      = f.date_picker_text_field :date
+      = render 'shared/radio_date_picker', picker: RadioDatePickerPresenter.new('move[date]', form.date)
 
-    = f.radio_toggle :not_for_release,
-      choices: f.object.toggle_choices do
-      = f.radio_toggle_with_textarea :not_for_release_reason,
-        legend: false,
-        choices: f.object.not_for_release_reasons,
-        inline_choices: false,
-        data: { 'toggle-field' => f.object.not_for_release_reason_with_details }
+  = f.radio_toggle :not_for_release,
+    choices: f.object.toggle_choices,
+    inline_choices: false,
+    toggle_options: ['yes'] do
+    = f.radio_toggle_with_textarea :not_for_release_reason,
+      legend: false,
+      choices: f.object.not_for_release_reasons,
+      inline_choices: false,
+      toggle_options: [f.object.not_for_release_reason_with_details]
 
-    = f.radio_toggle_with_textarea :require_special_vehicle,
-      legend_options: { class: 'form-label-bold' }
+  = f.radio_toggle_with_textarea :require_special_vehicle,
+    legend_options: { class: 'form-label-bold' },
+    inline_choices: false,
+    toggle_options: ['yes']
 
-    = f.radio_toggle_with_textarea :other_transport_requirements,
-      legend_options: { class: 'form-label-bold' }
+  = f.radio_toggle_with_textarea :other_transport_requirements,
+    legend_options: { class: 'form-label-bold' },
+    inline_choices: false,
+    toggle_options: ['yes']
 
-    .form-actions
-      = f.submit 'Save and continue', class: 'button'
+  .form-actions
+    = f.submit 'Save and continue', class: 'govuk-button'

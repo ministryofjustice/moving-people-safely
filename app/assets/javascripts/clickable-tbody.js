@@ -1,4 +1,10 @@
-$(document).on("click", ".tag-with-href-j", function(e) {
+'use strict';
+
+var clickableTbodyClass = 'tag-with-href-j';
+
+$('.' + clickableTbodyClass).addClass('clickable');
+
+$(document).on("click", "." + clickableTbodyClass, function(e) {
   if ($(e.target).is("a"))
     return;
   var url = $(this).data("href");

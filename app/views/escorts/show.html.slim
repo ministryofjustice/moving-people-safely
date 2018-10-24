@@ -2,28 +2,41 @@
   - breadcrumbs_for_page root: true do
     - breadcrumb escort_breadcrumb(escort)
 
-.escort.per-page.column-three-quarters
-  = render 'header', detainee: escort.detainee
+.govuk-grid-row
+  .escort.per-page.govuk-grid-column-three-quarters
+    = render 'header', detainee: escort.detainee
 
-  = render 'move'
+    hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible.mps-section-break
 
-  = render 'detainee'
+    = render 'move'
 
-  = render 'offences', offences: escort.offences, workflow: escort.offences_workflow
+    hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible.mps-section-break
 
-  = render 'assessment', assessment: escort.risk,
-                         model: Risk,
-                         not_started_path: (escort.from_prison? ? new_escort_risks_path(escort) : intro_escort_risks_path(escort)),
-                         summary_path: escort_risks_path(escort),
-                         section: escort.risk || escort.build_risk
+    = render 'detainee'
 
-  = render 'assessment', assessment: escort.healthcare,
-                         model: Healthcare,
-                         not_started_path: intro_escort_healthcare_path(escort),
-                         summary_path: escort_healthcare_path(escort),
-                         section: escort.healthcare || escort.build_healthcare
+    hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible.mps-section-break
 
-  = render 'actions'
+    = render 'offences', offences: escort.offences, workflow: escort.offences_workflow
 
-.column-one-quarter.side-profile.sticky
-  = render 'shared/detainee_sidebar'
+    hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible.mps-section-break
+
+    = render 'assessment', assessment: escort.risk,
+                           model: Risk,
+                           not_started_path: (escort.from_prison? ? new_escort_risks_path(escort) : intro_escort_risks_path(escort)),
+                           summary_path: escort_risks_path(escort),
+                           section: escort.risk || escort.build_risk
+
+    hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible.mps-section-break
+
+    = render 'assessment', assessment: escort.healthcare,
+                           model: Healthcare,
+                           not_started_path: intro_escort_healthcare_path(escort),
+                           summary_path: escort_healthcare_path(escort),
+                           section: escort.healthcare || escort.build_healthcare
+
+    hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible.mps-section-break
+
+    = render 'actions'
+
+  .govuk-grid-column-one-quarter.side-profile.sticky
+    = render 'shared/detainee_sidebar'

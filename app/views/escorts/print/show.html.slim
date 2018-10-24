@@ -6,11 +6,10 @@ html
 
   body
     main.inner-page
-      .grid-row.indicators.top-dotted
-        - escort.alerts.each do |alert_name, on|
-          .flag
+      .govuk-grid-row.indicators.top-dotted
+        ul.alerts
+          - escort.alerts.each do |alert_name, on|
             = render 'escorts/print/alert', alert_name: alert_name, on: on
-
       div#risk-section.section
         table#risk-table.section-table
           tr
@@ -50,11 +49,11 @@ html
               - if escort.from_police?
                 span.timestamp= t('assessment.approved_timestamp', name: escort.approver.full_name, time: escort.approved_at.to_s(:humanized))
           tr.top-dotted
-            td.column-30-percent
+            td.govuk-grid-column-30-percent
               = offences_label(escort.offences)
-            td.column-20-percent.indented
+            td.govuk-grid-column-20-percent.indented
               = offences_relevant(escort.offences)
-            td.column-50-percent
+            td.govuk-grid-column-50-percent
               = formatted_offences_list(escort.offences)
 
       - if escort.from_prison?

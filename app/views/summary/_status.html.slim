@@ -1,17 +1,17 @@
 header
-  h1 = workflow.title
+  h1.govuk-heading-l = workflow.title
 
   - if workflow.has_status?
-    h3
-      ' Status
+    h2.govuk-heading-m
+      | Status
       span.status-label class=("status-label--#{workflow.label_status}") = workflow.label
 
     - if workflow.needs_review?
       .alert--warning.review-warning
-        div.alert-sign
-          i.icon.icon-important
-            span.visually-hidden Warning
-        div.alert-content
-          span.bold-small = workflow.last_updated_info
-          br
-          span = workflow.up_to_date_warning
+        .govuk-warning-text
+          span.govuk-warning-text__icon aria-hidden="true"
+            | !
+          strong.govuk-warning-text__text
+            span.govuk-warning-text__assistive Warning
+            p.govuk-body-s class="govuk-!-font-weight-bold" = workflow.last_updated_info
+            p = workflow.up_to_date_warning

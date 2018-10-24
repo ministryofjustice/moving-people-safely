@@ -1,31 +1,30 @@
-.panel.panel-border-narrow
-  h2.heading-smaller
-    span.heading-bold = link_to_unless_current escort.number, escort
+h2.govuk-heading-m
+  span.heading-bold = link_to_unless_current escort.number, escort
+  br
+  span.heading-bold = escort.detainee.surname
+  br
+  span.heading-light = escort.detainee.forenames
+
+.escort-image-wrapper
+  - if escort.detainee.image.present?
+    .image.detainee-image
+      = image_tag escort_detainee_image_path(escort, format: :jpg), size: '128x180'
+  - else
+    .no-image
+      span = 'Photo unavailable'
+
+- if escort.move
+  p
+    span.govuk-body-s Date of travel
     br
-    span.heading-bold = escort.detainee.surname
+    span.side-profile__value = escort.move.date&.to_s(:humanized)
+
+  p
+    span.govuk-body-s From
     br
-    span.heading-light = escort.detainee.forenames
+    span.side-profile__value = from(escort.move)
 
-  .escort-image-wrapper
-    - if escort.detainee.image.present?
-      .image.detainee-image
-        = image_tag escort_detainee_image_path(escort, format: :jpg), size: '128x180'
-    - else
-      .no-image
-        span = 'Photo unavailable'
-
-  - if escort.move
-    p
-      span.font-xsmall Date of travel
-      br
-      span.side-profile__value = escort.move.date&.to_s(:humanized)
-
-    p
-      span.font-xsmall From
-      br
-      span.side-profile__value = from(escort.move)
-
-    p
-      span.font-xsmall To
-      br
-      span.side-profile__value = escort.move.to
+  p
+    span.govuk-body-s To
+    br
+    span.side-profile__value = escort.move.to

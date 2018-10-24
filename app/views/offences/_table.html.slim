@@ -1,11 +1,11 @@
-table#offences-table
-  thead
-    tr
-      th Offence
-      th Case Reference
+table#offences-table.govuk-table
+  thead.govuk-table__head
+    tr.govuk-table__row
+      th.govuk-table__header scope="col" Offence
+      th.govuk-table__header scope="col" Case Reference
   - escort.offences.each do |offence|
-    tr
-      td = offence.offence
-      td = offence.case_reference
+    tr.govuk-table__row
+      td.govuk-table__cell = offence.offence
+      td.govuk-table__cell = offence.case_reference
 p
-  = link_to 'View PER', escort_path(escort), class: 'button'
+  = link_to 'View PER', escort_path(escort), class: 'govuk-button'

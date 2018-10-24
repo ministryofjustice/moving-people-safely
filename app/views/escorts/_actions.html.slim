@@ -1,15 +1,15 @@
 ul.actions
   - if escort.editable? && escort.completed? && current_user.sergeant?
     li
-      = link_to('Approve PER', confirm_approve_escort_path(escort), class: 'button')
+      = link_to('Approve PER', confirm_approve_escort_path(escort), class: 'govuk-button')
   - elsif escort.issued?
     li
-      = link_to('Reprint', new_escort_print_path(escort), class: 'button button-print')
+      = link_to('Reprint', new_escort_print_path(escort), class: 'govuk-button button-print')
   - elsif (escort.editable? && escort.completed? && current_user.prison_officer?) || escort.approved?
     li
-      = link_to_print_in_new_window(escort, styles: 'button button-print')
+      = link_to_print_in_new_window(escort, styles: 'govuk-button button-print')
   - if !escort.cancelled? && !escort.expired? && !current_user.court?
     li
-      = link_to('Cancel PER', confirm_cancel_escort_path(escort), class: 'button')
+      = link_to('Cancel PER', confirm_cancel_escort_path(escort), class: 'govuk-button')
   li.link-return-home
     = link_to "Return to home", root_path

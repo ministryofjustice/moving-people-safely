@@ -2,14 +2,14 @@ header
   h1 Where do you work?
 
 = form_for @form, url: change_court_path do |f|
-  .radio-concertina
-    .form-group
-      fieldset
+  .govuk-form-group
+    fieldset.govuk-fieldset
+      .govuk-radios data-module="radios"
         - %i[crown_court magistrates_court].each do |option|
           = f.radio_concertina_option(:to_type, option) do
             label.form-label for=option
               = t(option, scope: 'move.destination_types.prompts')
-            = f.select "#{option}_id", option.to_s.classify.constantize.pluck(:name, :id), {include_blank: true}, { id: option }
+            = f.select "#{option}_id", option.to_s.classify.constantize.pluck(:name, :id), {include_blank: true}, { id: option, class: 'govuk-select mps-autocomplete govuk-!-width-one-third' }
 
   .form-actions
-    = f.submit 'Save and continue', class: 'button'
+    = f.submit 'Save and continue', class: 'govuk-button'

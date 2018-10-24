@@ -1,0 +1,63 @@
+.padded {
+  padding: $padding-large $padding-unit;
+}
+
+.no-script {
+  display: none;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.questions-nav {
+  margin-top: 2 * $margin-unit;
+  margin-bottom: 4 * $margin-unit;
+
+  span {
+    margin-right: 10px;
+  }
+  .current-question {
+    color: grey;
+  }
+}
+
+// Javascript helper - makes it slightly easier to include non-JS specific styles
+// in your component style blocks.
+
+// Usage: write base styles for site with no JS, then add js-only styles on top.
+//
+// .object {
+//   display: none;
+//
+//   @include js-only {
+//     display: block;
+//   }
+// }
+
+@mixin js-only {
+  .js-enabled & {
+    @content;
+  }
+}
+
+.mps-hide {
+  @include js-only {
+    left: -1000px;
+    position: absolute;
+    visibility: hidden;
+  }
+}
+
+.data-item {
+  display: block;
+  line-height: 1;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}

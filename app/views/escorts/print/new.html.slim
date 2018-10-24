@@ -3,16 +3,17 @@
     - breadcrumb escort_breadcrumb(@escort), escort_path(@escort)
 
 .escort.per-page
-  h1
+  h1.govuk-heading-l
     = t('.reprint_per_for')
     br
     = "#{identifier(@escort)} #{@escort.detainee_forenames}"
 
-  p.font-large
+  p.govuk-body-l class="govuk-!-font-size-36"
     = @escort.move_date
 
-  ul.actions
-    li
-      = link_to_print_in_new_window(@escort, text: t('.reprint_this_per'), styles: 'button button-print')
-    li
-      = link_to t('.do_not_reprint_per'), escort_path(@escort), class: 'button button-secondary'
+  .govuk-form-group
+    ul.actions
+      li
+        = link_to_print_in_new_window(@escort, text: t('.reprint_this_per'), styles: 'govuk-button button-print')
+      li
+        = link_to t('.do_not_reprint_per'), escort_path(@escort), class: 'govuk-button button-secondary'

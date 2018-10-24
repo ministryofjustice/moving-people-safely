@@ -1,31 +1,33 @@
-h2.heading-small Search result
-table
-  tr
-    th Prison number
-    th Name
-    th Date of birth
-    th Destination
-    th Move date
-  tr
-    td = link_to(@escort.number, escort_path(@escort))
-    - if @escort.detainee
-      td
-        span.strong-text
-          | #{@escort.detainee.surname}
-        span
-          |  #{@escort.detainee.forenames}
-      td = @escort.detainee.date_of_birth&.to_s(:humanized)
-    - else
-      td colspan=2
+h2.govuk-heading-s Search result
+table.govuk-table
+  thead.govuk-table__head
+    tr.govuk-table__row
+      th.govuk-table__header Prison number
+      th.govuk-table__header Name
+      th.govuk-table__header Date of birth
+      th.govuk-table__header Destination
+      th.govuk-table__header Move date
+  tbody.govuk-table__body
+    tr.govuk-table__row
+      td.govuk-table__cell = link_to(@escort.number, escort_path(@escort))
+      - if @escort.detainee
+        td.govuk-table__cell
+          span.strong-text
+            | #{@escort.detainee.surname}
+          span
+            |  #{@escort.detainee.forenames}
+        td.govuk-table__cell = @escort.detainee.date_of_birth&.to_s(:humanized)
+      - else
+        td.govuk-table__cell colspan=2
 
-    - if @escort.move
-      td = @escort.move.to
-      td = @escort.move.date&.to_s(:humanized)
-    - else
-      td colspan=2
+      - if @escort.move
+        td.govuk-table__cell = @escort.move.to
+        td.govuk-table__cell = @escort.move.date&.to_s(:humanized)
+      - else
+        td.govuk-table__cell colspan=2
 
 .form-wrapper
   - if @escort.issued?
     = render 'new_escort_form'
   - else
-    = link_to('Continue PER', escort_path(@escort), class: 'button')
+    = link_to('Continue PER', escort_path(@escort), class: 'govuk-button')

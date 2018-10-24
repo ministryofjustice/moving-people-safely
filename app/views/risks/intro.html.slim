@@ -3,19 +3,20 @@
     - breadcrumb escort_breadcrumb(escort), escort_path(escort)
     - breadcrumb t('.breadcrumb')
 
-.column-two-thirds
-  h1 = t('.title')
+.govuk-grid-row
+  .govuk-column-two-thirds
+    h1.govuk-heading-l = t('.title')
 
-  - t('.content').each_line do |paragraph|
-    p = paragraph
+    - t('.content').each_line do |paragraph|
+      p = paragraph
 
-  - if t('.note').present?
-    ul.list.list-bullet
-      - t('.list_items').each_line do |item|
-        li = item
+    - if t('.note').present?
+      ul.govuk-list.govuk-list--bullet
+        - t('.list_items').each_line do |item|
+          li = item
 
-  p = t('.ending_paragraph')
+    p = t('.ending_paragraph')
 
-  .form-group
-    p
-      = link_to 'Continue', assessment_wizard_path(assessment), class: 'button'
+    .govuk-form-group
+      p
+        = link_to 'Continue', assessment_wizard_path(assessment), class: 'govuk-button'

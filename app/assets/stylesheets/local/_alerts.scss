@@ -1,0 +1,58 @@
+@mixin alert-variant($border, $bg) {
+  border: 1px solid $border;
+  background-color: $bg;
+}
+
+.alert {
+  @extend .padded;
+
+  b {
+    font-weight: bold;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+}
+
+.alert--notice {
+  @include alert-variant(#F4D188, #FAF2C5)
+}
+
+.alert--warning {
+  background-color: #FAF1C5;
+}
+
+.alert--alert {
+  @include alert-variant(#F4D188, #FAF1C5)
+}
+
+.alert--error {
+  border: 5px solid #B10E1E;
+  color: #B10E1E;
+  font-weight: bold;
+}
+
+.alert--warning {
+  @extend .govuk-body;
+
+  .summary & {
+    padding: 20px;
+    margin: 20px 0px;
+    min-height: 50px;
+  }
+
+  .govuk-warning-text {
+    margin-bottom: 0;
+    padding: 0;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  input[type="button"],
+  input[type="submit"] {
+    margin-bottom: 0;
+  }
+}

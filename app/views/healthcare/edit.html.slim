@@ -4,11 +4,12 @@
     - breadcrumb 'Healthcare summary', escort_healthcare_path(escort)
     - breadcrumb location_text(t("healthcare.form.title.#{form.name}"), escort.location)
 
-.column-three-quarters
-  = render 'shared/wizard_header'
+.govuk-grid-row
+  .govuk-grid-column-three-quarters
+    = render 'shared/wizard_header'
 
-  .healthcare
-    = render 'shared/wizard_step_form', scope: 'healthcare', method: :put
+    .healthcare
+      = render 'shared/wizard_step_form', scope: 'healthcare', method: :put
 
-.column-one-quarter.side-profile.sticky
-  = render 'shared/detainee_sidebar'
+  .govuk-grid-column-one-quarter.side-profile.sticky
+    = render 'shared/detainee_sidebar'

@@ -1,10 +1,11 @@
-.no-script
-  .form-group.date-radios
-    fieldset.inline
-      legend.visuallyhidden Datepicker shortcuts
-      .multiple-choice
-        = radio_button_tag picker.attr, picker.today, picker.today?, class: 'radio-date-selector', disabled: true
-        = label_tag picker.today_label, 'Today', class: 'block-label'
-      .multiple-choice
-        = radio_button_tag picker.attr, picker.tomorrow, picker.tomorrow? , class: 'radio-date-selector', disabled: true
-        = label_tag picker.tomorrow_label, 'Tomorrow', class: 'block-label'
+
+.govuk-form-group.date-radios.no-script
+  fieldset.govuk-fieldset
+    legend.govuk-visually-hidden Datepicker shortcuts
+    .govuk-radios.govuk-radios--inline
+      .govuk-radios__item
+        = radio_button_tag picker.attr, picker.today, picker.today?, class: 'govuk-radios__input radio-date-selector', disabled: true
+        = label_tag picker.today_label, 'Today', class: 'govuk-label govuk-radios__label'
+      .govuk-radios__item
+        = radio_button_tag picker.attr, picker.tomorrow, picker.tomorrow? , class: 'govuk-radios__input radio-date-selector', disabled: true
+        = label_tag picker.tomorrow_label, 'Tomorrow', class: 'govuk-label govuk-radios__label'

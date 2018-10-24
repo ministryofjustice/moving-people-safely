@@ -3,22 +3,24 @@
     - breadcrumb escort_breadcrumb(escort), escort_path(escort)
     - breadcrumb 'Offences'
 
-.column-three-quarters
-  .offences.per-section-page
-    - if offences_workflow.needs_review?
-      header
-        h1 Review before you save and continue
-        p#offences-status
-          ' Status
-          span.status-label.status-label--incomplete Review
-    - else
-      header
-        h1 Current offences
+.govuk-grid-row
 
-    - if can? :update, offences_workflow
-      = render 'form'
-    - else
-      = render 'table'
+  .govuk-grid-column-three-quarters
+    .offences.per-section-page
+      - if offences_workflow.needs_review?
+        header
+          h1.govuk-heading-l Review before you save and continue
+          p#offences-status
+            ' Status
+            span.status-label.status-label--incomplete Review
+      - else
+        header
+          h1.govuk-heading-l Current offences
 
-.column-one-quarter.side-profile.sticky
-  = render 'shared/detainee_sidebar'
+      - if can? :update, offences_workflow
+        = render 'form'
+      - else
+        = render 'table'
+
+  .govuk-grid-column-one-quarter.side-profile.sticky
+    = render 'shared/detainee_sidebar'
