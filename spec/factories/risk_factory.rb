@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :risk do
     acct_status { 'open' }
     self_harm { 'no' }
+    observation_level { 'level1' }
 
     csra { 'standard' }
     rule_45 { 'no' }
@@ -47,6 +48,11 @@ FactoryBot.define do
     other_risk { 'no' }
 
     status { :incomplete }
+
+    trait :with_high_observation_level do
+      observation_level { 'level3' }
+      observation_level_details { 'high observation' }
+    end
 
     trait :with_high_csra do
       csra { 'high' }

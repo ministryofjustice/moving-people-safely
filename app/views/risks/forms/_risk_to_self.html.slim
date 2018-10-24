@@ -11,3 +11,10 @@
   legend_options: { class: 'form-label-assessment' },
   inline_choices: false,
   toggle_options: ['yes']
+
+- if escort.from_police?
+  = f.radio_toggle_with_textarea :observation_level,
+    choices: f.object.observation_levels,
+    inline_choices: false,
+    legend_options: { class: 'form-label-assessment' },
+    data: {toggle_field: 'level[234]'}

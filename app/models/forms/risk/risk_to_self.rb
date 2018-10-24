@@ -22,12 +22,26 @@ module Forms
 
       options_field_with_details :self_harm
 
+      OBSERVATION_LEVELS = %w[level1 level2 level3 level4].freeze
+      OBSERVATION_LEVELS_REQUIRING_DETAILS = %w[level2 level3 level4].freeze
+
+      options_field :observation_level, options: :observation_levels, if: :from_police?
+
+      property :observation_level_details, type: StrictString
+      validates :observation_level_details,
+        presence: true,
+        if: -> { OBSERVATION_LEVELS_REQUIRING_DETAILS.include?(observation_level) }
+
       def acct_statuses
         ACCT_STATUSES
       end
 
       def acct_status_with_details
         ACCT_STATUS_WITH_DETAILS
+      end
+
+      def observation_levels
+        OBSERVATION_LEVELS
       end
     end
   end
