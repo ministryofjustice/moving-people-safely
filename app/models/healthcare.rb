@@ -24,9 +24,21 @@ class Healthcare < ApplicationRecord
   end
 
   def relevant_questions
-    Healthcare.mandatory_questions(location).select do |question|
+    mandatory_questions_for_gender.select do |question|
       answer = public_send(question)
       answer == 'yes' || (answer.present? && answer != 'no')
     end
+  end
+
+  def all_questions_answered?
+    mandatory_questions_for_gender.all? do |question|
+      public_send(question).present?
+    end
+  end
+
+  def mandatory_questions_for_gender
+    original = Healthcare.mandatory_questions(location)
+    return original if escort&.detainee&.female?
+    original - %w[pregnant female_hygiene_kit]
   end
 end

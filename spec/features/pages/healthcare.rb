@@ -6,16 +6,16 @@ module Page
       end
     end
 
-    def complete_forms(healthcare)
+    def complete_forms(healthcare, gender = 'female')
       @hc = healthcare
       continue_from_intro
-      fill_in_physical
+      fill_in_physical(gender)
       fill_in_mental
       fill_in_transport
       fill_in_needs
       fill_in_dependencies
       fill_in_allergies
-      fill_in_social
+      fill_in_social(gender)
       fill_in_contact
     end
 
@@ -23,11 +23,12 @@ module Page
       click_link 'Continue'
     end
 
-    def fill_in_physical
+    def fill_in_physical(gender)
       if @hc.location == 'prison'
         fill_in_optional_details('Do they have physical health needs that might affect them while they are out of prison?', @hc, :physical_issues)
+        expect(page).not_to have_text('Are they pregnant')
       elsif @hc.location == 'police'
-        fill_in_optional_details('Are they pregnant?', @hc, :pregnant)
+        fill_in_optional_details('Are they pregnant?', @hc, :pregnant) if gender == 'female'
         fill_in_optional_details('Do they have any physical health needs that might affect them when they leave police custody?', @hc, :physical_issues)
       end
       click_button 'Save and continue'
@@ -70,12 +71,13 @@ module Page
       save_and_continue
     end
 
-    def fill_in_social
+    def fill_in_social(gender)
       if @hc.location == 'prison'
         fill_in_optional_details('Will they need help with personal tasks while they are out of prison?', @hc, :personal_care)
+        expect(page).not_to have_text('female hygiene kit')
       elsif @hc.location == 'police'
         fill_in_optional_details('Will they need help with personal tasks when they leave police custody?', @hc, :personal_care)
-        fill_in_optional_details('Do they need a female hygiene kit?', @hc, :female_hygiene_kit)
+        fill_in_optional_details('Do they need a female hygiene kit?', @hc, :female_hygiene_kit) if gender == 'female'
       end
       click_button 'Save and continue'
     end
