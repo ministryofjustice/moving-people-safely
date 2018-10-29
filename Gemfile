@@ -6,7 +6,6 @@ gem 'aws-sdk-s3'
 gem 'bootsnap', require: false
 gem 'cancancan'
 gem 'connection_pool'
-gem 'countries'
 gem 'custom_error_message', git: 'https://github.com/thethanghn/custom-err-msg.git'
 gem 'datafix', git: 'https://github.com/Casecommons/datafix.git'
 gem 'deep_cloneable'
