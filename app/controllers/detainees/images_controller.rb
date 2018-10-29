@@ -4,6 +4,7 @@ module Detainees
 
     def show
       return head(:not_found) unless detainee&.image.present?
+
       send_data image, type: 'image/jpeg', disposition: 'inline'
     end
 

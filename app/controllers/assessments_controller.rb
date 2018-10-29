@@ -71,6 +71,7 @@ class AssessmentsController < ApplicationController
 
   def form_params
     return {} unless params[step]
+
     params[step].permit!
   end
 
@@ -96,6 +97,7 @@ class AssessmentsController < ApplicationController
 
   def add_multiples
     return unless params.key? "#{multiples[:section]}_add_#{multiples[:field]}"
+
     form.deserialize form_params
     form.public_send("add_#{multiples[:field]}")
     view = params[:action] == 'create' ? :new : :edit

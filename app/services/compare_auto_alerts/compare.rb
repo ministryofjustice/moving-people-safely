@@ -68,6 +68,7 @@ module CompareAutoAlerts
 
     def self.days_since_moved(escort)
       return nil unless escort.move
+
       (Date.today - escort.move.date).to_i
     end
 
@@ -82,11 +83,13 @@ module CompareAutoAlerts
 
     def self.outcome(human, auto)
       return 'MATCH' if human == auto
+
       truthy?(human) && !truthy?(auto) ? 'FALSE_NEGATIVE' : 'DIFFER'
     end
 
     def self.truthy?(expr)
       return expr if [TrueClass, FalseClass].include?(expr.class)
+
       /yes|true/i =~ expr
     end
   end

@@ -14,6 +14,7 @@ module Forms
 
       def csra_choices
         return PRISON_CSRA_CHOICES if from_prison?
+
         POLICE_CSRA_CHOICES
       end
     end

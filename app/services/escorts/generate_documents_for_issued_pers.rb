@@ -18,6 +18,7 @@ module Escorts
 
       def call
         return if escort.document_updated_at
+
         logger.info "Generating and storing document for Escort with id #{escort.id}"
         generate_and_store
       end
@@ -46,6 +47,7 @@ module Escorts
 
       def delete_temp_file
         return unless issued_per_document
+
         issued_per_document.close
         issued_per_document.unlink
       end

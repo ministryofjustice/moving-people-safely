@@ -6,6 +6,7 @@ module EscortsHelper
   def ethnicity(detainee)
     if detainee.ethnicity.present?
       return 'White: British' if detainee.ethnicity == 'White: Eng./Welsh/Scot./N.Irish/British'
+
       detainee.ethnicity
     else
       'None'
@@ -14,21 +15,25 @@ module EscortsHelper
 
   def short_ethnicity(detainee)
     return 'White: British' if detainee.ethnicity == 'White: Eng./Welsh/Scot./N.Irish/British'
+
     detainee.ethnicity
   end
 
   def aliases(detainee)
     return %w[None] unless detainee.aliases.present?
+
     detainee.aliases.split(',').map(&:strip)
   end
 
   def nationalities(detainee)
     return %w[None] unless detainee.nationalities.present?
+
     detainee.nationalities.split(',').map(&:strip)
   end
 
   def expanded_interpreter_required(detainee)
     return 'Not required' if detainee.interpreter_required == 'no'
+
     detainee.interpreter_required&.capitalize
   end
 
@@ -47,6 +52,7 @@ module EscortsHelper
   def not_for_release_text(move)
     return 'Contact the prison to confirm release' if move.not_for_release == 'no'
     return move.not_for_release_reason_details.humanize if move.not_for_release_reason == 'other'
+
     move.not_for_release_reason&.humanize
   end
 
@@ -61,6 +67,7 @@ module EscortsHelper
 
   def formatted_offences_list(offences)
     return if offences.empty?
+
     safe_join(offences.map do |item|
       array = [item.offence]
       array << "(#{item.case_reference})" if item.respond_to?(:case_reference) && item.case_reference.present?

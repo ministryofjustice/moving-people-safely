@@ -3,6 +3,7 @@ module Detainees
     def call
       with_error_handling do
         return empty_response unless prison_number.present?
+
         fetch_image
         image_response
       end
@@ -17,6 +18,7 @@ module Detainees
 
     def image_response
       return error_response('not_found') unless response['image'].present?
+
       successful_response(response)
     end
   end

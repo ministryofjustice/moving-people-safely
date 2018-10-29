@@ -49,6 +49,7 @@ class EscortCreator
 
   def existent_escort
     return @existent_escort if @existent_escort
+
     @existent_escort = Escort.uncancelled
     @existent_escort = @existent_escort.from_prison.find_by(prison_number: prison_number) if prison_number.present?
     @existent_escort = @existent_escort.from_police.find_by(pnc_number: pnc_number) if pnc_number.present?

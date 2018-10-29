@@ -11,6 +11,7 @@ class AuthorizeUserToAccessPrisoner
   def call
     return true if user.admin? || user.court? || user.police?
     return true unless prisoner_location
+
     user.authorized_establishments.include?(prisoner_location)
   end
 
@@ -21,6 +22,7 @@ class AuthorizeUserToAccessPrisoner
   def prisoner_location
     response = Detainees::LocationFetcher.new(prison_number).call
     return false unless response.to_h[:code]
+
     Establishment.find_by(nomis_id: response.to_h[:code])
   end
 end

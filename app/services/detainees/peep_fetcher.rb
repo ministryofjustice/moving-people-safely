@@ -3,6 +3,7 @@ module Detainees
     def call
       with_error_handling do
         return empty_response unless prison_number.present?
+
         fetch_alerts
         successful_response(peep_attrs)
       end
