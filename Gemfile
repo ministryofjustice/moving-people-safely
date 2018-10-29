@@ -58,7 +58,6 @@ group :test do
   gem 'database_cleaner'
   gem 'diffy'
   gem 'launchy'
-  gem 'rspec-its'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   # TODO: update to 4.x once issue resolved https://github.com/thoughtbot/shoulda-matchers/issues/1146
