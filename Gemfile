@@ -7,7 +7,6 @@ gem 'bootsnap', require: false
 gem 'cancancan'
 gem 'connection_pool'
 gem 'custom_error_message', git: 'https://github.com/thethanghn/custom-err-msg.git'
-gem 'datafix', git: 'https://github.com/Casecommons/datafix.git'
 gem 'deep_cloneable'
 gem 'excon'
 gem 'faraday'

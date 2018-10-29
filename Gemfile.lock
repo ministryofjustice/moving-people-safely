@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/Casecommons/datafix.git
-  revision: 0b8225327fb1b2d4affa73bc4971a21ae3ec7fa7
-  specs:
-    datafix (0.0.2)
-      activerecord
-      pg
-      railties
-
-GIT
   remote: https://github.com/thethanghn/custom-err-msg.git
   revision: b913309360995472507ea444c6f1a80315b99d28
   specs:
@@ -411,7 +402,6 @@ DEPENDENCIES
   codeclimate-test-reporter
   connection_pool
   custom_error_message!
-  datafix!
   deep_cloneable
   excon
   factory_bot_rails
