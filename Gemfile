@@ -35,8 +35,6 @@ gem 'zendesk_api'
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'jasmine'
-  gem 'jasmine-jquery-rails'
   gem 'pdftotext'
   gem 'pry-byebug'
   gem 'pry-rails'
