@@ -340,9 +340,6 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
-    site_prism (3.0)
-      addressable (~> 2.5)
-      capybara (>= 2.17, < 4.0)
     slim (4.0.1)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -443,7 +440,6 @@ DEPENDENCIES
   sentry-raven
   shoulda-matchers!
   simplecov
-  site_prism
   slim-rails
   spring
   spring-watcher-listen
