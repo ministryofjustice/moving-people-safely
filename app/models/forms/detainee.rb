@@ -16,7 +16,7 @@ module Forms
     property :language,                     type: StrictString
     property :security_category,            type: StrictString
     property :diet,                         type: StrictString
-    options_field :interpreter_required, allow_blank: true
+    property :interpreter_required,         type: StrictString
     property :interpreter_required_details, type: StrictString
     options_field_with_details :peep, allow_blank: true
     property :image_filename
@@ -24,10 +24,16 @@ module Forms
 
     validates :surname, :forenames, presence: true
 
+    validates :pnc_number, :nationalities, presence: true, if: :from_police?
+
+    validates :date_of_birth, date: { not_in_the_future: true }
+
     validates :gender,
       inclusion: { in: GENDERS }
 
-    validates :date_of_birth, date: { not_in_the_future: true }
+    validates :interpreter_required,
+      inclusion: { in: TOGGLE_CHOICES },
+      if: :from_police?
 
     validates :interpreter_required_details, presence: true, if: -> { interpreter_required == 'yes' && from_police? }
 

@@ -33,7 +33,7 @@
           legend_options: { class: 'govuk-label' }
 
       .govuk-form-group
-        label.govuk-label for='auto_ethnicity' Ethnicity
+        label.govuk-label for='auto_ethnicity' Ethnicity #{' (Optional)' if escort.from_police?}
         = f.select :ethnicity, Detainee::ETHNICITY_CODES, {include_blank: true}, {id: 'auto_ethnicity', class: 'govuk-select mps-autocomplete govuk-!-width-one-third'}
 
       - if escort.from_prison?
@@ -61,7 +61,7 @@
           toggle_options: ['yes']
       - if escort.from_prison?
         = f.text_field :security_category
-      = f.text_field :diet
+      = f.text_area :diet
 
       .form-actions
         = f.submit 'Save and continue', class: 'govuk-button'

@@ -24,8 +24,10 @@ en:
           prison: Do they have any addictions or dependencies that might affect them while they are out of prison?
           police: Do they have any addictions or dependencies that might affect them when they leave police custody?
       detainee:
-        peep: Do they have a Personal Emergency Evacuation Plan?
-        interpreter_required: Do they require an interpreter?
+        peep: Do they have a Personal Emergency Evacuation Plan? (Optional)
+        interpreter_required:
+          prison: Do they require an interpreter? (Optional)
+          police: Do they require an interpreter?
       discrimination:
         discrimination_to_other_religions: 'Are they a risk to other religions?'
         homophobic: Are they a risk to lesbian, gay, bisexual, transgender, transexual or queer (LGBTQ) people?
@@ -141,14 +143,17 @@ en:
         dependencies: "the addictions or dependencies question"
         dependencies_details: details of addictions or dependencies
       detainee:
-        surname: Surname
+        aliases: Aliases (Optional)
+        diet: Dietary requirements (Optional)
+        cro_number: CRO number (Optional)
+        ethnicity: Ethnicity (Optional)
         forenames: First name(s)
-        nationalities: Nationalities
-        pnc_number: PNC number
-        cro_number: CRO number
         gender: Gender
-        aliases: Aliases
-        language: Preferred language
+        language: Preferred language (Optional)
+        nationalities: Nationalities
+        prison_number: Prison number (Optional)
+        pnc_number: PNC number
+        surname: Surname
       detainee_search:
         prison_number: Enter a prisoner number
       discrimination:
@@ -393,7 +398,9 @@ en:
           police_html: 'In the arrest record, check for the <i>Sex offender</i> warning marker.'
       move:
         date: DD/MM/YYYY
-        not_for_release_html: In NOMIS, check the header section of the prisoner’s record for the <i>Not For Release</i> alert.
+        not_for_release:
+          prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Not For Release</i> alert.
+          police: ''
         not_for_release_reason_details: Give details of why the detainee is not for release
         require_special_vehicle: This could be a specially-adapted prison van (for example, to accommodate wheelchairs) or a taxi
         require_special_vehicle_details: Please explain why they need a special vehicle
