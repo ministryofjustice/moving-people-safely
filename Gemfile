@@ -55,6 +55,7 @@ group :test do
   gem 'codeclimate-test-reporter', require: nil
   gem 'launchy'
   gem 'rspec-rails'
+  gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
   # TODO: update to 4.x once issue resolved https://github.com/thoughtbot/shoulda-matchers/issues/1146
   gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers', ref: '43f4252'
