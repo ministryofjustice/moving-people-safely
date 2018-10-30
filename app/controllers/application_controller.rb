@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
 
   def redirect_unless_document_editable
     return if can? :update, escort
+
     redirect_back(fallback_location: root_path, alert: t('alerts.escort.edit.unauthorized'))
   end
 
@@ -22,6 +23,7 @@ class ApplicationController < ActionController::Base
 
   def authorize_prison_officer!
     return if AuthorizeUserToAccessPrisoner.call(current_user, prison_number)
+
     establishments = current_user.authorized_establishments.map(&:name).join(' or ')
     flash[:error] = t('alerts.detainee.access.unauthorized', establishments: establishments)
     redirect_to(root_path)
@@ -29,6 +31,7 @@ class ApplicationController < ActionController::Base
 
   def authorize_user_to_access_escort!
     return if can? :read, escort
+
     flash[:error] = t('alerts.escort.access.unauthorized')
     redirect_to root_path
   end

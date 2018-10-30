@@ -35,6 +35,7 @@ module Detainees
 
     def mapped_dob
       return unless dob.present?
+
       Date.parse(dob).strftime('%d/%m/%Y')
     rescue
       nil
@@ -63,6 +64,7 @@ module Detainees
     def mapped_names(names)
       present_names = names.select(&:present?)
       return if present_names.empty?
+
       present_names.join(' ').upcase
     end
 
@@ -88,6 +90,7 @@ module Detainees
 
     def interpreter_required
       return 'yes' if details.dig(:language, :interpreter_required)
+
       'no' if details.dig(:language, :interpreter_required) == false
     end
 
@@ -101,6 +104,7 @@ module Detainees
 
     def mapped_aliases
       return if aliases.empty?
+
       aliases.map do |a|
         names = [a['given_name'], a['middle_names'], a['surname']]
         mapped_names(names)

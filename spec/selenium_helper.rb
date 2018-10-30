@@ -1,6 +1,5 @@
 require 'feature_helper'
 require 'capybara/rspec'
-require 'database_cleaner'
 require 'selenium/webdriver'
 
 Capybara.register_driver :chrome do |app|
@@ -21,18 +20,6 @@ Capybara.default_driver = (ENV.fetch('HEADLESS_FEATURES', 'true') == 'true' ? :h
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
-
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-  end
-
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
-    DatabaseCleaner.clean
-  end
 end
 
 module SlowItDown

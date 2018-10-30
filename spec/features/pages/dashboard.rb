@@ -1,36 +1,5 @@
-class DetaineeSearchResultsSection < SitePrism::Section
-  element :profile_link, 'td:n-th-child(0) a'
-  element :detainee_name, 'td:nth-child(1)'
-  element :dob, 'td:nth-child(2)'
-  element :destination, 'td:nth-child(3)'
-  element :move_date, 'td:nth-child(4)'
-end
-
-class DatePickerSection < SitePrism::Section
-  element :date_field, 'input[type="text"]'
-  element :date_submit_button, 'input[value="Go"]'
-  element :back_a_day_button, 'input[value="<"]'
-  element :today_button, 'input[value="today"]'
-  element :forward_a_day_button, 'input[value=">"]'
-end
-
 module Page
-  class Dashboard < SitePrism::Page
-    include FactoryBot::Syntax::Methods
-    include RSpec::Matchers
-    include Capybara::DSL
-
-    delegate :within, to: :Capybara
-
-    set_url '/'
-    sections :search_results, DetaineeSearchResultsSection, '.search_module table tr'
-
-    section :date_picker, DatePickerSection, '.date-picker'
-
-    element :search_field, '.search_module input#forms_search_prison_number'
-    element :search_button, '.search_module input.search_button'
-    element :search_escorts_due_button, '.search-header button.go'
-
+  class Dashboard < Base
     def search_escorts_due_on(date)
       begin
         page.execute_script("$('#escorts_due_on').datepicker('setDate', '#{date}')")
@@ -38,12 +7,6 @@ module Page
         fill_in 'escorts_due_on', with: date
       end
       click_button 'Go'
-    end
-
-    def choose_detainee(prison_number)
-      within "#prison_number_#{prison_number}" do
-        click_link "#{prison_number}"
-      end
     end
 
     def click_start_a_per

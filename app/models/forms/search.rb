@@ -3,8 +3,8 @@ module Forms
     include ActiveModel::Validations
     include ActiveModel::Conversion
 
-    PRISON_NUMBER_REGEX = /\A[a-z]\d{4}[a-z]{2}\z/i
-    POLICE_NUMBER_REGEX = /\d{2}\/\d{6}[a-z]\z/i
+    PRISON_NUMBER_REGEX = /\A[a-z]\d{4}[a-z]{2}\z/i.freeze
+    POLICE_NUMBER_REGEX = /\d{2}\/\d{6}[a-z]\z/i.freeze
 
     attr_accessor :prison_number, :pnc_number
 
@@ -27,6 +27,7 @@ module Forms
 
     def identifier_type
       return 'PNC number' if pnc_number
+
       'prison number'
     end
 

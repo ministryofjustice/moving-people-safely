@@ -14,11 +14,13 @@ module Summary
 
     def title
       return default_title if escort.issued? || !status.present?
+
       t("summary.status.#{status}.title")
     end
 
     def label
       return unless status
+
       t("summary.status.#{status}.label")
     end
 
@@ -55,6 +57,7 @@ module Summary
 
     def set_status
       return unless %w[incomplete needs_review confirmed].include?(section.status)
+
       section.status
     end
 

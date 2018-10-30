@@ -31,6 +31,7 @@ class SessionsController < ApplicationController
 
   def logout_url
     return root_url unless sso_identity
+
     url = URI.parse(sso_identity.logout_url)
     url.query = { redirect_to: root_url }.to_query
     url.to_s

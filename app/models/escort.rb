@@ -75,6 +75,7 @@ class Escort < ApplicationRecord
 
   def cancel!(user, reason)
     raise AlreadyCancelledError if cancelled?
+
     update_attributes!(canceller_id: user.id, cancelling_reason: reason, cancelled_at: Time.now.utc)
   end
 
@@ -84,6 +85,7 @@ class Escort < ApplicationRecord
 
   def approve!(user)
     raise AlreadyApprovedError if approved?
+
     update_attributes!(approver_id: user.id, approved_at: Time.now.utc)
   end
 
@@ -93,6 +95,7 @@ class Escort < ApplicationRecord
 
   def issue!
     raise AlreadyIssuedError if issued?
+
     update_attribute(:issued_at, Time.now.utc)
   end
 
@@ -155,6 +158,7 @@ class Escort < ApplicationRecord
 
   def number
     return pnc_number if from_police?
+
     prison_number
   end
 
@@ -164,6 +168,7 @@ class Escort < ApplicationRecord
 
   def location
     return 'police' if from_police?
+
     'prison'
   end
 end

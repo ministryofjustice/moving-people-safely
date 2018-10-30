@@ -100,6 +100,7 @@ module Detainees
 
     def has_detainee_not_found_error?
       return false if errors.empty?
+
       errors.include?('details.not_found')
     end
   end

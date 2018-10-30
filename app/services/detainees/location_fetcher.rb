@@ -3,6 +3,7 @@ module Detainees
     def call
       with_error_handling do
         return empty_response unless prison_number.present?
+
         fetch_location
         successful_response(location_attrs)
       end
@@ -18,6 +19,7 @@ module Detainees
     def location_attrs
       establishment = response['establishment']
       return {} unless establishment
+
       {
         code: establishment['code'],
         desc: establishment['desc']

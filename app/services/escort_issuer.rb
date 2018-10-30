@@ -15,6 +15,7 @@ class EscortIssuer
     raise EscortNotEditableError if !escort.editable? && escort.from_prison?
     raise EscortNotApprovedError if !escort.approved? && escort.from_police?
     raise EscortNotReadyForIssueError unless escort.completed?
+
     issue_per
   end
 
@@ -44,6 +45,7 @@ class EscortIssuer
 
   def delete_temp_file
     return unless issued_per_document
+
     issued_per_document.close
     issued_per_document.unlink
   end

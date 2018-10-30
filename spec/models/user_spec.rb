@@ -111,72 +111,108 @@ RSpec.describe User, type: :model do
   describe '#admin?' do
     context 'when is admin' do
       subject { described_class.new(permissions: [{"organisation"=>User::ADMIN_ORGANISATION}])}
-      its(:admin?) { is_expected.to be_truthy }
+
+      it 'returns true' do
+        expect(subject.admin?).to be_truthy
+      end
     end
 
     context 'when is not admin' do
       subject { described_class.new(permissions: []) }
-      its(:admin?) { is_expected.to be_falsey }
+
+      it 'returns false' do
+        expect(subject.admin?).to be_falsey
+      end
     end
   end
 
   describe '#court?' do
     context 'when belongs to court staff' do
       subject { described_class.new(permissions: [{"organisation"=>User::COURT_ORGANISATION}])}
-      its(:court?) { is_expected.to be_truthy }
+
+      it 'returns true' do
+        expect(subject.court?).to be_truthy
+      end
     end
 
     context 'when is not court staff' do
       subject { described_class.new(permissions: []) }
-      its(:court?) { is_expected.to be_falsey }
+
+      it 'returns false' do
+        expect(subject.court?).to be_falsey
+      end
     end
   end
 
   describe '#police?' do
     context 'when belongs to police custody' do
       subject { described_class.new(permissions: [{"organisation"=>User::POLICE_ORGANISATION}])}
-      its(:police?) { is_expected.to be_truthy }
+
+      it 'returns true' do
+        expect(subject.police?).to be_truthy
+      end
     end
 
     context 'when is not police custody' do
       subject { described_class.new(permissions: []) }
-      its(:police?) { is_expected.to be_falsey }
+
+      it 'returns false' do
+        expect(subject.police?).to be_falsey
+      end
     end
   end
 
   describe '#sergeant?' do
     context 'when is sergeant' do
       subject { described_class.new(permissions: [{"organisation"=>User::POLICE_ORGANISATION}, {"roles"=>['sergeant']}])}
-      its(:sergeant?) { is_expected.to be_truthy }
+
+      it 'returns true' do
+        expect(subject.sergeant?).to be_truthy
+      end
     end
 
     context 'when is not sergeant' do
       subject { described_class.new(permissions: []) }
-      its(:sergeant?) { is_expected.to be_falsey }
+
+      it 'returns false' do
+        expect(subject.sergeant?).to be_falsey
+      end
     end
   end
 
   describe '#prison_officer?' do
     context 'when belongs to prison staff' do
       subject { described_class.new(permissions: [{"organisation"=>'bedford.prisons.noms.moj'}])}
-      its(:prison_officer?) { is_expected.to be_truthy }
+
+      it 'returns true' do
+        expect(subject.prison_officer?).to be_truthy
+      end
     end
 
     context 'when is not prison officer' do
       subject { described_class.new(permissions: []) }
-      its(:prison_officer?) { is_expected.to be_falsey }
+
+      it 'returns false' do
+        expect(subject.prison_officer?).to be_falsey
+      end
     end
   end
 
   describe '#healthcare?' do
     context 'when is healthcare' do
       subject { described_class.new(permissions: [{"organisation"=>'bedford.prisons.noms.moj'}, {"roles"=>['healthcare']}])}
-      its(:healthcare?) { is_expected.to be_truthy }
+
+      it 'returns true' do
+        expect(subject.healthcare?).to be_truthy
+      end
     end
 
     context 'when is not healthcare' do
       subject { described_class.new(permissions: []) }
-      its(:healthcare?) { is_expected.to be_falsey }
+
+      it 'returns fals' do
+        expect(subject.healthcare?).to be_falsey
+      end
     end
   end
 

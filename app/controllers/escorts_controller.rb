@@ -56,6 +56,7 @@ class EscortsController < ApplicationController
 
   def redirect_if_missing_data
     return unless escort.editable?
+
     check_for_detainee(escort) || return
     check_valid_detainee(escort.detainee) || return
     check_valid_move(escort.move) || return

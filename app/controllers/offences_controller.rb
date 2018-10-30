@@ -36,6 +36,7 @@ class OffencesController < ApplicationController
 
   def add_offence
     return unless params.key? 'offences_add_offence'
+
     form.deserialize form_data
     form.add_offence
     render :show

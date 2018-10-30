@@ -6,9 +6,7 @@ gem 'aws-sdk-s3'
 gem 'bootsnap', require: false
 gem 'cancancan'
 gem 'connection_pool'
-gem 'countries'
 gem 'custom_error_message', git: 'https://github.com/thethanghn/custom-err-msg.git'
-gem 'datafix', git: 'https://github.com/Casecommons/datafix.git'
 gem 'deep_cloneable'
 gem 'excon'
 gem 'faraday'
@@ -29,14 +27,12 @@ gem 'uglifier'
 gem 'virtus'
 gem 'wicked'
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary', '0.12.3.1' # changing this changes the size of the text in the PDF generated
 gem 'zendesk_api'
 
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'jasmine'
-  gem 'jasmine-jquery-rails'
   gem 'pdftotext'
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -57,15 +53,11 @@ group :test do
   gem 'chromedriver-helper'
   gem 'climate_control'
   gem 'codeclimate-test-reporter', require: nil
-  gem 'database_cleaner'
-  gem 'diffy'
   gem 'launchy'
-  gem 'rspec-its'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   # TODO: update to 4.x once issue resolved https://github.com/thoughtbot/shoulda-matchers/issues/1146
   gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers', ref: '43f4252'
   gem 'simplecov', require: false
-  gem 'site_prism'
   gem 'webmock'
 end
