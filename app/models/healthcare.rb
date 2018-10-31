@@ -39,6 +39,7 @@ class Healthcare < ApplicationRecord
   def mandatory_questions_for_gender
     original = Healthcare.mandatory_questions(location)
     return original if escort&.detainee&.female?
+
     original - %w[pregnant female_hygiene_kit]
   end
 end
