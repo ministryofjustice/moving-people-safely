@@ -36,10 +36,7 @@ RSpec.describe 'Confirm healthcare assessment requests', type: :request do
     end
 
     context 'but the escort is no longer editable' do
-      let(:healthcare) { create(:healthcare) }
-      let(:move) { create(:move) }
-      let(:detainee) { create(:detainee) }
-      let(:escort) { create(:escort, :issued, detainee: detainee, move: move, healthcare: healthcare) }
+      let(:escort) { create(:escort, :issued) }
 
       it 'redirects to the homepage displaying an appropriate error' do
         put "/escorts/#{escort.id}/healthcare/confirm"
@@ -59,7 +56,7 @@ RSpec.describe 'Confirm healthcare assessment requests', type: :request do
         expect(flash[:error]).to eq('Healthcare assessment cannot be confirmed until all mandatory answers are filled')
       end
 
-      it 'does not change the state of the healthcare assessment' do
+      it 'does not change the state of the healthcare' do
         expect {
           put "/escorts/#{escort.id}/healthcare/confirm"
         }.not_to change { escort.healthcare.reload.status }.from('incomplete')
@@ -76,7 +73,7 @@ RSpec.describe 'Confirm healthcare assessment requests', type: :request do
         expect(response).to redirect_to(escort_path(escort))
       end
 
-      it 'marks healthcare assessment as confirmed' do
+      it 'marks healthcare as confirmed' do
         expect {
           put "/escorts/#{escort.id}/healthcare/confirm"
         }.to change { healthcare.reload.status }.from('unconfirmed').to('confirmed')
