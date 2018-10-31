@@ -35,7 +35,10 @@ module Page
       else
         # Police
         fill_in_optional_details("Is there any indication that they might self harm or attempt suicide?", @risk, :self_harm)
-        fill_in_optional_details("What observation level have they been assigned while in custody?", @risk, :observation_level)
+        within_fieldset "What observation level have they been assigned while in custody?" do
+          choose option: @risk.observation_level
+          fill_in "#{@risk.observation_level}-text", with: @risk.public_send("observation_#{@risk.observation_level}_details")
+        end
       end
 
       save_and_continue

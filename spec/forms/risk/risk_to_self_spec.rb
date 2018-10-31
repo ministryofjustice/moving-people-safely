@@ -65,13 +65,13 @@ RSpec.describe Forms::Risk::RiskToSelf, type: :form do
         context 'observation level details left blank' do
           it 'suitable error' do
             expect(form).not_to be_valid
-            expect(form.errors[:observation_level_details])
+            expect(form.errors[:observation_level2_details])
             .to match_array(['^You must enter a reason for the heightened observation'])
           end
         end
 
         context 'observation level details filled in' do
-          before { form.observation_level_details = 'some info' }
+          before { form.observation_level2_details = 'some info' }
 
           it 'valid' do
             expect(form).to be_valid

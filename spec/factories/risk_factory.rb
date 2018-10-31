@@ -51,7 +51,7 @@ FactoryBot.define do
 
     trait :with_high_observation_level do
       observation_level { 'level3' }
-      observation_level_details { 'high observation' }
+      observation_level3_details { 'high observation' }
     end
 
     trait :with_high_csra do

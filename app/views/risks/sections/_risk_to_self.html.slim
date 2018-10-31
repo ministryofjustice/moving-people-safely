@@ -17,6 +17,5 @@
 - if assessment.escort.from_police?
   = render "shared/sections/#{views}/question",
     alternance: 'even', assessment: assessment, section: section, question: 'observation_level',
-    value: heightened_observation_yes_no(assessment.observation_level), 
-    details: full_observation_level_details(assessment.observation_level,
-      assessment.observation_level_details)
+    value: heightened_observation_yes_no(assessment.observation_level),
+    details: full_observation_level_details(assessment)

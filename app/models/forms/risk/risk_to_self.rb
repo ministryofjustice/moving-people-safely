@@ -27,10 +27,17 @@ module Forms
 
       options_field :observation_level, options: :observation_levels, if: :from_police?
 
-      property :observation_level_details, type: StrictString
-      validates :observation_level_details,
-        presence: true,
-        if: -> { OBSERVATION_LEVELS_REQUIRING_DETAILS.include?(observation_level) }
+      property :observation_level2_details, type: StrictString
+      validates :observation_level2_details,
+        presence: true, if: -> { observation_level == 'level2' }
+
+      property :observation_level3_details, type: StrictString
+      validates :observation_level3_details,
+        presence: true, if: -> { observation_level == 'level3' }
+
+      property :observation_level4_details, type: StrictString
+      validates :observation_level4_details,
+        presence: true, if: -> { observation_level == 'level4' }
 
       def acct_statuses
         ACCT_STATUSES
@@ -42,6 +49,10 @@ module Forms
 
       def observation_levels
         OBSERVATION_LEVELS
+      end
+
+      def observation_levels_requiring_details
+        OBSERVATION_LEVELS_REQUIRING_DETAILS
       end
     end
   end
