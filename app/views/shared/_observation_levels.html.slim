@@ -1,0 +1,16 @@
+.govuk-form-group
+  fieldset.govuk-fieldset
+    = f.fieldset_legend :observation_level
+    .govuk-radios.govuk-radios--conditional data-module="radios"
+
+      - f.object.observation_levels.each do |level|
+        .govuk-radios__item
+          - reveal_action = f.object.observation_levels_requiring_details.include?(level) ? :reveals : :hides
+          = f.radio_button(:observation_level, level, id: level, class: 'govuk-radios__input', data: { reveal_action => 'obs-level-details' })
+          label.govuk-label.govuk-radios__label for=level
+            = I18n.t(level, scope: %w[helpers label risk_to_self observation_level_choices])
+
+      #obs-level-details.govuk-radios__conditional
+        .govuk-form-group
+          label.form-label for="risk_to_self_observation_level_details"
+          = f.text_area_without_label :observation_level_details

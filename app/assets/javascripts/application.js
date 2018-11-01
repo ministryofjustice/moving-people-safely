@@ -22,5 +22,6 @@
 //= require anchor-focus
 //= require no-script
 //= require page-contents
+//= require revealable
 
 window.GOVUKFrontend.initAll();

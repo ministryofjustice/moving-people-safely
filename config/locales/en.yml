@@ -478,6 +478,7 @@ en:
           previous ACCTs
         suicide_details: Give details
         observation_level_html: In the arrest record, check <i>Observation Level</i>
+        observation_level_details: Give details, including reasons for assigning observation level
       security:
         controlled_unlock:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Controlled Unlock</i> alert.
@@ -543,9 +544,6 @@ en:
         prison: Start typing name of prison or select from dropdown
         youth_secure_estate: Start typing name of youth secure estate or select from dropdown
         other: Enter name of destination
-        level2: Give details, including reasons for assigning observation level
-        level3: Give details, including reasons for assigning observation level
-        level4: Give details, including reasons for assigning observation level
   healthcare:
     form:
       title:
@@ -932,11 +930,7 @@ en:
             inclusion: ^Answer the self harm question
           observation_level:
             inclusion: ^You must select an observation level
-          observation_level2_details:
-            blank: ^You must enter a reason for the heightened observation
-          observation_level3_details:
-            blank: ^You must enter a reason for the heightened observation
-          observation_level4_details:
+          observation_level_details:
             blank: ^You must enter a reason for the heightened observation
       segregation:
         attributes:

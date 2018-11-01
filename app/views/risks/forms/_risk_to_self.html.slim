@@ -13,12 +13,4 @@
   toggle_options: ['yes']
 
 - if escort.from_police?
-  fieldset.govuk-fieldset
-    = f.fieldset_legend :observation_level
-    .govuk-radios data-module="radios"
-      = f.radio_concertina_option(:observation_level, 'level1') do
-      - f.object.observation_levels_requiring_details.each do |level|
-        = f.radio_concertina_option(:observation_level, level) do
-          label.form-label for="#{level}-text"
-            = t(level, scope: 'move.destination_types.prompts')
-          = f.text_area_without_label "observation_#{level}_details".to_sym, id: "#{level}-text"
+  = render 'shared/observation_levels', f: f
