@@ -27,14 +27,12 @@
       = f.text_field :forenames
       = f.text_field :date_of_birth
       = f.text_area  :nationalities
-      .govuk-form-group
-        = f.custom_radio_button_fieldset :gender,
-          choices: form.genders,
-          legend_options: { class: 'govuk-label' }
+      = f.custom_radio_button_fieldset :gender,
+        choices: form.genders
 
       .govuk-form-group
         label.govuk-label for='auto_ethnicity' Ethnicity #{' (Optional)' if escort.from_police?}
-        = f.select :ethnicity, Detainee::ETHNICITY_CODES, {include_blank: true}, {id: 'auto_ethnicity', class: 'govuk-select mps-autocomplete govuk-!-width-one-third'}
+        = f.select :ethnicity, Detainee::ETHNICITY_CODES, { include_blank: true }, { id: 'auto_ethnicity', class: 'govuk-select mps-autocomplete govuk-!-width-one-third' }
 
       - if escort.from_prison?
         = f.text_field :religion
@@ -43,21 +41,19 @@
         = f.text_field :prison_number
       = f.text_field :cro_number
       = f.text_area  :aliases
-      = f.text_field :language
-      #interpreter_required.govuk-form-group
+      - if escort.from_prison?
+        = f.text_field :language
+      #interpreter_required
         - if escort.from_prison?
-          = f.radio_toggle :interpreter_required,
-            legend_options: { class: 'govuk-label' },
-            inline_options: false
+          = f.radio_toggle :interpreter_required
         - elsif escort.from_police?
-          = f.radio_toggle_with_textarea :interpreter_required,
-            legend_options: { class: 'govuk-label' },
-            inline_options: false,
-            toggle_options: ['yes']
+          = f.radio_toggle :interpreter_required,
+            toggle_options: ['yes'] do
+              = f.text_field :language
+              = f.text_area :interpreter_required_details
+
       - if escort.from_prison?
         #peep= f.radio_toggle_with_textarea :peep,
-          legend_options: { class: 'govuk-label' },
-          inline_options: false,
           toggle_options: ['yes']
       - if escort.from_prison?
         = f.text_field :security_category

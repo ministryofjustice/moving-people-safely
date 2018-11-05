@@ -14,10 +14,11 @@ module Page
       fill_in 'PNC number', with: detainee.pnc_number
       fill_in 'CRO number', with: detainee.cro_number
       fill_in 'Aliases', with: detainee.aliases
-      fill_in 'Preferred language', with: detainee.language
+      fill_in 'Preferred language', with: detainee.language if origin == :prison
       within('#interpreter_required') do
         choose detainee.interpreter_required.humanize
-        fill_in('detainee_interpreter_required_details', with: detainee.interpreter_required) if origin == :police
+        fill_in 'detainee[language]', with: detainee.language if origin == :police
+        fill_in('detainee[interpreter_required_details]', with: detainee.interpreter_required) if origin == :police
       end
       if origin == :prison
         within('#peep') do

@@ -36,6 +36,7 @@ module Forms
       if: :from_police?
 
     validates :interpreter_required_details, presence: true, if: -> { interpreter_required == 'yes' && from_police? }
+    validates :language, presence: true, if: -> { interpreter_required == 'yes' && from_police? }
 
     reset attributes: %i[interpreter_required_details],
           if_falsey: :interpreter_required
