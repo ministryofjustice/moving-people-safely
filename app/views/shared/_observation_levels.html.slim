@@ -10,7 +10,7 @@
           label.govuk-label.govuk-radios__label for=level
             = I18n.t(level, scope: %w[helpers label risk_to_self observation_level_choices])
 
-      #obs-level-details.govuk-radios__conditional
+      #obs-level-details.govuk-radios__conditional.revealable-init-hidden
         .govuk-form-group
           label.form-label for="risk_to_self_observation_level_details"
           = f.text_area_without_label :observation_level_details
