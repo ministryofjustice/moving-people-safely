@@ -24,6 +24,12 @@ ActiveRecord::Schema.define(version: 2019_01_14_133314) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contractors", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "detainees", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "forenames"
     t.string "surname"
@@ -82,6 +88,8 @@ ActiveRecord::Schema.define(version: 2019_01_14_133314) do
     t.string "sso_id"
     t.string "healthcare_contact_number"
     t.string "end_date"
+    t.uuid "contractor_id"
+    t.index ["contractor_id"], name: "index_establishments_on_contractor_id"
     t.index ["nomis_id"], name: "index_establishments_on_nomis_id", unique: true
     t.index ["sso_id"], name: "index_establishments_on_sso_id", unique: true
     t.index ["type"], name: "index_establishments_on_type"

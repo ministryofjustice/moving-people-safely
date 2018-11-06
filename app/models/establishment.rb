@@ -9,4 +9,6 @@ class Establishment < ApplicationRecord
     prison
     youth_secure_estate
   ].freeze
+
+  belongs_to :contractor
 end
