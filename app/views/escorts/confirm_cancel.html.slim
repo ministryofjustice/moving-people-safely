@@ -10,7 +10,7 @@ h1.govuk-heading-l
 = form_for @form, url: cancel_escort_path(escort), method: :put do |f|
   = f.error_messages
 
-  = f.text_area_without_label :cancelling_reason
+  = f.text_area :cancelling_reason
 
   .form-actions
     = f.submit t('.cancel_this_per'), class: 'govuk-button'

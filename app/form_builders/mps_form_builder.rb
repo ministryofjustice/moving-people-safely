@@ -1,13 +1,8 @@
 class MpsFormBuilder < ActionView::Helpers::FormBuilder
-  ActionView::Base.field_error_proc = proc do |html_tag, instance|
-    add_error_to_html_tag! html_tag, instance
-  end
+  ActionView::Base.field_error_proc = proc { |html_tag, _instance| html_tag }
 
   delegate :content_tag, :tag, :safe_join, :safe_concat, :capture, to: :@template
   delegate :errors, to: :@object
-
-  # Used to propagate the fieldset outer element attribute to the inner elements
-  attr_accessor :current_fieldset_attribute
 
   %i[
     email_field
@@ -24,36 +19,37 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     define_method(method_name) do |attribute, *args|
       content_tag :div, class: form_group_classes(attribute), id: form_group_id(attribute) do
         options = args.extract_options!
+        field_classes = field_classes(attribute, method_name)
 
-        add_label_classes! options
-        add_field_classes! options, attribute, method_name
+        label = govuk_label(attribute)
+        hint = govuk_hint(attribute)
+        error = govuk_error_message(attribute) if error_for?(attribute)
+        field = super(attribute, options.merge(class: field_classes))
 
-        label = label(attribute, options[:label_options])
-
-        hint = add_hint :label, label, attribute
-
-        label + hint + super(attribute, options.except(:label, :label_options))
+        safe_join [label, hint, error, field]
       end
     end
   end
 
-  def assessment_text_field(attribute, options = {})
-    content_tag :div, class: form_group_classes(attribute), id: form_group_id(attribute) do
-      content_tag :fieldset, fieldset_options(attribute) do
-        fieldset_legend(attribute, options) +
-          custom_text_field(attribute)
-      end
-    end
+  def govuk_label(attribute)
+    text = label_text(attribute)
+    return unless text.present?
+
+    label(attribute, text, class: 'govuk-label')
   end
 
-  def location_text_field(attribute, _options = {})
-    label = label(attribute, location_text(localized_label(attribute)), class: 'govuk-label')
-    hint = ''
-    unless location_text(hint_text(attribute)).empty?
-      hint = content_tag(:span, location_text(hint_text(attribute)), class: 'govuk-hint')
-    end
-    text_field(attribute)
-    label + hint + custom_text_field(attribute)
+  def govuk_hint(attribute)
+    text = hint_text(attribute)
+    return unless text.present?
+
+    content_tag(:span, text, class: 'govuk-hint')
+  end
+
+  def govuk_error_message(attribute)
+    text = error_full_message_for(attribute)
+    return unless text.present?
+
+    content_tag(:span, text, class: 'govuk-error-message')
   end
 
   def custom_radio_button_fieldset(attribute, options = {}, &blk)
@@ -66,15 +62,6 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
           content_tag(:div, class: wrapper_class, data: { module: 'radios' }) do
             radio_inputs(attribute, options, &blk).join.html_safe
           end
-      end
-    end
-  end
-
-  def custom_check_box_fieldset(attribute)
-    content_tag :div, class: 'govuk-form-group' do
-      content_tag :div, class: 'multiple-choice' do
-        check_box(attribute) +
-          label(attribute) { localized_label(attribute) }
       end
     end
   end
@@ -94,7 +81,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   def radio_toggle_with_textarea(attribute, options = {})
     details_attr = options.fetch(:details_attr) { :"#{attribute}_details" }
     radio_toggle(attribute, options.merge(details_attr: details_attr)) do
-      text_area_without_label details_attr, options.merge(class: 'govuk-textarea govuk-!-width-one-half')
+      text_area details_attr, options.merge(class: 'govuk-textarea govuk-!-width-one-half')
     end
   end
 
@@ -102,11 +89,6 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     content_tag :div,
       class: form_group_classes(attribute) + ' date-picker-wrapper',
       id: form_group_id(attribute) do
-        add_field_classes! options, attribute
-
-        label_tag = label(attribute, class: 'govuk-label')
-        hint = add_hint :label, label_tag, attribute
-
         date_picker_tag = content_tag :span,
           class: 'date-picker-field input-group date',
           data: { provide: 'datepicker' } do
@@ -114,16 +96,8 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
             calendar_icon_tag = content_tag :span, nil, class: 'no-script calendar-icon input-group-addon'
             (date_text_field_tag + calendar_icon_tag).html_safe
           end
-        label_tag + hint + date_picker_tag
+        govuk_label(attribute) + govuk_hint(attribute) + date_picker_tag
       end
-  end
-
-  def text_area_without_label(attribute, options = {})
-    field_without_label ActionView::Helpers::Tags::TextArea, attribute, options
-  end
-
-  def text_field_without_label(attribute, options = {})
-    field_without_label ActionView::Helpers::Tags::TextField, attribute, options
   end
 
   def radio_concertina_option(attribute, option)
@@ -136,9 +110,11 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def error_messages(options = {})
-    title = options.fetch(:title, I18n.t('.errors.summary.title'))
-    description = options.fetch(:description, '')
-    ErrorsHelper.error_summary(object, title, description, as: object_name)
+    return unless errors_exist? object
+
+    error_summary_div do
+      error_summary_heading + error_summary_list
+    end
   end
 
   private
@@ -163,7 +139,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
         )
       end
 
-      tags << error_message_tag_for_attr(attribute) if error_for?(attribute)
+      tags << govuk_error_message(attribute) if error_for?(attribute)
 
       hint = location_text(hint_text(attribute))
       tags << content_tag(:span, hint, class: 'govuk-hint') if hint
@@ -171,28 +147,6 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
       safe_join tags
     end
     legend.html_safe
-  end
-
-  def field_without_label(field_type, attribute, options = {})
-    default_input_classes = if field_type.to_s.include? 'TextArea'
-                              'govuk-textarea govuk-!-width-one-half'
-                            else
-                              'govuk-input govuk-!-width-one-quarter'
-                            end
-    content_tag :div, class: form_group_classes(attribute.to_sym), id: form_group_id(attribute) do
-      label_tag = content_tag(:label, location_text(hint_text(attribute)),
-        for: "#{object.name}_#{attribute}",
-        class: 'govuk-hint govuk-label')
-      tags = [label_tag]
-      tags << error_message_tag_for_attr(attribute) if error_for?(attribute)
-      tags <<
-        field_type.new(
-          object.name, attribute, self,
-          { value: object.public_send(attribute),
-            class: default_input_classes }.merge(options)
-        ).render
-      tags.join.html_safe
-    end
   end
 
   def radio_inputs(attribute, options, &_blk)
@@ -204,9 +158,9 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
       input = radio_button(attribute, choice, radio_options(attribute, choice, id_postfix))
 
       label = label(attribute, label_options(value, choice, id_postfix)) do
-        localized_label("#{attribute}_choices.#{choice}")
+        scope = "helpers.label.#{object_name}.#{attribute}_choices"
+        translate(choice, scope, value.humanize)
       end
-
       radio_html = content_tag :div, class: 'govuk-radios__item' do
         input + label
       end
@@ -220,21 +174,22 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
         end
       end
 
-      radio_html + conditional_html.html_safe
+      safe_join([radio_html, conditional_html])
     end
   end
 
-  def form_group_classes(attributes)
-    attributes = [attributes] unless attributes.respond_to? :count
+  def form_group_classes(attribute)
     classes = 'govuk-form-group'
-    classes += ' govuk-form-group--error' if attributes.find { |a| error_for? a }
+    classes += ' govuk-form-group--error' if error_for?(attribute)
     classes
   end
 
+  def form_group_id(attribute)
+    "error_#{attribute_prefix}_#{attribute}" if error_for?(attribute)
+  end
+
   def error_for?(attribute)
-    object.respond_to?(:errors) &&
-      errors.messages.key?(attribute) &&
-      !errors.messages[attribute].empty?
+    errors.messages.key?(attribute) && errors.messages[attribute].present?
   end
 
   def location_text(text)
@@ -270,142 +225,194 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     attribute && error_for?(attribute) ? ' toggle_with_error' : ''
   end
 
-  def error_message_tag_for_attr(attribute)
-    content_tag(:span, error_full_message_for(attribute), class: 'govuk-error-message')
-  end
-
-  def form_group_id(attribute)
-    "error_#{attribute_prefix}_#{attribute}" if error_for? attribute
-  end
-
-  def add_label_classes!(options)
-    options[:label_options] ||= {}
-    options[:label_options].merge!(class: 'govuk-label')
-  end
-
-  def fieldset_options(attribute)
-    self.current_fieldset_attribute = attribute
-
+  def fieldset_options(_attribute)
     fieldset_options = {}
     fieldset_options[:class] = 'govuk-fieldset'
     fieldset_options
   end
 
-  def add_field_classes!(options, attribute, method_name = 'text_field')
-    default_classes = if method_name.to_s.strip == 'text_area'
-                        ['govuk-textarea', options[:width_option] || 'govuk-!-width-one-half']
-                      else
-                        ['govuk-input', options[:width_option] || 'govuk-!-width-one-quarter']
-                      end
-    default_classes << 'form-control-error' if error_for?(attribute)
+  def field_classes(attribute, method_name = :text_area)
+    govuk_input_classes = ['govuk-input', 'govuk-!-width-one-quarter']
+    govuk_textarea_classes = ['govuk-textarea', 'govuk-!-width-one-half']
 
-    options.merge!(class: default_classes)
+    classes = if method_name == :text_area
+                govuk_textarea_classes
+              else
+                govuk_input_classes
+              end
+
+    classes << "#{classes.first}--error" if error_for?(attribute)
+    classes
   end
 
-  def add_hint(_tag, _element, name)
-    return unless hint_text(name)
-
-    content_tag(:span, hint_text(name), class: 'govuk-hint')
-  end
-
-  def fieldset_text(attribute)
-    localized 'helpers.fieldset', attribute, default_label(attribute)
+  def label_text(attribute)
+    localized('helpers.label', attribute)
   end
 
   def hint_text(attribute)
-    localized 'helpers.hint', attribute, ''
+    localized('helpers.hint', attribute)
   end
 
-  def localized(scope, attribute, default)
-    self.class.localized scope, attribute, default, @object_name
+  def fieldset_text(attribute)
+    localized('helpers.fieldset', attribute)
   end
 
-  def localized_label(attribute)
-    self.class.localized_label attribute, @object_name
+  def localized(scope, attribute)
+    name = object_name.gsub(/\[(.*)_attributes\]\[\d+\]/, '.\1')
+    key = "#{name}.#{attribute}"
+    location_text(translate(key, scope))
   end
 
   def default_label(attribute)
-    self.class.default_label attribute
+    attribute.to_s.split('.').last.humanize.capitalize
   end
 
   def attribute_prefix
-    self.class.attribute_prefix(@object_name)
+    object_name.to_s.tr('[]', '_').squeeze('_').chomp('_')
   end
 
   def error_full_message_for(attribute)
-    self.class.error_full_message_for attribute, @object_name, @object
+    message = object.errors.full_messages_for(attribute).first
   end
 
-  class << self
-    def add_error_to_html_tag!(html_tag, instance)
-      object_name = instance.instance_variable_get(:@object_name)
-      object = instance.instance_variable_get(:@object)
+  def translate(key, scope, default = '')
+    # Passes blank String as default because nil is interpreted as no default
+    I18n.translate(key, default: default, scope: scope).presence ||
+      I18n.translate("#{key}_html", default: default, scope: scope).html_safe.presence
+  end
 
-      case html_tag
-      when /^<label/
-        add_error_to_label! html_tag, object_name, object
-      when /^<input/
-        add_error_to_input! html_tag, 'input'
-      when /^<textarea/
-        add_error_to_input! html_tag, 'textarea'
+  def attributes(object, parent_object = nil)
+    return [] if object == parent_object
+
+    parent_object ||= object
+
+    child_objects = attribute_objects object
+    nested_child_objects = child_objects.map { |o| attributes(o, parent_object) }
+    (child_objects + nested_child_objects).flatten - [object]
+  end
+
+  def attribute_objects(object)
+    object.instance_variables.map { |var| instance_variable(object, var) }.compact
+  end
+
+  def error_summary_heading
+    content_tag :h2, I18n.t('.errors.summary.title'), id: 'error-summary-title', class: 'govuk-error-summary__title'
+  end
+
+  def error_summary_list(options = {})
+    content_tag(:div, class: 'govuk-error-summary__body') do
+      content_tag(:ul, class: 'govuk-list govuk-error-summary__list') do
+        child_to_parents = child_to_parent(object)
+        messages = error_summary_messages(object, child_to_parents, options)
+
+        messages << children_with_errors(object).map do |child|
+          error_summary_messages(child, child_to_parents, options)
+        end
+
+        messages.flatten.join('').html_safe
+      end
+    end
+  end
+
+  def error_summary_messages(object, child_to_parents, options = {})
+    object.errors.keys.map do |attribute|
+      error_summary_message(object, attribute, child_to_parents, options)
+    end
+  end
+
+  def error_summary_message(object, attribute, child_to_parents, options = {})
+    messages = object.errors.full_messages_for attribute
+    messages.map do |message|
+      link = link_to_error(object_name, attribute)
+      content_tag(:li, content_tag(:a, error_message_for_attr(attribute, message, object_name), href: link))
+    end
+  end
+
+  def error_message_for_attr(attribute, message, object_prefixes)
+    attribute_parts = attribute.to_s.split(/_([0-9]+)_/)
+    if attribute_parts.size > 1
+      nested_model = attribute_parts[0]
+      object_prefixes << nested_model
+      nested_index = attribute_parts[1]
+      attribute = attribute_parts[2]
+    end
+
+    localised_message = location_text(label_text(attribute)).presence || object.class.human_attribute_name(attribute)
+    localised_message = nested_error_message(nested_model, nested_index, localised_message) if nested_index
+    message.sub! default_label(attribute), localised_message
+    message
+  end
+
+  def nested_error_message(nested_model, nested_index, message)
+    "#{default_label(nested_model)} #{nested_index.to_i + 1} #{message}"
+  end
+
+  def link_to_error(object_prefixes, attribute)
+    attribute = attribute.to_s.sub(/\..*/, '')
+    ['#error', *object_prefixes, attribute].join('_')
+  end
+
+  def instance_variable(object, var)
+    field = var.to_s.sub('@', '').to_sym
+    if object.respond_to?(field)
+      child = object.send(field)
+      child if respond_to_errors?(child) || child.is_a?(Array)
+    end
+  end
+
+  def error_summary_div(&block)
+    content_tag(:div,
+      class: 'govuk-error-summary',
+      role: 'alert',
+      aria: {
+        labelledby: 'error-summary-title'
+      },
+      tabindex: '-1',
+      data: {
+        module: 'error-summary'
+      }) do
+      yield block
+    end
+  end
+
+  def errors_exist?(object)
+    errors_present?(object) || child_errors_present?(object)
+  end
+
+  def errors_present?(object)
+    respond_to_errors?(object) && object.errors.present?
+  end
+
+  def respond_to_errors?(object)
+    object&.respond_to?(:errors)
+  end
+
+  def child_errors_present?(object)
+    attributes(object).any? { |child| errors_exist?(child) }
+  end
+
+  def error_summary_description(text)
+    content_tag :p, text
+  end
+
+  def child_to_parent(object, child_to_parents = {}, parent_object = nil)
+    return child_to_parents if object == parent_object
+
+    parent_object ||= object
+
+    attribute_objects(object).each do |child|
+      if child.is_a?(Array)
+        array_to_parent(child, object, child_to_parents, parent_object)
       else
-        html_tag
+        child_to_parents[child] = object
+        child_to_parent child, child_to_parents, parent_object
       end
     end
 
-    def add_error_to_label!(html_tag, object_name, object)
-      field = html_tag[/for="([^"]+)"/, 1]
-      object_attribute = object_attribute_for field, object_name
-      message = error_full_message_for object_attribute, object_name, object
-      if message
-        html_tag.sub(
-          '</label',
-          %(<span class="govuk-error-message" id="error_message_#{field}">#{message}</span></label)
-        ).html_safe # sub() returns a String, not a SafeBuffer
-      else
-        html_tag
-      end
-    end
+    child_to_parents
+  end
 
-    def add_error_to_input!(html_tag, element)
-      field = html_tag[/id="([^"]+)"/, 1]
-      html_tag.sub(
-        element,
-        %(#{element} aria-describedby="error_message_#{field}")
-      ).html_safe # sub() returns a String, not a SafeBuffer
-    end
-
-    def object_attribute_for(field, object_name)
-      field.to_s.sub("#{attribute_prefix(object_name)}_", '').to_sym
-    end
-
-    def localized(scope, attribute, default, object_name)
-      @object_name = object_name.gsub(/\[(.*)_attributes\]\[\d+\]/, '.\1')
-      key = "#{@object_name}.#{attribute}"
-      translate(key, default, scope)
-    end
-
-    def localized_label(attribute, object_name)
-      localized 'helpers.label', attribute, default_label(attribute), object_name
-    end
-
-    def default_label(attribute)
-      attribute.to_s.split('.').last.humanize.capitalize
-    end
-
-    def attribute_prefix(object_name)
-      object_name.to_s.tr('[]', '_').squeeze('_').chomp('_')
-    end
-
-    def error_full_message_for(attribute, object_name, object)
-      message = object.errors.full_messages_for(attribute).first
-      message&.sub default_label(attribute), localized_label(attribute, object_name)
-    end
-
-    def translate(key, default, scope)
-      # Passes blank String as default because nil is interpreted as no default
-      I18n.translate(key, default: '', scope: scope).presence ||
-        I18n.translate("#{key}_html", default: default, scope: scope).html_safe.presence
-    end
+  def children_with_errors(object)
+    attributes(object).select { |child| errors_present?(child) }
   end
 end

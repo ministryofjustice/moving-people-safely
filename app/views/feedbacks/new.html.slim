@@ -4,13 +4,11 @@
       h1.govuk-heading-l Contact us
       h2.govuk-heading-s Get in touch if you need help using the service.
 
-    = ErrorsHelper.error_summary @form,
-      'There were problems saving this form', ''
-
     hr.govuk-section-break.govuk-section-break--l
 
     .form-wrapper
       = form_for @form, url: feedbacks_path do |f|
+        = f.error_messages
         - if user_signed_in?
           = f.text_field :prisoner_number
         - else

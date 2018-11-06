@@ -34,7 +34,8 @@ header
             = f.radio_concertina_option(:to_type, option) do
               label.form-label for="#{option}-text"
                 = t(option, scope: 'move.destination_types.prompts')
-              = f.text_field_without_label "to_#{option}".to_sym, id: "#{option}-text"
+              = f.text_field "to_#{option}".to_sym, id: "#{option}-text"
+
   .govuk-form-group
     .date-picker
       = f.date_picker_text_field :date
@@ -45,20 +46,14 @@ header
     inline_choices: false,
     toggle_options: ['yes'] do
     = f.radio_toggle_with_textarea :not_for_release_reason,
-      legend: false,
       choices: f.object.not_for_release_reasons,
-      inline_choices: false,
       toggle_options: [f.object.not_for_release_reason_with_details]
 
   - if escort.from_prison?
     = f.radio_toggle_with_textarea :require_special_vehicle,
-      legend_options: { class: 'form-label-bold' },
-      inline_choices: false,
       toggle_options: ['yes']
 
     = f.radio_toggle_with_textarea :other_transport_requirements,
-      legend_options: { class: 'form-label-bold' },
-      inline_choices: false,
       toggle_options: ['yes']
 
   .form-actions
