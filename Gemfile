@@ -13,7 +13,7 @@ gem 'faraday'
 gem 'geckoboard-ruby'
 gem 'jquery-rails'
 gem 'logstasher'
-gem 'omniauth-oauth2', '~> 1.3.1' # do not remove version
+gem 'omniauth-oauth2', '~> 1.5.0' # do not remove version
 gem 'paperclip'
 gem 'pg'
 gem 'puma'
