@@ -27,7 +27,7 @@ gem 'uglifier'
 gem 'virtus'
 gem 'wicked'
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary', '0.12.3.1' # changing this changes the size of the text in the PDF generated
+gem 'wkhtmltopdf-binary', '0.12.4' # changing this changes the size of the text in the PDF generated
 gem 'zendesk_api'
 
 group :development, :test do
