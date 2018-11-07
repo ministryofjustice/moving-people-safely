@@ -18,7 +18,7 @@ gem 'paperclip'
 gem 'pg'
 gem 'puma'
 gem 'rails', '~> 5.2'
-gem 'reform', '2.1.0' # do not remove version
+gem 'reform', '2.2.4' # do not remove version
 gem 'reform-rails'
 gem 'sass-rails'
 gem 'sentry-raven'
