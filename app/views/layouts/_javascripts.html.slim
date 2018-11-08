@@ -1,0 +1,9 @@
+= javascript_include_tag 'govuk-frontend/all.js'
+= javascript_include_tag 'application.js'
+
+/[if IE]
+  = javascript_include_tag "flowplayer.js"
+/[if gt IE 8]
+  |<!-->
+  = javascript_include_tag 'auto-complete.js'
+  |<!--

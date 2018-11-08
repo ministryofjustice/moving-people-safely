@@ -9,24 +9,8 @@ html.govuk-template lang="en"
 
     link href="#{asset_path 'favicon.ico'}" rel="shortcut icon" type="image/x-icon"
 
-    / Google Tag Manager
-    javascript:
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-N4GRLDJ');
-
-    /[if lte IE 8]
-      = stylesheet_link_tag 'main-ie8', media: 'all'
-
-    /[if gt IE 8]
-      |<!-->
-      = stylesheet_link_tag 'main', media: 'all'
-      |<!--
-
-    /[if lt IE 9]
-      = javascript_include_tag 'html5shiv/dist/html5shiv'
+    = render 'layouts/google_tag_manager'
+    = render 'layouts/stylesheets'
 
   body.govuk-template__body
     javascript:
@@ -36,76 +20,7 @@ html.govuk-template lang="en"
     noscript
       iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4GRLDJ" height="0" width="0" style="display:none;visibility:hidden"
 
-    header.govuk-header role="banner" data-module='header'
-      .govuk-header__container.govuk-width-container
-        .govuk-header__logo
-          a.govuk-header__link.govuk-header__link--homepage href="#{root_path}" title="#{t(:global_header_text)}"
-            span.govuk-header__logotype
-              img.govuk-header__logotype-crown alt="" src="#{asset_path 'moj_crest.png'}"
-              span.govuk-header__logotype-text
-                = t(:global_header_text)
-
-        .govuk-header__content.d-flex.justify-content-between
-
-          button.govuk-header__menu-button.js-header-toggle aria-controls="navigation" aria-label="Show or hide Top Level Navigation" role="button"
-            | Menu
-          nav
-            ul#navigation.govuk-header__navigation aria-label="Top Level Navigation"
-              - if user_signed_in?
-                li.govuk-header__navigation-item == "Signed in as #{current_user.full_name}"
-                li.govuk-header__navigation-item
-                  = button_to 'Sign out', session_path, method: :delete, class: 'govuk-header__link styled-as-link'
-
-    .govuk-width-container
-      .govuk-phase-banner
-        p.govuk-phase-banner__content
-          strong.govuk-tag.govuk-phase-banner__content__tag
-            = current_phase.upcase
-          span
-            = t('.current_phase_text_html', contact_url: new_feedback_path, feedback_url: feedback_url)
-
-      = render_breadcrumbs
-
-      - %i[notice success alert warning error].each do |severity|
-          - if flash[severity].present?
-            div class="alert alert--#{severity}" = flash_message_for(flash[severity])
-
-
-      main#main-content.govuk-main-wrapper role="main"
-        = yield
-
-
-    footer.govuk-footer role="contentinfo"
-      .govuk-width-container
-        .govuk-footer__meta
-          .govuk-footer__meta-item.govuk-footer__meta-item--grow
-
-            h2.govuk-visually-hidden Support links
-            ul.govuk-footer__inline-list
-              li.govuk-footer__inline-list-item
-                a.govuk-footer__link href="#{help_path}"
-                  | Help
-
-            svg.govuk-footer__licence-logo[role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 483.2 195.7" height="17" width="41"]
-              path[fill="currentColor" d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"]
-            span.govuk-footer__licence-description
-              |  All content is available under the
-              a.govuk-footer__link<[href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license"]
-                | Open Government Licence v3.0
-              | , except where otherwise stated
-
-          .govuk-footer__meta-item
-            a.govuk-footer__link.govuk-footer__copyright-logo[href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"]
-              | © Crown copyright
-
-    #global-app-error.app-error.hidden
-
-    = javascript_include_tag "govuk-frontend/all.js"
-    = javascript_include_tag "application.js"
-
-    /[if IE]
-      = javascript_include_tag "flowplayer.js"
-    /[if gt IE 8]
-      |<!-->
-      = javascript_include_tag 'auto-complete.js'
-      |<!--
+    = render 'layouts/header'
+    = render 'layouts/main'
+    = render 'layouts/footer'
+    = render 'layouts/javascripts'

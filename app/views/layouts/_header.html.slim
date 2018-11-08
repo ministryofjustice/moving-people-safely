@@ -1,0 +1,17 @@
+header.govuk-header role="banner" data-module='header'
+  .govuk-header__container.govuk-width-container
+    .govuk-header__logo
+      a.govuk-header__link.govuk-header__link--homepage href="#{root_path}" title="#{t(:global_header_text)}"
+        span.govuk-header__logotype
+          img.govuk-header__logotype-crown alt="" src="#{asset_path 'moj_crest.png'}"
+          span.govuk-header__logotype-text
+            = t(:global_header_text)
+    .govuk-header__content.d-flex.justify-content-between
+      button.govuk-header__menu-button.js-header-toggle aria-controls="navigation" aria-label="Show or hide Top Level Navigation" role="button"
+        | Menu
+      nav
+        ul#navigation.govuk-header__navigation aria-label="Top Level Navigation"
+          - if user_signed_in?
+            li.govuk-header__navigation-item == "Signed in as #{current_user.full_name}"
+            li.govuk-header__navigation-item
+              = button_to 'Sign out', session_path, method: :delete, class: 'govuk-header__link styled-as-link'
