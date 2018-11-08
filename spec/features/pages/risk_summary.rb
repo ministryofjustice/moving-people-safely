@@ -25,6 +25,7 @@ module Page
         check_section(risk, 'risk_to_self', %w[acct_status self_harm])
       elsif risk.location == 'police'
         check_section(risk, 'risk_to_self', %w[self_harm])
+        check_question(risk, 'risk_to_self', 'observation_level', expected_answer: 'Yes')
       end
     end
 

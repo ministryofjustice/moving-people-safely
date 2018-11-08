@@ -23,7 +23,7 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
     move_data = build(:move, from_establishment: banbury_police_station)
     escort = build(:escort, move: move_data)
     healthcare_data = build(:healthcare, :with_medications, escort: escort)
-    risk_data = build(:risk, :from_police, escort: escort)
+    risk_data = build(:risk, :from_police, :with_high_observation_level, escort: escort)
     detainee = build(:detainee, gender: 'male')
     create(:magistrates_court, name: move_data.to)
 

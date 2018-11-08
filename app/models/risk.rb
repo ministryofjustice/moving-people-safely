@@ -2,7 +2,7 @@ class Risk < ApplicationRecord
   include Questionable
   include Reviewable
 
-  RELEVANT_ANSWERS = %w[yes open post_closure closed high].freeze
+  RELEVANT_ANSWERS = %w[yes open post_closure closed high level2 level3 level4].freeze
 
   belongs_to :escort
   has_many :must_not_return_details, dependent: :destroy
@@ -17,7 +17,8 @@ class Risk < ApplicationRecord
       rule_45: (rule_45 == 'yes'),
       violent: (violent_or_dangerous == 'yes'),
       current_e_risk: (current_e_risk == 'yes' || previous_escape_attempts == 'yes'),
-      sex_offender: (sex_offence == 'yes')
+      sex_offender: (sex_offence == 'yes'),
+      constant_watch: %w[level3 level4].include?(observation_level)
     }
   end
 

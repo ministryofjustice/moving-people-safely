@@ -102,7 +102,10 @@ en:
           police: Are they at risk from other people?
       risk_to_self:
         acct_status: What is the prisoner's ACCT status?
-        self_harm: Is there a risk that they might self harm or attempt suicide?
+        self_harm:
+          prison: Is there a risk that they might self harm or attempt suicide?
+          police: Is there any indication that they might self harm or attempt suicide?
+        observation_level: What observation level have they been assigned while in custody?
       sex_offences:
         sex_offence: Are they a current or previous sex offender?
       social:
@@ -274,6 +277,11 @@ en:
           none: No ACCT history
         acct_status_details: ACCT details if known
         date_of_most_recently_closed_acct: the date the ACCT was closed
+        observation_level_choices:
+          level1: Level 1 (hourly checks)
+          level2: Level 2 (checks every 30 minutes)
+          level3: Level 3 (constant watch via CCTV)
+          level4: Level 4 (constant physical watch)
       sex_offences:
         sex_offence: the sex offender question
         sex_offence_adult_male_victim: Adult male
@@ -462,11 +470,15 @@ en:
         self_harm:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Self Harm</i> and <i>Vulnerability</i> alerts.
           police: In the arrest record, check the pre-release assessment for relevant comments.
-        self_harm_details: 'Give details, including observation level:'
+        self_harm_details:
+          prison: 'Give details, including observation level:'
+          police: 'Give details:'
         suicide: |
           Give details of recent suicide or self-harm attempts and
           previous ACCTs
         suicide_details: Give details
+        observation_level_html: In the arrest record, check <i>Observation Level</i>
+        observation_level_details: Give details, including reasons for assigning observation level
       security:
         controlled_unlock:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Controlled Unlock</i> alert.
@@ -677,6 +689,7 @@ en:
         risk_to_self:
           acct_status: ACCT status
           self_harm: Suicide or self harm risk
+          observation_level: Police heightened watch
         security:
           controlled_unlock: Multiple officer unlock/escort
           previous_escape_attempts: Escape risk
@@ -742,6 +755,7 @@ en:
       alcohol_withdrawal: Alcohol withdrawal
       csra: Cell share risk
       current_e_risk: Escape risk
+      constant_watch: Constant watch
       not_for_release: Not for release
       pregnant: Pregnant
       rule_45: Rule 45
@@ -908,10 +922,16 @@ en:
         attributes:
           date_of_most_recently_closed_acct:
             date_not_valid: ^Enter the date of the most recently closed ACCT
+          acct_status:
+            inclusion: ^Enter ACCT status
           acct_status_details:
             blank: ^Enter ACCT details
           self_harm:
             inclusion: ^Answer the self harm question
+          observation_level:
+            inclusion: ^You must select an observation level
+          observation_level_details:
+            blank: ^You must enter a reason for the heightened observation
       segregation:
         attributes:
           rule_45:

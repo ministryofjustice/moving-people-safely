@@ -251,6 +251,8 @@ ActiveRecord::Schema.define(version: 2018_10_29_173032) do
     t.text "violent_or_dangerous_details"
     t.text "csra_details"
     t.text "substance_supply_details"
+    t.string "observation_level"
+    t.text "observation_level_details"
     t.index ["escort_id"], name: "index_risks_on_escort_id"
   end
 

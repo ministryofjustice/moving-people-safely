@@ -29,8 +29,18 @@ module Page
     end
 
     def fill_in_risk_to_self
-      fill_in_optional_details("What is the prisoner's ACCT status?", @risk, :acct_status) if @risk.location == 'prison'
-      fill_in_optional_details("Is there a risk that they might self harm or attempt suicide?", @risk, :self_harm)
+      if @risk.location == 'prison'
+        fill_in_optional_details("What is the prisoner's ACCT status?", @risk, :acct_status)
+        fill_in_optional_details("Is there a risk that they might self harm or attempt suicide?", @risk, :self_harm)
+      else
+        # Police
+        fill_in_optional_details("Is there any indication that they might self harm or attempt suicide?", @risk, :self_harm)
+        within_fieldset "What observation level have they been assigned while in custody?" do
+          choose option: @risk.observation_level
+          fill_in 'risk_to_self_observation_level_details', with: @risk.observation_level_details
+        end
+      end
+
       save_and_continue
     end
 

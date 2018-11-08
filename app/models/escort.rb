@@ -138,7 +138,7 @@ class Escort < ApplicationRecord
   def non_applicable_alerts
     [].tap do |list|
       list << :pregnant unless detainee&.female?
-      list.concat(%i[pregnant alcohol_withdrawal]) if from_prison?
+      list.concat(%i[pregnant alcohol_withdrawal constant_watch]) if from_prison?
       list.concat(%i[acct_status rule_45 category_a]) if from_police?
       list.uniq!
     end

@@ -19,8 +19,8 @@ module Page
       details_field_id = nil
       within_fieldset(label) do
         option = model.public_send(field)
-        choose option.titlecase
-        opt_field_id = find_field(option.titlecase)[:id]
+        opt_field = choose option: option
+        opt_field_id = opt_field[:id]
         details_field_id = opt_field_id.sub("_#{option}", '_details')
       end
       details_field = page.first(:css, "textarea##{details_field_id}") if page.all("textarea##{details_field_id}").any?

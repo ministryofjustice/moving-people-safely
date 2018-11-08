@@ -1,4 +1,5 @@
 - questions = %w[acct_status self_harm]
+- questions << 'observation_level' if assessment.escort.from_police?
 
 - unless views == 'escort'
   = render "shared/sections/#{views}/section",
@@ -12,3 +13,10 @@
 = render "shared/sections/#{views}/question",
   alternance: 'odd', assessment: assessment, section: section, question: 'self_harm',
   value: assessment.self_harm, details: assessment.self_harm_details
+
+- if assessment.escort.from_police?
+  = render "shared/sections/#{views}/question",
+    alternance: 'even', assessment: assessment, section: section, question: 'observation_level',
+    value: heightened_observation_yes_no(assessment.observation_level), 
+    details: full_observation_level_details(assessment.observation_level,
+      assessment.observation_level_details)

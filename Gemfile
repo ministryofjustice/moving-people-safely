@@ -53,6 +53,7 @@ group :test do
   gem 'chromedriver-helper'
   gem 'climate_control'
   gem 'codeclimate-test-reporter', require: nil
+  gem 'diffy'
   gem 'launchy'
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'

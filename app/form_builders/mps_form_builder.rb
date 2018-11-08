@@ -117,16 +117,6 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
-  private
-
-  def custom_text_field(attribute, options = {})
-    ActionView::Helpers::Tags::TextField.new(
-      object_name, attribute, self,
-      { value: object.public_send(attribute),
-        class: 'govuk-input govuk-!-width-one-half' }.merge(options)
-    ).render
-  end
-
   def fieldset_legend(attribute, options = {})
     tags = []
     legend_options = options.fetch(:legend_options, {})
@@ -147,6 +137,16 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
       safe_join tags
     end
     legend.html_safe
+  end
+
+  private
+
+  def custom_text_field(attribute, options = {})
+    ActionView::Helpers::Tags::TextField.new(
+      object_name, attribute, self,
+      { value: object.public_send(attribute),
+        class: 'govuk-input govuk-!-width-one-half' }.merge(options)
+    ).render
   end
 
   def radio_inputs(attribute, options, &_blk)

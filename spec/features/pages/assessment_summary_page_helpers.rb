@@ -47,10 +47,10 @@ module Page
       end
     end
 
-    def check_question(doc, section, question)
+    def check_question(doc, section, question, options = {})
       within("table.#{section}") do
         within("tr.#{question.underscore} td:nth-child(2)") do
-          option = doc.public_send(question.to_sym)
+          option = options.fetch(:expected_answer, doc.public_send(question.to_sym))
           boolean_result = [true, false].include?(option)
           if boolean_result || option
             if boolean_result
@@ -59,7 +59,7 @@ module Page
               expected_answer = option.titlecase
             end
             expect(page).to have_text(expected_answer),
-              "Expected #{section}/#{question} to be shown: wasn't."
+              "Expected #{section}/#{question} to be shown with text '#{expected_answer}': wasn't."
           else
             fail "Expected #{section}/#{question} to be shown: wasn't."
           end
@@ -68,7 +68,7 @@ module Page
           details = "#{question}_details".to_sym
           if doc.respond_to?(details)
             expect(page).to have_text(doc.public_send details),
-              "Expected more details from #{section}/#{question}: didn't get 'em."
+              "Expected more details from #{section}/#{question}: expected to see '#{doc.public_send(details)}'."
           end
         end
       end
