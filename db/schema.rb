@@ -268,6 +268,16 @@ ActiveRecord::Schema.define(version: 2019_01_14_133314) do
     t.index ["escort_id"], name: "index_risks_on_escort_id"
   end
 
+  create_table "scheduled_moves", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid "escort_id"
+    t.string "violent"
+    t.string "suicide"
+    t.string "self_harm"
+    t.string "escape_risk"
+    t.string "segregation"
+    t.string "medical"
+  end
+
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"

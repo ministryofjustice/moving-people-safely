@@ -16,6 +16,8 @@ class Escort < ApplicationRecord
   has_one :offences_workflow, dependent: :destroy
   has_one :clone, class_name: 'Escort', foreign_key: :cloned_id
 
+  has_one :scheduled_move
+
   belongs_to :twig, class_name: 'Escort', foreign_key: :cloned_id
   belongs_to :canceller, class_name: 'User'
   belongs_to :approver, class_name: 'User'

@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     resource :print, only: %i[new show], controller: 'escorts/print'
   end
 
+  resources :scheduled_moves, only: %i[index]
+
   resources :feedbacks, only: %i[new create]
   post '/escorts/search', to: 'homepage#escorts'
 
