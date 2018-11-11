@@ -1,8 +1,4 @@
 - if escort.from_police?
-  = f.radio_toggle_with_textarea :pnc_warnings,
-    legend_options: { class: 'form-label-assessment' }, rows: 9
+  = f.radio_toggle_with_textarea :pnc_warnings, toggle_options: ['yes']
 
-= f.radio_toggle_with_textarea :other_risk,
-  legend_options: { class: 'form-label-assessment' },
-  inline_choices: false,
-  toggle_options: ['yes']
+= f.radio_toggle_with_textarea :other_risk, toggle_options: ['yes']
