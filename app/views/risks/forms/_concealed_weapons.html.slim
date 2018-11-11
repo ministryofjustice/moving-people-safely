@@ -1,21 +1,6 @@
-= f.radio_toggle_with_textarea :uses_weapons,
-  legend_options: { class: 'form-label-assessment' },
-  inline_choices: false,
-  toggle_options: ['yes']
-= f.radio_toggle_with_textarea :conceals_weapons,
-  legend_options: { class: 'form-label-assessment' },
-  inline_choices: false,
-  toggle_options: ['yes']
-= f.radio_toggle_with_textarea :conceals_drugs,
-  legend_options: { class: 'form-label-assessment' },
-  inline_choices: false,
-  toggle_options: ['yes']
-= f.radio_toggle_with_textarea :conceals_mobile_phone_or_other_items,
-  legend_options: { class: 'form-label-assessment' },
-  inline_choices: false,
-  toggle_options: ['yes']
+= f.radio_toggle_with_textarea :uses_weapons, toggle_options: ['yes']
+= f.radio_toggle_with_textarea :conceals_weapons, toggle_options: ['yes']
+= f.radio_toggle_with_textarea :conceals_drugs, toggle_options: ['yes']
+= f.radio_toggle_with_textarea :conceals_mobile_phone_or_other_items, toggle_options: ['yes']
 - if escort.from_prison?
-  = f.radio_toggle_with_textarea :substance_supply,
-    legend_options: { class: 'form-label-assessment' },
-    inline_choices: false,
-    toggle_options: ['yes']
+  = f.radio_toggle_with_textarea :substance_supply, toggle_options: ['yes']

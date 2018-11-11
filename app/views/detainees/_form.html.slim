@@ -53,8 +53,7 @@
               = f.text_area :interpreter_required_details
 
       - if escort.from_prison?
-        #peep= f.radio_toggle_with_textarea :peep,
-          toggle_options: ['yes']
+        #peep= f.radio_toggle_with_textarea :peep, toggle_options: ['yes']
       - if escort.from_prison?
         = f.text_field :security_category
       = f.text_area :diet
