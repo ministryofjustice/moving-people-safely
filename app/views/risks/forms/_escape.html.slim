@@ -1,5 +1,5 @@
 - if escort.from_prison?
-  = f.radio_toggle_with_textarea :current_e_risk, toggle_options: ['yes']
-  = f.radio_toggle_with_textarea :previous_escape_attempts, toggle_options: ['yes']
+  = f.radio_toggle_with_textarea :current_e_risk
+  = f.radio_toggle_with_textarea :previous_escape_attempts
   = f.custom_radio_button_fieldset :escort_risk_assessment
   = f.custom_radio_button_fieldset :escape_pack

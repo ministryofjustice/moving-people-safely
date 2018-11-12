@@ -67,21 +67,16 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def radio_toggle(attribute, options = {}, &blk)
-    choices = options.fetch(:choices) { object.toggle_choices }
-    toggle_options = options[:toggle_options] || []
-    fieldset_options = options.merge(
-      choices: choices,
-      inline: options.fetch(:inline_choices, false),
-      toggle_options: toggle_options
-    )
+    options[:toggle_options] ||= ['yes']
+    options[:choices] ||= object.toggle_choices
 
-    custom_radio_button_fieldset(attribute, fieldset_options, &blk)
+    custom_radio_button_fieldset(attribute, options, &blk)
   end
 
   def radio_toggle_with_textarea(attribute, options = {})
     details_attr = options.fetch(:details_attr) { :"#{attribute}_details" }
-    radio_toggle(attribute, options.merge(details_attr: details_attr)) do
-      text_area details_attr, options.merge(class: 'govuk-textarea govuk-!-width-one-half')
+    radio_toggle(attribute, options) do
+      text_area details_attr, options
     end
   end
 

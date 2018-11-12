@@ -1,5 +1,5 @@
 .medication.multiple
-  = f.radio_toggle :has_medications, toggle_options: ['yes'] do
+  = f.radio_toggle :has_medications do
     #medications
     #error_needs_medications
     = f.fields_for :medications do |mf|

@@ -1,6 +1,5 @@
-= f.radio_toggle_with_textarea :hostage_taker, toggle_options: ['yes']
+= f.radio_toggle_with_textarea :hostage_taker
 
 - if escort.from_police?
-  = f.radio_toggle_with_textarea :sex_offence, toggle_options: ['yes']
-
+  = f.radio_toggle_with_textarea :sex_offence
   = f.custom_radio_button_fieldset :arson

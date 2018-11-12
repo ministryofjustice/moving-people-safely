@@ -5,7 +5,7 @@
       = f.text_field :date_of_most_recently_closed_acct
       = f.text_area :acct_status_details
 
-= f.radio_toggle_with_textarea :self_harm, toggle_options: ['yes']
+= f.radio_toggle_with_textarea :self_harm
 
 - if escort.from_police?
   = render 'risks/forms/observation_levels', f: f

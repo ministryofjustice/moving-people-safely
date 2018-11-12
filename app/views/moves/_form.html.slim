@@ -8,7 +8,6 @@ header
     label.govuk-label From
     = escort.move&.from_establishment&.name
 
-
   .govuk-form-group
     fieldset.govuk-fieldset
       legend.govuk-fieldset__legend
@@ -41,20 +40,14 @@ header
       = f.date_picker_text_field :date
       = render 'shared/radio_date_picker', picker: RadioDatePickerPresenter.new('move[date]', form.date)
 
-  = f.radio_toggle :not_for_release,
-    choices: f.object.toggle_choices,
-    inline_choices: false,
-    toggle_options: ['yes'] do
+  = f.radio_toggle :not_for_release  do
     = f.radio_toggle_with_textarea :not_for_release_reason,
       choices: f.object.not_for_release_reasons,
       toggle_options: [f.object.not_for_release_reason_with_details]
 
   - if escort.from_prison?
-    = f.radio_toggle_with_textarea :require_special_vehicle,
-      toggle_options: ['yes']
-
-    = f.radio_toggle_with_textarea :other_transport_requirements,
-      toggle_options: ['yes']
+    = f.radio_toggle_with_textarea :require_special_vehicle
+    = f.radio_toggle_with_textarea :other_transport_requirements
 
   .form-actions
     = f.submit 'Save and continue', class: 'govuk-button'

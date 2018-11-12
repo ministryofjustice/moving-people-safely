@@ -1,10 +1,10 @@
 - if escort.from_prison?
-  = f.radio_toggle_with_textarea :controlled_unlock, toggle_options: ['yes']
-  = f.radio_toggle_with_textarea :high_profile, toggle_options: ['yes']
-  = f.radio_toggle_with_textarea :pnc_warnings, toggle_options: ['yes'], rows: 9
+  = f.radio_toggle_with_textarea :controlled_unlock
+  = f.radio_toggle_with_textarea :high_profile
+  = f.radio_toggle_with_textarea :pnc_warnings, rows: 9
 
 - if escort.from_police?
-  = f.radio_toggle_with_textarea :high_profile, toggle_options: ['yes']
-  = f.radio_toggle_with_textarea :violent_or_dangerous, toggle_options: ['yes']
-  = f.radio_toggle_with_textarea :gang_member, toggle_options: ['yes']
-  = f.radio_toggle_with_textarea :previous_escape_attempts, toggle_options: ['yes']
+  = f.radio_toggle_with_textarea :high_profile
+  = f.radio_toggle_with_textarea :violent_or_dangerous
+  = f.radio_toggle_with_textarea :gang_member
+  = f.radio_toggle_with_textarea :previous_escape_attempts
