@@ -1,7 +1,5 @@
 .medication.multiple
-  = f.radio_toggle :has_medications,
-  legend_options: { class: 'form-label-assessment' },
-  toggle_options: ['yes'] do
+  = f.radio_toggle :has_medications do
     #medications
     #error_needs_medications
     = f.fields_for :medications do |mf|
@@ -22,7 +20,6 @@
             .multiple-field.govuk-form-group
               = mf.custom_radio_button_fieldset :carrier,
                 choices: %w[escort prisoner],
-                legend_options: { class: 'govuk-label' },
                 inline: true
           - if f.object.medications.size > 1
             .govuk-grid-column-one-third
