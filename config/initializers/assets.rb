@@ -16,25 +16,11 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules/govuk-fro
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w(
-    gov.uk_logotype_crown.png
     main-ie8
     main
     print
-    accessible-autocomplete.min.css
     auto-complete.js
     flowplayer.js
-    flowplayer-3.2.13.min.js
-    apple-touch-icon-180x180.png
-    apple-touch-icon-167x167.png
-    apple-touch-icon-152x152.png
-    apple-touch-icon.png
-    gov.uk_logotype_crown_invert.png
-    gov.uk_logotype_crown_invert_trans.png
-    gov.uk_logotype_crown.svg
-    opengraph-image.png
-    icon-pointer.png
-    moj_crest.png
-    govuk-logotype-crown.png
     html5shiv.js
     all.js
 )
