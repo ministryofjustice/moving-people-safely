@@ -41,6 +41,9 @@ module CustodyApi
         conn.response :json, content_type: /\bjson$/
         conn.authorization :Bearer, token.access_token
         conn.headers['Accept'] = 'application/json'
+
+        # XXX: this allows `type: [:an, :array]` to work
+        conn.options[:params_encoder] = Faraday::FlatParamsEncoder
         conn
       end
     end
