@@ -52,16 +52,13 @@ puts "\n\nevents:\n"
 puts "count: #{json.length}"
 puts "first: #{json.first}"
 
-resp = api.get('api/movements',
-  from: date.to_time.utc.iso8601,
-  to: (date+1).to_time.utc.iso8601
-)
+resp = api.get("api/offenders/offenderId/1393147/movements")
 
 unless resp.success?
   fail "problem getting from api #{resp.body}"
 end
 
-json = resp.body['_embedded']['externalMovementList']
+json = resp.body
 
 puts "\n\nmovements:\n"
 puts "count: #{json.length}"
