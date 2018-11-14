@@ -6,7 +6,7 @@ gem 'aws-sdk-s3'
 gem 'bootsnap', require: false
 gem 'cancancan'
 gem 'connection_pool'
-gem 'custom_error_message', git: 'https://github.com/thethanghn/custom-err-msg.git'
+gem 'custom_error_message', github: 'thethanghn/custom-err-msg'
 gem 'deep_cloneable'
 gem 'excon'
 gem 'faraday'

@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/thethanghn/custom-err-msg.git
+  remote: https://github.com/thethanghn/custom-err-msg
   revision: b913309360995472507ea444c6f1a80315b99d28
   specs:
     custom_error_message (1.2.1)
