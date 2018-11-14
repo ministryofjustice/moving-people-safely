@@ -27,6 +27,8 @@ RSpec.describe EscortIssuer do
         expect { issuer.call }
           .to change { escort.reload.document.present? }
           .from(false).to(true)
+
+        expect(escort.document_file_name).to end_with '.pdf'
       end
 
       it 'marks the escort as issued' do
