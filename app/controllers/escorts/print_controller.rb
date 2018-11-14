@@ -11,18 +11,22 @@ module Escorts
       issue_escort_unless_issued!
       data = open(escort.document_path)
 
-      filename = escort.document_file_name
-
-      # handle old files that didn't have .pdf extension
-      filename << '.pdf' unless filename.end_with?('.pdf')
-
       send_data data.read,
         type: 'application/pdf',
         disposition: 'inline',
-        filename: filename
+        filename: pdf_filename(escort)
     end
 
     private
+
+    def pdf_filename(escort)
+      [
+        'per',
+        escort.detainee_surname&.dasherize,
+        escort.detainee_forenames&.dasherize,
+        escort.issued_at&.to_date&.to_s(:db)
+      ].join('-') + '.pdf'
+    end
 
     def escort
       @escort ||= Escort.find(params[:escort_id])
