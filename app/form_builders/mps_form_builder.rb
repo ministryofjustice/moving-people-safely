@@ -334,8 +334,7 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
 
     localised_message = location_text(label_text(attribute)).presence || object.class.human_attribute_name(attribute)
     localised_message = nested_error_message(nested_model, nested_index, localised_message) if nested_index
-    message.sub! default_label(attribute), localised_message
-    message
+    message.sub default_label(attribute), localised_message
   end
 
   def nested_error_message(nested_model, nested_index, message)
