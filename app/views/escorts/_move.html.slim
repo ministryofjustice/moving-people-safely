@@ -19,3 +19,28 @@ section#move
   .tile-3
     h3.govuk-heading-s.heading-light Release status
     p= not_for_release_text(escort.move)
+
+  - unless escort.move.require_special_vehicle.blank?
+    .tile-3
+      h3.govuk-heading-s.heading-light Special vehicle requirements
+      p= escort.move.require_special_vehicle.capitalize
+      - if escort.move.require_special_vehicle == 'yes'
+        p
+          span class='govuk-!-font-weight-regular' Details:
+          | &nbsp;
+          span class='govuk-!-font-weight-bold'= escort.move.require_special_vehicle_details
+
+  - if escort.detainee_female? && escort.from_prison?
+    .tile-3
+      h3.govuk-heading-s.heading-light Travelling with child
+      p= escort.move.travelling_with_child.capitalize
+
+      - if escort.move.travelling_with_child == 'yes'
+        p
+          span class='govuk-!-font-weight-regular' Name of child:
+          | &nbsp;
+          span class='govuk-!-font-weight-bold'= escort.move.child_full_name
+        p
+          span class='govuk-!-font-weight-regular' DoB of child:
+          | &nbsp;
+          span class='govuk-!-font-weight-bold'= escort.move.child_date_of_birth

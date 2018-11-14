@@ -46,6 +46,15 @@ header
       toggle_options: [f.object.not_for_release_reason_with_details]
 
   - if escort.from_prison?
+    - if escort.detainee_female?
+      = f.radio_toggle :travelling_with_child,
+        inline_choices: false,
+        toggle_options: ['yes'] do
+        = f.text_field :child_full_name
+        .govuk-form-group
+          .date-picker
+            = f.date_picker_text_field :child_date_of_birth
+
     = f.radio_toggle_with_textarea :require_special_vehicle
     = f.radio_toggle_with_textarea :other_transport_requirements
 

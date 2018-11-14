@@ -30,5 +30,11 @@ FactoryBot.define do
       other_transport_requirements { 'yes' }
       other_transport_requirements_details { 'other vehicle requirements' }
     end
+
+    trait :with_child do
+      travelling_with_child { 'yes' }
+      child_full_name { Faker::Name.name }
+      child_date_of_birth { Faker::Date.between(6.years.ago, 2.years.ago) }
+    end
   end
 end

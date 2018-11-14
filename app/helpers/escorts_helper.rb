@@ -93,4 +93,12 @@ module EscortsHelper
   def must_return_details(risk)
     answer_details(risk.must_return_to, risk.must_return_to_details)
   end
+
+  def travelling_with_child_text(move)
+    if move.travelling_with_child == 'yes'
+      "Yes: Child name: #{move.child_full_name}. Child DoB: #{move.child_date_of_birth.to_s(:humanized)}."
+    else
+      'No'
+    end
+  end
 end

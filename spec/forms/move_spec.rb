@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Forms::Move, type: :form do
-  let(:model) { build(:move, to: nil) }
+  let(:model) { build(:move, to: nil, escort: escort) }
+  let(:escort) { create(:escort, detainee: detainee) }
+  let(:detainee) { create(:detainee, gender: 'male')}
 
   subject(:form) { described_class.new(model) }
 
@@ -100,7 +102,7 @@ RSpec.describe Forms::Move, type: :form do
           end
 
           context 'from police' do
-            let(:model) { build(:move, :from_police, to: nil) }
+            let(:model) { build(:move, :from_police, to: nil, escort: escort) }
 
             before { form.not_for_release_reason = 'prison_production' }
 
@@ -174,6 +176,58 @@ RSpec.describe Forms::Move, type: :form do
           params[:date] = '01/01/2015'
           form.validate(params)
           expect(form.errors[:date]).to include '^Enter a date from today onwards'
+        end
+      end
+    end
+
+    describe 'travelling_with_child' do
+      let(:escort) { create(:escort, detainee: detainee) }
+      let(:detainee) { create(:detainee, gender: gender)}
+
+      before { params[:date] = Date.today + 1 }
+
+      context 'male detainee' do
+        let(:gender) { 'male' }
+        let(:model) { build(:move, :from_prison, to: nil, escort: escort) }
+
+        it 'not required' do
+          expect(form.validate(params)).to be true
+        end
+      end
+
+      context 'female detainee' do
+        let(:gender) { 'female' }
+
+        context 'prison' do
+          let(:model) { build(:move, :from_prison, to: nil, escort: escort) }
+
+          it 'required' do
+            expect(form.validate(params)).not_to be true
+            expect(form.errors[:travelling_with_child].any?).to be true
+            # TODO: I18n error messages
+          end
+
+          context 'set to Yes' do
+            before { params[:travelling_with_child] = 'yes' }
+
+            it 'child_full_name required' do
+              expect(form.validate(params)).not_to be true
+              expect(form.errors[:child_full_name].any?).to be true
+            end
+
+            it 'child_date_of_birth required' do
+              expect(form.validate(params)).not_to be true
+              expect(form.errors[:child_date_of_birth].any?).to be true
+            end
+          end
+        end
+
+        context 'police' do
+          let(:model) { build(:move, :from_police, to: nil, escort: escort) }
+
+          it 'not required' do
+            expect(form.validate(params)).to be true
+          end
         end
       end
     end

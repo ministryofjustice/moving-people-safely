@@ -7,7 +7,7 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
     let(:establishment_nomis_id) { 'BDI' }
     let(:bedford_sso_id) { 'bedford.prisons.noms.moj' }
     let(:bedford_nomis_id) { 'BDI' }
-    let(:detainee) { create(:detainee, prison_number: prison_number) }
+    let(:detainee) { create(:detainee, prison_number: prison_number, gender: 'male') }
 
     let(:move) { create(:move, :with_special_vehicle_details) }
 
@@ -65,9 +65,8 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
 
       detainee_details.complete_form(detainee)
 
-      # save_and_open_page
       move_details.confirm_special_vehicle_values(reused_escort.move)
-      move_details.complete_form(move_data)
+      move_details.complete_form(move_data, gender: detainee.gender)
 
       escort_page.confirm_risk_status('Review')
       escort_page.click_edit_risk
@@ -103,7 +102,7 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
 
   context 'a completed document' do
     let(:prison_number) { 'A4321FD' }
-    let(:detainee) { create(:detainee, prison_number: prison_number) }
+    let(:detainee) { create(:detainee, prison_number: prison_number, gender: 'male') }
 
     before do
       create(:escort, :completed, prison_number: prison_number, detainee: detainee)

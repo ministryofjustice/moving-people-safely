@@ -1,9 +1,13 @@
 module Page
   class Move < Base
     def complete_form(move, options = {})
+      location = options.fetch(:location, :prison)
+      gender = options.fetch(:gender, :male).to_sym
+
       fill_in_destination_details(move)
       fill_in 'Date', with: move.date
       fill_in_not_for_release_details(move)
+      fill_in_travelling_with_child_details(move, gender) if location == :prison
       save_and_continue
     end
 
@@ -36,6 +40,20 @@ module Page
         fill_in "#{move.to_type}-text", with: move.to
       else
         raise "Unexpected value for 'move.to_type': #{move.to_type}"
+      end
+    end
+
+    def fill_in_travelling_with_child_details(move, gender)
+      if gender == :female
+        if move.travelling_with_child == 'yes'
+          choose 'move_travelling_with_child_yes'
+          fill_in 'move_child_full_name', with: move.child_full_name
+          fill_in 'move_child_date_of_birth', with: move.child_date_of_birth
+        else
+          choose 'move_travelling_with_child_no'
+        end
+      else
+        expect(page).not_to have_content('Are they travelling with a child')
       end
     end
   end

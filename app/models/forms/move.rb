@@ -64,6 +64,19 @@ module Forms
         if: -> { to_type == destination_type.to_s }
     end
 
+    options_field :travelling_with_child, if: :female_from_prison?
+
+    property :child_full_name, type: StrictString
+    validates :child_full_name,
+      presence: true,
+      if: -> { travelling_with_child == 'yes' && female_from_prison? }
+
+    property :child_date_of_birth, type: TextDate
+    validates :child_date_of_birth,
+      presence: true,
+      date: { not_in_the_future: true },
+      if: -> { travelling_with_child == 'yes' && female_from_prison? }
+
     def save
       self.to = send("to_#{to_type}")
       super

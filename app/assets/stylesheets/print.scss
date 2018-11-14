@@ -284,6 +284,12 @@ table {
 
 .move {
   margin-top: 30px;
+  .title {
+    @include govuk-font(14);
+  }
+  .strong-text {
+    @include govuk-font(14, $weight: bold);
+  }
 }
 
 table.vehicles {
