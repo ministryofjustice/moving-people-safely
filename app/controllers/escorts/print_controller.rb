@@ -10,7 +10,16 @@ module Escorts
       error_redirect && return unless printable_escort?
       issue_escort_unless_issued!
       data = open(escort.document_path)
-      send_data data.read, type: 'application/pdf', disposition: 'inline'
+
+      filename = escort.document_file_name
+
+      # handle old files that didn't have .pdf extension
+      filename << '.pdf' unless filename.end_with?('.pdf')
+
+      send_data data.read,
+        type: 'application/pdf',
+        disposition: 'inline',
+        filename: filename
     end
 
     private
