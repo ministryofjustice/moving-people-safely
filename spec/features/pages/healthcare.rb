@@ -6,7 +6,7 @@ module Page
       end
     end
 
-    def complete_forms(healthcare, gender = 'female')
+    def complete_forms(healthcare, gender)
       @hc = healthcare
       continue_from_intro
       fill_in_physical(gender)

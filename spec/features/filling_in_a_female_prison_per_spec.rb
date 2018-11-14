@@ -101,7 +101,7 @@ RSpec.feature 'filling in a PER for a female from a prison', type: :feature do
 
       escort_page.click_edit_healthcare
 
-      healthcare.complete_forms(healthcare_data)
+      healthcare.complete_forms(healthcare_data, 'female')
       healthcare_summary.confirm_healthcare_details(healthcare_data)
       healthcare_summary.confirm_and_save
 
