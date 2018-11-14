@@ -313,7 +313,7 @@ RSpec.describe Escort do
         let(:establishment) { create(:prison) }
 
         specify {
-          expect(subject).to eq %i[pregnant alcohol_withdrawal constant_watch]
+          expect(subject).to eq %i[alcohol_withdrawal constant_watch]
         }
       end
 

@@ -26,11 +26,10 @@ module Page
     def fill_in_physical(gender)
       if @hc.location == 'prison'
         fill_in_optional_details('Do they have physical health needs that might affect them while they are out of prison?', @hc, :physical_issues)
-        expect(page).not_to have_text('Are they pregnant')
       elsif @hc.location == 'police'
-        fill_in_optional_details('Are they pregnant?', @hc, :pregnant) if gender == 'female'
         fill_in_optional_details('Do they have any physical health needs that might affect them when they leave police custody?', @hc, :physical_issues)
       end
+      fill_in_optional_details('Are they pregnant?', @hc, :pregnant) if gender == 'female'
       click_button 'Save and continue'
     end
 
@@ -74,11 +73,10 @@ module Page
     def fill_in_social(gender)
       if @hc.location == 'prison'
         fill_in_optional_details('Will they need help with personal tasks while they are out of prison?', @hc, :personal_care)
-        expect(page).not_to have_text('female hygiene kit')
       elsif @hc.location == 'police'
         fill_in_optional_details('Will they need help with personal tasks when they leave police custody?', @hc, :personal_care)
-        fill_in_optional_details('Do they need a female hygiene kit?', @hc, :female_hygiene_kit) if gender == 'female'
       end
+      fill_in_optional_details('Do they need a female hygiene kit?', @hc, :female_hygiene_kit) if gender == 'female'
       click_button 'Save and continue'
     end
 

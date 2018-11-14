@@ -6,7 +6,7 @@
   = render "shared/sections/#{views}/section",
     assessment: assessment, path: path, section: section, questions: questions
 
-- if assessment.escort.from_police? && assessment.escort.detainee_gender == 'female'
+- if assessment.escort.detainee_gender == 'female'
   = render "shared/sections/#{views}/question",
     alternance: 'even', assessment: assessment, section: section, question: 'pregnant',
     value: assessment.pregnant, details: assessment.pregnant_details
