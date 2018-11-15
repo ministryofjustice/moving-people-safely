@@ -103,7 +103,7 @@ RSpec.describe Detainees::DetailsFetcher do
     let(:surname) { 'Doe' }
     let(:date_of_birth) { '1969-01-23' }
     let(:gender) { { 'code' => 'M', 'desc' => 'Male' } }
-    let(:ethnicity) { { 'code' => 'EU', 'desc' => 'European' } }
+    let(:ethnicity) { { 'code' => 'A4', 'desc' => 'Asian/Asian British: Chinese' } }
     let(:religion) { { 'code' => 'B', 'desc' => 'Baptist' } }
     let(:nationalities) { 'American' }
     let(:language) { { 'preferred_spoken' => { 'code' => 'WEL-CYM', 'desc' => 'Welsh' }, 'interpreter_required' => false } }
@@ -143,7 +143,7 @@ RSpec.describe Detainees::DetailsFetcher do
         surname: 'DOE',
         date_of_birth: '23/01/1969',
         gender: 'male',
-        ethnicity: 'European',
+        ethnicity: 'O1 - Chinese',
         religion: 'Baptist',
         nationalities: 'American',
         language: 'Welsh',
