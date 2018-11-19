@@ -3,16 +3,48 @@ All notable changes to this project will be documented in this file.
 
 ## Upcoming
 <!-- Merged PRs since last release:
-   PR   Merge date   Author                Branch
+ Use: git log --pretty="format:%h %ci (%an) %d %s" --decorate=full | grep Merge
+
+ Merge date  Author               PR  Branch  
  ----------------------------------------------------------------------
-  565   2018-10-16   Andy White            distinct-nomis-error-messages
-  566   2018-10-16   Andy White            fix-pregnant-not-displaying
+ 2018-11-15  Andy White           595 ie8-start-page-banner
+ 2018-11-15  Andy White           597 breadcrumb-bug
+ 2018-11-14  Matthew Rudy Jacobs  596 pdf-download-filename
+ 2018-11-14  Matthew Rudy Jacobs  598 gemfile-github
+ 2018-11-12  Cesidio Di Landa     591 dependabot/bundler/pry-0.12.2
+ 2018-11-12  Cesidio Di Landa     587 dependabot/bundler/aws-sdk-core-3.37.0
+ 2018-11-12  Cesidio Di Landa     586 dependabot/bundler/thor-0.20.3
+ 2018-11-12  Cesidio Di Landa     585 dependabot/bundler/aws-partitions-1.111.0
+ 2018-11-12  Cesidio Di Landa     583 clean-assets
+ 2018-11-12  Cesidio Di Landa     584 fix-pnc-details
+ 2018-11-08  Andy White           569 police-suicide-question
+ 2018-11-08  Cesidio Di Landa     577 bundle-update-layout
+ 2018-11-07  Andy White           571 fix-pregnancy-bug-fix
+ 2018-11-07  Cesidio Di Landa     578 bundle-update-rack
+ 2018-11-06  Cesidio Di Landa     575 interpreter-required-police
+ 2018-11-05  Cesidio Di Landa     576 bundle-update-5-11-18
+ 2018-10-31  Andy White           568 update-changelog
+ 2018-10-31  Cesidio Di Landa     573 improve-form-builder
+ 2018-10-30  Matthew Rudy Jacobs  567 circle-store-test-results
+ 2018-10-30  Cesidio Di Landa     572 remove-useless-gems
+ 2018-10-29  Cesidio Di Landa     570 detainee-mandatory-fields
+ 2018-10-16  Andy White           565 distinct-nomis-error-messages
+ 2018-10-16  Andy White           566 fix-pregnant-not-displaying
 -->
 ### Changed
 - Improved consistency of error messages from NOMIS. <!-- PR 565 -->
+- Improved validation of detainee form fields. <!-- PR 570 -->
+- Optimisation of forms to increase performance and reliability. <!-- 573 584 -->
+- Addition of police ePER observation level questions. <!-- 569 -->
+- Simplified saving of PDF with a sensible filename. <!-- 596 -->
+- Update of code libraries to improve performance and security. <!-- PR 572 576 578 577 585 586 587 591 598 583 -->
+- Improvements to automated testing to increase code quality. <!-- PR 567 -->
+- Improvements to interpreter question for police ePERs. <!-- 575 -->
+- Introduced a warning if IE8 browser used. <!-- PR 595 -->
 
 ### Fixed
-- Fixed a bug where pregnancy details were not displayed correctly. <!-- PR 566 -->
+- Fixed a bug where pregnancy details were not displayed correctly. <!-- PR 566 571 -->
+- Fixed a bug where page breadcrumbs where not displaying correctly. <!-- PR 597 -->
 
 
 ## 2018-10-11
