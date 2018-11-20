@@ -33,7 +33,7 @@ module Page
       if risk.location == 'prison'
         check_section(risk, 'segregation', %w[csra rule_45 vulnerable_prisoner])
       elsif risk.location == 'police'
-        check_section(risk, 'segregation', %w[csra vulnerable_prisoner])
+        check_section(risk, 'segregation', %w[vulnerable_prisoner])
       end
     end
 
