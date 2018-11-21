@@ -33,10 +33,10 @@ module Page
     def fill_in_destination_details(move)
       case
       when Establishment::ESTABLISHMENT_TYPES.include?(move.to_type.to_sym)
-        choose "#{move.to_type}-radio"
+        choose "move_to_type_#{move.to_type}"
         select move.to, from: move.to_type
       when Forms::Move::FREE_FORM_DESTINATION_TYPES.include?(move.to_type.to_sym)
-        choose "#{move.to_type}-radio"
+        choose "move_to_type_#{move.to_type}"
         fill_in "#{move.to_type}-text", with: move.to
       else
         raise "Unexpected value for 'move.to_type': #{move.to_type}"

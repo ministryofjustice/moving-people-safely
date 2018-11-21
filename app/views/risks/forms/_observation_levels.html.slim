@@ -1,6 +1,9 @@
 .govuk-form-group
   fieldset.govuk-fieldset
-    = f.fieldset_legend :observation_level
+    = f.govuk_fieldset_legend(:observation_level)
+    = f.govuk_hint(:observation_level)
+    = f.govuk_error_message(:observation_level)
+
     .govuk-radios.govuk-radios--conditional data-module="radios"
       - f.object.observation_levels.each do |level|
         .govuk-radios__item

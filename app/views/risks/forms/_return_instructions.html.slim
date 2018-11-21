@@ -1,9 +1,9 @@
-= f.radio_toggle :must_return do
+= f.radios_fieldset :must_return, toggle_choice: 'yes' do
   = f.text_field :must_return_to
   = f.text_area :must_return_to_details
 
 .must_not_return_detail.multiple
-  = f.radio_toggle :has_must_not_return_details do
+  = f.radios_fieldset :has_must_not_return_details, toggle_choice: 'yes' do
     #must_not_return_details
     #error_return_instructions_must_not_return_detail
     = f.fields_for :must_not_return_details do |mf|

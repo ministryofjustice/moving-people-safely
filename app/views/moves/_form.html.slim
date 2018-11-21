@@ -5,19 +5,19 @@ header
   = f.error_messages
 
   .govuk-form-group
-    label.govuk-label From
+    = f.govuk_label(:from_establishment)
     = escort.move&.from_establishment&.name
 
   .govuk-form-group
     fieldset.govuk-fieldset
-      legend.govuk-fieldset__legend
-        | To
+      = f.govuk_fieldset_legend(:to_type)
+      = f.govuk_error_message(:to_type)
 
       .govuk-radios data-module="radios"
         - form.sorted_destination_options.each do |option_details|
           - option = option_details.first
           - if option_details.last == :auto
-            = f.radio_concertina_option(:to_type, option) do
+            = f.radios_item_conditional(:to_type, option) do
               - select_tag = f.select "to_#{option}", option.to_s.classify.constantize.pluck(:name), {include_blank: true}, { id: option, class: 'govuk-select mps-autocomplete govuk-!-width-one-third' }
               label.govuk-label for=option
                 = t(option, scope: 'move.destination_types.prompts')
@@ -30,7 +30,7 @@ header
                 = select_tag
 
           - else
-            = f.radio_concertina_option(:to_type, option) do
+            = f.radios_item_conditional(:to_type, option) do
               label.form-label for="#{option}-text"
                 = t(option, scope: 'move.destination_types.prompts')
               = f.text_field "to_#{option}".to_sym, id: "#{option}-text"
@@ -40,14 +40,14 @@ header
       = f.date_picker_text_field :date
       = render 'shared/radio_date_picker', picker: RadioDatePickerPresenter.new('move[date]', form.date)
 
-  = f.radio_toggle :not_for_release  do
+  = f.radios_fieldset :not_for_release, toggle_choice: 'yes' do
     = f.radio_toggle_with_textarea :not_for_release_reason,
       choices: f.object.not_for_release_reasons,
-      toggle_options: [f.object.not_for_release_reason_with_details]
+      toggle_choice: f.object.not_for_release_reason_with_details
 
   - if escort.from_prison?
     - if escort.detainee_female?
-      = f.radio_toggle :travelling_with_child do
+      = f.radios_fieldset :travelling_with_child, toggle_choice: 'yes' do
         = f.text_field :child_full_name
         .govuk-form-group
           .date-picker
