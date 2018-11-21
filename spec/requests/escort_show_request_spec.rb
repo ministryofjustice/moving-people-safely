@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'PER page requests', type: :request do
   let(:prison_number) { 'A45345HG' }
-  let(:detainee) { create(:detainee, prison_number: prison_number) }
+  let(:detainee) { create(:detainee, prison_number: prison_number, gender: 'male') }
   let(:move) { create(:move) }
   let(:escort) { create(:escort, prison_number: prison_number, detainee: detainee, move: move) }
 

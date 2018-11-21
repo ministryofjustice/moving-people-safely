@@ -54,6 +54,10 @@ html
           div.govuk-grid-column.govuk-grid-column-one-third
             div.title Release status
             div.strong-text.font-medium = not_for_release_text(escort.move)
+          - if escort.detainee_female? && escort.from_prison?
+            div.govuk-grid-column.govuk-grid-column-one-third
+              div.title Travelling with child
+              div.strong-text.font-medium = travelling_with_child_text(escort.move)
 
       div.grid.detainee
         div.govuk-grid-row.header-row.small = 'Personal details'

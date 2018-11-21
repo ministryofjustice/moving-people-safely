@@ -5,7 +5,10 @@ class Move < ApplicationRecord
   delegate :editable?, :location, to: :escort
 
   def alerts
-    { not_for_release: (not_for_release == 'yes') }
+    {
+      not_for_release: (not_for_release == 'yes'),
+      travelling_with_child: (travelling_with_child == 'yes')
+    }
   end
 
   def from_prison?

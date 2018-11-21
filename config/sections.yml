@@ -1,6 +1,7 @@
 prison:
   healthcare:
     physical:
+      - pregnant
       - physical_issues
     mental:
       - mental_illness
@@ -14,6 +15,7 @@ prison:
       - allergies
     social:
       - personal_care
+      - female_hygiene_kit
     contact:
       - contact_number
   risk:

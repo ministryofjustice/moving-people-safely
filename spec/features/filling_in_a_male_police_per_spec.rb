@@ -32,12 +32,12 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
     search.search_pnc_number(detainee.pnc_number)
     search.click_start_new_per
 
-    detainee_details.complete_form(detainee, :police)
+    detainee_details.complete_form(detainee, location: :police)
 
-    move_details.complete_form(move_data)
+    move_details.complete_form(move_data, gender: :male)
 
     escort_page.confirm_move_info(move_data)
-    escort_page.confirm_detainee_details(detainee, :police)
+    escort_page.confirm_detainee_details(detainee, location: :police)
     escort_page.click_edit_risk
 
     risk.complete_forms(risk_data)

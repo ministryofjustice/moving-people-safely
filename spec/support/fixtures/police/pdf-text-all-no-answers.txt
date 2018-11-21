@@ -18,12 +18,11 @@
 
                        Move details
                        Date of travel                     From                               To
-                       22 Apr 2099                        My Jolly Police Custody            Luton Crown Court
-                                                          Suite
+                       22 Apr 2099                        My Jolly Police Custody Suite      Luton Crown Court
 
                        Release status
-                       Contact the prison to
-                       confirm release
+                       Contact the prison to confirm
+                       release
 
                        Personal details
                        Prison number        CRO number           PNC number            Aliases
@@ -41,8 +40,9 @@
                        Diet
                        Gluten free
                        Personal Emergency Evacuation Plan
-                       Broken leg Person Escort Record
-                       About this
+                       Broken leg
+
+                       About this Person Escort Record
 Staple to card —————
 
 

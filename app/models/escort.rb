@@ -52,7 +52,7 @@ class Escort < ApplicationRecord
     includes(move: :from_establishment).where(moves: { establishments: { type: 'PoliceCustody' } })
   }
 
-  delegate :surname, :forenames, :gender, to: :detainee, prefix: true
+  delegate :surname, :forenames, :gender, :female?, to: :detainee, prefix: true
   delegate :full_name, to: :canceller, prefix: true
   delegate :full_name, to: :approver, prefix: true
   delegate :date, :from_establishment, to: :move, prefix: true
@@ -137,9 +137,9 @@ class Escort < ApplicationRecord
 
   def non_applicable_alerts
     [].tap do |list|
-      list << :pregnant unless detainee&.female?
-      list.concat(%i[pregnant alcohol_withdrawal constant_watch]) if from_prison?
-      list.concat(%i[acct_status rule_45 category_a]) if from_police?
+      list.concat(%i[pregnant travelling_with_child]) unless detainee&.female?
+      list.concat(%i[alcohol_withdrawal constant_watch]) if from_prison?
+      list.concat(%i[acct_status rule_45 category_a travelling_with_child]) if from_police?
       list.uniq!
     end
   end

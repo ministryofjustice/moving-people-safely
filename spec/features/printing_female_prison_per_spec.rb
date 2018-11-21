@@ -22,6 +22,10 @@ RSpec.feature 'printing a prison PER', type: :feature do
   let(:move) {
     create(
       :move,
+      :with_special_vehicle_details,
+      travelling_with_child: 'yes',
+      child_full_name: 'Renae Mosciski',
+      child_date_of_birth: Date.civil(2012, 12, 15),
       from_establishment: bedford,
       to: 'Luton Crown Court',
       date: Date.civil(2099, 4, 22)
@@ -36,7 +40,6 @@ RSpec.feature 'printing a prison PER', type: :feature do
     )
   }
 
-
   let(:offences) { [] }
 
   let(:detainee) {
@@ -47,7 +50,7 @@ RSpec.feature 'printing a prison PER', type: :feature do
       surname: 'McTest',
       date_of_birth: Date.civil(1970, 12, 10),
       aliases: 'Terry Tibbs, Mr T',
-      gender: 'male',
+      gender: 'female',
       nationalities: 'British',
       diet: 'Gluten free',
       language: 'English',
@@ -62,39 +65,6 @@ RSpec.feature 'printing a prison PER', type: :feature do
       security_category: 'Cat A'
     )
   }
-
-  context 'when a PER is completed with all answers as no' do
-    let(:risk) {
-      create(:risk, :confirmed,
-        acct_status: 'none',
-        reviewer: reviewer,
-        reviewed_at: DateTime.civil(2016, 3, 10, 12, 30)
-      )
-    }
-    let(:healthcare) {
-      create(:healthcare, :confirmed,
-        contact_number: '1-131-999-0232',
-        reviewer: reviewer,
-        reviewed_at: DateTime.civil(2016, 3, 10, 12, 30)
-      )
-    }
-
-    scenario 'user prints the PER' do
-      login_options = { sso: { info: { permissions: [{'organisation' => bedford.sso_id}]}} }
-      login(nil, login_options)
-      visit escort_path(escort)
-      escort_page.click_print
-
-      escort.reload
-      expected_filename = escort.document_file_name
-      expect(expected_filename).to match(/^per[0-9a-z-]+\.pdf$/i)
-      expect(page.response_headers['Content-Type']).to eq 'application/pdf'
-      expect(page.response_headers['Content-Disposition']).to eq "inline; filename=#{expected_filename.inspect}"
-
-      expect(page.body).
-        to validate_as_pdf_that_contains_text('prison/pdf-text-all-no-answers.txt')
-    end
-  end
 
   context 'when a PER has detailed answers' do
     let(:offences) {
@@ -215,7 +185,7 @@ RSpec.feature 'printing a prison PER', type: :feature do
       escort_page.click_print
 
       expect(page.body).
-        to validate_as_pdf_that_contains_text('prison/pdf-text-all-yes-answers.txt')
+        to validate_as_pdf_that_contains_text('prison/pdf-text-female-all-yes-answers.txt')
     end
   end
 end

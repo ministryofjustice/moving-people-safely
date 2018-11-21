@@ -61,7 +61,9 @@ module Page
       end
     end
 
-    def confirm_detainee_details(detainee, location = :prison)
+    def confirm_detainee_details(detainee, options = {})
+      location = options.fetch(:location, :prison)
+      
       within('#detainee') do
         expect(page).to have_content detainee.prison_number
         expect(page).to have_content detainee.date_of_birth.strftime('%d %b %Y')

@@ -2,7 +2,7 @@ require 'feature_helper'
 
 RSpec.feature 'PER show page', type: :feature do
   let(:prison_number) { 'A4534DF' }
-  let(:detainee) { create(:detainee, prison_number: prison_number) }
+  let(:detainee) { create(:detainee, prison_number: prison_number, gender: 'male') }
   let(:move) { create(:move) }
   let(:default_escort_options) { { prison_number: prison_number, detainee: detainee, move: move } }
   let(:escort) { create(:escort, default_escort_options) }
@@ -220,7 +220,7 @@ RSpec.feature 'PER show page', type: :feature do
     end
 
     let(:prison_number) { 'A3243AW' }
-    let(:detainee) { create(:detainee, prison_number: prison_number) }
+    let(:detainee) { create(:detainee, prison_number: prison_number, gender: 'male') }
     let(:move) { create(:move) }
     let(:escort) { create(:escort, :with_no_offences, prison_number: prison_number, detainee: detainee, move: move) }
 

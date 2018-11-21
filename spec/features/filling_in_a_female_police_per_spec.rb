@@ -26,7 +26,8 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
 
   let(:move_data) { build(:move, from_establishment: banbury_police_station) }
   let(:escort) { build(:escort, move: move_data) }
-  let(:healthcare_data) { build(:healthcare, :with_medications, escort: escort) }
+  let(:healthcare_data) { build(:healthcare, :with_medications, escort: escort,
+                                pregnant: 'yes', pregnant_details: '5 months') }
   let(:risk_data) { build(:risk, :from_police, :with_high_observation_level, escort: escort) }
   let(:detainee) { build(:detainee, gender: 'female') }
 
@@ -48,12 +49,12 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
     search.search_pnc_number(detainee.pnc_number)
     search.click_start_new_per
 
-    detainee_details.complete_form(detainee, :police)
+    detainee_details.complete_form(detainee, location: :police)
 
-    move_details.complete_form(move_data)
+    move_details.complete_form(move_data, location: :police, gender: :female)
 
     escort_page.confirm_move_info(move_data)
-    escort_page.confirm_detainee_details(detainee, :police)
+    escort_page.confirm_detainee_details(detainee, location: :police)
     escort_page.click_edit_risk
 
     risk.complete_forms(risk_data)
@@ -62,7 +63,7 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
 
     escort_page.click_edit_healthcare
 
-    healthcare.complete_forms(healthcare_data)
+    healthcare.complete_forms(healthcare_data, 'female')
     healthcare_summary.confirm_healthcare_details(healthcare_data)
     healthcare_summary.confirm_and_save
     escort_page.confirm_healthcare_labels(:police)
@@ -72,6 +73,7 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
     offences.complete_form(offences_data)
 
     escort_page.confirm_offence_details(offences_data)
+    escort_page.confirm_alert_as_active(:pregnant)
 
     escort = Escort.first
     visit(root_path)

@@ -20,16 +20,17 @@
                        Date of travel                     From                               To
                        22 Apr 2099                        HMP Bedford                        Luton Crown Court
 
-                       Release status
-                       Contact the prison to
-                       confirm release
+                       Release status                     Travelling with child
+                       Contact the prison to confirm      Yes: Child name: Renae
+                       release                            Mosciski. Child DoB: 15 Dec
+                                                          2012.
 
                        Personal details
                        Prison number        CRO number           PNC number            Aliases
                        W1234BY              56TYY/UU             YI896668TT            Terry Tibbs
                                                                                        Mr T
                        Date of birth        Age                  Gender
-                       10 Dec 1970          47                   Male
+                       10 Dec 1970          47                   Female
                        Nationality          Religion             Ethnicity
                        British              Baptist              European
                        Preferred language Interpreter            Interpreter details
@@ -52,46 +53,46 @@ Staple to card —————
                        feedback or questions to: eper@digital.justice.gov.uk
 W1234BY: McTest Testy                                                                            Page 1 of 2
 
-Not for release ✘ No ACCT ✔ Suicide / Self harm ✔ Cell share risk ✔ Rule 45 ✔
-Violent ✔ Escape risk ✔ Sex offender ✔
+Not for release ✘ No Travelling with child ✔ ACCT ✔ Suicide / Self harm ✔
+Cell share risk ✔ Rule 45 ✔ Violent ✔ Escape risk ✔ Sex offender ✔ Pregnant ✘ No
 
 Risk Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
-Risk to self                       Yes
-  ACCT status                      Open
-  Suicide or self harm risk        Yes                Self harm details
-Segregation                        Yes
-  Cell share risk                  High
-  Rule 45                          Yes
-  At risk from others              Yes                Vulnerable prisoner details
-Security                           Yes
-  Multiple officer unlock/escort   Yes                Many people to hold the prisoner
-  High public interest             Yes                High profile details
-  PNC warnings                     Yes                Pnc warning details
-Violence                           Yes
-  Violent or dangerous             Yes                Violent or dangerous
-Harassment and gangs               Yes
-  Public harasser                  Yes                Intimidation to public details
-  Prisoners harasser               Yes                Intimidation to other detainees details
-  Gang member                      Yes                Violence gang member details
-Discrimination against others      Yes
-  Violent to staff                 Yes                Violent to staff details
-  Risk to females                  Yes                Risk to females details
-  Risk to LGBT people              Yes                Lgtb details
-  Racist                           Yes                Violence racist details
-  Risk to other religions          Yes                Discrimination to other religion details
-  Risk to other groups             Yes                Other violence due to discrimination details
-Escape status/history              Yes
-  Currently on E list              Yes                E-list escort
-  Escape risk                      Yes                Escape attempt details
-  Escort Risk Assessment           Yes
+Risk to self                      Yes
+  ACCT status                     Open
+  Suicide or self harm risk       Yes                 Self harm details
+Segregation                       Yes
+  Cell share risk                 High
+  Rule 45                         Yes
+  At risk from others             Yes                 Vulnerable prisoner details
+Security                          Yes
+  Multiple officer unlock/escort Yes                  Many people to hold the prisoner
+  High public interest            Yes                 High profile details
+  PNC warnings                    Yes                 Pnc warning details
+Violence                          Yes
+  Violent or dangerous            Yes                 Violent or dangerous
+Harassment and gangs              Yes
+  Public harasser                 Yes                 Intimidation to public details
+  Prisoners harasser              Yes                 Intimidation to other detainees details
+  Gang member                     Yes                 Violence gang member details
+Discrimination against others     Yes
+  Violent to staff                Yes                 Violent to staff details
+  Risk to females                 Yes                 Risk to females details
+  Risk to LGBT people             Yes                 Lgtb details
+  Racist                          Yes                 Violence racist details
+  Risk to other religions         Yes                 Discrimination to other religion details
+  Risk to other groups            Yes                 Other violence due to discrimination details
+Escape status/history             Yes
+  Currently on E list             Yes                 E-list escort
+  Escape risk                     Yes                 Escape attempt details
+  Escort Risk Assessment          Yes
   needed
-  Escape Pack needed               Yes
-Hostage taker                      Yes
-  Hostage taker                    Yes                Takes staff hostages. most recent: 01/01/1999
-Sex offender                       Yes
-  Sex offender                     Yes                Mean to people. last offence: 01/01/2001
-Weapons, drugs or other items      Yes
-  Creates or uses weapons          Yes                Created and used a 3d gun
+  Escape Pack needed              Yes
+Hostage taker                     Yes
+  Hostage taker                   Yes                 Takes staff hostages. most recent: 01/01/1999
+Sex offender                      Yes
+  Sex offender                    Yes                 Mean to people. last offence: 01/01/2001
+Weapons, drugs or other items     Yes
+  Creates or uses weapons         Yes                 Created and used a 3d gun
 W1234BY: McTest Testy                                                                      Page 2 of 2
 
  Conceals weapons                Yes                Conceals weapons details

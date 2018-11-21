@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_173032) do
+ActiveRecord::Schema.define(version: 2018_11_07_111941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,9 @@ ActiveRecord::Schema.define(version: 2018_10_29_173032) do
     t.text "require_special_vehicle_details"
     t.string "other_transport_requirements"
     t.text "other_transport_requirements_details"
+    t.string "travelling_with_child"
+    t.string "child_full_name"
+    t.date "child_date_of_birth"
     t.index ["escort_id"], name: "index_moves_on_escort_id"
   end
 

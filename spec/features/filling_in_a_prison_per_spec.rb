@@ -73,7 +73,7 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
 
       detainee_details.complete_form(detainee)
 
-      move_details.complete_form(move_data)
+      move_details.complete_form(move_data, gender: detainee.gender)
 
       escort_page.confirm_move_info(move_data)
       escort_page.confirm_detainee_details(detainee)
@@ -101,7 +101,7 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
 
       escort_page.click_edit_healthcare
 
-      healthcare.complete_forms(healthcare_data)
+      healthcare.complete_forms(healthcare_data, detainee.gender)
       healthcare_summary.confirm_healthcare_details(healthcare_data)
       healthcare_summary.confirm_and_save
 
@@ -137,7 +137,7 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
       detainee_details.complete_form(detainee)
 
       expect(page.current_path).to eq "/escorts/#{escort.id}/move/edit"
-      move_details.complete_form(move_data)
+      move_details.complete_form(move_data, gender: detainee.gender)
 
       expect(page.current_path).to eq "/escorts/#{escort.id}"
       escort_page.confirm_move_info(move_data)
@@ -181,7 +181,7 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
       search.click_start_new_per
 
       detainee_details.complete_form(detainee)
-      move_details.complete_form(move_data)
+      move_details.complete_form(move_data, gender: detainee.gender)
 
       expect(page).to have_content 'Bobbins'
     end

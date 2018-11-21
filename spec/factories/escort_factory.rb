@@ -62,7 +62,7 @@ FactoryBot.define do
     end
 
     trait :completed do
-      association :detainee
+      association :detainee, gender: 'male'
       association :move
       association :risk, :confirmed
       association :healthcare, :confirmed
