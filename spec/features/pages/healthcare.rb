@@ -20,7 +20,7 @@ module Page
     end
 
     def continue_from_intro
-      click_link 'Continue'
+      click_link 'Continue' if @hc.location == 'prison'
     end
 
     def fill_in_physical(gender)
