@@ -97,7 +97,7 @@ module Page
         fill_in 'Dosage', with: med.dosage
         fill_in 'When is it given?', with: med.when_given
         within('.govuk-fieldset') do
-          choose med.carrier.titlecase
+          choose option: med.carrier
         end
       end
     end
