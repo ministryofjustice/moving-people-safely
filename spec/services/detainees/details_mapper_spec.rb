@@ -7,7 +7,7 @@ RSpec.describe Detainees::DetailsMapper do
   let(:surname) { 'Doe' }
   let(:date_of_birth) { '1969-01-23' }
   let(:gender) { { 'code' => 'M', 'desc' => 'Male' } }
-  let(:ethnicity) { { 'code' => 'EU', 'desc' => 'European' } }
+  let(:ethnicity) { { 'code' => 'A4', 'desc' => 'Asian/Asian British: Chinese' } }
   let(:religion) { { 'code' => 'B', 'desc' => 'Baptist' } }
   let(:nationalities) { 'French' }
   let(:language) { { 'preferred_spoken' => { 'code' => 'WEL-CYM', 'desc' => 'Welsh' }, 'interpreter_required' => false } }
@@ -47,7 +47,7 @@ RSpec.describe Detainees::DetailsMapper do
       surname: 'DOE',
       date_of_birth: '23/01/1969',
       gender: 'male',
-      ethnicity: 'European',
+      ethnicity: 'O1 - Chinese',
       religion: 'Baptist',
       nationalities: 'French',
       language: 'Welsh',
