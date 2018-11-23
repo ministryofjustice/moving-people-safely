@@ -63,7 +63,7 @@ en:
       needs:
         has_medications:
           prison: Will they need to be given medication while they are out of prison?
-          police: Will they need to be given medication when they leave police custody?
+          police: Will they need to be given medication after they leave police custody?
         medications:
           description: Medicine name
           administration: How is it given?
@@ -489,7 +489,7 @@ en:
         controlled_unlock_details:
           prison: 'Give details of number of officers required and any personal protection equipment (PPE) required:'
         gang_member:
-          police_html: In the arrest record, check for the <i>Organised crime group</i> warning marker. Include details of anyone they should not come into contact with (for example, at court or prison).
+          police_html: In the arrest record and PNC, check for the <i>Organised crime group</i> warning markers, and check your local intelligence system. Include details of anyone they should not come into contact with (for example, at court or prison).
         gang_member_details: Give details
         high_profile:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>High public interest</i> alert and case notes for details.

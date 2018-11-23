@@ -1,12 +1,21 @@
 # Changelog
-All notable changes to this project will be documented in this file.
 
-## Upcoming
 <!-- Merged PRs since last release:
  Use: git log --pretty="format:%h %ci (%an) %d %s" --decorate=full | grep Merge
 
- Merge date  Author               PR  Branch  
+ Merge date  Author               PR  Branch/Description
  ----------------------------------------------------------------------
+
+## Upcoming
+-->
+
+## 2018-11-19
+<!-- Merged PRs since last release:
+ Use: git log --pretty="format:%h %ci (%an) %d %s" --decorate=full | grep Merge
+
+ Merge date  Author               PR  Branch/Description
+ ----------------------------------------------------------------------
+ 2018-11-19  Andy White           604 Update changelog
  2018-11-15  Andy White           595 ie8-start-page-banner
  2018-11-15  Andy White           597 breadcrumb-bug
  2018-11-14  Matthew Rudy Jacobs  596 pdf-download-filename
