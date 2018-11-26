@@ -1,17 +1,38 @@
 # Changelog
+<!-- Merged PRs since last release:
+## Upcoming
+-->
 
+## 2018-11-26
 <!-- Merged PRs since last release:
  Use: git log --pretty="format:%h %ci (%an) %d %s" --decorate=full | grep Merge
 
  Merge date  Author               PR  Branch/Description
  ----------------------------------------------------------------------
-
-## Upcoming
+ 2018-11-19  Cesidio Di Landa     608 Bump aws-sdk-s3 from 1.23.1 to 1.24.1
+ 2018-11-19  Cesidio Di Landa     609 Bump uglifier from 4.1.19 to 4.1.20
+ 2018-11-19  Cesidio Di Landa     601 Bump regexp_parser from 1.2.0 to 1.3.0
+ 2018-11-19  Cesidio Di Landa     607 Bump capybara from 3.10.1 to 3.11.1
+ 2018-11-19  Cesidio Di Landa     588 Bump sass from 3.6.0 to 3.7.2
+ 2018-11-21  Andy White           594 Changes to the ePER questions for women's estate
+ 2018-11-22  Andy White           603 Improve mapping of NOMIS ethnicity to MPS
+ 2018-11-23  Andy White           610 Change police questions and hints
+ 2018-11-23  Cesidio Di Landa     613 Bump aws-partitions from 1.114.0 to 1.115.0
+ 2018-11-23  Cesidio Di Landa     615 Bump aws-sdk-core from 3.38.0 to 3.39.0
+ 2018-11-23  Cesidio Di Landa     614 Bump aws-sdk-kms from 1.11.0 to 1.12.0
+ 2018-11-23  Cesidio Di Landa     612 Bump aws-sdk-s3 from 1.24.1 to 1.25.0
 -->
+### Changed
+- Improvements to questions related to women detainees on the police ePER. <!-- PR 594 -->
+- Improvements to labels and hints on some police ePER questions. <!-- PR 610 -->
+- Update of code libraries to improve performance and security. <!-- PR 608 609 601 607 588 613 615 614 612 -->
+
+### Fixed
+- Fixed a bug where ethnicity codes from NOMIS where not automatically populating the detainee form. <!-- PR 603 -->
+
 
 ## 2018-11-19
 <!-- Merged PRs since last release:
- Use: git log --pretty="format:%h %ci (%an) %d %s" --decorate=full | grep Merge
 
  Merge date  Author               PR  Branch/Description
  ----------------------------------------------------------------------
