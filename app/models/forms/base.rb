@@ -175,12 +175,16 @@ module Forms
       model.location == 'police'
     end
 
+    def female?
+      model.escort.detainee_female?
+    end
+
     def female_from_prison?
-      from_prison? && model.escort.detainee_female?
+      from_prison? && female?
     end
 
     def female_from_police?
-      from_police? && model.escort.detainee_female?
+      from_police? && female?
     end
   end
 end
