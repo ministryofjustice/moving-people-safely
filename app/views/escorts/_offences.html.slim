@@ -10,7 +10,7 @@ section#offences
 
     - if workflow&.reviewed?
       p.review
-        = t('assessment.confirmed_timestamp', name: workflow.reviewer.full_name, time: workflow.reviewed_at.to_s(:humanized))
+        = render 'shared/confirmed_approved', assessment: workflow, escort: escort
 
   - if offences.any?
     table.govuk-table
