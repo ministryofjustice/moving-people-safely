@@ -12,7 +12,7 @@
     thead.govuk-table__head
       tr.govuk-table__row
         th.govuk-table__header.prisoner-image
-        th.govuk-table__header.prisoner-number Prisoner no
+        th.govuk-table__header.prisoner-number Detainee number
         th.govuk-table__header Name
         th.govuk-table__header From
         th.govuk-table__header Date of birth
@@ -27,7 +27,7 @@
             - else
               .no-court-dashboard-image
                 span = 'No photo'
-          td.govuk-table__cell= link_to escort.prison_number, escort_url(escort)
+          td.govuk-table__cell= link_to escort.number, escort_url(escort)
           td.govuk-table__cell
             span.surname= escort.detainee.surname
             = escort.detainee.forenames
