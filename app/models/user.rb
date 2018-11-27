@@ -88,4 +88,11 @@ class User < ApplicationRecord
   def healthcare?
     prison_officer? && permissions.any? { |permission| permission['roles']&.include? HEALTHCARE_ROLE }
   end
+
+  def safe_identifier
+    return full_name unless police?
+
+    role = sergeant? ? 'Custody Sergeant' : 'Detention Officer'
+    "#{role} #{last_name}".strip
+  end
 end
