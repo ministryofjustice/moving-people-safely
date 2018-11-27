@@ -1,5 +1,5 @@
 .medication.multiple
-  = f.radio_toggle :has_medications do
+  = f.radios_fieldset :has_medications, toggle_choice: 'yes' do
     #medications
     #error_needs_medications
     = f.fields_for :medications do |mf|
@@ -18,7 +18,7 @@
             .multiple-field.govuk-form-group
               = mf.text_field :when_given, width_option: 'govuk-!-width-one-half'
             .multiple-field.govuk-form-group
-              = mf.custom_radio_button_fieldset :carrier,
+              = mf.radios_fieldset :carrier,
                 choices: %w[escort prisoner],
                 inline: true
           - if f.object.medications.size > 1

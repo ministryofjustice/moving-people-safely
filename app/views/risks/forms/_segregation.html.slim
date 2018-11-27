@@ -1,6 +1,6 @@
 - if escort.from_prison?
-  = f.custom_radio_button_fieldset :csra, choices: f.object.csra_choices
-  = f.custom_radio_button_fieldset :rule_45
+  = f.radios_fieldset :csra, choices: f.object.csra_choices
+  = f.radios_fieldset :rule_45
 - if escort.from_police?
   = f.radio_toggle_with_textarea :csra
 
