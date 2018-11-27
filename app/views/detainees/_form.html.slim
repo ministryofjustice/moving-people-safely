@@ -27,7 +27,7 @@
       = f.text_field :forenames
       = f.text_field :date_of_birth
       = f.text_area  :nationalities
-      = f.custom_radio_button_fieldset :gender, choices: form.genders
+      = f.radios_fieldset :gender, choices: form.genders
 
       .govuk-form-group
         label.govuk-label for='auto_ethnicity' Ethnicity #{' (Optional)' if escort.from_police?}
@@ -44,9 +44,9 @@
         = f.text_field :language
       #interpreter_required
         - if escort.from_prison?
-          = f.custom_radio_button_fieldset :interpreter_required
+          = f.radios_fieldset :interpreter_required
         - elsif escort.from_police?
-          = f.radio_toggle :interpreter_required do
+          = f.radios_fieldset :interpreter_required, toggle_choice: 'yes' do
             = f.text_field :language
             = f.text_area :interpreter_required_details
 
