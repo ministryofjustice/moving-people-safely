@@ -31,7 +31,7 @@ module ApplicationHelper
   end
 
   def highlighted_content(content)
-    content_tag(:div, content, class: 'strong-text')
+    content_tag(:div, content, class: 'govuk-!-font-weight-bold')
   end
 
   def content_or_none(content)
