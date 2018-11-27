@@ -6,7 +6,7 @@ header
     fieldset.govuk-fieldset
       .govuk-radios data-module="radios"
         - %i[crown_court magistrates_court].each do |option|
-          = f.radio_concertina_option(:to_type, option) do
+          = f.radios_item_conditional(:to_type, option) do
             label.form-label for=option
               = t(option, scope: 'move.destination_types.prompts')
             = f.select "#{option}_id", option.to_s.classify.constantize.pluck(:name, :id), {include_blank: true}, { id: option, class: 'govuk-select mps-autocomplete govuk-!-width-one-third' }
