@@ -8,8 +8,7 @@ module Admin
     before_action :authorize_admin!
     before_action :require_noms_id, only: :show
 
-    def new
-    end
+    def new; end
 
     def show
       @noms_id = noms_id
@@ -26,6 +25,7 @@ module Admin
 
     def require_noms_id
       return if noms_id.present?
+
       redirect_to new_admin_movements_path
     end
 
@@ -41,7 +41,7 @@ module Admin
       @__offender_details ||= begin
         resp = custody_client.get("api/offenders/nomsId/#{noms_id}")
         # unless resp.success?
-        #   fail "problem getting from api #{resp.body}"
+        #   raise "problem getting from api #{resp.body}"
         # end
         resp.body
       end
@@ -50,9 +50,8 @@ module Admin
     def offender_movements
       @__offender_movements ||= begin
         resp = custody_client.get("api/offenders/offenderId/#{offender_id}/movements")
-        unless resp.success?
-          fail "problem getting from api #{resp.body}"
-        end
+        raise "problem getting from api #{resp.body}" unless resp.success?
+
         resp.body
       end
     end

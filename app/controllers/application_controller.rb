@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_admin!
-    return if current_user && current_user.admin?
+    return if current_user&.admin?
 
     flash[:error] = t('alerts.admin.access.unauthorized')
     redirect_to root_path
