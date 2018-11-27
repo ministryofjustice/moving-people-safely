@@ -18,7 +18,24 @@ api = CustodyApi::Client.new(
   token: token
 )
 
-resp = api.get('api/events')
+noms_id = 'G0952GH'
+
+resp = api.get("api/offenders/nomsId/#{noms_id}")
+unless resp.success?
+  fail "problem getting from api #{resp.body}"
+end
+json = resp.body
+puts "\n\noffender:\n"
+puts "json:"
+puts JSON.pretty_generate(json)
+
+offender_id = json['offenderId']
+first_name = json['firstName']
+surname = json['surname']
+date_of_birth = json['dateOfBirth']
+gender = json['gender']['description']
+
+resp = api.get("api/offenders/offenderId/#{offender_id}/events")
 unless resp.success?
   fail "problem getting from api #{resp.body}"
 end
@@ -26,7 +43,8 @@ end
 json = resp.body
 puts "\n\nevents:\n"
 puts "count: #{json.length}"
-puts "first: #{json.first}"
+puts "first:"
+puts JSON.pretty_generate(json.first)
 
 MOVEMENT_EVENT_TYPES = [
   "EXTERNAL_MOVEMENT_RECORD-INSERTED",
@@ -38,7 +56,7 @@ MOVEMENT_EVENT_TYPES = [
 
 date = Date.new(2017,7,24)
 
-resp = api.get('api/events',
+resp = api.get("api/offenders/offenderId/#{offender_id}/events",
   from: date.to_time.utc.iso8601,
   type: MOVEMENT_EVENT_TYPES
 )
@@ -50,9 +68,10 @@ end
 json = resp.body
 puts "\n\nevents:\n"
 puts "count: #{json.length}"
-puts "first: #{json.first}"
+puts "first:"
+pp json.first
 
-resp = api.get("api/offenders/offenderId/1393147/movements")
+resp = api.get("api/offenders/offenderId/#{offender_id}/movements")
 
 unless resp.success?
   fail "problem getting from api #{resp.body}"
@@ -62,4 +81,17 @@ json = resp.body
 
 puts "\n\nmovements:\n"
 puts "count: #{json.length}"
-puts "first: #{json.first}"
+puts JSON.pretty_generate(json)
+
+
+resp = api.get("api/offenders/offenderId/#{offender_id}/courtEvents")
+
+unless resp.success?
+  fail "problem getting from api #{resp.body}"
+end
+
+json = resp.body
+
+puts "\n\ncourt events:\n"
+puts "count: #{json.length}"
+puts JSON.pretty_generate(json)
