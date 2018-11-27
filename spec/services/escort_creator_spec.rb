@@ -95,7 +95,6 @@ RSpec.describe EscortCreator, type: :service do
           expect_detainee_to_be_cloned(existent_escort, escort)
           expect_risk_assessment_to_be_cloned(existent_escort, escort)
           expect_healthcare_assessment_to_be_cloned(existent_escort, escort)
-          expect_offences_to_be_cloned(existent_escort, escort)
           expect(escort.twig).to eq(existent_escort)
         end
       end
@@ -121,7 +120,6 @@ RSpec.describe EscortCreator, type: :service do
           expect_detainee_to_be_cloned(issued_escort, escort)
           expect_risk_assessment_to_be_cloned(issued_escort, escort)
           expect_healthcare_assessment_to_be_cloned(issued_escort, escort)
-          expect_offences_to_be_cloned(issued_escort, escort)
           expect(escort.twig).to eq(issued_escort)
         end
       end

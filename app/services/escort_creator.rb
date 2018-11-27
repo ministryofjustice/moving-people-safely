@@ -58,8 +58,12 @@ class EscortCreator
 
   def deep_clone_escort
     existent_escort.deep_clone(
-      include: INCLUDE_GRAPH,
+      include: include_graph_for(existent_escort.location),
       except: EXCEPT_GRAPH
     )
+  end
+
+  def include_graph_for(location)
+    location == 'police' ? INCLUDE_GRAPH - %i[offences offences_workflow] : INCLUDE_GRAPH
   end
 end
