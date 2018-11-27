@@ -1,0 +1,29 @@
+.movements
+  header
+    h1 Movements for Offender
+
+  details.govuk-details
+    summary.govuk-details__summary
+      span.govuk-details__summary-text
+        | Offender details: #{@noms_id}
+
+    .govuk-details__text
+      pre
+        = JSON.pretty_generate @offender
+
+  details.govuk-details
+    summary.govuk-details__summary
+      span.govuk-details__summary-text
+        | Movements: #{@movements.length}
+
+    .govuk-details__text
+      - @movements.each_with_index do |movement, i|
+        details.govuk-details
+          summary.govuk-details__summary
+            span.govuk-details__summary-text
+              | Movement ##{i+1}
+          .govuk-details__text
+            pre
+              = JSON.pretty_generate movement
+
+  = link_to 'New Search', new_admin_movements_path, class: 'govuk-button'

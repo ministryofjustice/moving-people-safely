@@ -4,6 +4,21 @@ module OauthHelper
     get "/auth/mojsso/callback"
   end
 
+  def sign_in_admin(user)
+    sign_in(user)
+  end
+
+  def sign_in_prison(user)
+    sign_in(
+      user,
+      sso: { info: {
+        permissions: [
+          { 'organisation' => User::PRISON_ORGANISATION }
+        ]
+      }}
+    )
+  end
+
   def configure_mock(sso_config = {})
     OmniAuth.config.add_mock(:mojsso, OAUTH_HASH.deep_merge(sso_config))
   end

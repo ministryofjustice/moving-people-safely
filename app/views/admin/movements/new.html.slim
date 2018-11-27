@@ -1,0 +1,14 @@
+.movements
+  header
+    h1 Movements for Offender
+
+  .form-wrapper
+    = form_tag admin_movements_path, method: :get do
+      .govuk-form-group
+        label.govuk-label for='noms_id'
+          | NOMS ID
+        = text_field_tag :noms_id, '', class: 'govuk-input'
+
+      button.govuk-button type="submit"
+        | View
+
