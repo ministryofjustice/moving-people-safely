@@ -215,14 +215,6 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     attribute.to_s.split('.').last.humanize.capitalize
   end
 
-  def attribute_prefix
-    object_name.to_s.tr('[]', '_').squeeze('_').chomp('_')
-  end
-
-  def error_full_message_for(attribute)
-    message = object.errors.full_messages_for(attribute).first
-  end
-
   def translate(key, scope, default = '')
     I18n.translate(key, default: default, scope: scope).presence ||
       I18n.translate("#{key}_html", default: default, scope: scope).html_safe.presence
