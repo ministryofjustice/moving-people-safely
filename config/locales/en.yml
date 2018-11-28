@@ -157,7 +157,9 @@ en:
           carrier: Who will carry the medicine?
           carrier_choices:
             escort: Escort
-            detainee: Prisoner
+            prisoner:
+              prison: Prisoner
+              police: Detainee
       offences:
         offences:
           offence: Offence name
