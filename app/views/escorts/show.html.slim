@@ -30,7 +30,7 @@
 
     = render 'assessment', assessment: escort.healthcare,
                            model: Healthcare,
-                           not_started_path: intro_escort_healthcare_path(escort),
+                           not_started_path: (escort.from_police? ? new_escort_healthcare_path(escort) : intro_escort_healthcare_path(escort)),
                            summary_path: escort_healthcare_path(escort),
                            section: escort.healthcare || escort.build_healthcare
 
