@@ -91,7 +91,6 @@ police:
       - self_harm
       - observation_level
     segregation:
-      - csra
       - vulnerable_prisoner
     security:
       - high_profile

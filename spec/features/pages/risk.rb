@@ -50,7 +50,6 @@ module Page
         fill_in_optional_details('Are they held under Rule 45?', @risk, :rule_45)
         fill_in_optional_details('Are they a vulnerable prisoner?', @risk, :vulnerable_prisoner)
       elsif @risk.location == 'police'
-        fill_in_optional_details('Is there any reason they should not share a cell with another person?', @risk, :csra)
         fill_in_optional_details('Are they at risk from other people?', @risk, :vulnerable_prisoner)
       end
       save_and_continue

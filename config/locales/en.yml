@@ -89,9 +89,7 @@ en:
         previous_escape_attempts: Are they an escape risk?
         violent_or_dangerous: Are they violent or dangerous?
       segregation:
-        csra:
-          prison: What is their Cell Sharing Risk Assessment (CSRA) risk level?
-          police: Is there any reason they should not share a cell with another person?
+        csra: What is their Cell Sharing Risk Assessment (CSRA) risk level?
         rule_45: Are they held under Rule 45?
         vulnerable_prisoner:
           prison: Are they a vulnerable prisoner?

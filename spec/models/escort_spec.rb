@@ -301,7 +301,7 @@ RSpec.describe Escort do
         let(:establishment) { create(:police_custody) }
 
         specify {
-          expect(subject).to eq %i[pregnant travelling_with_child acct_status rule_45 category_a]
+          expect(subject).to eq %i[pregnant travelling_with_child acct_status rule_45 category_a csra]
         }
       end
     end
@@ -321,7 +321,7 @@ RSpec.describe Escort do
         let(:establishment) { create(:police_custody) }
 
         specify {
-          expect(subject).to eq %i[acct_status rule_45 category_a travelling_with_child]
+          expect(subject).to eq %i[acct_status rule_45 category_a travelling_with_child csra]
         }
       end
     end

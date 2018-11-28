@@ -4,11 +4,11 @@
   = render "shared/sections/#{views}/section",
     assessment: assessment, path: path, section: section, questions: questions
 
-= render "shared/sections/#{views}/question",
-  alternance: 'even', assessment: assessment, section: section, question: 'csra',
-  value: assessment.csra, details: assessment.csra_details
-
 - if assessment.escort.from_prison?
+  = render "shared/sections/#{views}/question",
+    alternance: 'even', assessment: assessment, section: section, question: 'csra',
+    value: assessment.csra, details: nil
+
   = render "shared/sections/#{views}/question",
     alternance: 'odd', assessment: assessment, section: section, question: 'rule_45',
     value: assessment.rule_45, details: nil
