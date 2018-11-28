@@ -8,7 +8,8 @@ module Page
 
     def complete_forms(healthcare, gender)
       @hc = healthcare
-      continue_from_intro
+      continue_from_intro unless @hc.location == 'police'
+      check_sidebar_layout
       fill_in_physical(gender)
       fill_in_mental
       fill_in_transport
@@ -20,7 +21,13 @@ module Page
     end
 
     def continue_from_intro
-      click_link 'Continue' if @hc.location == 'prison'
+      click_link 'Continue'
+    end
+
+    def check_sidebar_layout
+      within('.govuk-main-wrapper .govuk-grid-row .govuk-grid-column-one-quarter') do
+        expect(page).to have_content('Date of travel')
+      end
     end
 
     def fill_in_physical(gender)
