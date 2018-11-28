@@ -10,22 +10,35 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
     }
   end
 
-  scenario 'adding a new escort for a male, filling it in' do
-    banbury_police_station = create(:police_custody, name: 'Banbury Police Station')
+  let!(:banbury_police_station) do
+    create(:police_custody, name: 'Banbury Police Station')
+  end
 
-    login_options = { sso: { info: { permissions: [{ 'organisation' => User::POLICE_ORGANISATION }] } } }
+  let(:login_options) do
+    {
+      sso: {
+        info: {
+          permissions: [{ 'organisation' => User::POLICE_ORGANISATION }]
+        }
+      }
+    }
+  end
+
+  let(:move_data) { build(:move, from_establishment: banbury_police_station) }
+  let(:escort) { build(:escort, move: move_data) }
+  let(:healthcare_data) { build(:healthcare, :with_medications, escort: escort,
+                                pregnant: 'yes', pregnant_details: '5 months') }
+  let(:risk_data) { build(:risk, :from_police, :with_high_observation_level, escort: escort) }
+  let(:detainee) { build(:detainee, gender: 'male') }
+
+  before { create(:magistrates_court, name: move_data.to) }
+
+  scenario 'adding a new escort for a male, filling it in' do
     login(nil, login_options)
 
     expect(current_path).to eq select_police_station_path
 
     select_police_station.select_station('Banbury Police Station')
-
-    move_data = build(:move, from_establishment: banbury_police_station)
-    escort = build(:escort, move: move_data)
-    healthcare_data = build(:healthcare, :with_medications, escort: escort)
-    risk_data = build(:risk, :from_police, :with_high_observation_level, escort: escort)
-    detainee = build(:detainee, gender: 'male')
-    create(:magistrates_court, name: move_data.to)
 
     dashboard.click_start_a_per
 

@@ -201,14 +201,17 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def choice_label_text(attribute, choice)
-    scope = "helpers.label.#{object_name}.#{attribute}_choices"
-    translate(choice, scope, choice.to_s.humanize)
+    scope = "helpers.label.#{flattened_object_name}.#{attribute}_choices"
+    location_text(translate(choice, scope, choice.to_s.humanize))
   end
 
   def localized(scope, attribute)
-    name = object_name.gsub(/\[(.*)_attributes\]\[\d+\]/, '.\1')
-    key = "#{name}.#{attribute}"
+    key = "#{flattened_object_name}.#{attribute}"
     location_text(translate(key, scope))
+  end
+
+  def flattened_object_name
+    object_name.gsub(/\[(.*)_attributes\]\[\d+\]/, '.\1')
   end
 
   def translate(key, scope, default = '')
