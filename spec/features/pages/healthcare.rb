@@ -97,7 +97,7 @@ module Page
         fill_in 'Dosage', with: med.dosage
         fill_in 'When is it given?', with: med.when_given
         within('.govuk-fieldset') do
-          choose option: med.carrier
+          choose (med.location == 'police' ? 'Detainee' : 'Prisoner')
         end
       end
     end
