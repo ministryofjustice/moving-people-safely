@@ -214,10 +214,6 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     object_name.gsub(/\[(.*)_attributes\]\[\d+\]/, '.\1')
   end
 
-  def default_label(attribute)
-    attribute.to_s.split('.').last.humanize.capitalize
-  end
-
   def translate(key, scope, default = '')
     I18n.translate(key, default: default, scope: scope).presence ||
       I18n.translate("#{key}_html", default: default, scope: scope).html_safe.presence
