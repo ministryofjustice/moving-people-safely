@@ -23,6 +23,7 @@
 
 # Ignore test artifacts
 /spec/examples.txt
+/spec/test_files
 
 # Ignore Yarn local installs
 node_modules
