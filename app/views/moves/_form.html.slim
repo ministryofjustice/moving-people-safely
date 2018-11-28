@@ -35,10 +35,7 @@ header
                 = t(option, scope: 'move.destination_types.prompts')
               = f.text_field "to_#{option}".to_sym, id: "#{option}-text"
 
-  .govuk-form-group
-    .date-picker
-      = f.date_picker_text_field :date
-      = render 'shared/radio_date_picker', picker: RadioDatePickerPresenter.new('move[date]', form.date)
+  = f.date_picker_text_field :date
 
   = f.radios_fieldset :not_for_release, toggle_choice: 'yes' do
     = f.radio_toggle_with_textarea :not_for_release_reason,

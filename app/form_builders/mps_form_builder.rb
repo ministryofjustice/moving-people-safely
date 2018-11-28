@@ -59,18 +59,35 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def date_picker_text_field(attribute)
-    content_tag :div,
-      class: form_group_classes(attribute, ['date-picker-wrapper']),
-      id: form_group_id(attribute) do
-        date_picker_tag = content_tag :span,
-          class: 'date-picker-field input-group date',
-          data: { provide: 'datepicker' } do
-            date_text_field_tag = custom_text_field(attribute, class: 'no-script govuk-input date-field')
-            calendar_icon_tag = content_tag :span, nil, class: 'no-script calendar-icon input-group-addon'
-            (date_text_field_tag + calendar_icon_tag).html_safe
-          end
-        govuk_label(attribute) + govuk_hint(attribute) + date_picker_tag
+    content_tag :div, class: form_group_classes(attribute), id: form_group_id(attribute) do
+      safe_join [
+        govuk_label(attribute),
+        govuk_hint(attribute),
+        govuk_error_message(attribute),
+        today_tomorrow_radios(attribute),
+        date_picker_field(attribute)
+      ]
+    end
+  end
+
+  def date_picker_field(attribute)
+    span_classes = ['date-picker-field', 'input-group date']
+    field_classes = ['no-script', 'govuk-input', 'date-field']
+    calendar_classes = ['no-script', 'calendar-icon', 'input-group-addon']
+
+    content_tag :div, class: 'date-picker' do
+      content_tag :div, class: 'date-picker-wrapper' do
+        content_tag :span, class: span_classes, data: { provide: 'datepicker' } do
+          @template.text_field_tag("#{object_name}[#{attribute}]", object.send(attribute), class: field_classes) +
+            content_tag(:span, nil, class: calendar_classes)
+        end
       end
+    end
+  end
+
+  def today_tomorrow_radios(attribute)
+    @template.render 'shared/radio_date_picker',
+      picker: RadioDatePickerPresenter.new("#{object_name}[#{attribute}]", object.send(attribute))
   end
 
   def error_messages
@@ -116,14 +133,6 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   private
-
-  def custom_text_field(attribute, options = {})
-    ActionView::Helpers::Tags::TextField.new(
-      object_name, attribute, self,
-      { value: object.public_send(attribute),
-        class: 'govuk-input govuk-!-width-one-half' }.merge(options)
-    ).render
-  end
 
   def govuk_radios(attribute, options = {}, &blk)
     classes = ['govuk-radios', 'govuk-radios--conditional']
