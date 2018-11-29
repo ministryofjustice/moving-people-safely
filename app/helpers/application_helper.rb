@@ -34,8 +34,16 @@ module ApplicationHelper
     content_tag(:div, content, class: 'govuk-!-font-weight-bold')
   end
 
-  def content_or_none(content)
-    content.present? ? content : 'None'
+  def content_or_dash(content)
+    content.present? ? content : dash
+  end
+
+  def dash
+    '&dash;'.html_safe
+  end
+
+  def long_dash(len)
+    ('&mdash;' * len).html_safe
   end
 
   def answer_details(*answers)
