@@ -24,7 +24,7 @@ RSpec::Matchers.define :validate_as_pdf_that_contains_text do |file_name, option
   private
 
   def extract_pdf_text(pdf_content)
-    file = Tempfile.new('tempfile').tap do |f|
+    file = Tempfile.new(['extracted-', '.pdf']).tap do |f|
       f.binmode
       f << pdf_content
     end

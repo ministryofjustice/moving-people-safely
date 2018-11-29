@@ -38,7 +38,7 @@ class EscortIssuer
 
   def generate_per_document
     pdf = PdfGenerator.new(escort).call
-    file = Tempfile.new(['per', '.pdf'])
+    file = Tempfile.new(['per-', '.pdf'])
     file.write(pdf.force_encoding('utf-8'))
     file
   end
