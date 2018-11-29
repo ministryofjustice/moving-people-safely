@@ -1,0 +1,4 @@
+span.timestamp= t('assessment.confirmed_timestamp', name: assessment.reviewer.safe_identifier, time: assessment.reviewed_at.to_s(:humanized))
+- if escort.from_police? && escort.approved?
+  | &nbsp;
+  span.timestamp= t('assessment.approved_timestamp', name: escort.approver.safe_identifier, time: escort.approved_at.to_s(:humanized))

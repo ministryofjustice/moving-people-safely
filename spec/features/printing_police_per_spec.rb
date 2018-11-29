@@ -2,10 +2,10 @@ require 'feature_helper'
 
 RSpec.feature 'printing a police PER', type: :feature do
   let(:reviewer) {
-    create(:user, first_name: 'Nel', last_name: 'Bee')
+    create(:user, :police, first_name: 'Nel', last_name: 'Bee')
   }
   let(:approver) {
-    create(:user, first_name: 'Ned', last_name: 'Nok')
+    create(:user, :police, first_name: 'Ned', last_name: 'Nok')
   }
   let(:police_custody) {
     create(:police_custody, name: 'My Jolly Police Custody Suite')

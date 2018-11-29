@@ -56,26 +56,32 @@ Staple to card —————
 Not for release ✘ No Suicide / Self harm ✘ No Violent ✘ No Escape risk ✘ No
 Sex offender ✘ No Constant watch ✘ No Alcohol withdrawal ✘ No
 
-Risk Last confirmed: Nel Bee, 12:30 | 10 Mar 2016. Approved: Ned Nok, 12:30 | 10 Mar 2016.
-Risk to self                     No
-Segregation                      No
-Security                         No
-Discrimination against others    No
-Offence history                  No
-Weapons, drugs or other items    No
-Other risk information           No
+Risk Last confirmed: Detention Officer Bee, 12:30 | 10 Mar 2016. Approved: Detention Officer Nok, 12:30 |
+10 Mar 2016.
 
-Healthcare Last confirmed: Nel Bee, 12:30 | 10 Mar 2016. Approved: Ned Nok, 12:30 | 10 Mar 2016.
-Physical health issues           No
-Mental health issues             No
-Special vehicles                 No
-Essential medication             No
-Dependencies                     No
-Allergies and intolerances       No
-Personal care                    No
-Custody suite contact details    Yes
-  Custody suite contact          1-131-999-0232
+Risk to self                      No
+Segregation                       No
+Security                          No
+Discrimination against others     No
+Offence history                   No
+Weapons, drugs or other items     No
+Other risk information            No
 
-Offences Last confirmed: Nel Bee, 12:30 | 10 Mar 2016. Approved: Ned Nok, 12:30 | 10 Mar 2016.
-Current offences                 None
+Healthcare Last confirmed: Detention Officer Bee, 12:30 | 10 Mar 2016. Approved: Detention Officer Nok,
+12:30 | 10 Mar 2016.
+
+Physical health issues            No
+Mental health issues              No
+Special vehicles                  No
+Essential medication              No
+Dependencies                      No
+Allergies and intolerances        No
+Personal care                     No
+Custody suite contact details     Yes
+  Custody suite contact           1-131-999-0232
+
+Offences Last confirmed: Detention Officer Bee, 12:30 | 10 Mar 2016. Approved: Detention Officer Nok,
+12:30 | 10 Mar 2016.
+
+Current offences                  None
 

@@ -9,7 +9,7 @@ section id=model.to_s.downcase
 
     - if assessment&.reviewed?
       p.review
-        = t('assessment.confirmed_timestamp', name: assessment.reviewer.full_name, time: assessment.reviewed_at.to_s(:humanized))
+        = render 'shared/confirmed_approved', assessment: assessment, escort: escort
 
   - if assessment&.relevant_questions&.any?
     table.govuk-table
