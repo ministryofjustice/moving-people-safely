@@ -85,9 +85,7 @@ RSpec.feature 'printing a prison PER', type: :feature do
       visit escort_path(escort)
       escort_page.click_print
 
-      escort.reload
-      expected_filename = escort.document_file_name
-      expect(expected_filename).to match(/^per[0-9a-z-]+\.pdf$/i)
+      expected_filename = "per-McTest-Testy-#{Date.current.to_s(:db)}.pdf"
       expect(page.response_headers['Content-Type']).to eq 'application/pdf'
       expect(page.response_headers['Content-Disposition']).to eq "inline; filename=#{expected_filename.inspect}"
 
