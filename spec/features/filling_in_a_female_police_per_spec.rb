@@ -27,7 +27,7 @@ RSpec.feature 'filling in a PER from a police station', type: :feature do
   let(:move_data) { build(:move, from_establishment: banbury_police_station) }
   let(:escort) { build(:escort, move: move_data) }
   let(:healthcare_data) { build(:healthcare, :with_medications, escort: escort,
-                                pregnant: 'yes', pregnant_details: '5 months') }
+                                pregnant: 'yes', pregnant_details: '5 months', female_hygiene_kit: 'yes') }
   let(:risk_data) { build(:risk, :from_police, :with_high_observation_level, escort: escort) }
   let(:detainee) { build(:detainee, gender: 'female') }
 

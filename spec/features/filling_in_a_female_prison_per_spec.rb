@@ -35,7 +35,7 @@ RSpec.feature 'filling in a PER for a female from a prison', type: :feature do
   end
 
   let(:healthcare_data) do
-    build(:healthcare, :with_medications, escort: escort)
+    build(:healthcare, :with_medications, escort: escort, female_hygiene_kit: 'yes')
   end
 
   let(:healthcare_login_options) do
