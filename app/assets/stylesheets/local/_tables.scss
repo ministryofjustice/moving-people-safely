@@ -28,3 +28,19 @@
     text-align: right;
   }
 }
+
+.escorts {
+  table {
+    th.number {
+      width: 10%;
+    }
+
+    th.name {
+      width: 30%;
+    }
+
+    th.destination {
+      width: 30%;
+    }
+  }
+}
