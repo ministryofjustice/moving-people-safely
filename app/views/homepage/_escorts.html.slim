@@ -14,7 +14,7 @@
         tr.govuk-table__row.move-row id="number_#{escort.id_number}"
           td.govuk-table__cell = link_to_unless escort.cancelled?, escort.number, escort_path(escort)
           td.govuk-table__cell
-            span.strong-text
+            span class='govuk-!-font-weight-bold'
               | #{escort.detainee_surname}
             span
               |  #{escort.detainee_forenames}
