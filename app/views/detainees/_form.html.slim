@@ -6,33 +6,28 @@
     = form_for form, url: submit_path, method: method do |f|
       = f.error_messages
 
-      - if form.image.present?
-        .detainee-image
-          = image_tag "data:image/jpeg;base64,#{form.image}", size: '128x180'
-      - else
-        .no-image
-          span = 'Photo unavailable'
+      .govuk-form-group
+        - if form.image.present?
+          .detainee-image
+            = image_tag "data:image/jpeg;base64,#{form.image}", size: '128x180'
+        - else
+          .no-image
+            span = 'Photo unavailable'
 
       = f.hidden_field :image_filename
       = f.hidden_field :image
-
       - if escort.from_prison?
         label.govuk-label Prison number
         p.prison_number = escort.prison_number
         = f.hidden_field :prison_number, value: escort.prison_number
       - elsif escort.from_police?
         = f.text_field :pnc_number, value: escort.pnc_number
-
       = f.text_field :surname
       = f.text_field :forenames
       = f.text_field :date_of_birth
       = f.text_area  :nationalities
       = f.radios_fieldset :gender, choices: form.genders
-
-      .govuk-form-group
-        label.govuk-label for='auto_ethnicity' Ethnicity #{' (Optional)' if escort.from_police?}
-        = f.select :ethnicity, Detainee::ETHNICITY_CODES, { include_blank: true }, { id: 'auto_ethnicity', class: 'govuk-select mps-autocomplete govuk-!-width-one-third' }
-
+      = f.select_autocomplete :ethnicity, Detainee::ETHNICITY_CODES
       - if escort.from_prison?
         = f.text_field :religion
         = f.text_field :pnc_number
@@ -42,17 +37,13 @@
       = f.text_area  :aliases
       - if escort.from_prison?
         = f.text_field :language
-      #interpreter_required
-        - if escort.from_prison?
-          = f.radios_fieldset :interpreter_required
-        - elsif escort.from_police?
-          = f.radios_fieldset :interpreter_required, toggle_choice: 'yes' do
-            = f.text_field :language
-            = f.text_area :interpreter_required_details
-
+        = f.radios_fieldset :interpreter_required
+      - elsif escort.from_police?
+        = f.radios_fieldset :interpreter_required, toggle_choice: 'yes' do
+          = f.text_field :language
+          = f.text_area :interpreter_required_details
       - if escort.from_prison?
-        #peep= f.radio_toggle_with_textarea :peep
-      - if escort.from_prison?
+        = f.radio_toggle_with_textarea :peep
         = f.text_field :security_category
       = f.text_area :diet
 

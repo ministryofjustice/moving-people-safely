@@ -1,5 +1,6 @@
 module Forms
   class Move < Forms::Base
+    FREE_FORM_DESTINATION_TYPES = %i[civil_court hospital other].freeze
     REASON_WITH_DETAILS = 'other'.freeze
     COMMON_NOT_FOR_RELEASE_REASONS = %w[held_for_immigration other].freeze
     PRISON_NOT_FOR_RELEASE_REASONS = %w[serving_sentence further_charges licence_revoke].freeze
@@ -39,8 +40,6 @@ module Forms
     def not_for_release_reason_with_details
       REASON_WITH_DETAILS
     end
-
-    FREE_FORM_DESTINATION_TYPES = %i[civil_court hospital other].freeze
 
     property :to_type, validates: { presence: true }
 
@@ -83,16 +82,8 @@ module Forms
     end
 
     def sorted_destination_options
-      free_form = FREE_FORM_DESTINATION_TYPES.each_with_object({}) do |type, memo|
-        memo[type] = :free_form
-      end
-
-      auto = Establishment::ESTABLISHMENT_TYPES.each_with_object({}) do |type, memo|
-        memo[type] = :auto
-      end
-
-      free_form.delete(:other)
-      free_form.merge(auto).sort + [%i[other free_form]]
+      sorted_list = (FREE_FORM_DESTINATION_TYPES + Establishment::ESTABLISHMENT_TYPES - [:other]).sort
+      sorted_list + [:other]
     end
   end
 end

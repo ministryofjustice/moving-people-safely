@@ -1,19 +1,7 @@
-var autos = [
-  "crown_court",
-  "magistrates_court",
-  "prison",
-  "police_custody",
-  "immigration_removal_centre",
-  "youth_secure_estate",
-  "auto_ethnicity"
-]
+accessibleElements = document.querySelectorAll('.mps-autocomplete');
 
-for (i = 0, tot = autos.length; i < tot; i++) {
-  var auto = autos[i];
-  if (document.querySelector('#' + auto)) {
-    accessibleAutocomplete.enhanceSelectElement({
-      selectElement: document.querySelector('#'+auto),
-      id: auto // To match it to the existing <label>.
-    });
-  };
-}
+for (i = 0, l = accessibleElements.length; i < l; ++i) {
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: accessibleElements[i]
+  });
+};

@@ -23,7 +23,7 @@ RSpec.feature 'police dashboard', type: :feature do
 
     expect(current_path).to eq select_police_station_path
 
-    select 'Banbury Police Station', from: 'police_custody'
+    select 'Banbury Police Station', from: 'police_station_selector_police_custody_id'
     click_button 'Save and continue'
 
     expect(current_path).to eq root_path

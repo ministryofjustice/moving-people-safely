@@ -4,7 +4,7 @@ RSpec.feature 'court dashboard', type: :feature do
   scenario 'login as court user' do
     luton_court = create(:magistrates_court, name: 'Luton CC', nomis_id: 'luton')
     basildon_court = create(:magistrates_court, name: 'Basildon CC', nomis_id: 'basildon')
-    st_albans_court = create(:magistrates_court, name: 'St Albans CC', nomis_id: 'albans')
+    st_albans_court = create(:crown_court, name: 'St Albans CC', nomis_id: 'albans')
 
     escort_1 = create(:escort, :issued, :completed, prison_number: 'A9876XC')
     escort_1.move.update(date: Date.today, to: luton_court.name)
@@ -21,7 +21,8 @@ RSpec.feature 'court dashboard', type: :feature do
 
     expect(current_path).to eq select_court_path
 
-    select 'Luton CC', from: 'magistrates_court'
+    choose "Magistrates' court"
+    select 'Luton CC', from: 'court_selector_magistrates_court_id'
     click_button 'Save and continue'
 
     expect(current_path).to eq court_path
@@ -34,7 +35,8 @@ RSpec.feature 'court dashboard', type: :feature do
     click_link 'Create or view a PER'
 
     click_link 'Change court'
-    select 'St Albans CC', from: 'magistrates_court'
+    choose "Crown court"
+    select 'St Albans CC', from: 'court_selector_crown_court_id'
 
     expect(page.all('tbody').size).to eq 0
   end
