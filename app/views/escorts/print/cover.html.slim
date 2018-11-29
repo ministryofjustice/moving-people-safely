@@ -5,7 +5,10 @@ html
     = wicked_pdf_stylesheet_link_tag "print.css", media: 'all'
 
   body
-    .staple-instruction.staple-instruction-top &mdash;&mdash;&mdash;&mdash;&mdash; Staple to card
+    .staple-instruction.staple-instruction-top
+      = long_dash(5)
+      | &nbsp;Staple to card
+
     main.page-one
       table.vehicles
         tr.header-row
@@ -66,13 +69,13 @@ html
             div.govuk-grid-row
               div.govuk-grid-column.govuk-grid-column-one-third
                 div.title Prison number
-                div#prison-number.strong-text = escort.detainee.prison_number
+                div#prison-number.strong-text = content_or_dash(escort.detainee.prison_number)
               div.govuk-grid-column.govuk-grid-column-one-third
                 div.title CRO number
-                div#cro-number.strong-text = content_or_none(escort.detainee.cro_number)
+                div#cro-number.strong-text = content_or_dash(escort.detainee.cro_number)
               div.govuk-grid-column.govuk-grid-column-one-third
                 div.title PNC number
-                div#pnc-number.strong-text = content_or_none(escort.detainee.pnc_number)
+                div#pnc-number.strong-text = content_or_dash(escort.detainee.pnc_number)
             div.govuk-grid-row.padded
               div.govuk-grid-column.govuk-grid-column-one-third
                 div.title Date of birth
@@ -91,10 +94,10 @@ html
               - if escort.from_prison?
                 div.govuk-grid-column.govuk-grid-column-one-third
                   div.title Religion
-                  div#age.strong-text = content_or_none(escort.detainee.religion)
+                  div#age.strong-text = content_or_dash(escort.detainee.religion)
               div.govuk-grid-column.govuk-grid-column-one-third
                 div.title Ethnicity
-                div#age.strong-text = ethnicity(escort.detainee)
+                div#age.strong-text = content_or_dash(short_ethnicity(escort.detainee))
             div.govuk-grid-row.padded
               div.govuk-grid-column.govuk-grid-column-one-third
                 div.title Preferred language
@@ -108,7 +111,7 @@ html
             div.govuk-grid-row.padded
               div.govuk-grid-column.govuk-grid-column-one-third
                 div.title Category
-                div#age.strong-text = escort.from_police? ? '&ndash;'.html_safe : content_or_dash(escort.detainee.security_category)
+                div#age.strong-text = escort.from_police? ? dash : content_or_dash(escort.detainee.security_category)
               div.govuk-grid-column.govuk-grid-column-two-thirds
                 div.title Diet
                 div#age.strong-text = content_or_dash(escort.detainee.diet)
@@ -134,4 +137,6 @@ html
           div.govuk-grid-column.logo
             = wicked_pdf_image_tag('moj_logo.png')
 
-    .staple-instruction.staple-instruction-bottom Staple to card &mdash;&mdash;&mdash;&mdash;&mdash;
+    .staple-instruction.staple-instruction-bottom
+      | Staple to card&nbsp;
+      = long_dash(5)
