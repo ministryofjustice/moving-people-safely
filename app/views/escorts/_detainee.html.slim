@@ -7,52 +7,52 @@ section#detainee
   .data_container
     .tile-3
       h3.govuk-heading-s.heading-light Prison Number
-      p= content_or_dash(escort.detainee.prison_number)
+      p = content_or_dash(escort.detainee.prison_number)
     .tile-3
       h3.govuk-heading-s.heading-light CRO number
-      p= content_or_dash(escort.detainee.cro_number)
+      p = content_or_dash(escort.detainee.cro_number)
     .tile-3
       h3.govuk-heading-s.heading-light PNC Number
-      p= content_or_dash(escort.detainee.pnc_number)
+      p = content_or_dash(escort.detainee.pnc_number)
     .tile-3
       h3.govuk-heading-s.heading-light Date of birth
-      p= escort.detainee.date_of_birth&.to_s(:humanized)
+      p = escort.detainee.date_of_birth&.to_s(:humanized)
     .tile-3
       h3.govuk-heading-s.heading-light Age
-      p= escort.detainee.age
+      p = escort.detainee.age
     .tile-3
       h3.govuk-heading-s.heading-light Gender
-      p= escort.detainee.gender&.capitalize
+      p = escort.detainee.gender&.capitalize
     .tile-3
       h3.govuk-heading-s.heading-light Nationality
-      p= content_or_dash(escort.detainee.nationalities)
+      p = content_or_dash(escort.detainee.nationalities)
     - if escort.from_prison?
       .tile-3
         h3.govuk-heading-s.heading-light Religion
-        p= content_or_dash(escort.detainee.religion)
+        p = content_or_dash(escort.detainee.religion)
     .tile-3
       h3.govuk-heading-s.heading-light Ethnicity
-      p= content_or_dash(short_ethnicity(escort.detainee))
+      p = content_or_dash(short_ethnicity(escort.detainee))
     .tile-3
       h3.govuk-heading-s.heading-light Preferred language
-      p= content_or_dash(escort.detainee.language)
+      p = content_or_dash(escort.detainee.language)
     .tile-3
       h3.govuk-heading-s.heading-light Interpreter
-      p= content_or_dash(expanded_interpreter_required(escort.detainee))
+      p = content_or_dash(expanded_interpreter_required(escort.detainee))
     .tile-3
       h3.govuk-heading-s.heading-light Interpreter details
-      p= content_or_dash(escort.detainee.interpreter_required_details)
+      p = content_or_dash(escort.detainee.interpreter_required_details)
     - if escort.from_prison?
       .tile-3
         h3.govuk-heading-s.heading-light Category
-        p= content_or_dash(escort.detainee.security_category)
+        p = content_or_dash(escort.detainee.security_category)
     .tile-3
       h3.govuk-heading-s.heading-light Diet
-      p= content_or_dash(escort.detainee.diet)
+      p = content_or_dash(escort.detainee.diet)
     - if escort.detainee.peep == 'yes'
       .tile-3
         h3.govuk-heading-s.heading-light Personal Emergency Evacuation Plan
-        p= content_or_dash(escort.detainee.peep_details)
+        p = content_or_dash(escort.detainee.peep_details)
   .tile-3
     h3.govuk-heading-s.heading-light Aliases
-    p= content_or_dash(escort.detainee.aliases)
+    p = content_or_dash(escort.detainee.aliases)

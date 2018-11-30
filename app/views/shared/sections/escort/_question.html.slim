@@ -4,9 +4,9 @@
       = location_text(t("summary.section.questions.#{section}.#{question}"), assessment.location)
     td.govuk-table__cell.answer
       - if details&.is_a? String
-        b= details.capitalize
+        b = details.capitalize
       - elsif details && multiples
         - details.each do |multiple|
           = render "#{assessment.class.to_s.downcase.pluralize}/sections/#{partial}", multiple: multiple
       - elsif value.present?
-        b= value.humanize.capitalize
+        b = value.humanize.capitalize

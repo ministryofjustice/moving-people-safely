@@ -79,6 +79,10 @@ jobs:
           name: Run rubocop
           command: bundle exec rubocop
 
+      - run:
+          name: Run slim-lint
+          command: bundle exec slim-lint app/views
+
       # Save test results for timing analysis
       - store_test_results:
           path: test_results

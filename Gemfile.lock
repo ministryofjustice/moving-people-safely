@@ -341,6 +341,11 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (>= 3.0, < 5.0)
+    slim_lint (0.16.1)
+      rake (>= 10, < 13)
+      rubocop (>= 0.50.0)
+      slim (>= 3.0, < 5.0)
+      sysexits (~> 1.1)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -353,6 +358,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sysexits (1.2.0)
     temple (0.8.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
@@ -436,6 +442,7 @@ DEPENDENCIES
   shoulda-matchers!
   simplecov
   slim-rails
+  slim_lint
   spring
   spring-watcher-listen
   uglifier

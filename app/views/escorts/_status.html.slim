@@ -12,7 +12,7 @@
     - elsif workflow.confirmed?
       span.status-label.status-label--complete Complete
 
-    = link_to "#{(can? :update, workflow) ? 'Edit' : 'View'}", summary_path
+    = link_to (can?(:update, workflow) ? 'Edit' : 'View'), summary_path
 
   - else
     span.status-label.status-label--incomplete Incomplete

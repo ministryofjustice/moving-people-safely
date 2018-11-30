@@ -4,7 +4,7 @@ header
   - if workflow.has_status?
     h2.govuk-heading-m
       | Status
-      span.status-label class=("status-label--#{workflow.label_status}") = workflow.label
+      span.status-label class="status-label--#{workflow.label_status}" = workflow.label
 
     - if workflow.needs_review?
       .alert--warning.review-warning

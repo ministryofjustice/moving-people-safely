@@ -1,0 +1,5 @@
+linters:
+  LineLength:
+    max: 160
+    exclude:
+      - app/views/layouts/_footer.html.slim
