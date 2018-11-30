@@ -51,6 +51,6 @@ class HomepageController < ApplicationController
   end
 
   def police_params
-    params.require(:forms_police_station_selector).permit(:police_custody_id)
+    params.require(:police_station_selector).permit(:police_custody_id)
   end
 end

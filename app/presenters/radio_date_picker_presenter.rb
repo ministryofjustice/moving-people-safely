@@ -41,6 +41,6 @@ class RadioDatePickerPresenter
   end
 
   def tomorrow_date
-    Time.current.tomorrow.to_date
+    Date.current.tomorrow
   end
 end

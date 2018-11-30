@@ -43,6 +43,40 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
+  def date_picker_text_field(attribute)
+    content_tag :div, class: form_group_classes(attribute), id: form_group_id(attribute) do
+      safe_join [
+        govuk_label(attribute),
+        govuk_hint(attribute),
+        govuk_error_message(attribute),
+        today_tomorrow_radios(attribute),
+        date_picker_field(attribute)
+      ]
+    end
+  end
+
+  def select_autocomplete(attribute, choices)
+    classes = ['govuk-select', 'mps-autocomplete', 'govuk-!-width-one-third']
+
+    content_tag :div, class: form_group_classes(attribute), id: form_group_id(attribute) do
+      safe_join [
+        govuk_label(attribute),
+        govuk_hint(attribute),
+        govuk_error_message(attribute),
+        select(attribute, choices, { include_blank: true }, class: classes)
+      ]
+    end
+  end
+
+  def label_data(attribute, value)
+    content_tag :div, class: form_group_classes(attribute), id: form_group_id(attribute) do
+      safe_join [
+        govuk_label(attribute),
+        content_tag(:p, value, id: "#{attribute_prefix}_#{attribute}")
+      ]
+    end
+  end
+
   def radio_toggle_with_textarea(attribute, options = {})
     options[:toggle_choice] ||= 'yes'
 
@@ -51,26 +85,11 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
-  def radios_item_conditional(attribute, option, &blk)
+  def radios_item_conditional(attribute, choice, options = {}, &blk)
     safe_join [
-      govuk_radios_item(attribute, option),
-      govuk_radios_conditional(attribute, option, toggle_choice: option, &blk)
+      govuk_radios_item(attribute, choice),
+      govuk_radios_conditional(attribute, choice, options, &blk)
     ]
-  end
-
-  def date_picker_text_field(attribute)
-    content_tag :div,
-      class: form_group_classes(attribute, ['date-picker-wrapper']),
-      id: form_group_id(attribute) do
-        date_picker_tag = content_tag :span,
-          class: 'date-picker-field input-group date',
-          data: { provide: 'datepicker' } do
-            date_text_field_tag = custom_text_field(attribute, class: 'no-script govuk-input date-field')
-            calendar_icon_tag = content_tag :span, nil, class: 'no-script calendar-icon input-group-addon'
-            (date_text_field_tag + calendar_icon_tag).html_safe
-          end
-        govuk_label(attribute) + govuk_hint(attribute) + date_picker_tag
-      end
   end
 
   def error_messages
@@ -117,27 +136,40 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
 
   private
 
-  def custom_text_field(attribute, options = {})
-    ActionView::Helpers::Tags::TextField.new(
-      object_name, attribute, self,
-      { value: object.public_send(attribute),
-        class: 'govuk-input govuk-!-width-one-half' }.merge(options)
-    ).render
+  def date_picker_field(attribute)
+    span_classes = ['date-picker-field', 'input-group date']
+    field_classes = ['no-script', 'govuk-input', 'date-field']
+    calendar_classes = ['no-script', 'calendar-icon', 'input-group-addon']
+
+    content_tag :div, class: 'date-picker' do
+      content_tag :div, class: 'date-picker-wrapper' do
+        content_tag :span, class: span_classes, data: { provide: 'datepicker' } do
+          @template.text_field_tag("#{object_name}[#{attribute}]", object.send(attribute), class: field_classes) +
+            content_tag(:span, nil, class: calendar_classes)
+        end
+      end
+    end
+  end
+
+  def today_tomorrow_radios(attribute)
+    @template.render 'shared/radio_date_picker',
+      picker: RadioDatePickerPresenter.new("#{object_name}[#{attribute}]", object.send(attribute))
   end
 
   def govuk_radios(attribute, options = {}, &blk)
     classes = ['govuk-radios', 'govuk-radios--conditional']
     classes << 'govuk-radios--inline' if options[:inline]
 
-    choices = options[:choices] || %w[yes no]
-
-    radios = choices.map do |choice|
-      govuk_radios_item(attribute, choice) +
-        govuk_radios_conditional(attribute, choice, options, &blk)
-    end
-
     content_tag(:div, class: classes, data: { module: 'radios' }) do
-      safe_join radios
+      options[:toggle_choice] || !block_given? ? safe_join(radios(attribute, options, &blk)) : yield
+    end
+  end
+
+  def radios(attribute, options, &blk)
+    options[:choices] ||= %w[yes no]
+
+    options[:choices].map do |choice|
+      radios_item_conditional(attribute, choice, options, &blk)
     end
   end
 
@@ -187,13 +219,10 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def field_classes(attribute, method_name = :text_area)
-    govuk_input_classes = ['govuk-input', 'govuk-!-width-one-quarter']
-    govuk_textarea_classes = ['govuk-textarea', 'govuk-!-width-one-half']
-
     classes = if method_name == :text_area
-                govuk_textarea_classes
+                ['govuk-textarea', 'govuk-!-width-one-half']
               else
-                govuk_input_classes
+                ['govuk-input', 'govuk-!-width-one-quarter']
               end
 
     classes << "#{classes.first}--error" if error_for?(attribute)

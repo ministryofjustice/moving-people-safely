@@ -9,7 +9,7 @@
       - if current_user.admin?
         p= link_to 'Automation Report', automation_escort_risks_path(escort)
 
-      = render 'summary/status',
+      = render 'shared/status',
         workflow: Summary::EscortSectionStatusPresenter.new(assessment, name: :risk)
 
       - Risk.sections(escort.location).each do |section|
@@ -20,7 +20,7 @@
             path: edit_escort_risks_path(escort, step: section),
             assessment: assessment
 
-      = render 'summary/call_to_action', workflow: assessment, confirm_path: confirm_escort_risks_path(escort)
+      = render 'shared/call_to_action', workflow: assessment, confirm_path: confirm_escort_risks_path(escort)
 
   .govuk-grid-column-one-quarter.side-profile.sticky
     = render 'shared/detainee_sidebar'

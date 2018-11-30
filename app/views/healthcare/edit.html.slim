@@ -8,8 +8,7 @@
   .govuk-grid-column-three-quarters
     = render 'shared/wizard_header'
 
-    .healthcare
-      = render 'shared/wizard_step_form', scope: 'healthcare', method: :put
+    = render 'shared/wizard_step_form', scope: 'healthcare', method: :put
 
   .govuk-grid-column-one-quarter.side-profile.sticky
     = render 'shared/detainee_sidebar'

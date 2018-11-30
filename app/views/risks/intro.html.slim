@@ -4,11 +4,11 @@
     - breadcrumb t('.breadcrumb')
 
 .govuk-grid-row
-  .govuk-column-two-thirds
+  .govuk-grid-column-two-thirds
     h1.govuk-heading-l = t('.title')
 
     - t('.content').each_line do |paragraph|
-      p = paragraph
+      p.govuk-body = paragraph
 
     - if t('.note').present?
       ul.govuk-list.govuk-list--bullet
@@ -18,5 +18,4 @@
     p = t('.ending_paragraph')
 
     .govuk-form-group
-      p
-        = link_to 'Continue', assessment_wizard_path(assessment), class: 'govuk-button'
+      = link_to 'Continue', assessment_wizard_path(assessment), class: 'govuk-button'

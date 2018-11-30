@@ -1,4 +1,5 @@
 h2.govuk-heading-s Search result
+
 table.govuk-table
   thead.govuk-table__head
     tr.govuk-table__row
@@ -26,8 +27,7 @@ table.govuk-table
       - else
         td.govuk-table__cell colspan=2
 
-.form-wrapper
-  - if @escort.issued?
-    = render 'new_escort_form'
-  - else
-    = link_to('Continue PER', escort_path(@escort), class: 'govuk-button')
+- if @escort.issued?
+  = render 'new_escort_form'
+- else
+  = link_to('Continue PER', escort_path(@escort), class: 'govuk-button')

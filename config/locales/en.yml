@@ -116,6 +116,10 @@ en:
         contact_number:
           prison: Medical contact
           police: Custody suite contact details
+      court_selector:
+        to_type_choices:
+          crown_court: Crown court
+          magistrates_court: Magistrates' court
       detainee:
         aliases: Aliases (Optional)
         date_of_birth: Date of birth
@@ -128,7 +132,9 @@ en:
           prison: Preferred language (Optional)
         nationalities: Nationalities
         pnc_number: PNC number
-        prison_number: Prison number (Optional)
+        prison_number:
+          prison: Prison number
+          police: Prison number (Optional)
         religion: Religion
         security_category: Security category
         surname: Surname
@@ -146,6 +152,12 @@ en:
         date: Date of travel
         child_full_name: Child's full name
         child_date_of_birth: Child's date of birth
+        to_type_choices:
+          crown_court: Crown court
+          magistrates_court: Magistrates' court
+          prison: Prison
+          hospital: Hospital
+          other: Other
       needs:
         medications:
           description: Medicine name
@@ -164,6 +176,8 @@ en:
           case_reference:
             prison: Case reference
             police: Unique reference number
+      police_station_selector:
+        police_custody_id: Police custody suite
       return_instructions:
         must_not_return_details:
           establishment: Establishment name
@@ -210,6 +224,9 @@ en:
         uses_weapons:
           prison: Check Mercury for intelligence or NOMIS adjudications for details.
         uses_weapons_details: 'Give details of previous incidents:'
+      court_selector:
+        crown_court_id: Start typing name of crown court or select from dropdown
+        magistrates_court_id: Start typing name of magistrates' court or select from dropdown
       dependencies:
         alcohol_withdrawal: 'In the arrest record, check the pre-release assessment and detainee section for relevant comments.'
         alcohol_withdrawal_details: 'Give details of any symptoms and treatment given:'
@@ -287,6 +304,15 @@ en:
         require_special_vehicle: This could be a specially-adapted prison van (for example, to accommodate wheelchairs) or a taxi
         require_special_vehicle_details: Please explain why they need a special vehicle
         other_transport_requirements_details: Give details
+        to_civil_court: Enter name of civil court
+        to_crown_court: Start typing name of crown court or select from dropdown
+        to_hospital: Enter name of hospital
+        to_immigration_removal_centre: Start typing name of immigration removal centre or select from dropdown
+        to_magistrates_court: Start typing name of magistrates' court or select from dropdown
+        to_police_custody: Start typing name of police station or custody suite or select from dropdown
+        to_prison: Start typing name of prison or select from dropdown
+        to_youth_secure_estate: Start typing name of youth secure estate or select from dropdown
+        to_other: Enter name of destination
       mental:
         mental_illness:
           prison: For example, if they become anxious in certain situations.
@@ -383,24 +409,6 @@ en:
         violent_or_dangerous:
           prison_html: Check Mercury for intelligence or in NOMIS, check the prisoner’s record for <i>MAPPA</i>, <i>ViSOR</i>, <i>OASys</i> alerts, or other alerts related to violence or dangerous behaviour. Check alert comments and case notes for details.'
         violent_or_dangerous_details: Give details
-  move:
-    destination_types:
-      labels:
-        crown_court: Crown court
-        magistrates_court: Magistrates' court
-        prison: Prison
-        hospital: Hospital
-        other: A different destination
-      prompts:
-        civil_court: Enter name of civil court
-        crown_court: Start typing name of crown court or select from dropdown
-        hospital: Enter name of hospital
-        immigration_removal_centre: Start typing name of immigration removal centre or select from dropdown
-        magistrates_court: Start typing name of magistrates' court or select from dropdown
-        police_custody: Start typing name of police station or custody suite or select from dropdown
-        prison: Start typing name of prison or select from dropdown
-        youth_secure_estate: Start typing name of youth secure estate or select from dropdown
-        other: Enter name of destination
   healthcare:
     form:
       title:
@@ -705,7 +713,7 @@ en:
       date_is_in_the_future: "must not be in the future"
       minimum_collection_size: At least one item needs to be provided
     models:
-      forms/police_station_selector:
+      police_station_selector:
         attributes:
           police_custody_id:
             blank: "^Please select a police custody suite"

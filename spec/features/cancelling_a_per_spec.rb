@@ -29,7 +29,8 @@ RSpec.feature 'cancelling a PER', type: :feature do
     login_options = { sso: { info: { permissions: [{'organisation' => User::COURT_ORGANISATION}]}} }
     login(nil, login_options)
 
-    select 'Luton CC', from: 'magistrates_court'
+    choose "Magistrates' court"
+    select 'Luton CC', from: 'court_selector_magistrates_court_id'
     click_button 'Save and continue'
 
     expect(current_path).to eq court_path
