@@ -68,6 +68,15 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
+  def label_data(attribute, value)
+    content_tag :div, class: form_group_classes(attribute), id: form_group_id(attribute) do
+      safe_join [
+        govuk_label(attribute),
+        content_tag(:p, value, id: "#{attribute_prefix}_#{attribute}")
+      ]
+    end
+  end
+
   def radio_toggle_with_textarea(attribute, options = {})
     options[:toggle_choice] ||= 'yes'
 

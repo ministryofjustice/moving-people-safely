@@ -3,6 +3,16 @@ module EscortsHelper
     "#{escort.number}: #{escort.detainee_surname}"
   end
 
+  def detainee_image(image)
+    if image.present?
+      image_tag "data:image/jpeg;base64,#{image}", size: '128x180', class: 'detainee-image'
+    else
+      content_tag :div, class: 'no-image' do
+        content_tag :span, 'Photo unavailable'
+      end
+    end
+  end
+
   def ethnicity(detainee)
     if detainee.ethnicity.present?
       return 'White: British' if detainee.ethnicity == 'White: Eng./Welsh/Scot./N.Irish/British'

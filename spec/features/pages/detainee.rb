@@ -3,7 +3,7 @@ module Page
     def complete_form(detainee, options = {})
       location = options.fetch(:location, :prison)
 
-      expect(find('p.prison_number').text).to eql detainee.prison_number if location == :prison
+      expect(find('#detainee_prison_number').text).to eql detainee.prison_number if location == :prison
       fill_in 'Prison number', with: detainee.prison_number if location == :police
 
       fill_in 'Surname', with: detainee.surname

@@ -4,9 +4,7 @@ header
 = form_for form, url: submit_path, method: method do |f|
   = f.error_messages
 
-  .govuk-form-group
-    = f.govuk_label(:from_establishment)
-    = escort.move&.from_establishment&.name
+  = f.label_data :from_establishment, escort.move&.from_establishment&.name
 
   = f.radios_fieldset :to_type do
     - form.sorted_destination_options.each do |destination|

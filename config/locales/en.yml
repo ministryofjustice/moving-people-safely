@@ -132,7 +132,9 @@ en:
           prison: Preferred language (Optional)
         nationalities: Nationalities
         pnc_number: PNC number
-        prison_number: Prison number (Optional)
+        prison_number:
+          prison: Prison number
+          police: Prison number (Optional)
         religion: Religion
         security_category: Security category
         surname: Surname

@@ -6,14 +6,13 @@
 
     hr.govuk-section-break.govuk-section-break--l
 
-    .form-wrapper
-      = form_for @form, url: feedbacks_path do |f|
-        = f.error_messages
-        - if user_signed_in?
-          = f.text_field :prisoner_number
-        - else
-          = f.text_field :email
-        = f.text_area :message
+    = form_for @form, url: feedbacks_path do |f|
+      = f.error_messages
+      - if user_signed_in?
+        = f.text_field :prisoner_number
+      - else
+        = f.text_field :email
+      = f.text_area :message
 
-        .form-actions
-          = f.submit 'Send', class: 'govuk-button'
+      .form-actions
+        = f.submit 'Send', class: 'govuk-button'

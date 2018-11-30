@@ -5,13 +5,7 @@ h2.govuk-heading-m
   br
   span.heading-light = escort.detainee.forenames
 
-.escort-image-wrapper
-  - if escort.detainee.image.present?
-    .image.detainee-image
-      = image_tag escort_detainee_image_path(escort, format: :jpg), size: '128x180'
-  - else
-    .no-image
-      span = 'Photo unavailable'
+= detainee_image(escort.detainee.image)
 
 - if escort.move
   p
