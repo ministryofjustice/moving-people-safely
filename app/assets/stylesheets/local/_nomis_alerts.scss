@@ -1,14 +1,14 @@
 ul.flags {
-  margin: 0;
   padding-left: 0;
+  margin: 0;
 
   li {
     @include govuk-font(19);
-    list-style-type: none;
-    padding: 2px 6px;
     display: inline-block;
+    padding: 2px 6px;
     margin: 5px 5px 0 0;
     font-family: 'arial narrow', sans-serif !important;
+    list-style-type: none;
   }
 }
 
@@ -19,8 +19,8 @@ ul.flags {
 
   .court-dashboard & {
     @include govuk-font(16);
-    margin-right: 5px;
     padding: 1px 3px;
+    margin-right: 5px;
   }
 }
 
@@ -28,27 +28,27 @@ ul.flags {
   @extend .flag;
 
   &:after {
-    content: "✔";
     margin-left: 6px;
+    content: "✔";
   }
 
-  background-color: #B10E1E;
-  border: solid 2px #B10E1E;
-  color: white;
+  color: #fff;
+  background-color: #b10e1e;
+  border: solid 2px #b10e1e;
 }
 
 .flag-inactive {
   @extend .flag;
 
   &:after {
-    content: "✘ No";
     margin-left: 10px;
+    content: "✘ No";
   }
 
-  background-color: white;
-  border: solid 2px #BFC1C3;
-  color: #0b0c0c;
   font-weight: lighter;
+  color: #0b0c0c;
+  background-color: #fff;
+  border: solid 2px #bfc1c3;
 }
 
 #csra-inactive {
@@ -59,7 +59,7 @@ ul.flags {
 
 
 span.flag-detail {
-  margin-top: 2px;
-  padding-left: 6px;
   display: none;
+  padding-left: 6px;
+  margin-top: 2px;
 }

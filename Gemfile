@@ -44,6 +44,7 @@ group :development do
   gem 'listen'
   gem 'meta_request'
   gem 'rubocop', require: false
+  gem 'scss_lint', require: false
   gem 'slim_lint'
   gem 'spring'
   gem 'spring-watcher-listen'

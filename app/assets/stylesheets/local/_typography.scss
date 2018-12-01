@@ -11,13 +11,14 @@
 }
 
 p.review {
+  margin: 0 0 15px;
   font-size: govuk-px-to-rem(16);
-  margin: 0px 0px 15px;
 }
 
 .bold-large {
   @include govuk-font(36, $weight: bold);
 }
+
 .bold-small {
   @include govuk-font(19, $weight: bold);
 }

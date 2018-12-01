@@ -3,19 +3,18 @@
   // p {
   //   font-weight: bold;
   //   font-size: 19px;
-  //   margin: 0px 0px;
+  //   margin: 0 0;
   // }
 
   // h6 {
   //   font-size: 16px;
   // }
 
-  display: table-cell;
-  vertical-align: top;
   box-sizing: border-box;
   display: inline-block;
-  padding: 10px 0px 15px 0px;
   width: 100%;
+  padding: 10px 0 15px;
+  vertical-align: top;
 }
 
 .tile-2 {

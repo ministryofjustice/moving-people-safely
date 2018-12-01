@@ -16,35 +16,35 @@
 }
 
 .alert--notice {
-  @include alert-variant(#F4D188, #FAF2C5)
+  @include alert-variant(#f4d188, #faf2c5)
 }
 
 .alert--warning {
-  background-color: #FAF1C5;
+  background-color: #faf1c5;
 }
 
 .alert--alert {
-  @include alert-variant(#F4D188, #FAF1C5)
+  @include alert-variant(#f4d188, #faf1c5)
 }
 
 .alert--error {
-  border: 5px solid #B10E1E;
-  color: #B10E1E;
   font-weight: bold;
+  color: #b10e1e;
+  border: 5px solid #b10e1e;
 }
 
 .alert--warning {
   @extend .govuk-body;
 
   .summary & {
-    padding: 20px;
-    margin: 20px 0px;
     min-height: 50px;
+    padding: 20px;
+    margin: 20px 0;
   }
 
   .govuk-warning-text {
-    margin-bottom: 0;
     padding: 0;
+    margin-bottom: 0;
 
     p:last-child {
       margin-bottom: 0;

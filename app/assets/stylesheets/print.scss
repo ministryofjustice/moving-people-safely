@@ -1,8 +1,8 @@
 $govuk-global-styles: true;
 
 
-@import 'govuk-frontend/all';
-@import 'local/nomis_alerts';
+@import "govuk-frontend/all";
+@import "local/nomis_alerts";
 
 * {
   font-family: "Liberation Sans" !important;
@@ -23,7 +23,7 @@ $govuk-global-styles: true;
   }
 
   .header-row {
-    border-bottom: 1px dotted black;
+    border-bottom: 1px dotted #000;
   }
 
   .govuk-grid-column-one-half {
@@ -45,14 +45,14 @@ $govuk-global-styles: true;
 }
 
 body {
-  background-color: white;
+  background-color: #fff;
 }
 
 main {
-  text-align: left;
-  margin: 0;
-  position: relative;
   @extend .govuk-body-s;
+  position: relative;
+  margin: 0;
+  text-align: left;
 }
 
 table {
@@ -75,6 +75,7 @@ table {
   .title {
     @include govuk-font(14);
   }
+
   .strong-text {
     @include govuk-font(14, $weight: bold);
   }
@@ -85,11 +86,11 @@ table {
 }
 
 .govuk-grid-row {
-  margin: 0;
-  clear: both;
   padding-right: 0;
   padding-left: 0 !important;
+  margin: 0;
   margin-left: 0 !important;
+  clear: both;
 
   &.padded {
     padding-top: 10px;
@@ -117,17 +118,17 @@ table {
 }
 
 .govuk-grid-column {
-  padding: 0;
   float: left;
+  padding: 0;
 
   .image {
     text-align: right;
 
     img {
-      max-width: 128px;
-      max-height: 180px;
       width: auto;
+      max-width: 128px;
       height: auto;
+      max-height: 180px;
     }
   }
 }
@@ -201,8 +202,8 @@ table {
 }
 
 .section-table {
-  border-top: 2px solid black;
   border-collapse: collapse;
+  border-top: 2px solid #000;
 
   thead {
     display: table-header-group;
@@ -217,10 +218,10 @@ table {
   }
 
   td {
-    padding: 0.3em 0;
-    vertical-align: top;
-    text-align: left;
     @include govuk-font(14);
+    padding: .3em 0;
+    text-align: left;
+    vertical-align: top;
   }
 
   td.indented {
@@ -229,12 +230,12 @@ table {
 }
 
 .header-row {
-  border-top: 2px solid black;
-  border-bottom: 1px dotted black;
-  font-weight: normal;
   @include govuk-font(24);
-  padding: 5px 0;
   height: auto;
+  padding: 5px 0;
+  font-weight: normal;
+  border-top: 2px solid #000;
+  border-bottom: 1px dotted #000;
 
   &.small {
     font-weight: bold;
@@ -243,16 +244,16 @@ table {
 }
 
 .top-border {
-  border-top: 2px solid black;
   padding-top: 5px;
+  border-top: 2px solid #000;
 }
 
 .top-dotted {
-  border-top: 1px dotted black;
+  border-top: 1px dotted #000;
 }
 
 .bottom-dotted {
-  border-bottom: 1px dotted black;
+  border-bottom: 1px dotted #000;
 }
 
 .min-heighted {
@@ -274,9 +275,11 @@ table {
 
 .move {
   margin-top: 30px;
+
   .title {
     @include govuk-font(14);
   }
+
   .strong-text {
     @include govuk-font(14, $weight: bold);
   }
@@ -285,9 +288,10 @@ table {
 table.vehicles {
   tr.header-row {
     height: 30px;
+
     th {
-      border-top: 2px solid black;
       font-weight: bold;
+      border-top: 2px solid #000;
     }
   }
 
@@ -311,44 +315,44 @@ table.vehicles {
   div.title {
     position: absolute;
     top: 0;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
     margin-right: 10px;
     margin-bottom: 20px;
-    border-bottom: 1px dotted black;
+    border-bottom: 1px dotted #000;
   }
 }
 
 table.about {
-  border-top: 1px solid black;
+  border-top: 1px solid #000;
 
   th {
     @include govuk-font(19);
-    padding: 5px 0 20px 0;
+    padding: 5px 0 20px;
   }
 
   td.panel {
-    border-left: 5px solid black;
     padding-left: 20px;
+    border-left: 5px solid #000;
 
     div.feedback-text {
       line-height: 150%;
     }
 
     div {
-      font-weight: lighter;
       padding-top: 5px;
+      font-weight: lighter;
     }
   }
 }
 
 .moj-declaration {
-  width: 100%;
-  border-top: 2px solid black;
-  padding-top: 15px;
   position: fixed;
   bottom: 0;
+  width: 100%;
+  padding-top: 15px;
+  border-top: 2px solid #000;
 
   .legend {
     width: 85%;
@@ -364,17 +368,17 @@ table.about {
   }
 
   .logo {
-    width: 15%;
     position: relative;
     bottom: 0;
+    width: 15%;
   }
 }
 
 ul.alerts {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   @include govuk-clearfix;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 
   li {
     float: left;
@@ -385,8 +389,8 @@ ul.alerts {
 
 .flag {
   @extend .flag;
-  margin: 0;
   padding: 1px 3px;
+  margin: 0;
 }
 
 .page-one {
@@ -397,11 +401,11 @@ ul.alerts {
 }
 
 .staple-instruction {
-  -webkit-transform: rotate(90deg);
   position: absolute;
   left: -56px;
-  text-align: top;
   font-size: 11px;
+  text-align: top;
+  -webkit-transform: rotate(90deg);
 }
 
 .staple-instruction-top {

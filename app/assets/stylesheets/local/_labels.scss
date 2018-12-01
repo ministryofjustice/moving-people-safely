@@ -6,17 +6,17 @@
 .status-label {
   @include status-label-colour;
   display: inline-block;
-  font-weight: bold;
   padding: .250em .5em;
+  font-weight: bold;
   text-align: center;
 }
 
 .status-label--complete {
-  @include status-label-colour(green);
+  @include status-label-colour(#008000);
 }
 
 .status-label--incomplete {
-  @include status-label-colour(red);
+  @include status-label-colour(#f00);
 }
 
 .per-page {
