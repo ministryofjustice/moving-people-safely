@@ -7,7 +7,7 @@
 
     .summary.per-section-page
       - if current_user.admin?
-        p= link_to 'Automation Report', automation_escort_risks_path(escort)
+        p = link_to 'Automation Report', automation_escort_risks_path(escort)
 
       = render 'shared/status',
         workflow: Summary::EscortSectionStatusPresenter.new(assessment, name: :risk)

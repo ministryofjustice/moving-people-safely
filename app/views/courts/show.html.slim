@@ -1,13 +1,13 @@
 .court-dashboard-indicators
-  span.data-item.bold-large= Date.today
-  span.data-item.bold-small= @court.name
+  span.data-item.bold-large = Date.today
+  span.data-item.bold-small = @court.name
   = link_to 'Change court', select_court_path
 
 .court-dashboard-indicators
-  span.data-item.bold-large= @escorts.count
+  span.data-item.bold-large = @escorts.count
   span.data-item.bold-small Total custodies
 
-- if @escorts.count > 0
+- if @escorts.any?
   table.govuk-table.court-dashboard
     thead.govuk-table__head
       tr.govuk-table__row
@@ -27,13 +27,13 @@
             - else
               .no-court-dashboard-image
                 span = 'No photo'
-          td.govuk-table__cell= link_to escort.number, escort_url(escort)
+          td.govuk-table__cell = link_to escort.number, escort_url(escort)
           td.govuk-table__cell
-            span.surname= escort.detainee.surname
+            span.surname = escort.detainee.surname
             = escort.detainee.forenames
-          td.govuk-table__cell= escort.move.from_establishment.name
-          td.govuk-table__cell= escort.detainee.date_of_birth
-          td.govuk-table__cell= escort.detainee.age
+          td.govuk-table__cell = escort.move.from_establishment.name
+          td.govuk-table__cell = escort.detainee.date_of_birth
+          td.govuk-table__cell = escort.detainee.age
 
         tr.govuk-table__row
           td.govuk-table__cell colspan="6"
@@ -42,4 +42,4 @@
               |  by: #{escort.canceller.full_name}, at #{escort.cancelled_at.to_s(:timestamped)}. #{escort.cancelling_reason}.
             - else
               - escort.active_alerts.each do |alert|
-                li.flag-active= t("escort.active_alerts.#{alert}")
+                li.flag-active = t("escort.active_alerts.#{alert}")

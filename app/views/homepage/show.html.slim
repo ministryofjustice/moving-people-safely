@@ -1,5 +1,5 @@
 h1.govuk-heading-l.homepage-heading
-  span.govuk-caption-l= t('homepage.pers_from')
+  span.govuk-caption-l = t('homepage.pers_from')
   = current_user.establishment(session)&.name || t('homepage.undetermined_establishment')
   = link_to t('search.show.title'), search_path, class: 'govuk-button govuk-button--start'
 
@@ -17,7 +17,6 @@ hr.govuk-section-break.govuk-section-break--m.govuk-section-break--visible
             = text_field_tag 'escorts_due_on', @date_picker, class: 'no-script govuk-input date-field'
             span.no-script.calendar-icon.input-group-addon
           button.go type='submit' name='commit' Go
-
 
   .govuk-grid-column-three-fifths
     #escorts_gauges.escorts-gauges.govuk-grid-row

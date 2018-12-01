@@ -2,7 +2,7 @@ doctype html
 html
   head
     meta charset="utf-8"
-    = wicked_pdf_stylesheet_link_tag "print.css", media: 'all'
+    = wicked_pdf_stylesheet_link_tag 'print.css', media: 'all'
 
   body
     main.inner-page
@@ -10,11 +10,11 @@ html
         ul.alerts
           - escort.alerts.each do |alert_name, on|
             = render 'escorts/print/alert', alert_name: alert_name, on: on
-      div#risk-section.section
+      #risk-section.section
         table#risk-table.section-table
           tr
             th colspan=3
-              span.heading-large= 'Risk'
+              span.heading-large = 'Risk'
               = render 'shared/confirmed_approved', assessment: escort.risk, escort: escort
           - Risk.sections(escort.location).reject { |s| s == 'return_instructions' }.each do |section|
             = render "risks/sections/#{section}",
@@ -23,11 +23,11 @@ html
               path: nil,
               assessment: escort.risk
 
-      div#healthcare-section.section
+      #healthcare-section.section
         table#healthcare-table.section-table
           tr
             th colspan=3
-              span.heading-large= 'Healthcare'
+              span.heading-large = 'Healthcare'
               = render 'shared/confirmed_approved', assessment: escort.healthcare, escort: escort
           - Healthcare.sections(escort.location).each do |section|
             = render "healthcare/sections/#{section}",
@@ -36,11 +36,11 @@ html
               path: nil,
               assessment: escort.healthcare
 
-      div#offences-section.section
+      #offences-section.section
         table#offences-table.section-table
           tr
             th colspan=3
-              span.heading-large= 'Offences'
+              span.heading-large = 'Offences'
               = render 'shared/confirmed_approved', assessment: escort.offences_workflow, escort: escort
           tr.top-dotted
             td.govuk-grid-column-30-percent
@@ -51,17 +51,17 @@ html
               = formatted_offences_list(escort.offences)
 
       - if escort.from_prison?
-        div#return-section.section
+        #return-section.section
           table#return-table.section-table
             tr
               th colspan=3
-                span.heading-large= 'Return instructions'
+                span.heading-large = 'Return instructions'
                 = render 'shared/confirmed_approved', assessment: escort.risk, escort: escort
-            = render "shared/sections/print/question_standalone",
+            = render 'shared/sections/print/question_standalone',
               alternance: 'even', assessment: escort.risk, section: 'return_instructions', question: 'must_return',
               value: escort.risk.must_return, details: must_return_details(escort.risk)
 
-            = render "shared/sections/print/question_standalone",
+            = render 'shared/sections/print/question_standalone',
               alternance: 'odd', assessment: escort.risk, section: 'return_instructions', question: 'has_must_not_return_details',
               value: escort.risk.has_must_not_return_details, details: escort.risk.must_not_return_details,
               partial: 'must_not_return_details', multiples: true
