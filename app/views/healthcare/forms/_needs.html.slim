@@ -1,35 +1,26 @@
-.medication.multiple
-  = f.radios_fieldset :has_medications, toggle_choice: 'yes' do
-    #medications
-    #error_needs_medications
-    = f.fields_for :medications do |mf|
-      .multiple-wrapper
-        hr
-        .govuk-grid-row
-          .govuk-grid-column-two-thirds
-            h2.govuk-heading-m Medication
-            = mf.hidden_field :id
-            .multiple-field.govuk-form-group
-              = mf.text_field :description, width_option: 'govuk-!-width-one-half'
-            .multiple-field.govuk-form-group
-              = mf.text_field :administration, width_option: 'govuk-!-width-one-half'
-            .multiple-field.govuk-form-group
-              = mf.text_field :dosage, width_option: 'govuk-!-width-one-half'
-            .multiple-field.govuk-form-group
-              = mf.text_field :when_given, width_option: 'govuk-!-width-one-half'
-            .multiple-field.govuk-form-group
-              = mf.radios_fieldset :carrier,
-                choices: Forms::Healthcare::Medication::CARRIER_VALUES,
-                inline: true
-          - if f.object.medications.size > 1
-            .govuk-grid-column-one-third
-              .remove-link
-                .govuk-form-group
-                  = mf.label :_delete, 'Remove'
-                  = mf.check_box :_delete
+= f.radios_fieldset :has_medications, toggle_choice: 'yes' do
+  #error_needs_medications
+  = f.fields_for :medications do |mf|
+    .multiple-wrapper
+      hr.govuk-section-break.govuk-section-break--l.govuk-section-break--visible.mps-section-break
 
-    .multiple-add.govuk-form-group
-      hr
-      = f.button 'Add another medicine',
-        class: 'js-anchor-focus govuk-button button-add-another-vertical',
-        name: 'needs_add_medication'
+      .govuk-grid-row
+        .govuk-grid-column-two-thirds
+          h2.govuk-heading-m Medication
+        .govuk-grid-column-one-third.remove-link
+          = mf.label :_delete, 'Remove'
+          = mf.check_box :_delete
+
+      = mf.hidden_field :id
+      = mf.text_field :description
+      = mf.text_field :administration
+      = mf.text_field :dosage
+      = mf.text_field :when_given
+      = mf.radios_fieldset :carrier, choices: Forms::Healthcare::Medication::CARRIER_VALUES
+
+  hr.govuk-section-break.govuk-section-break--l.govuk-section-break--visible.mps-section-break
+
+  .form-actions
+    = f.button 'Add another medicine',
+      class: 'js-anchor-focus govuk-button button-add-another-vertical',
+      name: 'needs_add_medication'

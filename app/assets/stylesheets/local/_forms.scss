@@ -14,6 +14,17 @@ form {
   @include govuk-clearfix;
 }
 
+.remove-link {
+  label {
+    @extend .styled-as-link;
+  }
+
+  input[type='checkbox'] {
+    position: absolute;
+    left: -2000px;
+  }
+}
+
 .form-actions {
   clear: both;
 

@@ -16,7 +16,7 @@ class RisksController < AssessmentsController
   end
 
   def multiples
-    { section: 'return_instructions', field: 'must_not_return_details' }
+    { section: 'return_instructions', field: 'must_not_return_detail' }
   end
 
   def show_page
