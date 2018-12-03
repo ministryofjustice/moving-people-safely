@@ -65,6 +65,8 @@ en:
         has_medications:
           prison: Will they need to be given medication while they are out of prison?
           police: Will they need to be given medication after they leave police custody?
+        medications:
+          carrier: Who will carry the medicine?
       other_risk:
         other_risk: Is there any other information related to risk on this journey you would like to include?
         pnc_warnings:
@@ -164,7 +166,6 @@ en:
           administration: How is it given?
           dosage: Dosage
           when_given: When is it given?
-          carrier: Who will carry the medicine?
           carrier_choices:
             escort: Escort
             prisoner:
