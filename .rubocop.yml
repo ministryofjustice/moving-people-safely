@@ -38,7 +38,6 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Max: 15
   Exclude:
-    - 'app/form_builders/mps_form_builder.rb'
     - 'app/models/ability.rb'
     - 'app/services/detainees/details_mapper.rb'
 
@@ -50,15 +49,6 @@ Metrics/LineLength:
   Max: 120
 
 Naming/PredicateName:
-  Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-Layout/IndentArray:
-  Enabled: false
-
-Naming/MemoizedInstanceVariableName:
   Enabled: false
 
 Security/Open:

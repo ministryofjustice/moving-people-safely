@@ -48,40 +48,46 @@ module Metrics
     end
 
     def total_escorts
-      @escorts_dataset ||= client.datasets.find_or_create("#{dataset_prefix}.escorts_report", fields: [
-        Geckoboard::NumberField.new(:total_initiated_escorts, name: 'Total Initiated Escorts'),
-        Geckoboard::NumberField.new(:total_issued_escorts, name: 'Total Issued Escorts'),
-        Geckoboard::NumberField.new(:total_unique_detainees_escorted, name: 'Total Unique Detainees Escorted'),
-        Geckoboard::NumberField.new(:total_reused_escorts, name: 'Total Re-used Escorts'),
-        Geckoboard::NumberField.new(:total_unused_escorts, name: 'Total Unused Escorts')
-      ])
+      @total_escorts ||= client.datasets.find_or_create("#{dataset_prefix}.escorts_report",
+        fields: [
+          Geckoboard::NumberField.new(:total_initiated_escorts, name: 'Total Initiated Escorts'),
+          Geckoboard::NumberField.new(:total_issued_escorts, name: 'Total Issued Escorts'),
+          Geckoboard::NumberField.new(:total_unique_detainees_escorted, name: 'Total Unique Detainees Escorted'),
+          Geckoboard::NumberField.new(:total_reused_escorts, name: 'Total Re-used Escorts'),
+          Geckoboard::NumberField.new(:total_unused_escorts, name: 'Total Unused Escorts')
+        ])
     end
 
     def escorts_by_date
-      @escorts_by_date ||= client.datasets.find_or_create("#{dataset_prefix}.escorts_by_date_report", fields: [
-        Geckoboard::NumberField.new(:total_issued, name: 'Total Issued Escorts'),
-        Geckoboard::NumberField.new(:total_not_issued, name: 'Total Not Issued Escorts'),
-        Geckoboard::DateField.new(:date, name: 'PER move date')
-      ])
+      @escorts_by_date ||= client.datasets.find_or_create("#{dataset_prefix}.escorts_by_date_report",
+        fields: [
+          Geckoboard::NumberField.new(:total_issued, name: 'Total Issued Escorts'),
+          Geckoboard::NumberField.new(:total_not_issued, name: 'Total Not Issued Escorts'),
+          Geckoboard::DateField.new(:date, name: 'PER move date')
+        ])
     end
 
     def hours_saved
-      @hours_saved ||= client.datasets.find_or_create("#{dataset_prefix}.hours_saved_report", fields: [
-        Geckoboard::NumberField.new(:hours_saved, name: 'Hours saved')
-      ])
+      @hours_saved ||= client.datasets.find_or_create("#{dataset_prefix}.hours_saved_report",
+        fields: [
+          Geckoboard::NumberField.new(:hours_saved, name: 'Hours saved')
+        ])
     end
 
     def percentage_saved
-      @percentage_saved ||= client.datasets.find_or_create("#{dataset_prefix}.percentage_saved_report", fields: [
-        Geckoboard::NumberField.new(:percentage_saved, name: 'Percentage saved through use of ePer')
-      ])
+      @percentage_saved ||= client.datasets.find_or_create("#{dataset_prefix}.percentage_saved_report",
+        fields: [
+          Geckoboard::NumberField.new(:percentage_saved, name: 'Percentage saved through use of ePer')
+        ])
     end
 
     def hours_saved_last_3_months
-      @last_3_months ||= client.datasets.find_or_create("#{dataset_prefix}.hours_saved_last_3_months_report", fields: [
-        Geckoboard::StringField.new(:month_name, name: 'Month'),
-        Geckoboard::NumberField.new(:hours_saved, name: 'Hours saved')
-      ])
+      @hours_saved_last_3_months ||=
+        client.datasets.find_or_create("#{dataset_prefix}.hours_saved_last_3_months_report",
+          fields: [
+            Geckoboard::StringField.new(:month_name, name: 'Month'),
+            Geckoboard::NumberField.new(:hours_saved, name: 'Hours saved')
+          ])
     end
 
     def log_disabled
