@@ -80,8 +80,12 @@ jobs:
           command: bundle exec rubocop
 
       - run:
+          name: Run scss-lint
+          command: bundle exec scss-lint
+
+      - run:
           name: Run slim-lint
-          command: bundle exec slim-lint app/views
+          command: bundle exec slim-lint
 
       # Save test results for timing analysis
       - store_test_results:

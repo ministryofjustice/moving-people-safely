@@ -1,7 +1,7 @@
 .multiple {
   position: relative;
-  margin-bottom: 20px;
   float: left;
+  margin-bottom: 20px;
 }
 
 .multiple-wrapper {
@@ -18,7 +18,7 @@
       @extend .styled-as-link;
     }
 
-    input[type='checkbox'] {
+    input[type="checkbox"] {
       position: absolute;
       left: -2000px;
     }
@@ -42,8 +42,8 @@
 
   .multiple-field {
     float: left;
-    clear: left;
     width: 100%;
+    clear: left;
     // margin-bottom: 20px;
 
     .form-group {
@@ -52,10 +52,10 @@
 
     &.inline {
       @include govuk-media-query(desktop) {
-        clear: none;
+        position: relative;
         width: auto;
         margin-right: 28px;
-        position: relative;
+        clear: none;
 
         .form-control {
           width: 100%;

@@ -4,9 +4,9 @@
       display: inline;
     }
 
-    margin-bottom: 1em;
     padding-bottom: 1em;
-    border-bottom: 1px solid govuk-colour('black');
+    margin-bottom: 1em;
+    border-bottom: 1px solid govuk-colour("black");
   }
 
   .tile,
@@ -14,9 +14,10 @@
     h3 {
       margin-bottom: 0;
     }
+
     p {
-      font-weight: bold;
       margin: 0;
+      font-weight: bold;
     }
   }
 }
@@ -33,10 +34,11 @@
   .question {
     font-weight: normal;
   }
+
   .answer {
     p {
-      font-weight: bold;
       margin-bottom: 5px;
+      font-weight: bold;
     }
   }
 }

@@ -3,12 +3,13 @@
 }
 
 .styled-as-link {
+  padding: 0;
+  font-size: inherit;
   color: $govuk-link-colour;
   text-decoration: underline;
-  padding: 0;
-  border: none;
   background-color: transparent;
-  font-size: inherit;
+  border: 0;
+
   &:hover {
     cursor: pointer;
   }
@@ -19,13 +20,13 @@
 }
 
 .button-secondary {
-  background-color: govuk-colour("grey-3");
   color: $govuk-text-colour;
+  background-color: govuk-colour("grey-3");
   box-shadow: 0 2px 0 govuk-colour("grey-1");
 
   &:hover, &:focus {
-    background-color: govuk-colour("grey-2");
     color: $govuk-text-colour;
+    background-color: govuk-colour("grey-2");
   }
 }
 
@@ -36,13 +37,12 @@
 }
 
 .button-print {
-  background-image:
-    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAb1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8v0wLRAAAAJHRSTlMAAgUHDA0PEBkeICImKy4xN1Z3e46VrbCytLW3xdXZ4PP19/lql+ciAAAAh0lEQVQoz6XS0Q7BQBBA0cEoFqXoUoOW3v//Rg+ItkYTcZ92cx5msxmRvkK0Z8U2aULkXR0aYLxOU6hnX4DbxIEEIHdA0iwrrx60bz/CaFNUHTju5iKDC9ABYCGBz3RMLqkDIWAuwB+wanR+wBL3uXsRVT11QFWH/X8V24MrZxnMzA7r3s25A2wiIk6Al+uuAAAAAElFTkSuQmCC);
-   background-repeat: no-repeat;
-   background-position: 10px center;
-   background-size: 20px;
-   padding-left: 40px;
-   padding-right: 40px;
+  padding-right: 40px;
+  padding-left: 40px;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAb1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8v0wLRAAAAJHRSTlMAAgUHDA0PEBkeICImKy4xN1Z3e46VrbCytLW3xdXZ4PP19/lql+ciAAAAh0lEQVQoz6XS0Q7BQBBA0cEoFqXoUoOW3v//Rg+ItkYTcZ92cx5msxmRvkK0Z8U2aULkXR0aYLxOU6hnX4DbxIEEIHdA0iwrrx60bz/CaFNUHTju5iKDC9ABYCGBz3RMLqkDIWAuwB+wanR+wBL3uXsRVT11QFWH/X8V24MrZxnMzA7r3s25A2wiIk6Al+uuAAAAAElFTkSuQmCC);
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 20px;
 }
 
 .actions {

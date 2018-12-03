@@ -21,8 +21,9 @@
   span {
     margin-right: 10px;
   }
+
   .current-question {
-    color: grey;
+    color: #808080;
   }
 }
 
@@ -47,8 +48,8 @@
 
 .mps-hide {
   @include js-only {
-    left: -1000px;
     position: absolute;
+    left: -1000px;
     visibility: hidden;
   }
 }

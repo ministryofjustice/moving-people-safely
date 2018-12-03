@@ -4,13 +4,13 @@
 
 .gauge_wrapper {
   float: left;
-  margin-right: 10px;
   width: 132px;
+  margin-right: 10px;
 
   .title {
     float: left;
-    word-wrap: break-word;
     font-size: 19px;
+    word-wrap: break-word;
   }
 
   .value {
@@ -19,42 +19,42 @@
   }
 
   .gauge {
+    position: relative;
     float: left;
-    clear: left;
-    height: 2em;
     width: 2em;
-    line-height: 2em;
-    text-align: center;
+    height: 2em;
+    margin-top: 5px;
+    clear: left;
     font-size: 1.5em;
     font-weight: bold;
-    border-radius: 50%;
-    border-width: 2px;
+    line-height: 2em;
+    text-align: center;
     border-style: solid;
-    margin-top: 5px;
-    position: relative;
+    border-width: 2px;
+    border-radius: 50%;
   }
 }
 
 .gauge_wrapper.detainees {
-  .title { color: black; }
+  .title { color: #000; }
   .value {
-    background-color: white;
-    color: black;
+    color: #000;
+    background-color: #fff;
   }
 }
 
 .gauge_wrapper.incomplete {
-  .title { color: #B10E1E; }
+  .title { color: #b10e1e; }
   .value {
-    background-color: white;
-    color: #B10E1E;
+    color: #b10e1e;
+    background-color: #fff;
   }
 }
 
 .gauge_wrapper.complete {
-  .title { color: green; }
+  .title { color: #008000; }
   .value {
-    background-color: white;
-    color: green;
+    color: #008000;
+    background-color: #fff;
   }
 }

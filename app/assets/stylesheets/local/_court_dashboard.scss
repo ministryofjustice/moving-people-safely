@@ -1,7 +1,7 @@
 table.court-dashboard {
   thead {
     tr {
-      border-top: 1px solid #6F777B;
+      border-top: 1px solid #6f777b;
 
       th {
         font-size: 16px;
@@ -13,21 +13,21 @@ table.court-dashboard {
     &.clickable {
       &:hover {
         cursor: pointer;
-        background-color: #FFFFD4;
+        background-color: #ffffd4;
       }
     }
 
     tr {
       &:nth-child(odd) {
-        border-top: 1px solid #6F777B;
+        border-top: 1px solid #6f777b;
       }
 
       td {
-        border: none;
+        border: 0;
 
         span.surname {
-          font-weight: bold;
           margin-right: 5px;
+          font-weight: bold;
         }
 
         img.person {
@@ -60,14 +60,14 @@ table.court-dashboard {
 }
 
 .no-court-dashboard-image {
-  margin-left: 4px;
-  border: 1px solid #6F777B;
   width: 80px;
   height: 108px;
-  line-height: 108px;
-  background-image: image-url('photo_unavailable.png');
-  background-position: center center;
-  background-repeat: no-repeat;
-  text-align: center;
+  margin-left: 4px;
   font-size: 12px;
+  line-height: 108px;
+  text-align: center;
+  background-image: image-url("photo_unavailable.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: 1px solid #6f777b;
 }
