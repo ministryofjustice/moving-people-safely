@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RisksHelper
   def heightened_observation_yes_no(level)
     if Forms::Risk::RiskToSelf::OBSERVATION_LEVELS_REQUIRING_DETAILS.include?(level)

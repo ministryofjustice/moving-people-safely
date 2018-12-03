@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AssessmentsController < ApplicationController
   before_action :set_steps
 

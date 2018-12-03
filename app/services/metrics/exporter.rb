@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Metrics
   class Exporter
     def initialize(calculator, options = {})

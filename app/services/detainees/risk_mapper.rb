@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Detainees
   class RiskMapper
     def initialize(alerts, move_date)

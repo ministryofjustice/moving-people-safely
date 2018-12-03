@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SSO
   class StubApp
     def initialize(app)

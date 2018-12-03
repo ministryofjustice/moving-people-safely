@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Forms
   class AttributeResetCollection
     # ([Symbol::Attribute], Symbol::Attribute, String) => Struct::ResetData

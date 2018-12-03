@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EscortPopulator
   def initialize(escort)
     @escort = escort

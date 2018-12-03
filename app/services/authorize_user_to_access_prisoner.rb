@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AuthorizeUserToAccessPrisoner
   def self.call(user, prison_number)
     new(user, prison_number).call

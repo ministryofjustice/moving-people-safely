@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class RadioDatePickerPresenter
-  DEFAULT_FORMAT = '%d/%m/%Y'.freeze
+  DEFAULT_FORMAT = '%d/%m/%Y'
   attr_reader :attr, :value
 
   def initialize(attr, value)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :dev do
   desc 'creates some moves for todays date'
   task moves: :environment do

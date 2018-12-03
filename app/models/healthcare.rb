@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Healthcare < ApplicationRecord
   include Questionable
   include Reviewable

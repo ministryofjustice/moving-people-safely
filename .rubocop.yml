@@ -23,12 +23,8 @@ Documentation:
 Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
-# Don't worry about the complexity of spec methods
 Metrics/AbcSize:
   Max: 20
-  Exclude:
-    - 'spec/**/*'
-    - 'app/models/risk.rb'
 
 Metrics/ClassLength:
   Exclude:

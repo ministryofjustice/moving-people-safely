@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EscortCompletionValidator < SimpleDelegator
   def self.call(escort)
     new(escort).call

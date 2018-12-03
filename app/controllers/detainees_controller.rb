@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DetaineesController < ApplicationController
   before_action :redirect_unless_document_editable
   before_action :redirect_if_detainee_already_exists, only: %i[new create]

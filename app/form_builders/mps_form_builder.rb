@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MpsFormBuilder < ActionView::Helpers::FormBuilder
   ActionView::Base.field_error_proc = proc { |html_tag, _instance| html_tag }
 

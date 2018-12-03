@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Forms
   class Escort < Forms::Base
     property :cancelling_reason, type: String

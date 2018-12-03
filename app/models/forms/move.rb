@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Forms
   class Move < Forms::Base
     FREE_FORM_DESTINATION_TYPES = %i[civil_court hospital other].freeze
-    REASON_WITH_DETAILS = 'other'.freeze
+    REASON_WITH_DETAILS = 'other'
     COMMON_NOT_FOR_RELEASE_REASONS = %w[held_for_immigration other].freeze
     PRISON_NOT_FOR_RELEASE_REASONS = %w[serving_sentence further_charges licence_revoke].freeze
     POLICE_NOT_FOR_RELEASE_REASONS = %w[prison_production recall_to_prison].freeze

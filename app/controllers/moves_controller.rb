@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MovesController < ApplicationController
   before_action :redirect_unless_document_editable
   helper_method :escort, :form

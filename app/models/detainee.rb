@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Detainee < ApplicationRecord
   belongs_to :escort
 

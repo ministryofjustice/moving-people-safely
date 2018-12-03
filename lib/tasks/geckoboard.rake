@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :geckoboard do
   namespace :metrics do
     desc 'Refreshes Geckoboard metrics'

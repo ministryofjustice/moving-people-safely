@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Forms
   module Risk
     class Segregation < Forms::Base

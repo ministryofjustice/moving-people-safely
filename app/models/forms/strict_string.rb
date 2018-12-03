@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Forms
   class StrictString < Virtus::Attribute
     def coerce(value)
