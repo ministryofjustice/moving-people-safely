@@ -23,7 +23,7 @@ module MovingPeopleSafely
     config.assets.paths << Rails.root.join('app', 'assets', 'flash')
     config.time_zone = 'London'
 
-    require "#{config.root}/app/form_builders/mps_form_builder"
-    ActionView::Base.default_form_builder = MpsFormBuilder
+    require "#{config.root}/app/form_builders/govuk_form_builder"
+    ActionView::Base.default_form_builder = GovukFormBuilder
   end
 end

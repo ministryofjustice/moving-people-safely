@@ -4,7 +4,7 @@ header
 = form_for @form, url: change_court_path do |f|
   = f.radios_fieldset :to_type do
     - %i[crown_court magistrates_court].each do |court_type|
-      = f.radios_item_conditional(:to_type, court_type, toggle_choice: court_type) do
+      = f.radios_item_conditional(:to_type, court_type) do
         = f.select_autocomplete :"#{court_type}_id", court_type.to_s.classify.constantize.pluck(:name, :id)
 
   .form-actions
