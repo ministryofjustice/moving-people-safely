@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MpsFormBuilder < ActionView::Helpers::FormBuilder
+class GovukFormBuilder < ActionView::Helpers::FormBuilder
   ActionView::Base.field_error_proc = proc { |html_tag, _instance| html_tag }
 
   delegate :content_tag, :safe_join, to: :@template
