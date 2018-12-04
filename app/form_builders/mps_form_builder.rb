@@ -197,7 +197,8 @@ class MpsFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def govuk_radios_conditional(attribute, choice, options = {}, &_blk)
-    return unless options[:toggle_choice] == choice
+    return unless block_given?
+    return if options[:toggle_choice] && options[:toggle_choice] != choice
 
     classes = ['govuk-radios__conditional', 'govuk-radios__conditional--hidden']
 
