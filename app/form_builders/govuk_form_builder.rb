@@ -104,6 +104,8 @@ class GovukFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
+  private
+
   def govuk_label(attribute)
     text = localized('helpers.label', attribute)
     return unless text.present?
@@ -135,8 +137,6 @@ class GovukFormBuilder < ActionView::Helpers::FormBuilder
 
     content_tag(:span, text, class: 'govuk-error-message')
   end
-
-  private
 
   def date_picker_field(attribute)
     span_classes = ['date-picker-field', 'input-group date']
