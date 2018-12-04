@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Escorts
   class PrintController < ApplicationController
     include Auditable

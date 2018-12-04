@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WizardHelper
   def wizard_action
     %w[new create].include?(action_name) ? 'new' : 'edit'

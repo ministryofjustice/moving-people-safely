@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Detainees
   class BaseFetcher
     def initialize(prison_number, options = {})

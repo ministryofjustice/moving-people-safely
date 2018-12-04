@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EscortIssuer
   EscortNotEditableError = Class.new(StandardError)
   EscortNotReadyForIssueError = Class.new(StandardError)

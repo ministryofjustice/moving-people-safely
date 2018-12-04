@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Metrics
   class Calculator
     TIME_SAVED_WITH_REUSE_OF_PER = 15.minutes
@@ -50,19 +52,19 @@ module Metrics
     attr_reader :logger
 
     def total_initiated_escorts
-      @_total_initiated_escorts ||= Escort.unscoped.count
+      @total_initiated_escorts ||= Escort.unscoped.count
     end
 
     def total_issued_escorts
-      @_total_issued_escorts ||= Escort.issued.count
+      @total_issued_escorts ||= Escort.issued.count
     end
 
     def total_unique_detainees_escorted
-      @_total_unique_detainees_escorted ||= Escort.issued.distinct.count(:prison_number)
+      @total_unique_detainees_escorted ||= Escort.issued.distinct.count(:prison_number)
     end
 
     def total_escorts_auto_deleted
-      @_total_escorts_auto_deleted ||= Escort.unscoped.where.not(deleted_at: nil).count
+      @total_escorts_auto_deleted ||= Escort.unscoped.where.not(deleted_at: nil).count
     end
 
     def total_reused_escorts
@@ -78,7 +80,7 @@ module Metrics
     end
 
     def all_escorts_in_last_number_of_days(num_days = 30)
-      @last_num_dats ||= Escort.connection.execute(%{
+      @all_escorts_in_last_number_of_days ||= Escort.connection.execute(%{
         SELECT
           COALESCE(subquery1.date, subquery2.date) AS date,
           COALESCE(subquery1.total, 0) as total_issued,

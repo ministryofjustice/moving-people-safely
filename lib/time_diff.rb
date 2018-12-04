@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TimeDiff
   include ActionView::Helpers::TextHelper
 

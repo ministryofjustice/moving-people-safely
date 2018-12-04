@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Nomis
   Error = Class.new(StandardError)
   DisabledError = Class.new(Error)

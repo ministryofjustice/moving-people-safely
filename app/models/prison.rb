@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Prison < Establishment
   default_scope lambda {
     today = Date.today

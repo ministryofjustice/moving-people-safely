@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Establishment < ApplicationRecord
   ESTABLISHMENT_TYPES = %i[
     crown_court

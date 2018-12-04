@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # In terminal log into prod machine and capture the output to a file:
 # local# ssh mps-prod | tee output.out
 # prod# sudo docker ps

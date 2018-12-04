@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Detainees
   class FetcherResponse
     attr_reader :error

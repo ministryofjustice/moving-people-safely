@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module EscortsHelper
   def identifier(escort)
     "#{escort.number}: #{escort.detainee_surname}"

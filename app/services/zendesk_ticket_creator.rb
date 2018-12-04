@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class ZendeskTicketCreator
   # Custom ticket field IDs as configured in the MOJ Digital Zendesk account
-  SERVICE_FIELD = '23757677'.freeze
-  PRISON_FIELD = '23984153'.freeze
-  PRISONER_NUM_FIELD = '114094604912'.freeze
+  SERVICE_FIELD = '23757677'
+  PRISON_FIELD = '23984153'
+  PRISONER_NUM_FIELD = '114094604912'
 
   ZendeskNotConfiguredError = Class.new(StandardError)
 

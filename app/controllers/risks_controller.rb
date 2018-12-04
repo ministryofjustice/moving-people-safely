@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RisksController < AssessmentsController
   def automation
     api_client = Nomis::Api.instance

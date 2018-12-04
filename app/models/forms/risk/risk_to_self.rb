@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Forms
   module Risk
     class RiskToSelf < Forms::Base
       ACCT_STATUSES = %w[open post_closure closed none].freeze
-      ACCT_STATUS_WITH_DETAILS = 'closed'.freeze
+      ACCT_STATUS_WITH_DETAILS = 'closed'
 
       options_field :acct_status, options: :acct_statuses, if: :from_prison?
 

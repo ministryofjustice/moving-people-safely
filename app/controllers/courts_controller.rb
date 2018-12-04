@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CourtsController < ApplicationController
   def show
     if session[:court_id]
