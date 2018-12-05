@@ -8,4 +8,7 @@
 = f.radio_toggle_with_textarea :self_harm
 
 - if escort.from_police?
-  = render 'risks/forms/observation_levels', f: f
+  = f.radios_fieldset :observation_level do
+    - f.object.observation_levels.each do |level|
+      = f.radios_item_conditional(:observation_level, level)
+    = f.text_area :observation_level_details
