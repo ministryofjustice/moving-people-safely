@@ -45,10 +45,6 @@ module Forms
       def observation_levels
         OBSERVATION_LEVELS
       end
-
-      def observation_levels_requiring_details
-        OBSERVATION_LEVELS_REQUIRING_DETAILS
-      end
     end
   end
 end
