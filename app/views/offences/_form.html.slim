@@ -18,10 +18,10 @@
 
   hr.govuk-section-break.govuk-section-break--l.govuk-section-break--visible.mps-section-break
 
-  .form-actions
-    = f.button 'Add another',
-      class: 'js-anchor-focus govuk-button button-add-another',
-      name: 'offences_add_offence'
+  = f.button 'Add another',
+    class: 'govuk-button govuk-button--secondary',
+    name: 'offences_add_offence'
 
-  .form-actions
-    = f.submit 'Save and continue', class: 'govuk-button'
+  hr.govuk-section-break.govuk-section-break--m
+
+  = f.submit 'Save and continue', class: 'govuk-button'

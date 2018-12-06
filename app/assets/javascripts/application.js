@@ -19,7 +19,6 @@
 //= require stickyfill-init
 //= require multiples
 //= require clickable-tbody
-//= require anchor-focus
 //= require no-script
 //= require page-contents
 

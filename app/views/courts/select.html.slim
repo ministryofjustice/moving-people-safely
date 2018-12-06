@@ -7,5 +7,4 @@ header
       = f.radios_item_conditional(:to_type, court_type) do
         = f.select_autocomplete :"#{court_type}_id", court_type.to_s.classify.constantize.pluck(:name, :id)
 
-  .form-actions
-    = f.submit 'Save and continue', class: 'govuk-button'
+  = f.submit 'Save and continue', class: 'govuk-button'
