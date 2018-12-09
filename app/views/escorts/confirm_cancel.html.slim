@@ -12,6 +12,5 @@ h1.govuk-heading-l
 
   = f.text_area :cancelling_reason
 
-  .form-actions
-    = f.submit t('.cancel_this_per'), class: 'govuk-button'
-    = link_to t('.do_not_cancel_per'), escort_path(escort), class: 'govuk-button button-secondary'
+  = f.submit t('.cancel_this_per'), class: 'govuk-button govuk-!-margin-right-4'
+  = link_to t('.do_not_cancel_per'), escort_path(escort), class: 'govuk-button govuk-button--secondary'

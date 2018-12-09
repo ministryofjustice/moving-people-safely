@@ -1,5 +1,5 @@
 = form_for Escort.new, url: escorts_path, method: :post do |f|
   = f.hidden_field :prison_number, value: @form.prison_number
   = f.hidden_field :pnc_number, value: @form.pnc_number
-  .form-actions
-    = f.submit 'Start new PER', class: 'govuk-button'
+
+  = f.submit 'Start new PER', class: 'govuk-button'
