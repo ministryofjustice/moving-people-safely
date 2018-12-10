@@ -9,10 +9,10 @@ bootstrap-datepicker@^1.6.4:
   dependencies:
     jquery ">=1.7.1 <4.0.0"
 
-govuk-frontend@^2.0.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-2.2.0.tgz#ef14463f8c0b4b628d5a498f8aa4f3bf6833315e"
-  integrity sha512-vNiUIp8EQACARNTyOwmE110HcQd+zJvkgbKv+gmY28QxqQGGd2DEJ35nblnjElsRJpSgbxwa85iqlNtbR3Q5tA==
+govuk-frontend@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-2.4.0.tgz#a4f32f09f2120166006f2d0c2aa32cccf75f95ef"
+  integrity sha512-WSecWLGM1qZ48UD0YGGWOfaBqrWtwf39cOUAuC8+SMNh7kkZ6Ou2Y7+d3Bt8OEPaFNFR2N2vZO2WRnT2gaCjMg==
 
 html5shiv@^3.7.3:
   version "3.7.3"
