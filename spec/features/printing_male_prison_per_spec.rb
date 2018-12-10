@@ -63,6 +63,10 @@ RSpec.feature 'printing a prison PER', type: :feature do
     )
   }
 
+  before do
+    allow(AgeCalculator).to receive(:age).and_return(47)
+  end
+
   context 'when a PER is completed with all answers as no' do
     let(:risk) {
       create(:risk, :confirmed,
