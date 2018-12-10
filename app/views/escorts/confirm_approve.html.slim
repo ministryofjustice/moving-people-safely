@@ -18,6 +18,5 @@ p.govuk-body-l
     = t('.cannot_edit')
 
 = form_for escort, url: approve_escort_path(escort), method: :put do |f|
-  .form-actions
-    = f.submit t('.approve_per'), class: 'govuk-button'
-    = link_to t('.go_back'), escort_path(escort), class: 'govuk-button button-secondary'
+  = f.submit t('.approve_per'), class: 'govuk-button govuk-!-margin-right-4'
+  = link_to t('.go_back'), escort_path(escort), class: 'govuk-button govuk-button--secondary'
