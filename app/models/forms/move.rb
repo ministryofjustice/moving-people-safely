@@ -2,7 +2,8 @@
 
 module Forms
   class Move < Forms::Base
-    FREE_FORM_DESTINATION_TYPES = %i[civil_court hospital other].freeze
+    FREE_TEXT_DESTINATIONS = %i[civil_court hospital other].freeze
+    ALL_DESTINATIONS = FREE_TEXT_DESTINATIONS + ::Establishment::ESTABLISHMENT_TYPES
     REASON_WITH_DETAILS = 'other'
     COMMON_NOT_FOR_RELEASE_REASONS = %w[held_for_immigration other].freeze
     PRISON_NOT_FOR_RELEASE_REASONS = %w[serving_sentence further_charges licence_revoke].freeze
@@ -45,17 +46,7 @@ module Forms
 
     property :to_type, validates: { presence: true }
 
-    ::Establishment::ESTABLISHMENT_TYPES.each do |establishment_type|
-      property "to_#{establishment_type}".to_sym,
-        virtual: true,
-        prepopulator: ->(_options) { send("to_#{establishment_type}=", to) if to_type == establishment_type.to_s }
-
-      validates "to_#{establishment_type}".to_sym,
-        presence: true,
-        if: -> { to_type == establishment_type.to_s }
-    end
-
-    FREE_FORM_DESTINATION_TYPES.each do |destination_type|
+    ALL_DESTINATIONS.each do |destination_type|
       property "to_#{destination_type}".to_sym,
         virtual: true,
         prepopulator: ->(_options) { send("to_#{destination_type}=", to) if to_type == destination_type.to_s }
@@ -84,8 +75,7 @@ module Forms
     end
 
     def sorted_destination_options
-      sorted_list = (FREE_FORM_DESTINATION_TYPES + Establishment::ESTABLISHMENT_TYPES - [:other]).sort
-      sorted_list + [:other]
+      (ALL_DESTINATIONS - [:other]).sort + [:other]
     end
   end
 end

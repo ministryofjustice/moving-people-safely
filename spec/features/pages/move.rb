@@ -35,7 +35,7 @@ module Page
       when Establishment::ESTABLISHMENT_TYPES.include?(move.to_type.to_sym)
         choose "move_to_type_#{move.to_type}"
         select move.to, from: "move_to_#{move.to_type}"
-      when Forms::Move::FREE_FORM_DESTINATION_TYPES.include?(move.to_type.to_sym)
+      when Forms::Move::FREE_TEXT_DESTINATIONS.include?(move.to_type.to_sym)
         choose "move_to_type_#{move.to_type}"
         fill_in "move_to_#{move.to_type}", with: move.to
       else
