@@ -51,13 +51,13 @@ Staple to card —————
                        This ePER was produced by the Ministry of Justice ePER service, currently in pilot. This ePER
                        is approved by HMPPS - please treat it as a fully valid and official record. Please send any
                        feedback or questions to: eper@digital.justice.gov.uk
-99/000000Z: McTest Testy                                                                     Page 1 of 1
+99/000000Z: McTest Testy                                                 Page 1 of 1
 
 Not for release ✘ No Suicide / Self harm ✘ No Violent ✘ No Escape risk ✘ No
 Sex offender ✘ No Constant watch ✘ No Alcohol withdrawal ✘ No
 
-Risk Last confirmed: Detention Officer Bee, 12:30 | 10 Mar 2016. Approved: Detention Officer Nok, 12:30 |
-10 Mar 2016.
+Risk Last confirmed: Detention Officer Bee, 12:30 | 10 Mar 2016.
+ Approved: Detention Officer Nok, 12:30 | 10 Mar 2016.
 
 Risk to self                      No
 Segregation                       No
@@ -67,8 +67,8 @@ Offence history                   No
 Weapons, drugs or other items     No
 Other risk information            No
 
-Healthcare Last confirmed: Detention Officer Bee, 12:30 | 10 Mar 2016. Approved: Detention Officer Nok,
-12:30 | 10 Mar 2016.
+Healthcare Last confirmed: Detention Officer Bee, 12:30 | 10 Mar 2016.
+ Approved: Detention Officer Nok, 12:30 | 10 Mar 2016.
 
 Physical health issues            No
 Mental health issues              No
@@ -80,8 +80,8 @@ Personal care                     No
 Custody suite contact details     Yes
   Custody suite contact           1-131-999-0232
 
-Offences Last confirmed: Detention Officer Bee, 12:30 | 10 Mar 2016. Approved: Detention Officer Nok,
-12:30 | 10 Mar 2016.
+Offences Last confirmed: Detention Officer Bee, 12:30 | 10 Mar 2016.
+ Approved: Detention Officer Nok, 12:30 | 10 Mar 2016.
 
 Current offences                  None
 
