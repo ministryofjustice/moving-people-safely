@@ -11,7 +11,7 @@ class CourtsController < ApplicationController
   end
 
   def select
-    @form = Forms::CourtSelector.new(Establishment.new)
+    @form = Forms::CourtSelector.new
   end
 
   def change
