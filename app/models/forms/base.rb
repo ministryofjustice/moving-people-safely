@@ -21,7 +21,7 @@ module Forms
           end
 
           def resettable_attributes
-            @_resettable_attributes ||= Forms::AttributeResetCollection.new
+            @resettable_attributes ||= Forms::AttributeResetCollection.new
           end
         end
 
@@ -46,11 +46,6 @@ module Forms
 
       def properties
         definitions.keys
-      end
-
-      # checks class instance methods
-      def respond_to?(method_name)
-        instance_methods.include?(method_name)
       end
 
       def options_field(field_name, options = {})
@@ -78,7 +73,7 @@ module Forms
       end
 
       def _define_add_singularized_field_name(field_name)
-        singularized_field_name = singularize field_name
+        singularized_field_name = singularize(field_name)
         define_method "add_#{singularized_field_name}" do
           new_instance = public_send("new_#{singularized_field_name}")
           public_send(field_name) << new_instance
@@ -86,56 +81,45 @@ module Forms
       end
 
       def _define_new_singularized_field_name(field_name)
-        define_method "new_#{singularize field_name}" do
+        define_method "new_#{singularize(field_name)}" do
           model.public_send(field_name).build
         end
       end
 
       def _define_has_if_property_missing(field_name)
-        unless respond_to?("has_#{field_name}".to_sym)
-          define_method "has_#{field_name}" do
-            'yes'
-          end
+        return if instance_methods.include?("has_#{field_name}".to_sym)
+
+        define_method "has_#{field_name}" do
+          'yes'
         end
       end
 
       def _define_prepopulator(field_name)
-        singularized_field_name = singularize field_name
+        singularized_field_name = singularize(field_name)
         define_method "populate_#{field_name}" do |*|
-          if public_send(field_name).empty?
-            public_send("add_#{singularized_field_name}")
-          end
+          public_send("add_#{singularized_field_name}") if public_send(field_name).empty?
         end
       end
 
       def _define_populator(field_name)
-        singularized_field_name = singularize field_name
+        singularized_field_name = singularize(field_name)
         define_method "handle_nested_params_for_#{field_name}" do |collection:, fragment:, **|
-          item = collection.find { |d| ( d.id.present? && d.id == fragment['id']) }
+          item = collection.find { |d| d.id.present? && d.id == fragment['id'] }
           marked_to_be_deleted = fragment['_delete'] == '1'
-          all_to_be_deleted = %w[ yes ].exclude?(
-            public_send("has_#{field_name}")
-          )
+          all_to_be_deleted = public_send("has_#{field_name}") == TOGGLE_NO
 
           if marked_to_be_deleted || all_to_be_deleted
             public_send(field_name).delete(item)
             return skip!
           end
 
-          if item
-            item
-          else
-            collection.append(public_send("new_#{singularized_field_name}"))
-          end
+          item || collection.append(public_send("new_#{singularized_field_name}"))
         end
       end
 
-      def prepopulated_collection(field_name, options = {})
-        namespace = self.to_s.deconstantize
-        const_name = [namespace, field_name.to_s.classify].join('::')
-
+      def prepopulated_collection(field_name)
         collection field_name,
-          form: options.fetch(:collection_form_class) { const_name.constantize },
+          form: [to_s.deconstantize, field_name.to_s.classify].join('::').constantize,
           prepopulator: "populate_#{field_name}".to_sym,
           populator: "handle_nested_params_for_#{field_name}".to_sym
 
@@ -145,28 +129,6 @@ module Forms
         _define_prepopulator(field_name)
         _define_populator(field_name)
       end
-    end
-
-    # instance methods
-
-    def toggle_choices
-      TOGGLE_CHOICES
-    end
-
-    def toggle_field
-      TOGGLE_YES
-    end
-
-    def translate_options(options, section)
-      options.map{ |option| I18n.t(option, scope: [:helpers, :label, section]) }
-    end
-
-    def name
-      self.class.name
-    end
-
-    def model_class_name
-      model.class.name.downcase
     end
 
     def from_prison?

@@ -10,7 +10,6 @@ AllCops:
     - '**/Rakefile'
     - 'spec/**/*'
     - 'config/**/*'
-    - 'app/models/forms/base.rb' # this is just too horrible
     - 'app/services/detainees/risk_mapper.rb'
 
 # Prefer sensible naming to comments everywhere.
@@ -30,6 +29,7 @@ Metrics/ClassLength:
   Exclude:
     - 'app/models/escort.rb'
     - 'app/form_builders/govuk_form_builder.rb'
+    - 'app/models/forms/base.rb'
 
 Metrics/MethodLength:
   Max: 15
