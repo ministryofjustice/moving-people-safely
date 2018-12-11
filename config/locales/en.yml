@@ -252,7 +252,7 @@ en:
       constant_watch: Constant watch
       not_for_release: Not for release
       pregnant: Pregnant
-      rule_45: Rule 45
+      rule_45: Segregated
       self_harm: Suicide / Self harm
       sex_offender: Sex offender
       travelling_with_child: Travelling with child
@@ -435,7 +435,7 @@ en:
         violent_or_dangerous: Are they violent or dangerous?
       segregation:
         csra: What is their Cell Sharing Risk Assessment (CSRA) risk level?
-        rule_45: Are they held under Rule 45?
+        rule_45: Are they held in segregation?
         vulnerable_prisoner:
           prison: Are they a vulnerable prisoner?
           police: Are they at risk from other people?
@@ -732,7 +732,8 @@ en:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>CSRA risk</i> level.
           police: For example, if they need to share a cell at court or prison.
         csra_details: *give_details
-        rule_45_html: In NOMIS, check the header section of the prisoner’s record for the <i>Rule 45</i> alert.
+        rule_45_html: In NOMIS, check the header section of the prisoner’s record for segregation alerts like <i>Rule 45</i> or <i>Good Order and Discipline</i>.
+        rule_45_details: *give_details
         vulnerable_prisoner:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Rule 46</i>, <i>Rule 49</i>, <i>Victim,</i> <i>Isolated prisoner</i> or <i>Poor Coper</i> alerts. Include any other reasons you think they may be vulnerable (for example, transgender prisoners or young adults in an adult establishment).
           police_html: Check the <i>Vulnerable/At risk detainee alert</i>. In the arrest record, check for the Vulnerable person flag or any information under <i>Risk of attack by others</i>.
@@ -1027,7 +1028,7 @@ en:
           violent_or_dangerous: Violent or dangerous
         segregation:
           csra: Cell share risk
-          rule_45: Rule 45
+          rule_45: Segregated
           vulnerable_prisoner: At risk from others
         sex_offences:
           sex_offence: Sex offender
