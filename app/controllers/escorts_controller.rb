@@ -24,11 +24,11 @@ class EscortsController < ApplicationController
   end
 
   def confirm_cancel
-    @form = Forms::Escort.new(escort)
+    @form = Forms::Escort.new
   end
 
   def cancel
-    @form = Forms::Escort.new(escort)
+    @form = Forms::Escort.new(escort_params)
     if @form.validate(escort_params)
       escort.cancel!(current_user, escort_params[:cancelling_reason])
       redirect_to root_path

@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 module Forms
-  class Search
-    include ActiveModel::Validations
-    include ActiveModel::Conversion
-
+  class Search < ActiveModelBase
     PRISON_NUMBER_REGEX = /\A[a-z]\d{4}[a-z]{2}\z/i.freeze
     POLICE_NUMBER_REGEX = /\d{2}\/\d{6}[a-z]\z/i.freeze
 
@@ -31,10 +28,6 @@ module Forms
       return 'PNC number' if pnc_number
 
       'prison number'
-    end
-
-    def persisted?
-      false
     end
   end
 end

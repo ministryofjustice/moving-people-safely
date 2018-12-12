@@ -22,7 +22,7 @@ class SearchController < ApplicationController
   private
 
   def search_params
-    params.require(:forms_search).permit(:prison_number, :pnc_number)
+    params.require(:search).permit(:prison_number, :pnc_number)
   end
 
   def find_same_prisoner_escort

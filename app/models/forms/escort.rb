@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Forms
-  class Escort < Forms::Base
-    property :cancelling_reason, type: String
+  class Escort < ActiveModelBase
+    attr_accessor :cancelling_reason
 
     validates :cancelling_reason, presence: true
   end
