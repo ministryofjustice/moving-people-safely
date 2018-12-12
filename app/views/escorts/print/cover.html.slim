@@ -7,27 +7,28 @@ html
   body
     .staple-instruction.staple-instruction-top
       = long_dash(5)
-      | &nbsp;Staple to card
+      | &nbsp;
+      = t('.staple_to_card')
 
     main.page-one
       table.vehicles
         tr.header-row
-          th colspan=3 Outbound vehicle
+          th colspan=3 = t('.outbound_vehicle')
         tr
           td.first-column
-            .title Registration
+            .title = t('.registration')
           td.second-column
-            .title Cell number
+            .title = t('.cell_number')
           td.third-column
-            .title PECS Barcode
+            .title = t('.pecs_barcode')
         tr.header-row
-          th colspan=2 Return vehicle
+          th colspan=2 = t('.return_vehicle')
           th.empty
         tr
           td
-            .title Registration
+            .title = t('.registration')
           td
-            .title Cell number
+            .title = t('.cell_number')
           td.empty
 
       .grid.move
@@ -42,81 +43,81 @@ html
               = render 'escorts/print/alert', alert_name: :not_for_release, on: escort.alerts[:not_for_release]
               / #e_list_alert.flag
               = render 'escorts/print/alert', alert_name: :current_e_risk, on: escort.alerts[:current_e_risk]
-        .govuk-grid-row.header-row.small = 'Move details'
+        .govuk-grid-row.header-row.small = t('.move_details')
         .govuk-grid-row.padded.padded-bottom
           .govuk-grid-column.govuk-grid-column-one-third
-            .title Date of travel
+            .title = t('.date_of_travel')
             .strong-text.font-medium = escort.move.date&.to_s(:humanized)
           .govuk-grid-column.govuk-grid-column-one-third
-            .title From
+            .title = t('.from')
             .strong-text = from(escort.move)
           .govuk-grid-column.govuk-grid-column-one-third
-            .title To
+            .title = t('.to')
             .strong-text = escort.move.to
         .govuk-grid-row.padded.padded-bottom
           .govuk-grid-column.govuk-grid-column-one-third
-            .title Release status
+            .title = t('.release_status')
             .strong-text.font-medium = not_for_release_text(escort.move)
           - if escort.detainee_female? && escort.from_prison?
             .govuk-grid-column.govuk-grid-column-one-third
-              .title Travelling with child
+              .title = t('.travelling_with_child')
               .strong-text.font-medium = travelling_with_child_text(escort.move)
 
       .grid.detainee
-        .govuk-grid-row.header-row.small = 'Personal details'
+        .govuk-grid-row.header-row.small = t('.personal_details')
         .govuk-grid-row.padded.top-dotted
           .govuk-grid-column.govuk-grid-column-three-fifths
             .govuk-grid-row
               .govuk-grid-column.govuk-grid-column-one-third
-                .title Prison number
+                .title = t('.prison_number')
                 #prison-number.strong-text = content_or_dash(escort.detainee.prison_number)
               .govuk-grid-column.govuk-grid-column-one-third
-                .title CRO number
+                .title = t('.cro_number')
                 #cro-number.strong-text = content_or_dash(escort.detainee.cro_number)
               .govuk-grid-column.govuk-grid-column-one-third
-                .title PNC number
+                .title = t('.pnc_number')
                 #pnc-number.strong-text = content_or_dash(escort.detainee.pnc_number)
             .govuk-grid-row.padded
               .govuk-grid-column.govuk-grid-column-one-third
-                .title Date of birth
+                .title = t('.date_of_birth')
                 #date-of-birth.strong-text = escort.detainee.date_of_birth&.to_s(:humanized)
-              .govuk-grid-column.govuk-grid-column-one-third
-                .title Age
+              .govuk-grid-column.govuk-grid-column-one-third 
+                .title = t('.age')
                 #age.strong-text = escort.detainee.age
               .govuk-grid-column.govuk-grid-column-one-third
-                .title Gender
+                .title = t('.gender')
                 #gender.strong-text = escort.detainee.gender&.capitalize
             .govuk-grid-row.padded
               .govuk-grid-column.govuk-grid-column-one-third
-                .title Nationality
+                .title = t('.nationality')
                 - nationalities(escort.detainee).each do |nationality|
                   .strong-text.nationality = nationality
               - if escort.from_prison?
                 .govuk-grid-column.govuk-grid-column-one-third
-                  .title Religion
+                  .title = t('.religion')
                   #age.strong-text = content_or_dash(escort.detainee.religion)
               .govuk-grid-column.govuk-grid-column-one-third
-                .title Ethnicity
+                .title = t('.ethnicity')
                 #age.strong-text = content_or_dash(short_ethnicity(escort.detainee))
             .govuk-grid-row.padded
               .govuk-grid-column.govuk-grid-column-one-third
-                .title Preferred language
+                .title = t('.preferred_language')
                 .strong-text.language = content_or_dash(escort.detainee.language)
               .govuk-grid-column.govuk-grid-column-one-third
-                .title Interpreter
+                .title = t('.interpreter')
                 #age.strong-text = content_or_dash(expanded_interpreter_required(escort.detainee))
               .govuk-grid-column.govuk-grid-column-one-third
-                .title Interpreter details
+                .title = t('.interpreter_details')
                 #age.strong-text = content_or_dash(escort.detainee.interpreter_required_details)
             .govuk-grid-row.padded
               .govuk-grid-column.govuk-grid-column-one-third
-                .title Category
+                .title = t('.category')
                 #age.strong-text = escort.from_police? ? dash : content_or_dash(escort.detainee.security_category)
               .govuk-grid-column.govuk-grid-column-two-thirds
-                .title Diet
+                .title = t('.diet')
                 #age.strong-text = content_or_dash(escort.detainee.diet)
           .govuk-grid-column.govuk-grid-column-one-fifth
-            .title Aliases
+            .title = t('.aliases')
             - aliases(escort.detainee).each do |a|
               .alias.strong-text = a
           .govuk-grid-column.govuk-grid-column-one-fifth
@@ -125,20 +126,18 @@ html
         - if escort.detainee.peep == 'yes'
           .govuk-grid-row.padded
             .govuk-grid-column.govuk-grid-column-full
-              .title Personal Emergency Evacuation Plan
+              .title = t('.peep')
               .strong-text.language = escort.detainee.peep_details
 
       .grid.footer.moj-declaration
         .govuk-grid-row
           .govuk-grid-column.legend
-            .title About this Person Escort Record
-            p
-              | This ePER was produced by the Ministry of Justice ePER service, currently in pilot.
-              |  This ePER is approved by HMPPS - please treat it as a fully valid and official record.
-              |  Please send any feedback or questions to: eper@digital.justice.gov.uk
+            .title = t('.about_title')
+            p = t('.about_legend')
           .govuk-grid-column.logo
             = wicked_pdf_image_tag('moj_logo.png')
 
     .staple-instruction.staple-instruction-bottom
-      | Staple to card&nbsp;
+      = t('.staple_to_card')
+      | &nbsp;
       = long_dash(5)

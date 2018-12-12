@@ -641,10 +641,50 @@ en:
       cancel_this_per: Cancel this PER
       do_not_cancel_per: Do not cancel this PER
     print:
+      cover:
+        about_legend: 'This ePER was produced by the Ministry of Justice ePER service, currently in pilot. This ePER is approved by HMPPS - please treat it as a fully valid and official record. Please send any feedback or questions to: eper@digital.justice.gov.uk'
+        about_title: About this Person Escort Record
+        age: Age
+        aliases: Aliases
+        category: Category
+        cell_number: Cell number
+        cro_number: CRO number
+        date_of_birth: Date of birth
+        date_of_travel: Date of travel
+        diet: Diet
+        ethnicity: Ethnicity
+        from: From
+        gender: Gender
+        interpreter: Interpreter
+        interpreter_details: Interpreter details
+        move_details: Move details
+        nationality: Nationality
+        outbound_vehicle: Outbound vehicle
+        pecs_barcode: PECS Barcode
+        peep: Personal Emergency Evacuation Plan
+        personal_details: Personal details
+        pnc_number: PNC number
+        preferred_language: Preferred language
+        prison_number: Prison number
+        registration: Registration
+        release_status: Release status
+        religion: Religion
+        return_vehicle: Return vehicle
+        staple_to_card: Staple to card
+        to: To
+        travelling_with_child: Travelling with child
+      header:
+        of: of
+        page: Page
       new:
         reprint_per_for: Reprint PER for
         reprint_this_per: Reprint this PER
         do_not_reprint_per: Do not reprint this PER
+      show:
+        healthcare: Healthcare
+        offences: Offences
+        return_instructions: Return instructions
+        risk: Risk
   assessment:
     confirmed_timestamp: "Last confirmed: %{name}, %{time}."
     approved_timestamp: "Approved: %{name}, %{time}."

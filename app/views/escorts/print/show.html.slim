@@ -14,7 +14,7 @@ html
         table#risk-table.section-table
           tr
             th colspan=3
-              span.heading-large = 'Risk'
+              span.heading-large = t('.risk')
               = render 'shared/confirmed_approved', assessment: escort.risk, escort: escort
           - Risk.sections(escort.location).reject { |s| s == 'return_instructions' }.each do |section|
             = render "risks/sections/#{section}",
@@ -27,7 +27,7 @@ html
         table#healthcare-table.section-table
           tr
             th colspan=3
-              span.heading-large = 'Healthcare'
+              span.heading-large = t('.healthcare')
               = render 'shared/confirmed_approved', assessment: escort.healthcare, escort: escort
           - Healthcare.sections(escort.location).each do |section|
             = render "healthcare/sections/#{section}",
@@ -40,7 +40,7 @@ html
         table#offences-table.section-table
           tr
             th colspan=3
-              span.heading-large = 'Offences'
+              span.heading-large = t('.offences')
               = render 'shared/confirmed_approved', assessment: escort.offences_workflow, escort: escort
           tr.top-dotted
             td.govuk-grid-column-30-percent
@@ -55,7 +55,7 @@ html
           table#return-table.section-table
             tr
               th colspan=3
-                span.heading-large = 'Return instructions'
+                span.heading-large = t('.return_instructions')
                 = render 'shared/confirmed_approved', assessment: escort.risk, escort: escort
             = render 'shared/sections/print/question_standalone',
               alternance: 'even', assessment: escort.risk, section: 'return_instructions', question: 'must_return',
