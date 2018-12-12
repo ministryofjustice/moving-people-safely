@@ -1,6 +1,6 @@
 section#offences
   .header
-    h2.govuk-heading-m Offences
+    h2.govuk-heading-m = t('.offences_heading')
 
     = render 'status',
       workflow: escort.offences_workflow,
@@ -17,7 +17,7 @@ section#offences
       tbody.govuk-table__body
         tr.govuk-table__row
           th.govuk-table__header.question scope="row"
-            | Current offences
+            = t('.current_offences')
           td.govuk-table__cell.answer
             - offences.each do |offence|
               p #{offence.offence} (#{offence.case_reference})

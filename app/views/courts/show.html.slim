@@ -38,7 +38,7 @@
         tr.govuk-table__row
           td.govuk-table__cell colspan="6"
             - if escort.cancelled?
-              span.govkuk-error-message t('.cancelled')
+              span.govkuk-error-message = t('.cancelled')
               |  by: #{escort.canceller.full_name}, at #{escort.cancelled_at.to_s(:timestamped)}. #{escort.cancelling_reason}.
             - else
               - escort.active_alerts.each do |alert|

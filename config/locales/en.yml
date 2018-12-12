@@ -632,6 +632,11 @@ en:
       travelling_with_child: Travelling with child
       violent: Violent
   escorts:
+    actions:
+      approve: Approve PER
+      cancel: Cancel PER
+      reprint: Reprint
+      return_to_home: Return to home
     confirm_approve:
       approve_per: Approve PER
       cannot_edit: 'Please note: you cannot edit a PER once it has been approved. If an incident occurs between approval and leaving custody, record the incident in the PER record of events.'
@@ -641,39 +646,51 @@ en:
       title: Cancelling PER for
       cancel_this_per: Cancel this PER
       do_not_cancel_per: Do not cancel this PER
+    detainee: &detainee_labels
+      age: Age
+      aliases: Aliases
+      category: Category
+      cro_number: CRO number
+      date_of_birth: Date of birth
+      detainee_heading: Personal details
+      diet: Diet
+      ethnicity: Ethnicity
+      gender: Gender
+      interpreter: Interpreter
+      interpreter_details: Interpreter details
+      nationality: Nationality
+      peep: Personal Emergency Evacuation Plan
+      pnc_number: PNC number
+      preferred_language: Preferred language
+      prison_number: Prison number
+      religion: Religion
+    move: &move_labels
+      date_of_travel: Date of travel
+      edit: Edit
+      from: From
+      move_heading: Move details
+      release_status: Release status
+      special_vehicle_details: 'Details:'
+      special_vehicle_requirements: Special vehicle requirements
+      to: To
+      travelling_with_child: Travelling with child
+      child_name: 'Name of child:'
+      child_dob: 'DoB of child:'
+    offences:
+      current_offences: Current offences
+      offences_heading: Offences
     print:
       cover:
+        <<: *detainee_labels
+        <<: *move_labels
         about_legend: 'This ePER was produced by the Ministry of Justice ePER service, currently in pilot. This ePER is approved by HMPPS - please treat it as a fully valid and official record. Please send any feedback or questions to: eper@digital.justice.gov.uk'
         about_title: About this Person Escort Record
-        age: Age
-        aliases: Aliases
-        category: Category
         cell_number: Cell number
-        cro_number: CRO number
-        date_of_birth: Date of birth
-        date_of_travel: Date of travel
-        diet: Diet
-        ethnicity: Ethnicity
-        from: From
-        gender: Gender
-        interpreter: Interpreter
-        interpreter_details: Interpreter details
-        move_details: Move details
-        nationality: Nationality
         outbound_vehicle: Outbound vehicle
         pecs_barcode: PECS Barcode
-        peep: Personal Emergency Evacuation Plan
-        personal_details: Personal details
-        pnc_number: PNC number
-        preferred_language: Preferred language
-        prison_number: Prison number
         registration: Registration
-        release_status: Release status
-        religion: Religion
         return_vehicle: Return vehicle
         staple_to_card: Staple to card
-        to: To
-        travelling_with_child: Travelling with child
       header:
         of: of
         page: Page
@@ -686,6 +703,13 @@ en:
         offences: Offences
         return_instructions: Return instructions
         risk: Risk
+    status:
+      complete: Complete
+      confirm: Confirm
+      edit: Edit
+      incomplete: Incomplete
+      review: Review
+      view: View
   assessment:
     confirmed_timestamp: "Last confirmed: %{name}, %{time}."
     approved_timestamp: "Approved: %{name}, %{time}."

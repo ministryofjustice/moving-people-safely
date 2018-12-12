@@ -1,46 +1,46 @@
 section#move
   .header
-    h2.govuk-heading-m Move information
+    h2.govuk-heading-m = t('.move_heading')
     .float-right
       - if escort.editable?
-        = link_to 'Edit', edit_escort_move_path(escort)
+        = link_to t('.edit'), edit_escort_move_path(escort)
   .tile-3
-    h3.govuk-heading-s.heading-light Date of travel
+    h3.govuk-heading-s.heading-light = t('.date_of_travel')
     p = escort.move.date&.to_s(:humanized)
 
   .tile-3
-    h3.govuk-heading-s.heading-light From
+    h3.govuk-heading-s.heading-light = t('.from')
     p = from(escort.move)
 
   .tile-3
-    h3.govuk-heading-s.heading-light To
+    h3.govuk-heading-s.heading-light = t('.to')
     p = escort.move.to
 
   .tile-3
-    h3.govuk-heading-s.heading-light Release status
+    h3.govuk-heading-s.heading-light = t('.release_status')
     p = not_for_release_text(escort.move)
 
   - unless escort.move.require_special_vehicle.blank?
     .tile-3
-      h3.govuk-heading-s.heading-light Special vehicle requirements
+      h3.govuk-heading-s.heading-light = t('.special_vehicle_requirements')
       p = escort.move.require_special_vehicle.capitalize
       - if escort.move.require_special_vehicle == 'yes'
         p
-          span class='govuk-!-font-weight-regular' Details:
+          span class='govuk-!-font-weight-regular' = t('.special_vehicle_details')
           | &nbsp;
           span class='govuk-!-font-weight-bold' = escort.move.require_special_vehicle_details
 
   - if escort.detainee_female? && escort.from_prison?
     .tile-3
-      h3.govuk-heading-s.heading-light Travelling with child
+      h3.govuk-heading-s.heading-light = t('.travelling_with_child')
       p = escort.move.travelling_with_child.capitalize
 
       - if escort.move.travelling_with_child == 'yes'
         p
-          span class='govuk-!-font-weight-regular' Name of child:
+          span class='govuk-!-font-weight-regular' = t('.child_name')
           | &nbsp;
           span class='govuk-!-font-weight-bold' = escort.move.child_full_name
         p
-          span class='govuk-!-font-weight-regular' DoB of child:
+          span class='govuk-!-font-weight-regular' = t('.child_dob')
           | &nbsp;
           span class='govuk-!-font-weight-bold' = escort.move.child_date_of_birth

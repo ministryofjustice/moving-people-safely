@@ -43,7 +43,7 @@ html
               = render 'escorts/print/alert', alert_name: :not_for_release, on: escort.alerts[:not_for_release]
               / #e_list_alert.flag
               = render 'escorts/print/alert', alert_name: :current_e_risk, on: escort.alerts[:current_e_risk]
-        .govuk-grid-row.header-row.small = t('.move_details')
+        .govuk-grid-row.header-row.small = t('.move_heading')
         .govuk-grid-row.padded.padded-bottom
           .govuk-grid-column.govuk-grid-column-one-third
             .title = t('.date_of_travel')
@@ -64,7 +64,7 @@ html
               .strong-text.font-medium = travelling_with_child_text(escort.move)
 
       .grid.detainee
-        .govuk-grid-row.header-row.small = t('.personal_details')
+        .govuk-grid-row.header-row.small = t('.detainee_heading')
         .govuk-grid-row.padded.top-dotted
           .govuk-grid-column.govuk-grid-column-three-fifths
             .govuk-grid-row
