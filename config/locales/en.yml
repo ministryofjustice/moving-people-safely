@@ -119,6 +119,7 @@ en:
           prison: Medical contact
           police: Custody suite contact details
       court_selector:
+        where_work: Where do you work?
         to_type_choices:
           crown_court: Crown court
           magistrates_court: Magistrates' court
@@ -927,3 +928,16 @@ en:
   layouts:
     application:
       current_phase_text_html: This is a new service. <a href="%{contact_url}">Contact us</a> if you need help or give us your <a href="%{feedback_url}" target="_blank" rel="noopener">feedback</a> to help us improve it.
+  courts:
+    show:
+      change_court: Change court
+      total_custodies:
+        one: Total custody
+        other: Total custodies
+      prisoner_number: Detainee number
+      name: Name
+      from: From
+      date_of_birth: Date of birth
+      age: Age
+      no_photo: No photo
+      cancelled: Cancelled
