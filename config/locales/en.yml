@@ -142,10 +142,7 @@ en:
         surname: Surname
       detainee_search:
         prison_number: Enter a prisoner number
-      forms_search:
-        prison_number: Prison number
-        pnc_number: PNC number
-      forms_feedback:
+      feedback:
         email: Your email address
         message: Your message
         prisoner_number: Prisoner number
@@ -194,6 +191,9 @@ en:
           level2: Level 2 (checks every 30 minutes)
           level3: Level 3 (constant watch via CCTV)
           level4: Level 4 (constant physical watch)
+      search:
+        prison_number: Prison number
+        pnc_number: PNC number
     hint:
       allergies:
         allergies: "For example, dietary, medical or environmental allergies"
@@ -271,14 +271,11 @@ en:
         previous_escape_attempts:
           prison_html: 'Check Mercury for intelligence or in NOMIS, check the prisoner’s record for the <i>Escape Risk</i> alert. Check alert comments and case notes for details.'
         previous_escape_attempts_details: 'Give details, including any previous escape attempts and dates'
-      forms_search:
-        prison_number: For example A1234AB
-        pnc_number: For example 12/345678A
-      forms_feedback:
-        message: Describe the issue you are having, including what you were doing before it happened
-        prisoner_number: For example, A1234BC
       escort:
         cancelling_reason: Give details of why this PER is being cancelled
+      feedback:
+        message: Describe the issue you are having, including what you were doing before it happened
+        prisoner_number: For example, A1234BC
       harassment_and_gangs:
         gang_member:
           prison_html: 'In NOMIS, check the header section of the prisoner’s record for relevant alerts. Check alert comments and case notes for details and <i>Security > Non-association</i> for known risks to named prisoners.'
@@ -363,6 +360,9 @@ en:
         suicide_details: Give details
         observation_level_html: In the arrest record, check <i>Observation Level</i>
         observation_level_details: Give details, including reasons for assigning observation level
+      search:
+        prison_number: For example A1234AB
+        pnc_number: For example 12/345678A
       security:
         controlled_unlock:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Controlled Unlock</i> alert.
