@@ -941,3 +941,10 @@ en:
       age: Age
       no_photo: No photo
       cancelled: Cancelled
+  detainees:
+    form: &detainee_form
+      information: Detainee information
+    edit:
+      <<: *detainee_form
+    new:
+      <<: *detainee_form
