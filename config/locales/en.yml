@@ -710,6 +710,11 @@ en:
       incomplete: Incomplete
       review: Review
       view: View
+  feedbacks:
+    new:
+      heading_long: Get in touch if you need help using the service.
+      heading_short: Contact us
+      send: Send
   assessment:
     confirmed_timestamp: "Last confirmed: %{name}, %{time}."
     approved_timestamp: "Approved: %{name}, %{time}."

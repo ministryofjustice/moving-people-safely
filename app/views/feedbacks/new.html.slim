@@ -1,8 +1,8 @@
 .govuk-grid-row
   .govuk-grid-column-three-quarters
     header
-      h1.govuk-heading-l Contact us
-      h2.govuk-heading-s Get in touch if you need help using the service.
+      h1.govuk-heading-l = t('.heading_short')
+      h2.govuk-heading-s = t('.heading_long')
 
     hr.govuk-section-break.govuk-section-break--l
 
@@ -14,4 +14,4 @@
         = f.text_field :email
       = f.text_area :message
 
-      = f.submit 'Send', class: 'govuk-button'
+      = f.submit t('.send'), class: 'govuk-button'
