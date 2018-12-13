@@ -677,6 +677,7 @@ DM:
   item:
   - name: "HMP/YOI Durham"
     prison-estate: "DM"
+    healthcare_contact_number: "0191 332 3599"
 DN:
   index-entry-number: "24"
   entry-number: "24"
