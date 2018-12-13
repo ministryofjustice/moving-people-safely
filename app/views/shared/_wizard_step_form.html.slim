@@ -1,11 +1,11 @@
 header
-  h1.govuk-caption-l = location_text(t("#{scope}.form.title.#{form.name}"), escort.location)
+  h1.govuk-caption-l = location_text(t("#{scope}.form.title.#{form.class.name}"), escort.location)
 
 hr.govuk-section-break.govuk-section-break--m
 
-= form_for form, url: wizard_path, method: method, as: form.name do |f|
+= form_for form, url: wizard_path, method: method, as: form.class.name do |f|
   = f.error_messages
-  = render "#{scope}/forms/#{form.name}", f: f
+  = render "#{scope}/forms/#{form.class.name}", f: f
 
   = f.submit 'Save and continue', class: 'govuk-button govuk-!-margin-right-4'
   = f.submit 'Save and view summary', class: 'govuk-button govuk-button--secondary', name: 'save_and_view_summary'
