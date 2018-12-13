@@ -106,7 +106,6 @@ AC:
   item:
   - name: "HMP/YOI Altcourse"
     prison-estate: "AC"
-    healthcare_contact_number: "0151 522 2056"
 AG:
   index-entry-number: "3"
   entry-number: "3"
@@ -248,7 +247,6 @@ BF:
   item:
   - name: "HMP/YOI Bedford"
     prison-estate: "BF"
-    healthcare_contact_number: "01234 373138"
 BH:
   index-entry-number: "9"
   entry-number: "9"
@@ -421,7 +419,6 @@ CD:
   item:
   - name: "HMP/YOI Chelmsford"
     prison-estate: "CD"
-    healthcare_contact_number: "01245 552112"
 SU:
   index-entry-number: "101"
   entry-number: "101"
@@ -856,7 +853,6 @@ EY:
   item:
   - name: "HMP/YOI Elmley"
     prison-estate: "EY"
-    healthcare_contact_number: "01795 802109"
 NE:
   index-entry-number: "136"
   entry-number: "136"
