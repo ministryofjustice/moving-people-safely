@@ -1,6 +1,4 @@
 en:
-  html_title: Person Escort Record
-  global_header_text: Create or view a PER
   helpers:
     fieldset:
       default_title: 'Select all that apply:'
@@ -978,6 +976,14 @@ en:
   layouts:
     application:
       current_phase_text_html: This is a new service. <a href="%{contact_url}">Contact us</a> if you need help or give us your <a href="%{feedback_url}" target="_blank" rel="noopener">feedback</a> to help us improve it.
+      html_title: Person Escort Record
+    header:
+      aria_nav: Top Level Navigation
+      aria_toggle_nav: Show or hide Top Level Navigation
+      global_header_text: Create or view a PER
+      menu: Menu
+      sign_out: Sign out
+      signed_in: Signed in as %{user_name}
   courts:
     show:
       change_court: Change court
