@@ -445,6 +445,12 @@ en:
         <<: *medications_labels
     show:
       heading: Healthcare summary
+  moves:
+    edit: &move_form_labels
+      heading: Move information
+    form:
+      <<: *move_form_labels
+      save_and_continue: Save and continue
   risks:
     form:
       title:

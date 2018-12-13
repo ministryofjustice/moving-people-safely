@@ -1,5 +1,5 @@
 header
-  h1.govuk-heading-l Move information
+  h1.govuk-heading-l = t('.heading')
 
 = form_for form, url: submit_path, method: method do |f|
   = f.error_messages
@@ -29,4 +29,4 @@ header
     = f.radio_toggle_with_textarea :require_special_vehicle
     = f.radio_toggle_with_textarea :other_transport_requirements
 
-  = f.submit 'Save and continue', class: 'govuk-button'
+  = f.submit t('.save_and_continue'), class: 'govuk-button'
