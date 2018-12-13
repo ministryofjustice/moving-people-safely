@@ -424,6 +424,11 @@ en:
         contact:
           prison: Medical contact details
           police: Custody suite contact details
+    forms:
+      needs:
+        add: Add another medicine
+        heading: Medication
+        remove: Remove
     intro:
       breadcrumb: Health
       content: |
@@ -433,6 +438,15 @@ en:
       note: |
         You can include any other personal medical details in a sealed envelope to be opened by a healthcare professional in case of an emergency.
       title: Before you start
+    sections:
+      medications: &medications_labels
+        escort: Escort
+        detainee: Detainee
+        carried_by: 'Carried by: %{carrier}'
+      medications_print:
+        <<: *medications_labels
+    show:
+      heading: Healthcare summary
   risks:
     form:
       title:

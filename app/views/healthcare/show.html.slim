@@ -3,7 +3,7 @@
     = content_for :breadcrumbs do
       - breadcrumbs_for_page root: true do
         - breadcrumb escort_breadcrumb(escort), escort_path(escort)
-        - breadcrumb 'Healthcare summary'
+        - breadcrumb t('.heading')
 
     .summary.per-section-page
       = render 'shared/status',
