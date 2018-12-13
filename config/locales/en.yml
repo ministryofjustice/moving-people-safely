@@ -490,6 +490,7 @@ en:
     escorts:
       approve: Approve
       approved: Approved
+      awaiting_approval: Awaiting approval
       cancelled: Cancelled
       destination: Destination
       detainee_name: Name
@@ -498,8 +499,14 @@ en:
       number: Number
       offences: Offences
       risk: Risk
-    pers_from: PERs from
-    undetermined_establishment: MoJ HQ
+    select_police_station:
+      save_and_continue: Save and continue
+      where_do_you_work: Where do you work?
+    show:
+      go: Go
+      pers_from: PERs from
+      scheduled_moves: Scheduled moves
+      undetermined_establishment: MoJ HQ
   search:
     no_result:
       no_result: There are no previous ePERs for %{identifier}

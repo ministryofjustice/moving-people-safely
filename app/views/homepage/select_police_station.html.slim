@@ -1,9 +1,9 @@
 header
-  h1.gouk-heading-l Where do you work?
+  h1.gouk-heading-l = t('.where_do_you_work')
 
 = form_for @form, url: set_police_station_path do |f|
   = f.error_messages
 
   = f.select_autocomplete :police_custody_id, PoliceCustody.pluck(:name, :id)
 
-  = f.submit 'Save and continue', class: 'govuk-button'
+  = f.submit t('.save_and_continue'), class: 'govuk-button'
