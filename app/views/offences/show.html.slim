@@ -1,7 +1,7 @@
 = content_for :breadcrumbs do
   - breadcrumbs_for_page root: true do
     - breadcrumb escort_breadcrumb(escort), escort_path(escort)
-    - breadcrumb 'Offences'
+    - breadcrumb t('.heading')
 
 .govuk-grid-row
 
@@ -9,13 +9,14 @@
     .offences.per-section-page
       - if offences_workflow.needs_review?
         header
-          h1.govuk-heading-l Review before you save and continue
-          p#offences-status
-            ' Status
-            span.status-label.status-label--incomplete Review
+          h1.govuk-heading-l = t('.review_instructions')
+          p#offences-status 
+            = t('.status')
+            | &nbsp;
+            span.status-label.status-label--incomplete = t('.review')
       - else
         header
-          h1.govuk-heading-l Current offences
+          h1.govuk-heading-l = t('.current_offences')
 
       - if can? :update, offences_workflow
         = render 'form'

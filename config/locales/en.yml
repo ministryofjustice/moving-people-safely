@@ -451,6 +451,22 @@ en:
     form:
       <<: *move_form_labels
       save_and_continue: Save and continue
+  offences:
+    form:
+      add_another: Add another
+      heading: Offence
+      remove: Remove
+      save_and_continue: Save and continue
+    show:
+      current_offences: Current offences
+      heading: Offences
+      review: Review
+      review_instructions: Review before you save and continue
+      status: Status
+    table:
+      case_reference: Case reference
+      offence: Offence
+      view_per: View PER
   risks:
     form:
       title:
