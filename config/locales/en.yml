@@ -362,7 +362,7 @@ en:
         observation_level_details: Give details, including reasons for assigning observation level
       search:
         prison_number: For example A1234AB
-        pnc_number: For example 12/345678A
+        pnc_number: For example 01/234567A or the older format of 01/23456A
       security:
         controlled_unlock:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Controlled Unlock</i> alert.
@@ -488,6 +488,7 @@ en:
   search:
     no_result:
       no_result: There are no previous ePERs for %{identifier}
+      old_pnc_format: "Note: you have entered a PNC number in the older format"
     show:
       title: Start a PER
   summary: &summary

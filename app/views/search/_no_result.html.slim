@@ -1,4 +1,15 @@
 h2.govuk-heading-s Search result
+
+- if old_pnc_format?(@form.identifier)
+  .alert.alert--notice
+    .govuk-warning-text
+      span.govuk-warning-text__icon aria-hidden="true"  !
+      strong.govuk-warning-text__text
+        span.govuk-warning-text__assistive Warning
+        = t('.old_pnc_format')
+
+hr.govuk-section-break.govuk-section-break--m
+
 p = t('.no_result', identifier: @form.identifier)
 
 = render 'new_escort_form'
