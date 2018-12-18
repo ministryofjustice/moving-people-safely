@@ -548,9 +548,22 @@ en:
       scheduled_moves: Scheduled moves
       undetermined_establishment: MoJ HQ
   search:
+    form:
+      search: Search
+    new_escort_form:
+      start_new_per: Start new PER
     no_result:
+      heading: &search_result Search result
       no_result: There are no previous ePERs for %{identifier}
       old_pnc_format: "Note: you have entered a PNC number in the older format"
+    result:
+      continue_per: Continue PER
+      date_of_birth: Date of birth
+      destination: Destination
+      heading: *search_result
+      move_date: Move date
+      name: Name
+      prison_number: Prison number
     show:
       title: Start a PER
   summary: &summary
