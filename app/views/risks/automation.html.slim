@@ -2,42 +2,43 @@
   = content_for :breadcrumbs do
     - breadcrumbs_for_page root: true do
       - breadcrumb detainee_breadcrumb(escort.detainee), escort_path(escort)
-      - breadcrumb 'Risk automation report'
+      - breadcrumb t('.heading')
 
   .summary.per-section-page
-    h1 NOMIS Alerts
+    h1 = t('.nomis_alerts.heading')
     - @nomis_alerts['alerts'].each do |alert|
       p
-        span Type: #{alert['alert_type']['code']} - #{alert['alert_type']['desc']}
+        span = t('.nomis_alerts.type', code: alert['alert_type']['code'], desc: alert['alert_type']['desc'])
         br
-        span Sub-type: #{alert['alert_sub_type']['code']} - #{alert['alert_sub_type']['desc']}
-        br
-        span Date: #{alert['alert_date']}-
-        - if alert['expiry_date']
-          span Expiry date: #{alert['expiry_date']}-
-        span Status: #{alert['status']}
-        br
-        span Comment: #{alert['comment']}
+        span = t('.nomis_alerts.sub_type', code: alert['alert_sub_type']['code'], desc: alert['alert_sub_type']['desc'])
 
-    h1 User input
+        br
+        span = t('.nomis_alerts.date', date: alert['alert_date'])
+        - if alert['expiry_date']
+          span = t('.nomis_alerts.exp_date', date: alert['expiry_date'])
+        span = t('.nomis_alerts.status', status: alert['status'])
+        br
+        span = t('.nomis_alerts.comment', comment: alert['comment'])
+
+    h1 =t('.user_input')
     - assessment.slice(@automated_risk.keys).each do |question, answer|
       p
         span #{question}: #{answer}
 
-    h1 Automation logic
+    h1 = t('.automation_logic')
     - @automated_risk.each do |question, answer|
       p
         span #{question}: #{answer}
 
-    h1 Differences
+    h1 = t('.differences.heading')
     - assessment.attributes = @automated_risk
     - assessment.changes.each do |field, values|
       p
-        span Field: #{field}
+        span = t('.differences.field', field: field)
         br
-        span User input: #{values.first}
+        span = t('.differences.user_input', value: values.first)
         br
-        span Automation input: #{values.second}
+        span = t('.differences.automation_input', value: values.second)
 
 .column-one-quarter.side-profile
   = render partial: 'shared/detainee_sidebar', locals: { detainee: escort.detainee, escort: escort, move: escort.move }

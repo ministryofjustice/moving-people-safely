@@ -468,6 +468,23 @@ en:
       offence: Offence
       view_per: View PER
   risks:
+    automation:
+      differences:
+        automation_input: 'Automation input: %{value}'
+        field: 'Field: %{field}'
+        heading: Differences
+        user_input: 'User input: %{value}'
+      heading: Risk automation report
+      nomis_alerts:
+        comment: 'Comment: %{comment}'
+        heading: NOMIS Alerts
+        date: 'Date: %{date}-'
+        exp_date: 'Expiry date: %{date}-'
+        status: 'Status: %{status}'
+        sub_type: 'Sub-type: %{code} - %{desc}'
+        type: 'Type: %{code} - %{desc}'
+      user_input: User input
+      automation_logic: Automation logic
     form:
       title:
         arson: Arson
@@ -498,6 +515,9 @@ en:
       ending_paragraph: |
         If you have access to any other relevant risk information about the detainee (including previous offences), please include it.
       title: Before you start
+    show:
+      heading: Risk summary
+      automation_report: Automation report
   homepage:
     gauges:
       detainees_due_to_move: Detainees due to move
