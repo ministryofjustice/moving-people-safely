@@ -58,4 +58,8 @@ module ApplicationHelper
 
     text[location.to_sym] || text[:"#{location}_html"].html_safe
   end
+
+  def old_pnc_format?(number)
+    number =~ /\d{2}\/\d{5}[a-z]\z/i
+  end
 end

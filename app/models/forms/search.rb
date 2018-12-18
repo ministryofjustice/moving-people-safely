@@ -3,7 +3,7 @@
 module Forms
   class Search < ActiveModelBase
     PRISON_NUMBER_REGEX = /\A[a-z]\d{4}[a-z]{2}\z/i.freeze
-    POLICE_NUMBER_REGEX = /\d{2}\/\d{6}[a-z]\z/i.freeze
+    POLICE_NUMBER_REGEX = /\d{2}\/\d{5,6}[a-z]\z/i.freeze
 
     attr_accessor :prison_number, :pnc_number
 
