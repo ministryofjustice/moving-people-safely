@@ -556,6 +556,7 @@ en:
       heading: &search_result Search result
       no_result: There are no previous ePERs for %{identifier}
       old_pnc_format: "Note: you have entered a PNC number in the older format"
+      warning: Warning
     result:
       continue_per: Continue PER
       date_of_birth: Date of birth
