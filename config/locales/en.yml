@@ -566,6 +566,30 @@ en:
       prison_number: Prison number
     show:
       title: Start a PER
+  shared:
+    browser_warning:
+      heading: Use a different browser
+      body_html: 'This service will stop supporting this version of Internet Explorer soon.<br />When this happens, you should use Firefox, Chrome or a later version of Internet Explorer to create or view PERs.'
+      warning: Warning
+    call_to_action:
+      confirm_and_save: Confirm and save
+      confirmation_alert: Click 'Confirm and save' to confirm that, to the best of your knowledge, all information in this section is correct.
+      view_per: View PER
+    detainee_sidebar:
+      date_of_travel: Date of travel
+      from: From
+      to: To
+    radio_date_picker:
+      today: Today
+      tomorrow: Tomorrow
+    status:
+      warning: Warning
+    wizard_header:
+      back: '< Back'
+      skip: 'Skip >'
+    wizard_step_form:
+      save_and_continue: Save and continue
+      save_and_view_summary: Save and view summary
   summary: &summary
     alerts:
       last_updated_info: 'This information was last saved %{time_difference} ago.'

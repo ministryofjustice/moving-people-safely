@@ -2,7 +2,6 @@
   span.govuk-warning-text__icon aria-hidden="true"  !
   .govuk-warning-text__text
     div
-      b Use a different browser
-    span.govuk-warning-text__assistive Warning
-    | This service will stop supporting this version of Internet Explorer soon.
-     <br />When this happens, you should use Firefox, Chrome or a later version of Internet Explorer to create or view ePERs.
+      b = t('.heading')
+    span.govuk-warning-text__assistive = t('.warning')
+    = t('.body_html')

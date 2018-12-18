@@ -1,9 +1,8 @@
 - if (workflow.unconfirmed? || workflow.needs_review?) && (can? :update, workflow)
   .alert.alert--warning
     p
-      b
-        | Click 'Confirm and save' to confirm that, to the best of your knowledge, all information in this section is correct.
-    = button_to('Confirm and save', confirm_path, method: :put, class: 'govuk-button')
+      b = t('.confirmation_alert')
+    = button_to(t('.confirm_and_save'), confirm_path, method: :put, class: 'govuk-button')
 - else
   p
-    = link_to 'View PER', escort_path(escort), class: 'govuk-button'
+    = link_to t('.view_per'), escort_path(escort), class: 'govuk-button'
