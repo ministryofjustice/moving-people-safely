@@ -38,7 +38,7 @@ module Admin
     end
 
     def offender_details
-      @__offender_details ||= begin
+      @_offender_details ||= begin
         resp = custody_client.get("api/offenders/nomsId/#{noms_id}")
         # unless resp.success?
         #   raise "problem getting from api #{resp.body}"
@@ -48,7 +48,7 @@ module Admin
     end
 
     def offender_movements
-      @__offender_movements ||= begin
+      @_offender_movements ||= begin
         resp = custody_client.get("api/offenders/offenderId/#{offender_id}/movements")
         raise "problem getting from api #{resp.body}" unless resp.success?
 
@@ -57,7 +57,7 @@ module Admin
     end
 
     def custody_token
-      @__custody_token ||= begin
+      @_custody_token ||= begin
         auth = NomisAuth::Client.new(
           host: ENV.fetch('NOMIS_AUTH_HOST'),
           client_id: ENV.fetch('NOMIS_AUTH_CLIENT_ID'),
@@ -68,7 +68,7 @@ module Admin
     end
 
     def custody_client
-      @__custody_client ||= CustodyApi::Client.new(
+      @_custody_client ||= CustodyApi::Client.new(
         host: ENV.fetch('CUSTODY_API_HOST'),
         token: custody_token
       )

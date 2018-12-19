@@ -44,6 +44,9 @@ Style/RescueStandardError:
 Metrics/LineLength:
   Max: 120
 
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: optional
+
 Naming/PredicateName:
   Enabled: false
 
