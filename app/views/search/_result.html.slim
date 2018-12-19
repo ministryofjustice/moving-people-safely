@@ -1,13 +1,13 @@
-h2.govuk-heading-s Search result
+h2.govuk-heading-s = t('.heading')
 
 table.govuk-table
   thead.govuk-table__head
     tr.govuk-table__row
-      th.govuk-table__header Prison number
-      th.govuk-table__header Name
-      th.govuk-table__header Date of birth
-      th.govuk-table__header Destination
-      th.govuk-table__header Move date
+      th.govuk-table__header = t('.prison_number')
+      th.govuk-table__header = t('.name')
+      th.govuk-table__header = t('.date_of_birth')
+      th.govuk-table__header = t('.destination')
+      th.govuk-table__header = t('.move_date')
   tbody.govuk-table__body
     tr.govuk-table__row
       td.govuk-table__cell = link_to(@escort.number, escort_path(@escort))
@@ -30,4 +30,4 @@ table.govuk-table
 - if @escort.issued?
   = render 'new_escort_form'
 - else
-  = link_to('Continue PER', escort_path(@escort), class: 'govuk-button')
+  = link_to(t('.continue_per'), escort_path(@escort), class: 'govuk-button')

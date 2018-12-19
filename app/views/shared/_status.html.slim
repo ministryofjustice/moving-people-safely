@@ -12,6 +12,6 @@ header
           span.govuk-warning-text__icon aria-hidden="true"
             | !
           strong.govuk-warning-text__text
-            span.govuk-warning-text__assistive Warning
+            span.govuk-warning-text__assistive = t('.warning')
             p.govuk-body-s class="govuk-!-font-weight-bold" = workflow.last_updated_info
             p = workflow.up_to_date_warning

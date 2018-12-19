@@ -1,7 +1,7 @@
 .govuk-radios.govuk-radios--inline.no-script
   .govuk-radios__item
     = radio_button_tag picker.attr, picker.today, picker.today?, class: 'govuk-radios__input radio-date-selector', disabled: true
-    = label_tag picker.today_label, 'Today', class: 'govuk-label govuk-radios__label'
+    = label_tag picker.today_label, t('.today'), class: 'govuk-label govuk-radios__label'
   .govuk-radios__item
     = radio_button_tag picker.attr, picker.tomorrow, picker.tomorrow?, class: 'govuk-radios__input radio-date-selector', disabled: true
-    = label_tag picker.tomorrow_label, 'Tomorrow', class: 'govuk-label govuk-radios__label'
+    = label_tag picker.tomorrow_label, t('.tomorrow'), class: 'govuk-label govuk-radios__label'

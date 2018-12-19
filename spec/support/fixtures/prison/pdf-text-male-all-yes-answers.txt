@@ -17,8 +17,8 @@
                        Not for release ✘ No Escape risk ✔
 
                        Move details
-                       Date of travel                     From                               To
-                       22 Apr 2099                        HMP Bedford                        Luton Crown Court
+                       Date of travel                     From                                To
+                       22 Apr 2099                        HMP Bedford                         Luton Crown Court
 
                        Release status
                        Contact the prison to confirm
@@ -48,8 +48,8 @@ Staple to card —————
 
 
 
-                       This ePER was produced by the Ministry of Justice ePER service, currently in pilot. This ePER
-                       is approved by HMPPS - please treat it as a fully valid and official record. Please send any
+                       This PER was produced by the Ministry of Justice PER service, currently in pilot. This PER is
+                       approved by HMPPS - please treat it as a fully valid and official record. Please send any
                        feedback or questions to: eper@digital.justice.gov.uk
 W1234BY: McTest Testy                                                                            Page 1 of 2
 

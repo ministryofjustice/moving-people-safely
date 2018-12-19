@@ -6,6 +6,6 @@ b = multiple.dosage.capitalize
 = ' | '
 b = multiple.when_given.capitalize
 = ' | '
-- carrier = multiple.carrier == 'escort' ? 'Escort' : 'Detainee'
-b = "Carried by: #{carrier}"
+- carrier = multiple.carrier == 'escort' ? t('.escort') : t('.detainee')
+b = t('.carried_by', carrier: carrier)
 br

@@ -9,16 +9,16 @@ h2.govuk-heading-m
 
 - if escort.move
   p
-    span.govuk-body-s Date of travel
+    span.govuk-body-s = t('.date_of_travel')
     br
     span.side-profile__value = escort.move.date&.to_s(:humanized)
 
   p
-    span.govuk-body-s From
+    span.govuk-body-s = t('.from')
     br
     span.side-profile__value = from(escort.move)
 
   p
-    span.govuk-body-s To
+    span.govuk-body-s = t('.to')
     br
     span.side-profile__value = escort.move.to

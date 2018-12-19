@@ -7,9 +7,9 @@
 
       .govuk-grid-row
         .govuk-grid-column-two-thirds
-          h2.govuk-heading-m Offence
+          h2.govuk-heading-m = t('.heading')
         .govuk-grid-column-one-third.remove-link
-          = mf.label :_delete, 'Remove'
+          = mf.label :_delete, t('.remove')
           = mf.check_box :_delete
 
       = mf.hidden_field :id
@@ -18,10 +18,10 @@
 
   hr.govuk-section-break.govuk-section-break--l.govuk-section-break--visible.mps-section-break
 
-  = f.button 'Add another',
+  = f.button t('.add_another'),
     class: 'govuk-button govuk-button--secondary',
     name: 'offences_add_offence'
 
   hr.govuk-section-break.govuk-section-break--m
 
-  = f.submit 'Save and continue', class: 'govuk-button'
+  = f.submit t('.save_and_continue'), class: 'govuk-button'

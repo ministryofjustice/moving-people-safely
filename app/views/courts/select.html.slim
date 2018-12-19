@@ -1,5 +1,6 @@
 header
-  h1 Where do you work?
+  h1
+    = t('where_work', scope: %i[helpers label court_selector])
 
 = form_for @form, url: change_court_path do |f|
   = f.radios_fieldset :to_type do

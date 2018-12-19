@@ -3,11 +3,11 @@
     = content_for :breadcrumbs do
       - breadcrumbs_for_page root: true do
         - breadcrumb escort_breadcrumb(escort), escort_path(escort)
-        - breadcrumb 'Risk summary'
+        - breadcrumb t('.heading')
 
     .summary.per-section-page
       - if current_user.admin?
-        p = link_to 'Automation Report', automation_escort_risks_path(escort)
+        p = link_to t('.automation_report'), automation_escort_risks_path(escort)
 
       = render 'shared/status',
         workflow: Summary::EscortSectionStatusPresenter.new(assessment, name: :risk)

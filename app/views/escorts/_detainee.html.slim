@@ -1,58 +1,58 @@
 section#detainee
   .header
-    h2.govuk-heading-m Personal details
+    h2.govuk-heading-m = t('.detainee_heading')
     .float-right
       - if escort.editable?
         = link_to 'Edit', edit_escort_detainee_path(escort)
   .data_container
     .tile-3
-      h3.govuk-heading-s.heading-light Prison Number
+      h3.govuk-heading-s.heading-light = t('.prison_number')
       p = content_or_dash(escort.detainee.prison_number)
     .tile-3
-      h3.govuk-heading-s.heading-light CRO number
+      h3.govuk-heading-s.heading-light = t('.cro_number')
       p = content_or_dash(escort.detainee.cro_number)
     .tile-3
-      h3.govuk-heading-s.heading-light PNC Number
+      h3.govuk-heading-s.heading-light = t('.pnc_number')
       p = content_or_dash(escort.detainee.pnc_number)
     .tile-3
-      h3.govuk-heading-s.heading-light Date of birth
+      h3.govuk-heading-s.heading-light = t('.date_of_birth')
       p = escort.detainee.date_of_birth&.to_s(:humanized)
     .tile-3
-      h3.govuk-heading-s.heading-light Age
+      h3.govuk-heading-s.heading-light = t('.age')
       p = escort.detainee.age
     .tile-3
-      h3.govuk-heading-s.heading-light Gender
+      h3.govuk-heading-s.heading-light = t('.gender')
       p = escort.detainee.gender&.capitalize
     .tile-3
-      h3.govuk-heading-s.heading-light Nationality
+      h3.govuk-heading-s.heading-light = t('.nationality')
       p = content_or_dash(escort.detainee.nationalities)
     - if escort.from_prison?
       .tile-3
-        h3.govuk-heading-s.heading-light Religion
+        h3.govuk-heading-s.heading-light = t('.religion')
         p = content_or_dash(escort.detainee.religion)
     .tile-3
-      h3.govuk-heading-s.heading-light Ethnicity
+      h3.govuk-heading-s.heading-light = t('.ethnicity')
       p = content_or_dash(short_ethnicity(escort.detainee))
     .tile-3
-      h3.govuk-heading-s.heading-light Preferred language
+      h3.govuk-heading-s.heading-light = t('.preferred_language')
       p = content_or_dash(escort.detainee.language)
     .tile-3
-      h3.govuk-heading-s.heading-light Interpreter
+      h3.govuk-heading-s.heading-light = t('.interpreter')
       p = content_or_dash(expanded_interpreter_required(escort.detainee))
     .tile-3
-      h3.govuk-heading-s.heading-light Interpreter details
+      h3.govuk-heading-s.heading-light = t('.interpreter_details')
       p = content_or_dash(escort.detainee.interpreter_required_details)
     - if escort.from_prison?
       .tile-3
-        h3.govuk-heading-s.heading-light Category
+        h3.govuk-heading-s.heading-light = t('.category')
         p = content_or_dash(escort.detainee.security_category)
     .tile-3
-      h3.govuk-heading-s.heading-light Diet
+      h3.govuk-heading-s.heading-light = t('.diet')
       p = content_or_dash(escort.detainee.diet)
     - if escort.detainee.peep == 'yes'
       .tile-3
-        h3.govuk-heading-s.heading-light Personal Emergency Evacuation Plan
+        h3.govuk-heading-s.heading-light = t('.peep')
         p = content_or_dash(escort.detainee.peep_details)
   .tile-3
-    h3.govuk-heading-s.heading-light Aliases
+    h3.govuk-heading-s.heading-light = t('.aliases')
     p = content_or_dash(escort.detainee.aliases)

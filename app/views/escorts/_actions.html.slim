@@ -1,13 +1,13 @@
 - if escort.editable? && escort.completed? && current_user.sergeant?
-  = link_to('Approve PER', confirm_approve_escort_path(escort), class: 'govuk-button govuk-!-margin-right-4')
+  = link_to(t('.approve'), confirm_approve_escort_path(escort), class: 'govuk-button govuk-!-margin-right-4')
 
 - elsif escort.issued?
-  = link_to('Reprint', new_escort_print_path(escort), class: 'govuk-button govuk-button--print govuk-!-margin-right-4')
+  = link_to(t('.reprint'), new_escort_print_path(escort), class: 'govuk-button govuk-button--print govuk-!-margin-right-4')
 
 - elsif (escort.editable? && escort.completed? && current_user.prison_officer?) || escort.approved?
   = link_to_print_in_new_window(escort, styles: 'govuk-button govuk-button--print govuk-!-margin-right-4')
 
 - if !escort.cancelled? && !escort.expired? && !current_user.court?
-  = link_to('Cancel PER', confirm_cancel_escort_path(escort), class: 'govuk-button govuk-!-margin-right-4')
+  = link_to(t('.cancel'), confirm_cancel_escort_path(escort), class: 'govuk-button govuk-!-margin-right-4')
 
-= link_to 'Return to home', root_path, class: 'cancel-link'
+= link_to t('.return_to_home'), root_path, class: 'cancel-link'

@@ -1,20 +1,20 @@
 .status.float-right
   - if workflow.present?
     - if workflow.incomplete?
-      span.status-label.status-label--incomplete Incomplete
+      span.status-label.status-label--incomplete = t('.incomplete')
 
     - elsif workflow.needs_review?
-      span.status-label.status-label--incomplete Review
+      span.status-label.status-label--incomplete = t('.review')
 
     - elsif workflow.unconfirmed?
-      span.status-label.status-label--incomplete Confirm
+      span.status-label.status-label--incomplete = t('.confirm')
 
     - elsif workflow.confirmed?
-      span.status-label.status-label--complete Complete
+      span.status-label.status-label--complete = t('.complete')
 
-    = link_to (can?(:update, workflow) ? 'Edit' : 'View'), summary_path
+    = link_to (can?(:update, workflow) ? t('.edit') : t('.view')), summary_path
 
   - else
-    span.status-label.status-label--incomplete Incomplete
+    span.status-label.status-label--incomplete = t('.incomplete')
     - if can? :update, section
-      = link_to 'Edit', not_started_path
+      = link_to t('.edit'), not_started_path

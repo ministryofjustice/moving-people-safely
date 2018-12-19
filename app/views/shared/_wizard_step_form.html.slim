@@ -7,5 +7,5 @@ hr.govuk-section-break.govuk-section-break--m
   = f.error_messages
   = render "#{scope}/forms/#{form.class.name}", f: f
 
-  = f.submit 'Save and continue', class: 'govuk-button govuk-!-margin-right-4'
-  = f.submit 'Save and view summary', class: 'govuk-button govuk-button--secondary', name: 'save_and_view_summary'
+  = f.submit t('.save_and_continue'), class: 'govuk-button govuk-!-margin-right-4'
+  = f.submit t('.save_and_view_summary'), class: 'govuk-button govuk-button--secondary', name: 'save_and_view_summary'
