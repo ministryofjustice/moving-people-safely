@@ -133,7 +133,7 @@ GEM
       uber
     docile (1.1.5)
     equalizer (0.0.11)
-    erubi (1.7.1)
+    erubi (1.8.0)
     excon (0.62.0)
     execjs (2.7.0)
     factory_bot (4.11.1)
