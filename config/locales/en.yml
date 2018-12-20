@@ -517,9 +517,7 @@ en:
       offences:
         offences:
           offence: Offence name
-          case_reference:
-            prison: Case reference
-            police: Unique reference number
+          case_reference: Case reference
       police_station_selector:
         police_custody_id: Police custody suite
       return_instructions:
@@ -668,8 +666,7 @@ en:
           police: This is any regular medication that will need to be administered when they leave police custody. Full medication history can be given in a sealed envelope to be opened by a healthcare professional in case of an emergency.
       offences:
         offences:
-          case_reference:
-            police: This is used to associate the detainee to their case.
+          case_reference: This is used to associate the detainee to their case.
       other_risk:
         other_risk:
           prison: Include relevant adjudications or case notes not already included
@@ -841,7 +838,7 @@ en:
       save_and_continue: *save_and_continue
   offences:
     form:
-      add_another: Add another
+      add_another: Add another offence
       heading: Offence
       remove: Remove
       save_and_continue: *save_and_continue

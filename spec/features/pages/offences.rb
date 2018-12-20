@@ -17,8 +17,9 @@ module Page
       insert_into_row(offence_row, description, case_reference)
     end
 
-    def add(description:, case_reference:)
-      click_button 'Add another'
+    def add(description:, case_reference:, append: true)
+      click_button 'Add another offence' if append
+      expect(page).to have_content('This is used to associate the detainee to their case.')
       offence_row = all(".multiple-wrapper").last
       insert_into_row(offence_row, description, case_reference)
     end
@@ -44,13 +45,11 @@ module Page
 
     def fill_offences(offences)
       return unless offences && !offences.empty?
-      offences.each_with_index do |offence, index|
-        field_prefix = 'offences_offences_attributes'
-        fill_in "#{field_prefix}_#{index}_offence", with: offence.fetch(:name)
-        if offence[:case_reference]
-          fill_in "#{field_prefix}_#{index}_case_reference", with: offence[:case_reference]
-        end
-        click_button 'Add another' unless index >= offences.size - 1
+      append = false
+
+      offences.each do |offence|
+        add(description: offence[:name], case_reference: offence[:case_reference], append: append)
+        append = true
       end
     end
   end
