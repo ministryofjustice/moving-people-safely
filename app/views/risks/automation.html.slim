@@ -20,7 +20,7 @@
         br
         span = t('.nomis_alerts.comment', comment: alert['comment'])
 
-    h1 =t('.user_input')
+    h1 = t('.user_input')
     - assessment.slice(@automated_risk.keys).each do |question, answer|
       p
         span #{question}: #{answer}
