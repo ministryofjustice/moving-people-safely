@@ -36,7 +36,7 @@ module Page
         # Police
         fill_in_optional_details("Is there any indication that they might self harm or attempt suicide?", @risk, :self_harm)
         within_fieldset "What observation level have they been assigned while in custody?" do
-          choose option: @risk.observation_level
+          choose option: @risk.observation_level, visible: false
           fill_in 'risk_to_self_observation_level_details', with: @risk.observation_level_details
         end
       end
@@ -154,23 +154,23 @@ module Page
 
     def fill_in_must_return
       if @risk.must_return == 'yes'
-        choose 'return_instructions_must_return_yes'
+        choose 'return_instructions_must_return_yes', visible: false
         fill_in 'return_instructions_must_return_to', with: @risk.must_return_to
         fill_in 'return_instructions_must_return_to', with: @risk.must_return_to_details
       else
-        choose 'return_instructions_must_return_no'
+        choose 'return_instructions_must_return_no', visible: false
       end
     end
 
     def fill_in_must_not_return
       if @risk.has_must_not_return_details == 'yes'
-        choose 'return_instructions_has_must_not_return_details_yes'
+        choose 'return_instructions_has_must_not_return_details_yes', visible: false
         @risk.must_not_return_details.each_with_index do |detail, i|
           add_must_not_return_detail unless i == 0
           fill_in_must_not_return_detail(detail, i)
         end
       else
-        choose 'return_instructions_has_must_not_return_details_no'
+        choose 'return_instructions_has_must_not_return_details_no', visible: false
       end
     end
 

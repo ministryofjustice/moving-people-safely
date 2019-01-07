@@ -1,7 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'detainees due to move', type: :feature do
-
+RSpec.describe 'detainees due to move', type: :system, js: true do
   context 'when there are no detainees due to move for the date provided' do
     scenario 'show no escorts and only the gauge for detainees' do
       login

@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'PER show page', type: :feature do
+RSpec.describe 'PER show page', type: :system, js: true do
   let(:prison_number) { 'A4534DF' }
   let(:detainee) { create(:detainee, prison_number: prison_number, gender: 'male') }
   let(:move) { create(:move) }

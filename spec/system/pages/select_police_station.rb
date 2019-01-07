@@ -1,7 +1,7 @@
 module Page
   class SelectPoliceStation < Base
     def select_station(name)
-      select name, from: 'Police custody suite'
+      fill_in 'police_station_selector_police_custody_id', with: "#{name}\n"
       save_and_continue
     end
 

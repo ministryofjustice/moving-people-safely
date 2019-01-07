@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'printing a police PER', type: :feature do
+RSpec.describe 'printing a police PER', type: :system, js: true do
   let(:reviewer) {
     create(:user, :police, first_name: 'Nel', last_name: 'Bee')
   }
