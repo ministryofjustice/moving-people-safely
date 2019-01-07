@@ -149,7 +149,7 @@ GEM
     geckoboard-ruby (0.4.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    hashdiff (0.3.7)
+    hashdiff (0.3.8)
     hashie (3.6.0)
     i18n (1.2.0)
       concurrent-ruby (~> 1.0)
