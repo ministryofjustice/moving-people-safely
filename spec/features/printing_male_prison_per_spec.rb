@@ -120,10 +120,10 @@ RSpec.feature 'printing a prison PER', type: :feature do
     let(:risk) {
       create(:risk,
           :confirmed,
+          :with_segregation,
           acct_status: 'open',
           self_harm: 'yes',
           self_harm_details: 'self harm details',
-          rule_45: 'yes',
           csra: 'high',
           high_profile: 'yes',
           high_profile_details: 'high profile details',

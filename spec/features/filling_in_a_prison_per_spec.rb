@@ -6,7 +6,7 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
   let(:detainee) { build(:detainee) }
   let(:move_data) { build(:move, from_establishment: prison) }
   let(:escort) { build(:escort, move: move_data) }
-  let(:risk_data) { build(:risk, :with_high_csra, escort: escort) }
+  let(:risk_data) { build(:risk, :with_high_csra, :with_segregation, escort: escort) }
 
   let(:offences_data) do
     {

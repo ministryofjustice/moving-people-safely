@@ -11,7 +11,7 @@
 
   = render "shared/sections/#{views}/question",
     alternance: 'odd', assessment: assessment, section: section, question: 'rule_45',
-    value: assessment.rule_45, details: nil
+    value: assessment.rule_45, details: assessment.rule_45_details
 
 = render "shared/sections/#{views}/question",
   alternance: 'even', assessment: assessment, section: section, question: 'vulnerable_prisoner',

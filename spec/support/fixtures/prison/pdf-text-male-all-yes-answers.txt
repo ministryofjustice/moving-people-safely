@@ -53,7 +53,7 @@ Staple to card —————
                        feedback or questions to: eper@digital.justice.gov.uk
 W1234BY: McTest Testy                                                                            Page 1 of 2
 
-Not for release ✘ No ACCT ✔ Suicide / Self harm ✔ Cell share risk ✔ Rule 45 ✔
+Not for release ✘ No ACCT ✔ Suicide / Self harm ✔ Cell share risk ✔ Segregated ✔
 Violent ✔ Escape risk ✔ Sex offender ✔
 
 Risk Last confirmed: Nelle Bailey, 12:30 | 10 Mar 2016.
@@ -62,7 +62,7 @@ Risk to self                      Yes
   Suicide or self harm risk       Yes                 Self harm details
 Segregation                       Yes
   Cell share risk                 High
-  Rule 45                         Yes
+  Segregated                      Yes                 Segregation details
   At risk from others             Yes                 Vulnerable prisoner details
 Security                          Yes
   Multiple officer unlock/escort Yes                  Many people to hold the prisoner

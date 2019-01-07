@@ -58,6 +58,11 @@ FactoryBot.define do
       csra { 'high' }
     end
 
+    trait :with_segregation do
+      rule_45 { 'yes' }
+      rule_45_details { 'Segregation details' }
+    end
+
     trait :from_police do
       csra { 'no' }
     end

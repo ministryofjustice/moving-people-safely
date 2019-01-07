@@ -47,7 +47,7 @@ module Page
     def fill_in_segregation
       if @risk.location == 'prison'
         fill_in_optional_details('What is their Cell Sharing Risk Assessment (CSRA) risk level?', @risk, :csra)
-        fill_in_optional_details('Are they held under Rule 45?', @risk, :rule_45)
+        fill_in_optional_details('Are they held in segregation?', @risk, :rule_45)
         fill_in_optional_details('Are they a vulnerable prisoner?', @risk, :vulnerable_prisoner)
       elsif @risk.location == 'police'
         fill_in_optional_details('Are they at risk from other people?', @risk, :vulnerable_prisoner)
