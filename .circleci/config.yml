@@ -81,11 +81,11 @@ jobs:
 
       - run:
           name: Run scss-lint
-          command: bundle exec scss-lint
+          command: bundle exec scss-lint app
 
       - run:
           name: Run slim-lint
-          command: bundle exec slim-lint
+          command: bundle exec slim-lint app
 
       # Save test results for timing analysis
       - store_test_results:
