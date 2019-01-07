@@ -164,7 +164,9 @@ en:
       segregation:
         attributes:
           rule_45:
-            inclusion: ^Answer the Rule 45 question
+            inclusion: ^Answer the segregation question
+          rule_45_details:
+            blank: ^Enter segregation details
           csra:
             inclusion: ^Answer the CSRA question
           csra_details:
