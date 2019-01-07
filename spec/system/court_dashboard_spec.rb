@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'court dashboard', type: :feature do
+RSpec.describe 'court dashboard', type: :system, js: true do
   scenario 'login as court user' do
     luton_court = create(:magistrates_court, name: 'Luton CC', nomis_id: 'luton')
     basildon_court = create(:magistrates_court, name: 'Basildon CC', nomis_id: 'basildon')
@@ -21,8 +21,8 @@ RSpec.feature 'court dashboard', type: :feature do
 
     expect(current_path).to eq select_court_path
 
-    choose "Magistrates' court"
-    select 'Luton CC', from: 'court_selector_magistrates_court_id'
+    choose "Magistrates' court", visible: false
+    fill_in 'court_selector_magistrates_court_id', with: "Luton CC\n"
     click_button 'Save and continue'
 
     expect(current_path).to eq court_path
@@ -35,8 +35,9 @@ RSpec.feature 'court dashboard', type: :feature do
     click_link 'Create or view a PER'
 
     click_link 'Change court'
-    choose "Crown court"
-    select 'St Albans CC', from: 'court_selector_crown_court_id'
+    choose "Crown court", visible: false
+    fill_in 'court_selector_crown_court_id', with: "St Albans CC\n"
+    click_button 'Save and continue'
 
     expect(page.all('tbody').size).to eq 0
   end

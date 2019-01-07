@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'Reuse of previously entered PER data', type: :feature do
+RSpec.describe 'Reuse of previously entered PER data', type: :system, js: true do
   context 'an issued PER that will be be reused' do
     let(:valid_json) { File.read(fixture_json_file_path) }
     let(:prison_number) { 'A4321FD' }
@@ -119,7 +119,7 @@ RSpec.feature 'Reuse of previously entered PER data', type: :feature do
       escort_page.click_edit_healthcare
 
       find("a", :text => /\AChange\z/, match: :first).click
-      choose 'Yes'
+      choose 'Yes', visible: false
       fill_in 'physical[physical_issues_details]', with: 'Some details'
       click_button 'Save and view summary'
       healthcare_summary.confirm_and_save

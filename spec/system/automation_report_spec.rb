@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'Running automation report', type: :feature do
+RSpec.describe 'Running automation report', type: :system, js: true do
   let(:login_options) do
     {
       sso: {

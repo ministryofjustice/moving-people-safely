@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'sending feedback', type: :feature do
+RSpec.describe 'sending feedback', type: :system, js: true do
   scenario 'logged in user sends feedback' do
     stub_zendesk_api_request
 

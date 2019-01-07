@@ -56,13 +56,13 @@ module Page
 
     def fill_in_needs
       if @hc.has_medications == 'yes'
-        choose 'needs_has_medications_yes'
+        choose 'needs_has_medications_yes', visible: false
         @hc.medications.each_with_index do |med, i|
           add_medication unless i == 0
           fill_in_medication(med, i)
         end
       else
-        choose 'needs_has_medications_no'
+        choose 'needs_has_medications_no', visible: false
       end
       save_and_continue
     end
@@ -104,7 +104,7 @@ module Page
         fill_in 'Dosage', with: med.dosage
         fill_in 'When is it given?', with: med.when_given
         within('.govuk-fieldset') do
-          choose (med.location == 'police' ? 'Detainee' : 'Prisoner')
+          choose (med.location == 'police' ? 'Detainee' : 'Prisoner'), visible: false
         end
       end
     end

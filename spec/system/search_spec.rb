@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'searching for a prisoner', type: :feature do
+RSpec.describe 'searching for a prisoner', type: :system, js: true do
   context 'from prison' do
     context 'with a valid prison number' do
       let(:prison_number) { 'A1324BC' }

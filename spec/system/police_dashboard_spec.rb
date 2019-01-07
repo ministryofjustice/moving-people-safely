@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'police dashboard', type: :feature do
+RSpec.describe 'police dashboard', type: :system, js: true do
   scenario 'login as police user' do
     banbury_police_station = create(:police_custody, name: 'Banbury Police Station')
     cardigan_police_station = create(:police_custody, name: 'Cardigan Police Station')
@@ -22,8 +22,7 @@ RSpec.feature 'police dashboard', type: :feature do
     login(nil, login_options)
 
     expect(current_path).to eq select_police_station_path
-
-    select 'Banbury Police Station', from: 'police_station_selector_police_custody_id'
+    fill_in 'police_station_selector_police_custody_id', with: "Banbury Police Station\n"
     click_button 'Save and continue'
 
     expect(current_path).to eq root_path
