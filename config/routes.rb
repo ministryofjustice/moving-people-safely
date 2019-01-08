@@ -15,9 +15,7 @@ Rails.application.routes.draw do
     put :cancel, on: :member
     get :confirm_approve, on: :member
     put :approve, on: :member
-    resource :detainee do
-      resource :image, only: %i[show], controller: 'detainees/images', constraints: { format: 'jpg' }
-    end
+    resource :detainee
     resource :move
     resource :healthcare, except: :destroy do
       get :intro, on: :collection

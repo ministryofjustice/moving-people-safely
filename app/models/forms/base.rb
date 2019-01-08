@@ -68,26 +68,21 @@ module Forms
         reset attributes: ["#{field_name}_details"], if_falsey: field_name
       end
 
-      def singularize(field_name)
-        field_name.to_s.singularize
-      end
-
       def _define_add_singularized_field_name(field_name)
-        singularized_field_name = singularize(field_name)
-        define_method "add_#{singularized_field_name}" do
-          new_instance = public_send("new_#{singularized_field_name}")
+        define_method "add_#{field_name.to_s.singularize}" do
+          new_instance = public_send("new_#{field_name.to_s.singularize}")
           public_send(field_name) << new_instance
         end
       end
 
       def _define_new_singularized_field_name(field_name)
-        define_method "new_#{singularize(field_name)}" do
+        define_method "new_#{field_name.to_s.singularize}" do
           model.public_send(field_name).build
         end
       end
 
       def _define_has_if_property_missing(field_name)
-        return if instance_methods.include?("has_#{field_name}".to_sym)
+        return if instance_methods.include?(:"has_#{field_name}")
 
         define_method "has_#{field_name}" do
           'yes'
@@ -95,14 +90,12 @@ module Forms
       end
 
       def _define_prepopulator(field_name)
-        singularized_field_name = singularize(field_name)
         define_method "populate_#{field_name}" do |*|
-          public_send("add_#{singularized_field_name}") if public_send(field_name).empty?
+          public_send("add_#{field_name.to_s.singularize}") if public_send(field_name).empty?
         end
       end
 
       def _define_populator(field_name)
-        singularized_field_name = singularize(field_name)
         define_method "handle_nested_params_for_#{field_name}" do |collection:, fragment:, **|
           item = collection.find { |d| d.id.present? && d.id == fragment['id'] }
           marked_to_be_deleted = fragment['_delete'] == '1'
@@ -113,7 +106,7 @@ module Forms
             return skip!
           end
 
-          item || collection.append(public_send("new_#{singularized_field_name}"))
+          item || collection.append(public_send("new_#{field_name.to_s.singularize}"))
         end
       end
 
