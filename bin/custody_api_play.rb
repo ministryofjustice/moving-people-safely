@@ -35,6 +35,21 @@ surname = json['surname']
 date_of_birth = json['dateOfBirth']
 gender = json['gender']['description']
 
+# alerts
+
+resp = api.get("api/offenders/offenderId/#{offender_id}/alerts")
+unless resp.success?
+  fail "problem getting from api #{resp.body}"
+end
+
+json = resp.body
+puts "\n\nalerts:\n"
+puts "count: #{json.length}"
+puts "all:"
+puts JSON.pretty_generate(json)
+
+# events
+
 resp = api.get("api/offenders/offenderId/#{offender_id}/events")
 unless resp.success?
   fail "problem getting from api #{resp.body}"
