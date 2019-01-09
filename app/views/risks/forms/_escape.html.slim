@@ -1,5 +1,5 @@
 - if escort.from_prison?
   = f.radio_toggle_with_textarea :current_e_risk
   = f.radio_toggle_with_textarea :previous_escape_attempts
-  = f.radios_fieldset :escort_risk_assessment
-  = f.radios_fieldset :escape_pack
+  = f.radios_fieldset :escort_risk_assessment, label: 'bold'
+  = f.radios_fieldset :escape_pack, label: 'bold'

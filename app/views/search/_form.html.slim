@@ -2,8 +2,8 @@
   = f.error_messages
 
   - if current_user.police?
-    = f.text_field :pnc_number
+    = f.text_field :pnc_number, label: 'bold'
   - else
-    = f.text_field :prison_number
+    = f.text_field :prison_number, label: 'bold'
 
   = f.submit class: 'govuk-button', value: t('.search')
