@@ -1,7 +1,68 @@
 # Changelog
+## 2019-01-09
 <!-- Merged PRs since last release:
-## Upcoming
+
+Merge time            Author                PR  Branch
+----------------------------------------------------------------------
+2018-11-27 09:40:21   Cesidio Di Landa      618 refactor-formbuilder
+2018-11-27 14:21:38   Andy White            616 police-no-offence-reuse
+2018-11-28 11:56:07   Andy White            617 police-healthcare-inconsistencies
+2018-11-28 13:27:35   Andy White            611 remove-police-cell-share-question
+2018-11-28 15:43:32   Andy White            619 court-dashboard-label-mods
+2018-11-29 11:50:59   Andy White            624 bold-dashboard-surnames
+2018-11-29 12:13:14   Andy White            621 missing-approver-details-bug
+2018-11-29 13:04:39   Andy White            620 remove-female-hygiene-kit-details
+2018-11-29 13:35:32   Andy White            632 inconsistent-dashboard-column-widths
+2018-11-29 14:08:27   Andy White            636 dashes-for-blanks
+2018-11-29 15:31:13   Matthew Rudy Jacobs   637 nicer-tempfile-names
+2018-11-29 16:18:29   Matthew Rudy Jacobs   599 better-pdf-name
+2018-11-30 14:30:11   Cesidio Di Landa      638 refactor-form-builder
+2018-12-01 12:20:23   Cesidio Di Landa      642 add-slim-lint
+2018-12-03 13:00:35   Cesidio Di Landa      643 add-scss-lint
+2018-12-03 17:06:50   Cesidio Di Landa      645 fix-multiples
+2018-12-04 14:34:30   Cesidio Di Landa      646 improve-rubocop
+2018-12-04 17:39:07   Cesidio Di Landa      648 minor-improvements-form-builder
+2018-12-04 17:46:13   Cesidio Di Landa      649 fix-return-establishments
+2018-12-05 11:56:55   Cesidio Di Landa      647 fix-observations-levels
+2018-12-05 12:38:27   Matthew Rudy Jacobs   654 ruby-2.5.3
+2018-12-09 19:13:53   Cesidio Di Landa      656 refactor-buttons
+2018-12-10 12:53:21   Cesidio Di Landa      660 update-govuk-framework
+2018-12-10 14:37:36   Andy White            661 fix-feature-detainee-ages
+2018-12-11 12:30:07   Andy White            664 approved-on-new-line
+2018-12-11 16:21:03   Cesidio Di Landa      665 cleanup-move-form
+2018-12-12 12:04:08   Cesidio Di Landa      666 use-active-model-for-simple-forms
+2018-12-13 15:38:30   Cesidio Di Landa      668 cleanup-reform
+2018-12-13 18:42:25   Cesidio Di Landa      669 fix-seed-custody
+2018-12-13 19:07:13   Cesidio Di Landa      670 add-healthcare-contact-number
+2018-12-18 12:45:15   Cesidio Di Landa      677 change-pnc-validation
+2018-12-19 13:04:14   Andy White            683 i18n-all-text
+2019-01-07 16:00:55   Andy White            663 rename-rule45
+2019-01-07 16:11:03   Cesidio Di Landa      697 run-linters-in-circle
+2019-01-08 14:28:50   Cesidio Di Landa      705 ruby-2.6
+2019-01-08 14:33:22   Andy White            684 clarify-offences-form
+2019-01-09 13:11:00   Andy White            698 details-on-all-observation-levels
 -->
+### Changed
+- Improved performance of forms. <!-- PR 618, PR 638 refactor-form-builder, PR 648 minor-improvements-form-builder, PR 666 use-active-model-for-simple-forms, PR 665 cleanup-move-form, PR 668 cleanup-reform, PR 645 fix-multiples -->
+- Improved usability of offences form. <!-- PR 684 clarify-offences-form -->
+- Improved consistency of healthcare questions. <!-- PR 617 -->
+- Improved consistency of all text in field labels and hints. <!-- PR 683 i18n-all-text -->
+- No longer re-use offences on police PER. <!-- PR 616 -->
+- Removed cell share question on police PER. <!-- PR 611 remove-police-cell-share-question -->
+- Improvements to court dashboard labels. <!-- PR 619 court-dashboard-label-mods -->
+- Improvements to PER dashboard layout. <!-- PR 624 bold-dashboard-surnames, PR 632 inconsistent-dashboard-column-widths -->
+- Removed details field for female hygiene kit question. <!-- PR 620 remove-female-hygiene-kit-details -->
+- Improved summary PER display. <!-- PR 636 dashes-for-blanks -->
+- Improved display of approver details. <!-- PR 664 approved-on-new-line -->
+- Rename rule 45 question for prison PER. <!-- PR 663 rename-rule45 -->
+- Improved usability of observation level question in police PER. <!-- PR 647 fix-observations-levels, PR 698 -->
+- Enlarged establishment details field. <!-- PR 649 fix-return-establishments -->
+- Update of code libraries to improve performance and security. <!-- PR 654 ruby-2.5.3, PR 660 update-govuk-framework, PR 642 add-slim-lint, PR 643 add-scss-lint, PR 646 improve-rubocop, PR 697 run-linters-in-circle, PR 705 ruby-2.6 -->
+
+### Fixed
+- Fixed bug where approver details were sometimes not displayed. <!-- PR 621 missing-approver-details-bug -->
+- Fixed faulty validation of PNC numbers. <!-- PR 677 change-pnc-validation -->
+- Fixed bug where printed PER sometimes did not appear in a separate tab. <!-- PR 599 better-pdf-name -->
 
 ## 2018-11-26
 <!-- Merged PRs since last release:
@@ -28,7 +89,7 @@
 - Update of code libraries to improve performance and security. <!-- PR 608 609 601 607 588 613 615 614 612 -->
 
 ### Fixed
-- Fixed a bug where ethnicity codes from NOMIS where not automatically populating the detainee form. <!-- PR 603 -->
+- Fixed a bug where ethnicity codes from NOMIS were not automatically populating the detainee form. <!-- PR 603 -->
 
 
 ## 2018-11-19
@@ -74,7 +135,7 @@
 
 ### Fixed
 - Fixed a bug where pregnancy details were not displayed correctly. <!-- PR 566 571 -->
-- Fixed a bug where page breadcrumbs where not displaying correctly. <!-- PR 597 -->
+- Fixed a bug where page breadcrumbs were not displaying correctly. <!-- PR 597 -->
 
 
 ## 2018-10-11
@@ -101,7 +162,7 @@
 * Improvements to internal quality and testing systems. <!-- PRs 551, 552, 553, 561, 563 -->
 
 ### Fixed
-* Fix bug where Dependencies where not bold in the PDF printout. <!-- PR 534 -->
+* Fix bug where Dependencies were not bold in the PDF printout. <!-- PR 534 -->
 
 
 ## 2018-09-27
