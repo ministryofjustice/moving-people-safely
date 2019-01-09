@@ -156,7 +156,7 @@ en:
           observation_level:
             inclusion: ^You must select an observation level
           observation_level_details:
-            blank: ^You must enter a reason for the heightened observation
+            blank: ^You must enter a reason for the level of observations
       security:
         attributes:
           controlled_unlock:
@@ -531,8 +531,8 @@ en:
           closed: Closed
           none: No ACCT history
         observation_level_choices:
-          level1: Level 1 (hourly checks)
-          level2: Level 2 (checks every 30 minutes)
+          level1: Level 1 (check at least hourly)
+          level2: Level 2 (wake and check at least every 30 minutes)
           level3: Level 3 (constant watch via CCTV)
           level4: Level 4 (constant physical watch)
       search:
