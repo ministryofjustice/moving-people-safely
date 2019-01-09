@@ -41,11 +41,12 @@ Merge time            Author                PR  Branch
 2019-01-08 14:28:50   Cesidio Di Landa      705 ruby-2.6
 2019-01-08 14:33:22   Andy White            684 clarify-offences-form
 2019-01-09 13:11:00   Andy White            698 details-on-all-observation-levels
+2019-01-09 13:36:00   Andy White            706 physical-health-wording
 -->
 ### Changed
 - Improved performance of forms. <!-- PR 618, PR 638 refactor-form-builder, PR 648 minor-improvements-form-builder, PR 666 use-active-model-for-simple-forms, PR 665 cleanup-move-form, PR 668 cleanup-reform, PR 645 fix-multiples -->
 - Improved usability of offences form. <!-- PR 684 clarify-offences-form -->
-- Improved consistency of healthcare questions. <!-- PR 617 -->
+- Improved consistency and wording of healthcare questions. <!-- PR 617, 706 -->
 - Improved consistency of all text in field labels and hints. <!-- PR 683 i18n-all-text -->
 - No longer re-use offences on police PER. <!-- PR 616 -->
 - Removed cell share question on police PER. <!-- PR 611 remove-police-cell-share-question -->
