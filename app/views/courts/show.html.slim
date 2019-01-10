@@ -23,7 +23,7 @@
         tr.govuk-table__row
           td.govuk-table__cell.detainee-photo rowspan="2"
             - if escort.detainee.image.present?
-              = image_tag escort_detainee_image_path(escort, format: :jpg), size: '86x108', class: 'person'
+              = image_tag "data:image/jpeg;base64,#{escort.detainee.image}", size: '86x108', class: 'person'
             - else
               .no-court-dashboard-image
                 span = t('.no_photo')
