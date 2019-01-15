@@ -28,7 +28,7 @@ class SearchController < ApplicationController
   def find_same_prisoner_escort
     @escort = Escort.uncancelled
     @escort = @escort.from_prison.find_by(prison_number: @form.prison_number) if @form.prison_number
-    @escort = @escort.from_police.find_by(pnc_number: @form.pnc_number) if @form.pnc_number
+    @escort = @escort.from_police.find_by(pnc_number: Detainee.standardise_pnc(@form.pnc_number)) if @form.pnc_number
   end
 
   def prison_number

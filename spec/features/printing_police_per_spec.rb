@@ -10,7 +10,7 @@ RSpec.feature 'printing a police PER', type: :feature do
   let(:police_custody) {
     create(:police_custody, name: 'My Jolly Police Custody Suite')
   }
-  let(:pnc_number) { '99/000000Z' }
+  let(:pnc_number) { '99/000123Z' }
   let(:prison_number) { 'W1234BY' }
   let(:escort) {
     create(

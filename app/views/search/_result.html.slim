@@ -10,7 +10,7 @@ table.govuk-table
       th.govuk-table__header = t('.move_date')
   tbody.govuk-table__body
     tr.govuk-table__row
-      td.govuk-table__cell = link_to(@escort.number, escort_path(@escort))
+      td.govuk-table__cell = link_to(human_number(@escort), escort_path(@escort))
       - if @escort.detainee
         td.govuk-table__cell
           span class='govuk-!-font-weight-bold'

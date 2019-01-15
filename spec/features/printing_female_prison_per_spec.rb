@@ -59,7 +59,7 @@ RSpec.feature 'printing a prison PER', type: :feature do
       religion: 'Baptist',
       ethnicity: 'European',
       cro_number: '56TYY/UU',
-      pnc_number: 'YI896668TT',
+      pnc_number: '89/6668T',
       peep: 'yes',
       peep_details: 'Broken leg',
       security_category: 'Cat A'

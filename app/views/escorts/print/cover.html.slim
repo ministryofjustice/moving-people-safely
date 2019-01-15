@@ -76,7 +76,7 @@ html
                 #cro-number.strong-text = content_or_dash(escort.detainee.cro_number)
               .govuk-grid-column.govuk-grid-column-one-third
                 .title = t('.pnc_number')
-                #pnc-number.strong-text = content_or_dash(escort.detainee.pnc_number)
+                #pnc-number.strong-text = content_or_dash(human_pnc(escort.detainee.pnc_number))
             .govuk-grid-row.padded
               .govuk-grid-column.govuk-grid-column-one-third
                 .title = t('.date_of_birth')
