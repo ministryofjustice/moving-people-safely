@@ -23,7 +23,7 @@ class GovukFormBuilder < ActionView::Helpers::FormBuilder
 
       content_tag :div, class: form_group_classes(attribute), id: form_group_id(attribute) do
         safe_join [
-          govuk_label(attribute),
+          govuk_label(attribute, options),
           govuk_hint(attribute),
           govuk_error_message(attribute),
           super(attribute, options)
@@ -36,7 +36,7 @@ class GovukFormBuilder < ActionView::Helpers::FormBuilder
     content_tag :div, class: form_group_classes(attribute), id: form_group_id(attribute) do
       content_tag :fieldset, class: 'govuk-fieldset' do
         safe_join [
-          govuk_fieldset_legend(attribute),
+          govuk_fieldset_legend(attribute, options),
           govuk_hint(attribute),
           govuk_error_message(attribute),
           govuk_radios(attribute, options, &blk)
@@ -45,10 +45,10 @@ class GovukFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
-  def date_picker_text_field(attribute)
+  def date_picker_text_field(attribute, options = {})
     content_tag :div, class: form_group_classes(attribute), id: form_group_id(attribute) do
       safe_join [
-        govuk_label(attribute),
+        govuk_label(attribute, options),
         govuk_hint(attribute),
         govuk_error_message(attribute),
         today_tomorrow_radios(attribute),
@@ -57,12 +57,12 @@ class GovukFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
-  def select_autocomplete(attribute, choices)
+  def select_autocomplete(attribute, choices, options = {})
     classes = ['govuk-select', 'mps-autocomplete', 'govuk-!-width-one-third']
 
     content_tag :div, class: form_group_classes(attribute), id: form_group_id(attribute) do
       safe_join [
-        govuk_label(attribute),
+        govuk_label(attribute, options),
         govuk_hint(attribute),
         govuk_error_message(attribute),
         select(attribute, choices, { include_blank: true }, class: classes)
@@ -70,10 +70,10 @@ class GovukFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
-  def label_data(attribute, value)
+  def label_data(attribute, value, options = {})
     content_tag :div, class: form_group_classes(attribute), id: form_group_id(attribute) do
       safe_join [
-        govuk_label(attribute),
+        govuk_label(attribute, options),
         content_tag(:p, value, id: "#{attribute_prefix}_#{attribute}")
       ]
     end
@@ -82,8 +82,8 @@ class GovukFormBuilder < ActionView::Helpers::FormBuilder
   def radio_toggle_with_textarea(attribute, options = {})
     options[:toggle_choice] ||= 'yes'
 
-    radios_fieldset(attribute, options) do
-      text_area :"#{attribute}_details", options
+    radios_fieldset(attribute, options.merge(label: 'bold')) do
+      text_area :"#{attribute}_details", options.merge(label: nil)
     end
   end
 
@@ -106,19 +106,23 @@ class GovukFormBuilder < ActionView::Helpers::FormBuilder
 
   private
 
-  def govuk_label(attribute)
+  def govuk_label(attribute, options = {})
     text = localized('helpers.label', attribute)
     return unless text.present?
 
-    classes = ['govuk-label', 'govuk-label--s']
+    classes = ['govuk-label']
+    classes << 'govuk-label--s' if options[:label] == 'bold'
+
     label(attribute, text, class: classes)
   end
 
-  def govuk_fieldset_legend(attribute)
+  def govuk_fieldset_legend(attribute, options = {})
     text = localized('helpers.fieldset', attribute)
     return unless text.present?
 
-    classes = ['govuk-fieldset__legend', 'govuk-fieldset__legend--s']
+    classes = ['govuk-fieldset__legend']
+    classes << 'govuk-fieldset__legend--s' if options[:label] == 'bold'
+
     content_tag(:legend, text, class: classes)
   end
 

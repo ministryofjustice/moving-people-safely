@@ -9,9 +9,9 @@
     = form_for @form, url: feedbacks_path do |f|
       = f.error_messages
       - if user_signed_in?
-        = f.text_field :prisoner_number
+        = f.text_field :prisoner_number, label: 'bold'
       - else
-        = f.text_field :email
-      = f.text_area :message
+        = f.text_field :email, label: 'bold'
+      = f.text_area :message, label: 'bold'
 
       = f.submit t('.send'), class: 'govuk-button'
