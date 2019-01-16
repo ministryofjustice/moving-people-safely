@@ -1,6 +1,7 @@
 - if escort.from_prison?
   = f.radios_fieldset :acct_status,
     choices: f.object.acct_statuses,
+    label: 'bold',
     toggle_choice: f.object.acct_status_with_details do
       = f.text_field :date_of_most_recently_closed_acct
       = f.text_area :acct_status_details
@@ -8,7 +9,7 @@
 = f.radio_toggle_with_textarea :self_harm
 
 - if escort.from_police?
-  = f.radios_fieldset :observation_level do
+  = f.radios_fieldset :observation_level, label: 'bold' do
     - f.object.observation_levels.each do |level|
       = f.radios_item_conditional(:observation_level, level)
     = f.text_area :observation_level_details

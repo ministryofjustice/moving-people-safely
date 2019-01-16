@@ -1,4 +1,4 @@
-= f.radios_fieldset :has_medications, toggle_choice: 'yes' do
+= f.radios_fieldset :has_medications, toggle_choice: 'yes', label: 'bold' do
   #error_needs_medications
   = f.fields_for :medications do |mf|
     .multiple-wrapper

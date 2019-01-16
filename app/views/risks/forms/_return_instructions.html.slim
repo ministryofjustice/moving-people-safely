@@ -1,8 +1,8 @@
-= f.radios_fieldset :must_return, toggle_choice: 'yes' do
+= f.radios_fieldset :must_return, toggle_choice: 'yes', label: 'bold' do
   = f.text_field :must_return_to
   = f.text_area :must_return_to_details
 
-= f.radios_fieldset :has_must_not_return_details, toggle_choice: 'yes' do
+= f.radios_fieldset :has_must_not_return_details, toggle_choice: 'yes', label: 'bold' do
   #error_return_instructions_must_not_return_details
   = f.fields_for :must_not_return_details do |mf|
     .multiple-wrapper

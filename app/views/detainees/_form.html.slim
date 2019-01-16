@@ -6,33 +6,33 @@ header
 
   = detainee_image(form.image)
   - if escort.from_prison?
-    = f.label_data :prison_number, escort.prison_number
+    = f.label_data :prison_number, escort.prison_number, label: 'bold'
     = f.hidden_field :prison_number, value: escort.prison_number
   - elsif escort.from_police?
-    = f.text_field :pnc_number, value: escort.pnc_number
-  = f.text_field :surname
-  = f.text_field :forenames
-  = f.text_field :date_of_birth
-  = f.text_area :nationalities
-  = f.radios_fieldset :gender, choices: form.genders
-  = f.select_autocomplete :ethnicity, Detainee::ETHNICITY_CODES
+    = f.text_field :pnc_number, value: escort.pnc_number, label: 'bold'
+  = f.text_field :surname, label: 'bold'
+  = f.text_field :forenames, label: 'bold'
+  = f.text_field :date_of_birth, label: 'bold'
+  = f.text_area :nationalities, label: 'bold'
+  = f.radios_fieldset :gender, choices: form.genders, label: 'bold'
+  = f.select_autocomplete :ethnicity, Detainee::ETHNICITY_CODES, label: 'bold'
   - if escort.from_prison?
-    = f.text_field :religion
-    = f.text_field :pnc_number
+    = f.text_field :religion, label: 'bold'
+    = f.text_field :pnc_number, label: 'bold'
   - elsif escort.from_police?
-    = f.text_field :prison_number
-  = f.text_field :cro_number
-  = f.text_area :aliases
+    = f.text_field :prison_number, label: 'bold'
+  = f.text_field :cro_number, label: 'bold'
+  = f.text_area :aliases, label: 'bold'
   - if escort.from_prison?
-    = f.text_field :language
-    = f.radios_fieldset :interpreter_required
+    = f.text_field :language, label: 'bold'
+    = f.radios_fieldset :interpreter_required, label: 'bold'
   - elsif escort.from_police?
-    = f.radios_fieldset :interpreter_required, toggle_choice: 'yes' do
+    = f.radios_fieldset :interpreter_required, toggle_choice: 'yes', label: 'bold' do
       = f.text_field :language
       = f.text_area :interpreter_required_details
   - if escort.from_prison?
-    = f.radio_toggle_with_textarea :peep
-    = f.text_field :security_category
-  = f.text_area :diet
+    = f.radio_toggle_with_textarea :peep, label: 'bold'
+    = f.text_field :security_category, label: 'bold'
+  = f.text_area :diet, label: 'bold'
 
   = f.submit 'Save and continue', class: 'govuk-button'

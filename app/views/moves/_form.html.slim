@@ -4,9 +4,9 @@ header
 = form_for form, url: submit_path, method: method do |f|
   = f.error_messages
 
-  = f.label_data :from_establishment, escort.move&.from_establishment&.name
+  = f.label_data :from_establishment, escort.move&.from_establishment&.name, label: 'bold'
 
-  = f.radios_fieldset :to_type do
+  = f.radios_fieldset :to_type, label: 'bold' do
     - form.sorted_destination_options.each do |destination|
       = f.radios_item_conditional(:to_type, destination) do
         - if Forms::Move::FREE_TEXT_DESTINATIONS.include?(destination)
@@ -14,19 +14,19 @@ header
         - else
           = f.select_autocomplete :"to_#{destination}", destination.to_s.classify.constantize.pluck(:name)
 
-  = f.date_picker_text_field :date
+  = f.date_picker_text_field :date, label: 'bold'
 
-  = f.radios_fieldset :not_for_release, toggle_choice: 'yes' do
+  = f.radios_fieldset :not_for_release, toggle_choice: 'yes', label: 'bold' do
     = f.radio_toggle_with_textarea :not_for_release_reason,
       choices: f.object.not_for_release_reasons,
       toggle_choice: f.object.not_for_release_reason_with_details
 
   - if escort.from_prison?
     - if escort.detainee_female?
-      = f.radios_fieldset :travelling_with_child, toggle_choice: 'yes' do
+      = f.radios_fieldset :travelling_with_child, toggle_choice: 'yes', label: 'bold' do
         = f.text_field :child_full_name
         = f.text_field :child_date_of_birth
-    = f.radio_toggle_with_textarea :require_special_vehicle
-    = f.radio_toggle_with_textarea :other_transport_requirements
+    = f.radio_toggle_with_textarea :require_special_vehicle, label: 'bold'
+    = f.radio_toggle_with_textarea :other_transport_requirements, label: 'bold'
 
   = f.submit t('.save_and_continue'), class: 'govuk-button'
