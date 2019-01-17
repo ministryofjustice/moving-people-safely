@@ -35,31 +35,39 @@ surname = json['surname']
 date_of_birth = json['dateOfBirth']
 gender = json['gender']['description']
 
-# alerts
+def debug(resp, label, show: :all)
+  unless resp.success?
+    fail "problem getting from api #{resp.body}"
+  end
 
-resp = api.get("api/offenders/offenderId/#{offender_id}/alerts")
-unless resp.success?
-  fail "problem getting from api #{resp.body}"
+  json = resp.body
+  puts "\n\n#{label}:\n"
+  puts "count: #{json.length}"
+
+  if show == :all
+    puts "all:"
+    puts JSON.pretty_generate(json)
+  else
+    puts "first:"
+    puts JSON.pretty_generate(json.first)
+  end
 end
 
-json = resp.body
-puts "\n\nalerts:\n"
-puts "count: #{json.length}"
-puts "all:"
-puts JSON.pretty_generate(json)
+def debug_all(*args)
+  debug(*args)
+end
+
+def debug_first(*args)
+  debug(*args, show: :first)
+end
+
+# alerts
+resp = api.get("api/offenders/offenderId/#{offender_id}/alerts")
+debug_all(resp, :alerts)
 
 # events
-
 resp = api.get("api/offenders/offenderId/#{offender_id}/events")
-unless resp.success?
-  fail "problem getting from api #{resp.body}"
-end
-
-json = resp.body
-puts "\n\nevents:\n"
-puts "count: #{json.length}"
-puts "first:"
-puts JSON.pretty_generate(json.first)
+debug_first(resp, :events)
 
 MOVEMENT_EVENT_TYPES = [
   "EXTERNAL_MOVEMENT_RECORD-INSERTED",
@@ -69,44 +77,22 @@ MOVEMENT_EVENT_TYPES = [
   "OFFENDER_MOVEMENT-RECEPTION"
 ]
 
-date = Date.new(2017,7,24)
+date = Date.new(2014,8, 11)
 
 resp = api.get("api/offenders/offenderId/#{offender_id}/events",
   from: date.to_time.utc.iso8601,
   type: MOVEMENT_EVENT_TYPES
 )
-
-unless resp.success?
-  fail "problem getting from api #{resp.body}"
-end
-
-json = resp.body
-puts "\n\nevents:\n"
-puts "count: #{json.length}"
-puts "first:"
-pp json.first
+debug_first(resp, :movement_events)
 
 resp = api.get("api/offenders/offenderId/#{offender_id}/movements")
-
-unless resp.success?
-  fail "problem getting from api #{resp.body}"
-end
-
-json = resp.body
-
-puts "\n\nmovements:\n"
-puts "count: #{json.length}"
-puts JSON.pretty_generate(json)
-
+debug_all(resp, :movements)
 
 resp = api.get("api/offenders/offenderId/#{offender_id}/courtEvents")
+debug_all(resp, :court_events)
 
-unless resp.success?
-  fail "problem getting from api #{resp.body}"
-end
+resp = api.get("api/offenders/offenderId/#{offender_id}/diaryDetails")
+debug_all(resp, :diary_details)
 
-json = resp.body
-
-puts "\n\ncourt events:\n"
-puts "count: #{json.length}"
-puts JSON.pretty_generate(json)
+resp = api.get("api/offenders/offenderId/#{offender_id}/individualSchedules")
+debug_all(resp, :individual_schedules)
