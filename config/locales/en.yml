@@ -70,52 +70,83 @@ en:
       base:
         minimum_current_offence: 'Enter at least one current offence'
         minimum_one_option: 'Enter at least one option (%{options})'
-    summary:
-      title: Please fix the errors on this page to continue
+    format: "%{message}"
     messages:
-      inclusion: "^Answer %{attribute}"
-      blank: "^Enter %{attribute}"
-      date_not_valid: "^Enter a valid %{attribute}"
+      blank: "Enter %{attribute}"
+      date_not_valid: "Enter a valid %{attribute}"
       date_is_in_the_past: "must not be in the past"
       date_is_in_the_future: "must not be in the future"
-      minimum_collection_size: At least one item needs to be provided
+      inclusion: "Answer %{attribute}"
+      invalid: "%{attribute} is not valid"
     models:
-      police_station_selector:
+      arson:
         attributes:
-          police_custody_id:
-            blank: "^Please select a police custody suite"
-      forms/assessments/section: &assessment_form
+          arson:
+            inclusion: Answer the arsonist question
+      concealed_weapons:
         attributes:
-          acct_status_details:
-            blank: "^%{attribute}"
-          base:
-            minimum_one_option: "Please select at least one option for %{attribute}"
-          high_profile_details:
-            blank: "^Give details for high public interest"
-      forms/assessments/answer:
-        <<: *assessment_form
+          conceals_mobile_phone_or_other_items_details:
+            blank: Enter details of mobile phones or other items concealed in custody
+          substance_supply_details:
+            blank: Enter details of drug trafficking risk
+      dependencies:
+        attributes:
+          alcohol_withdrawal:
+            inclusion: Answer the alcohol withdrawal question
+          alcohol_withdrawal_details:
+            blank: Enter details of alcohol withdrawal
       detainee:
         attributes:
           date_of_birth:
-            date_not_valid: "^Enter a valid date of birth"
+            date_not_valid: "Enter a valid date of birth"
           forenames:
-            blank: "^Enter first name(s)"
+            blank: "Enter first name(s)"
           gender:
-            inclusion: "^Choose a gender"
+            inclusion: "Choose a gender"
           surname:
-            blank: "^Enter a last name"
+            blank: "Enter a last name"
+      discrimination:
+        attributes:
+          risk_to_females:
+            inclusion: Answer the risk to females question
+          risk_to_females_details:
+            blank: Enter details of risks posed to females
+      harassment_and_gangs:
+        attributes:
+          intimidation_public:
+            inclusion: Answer the harassment question
+          intimidation_public_details:
+            blank: Enter details of public harassment or witness intimidation
+          intimidation_prisoners:
+            inclusion: Answer the prisoner bullying or intimidation question
+          intimidation_prisoners_details:
+            blank: Enter details of prisoner bullying or intimidation
+          gang_member_details:
+            blank: Enter gang or organised crime details
+      hostage_taker:
+        attributes:
+          hostage_taker_details:
+            blank: Enter details of previous hostage taker attempts
+      medication:
+        attributes:
+          description:
+            blank: Enter medicine name
+          administration:
+            blank: Enter details of how medicine should be given
+          dosage:
+            blank: Enter medicine dosage
+          when_given:
+            blank: Enter details of when medicine should be given
       move:
         attributes:
-          from:
-            blank: "^Enter start point"
           not_for_release:
-            inclusion: "^Answer the release status question"
+            inclusion: "Answer the release status question"
           not_for_release_reason:
-            inclusion: "^Choose a reason why they must not be released"
+            inclusion: "Choose a reason why they must not be released"
           not_for_release_reason_details:
-            blank: "^Please provide details why the detainee is not for release"
+            blank: "Please provide details why the detainee is not for release"
           to: &blank_destination_error
-            blank: "^Enter destination name"
+            blank: "Enter destination name"
           to_civil_court:
             <<: *blank_destination_error
           to_magistrates_court:
@@ -135,116 +166,72 @@ en:
           to_other:
             <<: *blank_destination_error
           to_type:
-            blank: ^Choose a destination
+            blank: Choose a destination
           date:
-            date_is_in_the_past: ^Enter a date from today onwards
+            date_is_in_the_past: Enter a date from today onwards
           child_full_name:
-            blank: "^Enter child's full name"
+            blank: "Enter child's full name"
           child_date_of_birth:
-            blank: "^Enter child's date of birth"
-            date_is_in_the_future: ^Enter child's date of birth in the past up to today
+            blank: "Enter child's date of birth"
+            date_is_in_the_future: Enter child's date of birth in the past up to today
+      police_station_selector:
+        attributes:
+          police_custody_id:
+            blank: "Please select a police custody suite"
       risk_to_self:
         attributes:
           date_of_most_recently_closed_acct:
-            date_not_valid: ^Enter the date of the most recently closed ACCT
+            date_not_valid: Enter the date of the most recently closed ACCT
           acct_status:
-            inclusion: ^Enter ACCT status
+            inclusion: Enter ACCT status
           acct_status_details:
-            blank: ^Enter ACCT details
+            blank: Enter ACCT details
           self_harm:
-            inclusion: ^Answer the self harm question
+            inclusion: Answer the self harm question
           observation_level:
-            inclusion: ^You must select an observation level
+            inclusion: You must select an observation level
           observation_level_details:
-            blank: ^You must enter a reason for the level of observations
+            blank: You must enter a reason for the level of observations
       security:
         attributes:
           controlled_unlock:
-            inclusion: ^Answer the Controlled unlock question
+            inclusion: Answer the Controlled unlock question
+          category_a:
+            inclusion: Answer the prisoner category question
+          pnc_warnings:
+            inclusion: Answer the PNC warnings question
+          pnc_warnings_details:
+            blank: Enter PNC warnings
       segregation:
         attributes:
           rule_45:
-            inclusion: ^Answer the segregation question
+            inclusion: Answer the segregation question
           rule_45_details:
-            blank: ^Enter segregation details
+            blank: Enter segregation details
           csra:
-            inclusion: ^Answer the CSRA question
+            inclusion: Answer the CSRA question
           csra_details:
-            blank: ^Enter CSRA details
+            blank: Enter CSRA details
           vulnerable_prisoner:
-            inclusion: ^Answer the vulnerable person question
+            inclusion: Answer the vulnerable person question
           vulnerable_prisoner_details:
-            blank: ^Enter vulnerable person details
-      security:
-        attributes:
-          category_a:
-            inclusion: ^Answer the prisoner category question
-          pnc_warnings:
-            inclusion: ^Answer the PNC warnings question
-          pnc_warnings_details:
-            blank: ^Enter PNC warnings
-      violent_or_dangerous:
-        attributes:
-          violent_or_dangerous:
-            inclusion: ^Answer the violent or dangerous behaviour question
-          violent_or_dangerous_details:
-            blank: ^Enter details of violent or dangerous behaviour
-      harassment_and_gangs:
-        attributes:
-          intimidation_public:
-            inclusion: ^Answer the harassment question
-          intimidation_public_details:
-            blank: ^Enter details of public harassment or witness intimidation
-          intimidation_prisoners:
-            inclusion: ^Answer the prisoner bullying or intimidation question
-          intimidation_prisoners_details:
-            blank: ^Enter details of prisoner bullying or intimidation
-          gang_member_details:
-            blank: "^Enter gang or organised crime details"
-      discrimination:
-        attributes:
-          risk_to_females:
-            inclusion: ^Answer the risk to females question
-          risk_to_females_details:
-            blank: ^Enter details of risks posed to females
-      hostage_taker:
-        attributes:
-          hostage_taker_details:
-            blank: ^Enter details of previous hostage taker attempts
+            blank: Enter vulnerable person details
       sex_offences:
         attributes:
           sex_offence_details:
-            blank: ^Enter details of sex offence victims and incidents
-      concealed_weapons:
-        attributes:
-          conceals_mobile_phone_or_other_items_details:
-            blank: ^Enter details of mobile phones or other items concealed in custody
-          substance_supply_details:
-            blank: "^Enter details of drug trafficking risk"
-      arson:
-        attributes:
-          arson:
-            inclusion: ^Answer the arsonist question
+            blank: Enter details of sex offence victims and incidents
       transport:
         attributes:
           mpv_details:
-            blank: ^Enter reasons for special vehicle
-      medication:
+            blank: Enter reasons for special vehicle
+      violent_or_dangerous:
         attributes:
-          description:
-            blank: ^Enter medicine name
-          administration:
-            blank: ^Enter details of how medicine should be given
-          dosage:
-            blank: ^Enter medicine dosage
-          when_given:
-            blank: ^Enter details of when medicine should be given
-      dependencies:
-        attributes:
-          alcohol_withdrawal:
-            inclusion: ^Answer the alcohol withdrawal question
-          alcohol_withdrawal_details:
-            blank: ^Enter details of alcohol withdrawal
+          violent_or_dangerous:
+            inclusion: Answer the violent or dangerous behaviour question
+          violent_or_dangerous_details:
+            blank: Enter details of violent or dangerous behaviour
+    summary:
+      title: Please fix the errors on this page to continue
   escort: &escort
     active_alerts: &alerts
       acct_status: ACCT

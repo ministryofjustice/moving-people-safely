@@ -8,12 +8,10 @@ gem 'aws-sdk-s3'
 gem 'bootsnap', require: false
 gem 'cancancan'
 gem 'connection_pool'
-gem 'custom_error_message', github: 'thethanghn/custom-err-msg'
 gem 'deep_cloneable'
 gem 'excon'
 gem 'faraday'
 gem 'geckoboard-ruby'
-gem 'jquery-rails'
 gem 'logstasher'
 gem 'omniauth-oauth2', '~> 1.3.1' # do not remove version
 gem 'paperclip'

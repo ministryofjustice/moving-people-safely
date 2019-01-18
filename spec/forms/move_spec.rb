@@ -77,7 +77,7 @@ RSpec.describe Forms::Move, type: :form do
           it 'an inclusion error is added to the error list' do
             expect(form).not_to be_valid
             expect(form.errors.keys).to include(:not_for_release_reason)
-            expect(form.errors[:not_for_release_reason]).to match_array(['^Choose a reason why they must not be released'])
+            expect(form.errors[:not_for_release_reason]).to match_array(['Choose a reason why they must not be released'])
           end
         end
 
@@ -125,7 +125,7 @@ RSpec.describe Forms::Move, type: :form do
             it 'a presence error is added to the error list' do
               expect(form).not_to be_valid
               expect(form.errors.keys).to include(:not_for_release_reason_details)
-              expect(form.errors[:not_for_release_reason_details]).to match_array(['^Please provide details why the detainee is not for release'])
+              expect(form.errors[:not_for_release_reason_details]).to match_array(['Please provide details why the detainee is not for release'])
             end
           end
 
@@ -175,7 +175,7 @@ RSpec.describe Forms::Move, type: :form do
         it 'sets a descriptive error on date' do
           params[:date] = '01/01/2015'
           form.validate(params)
-          expect(form.errors[:date]).to include '^Enter a date from today onwards'
+          expect(form.errors[:date]).to include 'Enter a date from today onwards'
         end
       end
     end
