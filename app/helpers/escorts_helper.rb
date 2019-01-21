@@ -2,7 +2,7 @@
 
 module EscortsHelper
   def identifier(escort)
-    "#{escort.number}: #{escort.detainee_surname}"
+    "#{human_number(escort)}: #{escort.detainee_surname}"
   end
 
   def detainee_image(image)
@@ -112,5 +112,16 @@ module EscortsHelper
     else
       'No'
     end
+  end
+
+  def human_pnc(number)
+    return number if number.blank?
+
+    parts = number.split('/')
+    [parts.first, parts.last.sub(/^0+/, '')].join('/')
+  end
+
+  def human_number(escort)
+    escort.from_police? ? human_pnc(escort.pnc_number) : escort.prison_number
   end
 end

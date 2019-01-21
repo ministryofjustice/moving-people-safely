@@ -27,7 +27,7 @@
             - else
               .no-court-dashboard-image
                 span = t('.no_photo')
-          td.govuk-table__cell = link_to escort.number, escort_url(escort)
+          td.govuk-table__cell = link_to human_number(escort), escort_url(escort)
           td.govuk-table__cell
             span.surname = escort.detainee.surname
             = escort.detainee.forenames

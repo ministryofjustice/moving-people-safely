@@ -32,4 +32,9 @@ class Detainee < ApplicationRecord
     'W2 - White Irish',
     'W9 - White Other'
   ].freeze
+
+  def self.standardise_pnc(number)
+    parts = number.split('/')
+    [parts.first, parts.last.rjust(8, '0')].join('/').upcase
+  end
 end

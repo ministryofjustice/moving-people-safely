@@ -16,10 +16,9 @@ RSpec.describe Forms::Search, type: :form do
     end
 
     context 'from police' do
-      let(:pnc_number) { '14/293785A' }
-
-      it 'expects it to be in the format \d{2}\/d{5}[a-z]\z/' do
-        is_expected.to allow_value('14/293785A').for(:pnc_number)
+      it 'expects it to be in the format \d{2}\/d{1,7}[a-z]\z/' do
+        is_expected.to allow_value('12/1A').for(:pnc_number)
+        is_expected.to allow_value('12/1234567A').for(:pnc_number)
         is_expected.not_to allow_value('not_a_pnc_number').for(:pnc_number)
       end
     end

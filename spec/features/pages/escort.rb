@@ -1,5 +1,7 @@
 module Page
   class Escort < Base
+    include EscortsHelper
+
     def confirm_header_details(detainee)
       within('header') do
         detainee_detail = "#{detainee.prison_number}: #{detainee.surname}, #{detainee.forenames}"
@@ -63,13 +65,13 @@ module Page
 
     def confirm_detainee_details(detainee, options = {})
       location = options.fetch(:location, :prison)
-      
+
       within('#detainee') do
         expect(page).to have_content detainee.prison_number
         expect(page).to have_content detainee.date_of_birth.strftime('%d %b %Y')
         expect(page).to have_content detainee.nationalities
         expect(page).to have_content detainee.gender[0].upcase
-        expect(page).to have_content detainee.pnc_number
+        expect(page).to have_content human_pnc(detainee.pnc_number)
         expect(page).to have_content detainee.cro_number
         expect(page).to have_content detainee.aliases
         expect(page).to have_content age(detainee.date_of_birth)

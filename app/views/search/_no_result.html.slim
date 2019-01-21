@@ -1,13 +1,5 @@
 h2.govuk-heading-s = t('.heading')
 
-- if old_pnc_format?(@form.identifier)
-  .alert.alert--notice
-    .govuk-warning-text
-      span.govuk-warning-text__icon aria-hidden="true"  !
-      strong.govuk-warning-text__text
-        span.govuk-warning-text__assistive = t('.warning')
-        = t('.old_pnc_format')
-
 hr.govuk-section-break.govuk-section-break--m
 
 p = t('.no_result', identifier: @form.identifier)

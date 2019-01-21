@@ -87,27 +87,28 @@ RSpec.feature 'searching for a prisoner', type: :feature do
     end
 
     context 'with a valid pnc number' do
-      let(:pnc_number) { '14/293785A' }
+      let(:searched_pnc_number) { '12/12345A' }
+      let(:db_pnc_number) { '12/0012345A' }
 
       scenario 'prisoner not present in MPS' do
-        search.search_pnc_number(pnc_number)
+        search.search_pnc_number(searched_pnc_number)
         expect_no_results
       end
 
       scenario 'prisoner present with an active escort' do
-        escort = create(:escort, :completed, :from_police, pnc_number: pnc_number)
+        escort = create(:escort, :completed, :from_police, pnc_number: db_pnc_number)
 
-        search.search_pnc_number(pnc_number)
+        search.search_pnc_number(searched_pnc_number)
         expect(page).to have_link('Continue PER', href: escort_path(escort))
-        expect_result_with_move(escort)
+        expect_result_with_move(escort, searched_pnc_number)
       end
 
       scenario 'prisoner present with a previously issued escort' do
-        escort = create(:escort, :issued, :from_police, pnc_number: pnc_number)
+        escort = create(:escort, :issued, :from_police, pnc_number: db_pnc_number)
 
-        search.search_pnc_number(pnc_number)
+        search.search_pnc_number(searched_pnc_number)
         expect(page).to have_button('Start new PER')
-        expect_result_with_move(escort)
+        expect_result_with_move(escort, searched_pnc_number)
       end
     end
 
@@ -116,7 +117,7 @@ RSpec.feature 'searching for a prisoner', type: :feature do
 
       scenario 'prisoner not present in MPS' do
         search.search_pnc_number(pnc_number)
-        expect(page).to have_content("Note: you have entered a PNC number in the older format")
+        expect(page).to_not have_content("Note: you have entered a PNC number in the older format")
         expect_no_results
       end
     end
@@ -141,8 +142,8 @@ RSpec.feature 'searching for a prisoner', type: :feature do
     expect(page).to have_content(error_message)
   end
 
-  def expect_result_with_move(escort)
-    expect(page).to have_content(escort.number).
+  def expect_result_with_move(escort, searched_number = escort.number)
+    expect(page).to have_content(searched_number.upcase).
       and have_content(escort.detainee_surname).
       and have_content(escort.detainee.date_of_birth.strftime('%d %b %Y')).
       and have_content(escort.move.to).

@@ -3,6 +3,8 @@
 module Forms
   class Detainee < Forms::Base
     GENDERS = %w[male female unknown indeterminate].freeze
+    PRISON_NUMBER_REGEX = /\A[a-z]\d{4}[a-z]{2}\z/i.freeze
+    POLICE_NUMBER_REGEX = /\d{2}\/\d{1,7}[a-z]\z/i.freeze
 
     property :prison_number,                type: StrictString
     property :surname,                      type: StrictString
@@ -26,7 +28,10 @@ module Forms
 
     validates :surname, :forenames, presence: true
 
-    validates :pnc_number, :nationalities, presence: true, if: :from_police?
+    validates :nationalities, presence: true, if: :from_police?
+
+    validates :pnc_number,
+      format: { with: POLICE_NUMBER_REGEX }, if: :from_police?
 
     validates :date_of_birth, date: { not_in_the_future: true }
 
@@ -45,6 +50,14 @@ module Forms
 
     def prison_number=(value)
       value && super(value.upcase)
+    end
+
+    def pnc_number=(value)
+      if value.blank?
+        super
+      else
+        super(::Detainee.standardise_pnc(value))
+      end
     end
 
     def genders

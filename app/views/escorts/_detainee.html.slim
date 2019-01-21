@@ -13,7 +13,7 @@ section#detainee
       p = content_or_dash(escort.detainee.cro_number)
     .tile-3
       h3.govuk-heading-s.heading-light = t('.pnc_number')
-      p = content_or_dash(escort.detainee.pnc_number)
+      p = content_or_dash(human_pnc(escort.detainee.pnc_number))
     .tile-3
       h3.govuk-heading-s.heading-light = t('.date_of_birth')
       p = escort.detainee.date_of_birth&.to_s(:humanized)
