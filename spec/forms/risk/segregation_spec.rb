@@ -15,7 +15,7 @@ RSpec.describe Forms::Risk::Segregation, type: :form do
         it 'requires presence of ACCT status' do
           expect(form).not_to be_valid
           expect(form.errors[:rule_45])
-            .to match_array(['^Answer the segregation question'])
+            .to match_array(['Answer the segregation question'])
         end
       end
 
@@ -25,7 +25,7 @@ RSpec.describe Forms::Risk::Segregation, type: :form do
         it 'requires presence of rule 45 details' do
           expect(form).not_to be_valid
           expect(form.errors[:rule_45_details])
-            .to match_array(['^Enter segregation details'])
+            .to match_array(['Enter segregation details'])
         end
       end
     end

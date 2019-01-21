@@ -15,7 +15,7 @@ RSpec.describe Forms::Risk::RiskToSelf, type: :form do
         it 'requires presence of ACCT status' do
           expect(form).not_to be_valid
           expect(form.errors[:acct_status])
-            .to match_array(['^Enter ACCT status'])
+            .to match_array(['Enter ACCT status'])
         end
       end
 
@@ -25,13 +25,13 @@ RSpec.describe Forms::Risk::RiskToSelf, type: :form do
         it 'requires presence of ACCT status details' do
           expect(form).not_to be_valid
           expect(form.errors[:acct_status_details])
-            .to match_array(['^Enter ACCT details'])
+            .to match_array(['Enter ACCT details'])
         end
 
         it 'requires presence of date of most recently closed ACCT' do
           expect(form).not_to be_valid
           expect(form.errors[:date_of_most_recently_closed_acct])
-            .to match_array(['^Enter the date of the most recently closed ACCT'])
+            .to match_array(['Enter the date of the most recently closed ACCT'])
         end
       end
 
@@ -55,7 +55,7 @@ RSpec.describe Forms::Risk::RiskToSelf, type: :form do
         it 'suitable error' do
           expect(form).not_to be_valid
           expect(form.errors[:observation_level])
-            .to match_array(['^You must select an observation level'])
+            .to match_array(['You must select an observation level'])
         end
       end
 
@@ -66,7 +66,7 @@ RSpec.describe Forms::Risk::RiskToSelf, type: :form do
           it 'suitable error' do
             expect(form).not_to be_valid
             expect(form.errors[:observation_level_details])
-            .to match_array(['^You must enter a reason for the level of observations'])
+            .to match_array(['You must enter a reason for the level of observations'])
           end
         end
 

@@ -65,8 +65,8 @@ RSpec.describe Forms::Detainee, type: :form do
       end
     end
 
-    it { is_expected.to validate_presence_of(:surname).with_message('^Enter a last name') }
-    it { is_expected.to validate_presence_of(:forenames).with_message('^Enter first name(s)') }
+    it { is_expected.to validate_presence_of(:surname).with_message('Enter a last name') }
+    it { is_expected.to validate_presence_of(:forenames).with_message('Enter first name(s)') }
   end
 
   describe '#save' do
