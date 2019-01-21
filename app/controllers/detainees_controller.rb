@@ -21,10 +21,6 @@ class DetaineesController < ApplicationController
   def update
     if form.validate(params[:detainee])
       form.save
-
-      # This can be removed when we make the PNC number non-editable
-      ensure_pnc_numbers_consistent
-
       redirect_to escort_path(escort)
     else
       render :edit
@@ -47,13 +43,5 @@ class DetaineesController < ApplicationController
 
   def redirect_if_detainee_already_exists
     redirect_to new_escort_move_path(escort), alert: t('alerts.escort.detainee.exists') if escort.detainee
-  end
-
-  # This can be removed when we make the PNC number non-editable
-  def ensure_pnc_numbers_consistent
-    return unless form.from_police?
-    return if escort.pnc_number == escort.detainee.pnc_number
-
-    escort.update_column(:pnc_number, escort.detainee.pnc_number)
   end
 end
