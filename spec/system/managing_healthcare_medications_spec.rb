@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.describe 'managing healthcare medications', type: :feature do
+RSpec.describe 'managing healthcare medications', type: :system, js: true do
   let(:detainee) { create(:detainee) }
   let(:move) { create(:move) }
   let(:escort) { create(:escort, detainee: detainee, move: move) }
@@ -20,7 +20,6 @@ RSpec.describe 'managing healthcare medications', type: :feature do
 
     visit edit_escort_healthcare_path(escort, step: 'needs')
     expect_to_have_medications_for positions: %i[ first second third ]
-
     delete_medication position: :third
     save
 
@@ -41,7 +40,7 @@ RSpec.describe 'managing healthcare medications', type: :feature do
         expect(find_field('Medicine').value).to eq text_for(:description, position)
         expect(find_field('How is it given').value).to eq text_for(:administration, position)
         within('.govuk-fieldset') do
-          expect(find(:radio_button, checked: true).value).to eq('escort')
+          expect(find(:radio_button, checked: true, visible: false).value).to eq('escort')
         end
       end
     end
@@ -57,13 +56,13 @@ RSpec.describe 'managing healthcare medications', type: :feature do
 
   def check_medication
     within_fieldset('Will they need to be given medication while they are out of prison?') do
-      choose 'Yes'
+      choose 'Yes', visible: false
     end
   end
 
   def select_no_medications
     within_fieldset('Will they need to be given medication while they are out of prison?') do
-      choose 'No'
+      choose 'No', visible: false
     end
   end
 
@@ -78,7 +77,7 @@ RSpec.describe 'managing healthcare medications', type: :feature do
       fill_in 'Dosage', with: text_for(:dosage, position)
       fill_in 'When is it given?', with: text_for(:when_given, position)
       within('.govuk-fieldset') do
-        choose 'Escort'
+        choose 'Escort', visible: false
       end
     end
   end
@@ -89,7 +88,7 @@ RSpec.describe 'managing healthcare medications', type: :feature do
 
   def delete_medication(position:)
     within_medication(position) {
-      check_attribute('Remove')
+      find('.remove-link label').click
     }
   end
 
@@ -107,14 +106,6 @@ RSpec.describe 'managing healthcare medications', type: :feature do
     when :administration then "Administration #{position}"
     when :dosage then "Dosage #{position}"
     when :when_given then "When given #{position}"
-    end
-  end
-
-  def check_attribute(label)
-    if Capybara.default_driver == :rack_test
-      check(label)
-    else
-      find('label', text: label).click
     end
   end
 end

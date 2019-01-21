@@ -51,7 +51,7 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
-  config.include(ApplicationPageHelpers, type: :feature)
+  config.include(ApplicationPageHelpers, type: :system)
   config.include(Shoulda::Matchers::ActiveModel, type: :form)
   config.include(ActiveSupport::Testing::TimeHelpers)
   config.include(OauthHelper, type: :request)
@@ -62,6 +62,10 @@ RSpec.configure do |config|
   config.include(ActionView::TestCase::Behavior, type: :presenter)
   config.include(LocalizerHelpers)
   config.include Paperclip::Shoulda::Matchers
+
+  config.before(:each, type: :system, js: true) do
+    driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+  end
 end
 
 Shoulda::Matchers.configure do |config|

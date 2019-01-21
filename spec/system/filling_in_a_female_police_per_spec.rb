@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'filling in a PER from a police station', type: :feature do
+RSpec.describe 'filling in a PER from a police station', type: :system, js: true do
   let(:offences_data) do
     {
       offences: [

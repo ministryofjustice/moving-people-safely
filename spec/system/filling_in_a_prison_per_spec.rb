@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'filling in a PER from a prison', type: :feature do
+RSpec.describe 'filling in a PER from a prison', type: :system, js: true do
   let(:establishment_sso_id) { 'bedford.prisons.noms.moj' }
   let(:establishment_nomis_id) { 'BDI' }
   let(:detainee) { build(:detainee) }

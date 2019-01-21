@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'SSO integration', type: :feature do
+RSpec.describe 'SSO integration', type: :system, js: true do
   before do
     OauthHelper.configure_mock
   end

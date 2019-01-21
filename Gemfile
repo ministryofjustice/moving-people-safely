@@ -52,7 +52,6 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'chromedriver-helper'
   gem 'climate_control'
   gem 'codeclimate-test-reporter', require: nil
   gem 'diffy'

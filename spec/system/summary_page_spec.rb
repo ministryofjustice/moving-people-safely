@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'Summary pages', type: :feature do
+RSpec.describe 'Summary pages', type: :system, js: true do
   scenario 'Risk summary page' do
     login
 

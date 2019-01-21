@@ -19,7 +19,7 @@ module Page
       details_field_id = nil
       within_fieldset(label) do
         option = model.public_send(field)
-        opt_field = choose option: option
+        opt_field = choose option: option, visible: false
         opt_field_id = opt_field[:id]
         details_field_id = opt_field_id.sub("_#{option}", '_details')
       end

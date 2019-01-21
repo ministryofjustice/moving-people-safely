@@ -23,7 +23,7 @@ module Page
     end
 
     def assert_no_escorts_due
-      within '.search-results' do
+      within '.search-results', visible: false do
         expect(page).not_to have_css('.escorts')
       end
     end
