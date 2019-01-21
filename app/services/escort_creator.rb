@@ -7,7 +7,7 @@ class EscortCreator
 
   def initialize(escort_attrs, from_establishment)
     @prison_number = escort_attrs[:prison_number]
-    @pnc_number = escort_attrs[:pnc_number]
+    @pnc_number = Detainee.standardise_pnc(escort_attrs[:pnc_number]) if escort_attrs[:pnc_number].present?
     @from_establishment = from_establishment
   end
 
