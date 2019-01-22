@@ -145,7 +145,7 @@ GEM
       activesupport (>= 4.2.0)
     hashdiff (0.3.8)
     hashie (3.6.0)
-    i18n (1.5.2)
+    i18n (1.5.3)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     inflection (1.0.0)
