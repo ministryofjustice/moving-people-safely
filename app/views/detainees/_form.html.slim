@@ -9,10 +9,8 @@ header
     = f.label_data :prison_number, escort.prison_number, label: 'bold'
     = f.hidden_field :prison_number, value: escort.prison_number
   - elsif escort.from_police?
-    - if prepopulate_pnc
-      = f.text_field :pnc_number, value: prepopulate_pnc, label: 'bold'
-    - else
-      = f.text_field :pnc_number
+    = f.label_data :pnc_number, human_pnc(escort.pnc_number), label: 'bold'
+    = f.hidden_field :pnc_number, value: escort.pnc_number
   = f.text_field :surname, label: 'bold'
   = f.text_field :forenames, label: 'bold'
   = f.text_field :date_of_birth, label: 'bold'
