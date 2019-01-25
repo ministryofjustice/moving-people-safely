@@ -13,7 +13,7 @@ module Page
       choose detainee.gender.titlecase
       fill_in 'Religion', with: detainee.religion if location == :prison
       select 'W1', from: 'detainee_ethnicity'
-      fill_in 'PNC number', with: detainee.pnc_number
+      fill_in 'PNC number', with: detainee.pnc_number if location == :prison
       fill_in 'CRO number', with: detainee.cro_number
       fill_in 'Aliases', with: detainee.aliases
       fill_in 'Preferred language', with: detainee.language if location == :prison

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe EscortCreator, type: :service do
   let(:prison_number) { 'A1234BC' }
-  let(:pnc_number) { '14/293785A' }
+  let(:pnc_number) { '14/0293785A' }
   let(:from_establishment) { create(:establishment) }
 
   subject(:escort) do

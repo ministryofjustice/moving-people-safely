@@ -77,13 +77,6 @@ RSpec.describe Forms::Detainee, type: :form do
       let(:prison_number) { nil }
       let(:pnc_number) { '12/3z' }
 
-      it 'expects PNC number to be in the format \d{2}\/d{1,7}[a-z]\z/' do
-        is_expected.to allow_value('12/1a').for(:pnc_number)
-        is_expected.to allow_value('12/1234567A').for(:pnc_number)
-        is_expected.not_to allow_value(nil).for(:pnc_number)
-        is_expected.not_to allow_value('not_a_pnc_number').for(:pnc_number)
-      end
-
       it 'coerces params' do
         subject.validate(params)
         expect(subject.pnc_number).to eq '12/0000003Z'

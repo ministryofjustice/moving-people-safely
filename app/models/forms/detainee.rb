@@ -30,9 +30,6 @@ module Forms
 
     validates :nationalities, presence: true, if: :from_police?
 
-    validates :pnc_number,
-      format: { with: POLICE_NUMBER_REGEX }, if: :from_police?
-
     validates :date_of_birth, date: { not_in_the_future: true }
 
     validates :gender,
