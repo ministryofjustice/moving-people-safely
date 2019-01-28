@@ -1,4 +1,30 @@
 # Changelog
+## 2019-01-28
+<!-- Merged PRs since last release:
+
+Merge time            Author                PR  Branch
+----------------------------------------------------------------------
+2019-01-16 14:32:46   Cesidio Di Landa      719 consistent-labels-hints
+2019-01-21 11:49:18   Cesidio Di Landa      727 remove-custom-errors-gem
+2019-01-21 13:48:56   Andy White            720 7-digit-pnc-number
+2019-01-22 15:05:18   Cesidio Di Landa      731 update-govuk-frontend
+2019-01-23 10:30:34   Andy White            730 read-only-pnc
+-->
+### Changed
+- Improvements to the way PNC numbers are stored, edited and searched for police PERs. <!-- PR 720 730 -->
+- Further improved consistency of all text in field labels and hints. <!-- PR 719 -->
+- Update of code libraries to improve performance and security. <!-- PR 727 731 -->
+
+## 2019-01-17
+<!-- Merged PRs since last release:
+
+Merge time            Author                PR  Branch
+----------------------------------------------------------------------
+2019-01-10 15:29:31   Cesidio Di Landa      711 fix-court-view
+-->
+### Fixed
+- Fixed a bug where detainee images did not display correctly on court receiver view.
+
 ## 2019-01-09
 <!-- Merged PRs since last release:
 
