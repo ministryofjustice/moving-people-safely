@@ -117,7 +117,6 @@ RSpec.feature 'searching for a prisoner', type: :feature do
 
       scenario 'prisoner not present in MPS' do
         search.search_pnc_number(pnc_number)
-        expect(page).to_not have_content("Note: you have entered a PNC number in the older format")
         expect_no_results
       end
     end

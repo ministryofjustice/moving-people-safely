@@ -716,7 +716,6 @@ en:
         observation_level_html: In the arrest record, check <i>Observation Level</i>
       search:
         prison_number: For example A1234AB
-        pnc_number: For example 01/234567A or the older format of 01/23456A
       security:
         controlled_unlock:
           prison_html: In NOMIS, check the header section of the prisoner’s record for the <i>Controlled Unlock</i> alert.
@@ -910,7 +909,6 @@ en:
     no_result:
       heading: &search_result Search result
       no_result: There are no previous PERs for %{identifier}
-      old_pnc_format: "Note: you have entered a PNC number in the older format"
       warning: Warning
     result:
       continue_per: Continue PER
