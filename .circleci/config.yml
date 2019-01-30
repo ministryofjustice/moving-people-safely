@@ -4,89 +4,67 @@ jobs:
     parallelism: 1
     working_directory: ~/app
     docker:
-      - image: circleci/ruby:2.6.0-node-browsers # browsers will make capybara work
-        environment:
-          PGHOST: 127.0.0.1
-          PGUSER: db-user
-          PGPASSWORD: db-password
-          RAILS_ENV: test
-          DATABASE_URL: 'postgres://db-user:db-password@127.0.0.1:5432/db-name'
-          CAPYBARA_HEADLESS_CHROME: true
-          MOJSSO_ID: ssoid
-          MOJSSO_SECRET: ssosecret
-      - image: circleci/postgres:10-alpine # 10
-        environment:
-          POSTGRES_USER: db-user
-          POSTGRES_DB: db-name
-          POSTGRES_PASSWORD: db-password
+    - image: circleci/ruby:2.6.0-node-browsers
+      environment:
+        PGHOST: 127.0.0.1
+        PGUSER: db-user
+        PGPASSWORD: db-password
+        RAILS_ENV: test
+        DATABASE_URL: postgres://db-user:db-password@127.0.0.1:5432/db-name
+        CAPYBARA_HEADLESS_CHROME: true
+        MOJSSO_ID: ssoid
+        MOJSSO_SECRET: ssosecret
+    - image: circleci/postgres:10-alpine
+      environment:
+        POSTGRES_USER: db-user
+        POSTGRES_DB: db-name
+        POSTGRES_PASSWORD: db-password
     steps:
-      - checkout # magic
-
-      - run:
-          name: Which bundler?
-          command: bundle -v
-
-      # Restore bundle cache
-      - restore_cache:
-          keys:
-            - app-bundle-v2-{{ checksum "Gemfile.lock" }}
-
-      - run:
-          name: Bundle Install
-          command: bundle install --path vendor/bundle --jobs=4
-
-      # Only necessary if app uses webpacker or yarn in some other way
-      - restore_cache:
-          keys:
-            - rails-demo-yarn-{{ checksum "yarn.lock" }}
-            - rails-demo-yarn-
-
-      - run:
-          name: Yarn Install
-          command: yarn install --cache-folder ~/.cache/yarn
-
-      # Store yarn / webpacker cache
-      - save_cache:
-          key: rails-demo-yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-
-      # Store bundle cache
-      - save_cache:
-          key: app-bundle-v2-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-
-      - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
-
-      - run:
-          name: Database setup
-          command: bin/rails db:schema:load --trace
-
-      # Create test results directory
-      - run:
-          name: Make test results directory
-          command: mkdir test_results
-
-      # Run rspec storing the test results in junit format
-      - run:
-          name: Run rspec
-          command: bundle exec rspec --format documentation --format RspecJunitFormatter -o test_results/rspec.xml --exclude-pattern "spec/features/printing_*.rb"
-
-      - run:
-          name: Run rubocop
-          command: bundle exec rubocop
-
-      - run:
-          name: Run scss-lint
-          command: bundle exec scss-lint app
-
-      - run:
-          name: Run slim-lint
-          command: bundle exec slim-lint app
-
-      # Save test results for timing analysis
-      - store_test_results:
-          path: test_results
+    - checkout
+    - run:
+        name: Which bundler?
+        command: bundle -v
+    - restore_cache:
+        keys:
+        - app-bundle-v2-{{ checksum "Gemfile.lock" }}
+    - run:
+        name: Bundle Install
+        command: bundle install --path vendor/bundle --jobs=4
+    - restore_cache:
+        keys:
+        - rails-demo-yarn-{{ checksum "yarn.lock" }}
+        - rails-demo-yarn-
+    - run:
+        name: Yarn Install
+        command: yarn install --cache-folder ~/.cache/yarn
+    - save_cache:
+        key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+        paths:
+        - ~/.cache/yarn
+    - save_cache:
+        key: app-bundle-v2-{{ checksum "Gemfile.lock" }}
+        paths:
+        - vendor/bundle
+    - run:
+        name: Wait for DB
+        command: dockerize -wait tcp://localhost:5432 -timeout 1m
+    - run:
+        name: Database setup
+        command: bin/rails db:schema:load --trace
+    - run:
+        name: Make test results directory
+        command: mkdir test_results
+    - run:
+        name: Run rspec
+        command: bundle exec rspec --format documentation --format RspecJunitFormatter -o test_results/rspec.xml --exclude-pattern "spec/features/printing_*.rb"
+    - run:
+        name: Run rubocop
+        command: bundle exec rubocop
+    - run:
+        name: Run scss-lint
+        command: bundle exec scss-lint app
+    - run:
+        name: Run slim-lint
+        command: bundle exec slim-lint app
+    - store_test_results:
+        path: test_results
