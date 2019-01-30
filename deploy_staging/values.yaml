@@ -1,0 +1,175 @@
+# Default values for helm_deploy.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: stable
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+env:
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: aws_access_key_id
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: aws_secret_access_key
+  - name: GECKOBOARD_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: geckoboard_api_key
+  - name: GECKOBOARD_DATASET_PREFIX
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: geckoboard_dataset_prefix
+  - name: SECRET_KEY_BASE
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: secret_key_base
+  - name: #
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: #
+  - name: SMTP_DOMAIN
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: smtp_domain
+  - name: SMTP_HOSTNAME
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: smtp_hostname
+  - name: SMTP_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: smtp_password
+  - name: SMTP_PORT
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: smtp_port
+  - name: SMTP_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: smtp_username
+  - name: SERVICE_URL
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: service_url
+  - name: OFFENDERS_API_CLIENT_ID
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: offenders_api_client_id
+  - name: OFFENDERS_API_CLIENT_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: offenders_api_client_secret
+  - name: MOJSSO_URL
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: mojsso_url
+  - name: MOJSSO_ID
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: mojsso_id
+  - name: MOJSSO_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: mojsso_secret
+  - name: NOMIS_API_HOST
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: nomis_api_host
+  - name: NOMIS_API_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: nomis_api_token
+  - name: NOMIS_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: nomis_api_key
+  - name: S3_BUCKET_NAME
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: s3_bucket_name
+  - name: SENTRY_DSN
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: sentry_dsn
+  - name: ZENDESK_URL
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: zendesk_url
+  - name: ZENDESK_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: zendesk_username
+  - name: ZENDESK_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: mps-staging-env
+        key: zendesk_token
