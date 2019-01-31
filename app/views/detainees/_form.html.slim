@@ -32,7 +32,7 @@ header
       = f.text_field :language
       = f.text_area :interpreter_required_details
   - if escort.from_prison?
-    = f.radio_toggle_with_textarea :peep, label: 'bold'
+    = f.radio_toggle_with_textarea :peep
     = f.text_field :security_category, label: 'bold'
   = f.text_area :diet, label: 'bold'
 
