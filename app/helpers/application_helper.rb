@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def current_phase
-    Rails.application.config.phase
-  end
-
   def feedback_url
     Rails.application.config.feedback_url
   end
