@@ -19,8 +19,6 @@ module MovingPeopleSafely
     config.phase = 'alpha'
     config.product_type = 'service'
     config.feedback_url = 'https://www.surveymonkey.co.uk/r/eperfeedback'
-    config.assets.paths << Rails.root.join('node_modules')
-    config.assets.paths << Rails.root.join('app', 'assets', 'flash')
     config.time_zone = 'London'
 
     require "#{config.root}/app/form_builders/govuk_form_builder"
