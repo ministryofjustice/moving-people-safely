@@ -1,10 +1,10 @@
-b = multiple.description.capitalize
+b = multiple.description&.capitalize
 = ' | '
-b = multiple.administration.capitalize
+b = multiple.administration&.capitalize
 = ' | '
-b = multiple.dosage.capitalize
+b = multiple.dosage&.capitalize
 = ' | '
-b = multiple.when_given.capitalize
+b = multiple.when_given&.capitalize
 = ' | '
 - carrier = multiple.carrier == 'escort' ? t('.escort') : t('.detainee')
 b = t('.carried_by', carrier: carrier)
