@@ -4,7 +4,7 @@ class Risk < ApplicationRecord
   include Questionable
   include Reviewable
 
-  RELEVANT_ANSWERS = %w[yes open post_closure closed high level2 level3 level4].freeze
+  RELEVANT_ANSWERS = %w[yes open post_closure closed high level1 level2 level3 level4].freeze
 
   belongs_to :escort
   has_many :must_not_return_details, dependent: :destroy

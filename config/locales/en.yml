@@ -1012,7 +1012,7 @@ en:
         risk_to_self:
           acct_status: ACCT status
           self_harm: Suicide or self harm risk
-          observation_level: Police heightened watch
+          observation_level: Police observation level
         security:
           controlled_unlock: Multiple officer unlock/escort
           previous_escape_attempts: Escape risk
