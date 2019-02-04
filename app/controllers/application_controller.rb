@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :check_browser!
   before_action :authenticate_user!
 
   private
@@ -17,6 +18,10 @@ class ApplicationController < ActionController::Base
     return if can? :update, escort
 
     redirect_back(fallback_location: root_path, alert: t('alerts.escort.edit.unauthorized'))
+  end
+
+  def check_browser!
+    redirect_to browser_error_path if request.env['HTTP_USER_AGENT'] =~ /MSIE 8/
   end
 
   def authenticate_user!

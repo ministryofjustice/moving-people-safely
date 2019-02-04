@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class HomepageController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[help]
+  skip_before_action :check_browser!, only: %i[browser_error]
+  skip_before_action :authenticate_user!, only: %i[browser_error help]
 
   before_action :redirect_to_court_view, only: :show, if: :court_user?
   before_action :redirect_to_select_police_station, only: :show, if: :police_user_without_station?
