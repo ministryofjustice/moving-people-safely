@@ -30,8 +30,9 @@ module Escorts
       attr_reader :escort, :logger
 
       def generate_and_store
-        escort.document = issued_per_document
-        escort.save
+        escort.document.attach(io: issued_per_document,
+                               filename: escort.pdf_filename,
+                               content_type: 'application/pdf')
       ensure
         delete_temp_file
       end

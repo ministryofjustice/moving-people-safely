@@ -22,8 +22,8 @@ class Escort < ApplicationRecord
 
   has_many :audits
 
-  has_attached_file :document
-  validates_attachment_content_type :document, content_type: ['application/pdf']
+  has_one_attached :document
+  validate :validate_file_type
 
   scope :for_date, ->(date) { eager_load(:move).where(moves: { date: date }) }
   scope :for_establishment, lambda { |establishment|
@@ -131,6 +131,15 @@ class Escort < ApplicationRecord
     document.options[:storage] == :filesystem ? document.path : document.expiring_url
   end
 
+  def pdf_filename
+    [
+      'per',
+      detainee_surname&.dasherize,
+      detainee_forenames&.dasherize,
+      issued_at&.to_date&.to_s(:db)
+    ].join('-') + '.pdf'
+  end
+
   def alerts
     move.alerts.merge(risk&.alerts || {})
         .merge(healthcare&.alerts || {})
@@ -172,5 +181,12 @@ class Escort < ApplicationRecord
     return 'police' if from_police?
 
     'prison'
+  end
+
+  def validate_file_type
+    return unless document.attached?
+    return if document.blob.content_type == 'application/pdf'
+
+    errors.add(:base, :must_be_pdf)
   end
 end

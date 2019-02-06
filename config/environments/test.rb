@@ -54,10 +54,5 @@ Rails.application.configure do
   require 'sso/stub_app'
   config.middleware.use SSO::StubApp
 
-  config.paperclip_defaults = {
-    storage: :filesystem,
-    path: ':rails_root/spec/test_files:url',
-    url: '/:class/:attachment/:id/:filename',
-    use_timestamp: false
-  }
+  config.active_storage.service = :test
 end

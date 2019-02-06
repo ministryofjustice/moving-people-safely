@@ -11,24 +11,15 @@ module Escorts
     def show
       error_redirect && return unless printable_escort?
       issue_escort_unless_issued!
-      data = open(escort.document_path)
+      data = escort.document.download
 
-      send_data data.read,
+      send_data data,
         type: 'application/pdf',
         disposition: 'inline',
-        filename: pdf_filename(escort)
+        filename: escort.pdf_filename
     end
 
     private
-
-    def pdf_filename(escort)
-      [
-        'per',
-        escort.detainee_surname&.dasherize,
-        escort.detainee_forenames&.dasherize,
-        escort.issued_at&.to_date&.to_s(:db)
-      ].join('-') + '.pdf'
-    end
 
     def escort
       @escort ||= Escort.find(params[:escort_id])
