@@ -25,10 +25,10 @@ RSpec.describe EscortIssuer do
 
       it 'generates a PDF and saves it' do
         expect { issuer.call }
-          .to change { escort.reload.document.present? }
+          .to change { escort.reload.document.attached? }
           .from(false).to(true)
 
-        expect(escort.document_file_name).to end_with '.pdf'
+        expect(escort.document.filename.to_s).to end_with '.pdf'
       end
 
       it 'marks the escort as issued' do
@@ -48,7 +48,7 @@ RSpec.describe EscortIssuer do
       shared_examples_for 'an unsuccessful transaction' do
         it 'does not save the generated PDF' do
           expect { issuer.call rescue nil }
-            .not_to change { escort.reload.document.present? }
+            .not_to change { escort.reload.document.attached? }
             .from(false)
         end
 

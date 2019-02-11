@@ -11,6 +11,12 @@ module Escorts
     def show
       error_redirect && return unless printable_escort?
       issue_escort_unless_issued!
+
+      # This can be removed when all escorts are migrated
+      # To manually migrate all run:
+      #   MigrateToActiveStorage.new.migrate_all(<limit>)
+      MigrateToActiveStorage.new.migrate(escort) unless escort.document.attached?
+
       data = escort.document.download
 
       send_data data,
