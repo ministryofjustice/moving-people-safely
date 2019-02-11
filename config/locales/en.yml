@@ -230,6 +230,16 @@ en:
             inclusion: Answer the violent or dangerous behaviour question
           violent_or_dangerous_details:
             blank: Enter details of violent or dangerous behaviour
+    show:
+      internal_server_error:
+        title: Sorry, there is a problem with the service
+        body: Try again later.
+      not_found:
+        title: Page not found
+        body: If you typed the web address, check it is correct.
+      unprocessable_entity:
+        title: Unprocessable entity
+        body: The change you wanted was rejected.
     summary:
       title: Please fix the errors on this page to continue
   escort: &escort

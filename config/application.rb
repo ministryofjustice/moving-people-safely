@@ -17,6 +17,8 @@ module MovingPeopleSafely
     config.feedback_url = 'https://www.surveymonkey.co.uk/r/eperfeedback'
     config.time_zone = 'London'
 
+    config.exceptions_app = routes
+
     require "#{config.root}/app/form_builders/govuk_form_builder"
     ActionView::Base.default_form_builder = GovukFormBuilder
   end
