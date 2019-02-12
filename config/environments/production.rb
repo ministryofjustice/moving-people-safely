@@ -78,25 +78,5 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  if ENV['MOCK_AWS_S3'] == 'true'
-    paperclip_configurations  = {
-      storage: :filesystem,
-      path: ':rails_root/tmp:url',
-      url: '/:class/:attachment/:id/:filename'
-    }
-  else
-    aws_secrets = Rails.application.secrets[:aws]
-    paperclip_configurations = {
-      storage: :s3,
-      s3_credentials: {
-        bucket: aws_secrets[:s3_bucket_name],
-        access_key_id: aws_secrets[:access_key_id],
-        secret_access_key: aws_secrets[:secret_access_key],
-        s3_region: 'eu-west-1'
-      },
-      path: '/:class/:attachment/:id/:filename',
-      url: ':s3_domain_url'
-    }
-  end
-  config.paperclip_defaults = paperclip_configurations
+  config.active_storage.service = ENV['MOCK_AWS_S3'] == 'true' ? :local : :amazon
 end

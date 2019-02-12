@@ -85,7 +85,7 @@ FactoryBot.define do
     trait :issued do
       completed
       issued_at { 1.day.ago.utc }
-      document { File.new("#{Rails.root}/spec/support/fixtures/pdf-per-document.pdf") }
+      document { fixture_file_upload("#{Rails.root}/spec/support/fixtures/pdf-per-document.pdf", 'application/pdf') }
     end
 
     trait :cancelled do

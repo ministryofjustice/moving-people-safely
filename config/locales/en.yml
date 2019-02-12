@@ -2,6 +2,10 @@ en:
   activemodel:
     errors:
       models:
+        escort:
+          attributes:
+            base:
+              must_be_pdf: "The attached document must be of type 'application/pdf'"
         move:
           attributes:
             not_for_release:

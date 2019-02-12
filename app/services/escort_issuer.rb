@@ -27,7 +27,9 @@ class EscortIssuer
 
   def issue_per
     escort.transaction do
-      escort.document = issued_per_document
+      escort.document.attach(io: issued_per_document,
+                             filename: escort.pdf_filename,
+                             content_type: 'application/pdf')
       escort.issue!
     end
   ensure
@@ -42,6 +44,7 @@ class EscortIssuer
     pdf = PdfGenerator.new(escort).call
     file = Tempfile.new(['per-', '.pdf'])
     file.write(pdf.force_encoding('utf-8'))
+    file.rewind
     file
   end
 
