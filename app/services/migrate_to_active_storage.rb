@@ -9,21 +9,22 @@ class MigrateToActiveStorage
       region: YAML.load_file(Rails.root.join('config/storage.yml'))['amazon']['region']
     )
     @s3_bucket = @s3.bucket(ENV['S3_BUCKET_NAME'])
+    set_counts(nil, nil)
   end
 
   def migrate_all(limit = DEFAULT_LIMIT)
-    total = escorts.limit(limit).count
-
-    escorts.limit(limit).each_with_index do |escort, i|
-      Rails.logger.info "Migrating file, escort #{i + 1} of #{total}, ID: #{escort.id}:"
+    set_counts(0, limit)
+    escorts.each do |escort|
       migrate(escort)
+      break if @counts[:processed] == @counts[:limit]
     end
+    set_counts(nil, nil)
   end
 
   def migrate(escort)
     return if already_active_storage?(escort)
 
-    paperclip_file = paperclip_file(paperclip_obj(escort))
+    paperclip_file = paperclip_file(paperclip_obj(escort), escort.id)
     return if paperclip_file.nil?
 
     escort.document.attach(
@@ -32,16 +33,19 @@ class MigrateToActiveStorage
       content_type: 'application/pdf'
     )
 
-    Rails.logger.info 'ActiveStorage file attached and created in S3'
+    @counts[:processed] += 1 unless @counts[:processed].nil?
+    log(:info, 'ActiveStorage file attached and created in S3', escort.id, counts: !@counts[:processed].nil?)
   end
 
   def purge_paperclip_files(limit = DEFAULT_LIMIT)
-    total = escorts.limit(limit).count
+    set_counts(0, limit)
+    escorts = Escort.with_attached_document.limit(limit)
 
-    escorts.limit(limit).each_with_index do |escort, i|
-      Rails.logger.info "Deleting Paperclip file, escort #{i + 1} of #{total}, ID: #{escort.id}:"
+    escorts.each do |escort|
       delete_paperclip_file(escort)
+      break if @counts[:processed] == @counts[:limit]
     end
+    set_counts(nil, nil)
   end
 
   private
@@ -49,18 +53,17 @@ class MigrateToActiveStorage
   def already_active_storage?(escort)
     return false unless escort.document.attached?
 
-    Rails.logger.warn 'Already has ActiveStorage file in S3'
+    log(:warn, 'Already has ActiveStorage file in S3', escort.id)
     true
   end
 
   def delete_paperclip_file(escort)
-    return if no_active_storage?(escort)
-
     obj = paperclip_obj(escort)
-    return unless paperclip_file_exists?(obj)
+    return unless paperclip_file_exists?(obj, escort.id)
 
     obj.delete
-    Rails.logger.info 'Paperclip file deleted in S3'
+    @counts[:processed] += 1
+    log :info, 'Paperclip file deleted in S3', escort.id, counts: true
   end
 
   def escorts
@@ -68,21 +71,27 @@ class MigrateToActiveStorage
           .where('escorts.document_file_name IS NOT NULL')
   end
 
-  def no_active_storage?(escort)
-    return false if escort.document.attached?
-
-    Rails.logger.warn 'Does not have ActiveStorage file in S3'
-    true
+  def log(level, message, id, counts: false)
+    x_of_y = counts ? message_counts : ''
+    Rails.logger.send(level, "Escort: #{id}: #{x_of_y}#{message}")
   end
 
-  def paperclip_file(obj)
-    paperclip_file_exists?(obj) ? obj.get : nil
+  def message_counts
+    "Processed #{@counts[:processed]} of #{@counts[:limit]}: "
   end
 
-  def paperclip_file_exists?(obj)
+  def set_counts(processed, limit)
+    @counts = { processed: processed, limit: limit }
+  end
+
+  def paperclip_file(obj, id)
+    paperclip_file_exists?(obj, id) ? obj.get : nil
+  end
+
+  def paperclip_file_exists?(obj, id)
     return true if obj.exists?
 
-    Rails.logger.warn 'Cannot find Paperclip file in S3'
+    log :warn, 'Cannot find Paperclip file in S3', id
     false
   end
 
