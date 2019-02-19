@@ -1,4 +1,37 @@
 # Changelog
+## 2019-02-19
+<!-- Merged PRs since last release:
+
+Merge time            Author                PR  Branch
+----------------------------------------------------------------------
+2019-02-12 16:23:08   Andy White            752 migrate-to-active-storage
+2019-02-11 15:27:15   Cesidio Di Landa      749 better-error-pages
+-->
+### Changed
+- Improved display of error pages.
+- Improved the way PDF printed PERs are stored in the system.
+- Update of code libraries to improve performance and security.
+
+## 2019-02-08
+<!-- Merged PRs since last release:
+
+Merge time            Author                PR  Branch
+----------------------------------------------------------------------
+2019-02-05 11:46:25   Cesidio Di Landa      748 fix-medication-errors
+2019-02-04 14:20:53   Andy White            745 better-obs-level-display
+2019-01-31 15:01:50   Cesidio Di Landa      744 minor-cleanup
+2019-01-30 15:55:51   Cesidio Di Landa      742 remove-pnc-hint
+2019-01-30 13:49:54   Cesidio Di Landa      741 update-circleci
+-->
+### Fixed
+- Fixed a bug where some medications were displayed incorrectly.
+
+### Changed
+- Improved display of police observation level.
+- Improved hints for input of PNC number.
+- Improvements to the way automated tests are run.
+- Update of code libraries to improve performance and security.
+
 ## 2019-01-28
 <!-- Merged PRs since last release:
 
