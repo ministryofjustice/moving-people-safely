@@ -6,24 +6,29 @@ class BulkEscortGenerator
   MAX_OFFENCES = 7
   STATES = %i[editing cancelled issued reused].freeze
 
-  def initialize
-    @for_reuse = nil
-  end
+  attr_reader :per_establishment, :state, :establishment, :destination
 
-  def call(per_establishment: PER_ESTABLISHMENT, state: STATES.first, establishment:)
+  def initialize(per_establishment: PER_ESTABLISHMENT, state: STATES.first, establishment: nil, destination: nil)
     raise "Unknown state #{state}, must be one of #{STATES.join(', ')}" unless STATES.include?(state)
 
+    @per_establishment = per_establishment
+    @state = state
+    @establishment = establishment
+    @destination = destination
+  end
+
+  def call
     if establishment
       if state == :reused
-        find_for_resuse(establishment.type)
-        reuse(establishment, per_establishment)
+        find_for_reuse(establishment.type)
+        reuse(establishment)
       else
-        generate(establishment, per_establishment, state)
+        generate(establishment)
       end
     else
       [Prison, PoliceCustody].each do |establishment_type|
-        find_for_resuse(establishment_type.to_s) if state == :reused
-        generate_for(establishment_type, per_establishment, state)
+        find_for_reuse(establishment_type.to_s) if state == :reused
+        generate_for(establishment_type)
       end
     end
   end
@@ -34,10 +39,10 @@ class BulkEscortGenerator
 
   private
 
-  def add_offences(escort, max = MAX_OFFENCES)
-    (1..max).to_a.sample.times do
+  def add_offences(escort)
+    (1..MAX_OFFENCES).to_a.sample.times do
       escort.offences.create(
-        offence: "#{Faker::Verb.past_participle.capitalize} #{Faker::Superhero.name} with #{Faker::DcComics.villain}",
+        offence: random_offence,
         case_reference: Faker::Lorem.characters(12).upcase,
         detainee_id: escort.detainee.id
       )
@@ -67,7 +72,7 @@ class BulkEscortGenerator
   end
   # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
-  def find_for_resuse(establishment_type)
+  def find_for_reuse(establishment_type)
     if establishment_type == 'Prison'
       @for_reuse = Escort.uncancelled.from_prison
     elsif establishment_type == 'PoliceCustody'
@@ -78,8 +83,8 @@ class BulkEscortGenerator
   end
 
   # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-  def generate(establishment, count, state)
-    (1..count).each do |i|
+  def generate(establishment)
+    (1..per_establishment).each do |i|
       search = {
         prison_number: establishment.type == 'Prison' ? random_prison_number : nil,
         pnc_number: establishment.type == 'PoliceCustody' ? random_pnc_number : nil
@@ -98,15 +103,15 @@ class BulkEscortGenerator
       escort = issue(escort, establishment) if state == :issued
       escort.cancel!(user, Faker::Lorem.sentence(15)) if state == :cancelled
 
-      puts "Escort #{i}/#{count} (#{state}) created for #{establishment.name}: " \
+      puts "Escort #{i}/#{per_establishment} (#{state}) created for #{establishment.name}: " \
            "#{escort.id} #{escort.detainee.forenames} #{escort.detainee.surname}"
     end
   end
   # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
-  def generate_for(establishment_type, count, state)
+  def generate_for(establishment_type)
     establishment_type.all.each do |establishment|
-      state == :reused ? reuse(establishment, count) : generate(establishment, count, state)
+      state == :reused ? reuse(establishment) : generate(establishment)
     end
   end
 
@@ -131,14 +136,18 @@ class BulkEscortGenerator
     escort.reload
   end
 
-  def move_attributes(establishment_id)
+  def move_attributes(from_establishment_id)
     {
-      from_establishment_id: establishment_id,
-      to: [Faker::Space.nebula, Faker::Nation.capital_city, Faker::Restaurant.name, Faker::Space.agency].sample,
-      to_type: 'other',
+      from_establishment_id: from_establishment_id,
       date: Date.current,
       not_for_release: 'no'
-    }
+    }.tap do |atts|
+      if destination
+        atts.merge!(to: destination.name, to_type: destination.type.underscore)
+      else
+        atts.merge!(to: random_destination, to_type: 'other')
+      end
+    end
   end
 
   def random_binary(hash, attribute, details = nil)
@@ -149,6 +158,35 @@ class BulkEscortGenerator
 
     hash[attribute] = 'yes'
     hash["#{attribute}_details".to_sym] = details || Faker::Lorem.sentence(12)
+  end
+
+  def random_character
+    [
+      [Faker::Military.army_rank, 'Professor', 'Reverand', 'Inspector', nil, nil, nil, nil].sample,
+      [Faker::Superhero.name, Faker::Artist.name, Faker::DcComics.hero,
+       Faker::GreekPhilosophers.name, Faker::Science.scientist].sample,
+      ['OBE', '(Miss)', nil, nil, nil].sample
+    ].join(' ')
+  end
+
+  def random_destination
+    [
+      Faker::Space.nebula,
+      Faker::Nation.capital_city,
+      Faker::Restaurant.name,
+      Faker::Space.agency,
+      Faker::Bank.name,
+      Faker::University.name
+    ].sample
+  end
+
+  def random_offence
+    [
+      Faker::Verb.past_participle.capitalize,
+      random_character,
+      ['with a', 'by means of a', 'using a'].sample,
+      [Faker::Food.dish, Faker::Beer.name].sample
+    ].join(' ')
   end
 
   def random_pnc_number
@@ -165,17 +203,18 @@ class BulkEscortGenerator
     ['Z', b[0], b[1], b[2], b[3], 'ZZ'].join
   end
 
-  def reuse(establishment, count)
-    @for_reuse.limit(count).all.each_with_index do |existant_escort, i|
+  def reuse(establishment)
+    @for_reuse.limit(per_establishment).all.each_with_index do |existant_escort, i|
       escort = EscortCreator.call(
         existant_escort.attributes.with_indifferent_access,
         establishment
       )
 
-      # Human fills in move
+      # Human fills in move & offences
       escort.move.update(move_attributes(establishment.id))
+      add_offences(escort)
 
-      puts "Escort #{i + 1}/#{count} reused for #{establishment.name}: " \
+      puts "Escort #{i + 1}/#{per_establishment} reused for #{establishment.name}: " \
            "#{escort.id} #{escort.detainee.forenames} #{escort.detainee.surname}"
     end
   end
