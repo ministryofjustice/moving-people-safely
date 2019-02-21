@@ -4,17 +4,23 @@
 class BulkEscortGenerator
   PER_ESTABLISHMENT = 2
   MAX_OFFENCES = 7
+  START_DATE = Date.today
+  PERIOD = 1
   STATES = %i[editing cancelled issued reused].freeze
 
-  attr_reader :per_establishment, :state, :establishment, :destination
+  attr_reader :per_establishment, :state, :establishment, :destination, :start_date, :period
 
-  def initialize(per_establishment: PER_ESTABLISHMENT, state: STATES.first, establishment: nil, destination: nil)
+  def initialize(per_establishment: PER_ESTABLISHMENT, state: STATES.first,
+    establishment: nil, destination: nil, start_date: START_DATE, period: PERIOD)
     raise "Unknown state #{state}, must be one of #{STATES.join(', ')}" unless STATES.include?(state)
 
     @per_establishment = per_establishment
     @state = state
     @establishment = establishment
     @destination = destination
+    @start_date = start_date
+    @period = period
+    @log = []
   end
 
   def call
@@ -31,6 +37,8 @@ class BulkEscortGenerator
         generate_for(establishment_type)
       end
     end
+
+    puts "\nSUMMARY:\n#{@log.join("\n")}"
   end
 
   def purge
@@ -79,7 +87,7 @@ class BulkEscortGenerator
       @for_reuse = Escort.uncancelled.from_police
     end
 
-    puts "#{@for_reuse.count} #{establishment_type} escorts found for re-use."
+    @log << "#{@for_reuse.count} #{establishment_type} escorts found for re-use."
   end
 
   # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
@@ -103,7 +111,7 @@ class BulkEscortGenerator
       escort = issue(escort, establishment) if state == :issued
       escort.cancel!(user, Faker::Lorem.sentence(15)) if state == :cancelled
 
-      puts "Escort #{i}/#{per_establishment} (#{state}) created for #{establishment.name}: " \
+      @log << "Escort #{i}/#{per_establishment} (#{state}) created for #{establishment.name}: " \
            "#{escort.id} #{escort.detainee.forenames} #{escort.detainee.surname}"
     end
   end
@@ -139,7 +147,7 @@ class BulkEscortGenerator
   def move_attributes(from_establishment_id)
     {
       from_establishment_id: from_establishment_id,
-      date: Date.current,
+      date: START_DATE + ((1..period).to_a.sample - 1),
       not_for_release: 'no'
     }.tap do |atts|
       if destination
@@ -165,8 +173,8 @@ class BulkEscortGenerator
       [Faker::Military.army_rank, 'Professor', 'Reverand', 'Inspector', nil, nil, nil, nil].sample,
       [Faker::Superhero.name, Faker::Artist.name, Faker::DcComics.hero,
        Faker::GreekPhilosophers.name, Faker::Science.scientist].sample,
-      ['OBE', '(Miss)', nil, nil, nil].sample
-    ].join(' ')
+      ['OBE', '(Miss)', "(#{Faker::Food.vegetables} expert)", 'BSc', nil, nil, nil].sample
+    ].compact.join(' ')
   end
 
   def random_destination
@@ -214,7 +222,7 @@ class BulkEscortGenerator
       escort.move.update(move_attributes(establishment.id))
       add_offences(escort)
 
-      puts "Escort #{i + 1}/#{per_establishment} reused for #{establishment.name}: " \
+      @log << "Escort #{i + 1}/#{per_establishment} reused for #{establishment.name}: " \
            "#{escort.id} #{escort.detainee.forenames} #{escort.detainee.surname}"
     end
   end
