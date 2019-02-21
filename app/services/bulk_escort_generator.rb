@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metric/ClassLength
+# rubocop:disable Metrics/ClassLength
 class BulkEscortGenerator
   PER_ESTABLISHMENT = 2
   MAX_OFFENCES = 7
@@ -10,6 +10,7 @@ class BulkEscortGenerator
 
   attr_reader :per_establishment, :state, :establishment, :destination, :start_date, :period
 
+  # rubocop:disable Metrics/ParameterLists
   def initialize(per_establishment: PER_ESTABLISHMENT, state: STATES.first,
     establishment: nil, destination: nil, start_date: START_DATE, period: PERIOD)
     raise "Unknown state #{state}, must be one of #{STATES.join(', ')}" unless STATES.include?(state)
@@ -22,6 +23,7 @@ class BulkEscortGenerator
     @period = period
     @log = []
   end
+  # rubocop:enable Metrics/ParameterLists
 
   def call
     if establishment
@@ -211,6 +213,7 @@ class BulkEscortGenerator
     ['Z', b[0], b[1], b[2], b[3], 'ZZ'].join
   end
 
+  # rubocop:disable Metrics/AbcSize
   def reuse(establishment)
     @for_reuse.limit(per_establishment).all.each_with_index do |existant_escort, i|
       escort = EscortCreator.call(
@@ -226,6 +229,7 @@ class BulkEscortGenerator
            "#{escort.id} #{escort.detainee.forenames} #{escort.detainee.surname}"
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def risk_attributes
     { acct_status: 'open', observation_level: 'level1', csra: 'standard',
@@ -244,4 +248,4 @@ class BulkEscortGenerator
     @user ||= User.first
   end
 end
-# rubocop:enable Metric/ClassLength
+# rubocop:enable Metrics/ClassLength
