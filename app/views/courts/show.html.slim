@@ -41,5 +41,6 @@
               span.govkuk-error-message = t('.cancelled')
               |  by: #{escort.canceller.full_name}, at #{escort.cancelled_at.to_s(:timestamped)}. #{escort.cancelling_reason}.
             - else
-              - escort.active_alerts.each do |alert|
-                li.flag-active = t("escort.active_alerts.#{alert}")
+              ul.flags
+                - escort.active_alerts.each do |alert|
+                  li.flag-active = t("escort.active_alerts.#{alert}")
