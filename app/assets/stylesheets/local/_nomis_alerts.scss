@@ -16,12 +16,6 @@ ul.flags {
   box-sizing: border-box;
   display: inline-block;
   white-space: nowrap;
-
-  .court-dashboard & {
-    @include govuk-font(16);
-    padding: 1px 3px;
-    margin-right: 5px;
-  }
 }
 
 .flag-active {
