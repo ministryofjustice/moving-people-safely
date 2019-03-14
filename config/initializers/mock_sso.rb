@@ -32,7 +32,9 @@ if ENV['MOCK_SSO'] == 'true'
       },
       'credentials': {
         'token': 'mock-token',
-        'secret': 'mock-secret'
+        'secret': 'mock-secret',
+        'expires': false,
+        'expires_at': nil
       }
     }
   )

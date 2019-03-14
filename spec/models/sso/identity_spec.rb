@@ -98,7 +98,9 @@ RSpec.describe SSO::Identity, type: :model do
         'user_id' => user.id,
         'profile_url' => 'http://localhost:5000/profile',
         'logout_url' => 'http://localhost:5000/users/sign_out',
-        'permissions' => [{"organisation"=>"digital.noms.moj", "roles"=>[]}]
+        'permissions' => [{"organisation"=>"digital.noms.moj", "roles"=>[]}],
+        'token_expires' => true,
+        'token_expires_at' => 123
       }
     }
 
@@ -165,7 +167,9 @@ RSpec.describe SSO::Identity, type: :model do
       {
         profile_url: 'http://localhost:5000/profile',
         logout_url: 'http://localhost:5000/users/sign_out',
-        permissions: [{"organisation"=>"digital.noms.moj", "roles"=>[]}]
+        permissions: [{"organisation"=>"digital.noms.moj", "roles"=>[]}],
+        token_expires_at: 345,
+        token_expires: true
       }
     }
 
@@ -190,7 +194,9 @@ RSpec.describe SSO::Identity, type: :model do
           'user_id' => 4,
           'profile_url' => 'http://localhost:5000/profile',
           'logout_url' => 'http://localhost:5000/users/sign_out',
-          'permissions' => [{"organisation"=>"digital.noms.moj", "roles"=>[]}]
+          'permissions' => [{"organisation"=>"digital.noms.moj", "roles"=>[]}],
+          'token_expires_at' => 345,
+          'token_expires' => true
         }
         expect(subject.to_h).to eq(expected_hash)
       end

@@ -11,7 +11,7 @@ For local setup of SSO integration follow the steps described below.
   bundle exec rails s -p 5000
   ```
 
-* Ensure _Moving People Safely_ as an **aplication** exists in the MOJ SSO database (the **client identifier** and **secret** will be needed later on)
+* Ensure _Moving People Safely_ as an **application** exists in the MOJ SSO database (the **client identifier** and **secret** will be needed later on)
 * Ensure there's a _Moving People Safely_ **team** (under MOJ > NOMS > Digital) that has access to the _Moving People Safely_ **application**
 * Ensure there's at least one **user** that belong to the _Moving People Safely_ **team** so it can be used to authenticate in the _Moving People Safely_ **application**
 
@@ -36,4 +36,3 @@ For local setup of SSO integration follow the steps described below.
 * Click the link 'Start now' (you should be redirected to the MOJ SSO login page)
 * Authenticate using the **user** that belongs to the _Moving People Safely_ **team** in the _MOJ SSO_ **application**
 * You should be successfully logged in
-
