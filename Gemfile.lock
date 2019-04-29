@@ -207,7 +207,7 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     parallel (1.14.0)
-    parser (2.6.0.0)
+    parser (2.6.3.0)
       ast (~> 2.4.0)
     pdftotext (0.2.1)
       cliver (~> 0.3)
