@@ -24,6 +24,8 @@ Layout/AlignParameters:
 
 Metrics/AbcSize:
   Max: 20
+  Exclude:
+    - 'app/services/moves_exporter.rb'
 
 Metrics/ClassLength:
   Exclude:

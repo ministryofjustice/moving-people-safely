@@ -35,6 +35,10 @@ hr.govuk-section-break.govuk-section-break--m.govuk-section-break--visible
 
 hr.govuk-section-break.govuk-section-break--l.govuk-section-break--visible
 
+- if current_user.admin?
+  .govuk-header__navigation
+    = link_to 'Export scheduled moves in CSV', scheduled_moves_path
+
 .search-results
   - unless @dashboard.escorts.empty?
     = render 'escorts', escorts: @dashboard.escorts

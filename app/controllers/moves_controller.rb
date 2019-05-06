@@ -11,6 +11,7 @@ class MovesController < ApplicationController
   def update
     if form.validate(params[:move])
       form.save
+      ScheduledMovePopulator.new(escort).call if escort.from_prison?
       redirect_to escort_path(escort)
     else
       render :edit

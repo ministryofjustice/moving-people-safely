@@ -61,6 +61,7 @@ RSpec.feature 'filling in a PER from a prison', type: :feature do
       stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}", status: 404)
       stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/image", status: 404)
       stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/charges", status: 404)
+      stub_nomis_api_request(:get, "/offenders/#{detainee.prison_number}/alerts", status: 404)
     end
 
     scenario 'adding a new escort and filling it in' do
