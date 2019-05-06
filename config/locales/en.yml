@@ -11,6 +11,9 @@ en:
             not_for_release:
               inclusion: question must be answered
   alerts:
+    admin:
+      access:
+        unauthorized: "Only Admins can access this feature."
     detainee_already_exists: "Detainee already exists. You've been redirected to the next relevant form"
     detainee:
       access:

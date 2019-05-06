@@ -11,6 +11,7 @@ gem 'connection_pool'
 gem 'deep_cloneable'
 gem 'excon'
 gem 'faraday'
+gem 'faraday_middleware'
 gem 'geckoboard-ruby'
 gem 'logstasher'
 gem 'omniauth-oauth2', '~> 1.3.1' # do not remove version

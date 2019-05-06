@@ -1,7 +1,26 @@
 module OauthHelper
-  def sign_in(_user, options = { sso: { info: { permissions: [{'organisation' => 'digital.noms.moj'}]}}})
-    configure_mock(options.fetch(:sso, {}))
+  def sign_in(user, options = { sso: { info: { permissions: [{'organisation' => 'digital.noms.moj'}]}}})
+    sso_options = {
+      info: { email: user.email }
+    }.deep_merge(options.fetch(:sso, {}))
+    
+    configure_mock(sso_options)
     get "/auth/mojsso/callback"
+  end
+
+  def sign_in_admin(user)
+    sign_in(user)
+  end
+
+  def sign_in_prison(user)
+    sign_in(
+      user,
+      sso: { info: {
+        permissions: [
+          { 'organisation' => User::PRISON_ORGANISATION }
+        ]
+      }}
+    )
   end
 
   def configure_mock(sso_config = {})

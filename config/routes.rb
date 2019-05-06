@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   get :ping, to: 'heartbeat#ping', format: :json
   get :healthcheck, to: 'heartbeat#healthcheck',  as: 'healthcheck', format: :json
 
+  namespace :admin do
+    resource :movements, only: %i[new show]
+  end
+
   resource :court, only: %i[show] do
     get :select
     post :change
