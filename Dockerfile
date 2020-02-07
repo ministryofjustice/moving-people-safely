@@ -1,13 +1,37 @@
-FROM ministryofjustice/ruby:2.6.0-webapp-onbuild
+FROM ruby:2.6.3
 
-ENV UNICORN_PORT 3000
-EXPOSE $UNICORN_PORT
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
-# Install fonts required for PDF generation and clear font cache
+RUN apt-get update && apt-get install -y nodejs yarn && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && rm -fr *Release* *Sources* *Packages* && \
+    truncate -s 0 /var/log/*log
+
+RUN addgroup --gid 1000 appgroup && \
+    adduser appuser --uid 1000 --home /usr/src/app --ingroup appgroup --shell /bin/bash --disabled-password --gecos ""
+
+WORKDIR /usr/src/app
+
+COPY Gemfile /usr/src/app/
+COPY Gemfile.lock /usr/src/app/
+
+RUN bundle config --global without test:development
+RUN bundle config --global disable_shared_gems 1
+RUN bundle install
+
+COPY . /usr/src/app
+RUN mkdir -p /usr/src/app/public/assets
+RUN chown -R appuser:appgroup /usr/src/app
+
+## Install fonts required for PDF generation and clear font cache
 RUN cp -r ./app/assets/fonts/liberation_sans /usr/share/fonts/truetype/
-RUN ./docker/bin/setup.sh
 RUN fc-cache -f -v
 
+USER 1000
+
 RUN RAILS_ENV=production SKIP_OPTIONAL_INITIALIZERS=true SECRET_KEY_BASE=foo exec rake assets:precompile --trace
+
+EXPOSE 3000
 
 ENTRYPOINT ["./docker/bin/run.sh"]
