@@ -194,7 +194,7 @@ workflows:
             branches:
               only:
                 - master
-                - migrate_to_cp
+                - cloudplatform_migration
       - deploy_dev:
           requires:
             - build_docker
