@@ -30,12 +30,12 @@ gem 'wkhtmltopdf-binary', '0.12.3.1' # changing this changes the size of the tex
 gem 'zendesk_api'
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pdftotext'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'dotenv-rails'
 end
 
 group :development do

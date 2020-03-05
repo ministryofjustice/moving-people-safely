@@ -13,7 +13,7 @@ module Nomis
       token
     end
 
-  private
+    private
 
     def set_new_token
       @token = fetch_token
