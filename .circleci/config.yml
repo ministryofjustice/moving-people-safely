@@ -198,6 +198,10 @@ workflows:
           requires:
             - build_docker
             - build
+          filters:
+            branches:
+              only:
+                - master
       - request-preprod-approval:
           type: approval
           requires:
