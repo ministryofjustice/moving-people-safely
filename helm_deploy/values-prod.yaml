@@ -12,8 +12,8 @@ image:
 ingress:
   enabled: true
   enable_whitelist: true
-  host: moving-people-safely-prod.prison.service.justice.gov.uk
-  cert_secret: moving-people-safely-cert
+  host: personescortrecord.service.justice.gov.uk
+  cert_secret: mps-cert
   path: /
 
 # Whitelist moved to AWS secretsmanager.
