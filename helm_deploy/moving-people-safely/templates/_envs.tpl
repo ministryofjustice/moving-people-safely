@@ -142,23 +142,29 @@ env:
         name: {{ template "app.name" . }}
         key: MOJSSO_URL
 
+  - name: OAUTH_ENDPOINT_URL
+    valueFrom:
+      secretKeyRef:
+        name: {{ template "app.name" . }}
+        key: OAUTH_ENDPOINT_URL
+
   - name: NOMIS_API_HOST
     valueFrom:
       secretKeyRef:
         name: {{ template "app.name" . }}
         key: NOMIS_API_HOST
 
-  - name: NOMIS_API_TOKEN
+  - name: NOMIS_API_CLIENT_ID
     valueFrom:
       secretKeyRef:
         name: {{ template "app.name" . }}
-        key: NOMIS_API_TOKEN
+        key: NOMIS_API_CLIENT_ID
 
-  - name: NOMIS_API_KEY
+  - name: NOMIS_API_CLIENT_SECRET
     valueFrom:
       secretKeyRef:
         name: {{ template "app.name" . }}
-        key: NOMIS_API_KEY
+        key: NOMIS_API_CLIENT_SECRET
 
   - name: GECKOBOARD_API_KEY
     valueFrom:
