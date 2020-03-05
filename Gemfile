@@ -35,6 +35,7 @@ group :development, :test do
   gem 'pdftotext'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'dotenv-rails'
 end
 
 group :development do

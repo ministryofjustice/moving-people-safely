@@ -2,6 +2,6 @@
 
 module Nomis
   class Configuration
-    attr_accessor :api_host, :api_token, :api_key, :pool_size
+    attr_accessor :api_host, :client_id, :client_secret, :pool_size
   end
 end

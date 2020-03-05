@@ -15,10 +15,10 @@ module Nomis
   class Client
     TIMEOUT = 2 # seconds
 
-    def initialize(host, client_token, client_key, options = {})
+    def initialize(host, client_id, client_secret, options = {})
       @host = host
-      @client_token = client_token
-      @client_key = client_key
+      @client_id = client_id
+      @client_secret = client_secret
 
       @connection = Excon.new(host, default_options.merge(options))
     end
@@ -29,7 +29,7 @@ module Nomis
 
     private
 
-    attr_reader :host, :client_token, :client_key, :connection
+    attr_reader :host, :client_id, :client_secret, :connection
 
     def default_options
       {
@@ -56,7 +56,7 @@ module Nomis
     def options_for_request(method, route, params, idempotent)
       # For cleanliness, strip initial / if supplied
       route = route.sub(%r{^\/}, '')
-      path = "/nomisapi/#{route}"
+      path = "/elite2api/api/v1/#{route}"
 
       {
         method: method,
@@ -80,18 +80,8 @@ module Nomis
     end
 
     def auth_header
-      return unless client_token && client_key
-
-      token = auth_token(client_token, client_key)
-      "Bearer #{token}"
-    end
-
-    def auth_token(client_token, client_key)
-      payload = {
-        iat: Time.now.utc.to_i,
-        token: client_token
-      }
-      JWT.encode(payload, client_key, 'ES256')
+      token = Nomis::OauthService.valid_token
+      "Bearer #{token.access_token}"
     end
 
     def http_error_body(original_body)
