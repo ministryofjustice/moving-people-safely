@@ -94,7 +94,6 @@ Sex offender                      Yes
   Sex offender                    Yes                 Mean to people. last offence: 01/01/2001
 Weapons, drugs or other items     Yes
 W1234BY: McTest Testy                                                                      Page 2 of 2
-
  Creates or uses weapons         Yes                Created and used a 3d gun
  Conceals weapons                Yes                Conceals weapons details
  Conceals drugs                  Yes                Conceals drugs details
