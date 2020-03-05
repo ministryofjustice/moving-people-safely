@@ -16,6 +16,5 @@ ingress:
   cert_secret: moving-people-safely-cert
   path: /
 
-whitelist:
-  office: "217.33.148.210/32"
-  mojvpn: "81.134.202.29/32"
+# Whitelist moved to AWS secretsmanager.
+#whitelist:
