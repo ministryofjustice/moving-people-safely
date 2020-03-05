@@ -1,24 +1,83 @@
-version: 2
+version: 2.1
+commands:
+  setup:
+    description: 'Install tools and configure kubectl'
+    steps:
+      - aws-cli/install
+      - kubernetes/install
+      - helm/install-helm-client:
+          version: v3.0.2
+      - run:
+          name: Setup kubectl
+          command: |
+            echo -n "${KUBE_ENV_CACERT}" | base64 -d > /tmp/cluster_ca.crt
+            kubectl config set-cluster "${KUBE_ENV_NAME}" \
+              --certificate-authority="/tmp/cluster_ca.crt" \
+              --server="https://api.${KUBE_ENV_NAME}"
+            kubectl config set-credentials circleci \
+              --token="${KUBE_ENV_TOKEN}"
+            kubectl config set-context circleci \
+              --cluster="${KUBE_ENV_NAME}" \
+              --user="circleci" \
+              --namespace="${KUBE_ENV_NAMESPACE}"
+            # confirm setup is ok
+            kubectl config use-context circleci
+  deploy_to_env:
+    parameters:
+      env:
+        type: string
+    steps:
+      - setup
+      - checkout:
+          path: ~/git
+      - attach_workspace:
+          at: ~/app
+      - deploy:
+          name: Deploy to << parameters.env >>
+          command: |
+            APP=moving-people-safely
+            APP_VERSION=$(cat app-version.txt)
+            sed -i "s/appVersion: \".*\"/appVersion: \"${APP_VERSION}\"/g" ~/git/helm_deploy/${APP}/Chart.yaml
+            aws secretsmanager --region ${AWS_DEFAULT_REGION} get-secret-value --secret-id ${AWS_SECRET_NAME} | jq -r .SecretString | \
+            helm upgrade ${APP} ~/git/helm_deploy/${APP}/. \
+              --install --wait --reset-values --timeout 5m --history-max 10 \
+              --namespace=${KUBE_ENV_NAMESPACE} \
+              --values ~/git/helm_deploy/values-<< parameters.env >>.yaml \
+              --values - \
+              --set image.tag="${APP_VERSION}"
+
+executors:
+  deployer:
+    docker:
+      - image: circleci/python:3
+    working_directory: ~/app
+  builder:
+    docker:
+      - image: circleci/ruby:2.6.3-stretch-node-browsers
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: db-user
+          PGPASSWORD: db-password
+          RAILS_ENV: test
+          DATABASE_URL: postgres://db-user:db-password@127.0.0.1:5432/db-name
+          CAPYBARA_HEADLESS_CHROME: true
+          MOJSSO_ID: ssoid
+          MOJSSO_SECRET: ssosecret
+      - image: circleci/postgres:10-alpine
+        environment:
+          POSTGRES_USER: db-user
+          POSTGRES_DB: db-name
+          POSTGRES_PASSWORD: db-password
+    working_directory: ~/app
+
+orbs:
+  aws-cli: circleci/aws-cli@0.1.18
+  kubernetes: circleci/kubernetes@0.10.1
+  helm: circleci/helm@0.2.3
+
 jobs:
   build:
-    parallelism: 1
-    working_directory: ~/app
-    docker:
-    - image: circleci/ruby:2.6.0-node-browsers
-      environment:
-        PGHOST: 127.0.0.1
-        PGUSER: db-user
-        PGPASSWORD: db-password
-        RAILS_ENV: test
-        DATABASE_URL: postgres://db-user:db-password@127.0.0.1:5432/db-name
-        CAPYBARA_HEADLESS_CHROME: true
-        MOJSSO_ID: ssoid
-        MOJSSO_SECRET: ssosecret
-    - image: circleci/postgres:10-alpine
-      environment:
-        POSTGRES_USER: db-user
-        POSTGRES_DB: db-name
-        POSTGRES_PASSWORD: db-password
+    executor: builder
     steps:
     - checkout
     - run:
@@ -68,3 +127,94 @@ jobs:
         command: bundle exec slim-lint app
     - store_test_results:
         path: test_results
+
+  build_docker:
+    executor: deployer
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/app
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Build container and publish to docker hub
+          command: |
+            DATE=$(date '+%Y-%m-%d')
+            SHORT_SHA1=$(echo $CIRCLE_SHA1 | cut -c1-7)
+            APP_VERSION="${DATE}_${CIRCLE_BUILD_NUM}_${SHORT_SHA1}"
+            echo $APP_VERSION | tee app-version.txt
+
+            docker build --rm=false . \
+              --build-arg APP_BUILD_TAG=$APP_VERSION \
+              --build-arg APP_GIT_COMMIT=$CIRCLE_SHA1 \
+              --build-arg APP_BUILD_DATE=$DATE \
+              --tag "mojdigitalstudio/moving-people-safely:$APP_VERSION" \
+              --label "maintainer=andrew.lee@digital.justice.gov.uk" \
+              --label "app.version=$APP_VERSION" \
+              --label "build.version=$APP_VERSION" \
+              --label "build.number=$CIRCLE_BUILD_NUM" \
+              --label "build.url=$CIRCLE_BUILD_URL" \
+              --label "build.gitref=$CIRCLE_SHA1"
+
+            # publish to docker hub as the tag
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            docker tag mojdigitalstudio/moving-people-safely:$APP_VERSION mojdigitalstudio/moving-people-safely:latest
+            docker push mojdigitalstudio/moving-people-safely:$APP_VERSION
+            docker push mojdigitalstudio/moving-people-safely:latest
+      - persist_to_workspace:
+          root: .
+          paths:
+            - app-version.txt
+  deploy_dev:
+    executor: deployer
+    steps:
+      - deploy_to_env:
+          env: 'dev'
+  deploy_preprod:
+    executor: deployer
+    steps:
+      - deploy_to_env:
+          env: 'preprod'
+  deploy_prod:
+    executor: deployer
+    steps:
+      - deploy_to_env:
+          env: 'prod'
+
+workflows:
+  version: 2
+  build-test-and-deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              ignore: /.*/
+      - build_docker:
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_dev:
+          requires:
+            - build_docker
+            - build
+          filters:
+            branches:
+              only:
+                - master
+      - request-preprod-approval:
+          type: approval
+          requires:
+            - deploy_dev
+      - deploy_preprod:
+          context: moving-people-safely-preprod
+          requires:
+            - request-preprod-approval
+      - request-prod-approval:
+          type: approval
+          requires:
+            - deploy_preprod
+      - deploy_prod:
+          context: moving-people-safely-prod
+          requires:
+            - request-prod-approval

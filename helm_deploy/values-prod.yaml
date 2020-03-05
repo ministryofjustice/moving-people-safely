@@ -1,0 +1,20 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 4
+
+image:
+  repository: docker.io/mojdigitalstudio/moving-people-safely
+  tag: latest
+  pullPolicy: IfNotPresent
+  port: 3000
+
+ingress:
+  enabled: true
+  enable_whitelist: true
+  host: personescortrecord.service.justice.gov.uk
+  cert_secret: mps-cert
+  path: /
+
+# Whitelist moved to AWS secretsmanager.
+#whitelist:
