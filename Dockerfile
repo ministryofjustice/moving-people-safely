@@ -28,6 +28,15 @@ RUN chown -R appuser:appgroup /usr/src/app
 RUN cp -r ./app/assets/fonts/liberation_sans /usr/share/fonts/truetype/
 RUN fc-cache -f -v
 
+## Set version env vars
+ARG APP_BUILD_TAG=1_0_0
+ARG APP_GIT_COMMIT=dummy
+ARG APP_BUILD_DATE=dummy
+
+RUN echo $APP_BUILD_TAG > app_build_tag.txt && \
+    echo $APP_GIT_COMMIT > app_git_commit.txt && \
+    echo $APP_BUILD_DATE > app_build_date.txt
+
 USER 1000
 
 RUN RAILS_ENV=production SKIP_OPTIONAL_INITIALIZERS=true SECRET_KEY_BASE=foo exec rake assets:precompile --trace
