@@ -18,11 +18,11 @@ module Nomis
     end
 
     private
+
     def authorisation
       'Basic ' + Base64.urlsafe_encode64(
         "#{Rails.application.secrets[:nomis_api][:client_id]}:#{Rails.application.secrets[:nomis_api][:client_secret]}"
       )
     end
-    # rubocop:enable Layout/LineLength
   end
 end
