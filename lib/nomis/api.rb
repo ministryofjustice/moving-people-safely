@@ -24,7 +24,7 @@ module Nomis
       raise DisabledError, 'Nomis API is disabled' unless self.class.enabled?
 
       @pool = ConnectionPool.new(size: configuration.pool_size, timeout: 1) do
-        Nomis::Client.new(configuration.api_host, configuration.api_token, configuration.api_key)
+        Nomis::Client.new(configuration.api_host, configuration.client_id, configuration.client_secret)
       end
     end
 
