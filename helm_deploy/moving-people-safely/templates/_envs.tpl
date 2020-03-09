@@ -166,6 +166,18 @@ env:
         name: {{ template "app.name" . }}
         key: NOMIS_API_CLIENT_SECRET
 
+  - name: NOMIS_API_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: {{ template "app.name" . }}
+        key: NOMIS_API_TOKEN
+
+  - name: NOMIS_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: {{ template "app.name" . }}
+        key: NOMIS_API_KEY
+
   - name: GECKOBOARD_API_KEY
     valueFrom:
       secretKeyRef:
