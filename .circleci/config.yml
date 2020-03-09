@@ -140,12 +140,14 @@ jobs:
           name: Build container and publish to docker hub
           command: |
             DATE=$(date '+%Y-%m-%d')
-            APP_VERSION="${DATE}.${CIRCLE_SHA1}.${CIRCLE_PR_NUMBER}"
-            echo $APP_VERSION > app-version.txt
+            SHORT_SHA1=$(echo $CIRCLE_SHA1 | cut -c1-7)
+            APP_VERSION="${DATE}_${CIRCLE_BUILD_NUM}_${SHORT_SHA1}"
+            echo $APP_VERSION | tee app-version.txt
 
             docker build --rm=false . \
-              --build-arg BUILD_NUMBER=$APP_VERSION \
-              --build-arg GIT_REF=$CIRCLE_SHA1 \
+              --build-arg APP_BUILD_TAG=$APP_VERSION \
+              --build-arg APP_GIT_COMMIT=$CIRCLE_SHA1 \
+              --build-arg APP_BUILD_DATE=$DATE \
               --tag "mojdigitalstudio/moving-people-safely:$APP_VERSION" \
               --label "maintainer=andrew.lee@digital.justice.gov.uk" \
               --label "app.version=$APP_VERSION" \
@@ -154,13 +156,11 @@ jobs:
               --label "build.url=$CIRCLE_BUILD_URL" \
               --label "build.gitref=$CIRCLE_SHA1"
 
-            #if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
-              # publish to docker hub as the tag
-              docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-              docker tag mojdigitalstudio/moving-people-safely:$APP_VERSION mojdigitalstudio/moving-people-safely:latest
-              docker push mojdigitalstudio/moving-people-safely:$APP_VERSION
-              docker push mojdigitalstudio/moving-people-safely:latest
-            #fi
+            # publish to docker hub as the tag
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            docker tag mojdigitalstudio/moving-people-safely:$APP_VERSION mojdigitalstudio/moving-people-safely:latest
+            docker push mojdigitalstudio/moving-people-safely:$APP_VERSION
+            docker push mojdigitalstudio/moving-people-safely:latest
       - persist_to_workspace:
           root: .
           paths:
@@ -194,10 +194,14 @@ workflows:
             branches:
               only:
                 - master
-                - cloudplatform_migration
       - deploy_dev:
           requires:
             - build_docker
+            - build
+          filters:
+            branches:
+              only:
+                - master
       - request-preprod-approval:
           type: approval
           requires:
