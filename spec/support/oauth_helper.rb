@@ -26,7 +26,9 @@ module OauthHelper
     },
     'credentials': {
       'token': 'mock-token',
-      'secret': 'mock-secret'
+      'secret': 'mock-secret',
+      'expires': true,
+      'expires_at': Time.now.to_i + 3600
     }
   }.freeze
 end

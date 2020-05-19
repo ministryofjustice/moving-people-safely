@@ -20,7 +20,10 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-    redirect_to new_session_path unless sso_identity
+    return if sso_identity&.live?
+
+    session[:sso_data] = nil
+    redirect_to new_session_path
   end
 
   def authorize_prison_officer!
