@@ -13,5 +13,4 @@
         div class="alert alert--#{severity}" = flash_message_for(flash[severity])
 
   main#main-content.govuk-main-wrapper role="main"
-    = render 'shared/browser_warning' if request.env['HTTP_USER_AGENT'] =~ /MSIE 8/
     = yield

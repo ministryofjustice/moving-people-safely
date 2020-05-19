@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/browser_error', to: 'homepage#browser_error'
   get '/auth/:provider/callback', to: 'sessions#create'
   resource :session, only: %i[ new destroy ]
 

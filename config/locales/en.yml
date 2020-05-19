@@ -801,6 +801,10 @@ en:
     show:
       heading: Healthcare summary
   homepage:
+    browser_error:
+      heading: Use a different browser
+      body_html: 'This service no longer supports this version of Internet Explorer.<br />Please use Firefox or Chrome to create or view ePERs.'
+      warning: Warning
     gauges:
       detainees_due_to_move: Detainees due to move
       healthcare_complete: Healthcare complete
@@ -938,10 +942,6 @@ en:
     create:
       cannot_sign_in: You cannot be signed in
   shared:
-    browser_warning:
-      heading: Use a different browser
-      body_html: 'This service will stop supporting this version of Internet Explorer soon.<br />When this happens, you should use Firefox, Chrome or a later version of Internet Explorer to create or view PERs.'
-      warning: Warning
     call_to_action:
       confirm_and_save: Confirm and save
       confirmation_alert: Click 'Confirm and save' to confirm that, to the best of your knowledge, all information in this section is correct.
