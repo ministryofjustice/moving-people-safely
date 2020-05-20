@@ -27,6 +27,15 @@ module Nomis
       request(:get, route, params, idempotent: true)
     end
 
+    def http_error_body(original_body)
+      # API errors should be returned as JSON, but there are many scenarios
+      # where this may not be the case.
+      JSON.parse(original_body)
+    rescue JSON::ParserError
+      # Present non-JSON bodies truncated (e.g. this could be HTML)
+      "(invalid-JSON) #{original_body[0, 80]}"
+    end
+
     private
 
     attr_reader :host, :client_id, :client_secret, :connection
@@ -82,15 +91,6 @@ module Nomis
     def auth_header
       token = Nomis::OauthService.valid_token
       "Bearer #{token.access_token}"
-    end
-
-    def http_error_body(original_body)
-      # API errors should be returned as JSON, but there are many scenarios
-      # where this may not be the case.
-      JSON.parse(original_body)
-    rescue JSON::ParserError
-      # Present non-JSON bodies truncated (e.g. this could be HTML)
-      "(invalid-JSON) #{body[0, 80]}"
     end
   end
 end
