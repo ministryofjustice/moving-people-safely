@@ -1,12 +1,12 @@
 version: 2.1
 commands:
   setup:
-    description: 'Install tools and configure kubectl'
+    description: "Install tools and configure kubectl"
     steps:
       - aws-cli/install
       - kubernetes/install
       - helm/install-helm-client:
-          version: v3.0.2
+          version: v3.2.4
       - run:
           name: Setup kubectl
           command: |
@@ -79,54 +79,54 @@ jobs:
   build:
     executor: builder
     steps:
-    - checkout
-    - run:
-        name: Which bundler?
-        command: bundle -v
-    - restore_cache:
-        keys:
-        - app-bundle-v2-{{ checksum "Gemfile.lock" }}
-    - run:
-        name: Bundle Install
-        command: bundle install --path vendor/bundle --jobs=4
-    - restore_cache:
-        keys:
-        - rails-demo-yarn-{{ checksum "yarn.lock" }}
-        - rails-demo-yarn-
-    - run:
-        name: Yarn Install
-        command: yarn install --cache-folder ~/.cache/yarn
-    - save_cache:
-        key: rails-demo-yarn-{{ checksum "yarn.lock" }}
-        paths:
-        - ~/.cache/yarn
-    - save_cache:
-        key: app-bundle-v2-{{ checksum "Gemfile.lock" }}
-        paths:
-        - vendor/bundle
-    - run:
-        name: Wait for DB
-        command: dockerize -wait tcp://localhost:5432 -timeout 1m
-    - run:
-        name: Database setup
-        command: bin/rails db:schema:load --trace
-    - run:
-        name: Make test results directory
-        command: mkdir test_results
-    - run:
-        name: Run rspec
-        command: bundle exec rspec --format documentation --format RspecJunitFormatter -o test_results/rspec.xml --exclude-pattern "spec/features/printing_*.rb"
-    - run:
-        name: Run rubocop
-        command: bundle exec rubocop
-    - run:
-        name: Run scss-lint
-        command: bundle exec scss-lint app
-    - run:
-        name: Run slim-lint
-        command: bundle exec slim-lint app
-    - store_test_results:
-        path: test_results
+      - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - restore_cache:
+          keys:
+            - app-bundle-v2-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Bundle Install
+          command: bundle install --path vendor/bundle --jobs=4
+      - restore_cache:
+          keys:
+            - rails-demo-yarn-{{ checksum "yarn.lock" }}
+            - rails-demo-yarn-
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+      - save_cache:
+          key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - save_cache:
+          key: app-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bin/rails db:schema:load --trace
+      - run:
+          name: Make test results directory
+          command: mkdir test_results
+      - run:
+          name: Run rspec
+          command: bundle exec rspec --format documentation --format RspecJunitFormatter -o test_results/rspec.xml --exclude-pattern "spec/features/printing_*.rb"
+      - run:
+          name: Run rubocop
+          command: bundle exec rubocop
+      - run:
+          name: Run scss-lint
+          command: bundle exec scss-lint app
+      - run:
+          name: Run slim-lint
+          command: bundle exec slim-lint app
+      - store_test_results:
+          path: test_results
 
   build_docker:
     executor: deployer
@@ -169,17 +169,17 @@ jobs:
     executor: deployer
     steps:
       - deploy_to_env:
-          env: 'dev'
+          env: "dev"
   deploy_preprod:
     executor: deployer
     steps:
       - deploy_to_env:
-          env: 'preprod'
+          env: "preprod"
   deploy_prod:
     executor: deployer
     steps:
       - deploy_to_env:
-          env: 'prod'
+          env: "prod"
 
 workflows:
   version: 2
