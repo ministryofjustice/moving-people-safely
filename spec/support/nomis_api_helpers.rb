@@ -9,7 +9,7 @@ module NomisApiHelpers
   end
 
   def stub_oauth_request
-  	stub_request(:post, "#{Rails.application.secrets[:oauth_host]}/auth/oauth/token?grant_type=client_credentials").to_return({
+  	stub_request(:post, "#{Rails.application.secrets[:nomis_api][:oauth_host]}/auth/oauth/token?grant_type=client_credentials").to_return({
       body: {access_token: "token"}.to_json,
       status: 200
     })
