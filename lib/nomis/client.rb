@@ -65,7 +65,7 @@ module Nomis
     def options_for_request(method, route, params, idempotent)
       # For cleanliness, strip initial / if supplied
       route = route.sub(%r{^\/}, '')
-      path = "/elite2api/api/v1/#{route}"
+      path = "/api/v1/#{route}"
 
       {
         method: method,

@@ -24,7 +24,7 @@ module Nomis
     end
 
     def fetch_token
-      host = Rails.application.secrets[:nomis_api][:oauth_host]
+      host = Rails.application.secrets[:oauth_host]
       oauth_client = Nomis::OauthClient.new(host)
 
       route = '/auth/oauth/token?grant_type=client_credentials'
